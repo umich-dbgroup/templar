@@ -1,0 +1,685 @@
+81. show me the papers by "H. V. Jagadish" on PVLDB. 
+(1)ROOT
+    (2)show
+        (4)papers
+            (7)H. V. Jagadish
+                (9)PVLDB
+1. ROOT: ROOT; NA; ; (0) 
+2. show: CMT; NA; ; (0) 
+4. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+7. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+9. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+82. show me the papers by "H. V. Jagadish" on PVLDB after 2000. 
+(11)ROOT
+    (12)show
+        (13)papers
+            (17)H. V. Jagadish
+                (19)PVLDB
+            (20)after
+                (21)2000
+11. ROOT: ROOT; NA; ; (0) 
+12. show: CMT; NA; ; (0) 
+13. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+17. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+19. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+20. after: OT; >; ; (0) 
+21. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+83. show me the papers by "H. V. Jagadish" on VLDB conference. 
+(23)ROOT
+    (24)show
+        (26)papers
+            (29)H. V. Jagadish
+                (31)conference
+                    (32)VLDB
+23. ROOT: ROOT; NA; ; (0) 
+24. show: CMT; NA; ; (0) 
+26. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+29. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+31. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+32. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(31) and VLDB(32) are the same entity
+=================
+84. show me the papers by "H. V. Jagadish" on VLDB conference after 2000. 
+(34)ROOT
+    (35)show
+        (36)papers
+            (40)H. V. Jagadish
+                (42)conference
+                    (43)VLDB
+            (44)after
+                (45)2000
+34. ROOT: ROOT; NA; ; (0) 
+35. show: CMT; NA; ; (0) 
+36. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+40. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+42. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+43. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+44. after: OT; >; ; (0) 
+45. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+conference(42) and VLDB(43) are the same entity
+=================
+85. show me the number of papers by "H. V. Jagadish". 
+(47)ROOT
+    (48)show
+        (50)number of
+            (53)papers
+                (55)H. V. Jagadish
+47. ROOT: ROOT; NA; ; (0) 
+48. show: CMT; NA; ; (0) 
+50. number of: FT; count; ; (0) 
+53. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+55. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+=================
+86. show me the number of papers by "H. V. Jagadish" after 2000. 
+(57)ROOT
+    (58)show
+        (59)number of
+            (63)papers
+                (65)H. V. Jagadish
+            (66)after
+                (67)2000
+57. ROOT: ROOT; NA; ; (0) 
+58. show: CMT; NA; ; (0) 
+59. number of: FT; count; ; (0) 
+63. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+65. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+66. after: OT; >; ; (0) 
+67. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+87. show me the number of papers by "H. V. Jagadish" on PVLDB. 
+(69)ROOT
+    (70)show
+        (72)number of
+            (75)papers
+                (77)H. V. Jagadish
+                    (79)PVLDB
+69. ROOT: ROOT; NA; ; (0) 
+70. show: CMT; NA; ; (0) 
+72. number of: FT; count; ; (0) 
+75. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+77. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+79. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+88. show me the number of papers by "H. V. Jagadish" on PVLDB after 2000. 
+(81)ROOT
+    (82)show
+        (83)number of
+            (87)papers
+                (89)H. V. Jagadish
+                    (91)PVLDB
+            (92)after
+                (93)2000
+81. ROOT: ROOT; NA; ; (0) 
+82. show: CMT; NA; ; (0) 
+83. number of: FT; count; ; (0) 
+87. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+89. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+91. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+92. after: OT; >; ; (0) 
+93. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+89. show me the number of papers by "H. V. Jagadish" on VLDB conference. 
+(95)ROOT
+    (96)show
+        (98)number of
+            (101)papers
+                (103)H. V. Jagadish
+                    (105)conference
+                        (106)VLDB
+95. ROOT: ROOT; NA; ; (0) 
+96. show: CMT; NA; ; (0) 
+98. number of: FT; count; ; (0) 
+101. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+103. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+105. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+106. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(105) and VLDB(106) are the same entity
+=================
+90. show me the number of papers by "H. V. Jagadish" on VLDB conference after 2000. 
+(108)ROOT
+    (109)show
+        (110)number of
+            (114)papers
+                (116)H. V. Jagadish
+                    (118)conference
+                        (119)VLDB
+            (120)after
+                (121)2000
+108. ROOT: ROOT; NA; ; (0) 
+109. show: CMT; NA; ; (0) 
+110. number of: FT; count; ; (0) 
+114. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+116. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+118. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+119. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+120. after: OT; >; ; (0) 
+121. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+conference(118) and VLDB(119) are the same entity
+=================
+91. show me the number of papers written by "H. V. Jagadish" in each year. 
+(123)ROOT
+    (124)show
+        (126)number of
+            (129)papers
+                (132)H. V. Jagadish
+                (134)year
+123. ROOT: ROOT; NA; ; (0) 
+124. show: CMT; NA; ; (0) 
+126. number of: FT; count; ; (0) 
+129. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+132. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+134. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+92. show me the number of papers written by "H. V. Jagadish" on PVLDB in each year. 
+(137)ROOT
+    (138)show
+        (140)number of
+            (143)papers
+                (146)H. V. Jagadish
+                (148)PVLDB
+                    (150)year
+137. ROOT: ROOT; NA; ; (0) 
+138. show: CMT; NA; ; (0) 
+140. number of: FT; count; ; (0) 
+143. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+146. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+148. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+150. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+93. show me the number of papers written by "H. V. Jagadish" on VLDB conference in each year. 
+(153)ROOT
+    (154)show
+        (156)number of
+            (159)papers
+                (162)H. V. Jagadish
+                (164)conference
+                    (165)VLDB
+                (167)year
+153. ROOT: ROOT; NA; ; (0) 
+154. show: CMT; NA; ; (0) 
+156. number of: FT; count; ; (0) 
+159. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+162. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+164. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+165. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+167. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+conference(164) and VLDB(165) are the same entity
+=================
+94. show me the number of papers written by "H. V. Jagadish" in each conference. 
+(170)ROOT
+    (171)show
+        (173)number of
+            (176)papers
+                (179)H. V. Jagadish
+                (181)conference
+170. ROOT: ROOT; NA; ; (0) 
+171. show: CMT; NA; ; (0) 
+173. number of: FT; count; ; (0) 
+176. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+179. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+181. conference: NT; NA; each; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+=================
+95. show me the number of papers written by "H. V. Jagadish" in each journal. 
+(184)ROOT
+    (185)show
+        (187)number of
+            (190)papers
+                (193)H. V. Jagadish
+                (195)journal
+184. ROOT: ROOT; NA; ; (0) 
+185. show: CMT; NA; ; (0) 
+187. number of: FT; count; ; (0) 
+190. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+193. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+195. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+=================
+96. show me the paper by "H. V. Jagadish" with the most citations. 
+(198)ROOT
+    (199)show
+        (201)paper
+            (204)H. V. Jagadish
+                (206)citations
+                    (208)most
+198. ROOT: ROOT; NA; ; (0) 
+199. show: CMT; NA; ; (0) 
+201. paper: NT; NA; ; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+204. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+206. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+208. most: FT; max; ; (0) 
+=================
+97. show me the papers by "H. V. Jagadish" with more than 200 citations. 
+(210)ROOT
+    (211)show
+        (213)papers
+            (216)H. V. Jagadish
+                (218)citations
+                    (219)200
+                        (220)more than
+210. ROOT: ROOT; NA; ; (0) 
+211. show: CMT; NA; ; (0) 
+213. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+216. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+218. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+219. 200: VTNUM; NA; ; (-1) publication.year(-7.7):1940; 1940; 1940; | 
+220. more than: OT; >; ; (0) 
+=================
+98. show me the authors who have more than 200 papers. 
+(223)ROOT
+    (224)show
+        (226)authors
+            (230)papers
+                (231)200
+                    (232)more than
+223. ROOT: ROOT; NA; ; (0) 
+224. show: CMT; NA; ; (0) 
+226. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+230. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+231. 200: VTNUM; NA; ; (-1) publication.year(-7.7):1940; 1940; 1940; | 
+232. more than: OT; >; ; (0) 
+=================
+99. show me the authors who have the most papers. 
+(235)ROOT
+    (236)show
+        (238)authors
+            (242)papers
+                (244)most
+235. ROOT: ROOT; NA; ; (0) 
+236. show: CMT; NA; ; (0) 
+238. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+242. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+244. most: FT; max; ; (0) 
+=================
+100. show me the authors who have more than 10 papers in the VLDB conference. 
+(246)ROOT
+    (247)show
+        (249)authors
+            (253)papers
+                (254)10
+                    (255)more than
+                (258)conference
+                    (260)VLDB
+246. ROOT: ROOT; NA; ; (0) 
+247. show: CMT; NA; ; (0) 
+249. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+253. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+254. 10: VTNUM; NA; ; (-1) publication.year(-192.0):1940; 1940; 1940; | 
+255. more than: OT; >; ; (0) 
+258. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+260. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(258) and VLDB(260) are the same entity
+=================
+101. show me the author who has the most number of papers in the VLDB conference. 
+(262)ROOT
+    (263)show
+        (265)author
+            (269)number of
+                (271)most
+                (273)papers
+                    (275)conference
+                        (277)VLDB
+262. ROOT: ROOT; NA; ; (0) 
+263. show: CMT; NA; ; (0) 
+265. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+269. number of: FT; count; ; (0) 
+271. most: FT; max; ; (0) 
+273. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+275. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+277. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(275) and VLDB(277) are the same entity
+=================
+102. show me the authors who have more than 10 papers in PVLDB. 
+(279)ROOT
+    (280)show
+        (282)authors
+            (286)papers
+                (287)10
+                    (288)more than
+                (291)PVLDB
+279. ROOT: ROOT; NA; ; (0) 
+280. show: CMT; NA; ; (0) 
+282. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+286. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+287. 10: VTNUM; NA; ; (-1) publication.year(-192.0):1940; 1940; 1940; | 
+288. more than: OT; >; ; (0) 
+291. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+103. show me the authors who have the most number of papers in PVLDB. 
+(293)ROOT
+    (294)show
+        (296)authors
+            (300)number of
+                (302)most
+                (304)papers
+                    (306)PVLDB
+293. ROOT: ROOT; NA; ; (0) 
+294. show: CMT; NA; ; (0) 
+296. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+300. number of: FT; count; ; (0) 
+302. most: FT; max; ; (0) 
+304. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+306. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+104. show me the authors who have more than 30 papers with more than 30 citations for each. 
+(308)ROOT
+    (309)show
+        (311)authors
+            (315)papers
+                (316)30
+                    (317)more than
+            (320)citations
+                (321)30
+                    (322)more than
+308. ROOT: ROOT; NA; ; (0) 
+309. show: CMT; NA; ; (0) 
+311. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+315. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+316. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+317. more than: OT; >; ; (0) 
+320. citations: NT; NA; each; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+321. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+322. more than: OT; >; ; (0) 
+=================
+105. show me the authors in database area who have more than 30 papers with more than 30 citations for each. 
+(327)ROOT
+    (328)show
+        (330)authors
+            (333)area
+                (334)database
+            (337)papers
+                (338)30
+                    (339)more than
+            (342)citations
+                (343)30
+                    (344)more than
+327. ROOT: ROOT; NA; ; (0) 
+328. show: CMT; NA; ; (0) 
+330. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+333. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+334. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+337. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+338. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+339. more than: OT; >; ; (0) 
+342. citations: NT; NA; each; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+343. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+344. more than: OT; >; ; (0) 
+area(333) and database(334) are the same entity
+=================
+106. show me the authors in "University of Michigan" who have more than 30 papers with more than 30 citations for each. 
+(349)ROOT
+    (350)show
+        (352)authors
+            (355)University of Michigan
+            (358)papers
+                (359)30
+                    (360)more than
+            (363)citations
+                (364)30
+                    (365)more than
+349. ROOT: ROOT; NA; ; (0) 
+350. show: CMT; NA; ; (0) 
+352. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+355. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+358. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+359. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+360. more than: OT; >; ; (0) 
+363. citations: NT; NA; each; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+364. 30: VTNUM; NA; ; (-1) publication.year(-62.67):1940; 1940; 1940; | 
+365. more than: OT; >; ; (0) 
+=================
+107. show me the conferences, which have more than 10 papers by "H. V. Jagadish". 
+(370)ROOT
+    (371)show
+        (373)conferences
+            (377)papers
+                (378)10
+                    (379)more than
+            (382)H. V. Jagadish
+370. ROOT: ROOT; NA; ; (0) 
+371. show: CMT; NA; ; (0) 
+373. conferences: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conferences; The TREC Conferences; On Attending Confere; | organization.name(0.95):| publication.title(0.84):| publication.year(0.8):| 
+377. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+378. 10: VTNUM; NA; ; (-1) publication.year(-192.0):1940; 1940; 1940; | 
+379. more than: OT; >; ; (0) 
+382. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+=================
+108. show me the journals, which have more than 10 papers by "H. V. Jagadish". 
+(384)ROOT
+    (385)show
+        (387)journals
+            (391)papers
+                (392)10
+                    (393)more than
+            (396)H. V. Jagadish
+384. ROOT: ROOT; NA; ; (0) 
+385. show: CMT; NA; ; (0) 
+387. journals: NT; NA; ; (0) journal.name(1.04):| publication.title(1.0):Journals; New Journals; Journals to Die For; | publication.title(0.99):| conference.name(0.79):| author.name(0.77):| 
+391. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+392. 10: VTNUM; NA; ; (-1) publication.year(-192.0):1940; 1940; 1940; | 
+393. more than: OT; >; ; (0) 
+396. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+=================
+109. show me the author whose papers have the most total citations. 
+(398)ROOT
+    (399)show
+        (401)author
+            (405)papers
+            (406)citations
+                (408)most
+                (409)total
+398. ROOT: ROOT; NA; ; (0) 
+399. show: CMT; NA; ; (0) 
+401. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+405. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+406. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+408. most: FT; max; ; (0) 
+409. total: FT; sum; ; (0) 
+=================
+110. show me the author whose papers have more than 10000 citations. 
+(411)ROOT
+    (412)show
+        (414)author
+            (418)papers
+            (419)citations
+                (420)10000
+                    (421)more than
+411. ROOT: ROOT; NA; ; (0) 
+412. show: CMT; NA; ; (0) 
+414. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+418. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+419. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+420. 10000: VTNUM; NA; ; (-1) 
+421. more than: OT; >; ; (0) 
+=================
+111. show me the author in "University of Michigan" whose papers have the most total citations. 
+(424)ROOT
+    (425)show
+        (427)author
+            (430)University of Michigan
+            (433)papers
+            (434)citations
+                (436)most
+                (437)total
+424. ROOT: ROOT; NA; ; (0) 
+425. show: CMT; NA; ; (0) 
+427. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+430. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+433. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+434. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+436. most: FT; max; ; (0) 
+437. total: FT; sum; ; (0) 
+=================
+112. show me the author in "University of Michigan" whose papers have more than 5000 total citations. 
+(439)ROOT
+    (440)show
+        (442)author
+            (445)University of Michigan
+            (448)papers
+            (449)citations
+                (450)5000
+                    (451)more than
+                (453)total
+439. ROOT: ROOT; NA; ; (0) 
+440. show: CMT; NA; ; (0) 
+442. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+445. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+448. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+449. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+450. 5000: VTNUM; NA; ; (-1) 
+451. more than: OT; >; ; (0) 
+453. total: FT; sum; ; (0) 
+=================
+113. show me the author in database area whose papers have the most total citations. 
+(455)ROOT
+    (456)show
+        (458)author
+            (461)area
+                (462)database
+            (465)papers
+            (466)citations
+                (468)most
+                (469)total
+455. ROOT: ROOT; NA; ; (0) 
+456. show: CMT; NA; ; (0) 
+458. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+461. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+462. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+465. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+466. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+468. most: FT; max; ; (0) 
+469. total: FT; sum; ; (0) 
+area(461) and database(462) are the same entity
+=================
+114. show me the author in database area whose papers have more than 5000 total citations. 
+(471)ROOT
+    (472)show
+        (474)author
+            (477)area
+                (478)database
+            (481)papers
+            (482)citations
+                (483)5000
+                    (484)more than
+                (486)total
+471. ROOT: ROOT; NA; ; (0) 
+472. show: CMT; NA; ; (0) 
+474. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+477. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+478. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+481. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+482. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+483. 5000: VTNUM; NA; ; (-1) 
+484. more than: OT; >; ; (0) 
+486. total: FT; sum; ; (0) 
+area(477) and database(478) are the same entity
+=================
+115. show me the author in "University of Michigan" in database area whose papers have the most total citations. 
+(488)ROOT
+    (489)show
+        (491)author
+            (494)University of Michigan
+            (496)area
+                (497)database
+            (500)papers
+            (501)citations
+                (503)most
+                (504)total
+488. ROOT: ROOT; NA; ; (0) 
+489. show: CMT; NA; ; (0) 
+491. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+494. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+496. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+497. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+500. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+501. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+503. most: FT; max; ; (0) 
+504. total: FT; sum; ; (0) 
+area(496) and database(497) are the same entity
+=================
+116. show me the author in "University of Michigan" in database area whose papers have more than 5000 total citations. 
+(506)ROOT
+    (507)show
+        (509)author
+            (512)University of Michigan
+            (514)area
+                (515)database
+            (518)papers
+            (519)citations
+                (520)5000
+                    (521)more than
+                (523)total
+506. ROOT: ROOT; NA; ; (0) 
+507. show: CMT; NA; ; (0) 
+509. author: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| publication.title(0.85):Author Art; Author Reply; Author Reply; | 
+512. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+514. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+515. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+518. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+519. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+520. 5000: VTNUM; NA; ; (-1) 
+521. more than: OT; >; ; (0) 
+523. total: FT; sum; ; (0) 
+area(514) and database(515) are the same entity
+=================
+117. show me the total citations of the papers in each organization. 
+(525)ROOT
+    (526)show
+        (528)citations
+            (530)total
+            (532)papers
+                (535)organization
+525. ROOT: ROOT; NA; ; (0) 
+526. show: CMT; NA; ; (0) 
+528. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+530. total: FT; sum; ; (0) 
+532. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+535. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+=================
+118. show me the total citations of the papers in each journal. 
+(538)ROOT
+    (539)show
+        (541)citations
+            (543)total
+            (545)papers
+                (548)journal
+538. ROOT: ROOT; NA; ; (0) 
+539. show: CMT; NA; ; (0) 
+541. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+543. total: FT; sum; ; (0) 
+545. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+548. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+=================
+119. show me the total citations of the papers in each conference. 
+(551)ROOT
+    (552)show
+        (554)citations
+            (556)total
+            (558)papers
+                (561)conference
+551. ROOT: ROOT; NA; ; (0) 
+552. show: CMT; NA; ; (0) 
+554. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+556. total: FT; sum; ; (0) 
+558. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+561. conference: NT; NA; each; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+=================
+120. show me the total citations of the papers in each journal in database area. 
+(564)ROOT
+    (565)show
+        (567)citations
+            (569)total
+            (571)papers
+                (574)journal
+                    (577)area
+                        (578)database
+564. ROOT: ROOT; NA; ; (0) 
+565. show: CMT; NA; ; (0) 
+567. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+569. total: FT; sum; ; (0) 
+571. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+574. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+577. area: NT; NA; ; (0) domain.name(1.0):| publication.year(0.9):| publication.title(0.88):| journal.name(0.85):| organization.name(0.85):| 
+578. database: VTTEXT; NA; ; (0) domain.name(1.0):Database; Data Mining; Simulation; | keyword.keyword(0.88):Xml Database; Web Databases; Text Database; | publication.title(0.87):| journal.name(0.84):| conference.name(0.83):| 
+area(577) and database(578) are the same entity
+=================

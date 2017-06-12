@@ -1,0 +1,10 @@
+1. Show me the papers of "H. V. Jagadish"
+(1)ROOT
+    (2)Show
+        (3)papers
+            (7)H. V. Jagadish
+1. ROOT: ROOT; NA; ; (0) 
+2. Show: CMT; NA; ; (0) 
+3. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+7. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; G. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+=================

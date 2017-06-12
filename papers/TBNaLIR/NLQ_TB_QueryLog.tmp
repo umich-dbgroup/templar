@@ -1,0 +1,14 @@
+% NLQ_TB_QueryLog.top
+\unprotect
+\def\MPOSTformatswitch{-progname=metafun -mem=}
+\setupsystem[\c!n=2,\c!m=2]
+\setupsystem[\c!method=2]
+\setupsystem[\c!type=macosx]
+\setupsystem[\c!random=1216]
+\setupsystem[inputfile=NLQ_TB_QueryLog.tex]
+\startsetups *runtime:options
+\setupoutput[xetex]
+\stopsetups
+\startsetups *runtime:modules
+\stopsetups
+\protect \endinput

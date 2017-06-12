@@ -1,0 +1,280 @@
+0. total queries: 105 (original queries) + 55 (new queries) = 160; 
+
+1. basic information for a paper: 5; 
+show me the published year of "Making database systems usable"; 
+show me the conference, which published "Making database systems usable"; 
+show me the abstract of "Making database systems usable"; 
+show me the authors of "Making database systems usable"; 
+show me the keywords of "Making database systems usable"; 
+
+2. citation/reference of a paper; 7; 
+show me the citations of "Making database systems usable"; 
+show me the citations of "Making database systems usable" after 2007;  
+show me the references of "Making database systems usable"; 
+show me the number of citations of "Making database systems usable"; 
+show me the number of citations of "Making database systems usable" after 2007;  
+show me the number of citations of "Making database systems usable" in each year; 
+-> show me the citations of "making database systems usable" that are not cited by its authors; 
+
+3. basic statistics of papers: 8; 
+show me the number of papers in PVLDB; 
+show me the number of papers in VLDB conference; 
+show me the number of papers in University of Michigan; 
+-> show me the number of papers in each year; 
+-> show me the number of papers by each organization; 
+-> show me the number of papers in each conference; 
+-> show me the number of papers in each journal; 
+-> show me the number of papers in each domain; 
+
+4. advanced statistics of papers: 19;  
+show me the number of papers in PVLDB in each year; 
+show me the number of paper in VLDB conference in each year; 
+-> show me the number of papers in PVLDB by each organization; 
+-> show me the number of paper in VLDB conference by each organization; 
+-> show me the number of papers by University of Michigan in each year; 
+-> show me the number of papers by University of Michigan in each conference; 
+-> show me the number of papers by University of Michigan in each journal; 
+-> show me the number of papers by University of Michigan in each domain; 
+-> show me the number of papers by each organization after 2000; 
+-> show me the number of papers in each conference after 2000; 
+-> show me the number of papers in each journal after 2000; 
+-> show me the number of papers in each domain after 2000; 
+-> show me the number of papers in PVLDB in University of Michigan in each year; 
+-> show me the number of papers in VLDB conference in University of Michigan in each year; 
+-> show me the number of papers in PVLDB in each organization after 2000; 
+-> show me the number of papers in VLDB conference in each organization after 2000; 
+show me the number of citations of each paper in the VLDB conference; 
+show me the number of citations of each paper in PVLDB; 
+show me the number of citations of each paper by H. V. Jagadish;  
+
+5. paper with most citations/more than x citations: 15; 
+show me the paper with the most citations; 
+show me the papers with more than 1000 citations; 
+show me the paper in PVLDB with the most citations; 
+show me the papers in PVLDB with more than 200 citations; 
+show me the paper in VLDB conference with the most citations; 
+show me the papers in VLDB conference with more than 200 citations; 
+show me the paper after 2000 with the most citations; 
+show me the papers after 2000 with more than 200 citations; 
+show me the paper after 2000 in PVLDB with the most citations; 
+show me the papers after 2000 in PVLDB with more than 200 citations; 
+show me the paper after 2000 in VLDB conference with the most citations; 
+show me the papers after 2000 in VLDB conference with more than 200 citations; 
+-> show me the number of papers with more than 200 citations in each organization; 
+-> show me the number of papers with more than 200 citations in each conference; 
+-> show me the number of papers with more than 200 citations in each journal; 
+
+6. papers in a/each domain: 9; 
+-> show me the paper in database area by H. V. Jagadish
+-> show me the paper in database area with more than 500 citations; 
+-> show me the paper in database area with the most citations; 
+-> show me the paper in database area after 2000 with the most citations; 
+-> show me the paper in database area after 2000 with more than 100 citations; 
+-> show me the number of papers in database area in each year; 
+-> show me the number of papers in database area in each organization; 
+-> show me the number of papers in database area in University of Michigan; 
+-> show me the number of papers in database area in University of Michigan in each year; 
+
+7. basic information for an author: 7; 
+show me the homepage of H. V. Jagadish. 
+show me the organization where H. V. Jagadish is in.  
+show me the domain where H. V. Jagadish is focus.  
+show me the conferences, which have papers by H. V. Jagadish. 
+show me the journals, which have papers by H. V. Jagadish. 
+show me the number of conferences, which have papers by H. V. Jagadish. 
+show me the number of journals, which have papers by H. V. Jagadish. 
+
+8. statistic information for authors: 4; 
+-> show me the number of researchers in each organization; 
+-> show me the number of researchers in each area; 
+-> show me the number of researchers in database area in each organization; 
+-> show me the number of researchers in University of Michigan in each area; 
+
+9. relationship between two authors: 4; 
+show me the authors who have cooperated with H. V. Jagadish. 
+show me the number of authors who have cooperated with H. V. Jagadish. 
+-> show me the authors who are in the same organization with H. V. Jagadish
+-> show me the authors who have cooperated with H. V. Jagadish in more than 10 papers; 
+
+10. papers by an author: 19; 
+show me the papers by H. V. Jagadish; 
+show me the papers by H. V. Jagadish after 2000; 
+show me the papers by H. V. Jagadish on PVLDB; 
+show me the papers by H. V. Jagadish on PVLDB after 2000; 
+show me the papers by H. V. Jagadish on VLDB conference; 
+show me the papers by H. V. Jagadish on VLDB conference after 2000; 
+show me the number of papers by H. V. Jagadish; 
+show me the number of papers by H. V. Jagadish after 2000; 
+show me the number of papers by H. V. Jagadish on PVLDB; 
+show me the number of papers by H. V. Jagadish on PVLDB after 2000; 
+show me the number of papers by H. V. Jagadish on VLDB conference; 
+show me the number of papers by H. V. Jagadish on VLDB conference after 2000; 
+-> show me the number of papers written by H. V. Jagadish in each year; 
+-> show me the number of papers written by H. V. Jagadish on PVLDB in each year; 
+-> show me the number of papers written by H. V. Jagadish on VLDB conference in each year; 
+-> show me the number of papers written by H. V. Jagadish in each conference; 
+-> show me the number of papers written by H. V. Jagadish in each journal; 
+show me the paper by H. V. Jagadish with the most citations. 
+show me the papers by H. V. Jagadish with more than 200 citations. 
+
+11. authors with the most papers/more than x papers: 8; 
+show me the authors who have more than 200 papers; 
+show me the authors who have the most papers; 
+show me the authors who have more than 10 papers in the VLDB conference. 
+show me the author who has the most number of papers in the VLDB conference. 
+show me the authors who have more than 10 papers in PVLDB. 
+show me the authors who have the most number of papers in PVLDB. 
+-> show me the authors who have more than 30 papers with more than 30 citations for each; 
+-> show me the authors in database area who have more than 30 papers with more than 30 citations for each; 
+-> show me the authors in University of Michigan who have more than 30 papers with more than 30 citations for each; 
+show me the conferences, which have more than 10 papers by H. V. Jagadish. 
+show me the journals, which have more than 10 papers by H. V. Jagadish. 
+
+12. total citations of an author: 13; 
+show me the author whose papers have the most total citations; 
+show me the author whose papers have more than 10000 citations; 
+show me the author in the University of Michigan whose papers have the most total citations; 
+show me the author in the University of Michigan whose papers have more than 5000 total citations; 
+show me the author in database area whose papers have the most total citations; 
+show me the author in database area whose papers have more than 5000 total citations; 
+show me the author in the University of Michigan in database area whose papers have the most total citations; 
+show me the author in the University of Michigan in database area whose papers have more than 5000 total citations; 
+-> show me the total citations of the papers in each organization; 
+-> show me the total citations of the papers in each journal; 
+-> show me the total citations of the papers in each conference; 
+-> show me the total citations of the papers in each journal in database area; 
+-> show me the total citations of the papers in each conference in database area; 
+
+13. papers by two authors: 10; 
+show me the papers written by H. V. Jagadish and Divesh Srivastava. 
+show me the papers written by H. V. Jagadish and Divesh Srivastava before 2000. 
+show me the papers written by H. V. Jagadish and Yunyao Li after 2005. 
+show me the papers written by H. V. Jagadish and Yunyao Li on PVLDB. 
+show me the papers written by H. V. Jagadish and Yunyao Li on PVLDB after 2005. 
+show me the number of papers written by H. V. Jagadish and Divesh Srivastava. 
+show me the number of papers written by H. V. Jagadish and Divesh Srivastava before 2000. 
+show me the number of papers written by H. V. Jagadish and Yunyao Li after 2000. 
+show me the papers written by H. V. Jagadish and Divesh Srivastava with more than 200 citations. 
+show me the papers written by H. V. Jagadish and Divesh Srivastava with the most number of citations. 
+
+14. basic information for an organization: 5; 
+show me the homepage of University of Michigan; 
+show me the researchers in University of Michigan; 
+-> show me the researchers in University of Michigan in database area; 
+show me the number of researchers in University of Michigan; 
+show me the number of researchers in database area in University of Michigan; 
+
+15. basic information for a conference: 8; 
+show me the homepage of the VLDB conference. 
+show me the area of the VLDB conference. 
+show me the papers on VLDB conference; 
+show me the papers on VLDB conference after 2000; 
+show me the authors who have papers in the VLDB conference. 
+show me the papers in VLDB conference in University of Michigan; 
+show me the papers in VLDB after 2000 in University of Michigan; 
+
+16. basic information for a journal: 8; 
+show me the homepage of PVLDB. 
+show me the area of PVLDB. 
+show me the papers on PVLDB; 
+show me the papers on PVLDB after 2000; 
+show me the papers in PVLDB in University of Michigan; 
+show me the papers in PVLDB after 2000 in University of Michigan; 
+show me the number of papers on PVLDB; 
+show me the authors who have papers in PVLDB. 
+
+17. keyword: 5; 
+show me the keywords related to H. V. Jagadish.  
+show me the papers, which contain the keyword "Natural Language"; 
+show me the papers of H. V. Jagadish containing keyword "User Study"; 
+show me the papers in PVLDB containing keyword "Keyword search"; 
+show me the papers in VLDB conference containing keyword "Information Retrieval"; 
+
+18. comparison: 3; 
+-> show me the authors in database area who have more papers than H. V. Jagadish; 
+-> show me the authors who have more papers than H. V. Jagadish in SIGMOD; 
+-> show me the authors in database area who have more papers than H. V. Jagadish after 2000; 
+
+DELETED queries: 93; 
+show me the number of papers written by H. V. Jagadish, Yunyao Li, and Cong Yu. 
+show me the total citations of all the papers in PVLDB. 
+show me the total citations of papers in PVLDB in 2005. 
+show me the total citations of papers in PVLDB before 2005. 
+show me the total citations of paper in PVLDB in each year. 
+show me the total citations of all the papers in the VLDB conference. 
+show me the total citations of papers in the VLDB conference in 2005. 
+show me the total citations of papers in the VLDB conference before 2005. 
+show me the total citations of papers in the VLDB conference in each year. 
+show me the total citations of the papers in University of Michigan; 
+show me the number of the keywords of "Making database systems usable". 
+show me the number of authors of "Making database systems usable"; 
+show me the number of references of "Making database systems usable"; 
+show me the papers by H. V. Jagadish on PVLDB with more than 200 citations. 
+show me the papers by H. V. Jagadish on VLDB conference with more than 200 citations; 
+show me the authors who have cited the papers by H. V. Jagadish. 
+show me the number of authors who have cited the papers by H. V. Jagadish. 
+show me all the keywords; 
+show me all the keywords in database area; 
+show me the keywords in VLDB conference. 
+show me the keywords in PVLDB. 
+show me the number of keywords; 
+show me the number of keywords in database area; 
+show me the number of the keywords related to H. V. Jagadish.  
+show me the number of papers, which contain the keyword "Natural Language"; 
+show me the number of keywords in VLDB conference. 
+show me the number of keywords in PVLDB. 
+show me the number of keywords in the papers of University of Michigan.  
+show me the keywords in the papers of University of Michigan.  
+show me the authors who have papers containing keyword "Relational Database"; 
+show me the number of the papers of H. V. Jagadish containing keyword "User Study"; 
+show me the author who has the most number of papers containing keyword "Relational Database"; 
+show me the conference, which has the most number of papers containing keyword "Relational Database"; 
+show me the journal, which has the most number of papers containing keyword "Relational Database"; 
+show me the number of the authors who have more than 10 papers containing keyword "Relational Database";
+show me the number of the conferences, which have more than 60 papers containing keyword "Relational Database"; 
+show me the number of the journals, which have more than 60 papers containing keyword "Relational Database"; 
+show me the number of authors who have more than 10 papers containing keyword "Relational Database"; 
+show me the number of conferences, which have more than 60 papers containing keyword "Relational Database"; 
+show me the number of journals, which have more than 60 papers containing keyword "Relational Database"; 
+show me the number of keywords, which have been contained by more than 100 papers in VLDB conference; 
+show me the number of keywords, which have been contained by more than 100 papers in PVLDB; 
+show me the number of keywords, which have been contained by more than 10 papers of H. V. Jagadish; 
+show me the keyword, which have been contained by the most number of papers in VLDB conference; 
+show me the keyword, which have been contained by the most number of papers in PVLDB; 
+show me the keyword, which have been contained by the most number of papers by H. V. Jagadish; 
+show me the journal that has the most number of papers containing keyword "Relational Database"; 
+show me the conference that has the most number of papers containing keyword "Relational Database"; 
+show me the author who has the most number of papers containing keyword "Relational Database"; 
+show me the number of papers in PVLDB containing keyword "Keyword search"; 
+show me the number of papers in VLDB conference containing keyword "Information Retrieval"; 
+show me the number of authors who have papers containing keyword "Relational Database"; 
+show me the authors who have more than 10 papers containing keyword "Relational Database"; 
+show me the conferences, which have more than 60 papers containing keyword "Relational Database"; 
+show me the journals, which have more than 60 papers containing keyword "Relational Database"; 
+show me the keywords, which have been contained by more than 100 papers in VLDB conference; 
+show me the keywords, which have been contained by more than 100 papers in PVLDB; 
+show me the keywords, which have been contained by more than 10 papers of H. V. Jagadish; 
+show me the number of papers on PVLDB after 2000; 
+show me the number of papers in PVLDB in University of Michigan; 
+show me the number of papers in PVLDB after 2000 in University of Michigan; 
+show me the number of papers on VLDB conference after 2000; 
+show me the papers after 2000; 
+show me all the organizations; 
+show me all the organizations in North America; 
+show me all the organizations in database area; 
+show me all the organizations in database area located in North America; 
+show me all the papers in University of Michigan; 
+show me all the papers after 2000 in University of Michigan; 
+show me the number of papers after 2000; 
+show me the number of the organizations; 
+show me the number of the organizations in North America; 
+show me the number of organizations in database area; 
+show me the number of organizations in database area located in North America; 
+show me the number of authors who have papers in PVLDB; 
+show me the number of authors who have papers in the VLDB conference. 
+show me the conference, which have the most number of papers by H. V. Jagadish. 
+show me the journal, which have the most number of papers by H. V. Jagadish. 
+show me the number of papers published on PVLDB before 2000; 
+show me the number of papers published in the VLDB conference before 2000; 
+show me the number of papers in VLDB conference after 2000 in University of Michigan; 
+show me the number of papers after 2000 in University of Michigan; 

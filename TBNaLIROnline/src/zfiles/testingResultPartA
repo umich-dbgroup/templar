@@ -1,0 +1,561 @@
+1. show me the published year of "Making database systems usable". 
+(1)ROOT
+    (2)show
+        (3)year
+            (8)Making database systems usable
+1. ROOT: ROOT; NA; ; (0) 
+2. show: CMT; NA; ; (0) 
+3. year: NT; NA; ; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+8. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+2. show me the authors who have more papers than "H. V. Jagadish" in SIGMOD after 2000. 
+(10)ROOT
+    (11)show
+        (13)authors
+            (17)papers
+                (18)more
+            (20)H. V. Jagadish
+                (22)SIGMOD
+            (23)after
+                (24)2000
+10. ROOT: ROOT; NA; ; (0) 
+11. show: CMT; NA; ; (0) 
+13. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+17. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+18. more: OT; >; ; (0) 
+20. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+22. SIGMOD: VTTEXT; NA; ; (0) conference.name(1.0):SIGMOD; | journal.name(0.77):SIGMOD Record; FTSIG; SIGMETRICS; | conference.homepage(0.58):http://www.sigmod201; http://www.sigmod201; | journal.homepage(0.49):http://www.sigmm.org; www.sigmod.org/publi; http://www.sigmobile; | domain.name(0.38):Simulation; Computer Vision; Artificial Intellige; | 
+23. after: OT; >; ; (0) 
+24. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+3. show me the abstract of "Making database systems usable". 
+(26)ROOT
+    (27)show
+        (29)abstract
+            (32)Making database systems usable
+26. ROOT: ROOT; NA; ; (0) 
+27. show: CMT; NA; ; (0) 
+29. abstract: NT; NA; ; (0) publication.abstract(1.1):| publication.abstract(1.0):Abstract; Abstract; Abstract; | publication.title(0.96):| domain.name(0.9):| publication.title(0.86):Abstract KeLP; Abstract Rewriting; Abstract Pre-Orders; | 
+32. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+4. show me the authors of "Making database systems usable". 
+(34)ROOT
+    (35)show
+        (37)authors
+            (40)Making database systems usable
+34. ROOT: ROOT; NA; ; (0) 
+35. show: CMT; NA; ; (0) 
+37. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+40. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+5. show me the keywords of "Making database systems usable". 
+(42)ROOT
+    (43)show
+        (45)keywords
+            (48)Making database systems usable
+42. ROOT: ROOT; NA; ; (0) 
+43. show: CMT; NA; ; (0) 
+45. keywords: NT; NA; ; (0) keyword.keyword(1.0):| journal.name(0.63):XRDS; Order; NETWORK; | publication.title(0.63):Text Generation from; SQAK: doing more wit; Beyond Keywords and ; | journal.homepage(0.48):http://xrds.acm.org/; http://www.worldscin; http://www.worldscin; | domain.name(0.45):World Wide Web; Networks & Communica; Algorithms & Theory; | 
+48. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+6. show me the citations of "Making database systems usable". 
+(50)ROOT
+    (51)show
+        (53)citations
+            (56)Making database systems usable
+50. ROOT: ROOT; NA; ; (0) 
+51. show: CMT; NA; ; (0) 
+53. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+56. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+7. show me the citations of "Making database systems usable" after 2007. 
+(58)ROOT
+    (59)show
+        (60)citations
+            (64)Making database systems usable
+            (65)after
+                (66)2007
+58. ROOT: ROOT; NA; ; (0) 
+59. show: CMT; NA; ; (0) 
+60. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+64. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+65. after: OT; >; ; (0) 
+66. 2007: VTNUM; NA; ; (0) publication.year(1.0):2008; 2008; 2008; | 
+=================
+8. show me the references of "Making database systems usable". 
+(68)ROOT
+    (69)show
+        (71)references
+            (74)Making database systems usable
+68. ROOT: ROOT; NA; ; (0) 
+69. show: CMT; NA; ; (0) 
+71. references: VTTEXT; NA; ; (0) publication.abstract(1.0):References; Abstract References; Abstract References ; | publication.title(0.99):| conference.name(0.96):| journal.name(0.95):| author.name(0.92):| 
+74. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+9. show me the number of citations of "Making database systems usable". 
+(76)ROOT
+    (77)show
+        (79)number of
+            (82)citations
+                (84)Making database systems usable
+76. ROOT: ROOT; NA; ; (0) 
+77. show: CMT; NA; ; (0) 
+79. number of: FT; count; ; (0) 
+82. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+84. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+=================
+10. show me the number of citations of "Making database systems usable" after 2007. 
+(86)ROOT
+    (87)show
+        (88)number of
+            (92)citations
+                (94)Making database systems usable
+            (95)after
+                (96)2007
+86. ROOT: ROOT; NA; ; (0) 
+87. show: CMT; NA; ; (0) 
+88. number of: FT; count; ; (0) 
+92. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+94. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+95. after: OT; >; ; (0) 
+96. 2007: VTNUM; NA; ; (0) publication.year(1.0):2008; 2008; 2008; | 
+=================
+11. show me the number of citations of "Making database systems usable" in each year. 
+(98)ROOT
+    (99)show
+        (101)number of
+            (104)citations
+                (106)Making database systems usable
+                    (108)year
+98. ROOT: ROOT; NA; ; (0) 
+99. show: CMT; NA; ; (0) 
+101. number of: FT; count; ; (0) 
+104. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+106. Making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+108. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+12. show me the citations of "making database systems usable" that are not cited by its authors. 
+(111)ROOT
+    (112)show
+        (114)citations
+            (117)making database systems usable
+            (121)not
+            (123)authors
+111. ROOT: ROOT; NA; ; (0) 
+112. show: CMT; NA; ; (0) 
+114. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+117. making database systems usable: VTTEXT; NA; ; (0) publication.title(1.0):Making database syst; Making PRIME usable; Challenges in Making; | domain.name(0.7):Operating Systems; Database; Real-Time & Embedded; | journal.name(0.56):INT J GEN SYSTEM; Int. J. Communicatio; J MANAGE INFORM SYST; | author.homepage(0.53):http://www.stanford.; http://www.systems.e; http://systems.berke; | publication.abstract(0.5):This talk describes ; Rule mining is consi; Modern object-relati; | 
+121. not: NEG; NA; ; (0) 
+123. authors: NT; NA; ; (0) author.name(1.02):| journal.name(0.88):| domain.name(0.87):| organization.name(0.85):| conference.name(0.81):| 
+=================
+13. show me the number of papers in PVLDB. 
+(126)ROOT
+    (127)show
+        (129)number of
+            (132)papers
+                (134)PVLDB
+126. ROOT: ROOT; NA; ; (0) 
+127. show: CMT; NA; ; (0) 
+129. number of: FT; count; ; (0) 
+132. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+134. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+14. show me the number of papers in VLDB conference. 
+(136)ROOT
+    (137)show
+        (139)number of
+            (142)papers
+                (144)conference
+                    (145)VLDB
+136. ROOT: ROOT; NA; ; (0) 
+137. show: CMT; NA; ; (0) 
+139. number of: FT; count; ; (0) 
+142. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+144. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+145. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(144) and VLDB(145) are the same entity
+=================
+15. show me the number of papers in "University of Michigan". 
+(147)ROOT
+    (148)show
+        (150)number of
+            (153)papers
+                (155)University of Michigan
+147. ROOT: ROOT; NA; ; (0) 
+148. show: CMT; NA; ; (0) 
+150. number of: FT; count; ; (0) 
+153. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+155. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+=================
+16. show me the number of papers in each year. 
+(157)ROOT
+    (158)show
+        (160)number of
+            (163)papers
+                (165)year
+157. ROOT: ROOT; NA; ; (0) 
+158. show: CMT; NA; ; (0) 
+160. number of: FT; count; ; (0) 
+163. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+165. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+17. show me the number of papers by each organization. 
+(168)ROOT
+    (169)show
+        (171)number of
+            (174)papers
+                (176)organization
+168. ROOT: ROOT; NA; ; (0) 
+169. show: CMT; NA; ; (0) 
+171. number of: FT; count; ; (0) 
+174. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+176. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+=================
+18. show me the number of papers in each conference. 
+(179)ROOT
+    (180)show
+        (182)number of
+            (185)papers
+                (187)conference
+179. ROOT: ROOT; NA; ; (0) 
+180. show: CMT; NA; ; (0) 
+182. number of: FT; count; ; (0) 
+185. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+187. conference: NT; NA; each; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+=================
+19. show me the number of papers in each journal. 
+(190)ROOT
+    (191)show
+        (193)number of
+            (196)papers
+                (198)journal
+190. ROOT: ROOT; NA; ; (0) 
+191. show: CMT; NA; ; (0) 
+193. number of: FT; count; ; (0) 
+196. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+198. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+=================
+20. show me the number of papers in each domain. 
+(201)ROOT
+    (202)show
+        (204)number of
+            (207)papers
+                (209)domain
+201. ROOT: ROOT; NA; ; (0) 
+202. show: CMT; NA; ; (0) 
+204. number of: FT; count; ; (0) 
+207. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+209. domain: NT; NA; each; (0) domain.name(1.04):| organization.name(0.87):| publication.title(0.87):| keyword.keyword(0.85):pdz domain; sh2 domain; sh3 domain; | conference.name(0.79):| 
+=================
+21. show me the number of papers in PVLDB in each year. 
+(212)ROOT
+    (213)show
+        (215)number of
+            (218)papers
+                (220)PVLDB
+                    (222)year
+212. ROOT: ROOT; NA; ; (0) 
+213. show: CMT; NA; ; (0) 
+215. number of: FT; count; ; (0) 
+218. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+220. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+222. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+22. show me the number of paper in VLDB conference in each year. 
+(225)ROOT
+    (226)show
+        (228)number of
+            (231)paper
+                (233)conference
+                    (234)VLDB
+                    (236)year
+225. ROOT: ROOT; NA; ; (0) 
+226. show: CMT; NA; ; (0) 
+228. number of: FT; count; ; (0) 
+231. paper: NT; NA; ; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+233. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+234. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+236. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+conference(233) and VLDB(234) are the same entity
+=================
+23. show me the number of papers in PVLDB by each organization. 
+(239)ROOT
+    (240)show
+        (242)number of
+            (245)papers
+                (247)PVLDB
+                    (249)organization
+239. ROOT: ROOT; NA; ; (0) 
+240. show: CMT; NA; ; (0) 
+242. number of: FT; count; ; (0) 
+245. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+247. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+249. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+=================
+24. show me the papers in PVLDB after 2000 in "University of Michigan". 
+(252)ROOT
+    (253)show
+        (254)papers
+            (258)PVLDB
+            (259)after
+                (260)2000
+                    (262)University of Michigan
+252. ROOT: ROOT; NA; ; (0) 
+253. show: CMT; NA; ; (0) 
+254. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+258. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+259. after: OT; >; ; (0) 
+260. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+262. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+=================
+25. show me the number of papers by "University of Michigan" in each year. 
+(264)ROOT
+    (265)show
+        (267)number of
+            (270)papers
+                (272)University of Michigan
+                    (274)year
+264. ROOT: ROOT; NA; ; (0) 
+265. show: CMT; NA; ; (0) 
+267. number of: FT; count; ; (0) 
+270. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+272. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+274. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+26. show me the number of papers by "University of Michigan" in each conference. 
+(277)ROOT
+    (278)show
+        (280)number of
+            (283)papers
+                (285)University of Michigan
+                    (287)conference
+277. ROOT: ROOT; NA; ; (0) 
+278. show: CMT; NA; ; (0) 
+280. number of: FT; count; ; (0) 
+283. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+285. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+287. conference: NT; NA; each; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+=================
+27. show me the number of papers by "University of Michigan" in each journal. 
+(290)ROOT
+    (291)show
+        (293)number of
+            (296)papers
+                (298)University of Michigan
+                    (300)journal
+290. ROOT: ROOT; NA; ; (0) 
+291. show: CMT; NA; ; (0) 
+293. number of: FT; count; ; (0) 
+296. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+298. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+300. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+=================
+28. show me the number of papers by "University of Michigan" in each domain. 
+(303)ROOT
+    (304)show
+        (306)number of
+            (309)papers
+                (311)University of Michigan
+                    (313)domain
+303. ROOT: ROOT; NA; ; (0) 
+304. show: CMT; NA; ; (0) 
+306. number of: FT; count; ; (0) 
+309. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+311. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+313. domain: NT; NA; each; (0) domain.name(1.04):| organization.name(0.87):| publication.title(0.87):| keyword.keyword(0.85):pdz domain; sh2 domain; sh3 domain; | conference.name(0.79):| 
+=================
+29. show me the number of papers by each organization after 2000. 
+(316)ROOT
+    (317)show
+        (319)number of
+            (322)papers
+                (324)organization
+                    (326)after
+                        (327)2000
+316. ROOT: ROOT; NA; ; (0) 
+317. show: CMT; NA; ; (0) 
+319. number of: FT; count; ; (0) 
+322. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+324. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+326. after: OT; >; ; (0) 
+327. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+30. show me the number of papers in each conference after 2000. 
+(329)ROOT
+    (330)show
+        (332)number of
+            (335)papers
+                (337)conference
+                    (339)after
+                        (340)2000
+329. ROOT: ROOT; NA; ; (0) 
+330. show: CMT; NA; ; (0) 
+332. number of: FT; count; ; (0) 
+335. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+337. conference: NT; NA; each; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+339. after: OT; >; ; (0) 
+340. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+31. show me the number of papers in each journal after 2000. 
+(342)ROOT
+    (343)show
+        (345)number of
+            (348)papers
+                (350)journal
+                    (352)after
+                        (353)2000
+342. ROOT: ROOT; NA; ; (0) 
+343. show: CMT; NA; ; (0) 
+345. number of: FT; count; ; (0) 
+348. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+350. journal: NT; NA; each; (0) journal.name(1.05):| publication.title(0.99):| conference.name(0.79):| author.name(0.77):| domain.name(0.77):| 
+352. after: OT; >; ; (0) 
+353. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+32. show me the number of papers in each domain after 2000. 
+(355)ROOT
+    (356)show
+        (358)number of
+            (361)papers
+                (363)domain
+                    (365)after
+                        (366)2000
+355. ROOT: ROOT; NA; ; (0) 
+356. show: CMT; NA; ; (0) 
+358. number of: FT; count; ; (0) 
+361. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+363. domain: NT; NA; each; (0) domain.name(1.04):| organization.name(0.87):| publication.title(0.87):| keyword.keyword(0.85):pdz domain; sh2 domain; sh3 domain; | conference.name(0.79):| 
+365. after: OT; >; ; (0) 
+366. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+33. show me the number of papers in PVLDB in "University of Michigan" in each year. 
+(368)ROOT
+    (369)show
+        (371)number of
+            (374)papers
+                (376)PVLDB
+                    (378)University of Michigan
+                        (380)year
+368. ROOT: ROOT; NA; ; (0) 
+369. show: CMT; NA; ; (0) 
+371. number of: FT; count; ; (0) 
+374. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+376. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+378. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+380. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+=================
+34. show me the number of papers in VLDB conference in "University of Michigan" in each year. 
+(383)ROOT
+    (384)show
+        (386)number of
+            (389)papers
+                (391)conference
+                    (392)VLDB
+            (394)University of Michigan
+            (396)year
+383. ROOT: ROOT; NA; ; (0) 
+384. show: CMT; NA; ; (0) 
+386. number of: FT; count; ; (0) 
+389. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+391. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+392. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+394. University of Michigan: VTTEXT; NA; ; (0) organization.name(1.0):University of Michig; University of Michig; | publication.title(0.82):The University of Mi; University of Michig; University teaching; | author.name(0.66):Cambridge University; | author.homepage(0.58):http://www.florianda; http://minds.jacobs-; http://math.jacobs-u; | publication.abstract(0.58):We describe an autom; We apply time-domain; HELSINKI UNIVERSITY ; | 
+396. year: NT; NA; each; (0) publication.year(1.1):| conference.name(0.92):| organization.name(0.9):| domain.name(0.82):| journal.name(0.76):| 
+conference(391) and VLDB(392) are the same entity
+=================
+35. show me the number of papers in PVLDB in each organization after 2000. 
+(399)ROOT
+    (400)show
+        (402)number of
+            (405)papers
+                (407)PVLDB
+                    (409)organization
+                        (411)after
+                            (412)2000
+399. ROOT: ROOT; NA; ; (0) 
+400. show: CMT; NA; ; (0) 
+402. number of: FT; count; ; (0) 
+405. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+407. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+409. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+411. after: OT; >; ; (0) 
+412. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+=================
+36. show me the number of papers in VLDB conference in each organization after 2000. 
+(414)ROOT
+    (415)show
+        (417)number of
+            (420)papers
+                (422)conference
+                    (423)VLDB
+                    (425)organization
+                        (427)after
+                            (428)2000
+414. ROOT: ROOT; NA; ; (0) 
+415. show: CMT; NA; ; (0) 
+417. number of: FT; count; ; (0) 
+420. papers: NT; NA; ; (0) publication.title(0.98):| journal.name(0.97):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+422. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+423. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+425. organization: NT; NA; each; (0) organization.name(1.02):| conference.name(0.98):| domain.name(0.94):| keyword.keyword(0.9):Self Organization; Work Organization; Organization Theory; | journal.name(0.88):| 
+427. after: OT; >; ; (0) 
+428. 2000: VTNUM; NA; ; (0) publication.year(1.0):2001; 2001; 2001; | 
+conference(422) and VLDB(423) are the same entity
+=================
+37. show me the number of citations of each paper in the VLDB conference. 
+(430)ROOT
+    (431)show
+        (433)number of
+            (436)citations
+                (438)paper
+                    (441)conference
+                        (443)VLDB
+430. ROOT: ROOT; NA; ; (0) 
+431. show: CMT; NA; ; (0) 
+433. number of: FT; count; ; (0) 
+436. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+438. paper: NT; NA; each; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+441. conference: NT; NA; ; (0) conference.name(1.04):| publication.title(1.0):Conference; Conference; Conference Ad; | organization.name(0.95):| keyword.keyword(0.87):Video Conference; Winter Simulation Co; Message Understandin; | publication.title(0.84):| 
+443. VLDB: VTTEXT; NA; ; (0) conference.name(1.0):VLDB; VLDBW; | journal.name(1.0):VLDB; PVLDB; LDV; | conference.homepage(0.47):http://www.vldb.org/; http://www.informati; | journal.homepage(0.46):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.35):World Wide Web; Security & Privacy; Hardware & Architect; | 
+conference(441) and VLDB(443) are the same entity
+=================
+38. show me the number of citations of each paper in PVLDB. 
+(445)ROOT
+    (446)show
+        (448)number of
+            (451)citations
+                (453)paper
+                    (456)PVLDB
+445. ROOT: ROOT; NA; ; (0) 
+446. show: CMT; NA; ; (0) 
+448. number of: FT; count; ; (0) 
+451. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+453. paper: NT; NA; each; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+456. PVLDB: VTTEXT; NA; ; (0) journal.name(1.0):PVLDB; VLDB; LDV; | journal.homepage(0.53):http://www.vldb.org/; http://www.computerw; http://www.informawo; | domain.name(0.34):World Wide Web; Security & Privacy; Hardware & Architect; | 
+=================
+39. show me the number of citations of each paper by "H. V. Jagadish". 
+(458)ROOT
+    (459)show
+        (461)number of
+            (464)citations
+                (466)paper
+                    (469)H. V. Jagadish
+458. ROOT: ROOT; NA; ; (0) 
+459. show: CMT; NA; ; (0) 
+461. number of: FT; count; ; (0) 
+464. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+466. paper: NT; NA; each; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+469. H. V. Jagadish: VTTEXT; NA; ; (0) author.name(1.0):H. V. Jagadish; V. Jagadish; M. Jagadish; | journal.name(0.58):Adv. Comput. Math.; JAIS; JASIS; | domain.name(0.38):Computer Vision; Multimedia; Distributed & Parall; | journal.homepage(0.35):http://www.academypu; http://www.academypu; http://www.academypu; | 
+=================
+40. show me the paper with the most citations. 
+(471)ROOT
+    (472)show
+        (474)paper
+            (477)citations
+                (479)most
+471. ROOT: ROOT; NA; ; (0) 
+472. show: CMT; NA; ; (0) 
+474. paper: NT; NA; ; (0) publication.title(0.97):| journal.name(0.96):| organization.name(0.93):| conference.name(0.92):| author.name(0.9):| 
+477. citations: NT; NA; ; (0) publication.title(1.0):| journal.name(0.97):| organization.name(0.93):| conference.name(0.84):| domain.name(0.82):| 
+479. most: FT; max; ; (0) 
+=================
