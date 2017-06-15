@@ -1,0 +1,3 @@
+# ignore downloaded files and output logs
+*.csv
+*.out
