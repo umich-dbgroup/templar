@@ -21,7 +21,7 @@ We retrieve the following columns for use:
 
 ## Step 2: Reorganizing data by server/database
 
-We take the resulting CSV files and run `python reorg_by_schema.py` to group tuples by schema (a specific server/database pair) instead of simply ordering them by date. We write the results to `<server_name>/<db_name>.pkl` in the same folder, so they can easily be accessed by unpickling them in Python.
+We take the resulting CSV files and run `python reorg_by_schema.py` to group tuples by schema (a specific server/database pair) instead of simply ordering them by date. We write the results to `<server>_<db>.pkl` in the same folder, so they can easily be accessed by unpickling them in Python.
 
 ## Step 3: Converting pickled files to CSV
 
