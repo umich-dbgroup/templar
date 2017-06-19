@@ -8,9 +8,12 @@ The first recorded SDSS SQL query begins on 12/23/2002 9:12:12 PM and the last r
 * Log End Date: 06/10/2012
 * Total Tuples: 94,352,888
 
-We retrieve data in CSV format using the script `download_logs.sh`. This only selects queries which did not result in errors and also retrieved a non-zero amount of rows from the database.
+We retrieve data in CSV format using the script `download_logs.sh` into the `csv/` folder. This only selects queries which did not result in errors and also retrieved a non-zero amount of rows from the database.
 
-*Note:* Result tuples are not ordered by date by default within each CSV file.
+*Notes:*
+
+* Result tuples are not ordered by date by default within each CSV file.
+* SDSS CSV files are not correctly formatted and quoted (i.e. the SQL statements incorrectly contain commas that mess with CSV formatting).
 
 We retrieve the following columns for use:
 
@@ -21,8 +24,17 @@ We retrieve the following columns for use:
 
 ## Step 2: Reorganizing data by server/database
 
-We take the resulting CSV files and run `python reorg_by_schema.py` to group tuples by schema (a specific server/database pair) instead of simply ordering them by date. We write the results to `<server>_<db>.pkl` in the same folder, so they can easily be accessed by unpickling them in Python.
+We take the resulting CSV files and run `python reorg_by_schema.py` to group tuples by schema (a specific server/database pair) instead of simply ordering them by date. We write the results to `pkl/<server>_<db>.pkl`, so they can easily be accessed by unpickling them in Python.
 
 ## Step 3: Converting pickled files to CSV
 
-TODO: We convert these pickled files to CSV.
+*Note:* This is inefficient because we could have done away with Step 2, but didn't think of grouping by `<db>` and not `<server>/<db>` pairs at first so this is what we get.
+
+In `python pkl_to_csv.py`, we take the pickled files and:
+
+* Group them by database name
+* Sort them by ascending date
+
+So the final results land in `final/<dbname>.csv` as well-formatted CSV files for each database. This is the data we use for our project.
+
+
