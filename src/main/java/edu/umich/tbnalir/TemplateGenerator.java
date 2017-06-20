@@ -2,11 +2,15 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -223,5 +227,48 @@ public class TemplateGenerator {
         Log.info("2a / Comparison/Projection Templates: " + comparisonProjCounts.size());
         Log.info("3 / Predicate Templates: " + predicateCounts.size());
         Log.info("3a / Predicate/Projection Templates: " + predicateProjCounts.size());
+
+        // Write to file
+        String basename = FilenameUtils.getBaseName(filename);
+        try {
+            PrintWriter writer = new PrintWriter(basename + "_const.csv", "UTF-8");
+            for (String t : constantCounts.keySet()) {
+                writer.println(t);
+            }
+            writer.close();
+
+            PrintWriter constProjWriter = new PrintWriter(basename + "_const_proj.csv", "UTF-8");
+            for (String t : constantProjCounts.keySet()) {
+                constProjWriter.println(t);
+            }
+            constProjWriter.close();
+
+            PrintWriter compWriter = new PrintWriter(basename + "_comp.csv", "UTF-8");
+            for (String t : comparisonCounts.keySet()) {
+                compWriter.println(t);
+            }
+            compWriter.close();
+
+            PrintWriter compProjWriter = new PrintWriter(basename + "_comp_proj.csv", "UTF-8");
+            for (String t : comparisonProjCounts.keySet()) {
+                compProjWriter.println(t);
+            }
+            compProjWriter.close();
+
+            PrintWriter predWriter = new PrintWriter(basename + "_pred.csv", "UTF-8");
+            for (String t : predicateCounts.keySet()) {
+                predWriter.println(t);
+            }
+            predWriter.close();
+
+            PrintWriter predProjWriter = new PrintWriter(basename + "_pred_proj.csv", "UTF-8");
+            for (String t : predicateProjCounts.keySet()) {
+                predProjWriter.println(t);
+            }
+            predProjWriter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
