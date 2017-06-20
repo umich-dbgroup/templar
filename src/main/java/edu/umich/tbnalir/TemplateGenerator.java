@@ -233,48 +233,54 @@ public class TemplateGenerator {
             String constFileName = basename + "_const.csv";
             Log.info("Saving " + constFileName + "...");
             PrintWriter writer = new PrintWriter(constFileName, "UTF-8");
-            for (String t : constantCounts.keySet()) {
-                writer.println(t);
+            Map<String, Integer> sortedConstantCounts = Utils.sortByValueDesc(constantCounts);
+            for (Map.Entry<String,Integer> e : sortedConstantCounts.entrySet()) {
+                writer.println(e.getValue() + "\t" + e.getKey());
             }
             writer.close();
 
             String constProjFileName = basename + "_const_proj.csv";
             Log.info("Saving " + constProjFileName + "...");
             PrintWriter constProjWriter = new PrintWriter(constProjFileName, "UTF-8");
-            for (String t : constantProjCounts.keySet()) {
-                constProjWriter.println(t);
+            Map<String, Integer> sortedConstantProjCounts = Utils.sortByValueDesc(constantProjCounts);
+            for (Map.Entry<String,Integer> e : sortedConstantProjCounts.entrySet()) {
+                constProjWriter.println(e.getValue() + "\t" + e.getKey());
             }
             constProjWriter.close();
 
             String compFileName = basename + "_comp.csv";
             Log.info("Saving " + compFileName + "...");
             PrintWriter compWriter = new PrintWriter(compFileName, "UTF-8");
-            for (String t : comparisonCounts.keySet()) {
-                compWriter.println(t);
+            Map<String, Integer> sortedComparisonCounts = Utils.sortByValueDesc(comparisonCounts);
+            for (Map.Entry<String,Integer> e : sortedComparisonCounts.entrySet()) {
+                compWriter.println(e.getValue() + "\t" + e.getKey());
             }
             compWriter.close();
 
             String compProjFileName = basename + "_comp_proj.csv";
             Log.info("Saving " + compProjFileName + "...");
             PrintWriter compProjWriter = new PrintWriter(compProjFileName, "UTF-8");
-            for (String t : comparisonProjCounts.keySet()) {
-                compProjWriter.println(t);
+            Map<String, Integer> sortedCompProjCounts = Utils.sortByValueDesc(comparisonProjCounts);
+            for (Map.Entry<String,Integer> e : sortedCompProjCounts.entrySet()) {
+                compProjWriter.println(e.getValue() + "\t" + e.getKey());
             }
             compProjWriter.close();
 
             String predFileName = basename + "_pred.csv";
             Log.info("Saving " + predFileName + "...");
             PrintWriter predWriter = new PrintWriter(predFileName, "UTF-8");
-            for (String t : predicateCounts.keySet()) {
-                predWriter.println(t);
+            Map<String, Integer> sortedPredCounts = Utils.sortByValueDesc(predicateCounts);
+            for (Map.Entry<String,Integer> e : sortedPredCounts.entrySet()) {
+                predWriter.println(e.getValue() + "\t" + e.getKey());
             }
             predWriter.close();
 
             String predProjFileName = basename + "_pred_proj.csv";
             Log.info("Saving " + predProjFileName + "...");
             PrintWriter predProjWriter = new PrintWriter(predProjFileName, "UTF-8");
-            for (String t : predicateProjCounts.keySet()) {
-                predProjWriter.println(t);
+            Map<String, Integer> sortedPredProjCounts = Utils.sortByValueDesc(predicateProjCounts);
+            for (Map.Entry<String,Integer> e : sortedPredProjCounts.entrySet()) {
+                predProjWriter.println(e.getValue() + "\t" + e.getKey());
             }
             predProjWriter.close();
 
