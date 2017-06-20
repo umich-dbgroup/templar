@@ -202,7 +202,7 @@ public class TemplateGenerator {
                 parsedSQL++;
 
                 System.out.println();
-                System.out.println("\rProcessed " + parsedSQL + "/" + totalSQL + " lines...");
+                System.out.println("\rProcessed " + parsedSQL + " lines...");
             }
         } catch (Exception e) {
             e.printStackTrace();
