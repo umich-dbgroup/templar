@@ -134,6 +134,10 @@ public class TemplateGenerator {
 
                 String sql = nextLine[3];
                 totalSQL++;
+                if (totalSQL > (lastUpdate + 100000)) {
+                    System.out.println("\rProcessed " + totalSQL + " statements...");
+                    lastUpdate = totalSQL;
+                }
 
                 // Clean up strange syntax in some queries which caused crashing error
                 sql = sql.replace("#", "_");
@@ -209,11 +213,6 @@ public class TemplateGenerator {
 
                 Log.debug("---");
                 parsedSQL++;
-
-                if (totalSQL > (lastUpdate + 100000)) {
-                    System.out.println("\rProcessed " + totalSQL + " statements...");
-                    lastUpdate = totalSQL;
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -231,37 +230,49 @@ public class TemplateGenerator {
         // Write to file
         String basename = FilenameUtils.getBaseName(filename);
         try {
-            PrintWriter writer = new PrintWriter(basename + "_const.csv", "UTF-8");
+            String constFileName = basename + "_const.csv";
+            Log.info("Saving " + constFileName + "...");
+            PrintWriter writer = new PrintWriter(constFileName, "UTF-8");
             for (String t : constantCounts.keySet()) {
                 writer.println(t);
             }
             writer.close();
 
-            PrintWriter constProjWriter = new PrintWriter(basename + "_const_proj.csv", "UTF-8");
+            String constProjFileName = basename + "_const_proj.csv";
+            Log.info("Saving " + constProjFileName + "...");
+            PrintWriter constProjWriter = new PrintWriter(constProjFileName, "UTF-8");
             for (String t : constantProjCounts.keySet()) {
                 constProjWriter.println(t);
             }
             constProjWriter.close();
 
-            PrintWriter compWriter = new PrintWriter(basename + "_comp.csv", "UTF-8");
+            String compFileName = basename + "_comp.csv";
+            Log.info("Saving " + compFileName + "...");
+            PrintWriter compWriter = new PrintWriter(compFileName, "UTF-8");
             for (String t : comparisonCounts.keySet()) {
                 compWriter.println(t);
             }
             compWriter.close();
 
-            PrintWriter compProjWriter = new PrintWriter(basename + "_comp_proj.csv", "UTF-8");
+            String compProjFileName = basename + "_comp_proj.csv";
+            Log.info("Saving " + compProjFileName + "...");
+            PrintWriter compProjWriter = new PrintWriter(compProjFileName, "UTF-8");
             for (String t : comparisonProjCounts.keySet()) {
                 compProjWriter.println(t);
             }
             compProjWriter.close();
 
-            PrintWriter predWriter = new PrintWriter(basename + "_pred.csv", "UTF-8");
+            String predFileName = basename + "_pred.csv";
+            Log.info("Saving " + predFileName + "...");
+            PrintWriter predWriter = new PrintWriter(predFileName, "UTF-8");
             for (String t : predicateCounts.keySet()) {
                 predWriter.println(t);
             }
             predWriter.close();
 
-            PrintWriter predProjWriter = new PrintWriter(basename + "_pred_proj.csv", "UTF-8");
+            String predProjFileName = basename + "_pred_proj.csv";
+            Log.info("Saving " + predProjFileName + "...");
+            PrintWriter predProjWriter = new PrintWriter(predProjFileName, "UTF-8");
             for (String t : predicateProjCounts.keySet()) {
                 predProjWriter.println(t);
             }
