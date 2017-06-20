@@ -29,8 +29,20 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
             sb.append(removeConstantsFromExpr(((SignedExpression) expr).getExpression()));
         } else if (expr instanceof BinaryExpression) {
             sb.append(removeConstantsFromExpr(((BinaryExpression) expr).getLeftExpression()));
-            sb.append(" / ");
+            sb.append(((BinaryExpression) expr).getStringExpression());
             sb.append(removeConstantsFromExpr(((BinaryExpression) expr).getRightExpression()));
+        } else if (expr instanceof Function) {
+            Function fn = (Function) expr;
+            sb.append(fn.getName());
+            sb.append('(');
+            if (fn.getParameters() != null && fn.getParameters().getExpressions() != null) {
+                for (Expression p : fn.getParameters().getExpressions()) {
+                    sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(p));
+                    sb.append(',');
+                }
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            sb.append(')');
         } else {
             sb.append(expr.toString());
         }
@@ -60,6 +72,20 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
     @Override
     public void visit(StringValue stringValue) {
         this.getBuffer().append("#STR");
+    }
+
+    @Override
+    public void visit(Function fn) {
+        this.getBuffer().append(fn.getName());
+        this.getBuffer().append('(');
+        if (fn.getParameters() != null && fn.getParameters().getExpressions() != null) {
+            for (Expression p : fn.getParameters().getExpressions()) {
+                this.getBuffer().append(ConstantRemovalExprDeParser.removeConstantsFromExpr(p));
+                this.getBuffer().append(',');
+            }
+        }
+        this.getBuffer().deleteCharAt(this.getBuffer().length() - 1);
+        this.getBuffer().append(')');
     }
 
     @Override

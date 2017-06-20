@@ -2,7 +2,6 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
@@ -23,7 +22,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-            UDFRemovalDeParser deParser = new UDFRemovalDeParser(constantRemover, buffer);
+            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(constantRemover, buffer);
             constantRemover.setSelectVisitor(deParser);
             constantRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -51,8 +50,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-
-            UDFRemovalDeParser deParser = new UDFRemovalDeParser(comparisonRemover, buffer);
+            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(comparisonRemover, buffer);
             comparisonRemover.setSelectVisitor(deParser);
             comparisonRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -79,10 +77,10 @@ public class TemplateGenerator {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
-            PredicateRemovalExprDeParser comparisonRemover = new PredicateRemovalExprDeParser();
-            UDFRemovalDeParser deParser = new UDFRemovalDeParser(comparisonRemover, buffer);
-            comparisonRemover.setSelectVisitor(deParser);
-            comparisonRemover.setBuffer(buffer);
+            PredicateRemovalExprDeParser predicateRemover = new PredicateRemovalExprDeParser();
+            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(predicateRemover, buffer);
+            predicateRemover.setSelectVisitor(deParser);
+            predicateRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
             return buffer.toString().intern();
         }
@@ -93,10 +91,10 @@ public class TemplateGenerator {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
-            PredicateRemovalExprDeParser comparisonRemover = new PredicateRemovalExprDeParser();
-            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer);
-            comparisonRemover.setSelectVisitor(deParser);
-            comparisonRemover.setBuffer(buffer);
+            PredicateRemovalExprDeParser predicateRemover = new PredicateRemovalExprDeParser();
+            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer);
+            predicateRemover.setSelectVisitor(deParser);
+            predicateRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
             return buffer.toString().intern();
         }

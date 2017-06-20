@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class ProjectionRemovalDeParser extends UDFRemovalDeParser {
+public class ProjectionRemovalDeParser extends TableFunctionRemovalDeParser {
     public ProjectionRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer) {
         super(expressionVisitor, buffer);
     }

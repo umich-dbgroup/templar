@@ -9,8 +9,8 @@ import net.sf.jsqlparser.util.deparser.SelectDeParser;
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class UDFRemovalDeParser extends SelectDeParser {
-    public UDFRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer) {
+public class TableFunctionRemovalDeParser extends SelectDeParser {
+    public TableFunctionRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer) {
         super(expressionVisitor, buffer);
     }
 
