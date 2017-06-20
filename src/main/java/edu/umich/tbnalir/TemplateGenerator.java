@@ -139,10 +139,6 @@ public class TemplateGenerator {
                     lastUpdate = totalSQL;
                 }
 
-                // Clean up strange syntax in some queries which caused crashing error
-                sql = sql.replace("#", "_");
-                sql = sql.replace("\u0018", "_");
-
                 Log.debug("ORIGINAL: " + sql.replace("\n", " "));
                 Statement stmt;
                 try {
