@@ -132,7 +132,7 @@ public class TemplateGenerator {
 
                 String sql = nextLine[3];
                 totalSQL++;
-                if (totalSQL > (lastUpdate + 100000)) {
+                if (totalSQL >= (lastUpdate + 100000)) {
                     System.out.println("\rProcessed " + totalSQL + " statements...");
                     lastUpdate = totalSQL;
                 }
