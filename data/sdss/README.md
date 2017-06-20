@@ -35,6 +35,13 @@ In `python pkl_to_csv.py`, we take the pickled files and:
 * Group them by database name
 * Sort them by ascending date
 
-So the final results land in `final/<dbname>.csv` as well-formatted CSV files for each database. This is the data we use for our project.
+So the final results land in `final/<dbname>.csv` as well-formatted CSV files for each database. We chose the top 8 query logs (which all have > 100M data), as follows:
 
-
+* `bestdr7.csv` (18G)
+* `bestdr5.csv` (5.6G)
+* `bestdr6.csv` (4.1G)
+* `bestdr4.csv` (3.0G)
+* `bestdr2.csv` (1.7G)
+* `bestdr3.csv` (1.2G)
+* `bestdr1.csv` (987G)
+* `bestdr8.csv` (594G)
