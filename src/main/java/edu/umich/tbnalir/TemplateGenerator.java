@@ -121,8 +121,6 @@ public class TemplateGenerator {
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
 
         try {
-            System.out.println(); // blank line so we don't overwrite incorrectly for progress
-
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
             while ((nextLine = csvr.readNext()) != null) {
