@@ -120,6 +120,8 @@ public class TemplateGenerator {
         Map<String, Integer> predicateCounts = new HashMap<String, Integer>();
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
 
+        int lastUpdate = 0;
+
         try {
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
@@ -204,8 +206,9 @@ public class TemplateGenerator {
                 Log.debug("---");
                 parsedSQL++;
 
-                if (parsedSQL % 100000 == 0) {
-                    System.out.println("\rProcessed " + parsedSQL + " statements...");
+                if (totalSQL > (lastUpdate + 100000)) {
+                    System.out.println("\rProcessed " + totalSQL + " statements...");
+                    lastUpdate = totalSQL;
                 }
             }
         } catch (Exception e) {
