@@ -46,6 +46,11 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
     }
 
     @Override
+    public void visit(SignedExpression signedExpression) {
+        this.getBuffer().append(removeConstantsFromExpr(signedExpression.getExpression()));
+    }
+
+    @Override
     public void visit(LongValue longValue) {
         this.getBuffer().append("#LONG");
     }
