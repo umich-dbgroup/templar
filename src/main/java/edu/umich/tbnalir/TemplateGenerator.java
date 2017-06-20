@@ -1,12 +1,10 @@
 package edu.umich.tbnalir;
 
+import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
-import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
-import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
-import net.sf.jsqlparser.util.deparser.SelectDeParser;
 
 import java.io.FileReader;
 import java.util.HashMap;
@@ -16,8 +14,6 @@ import java.util.Map;
  * Created by cjbaik on 6/20/17.
  */
 public class TemplateGenerator {
-    public static final boolean DEBUG = false;
-
     public String noConstantTemplate(Statement stmt) {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
@@ -105,8 +101,10 @@ public class TemplateGenerator {
 
     public static void main (String[] args) {
         if (args.length < 1) {
-            System.err.println("Missing args, need at least CSV file arg.");
+            Log.error("Missing args, need at least CSV file arg.");
+            System.exit(1);
         }
+
 
         String filename = args[0];
 
@@ -132,20 +130,18 @@ public class TemplateGenerator {
                 // Clean up strange syntax in some queries which caused crashing error
                 sql = sql.replace("#", "_");
 
-                System.out.println("ORIGINAL: " + sql.replace("\n", " "));
+                Log.debug("ORIGINAL: " + sql.replace("\n", " "));
                 Statement stmt;
                 try {
                     stmt = CCJSqlParserUtil.parse(sql);
                 } catch (Exception e) {
-                    if (DEBUG) e.printStackTrace();
-                    System.out.println("Failed to parse SQL statement.");
-                    System.out.println("---");
+                    if (Log.DEBUG) e.printStackTrace();
                     continue;
                 }
 
                 String cnstTmpl = tg.noConstantTemplate(stmt);
                 if (cnstTmpl == null) {
-                    System.out.println("Only SELECT statements are currently supported.");
+                    Log.debug("Only SELECT statements are currently supported.");
                     continue;
                 }
                 Integer cnstCount = constantCounts.get(cnstTmpl);
@@ -154,7 +150,7 @@ public class TemplateGenerator {
                 } else {
                     constantCounts.put(cnstTmpl, cnstCount + 1);
                 }
-                System.out.println("NO CONSTANTS: " + cnstTmpl);
+                Log.debug("NO CONSTANTS: " + cnstTmpl);
 
                 String cnstProjTmpl = tg.noConstantProjectionTemplate(stmt);
                 Integer cnstProjCount = constantProjCounts.get(cnstProjTmpl);
@@ -164,7 +160,7 @@ public class TemplateGenerator {
                     constantProjCounts.put(cnstProjTmpl, cnstProjCount + 1);
                 }
 
-                System.out.println("NO CONSTANTS/PROJECTIONS: " + cnstTmpl);
+                Log.debug("NO CONSTANTS/PROJECTIONS: " + cnstTmpl);
 
                 String cmpTmpl = tg.noComparisonTemplate(stmt);
                 Integer cmpCount = comparisonCounts.get(cmpTmpl);
@@ -173,7 +169,7 @@ public class TemplateGenerator {
                 } else {
                     comparisonCounts.put(cmpTmpl, cmpCount + 1);
                 }
-                System.out.println("NO COMPARISONS: " + cmpTmpl);
+                Log.debug("NO COMPARISONS: " + cmpTmpl);
 
                 String cmpProjTmpl = tg.noComparisonProjectionTemplate(stmt);
                 Integer cmpProjCount = comparisonProjCounts.get(cmpProjTmpl);
@@ -182,7 +178,7 @@ public class TemplateGenerator {
                 } else {
                     comparisonProjCounts.put(cmpProjTmpl, cmpProjCount + 1);
                 }
-                System.out.println("NO COMPARISONS/PROJECTIONS: " + cmpProjTmpl);
+                Log.debug("NO COMPARISONS/PROJECTIONS: " + cmpProjTmpl);
 
                 String predTmpl = tg.noPredicateTemplate(stmt);
                 Integer predCount = predicateCounts.get(predTmpl);
@@ -191,7 +187,7 @@ public class TemplateGenerator {
                 } else {
                     predicateCounts.put(predTmpl, predCount + 1);
                 }
-                System.out.println("NO PREDICATES: " + predTmpl);
+                Log.debug("NO PREDICATES: " + predTmpl);
 
                 String predProjTmpl = tg.noPredicateProjectionTemplate(stmt);
                 Integer predProjCount = predicateProjCounts.get(predProjTmpl);
@@ -200,22 +196,22 @@ public class TemplateGenerator {
                 } else {
                     predicateProjCounts.put(predProjTmpl, predProjCount + 1);
                 }
-                System.out.println("NO PREDICATES/PROJECTIONS: " + predProjTmpl);
+                Log.debug("NO PREDICATES/PROJECTIONS: " + predProjTmpl);
 
-                System.out.println("---");
+                Log.debug("---");
                 parsedSQL++;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        System.out.println("Total Queries: " + totalSQL);
-        System.out.println("Correctly Parsed: " + parsedSQL + "/" + totalSQL);
-        System.out.println("1 / Constant Templates: " + constantCounts.size());
-        System.out.println("1a / Constant/Projection Templates: " + constantProjCounts.size());
-        System.out.println("2 / Comparison Templates: " + comparisonCounts.size());
-        System.out.println("2a / Comparison/Projection Templates: " + comparisonProjCounts.size());
-        System.out.println("3 / Predicate Templates: " + predicateCounts.size());
-        System.out.println("3a / Predicate/Projection Templates: " + predicateProjCounts.size());
+        Log.info("Total Queries: " + totalSQL);
+        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL);
+        Log.info("1 / Constant Templates: " + constantCounts.size());
+        Log.info("1a / Constant/Projection Templates: " + constantProjCounts.size());
+        Log.info("2 / Comparison Templates: " + comparisonCounts.size());
+        Log.info("2a / Comparison/Projection Templates: " + comparisonProjCounts.size());
+        Log.info("3 / Predicate Templates: " + predicateCounts.size());
+        Log.info("3a / Predicate/Projection Templates: " + predicateProjCounts.size());
     }
 }
