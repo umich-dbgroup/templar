@@ -124,6 +124,8 @@ public class TemplateGenerator {
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
             while ((nextLine = csvr.readNext()) != null) {
+                if (nextLine.length < 4) continue;
+
                 String sql = nextLine[3];
                 totalSQL++;
 
