@@ -140,6 +140,11 @@ public class TemplateGenerator {
                 } catch (Exception e) {
                     if (Log.DEBUG) e.printStackTrace();
                     continue;
+                } catch (Throwable t) {
+                    Log.error("Lines read: " + csvr.getLinesRead());
+                    Log.error("Records read: " + csvr.getRecordsRead());
+                    t.printStackTrace();
+                    continue;
                 }
 
                 String cnstTmpl = tg.noConstantTemplate(stmt);
@@ -204,7 +209,9 @@ public class TemplateGenerator {
                 Log.debug("---");
                 parsedSQL++;
 
-                System.out.println("\rProcessed " + parsedSQL + " statements...");
+                if (parsedSQL % 100000 == 0) {
+                    System.out.println("\rProcessed " + parsedSQL + " statements...");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
