@@ -25,6 +25,8 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
             sb.append("#TIME");
         } else if (expr instanceof DateTimeLiteralExpression) {
             sb.append("#DATETIME");
+        } else if (expr instanceof SignedExpression) {
+            sb.append(removeConstantsFromExpr(((SignedExpression) expr).getExpression()));
         } else if (expr instanceof BinaryExpression) {
             sb.append(removeConstantsFromExpr(((BinaryExpression) expr).getLeftExpression()));
             sb.append(" / ");
