@@ -137,13 +137,8 @@ public class TemplateGenerator {
                 Statement stmt;
                 try {
                     stmt = CCJSqlParserUtil.parse(sql);
-                } catch (Exception e) {
-                    if (Log.DEBUG) e.printStackTrace();
-                    continue;
                 } catch (Throwable t) {
-                    Log.error("Lines read: " + csvr.getLinesRead());
-                    Log.error("Records read: " + csvr.getRecordsRead());
-                    t.printStackTrace();
+                    if (Log.DEBUG) t.printStackTrace();
                     continue;
                 }
 
