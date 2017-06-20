@@ -31,6 +31,10 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
             sb.append(removeConstantsFromExpr(((BinaryExpression) expr).getLeftExpression()));
             sb.append(((BinaryExpression) expr).getStringExpression());
             sb.append(removeConstantsFromExpr(((BinaryExpression) expr).getRightExpression()));
+        } else if (expr instanceof Parenthesis) {
+            sb.append('(');
+            sb.append(removeConstantsFromExpr(((Parenthesis) expr).getExpression()));
+            sb.append(')');
         } else if (expr instanceof Function) {
             Function fn = (Function) expr;
             sb.append(fn.getName());
@@ -40,8 +44,8 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
                     sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(p));
                     sb.append(',');
                 }
+                sb.deleteCharAt(sb.length() - 1);
             }
-            sb.deleteCharAt(sb.length() - 1);
             sb.append(')');
         } else {
             sb.append(expr.toString());
@@ -83,8 +87,8 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
                 this.getBuffer().append(ConstantRemovalExprDeParser.removeConstantsFromExpr(p));
                 this.getBuffer().append(',');
             }
+            this.getBuffer().deleteCharAt(this.getBuffer().length() - 1);
         }
-        this.getBuffer().deleteCharAt(this.getBuffer().length() - 1);
         this.getBuffer().append(')');
     }
 
