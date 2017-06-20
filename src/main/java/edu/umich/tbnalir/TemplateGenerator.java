@@ -121,6 +121,8 @@ public class TemplateGenerator {
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
 
         try {
+            System.out.println(); // blank line so we don't overwrite incorrectly for progress
+
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
             while ((nextLine = csvr.readNext()) != null) {
@@ -201,8 +203,7 @@ public class TemplateGenerator {
                 Log.debug("---");
                 parsedSQL++;
 
-                System.out.println();
-                System.out.println("\rProcessed " + parsedSQL + " lines...");
+                System.out.println("\rProcessed " + parsedSQL + " statements...");
             }
         } catch (Exception e) {
             e.printStackTrace();
