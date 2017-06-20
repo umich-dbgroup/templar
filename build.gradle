@@ -1,3 +1,7 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
 apply plugin: 'idea'
 apply plugin: 'java'
 
@@ -8,4 +12,9 @@ repositories {
 dependencies {
     compile group: 'com.github.jsqlparser', name: 'jsqlparser', version: '1.0'
     compile group: 'com.opencsv', name: 'opencsv', version: '3.9'
+}
+
+shadowJar {
+    zip64 true
+    mergeServiceFiles()
 }
