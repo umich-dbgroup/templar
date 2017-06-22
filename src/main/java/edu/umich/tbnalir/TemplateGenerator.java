@@ -150,12 +150,13 @@ public class TemplateGenerator {
 
         // Read in all statements first
         List<Statement> stmts = new ArrayList<Statement>();
+        Log.info("Reading file <" + filename + ">...");
         try {
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
             while ((nextLine = csvr.readNext()) != null) {
                 totalSQL++;
-                if (totalSQL >= (lastUpdate + 100000)) {
+                if (totalSQL >= (lastUpdate + 20000)) {
                     Log.info("Parsed " + totalSQL + " statements...");
                     lastUpdate = totalSQL;
                 }
