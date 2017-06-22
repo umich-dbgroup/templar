@@ -205,6 +205,9 @@ public class TemplateGenerator {
         int partitionSize = stmts.size() / cvSplits;
         int remainder = stmts.size() % cvSplits;
 
+        // Shuffle partitions so cross-validation is randomized
+        Collections.shuffle(stmts);
+
         List<List<Statement>> cvPartitions = new ArrayList<List<Statement>>();
         int curIndex = 0;
         for (int i = 0; i < cvSplits; i++) {
