@@ -2,6 +2,7 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
+import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
@@ -179,8 +180,11 @@ public class TemplateGenerator {
                 Statement stmt;
                 try {
                     stmt = CCJSqlParserUtil.parse(sql);
+                } catch (JSQLParserException e) {
+                    if (Log.DEBUG) e.printStackTrace();
+                    continue;
                 } catch (Throwable t) {
-                    if (Log.DEBUG) t.printStackTrace();
+                    t.printStackTrace();
                     continue;
                 }
                 if (stmt == null) continue; // Case that it's not a select statement
