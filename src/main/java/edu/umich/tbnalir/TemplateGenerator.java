@@ -225,8 +225,8 @@ public class TemplateGenerator {
 
         Log.info("===== Legend =====");
         Log.info("1 <Abs. Constants> / 2 <Abs. Constants/Comparison Ops> / 3 <Abs. Full Predicates>");
-        Log.info("a <Don't Abs. Projections> / b <Abs. Projections>\n");
-        Log.info("Fold #\t1a\t1b\t2a\t2b\t3a\t3b\tTotal");
+        Log.info("a <Don't Abs. Projections> / b <Abs. Projections>");
+        Log.info("Displayed as: <Num. Generated Templates>, <Coverage %>\n");
 
         for (int i = 0; i < cvPartitions.size(); i++) {
             List<Statement> templateGenSet = new ArrayList<Statement>();
@@ -239,36 +239,37 @@ public class TemplateGenerator {
 
             Set<String> constTmpl = tg.generateTemplates(templateGenSet, tg::noConstantTemplate);
             List<String> constTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantTemplate);
-            float constCoverage = (float) tg.testCoverage(constTmpl, constTest) / coverageTestSet.size();
+            float constCoverage = (float) tg.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
 
             Set<String> constProjTmpl = tg.generateTemplates(templateGenSet, tg::noConstantProjectionTemplate);
             List<String> constProjTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantProjectionTemplate);
-            float constProjCoverage = (float) tg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size();
+            float constProjCoverage = (float) tg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
 
             Set<String> compTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonTemplate);
             List<String> compTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonTemplate);
-            float compCoverage = (float) tg.testCoverage(compTmpl, compTest) / coverageTestSet.size();
+            float compCoverage = (float) tg.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
 
             Set<String> compProjTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonProjectionTemplate);
             List<String> compProjTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonProjectionTemplate);
-            float compProjCoverage = (float) tg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size();
+            float compProjCoverage = (float) tg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
 
             Set<String> predTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateTemplate);
             List<String> predTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateTemplate);
-            float predCoverage = (float) tg.testCoverage(predTmpl, predTest) / coverageTestSet.size();
+            float predCoverage = (float) tg.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
 
             Set<String> predProjTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateProjectionTemplate);
             List<String> predProjTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateProjectionTemplate);
-            float predProjCoverage = (float) tg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size();
+            float predProjCoverage = (float) tg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
+            Log.info("Fold size: " + coverageTestSet.size());
+            Log.info("Fold\t1a\t\t\t1b\t\t\t2a\t\t\t2b\t\t\t3a\t\t\t3b");
             Log.info(i + ":\t\t"
-                    + String.format("%.2f", constCoverage) + "%\t"
-                    + String.format("%.2f", constProjCoverage) + "%\t"
-                    + String.format("%.2f", compCoverage) + "%\t"
-                    + String.format("%.2f", compProjCoverage) + "%\t"
-                    + String.format("%.2f", predCoverage) + "%\t"
-                    + String.format("%.2f", predProjCoverage) + "%\t"
-                    + coverageTestSet.size());
+                    + constTmpl.size() + ", " + String.format("%.1f", constCoverage) + "%\t"
+                    + constProjTmpl.size() + ", " + String.format("%.1f", constProjCoverage) + "%\t"
+                    + compTmpl.size() + ", " + String.format("%.1f", compCoverage) + "%\t"
+                    + compProjTmpl.size() + ", " + String.format("%.1f", compProjCoverage) + "%\t"
+                    + predTmpl.size() + ", " + String.format("%.1f", predCoverage) + "%\t"
+                    + predProjTmpl.size() + ", " + String.format("%.1f", predProjCoverage) + "%\t\n");
         }
 
         // Write to file
