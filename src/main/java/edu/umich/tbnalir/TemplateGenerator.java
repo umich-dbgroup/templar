@@ -152,8 +152,8 @@ public class TemplateGenerator {
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
         */
 
-        // Tokens to replace from error
-        char[] tokensToReplace = {'#'};
+        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
+        char[] tokensToReplace = {'#', '\u0018'};
 
         // Read in all statements first
         List<Statement> stmts = new ArrayList<Statement>();
