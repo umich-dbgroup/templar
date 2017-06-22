@@ -5,13 +5,10 @@ import com.opencsv.CSVReader;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
-import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 
 /**
  * Created by cjbaik on 6/20/17.
@@ -101,12 +98,37 @@ public class TemplateGenerator {
         return null;
     }
 
+    public Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn) {
+        Set<String> templates = new HashSet<String>();
+        for (Statement stmt : stmts) {
+            templates.add(templateFn.apply(stmt));
+        }
+        return templates;
+    }
+
+    public List<String> generateTestTemplates(List<Statement> stmts, Function<Statement, String> templateFn) {
+        List<String> templates = new ArrayList<String>();
+        for (Statement stmt : stmts) {
+            templates.add(templateFn.apply(stmt));
+        }
+        return templates;
+    }
+
+    public int testCoverage(Set<String> templates, List<String> test) {
+        int covered = 0;
+        for (String t : test) {
+            if (templates.contains(t)) {
+                covered++;
+            }
+        }
+        return covered;
+    }
+
     public static void main (String[] args) {
         if (args.length < 1) {
             Log.error("Missing args, need at least CSV file arg.");
             System.exit(1);
         }
-
 
         String filename = args[0];
 
@@ -115,27 +137,32 @@ public class TemplateGenerator {
         // Statistics
         int totalSQL = 0;
         int parsedSQL = 0;
+        int lastUpdate = 0;
+
+        /*
         Map<String, Integer> constantCounts = new HashMap<String, Integer>();
         Map<String, Integer> constantProjCounts = new HashMap<String, Integer>();
         Map<String, Integer> comparisonCounts = new HashMap<String, Integer>();
         Map<String, Integer> comparisonProjCounts = new HashMap<String, Integer>();
         Map<String, Integer> predicateCounts = new HashMap<String, Integer>();
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
+        */
 
-        int lastUpdate = 0;
-
+        // Read in all statements first
+        List<Statement> stmts = new ArrayList<Statement>();
         try {
             CSVReader csvr = new CSVReader(new FileReader(filename));
             String [] nextLine;
             while ((nextLine = csvr.readNext()) != null) {
+                totalSQL++;
+                if (totalSQL >= (lastUpdate + 100000)) {
+                    Log.info("Parsed " + totalSQL + " statements...");
+                    lastUpdate = totalSQL;
+                }
+
                 if (nextLine.length < 4) continue;
 
                 String sql = nextLine[3];
-                totalSQL++;
-                if (totalSQL >= (lastUpdate + 100000)) {
-                    System.out.println("\rProcessed " + totalSQL + " statements...");
-                    lastUpdate = totalSQL;
-                }
 
                 Log.debug("ORIGINAL: " + sql.replace("\n", " "));
                 Statement stmt;
@@ -145,83 +172,84 @@ public class TemplateGenerator {
                     if (Log.DEBUG) t.printStackTrace();
                     continue;
                 }
-
-                String cnstTmpl = tg.noConstantTemplate(stmt);
-                if (cnstTmpl == null) {
-                    Log.debug("Only SELECT statements are currently supported.");
-                    continue;
-                }
-                Integer cnstCount = constantCounts.get(cnstTmpl);
-                if (cnstCount == null) {
-                    constantCounts.put(cnstTmpl, 1);
-                } else {
-                    constantCounts.put(cnstTmpl, cnstCount + 1);
-                }
-                Log.debug("NO CONSTANTS: " + cnstTmpl);
-
-                String cnstProjTmpl = tg.noConstantProjectionTemplate(stmt);
-                Integer cnstProjCount = constantProjCounts.get(cnstProjTmpl);
-                if (cnstProjCount == null) {
-                    constantProjCounts.put(cnstProjTmpl, 1);
-                } else {
-                    constantProjCounts.put(cnstProjTmpl, cnstProjCount + 1);
-                }
-
-                Log.debug("NO CONSTANTS/PROJECTIONS: " + cnstTmpl);
-
-                String cmpTmpl = tg.noComparisonTemplate(stmt);
-                Integer cmpCount = comparisonCounts.get(cmpTmpl);
-                if (cmpCount == null) {
-                    comparisonCounts.put(cmpTmpl, 1);
-                } else {
-                    comparisonCounts.put(cmpTmpl, cmpCount + 1);
-                }
-                Log.debug("NO COMPARISONS: " + cmpTmpl);
-
-                String cmpProjTmpl = tg.noComparisonProjectionTemplate(stmt);
-                Integer cmpProjCount = comparisonProjCounts.get(cmpProjTmpl);
-                if (cmpProjCount == null) {
-                    comparisonProjCounts.put(cmpProjTmpl, 1);
-                } else {
-                    comparisonProjCounts.put(cmpProjTmpl, cmpProjCount + 1);
-                }
-                Log.debug("NO COMPARISONS/PROJECTIONS: " + cmpProjTmpl);
-
-                String predTmpl = tg.noPredicateTemplate(stmt);
-                Integer predCount = predicateCounts.get(predTmpl);
-                if (predCount == null) {
-                    predicateCounts.put(predTmpl, 1);
-                } else {
-                    predicateCounts.put(predTmpl, predCount + 1);
-                }
-                Log.debug("NO PREDICATES: " + predTmpl);
-
-                String predProjTmpl = tg.noPredicateProjectionTemplate(stmt);
-                Integer predProjCount = predicateProjCounts.get(predProjTmpl);
-                if (predProjCount == null) {
-                    predicateProjCounts.put(predProjTmpl, 1);
-                } else {
-                    predicateProjCounts.put(predProjTmpl, predProjCount + 1);
-                }
-                Log.debug("NO PREDICATES/PROJECTIONS: " + predProjTmpl);
-
-                Log.debug("---");
+                if (stmt == null) continue; // Case that it's not a select statement
+                stmts.add(stmt);
                 parsedSQL++;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        Log.info("===== Parsing Results =====");
         Log.info("Total Queries: " + totalSQL);
-        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL);
-        Log.info("1 / Constant Templates: " + constantCounts.size());
-        Log.info("1a / Constant/Projection Templates: " + constantProjCounts.size());
-        Log.info("2 / Comparison Templates: " + comparisonCounts.size());
-        Log.info("2a / Comparison/Projection Templates: " + comparisonProjCounts.size());
-        Log.info("3 / Predicate Templates: " + predicateCounts.size());
-        Log.info("3a / Predicate/Projection Templates: " + predicateProjCounts.size());
+        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL + "\n");
+
+        // Split into n partitions for cross validation
+        int cvSplits = 4;
+        int partitionSize = stmts.size() / cvSplits;
+        int remainder = stmts.size() % cvSplits;
+
+        List<List<Statement>> cvPartitions = new ArrayList<List<Statement>>();
+        int curIndex = 0;
+        for (int i = 0; i < cvSplits; i++) {
+            int fromIndex = curIndex;
+            int toIndex = fromIndex + partitionSize;
+            if (remainder > i) {
+                toIndex += 1;
+            }
+            cvPartitions.add(stmts.subList(fromIndex, toIndex));
+            curIndex = toIndex;
+        }
+
+        // Cross-validate for each set
+        Log.info("Performing " + cvSplits + "-fold cross-validation...");
+
+        Log.info("===== Legend =====");
+        Log.info("1 <Abs. Constants> / 2 <Abs. Constants/Comparison Ops> / 3 <Abs. Full Predicates>");
+        Log.info("a <Don't Abs. Projections> / b <Abs. Projections>\n");
+        Log.info("Fold #\t1a\t1b\t2a\t2b\t3a\t3b\tTotal");
+
+        for (int i = 0; i < cvPartitions.size(); i++) {
+            List<Statement> templateGenSet = new ArrayList<Statement>();
+            for (int j = 0; j < cvPartitions.size(); j++) {
+                if (j != i) {
+                    templateGenSet.addAll(cvPartitions.get(j));
+                }
+            }
+            List<Statement> coverageTestSet = cvPartitions.get(i);
+
+            Set<String> constTmpl = tg.generateTemplates(templateGenSet, tg::noConstantTemplate);
+            List<String> constTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantTemplate);
+            int constCoverage = tg.testCoverage(constTmpl, constTest);
+
+            Set<String> constProjTmpl = tg.generateTemplates(templateGenSet, tg::noConstantProjectionTemplate);
+            List<String> constProjTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantProjectionTemplate);
+            int constProjCoverage = tg.testCoverage(constProjTmpl, constProjTest);
+
+            Set<String> compTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonTemplate);
+            List<String> compTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonTemplate);
+            int compCoverage = tg.testCoverage(compTmpl, compTest);
+
+            Set<String> compProjTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonProjectionTemplate);
+            List<String> compProjTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonProjectionTemplate);
+            int compProjCoverage = tg.testCoverage(compProjTmpl, compProjTest);
+
+            Set<String> predTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateTemplate);
+            List<String> predTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateTemplate);
+            int predCoverage = tg.testCoverage(predTmpl, predTest);
+
+            Set<String> predProjTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateProjectionTemplate);
+            List<String> predProjTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateProjectionTemplate);
+            tg.testCoverage(predProjTmpl, predProjTest);
+            int predProjCoverage = tg.testCoverage(predProjTmpl, predProjTest);
+
+            Log.info(i + ":\t\t" + constCoverage + "\t" + constProjCoverage + "\t" + compCoverage + "\t"
+                    + compProjCoverage + "\t" + predCoverage + "\t" + predProjCoverage + "\t" + coverageTestSet.size());
+        }
 
         // Write to file
+        /*jj
         String basename = FilenameUtils.getBaseName(filename);
         try {
             String constFileName = basename + "_const.csv";
@@ -281,5 +309,6 @@ public class TemplateGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
     }
 }
