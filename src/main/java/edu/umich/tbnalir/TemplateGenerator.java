@@ -131,6 +131,9 @@ public class TemplateGenerator {
         }
 
         String filename = args[0];
+        if (args.length > 1 && args[1].equals("true")) {
+            Log.DEBUG();
+        }
 
         TemplateGenerator tg = new TemplateGenerator();
 
@@ -147,6 +150,9 @@ public class TemplateGenerator {
         Map<String, Integer> predicateCounts = new HashMap<String, Integer>();
         Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
         */
+
+        // Tokens to replace from error
+        char[] tokensToReplace = {'#'};
 
         // Read in all statements first
         List<Statement> stmts = new ArrayList<Statement>();
@@ -165,6 +171,10 @@ public class TemplateGenerator {
 
                 String sql = nextLine[3];
 
+                for (char token : tokensToReplace) {
+                    sql = sql.replace(token, '_');
+                }
+
                 Log.debug("ORIGINAL: " + sql.replace("\n", " "));
                 Statement stmt;
                 try {
@@ -177,7 +187,7 @@ public class TemplateGenerator {
                 stmts.add(stmt);
                 parsedSQL++;
             }
-
+            csvr.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
