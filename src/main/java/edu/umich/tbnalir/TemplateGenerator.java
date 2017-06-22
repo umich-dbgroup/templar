@@ -236,31 +236,36 @@ public class TemplateGenerator {
 
             Set<String> constTmpl = tg.generateTemplates(templateGenSet, tg::noConstantTemplate);
             List<String> constTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantTemplate);
-            int constCoverage = tg.testCoverage(constTmpl, constTest);
+            float constCoverage = (float) tg.testCoverage(constTmpl, constTest) / coverageTestSet.size();
 
             Set<String> constProjTmpl = tg.generateTemplates(templateGenSet, tg::noConstantProjectionTemplate);
             List<String> constProjTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantProjectionTemplate);
-            int constProjCoverage = tg.testCoverage(constProjTmpl, constProjTest);
+            float constProjCoverage = (float) tg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size();
 
             Set<String> compTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonTemplate);
             List<String> compTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonTemplate);
-            int compCoverage = tg.testCoverage(compTmpl, compTest);
+            float compCoverage = (float) tg.testCoverage(compTmpl, compTest) / coverageTestSet.size();
 
             Set<String> compProjTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonProjectionTemplate);
             List<String> compProjTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonProjectionTemplate);
-            int compProjCoverage = tg.testCoverage(compProjTmpl, compProjTest);
+            float compProjCoverage = (float) tg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size();
 
             Set<String> predTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateTemplate);
             List<String> predTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateTemplate);
-            int predCoverage = tg.testCoverage(predTmpl, predTest);
+            float predCoverage = (float) tg.testCoverage(predTmpl, predTest) / coverageTestSet.size();
 
             Set<String> predProjTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateProjectionTemplate);
             List<String> predProjTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateProjectionTemplate);
-            tg.testCoverage(predProjTmpl, predProjTest);
-            int predProjCoverage = tg.testCoverage(predProjTmpl, predProjTest);
+            float predProjCoverage = (float) tg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size();
 
-            Log.info(i + ":\t\t" + constCoverage + "\t" + constProjCoverage + "\t" + compCoverage + "\t"
-                    + compProjCoverage + "\t" + predCoverage + "\t" + predProjCoverage + "\t" + coverageTestSet.size());
+            Log.info(i + ":\t\t"
+                    + String.format("%.2f", constCoverage) + "%\t"
+                    + String.format("%.2f", constProjCoverage) + "%\t"
+                    + String.format("%.2f", compCoverage) + "%\t"
+                    + String.format("%.2f", compProjCoverage) + "%\t"
+                    + String.format("%.2f", predCoverage) + "%\t"
+                    + String.format("%.2f", predProjCoverage) + "%\t"
+                    + coverageTestSet.size());
         }
 
         // Write to file
