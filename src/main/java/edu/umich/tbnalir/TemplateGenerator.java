@@ -106,15 +106,17 @@ public class TemplateGenerator {
         Set<String> templates = new HashSet<String>();
         Map<String, Integer> templateCounts = new HashMap<String, Integer>();
         for (Statement stmt : stmts) {
-            String tmpl = templateFn.apply(stmt).intern();
-            templates.add(tmpl);
+            String tmpl = templateFn.apply(stmt);
+            if (tmpl != null) {
+                templates.add(tmpl);
 
-            if (outFileName != null) {
-                Integer count = templateCounts.get(tmpl);
-                if (count == null) {
-                    templateCounts.put(tmpl, 1);
-                } else {
-                    templateCounts.put(tmpl, count + 1);
+                if (outFileName != null) {
+                    Integer count = templateCounts.get(tmpl);
+                    if (count == null) {
+                        templateCounts.put(tmpl, 1);
+                    } else {
+                        templateCounts.put(tmpl, count + 1);
+                    }
                 }
             }
         }
