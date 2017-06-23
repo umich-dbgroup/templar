@@ -6,8 +6,10 @@ import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.function.Function;
 
@@ -99,10 +101,36 @@ public class TemplateGenerator {
         return null;
     }
 
-    public Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn) {
+    public Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn,
+                                         String outFileName) {
         Set<String> templates = new HashSet<String>();
+        Map<String, Integer> templateCounts = new HashMap<String, Integer>();
         for (Statement stmt : stmts) {
-            templates.add(templateFn.apply(stmt));
+            String tmpl = templateFn.apply(stmt).intern();
+            templates.add(tmpl);
+
+            if (outFileName != null) {
+                Integer count = templateCounts.get(tmpl);
+                if (count == null) {
+                    templateCounts.put(tmpl, 1);
+                } else {
+                    templateCounts.put(tmpl, count + 1);
+                }
+            }
+        }
+
+        if (outFileName != null) {
+            Log.info("Saving " + outFileName + "...");
+            try {
+                PrintWriter writer = new PrintWriter(outFileName, "UTF-8");
+                Map<String, Integer> sortedPredProjCounts = Utils.sortByValueDesc(templateCounts);
+                for (Map.Entry<String, Integer> e : sortedPredProjCounts.entrySet()) {
+                    writer.println(e.getValue() + "\t" + e.getKey());
+                }
+                writer.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return templates;
     }
@@ -132,6 +160,7 @@ public class TemplateGenerator {
         }
 
         String filename = args[0];
+        String basename = FilenameUtils.getBaseName(filename);
         if (args.length > 1 && args[1].equals("true")) {
             Log.DEBUG();
         }
@@ -142,15 +171,6 @@ public class TemplateGenerator {
         int totalSQL = 0;
         int parsedSQL = 0;
         int lastUpdate = 0;
-
-        /*
-        Map<String, Integer> constantCounts = new HashMap<String, Integer>();
-        Map<String, Integer> constantProjCounts = new HashMap<String, Integer>();
-        Map<String, Integer> comparisonCounts = new HashMap<String, Integer>();
-        Map<String, Integer> comparisonProjCounts = new HashMap<String, Integer>();
-        Map<String, Integer> predicateCounts = new HashMap<String, Integer>();
-        Map<String, Integer> predicateProjCounts = new HashMap<String, Integer>();
-        */
 
         // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
         char[] tokensToReplace = {'#', '\u0018', '\u00a0'};
@@ -236,27 +256,43 @@ public class TemplateGenerator {
             }
             List<Statement> coverageTestSet = cvPartitions.get(i);
 
-            Set<String> constTmpl = tg.generateTemplates(templateGenSet, tg::noConstantTemplate);
+            // Only print out files for templates for first fold
+            String constFileName = null;
+            String constProjFileName = null;
+            String compFileName = null;
+            String compProjFileName = null;
+            String predFileName = null;
+            String predProjFileName = null;
+            if (i == 0) {
+                constFileName = basename + "_const.csv";
+                constProjFileName = basename + "_const_proj.csv";
+                compFileName = basename + "_comp.csv";
+                compProjFileName = basename + "_comp_proj.csv";
+                predFileName = basename + "_pred.csv";
+                predProjFileName = basename + "_pred_proj.csv";
+            }
+            Set<String> constTmpl = tg.generateTemplates(templateGenSet, tg::noConstantTemplate, constFileName);
             List<String> constTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantTemplate);
             float constCoverage = (float) tg.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
 
-            Set<String> constProjTmpl = tg.generateTemplates(templateGenSet, tg::noConstantProjectionTemplate);
+            Set<String> constProjTmpl = tg.generateTemplates(templateGenSet, tg::noConstantProjectionTemplate,
+                    constProjFileName);
             List<String> constProjTest = tg.generateTestTemplates(coverageTestSet, tg::noConstantProjectionTemplate);
             float constProjCoverage = (float) tg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> compTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonTemplate);
+            Set<String> compTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonTemplate, compFileName);
             List<String> compTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonTemplate);
             float compCoverage = (float) tg.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
 
-            Set<String> compProjTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonProjectionTemplate);
+            Set<String> compProjTmpl = tg.generateTemplates(templateGenSet, tg::noComparisonProjectionTemplate, compProjFileName);
             List<String> compProjTest = tg.generateTestTemplates(coverageTestSet, tg::noComparisonProjectionTemplate);
             float compProjCoverage = (float) tg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> predTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateTemplate);
+            Set<String> predTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateTemplate, predFileName);
             List<String> predTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateTemplate);
             float predCoverage = (float) tg.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
 
-            Set<String> predProjTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateProjectionTemplate);
+            Set<String> predProjTmpl = tg.generateTemplates(templateGenSet, tg::noPredicateProjectionTemplate, predProjFileName);
             List<String> predProjTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) tg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
@@ -279,68 +315,5 @@ public class TemplateGenerator {
                     + predTmpl.size() + "\t"
                     + predProjTmpl.size() + "\t\n");
         }
-
-        // Write to file
-        /*jj
-        String basename = FilenameUtils.getBaseName(filename);
-        try {
-            String constFileName = basename + "_const.csv";
-            Log.info("Saving " + constFileName + "...");
-            PrintWriter writer = new PrintWriter(constFileName, "UTF-8");
-            Map<String, Integer> sortedConstantCounts = Utils.sortByValueDesc(constantCounts);
-            for (Map.Entry<String,Integer> e : sortedConstantCounts.entrySet()) {
-                writer.println(e.getValue() + "\t" + e.getKey());
-            }
-            writer.close();
-
-            String constProjFileName = basename + "_const_proj.csv";
-            Log.info("Saving " + constProjFileName + "...");
-            PrintWriter constProjWriter = new PrintWriter(constProjFileName, "UTF-8");
-            Map<String, Integer> sortedConstantProjCounts = Utils.sortByValueDesc(constantProjCounts);
-            for (Map.Entry<String,Integer> e : sortedConstantProjCounts.entrySet()) {
-                constProjWriter.println(e.getValue() + "\t" + e.getKey());
-            }
-            constProjWriter.close();
-
-            String compFileName = basename + "_comp.csv";
-            Log.info("Saving " + compFileName + "...");
-            PrintWriter compWriter = new PrintWriter(compFileName, "UTF-8");
-            Map<String, Integer> sortedComparisonCounts = Utils.sortByValueDesc(comparisonCounts);
-            for (Map.Entry<String,Integer> e : sortedComparisonCounts.entrySet()) {
-                compWriter.println(e.getValue() + "\t" + e.getKey());
-            }
-            compWriter.close();
-
-            String compProjFileName = basename + "_comp_proj.csv";
-            Log.info("Saving " + compProjFileName + "...");
-            PrintWriter compProjWriter = new PrintWriter(compProjFileName, "UTF-8");
-            Map<String, Integer> sortedCompProjCounts = Utils.sortByValueDesc(comparisonProjCounts);
-            for (Map.Entry<String,Integer> e : sortedCompProjCounts.entrySet()) {
-                compProjWriter.println(e.getValue() + "\t" + e.getKey());
-            }
-            compProjWriter.close();
-
-            String predFileName = basename + "_pred.csv";
-            Log.info("Saving " + predFileName + "...");
-            PrintWriter predWriter = new PrintWriter(predFileName, "UTF-8");
-            Map<String, Integer> sortedPredCounts = Utils.sortByValueDesc(predicateCounts);
-            for (Map.Entry<String,Integer> e : sortedPredCounts.entrySet()) {
-                predWriter.println(e.getValue() + "\t" + e.getKey());
-            }
-            predWriter.close();
-
-            String predProjFileName = basename + "_pred_proj.csv";
-            Log.info("Saving " + predProjFileName + "...");
-            PrintWriter predProjWriter = new PrintWriter(predProjFileName, "UTF-8");
-            Map<String, Integer> sortedPredProjCounts = Utils.sortByValueDesc(predicateProjCounts);
-            for (Map.Entry<String,Integer> e : sortedPredProjCounts.entrySet()) {
-                predProjWriter.println(e.getValue() + "\t" + e.getKey());
-            }
-            predProjWriter.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
     }
 }
