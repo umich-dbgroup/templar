@@ -62,7 +62,9 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
         }
         Top top = plainSelect.getTop();
         if (top != null) {
-            this.getBuffer().append(top).append(" ");
+            // ABSTRACT OUT TOP N
+            this.getBuffer().append("TOP #TOP ");
+            //this.getBuffer().append(top).append(" ");
         }
 
         // Hide all select items and replace with blanket "projection"
