@@ -22,7 +22,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(constantRemover, buffer);
+            SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(constantRemover, buffer, false);
             constantRemover.setSelectVisitor(deParser);
             constantRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -36,7 +36,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(constantRemover, buffer);
+            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(constantRemover, buffer, false);
             constantRemover.setSelectVisitor(deParser);
             constantRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -50,7 +50,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(comparisonRemover, buffer);
+            SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(comparisonRemover, buffer, false);
             comparisonRemover.setSelectVisitor(deParser);
             comparisonRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -64,7 +64,7 @@ public class TemplateGenerator {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
             ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer);
+            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer, false);
             comparisonRemover.setSelectVisitor(deParser);
             comparisonRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -77,8 +77,8 @@ public class TemplateGenerator {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
-            PredicateRemovalExprDeParser predicateRemover = new PredicateRemovalExprDeParser();
-            TableFunctionRemovalDeParser deParser = new TableFunctionRemovalDeParser(predicateRemover, buffer);
+            ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
+            SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(predicateRemover, buffer, true);
             predicateRemover.setSelectVisitor(deParser);
             predicateRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);
@@ -91,8 +91,8 @@ public class TemplateGenerator {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
             StringBuilder buffer = new StringBuilder();
-            PredicateRemovalExprDeParser predicateRemover = new PredicateRemovalExprDeParser();
-            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer);
+            ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
+            ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer, true);
             predicateRemover.setSelectVisitor(deParser);
             predicateRemover.setBuffer(buffer);
             select.getSelectBody().accept(deParser);

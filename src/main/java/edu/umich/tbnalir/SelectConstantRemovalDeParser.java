@@ -2,20 +2,26 @@ package edu.umich.tbnalir;
 
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
+import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.expression.OracleHint;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.LimitDeparser;
 import net.sf.jsqlparser.util.deparser.OrderByDeParser;
+import net.sf.jsqlparser.util.deparser.SelectDeParser;
 
 import java.util.Iterator;
 
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
-    public ProjectionRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer, boolean removeWhere) {
-        super(expressionVisitor, buffer, removeWhere);
+public class SelectConstantRemovalDeParser extends SelectDeParser {
+    boolean removeWhere;
+
+    public SelectConstantRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer, boolean removeWhere) {
+        super(expressionVisitor, buffer);
+
+        this.removeWhere = removeWhere;
     }
 
     @Override
@@ -49,7 +55,7 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
             if (plainSelect.getDistinct().getOnSelectItems() != null) {
                 this.getBuffer().append("ON (");
                 for (Iterator<SelectItem> iter = plainSelect.getDistinct().getOnSelectItems().
-                        iterator(); iter.hasNext(); ) {
+                        iterator(); iter.hasNext();) {
                     SelectItem selectItem = iter.next();
                     selectItem.accept(this);
                     if (iter.hasNext()) {
@@ -60,15 +66,14 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
             }
 
         }
+
         Top top = plainSelect.getTop();
         if (top != null) {
-            this.getBuffer().append(top).append(" ");
+            // ABSTRACT OUT TOP N
+            this.getBuffer().append("TOP #TOP ");
+            //this.getBuffer().append(top).append(" ");
         }
 
-        // Hide all select items and replace with blanket "projection"
-        this.getBuffer().append("#PROJECTION");
-
-        /*
         for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext();) {
             SelectItem selectItem = iter.next();
             selectItem.accept(this);
@@ -76,11 +81,10 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
                 this.getBuffer().append(", ");
             }
         }
-        */
 
         if (plainSelect.getIntoTables() != null) {
             this.getBuffer().append(" INTO ");
-            for (Iterator<Table> iter = plainSelect.getIntoTables().iterator(); iter.hasNext(); ) {
+            for (Iterator<Table> iter = plainSelect.getIntoTables().iterator(); iter.hasNext();) {
                 visit(iter.next());
                 if (iter.hasNext()) {
                     this.getBuffer().append(", ");
@@ -101,7 +105,12 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
 
         if (plainSelect.getWhere() != null) {
             this.getBuffer().append(" WHERE ");
-            plainSelect.getWhere().accept(this.getExpressionVisitor());
+
+            if (this.removeWhere) {
+                this.getBuffer().append("#PREDICATE ");
+            } else {
+                plainSelect.getWhere().accept(this.getExpressionVisitor());
+            }
         }
 
         if (plainSelect.getOracleHierarchical() != null) {
@@ -111,7 +120,7 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
         if (plainSelect.getGroupByColumnReferences() != null) {
             this.getBuffer().append(" GROUP BY ");
             for (Iterator<Expression> iter = plainSelect.getGroupByColumnReferences().iterator(); iter.
-                    hasNext(); ) {
+                    hasNext();) {
                 Expression columnReference = iter.next();
                 columnReference.accept(this.getExpressionVisitor());
                 if (iter.hasNext()) {
@@ -152,5 +161,20 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
         if (plainSelect.isUseBrackets()) {
             this.getBuffer().append(")");
         }
+    }
+
+    @Override
+    public void visit(TableFunction tableFunction) {
+        Function fn = tableFunction.getFunction();
+        this.getBuffer().append(fn.getName());
+        this.getBuffer().append('(');
+        StringBuilder sb = new StringBuilder();
+        for (Expression expr : fn.getParameters().getExpressions()) {
+            sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
+            sb.append(',');
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(')');
+        this.getBuffer().append(sb.toString());
     }
 }
