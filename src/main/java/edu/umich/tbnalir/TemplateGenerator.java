@@ -263,7 +263,7 @@ public class TemplateGenerator {
             Log.info("--- Fold " + i + " ---");
             Log.info("Template Gen. Set Size: " + templateGenSet.size());
             Log.info("Coverage Test Set Size: " + coverageTestSet.size());
-            Log.info("           \t1a\t\t1b\t\t2a\t\t2b\t\t3a\t\t3b");
+            Log.info("           \t1a\t1b\t2a\t2b\t3a\t3b");
             Log.info("Coverage %:\t"
                     + String.format("%.1f", constCoverage) + "%\t"
                     + String.format("%.1f", constProjCoverage) + "%\t"
