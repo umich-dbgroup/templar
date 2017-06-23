@@ -153,7 +153,7 @@ public class TemplateGenerator {
         */
 
         // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
-        char[] tokensToReplace = {'#', '\u0018'};
+        char[] tokensToReplace = {'#', '\u0018', '\u00a0'};
 
         // Read in all statements first
         List<Statement> stmts = new ArrayList<Statement>();
