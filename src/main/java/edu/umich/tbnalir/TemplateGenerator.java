@@ -226,7 +226,6 @@ public class TemplateGenerator {
         Log.info("===== Legend =====");
         Log.info("1 <Abs. Constants> / 2 <Abs. Constants/Comparison Ops> / 3 <Abs. Full Predicates>");
         Log.info("a <Don't Abs. Projections> / b <Abs. Projections>");
-        Log.info("Displayed as: <Num. Generated Templates>, <Coverage %>\n");
 
         for (int i = 0; i < cvPartitions.size(); i++) {
             List<Statement> templateGenSet = new ArrayList<Statement>();
@@ -261,15 +260,24 @@ public class TemplateGenerator {
             List<String> predProjTest = tg.generateTestTemplates(coverageTestSet, tg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) tg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
-            Log.info("Fold size: " + coverageTestSet.size());
-            Log.info("Fold\t1a\t\t\t1b\t\t\t2a\t\t\t2b\t\t\t3a\t\t\t3b");
-            Log.info(i + ":\t\t"
-                    + constTmpl.size() + ", " + String.format("%.1f", constCoverage) + "%\t"
-                    + constProjTmpl.size() + ", " + String.format("%.1f", constProjCoverage) + "%\t"
-                    + compTmpl.size() + ", " + String.format("%.1f", compCoverage) + "%\t"
-                    + compProjTmpl.size() + ", " + String.format("%.1f", compProjCoverage) + "%\t"
-                    + predTmpl.size() + ", " + String.format("%.1f", predCoverage) + "%\t"
-                    + predProjTmpl.size() + ", " + String.format("%.1f", predProjCoverage) + "%\t\n");
+            Log.info("--- Fold " + i + " ---");
+            Log.info("Template Gen. Set Size: " + templateGenSet.size());
+            Log.info("Coverage Test Set Size: " + coverageTestSet.size());
+            Log.info("           \t1a\t\t1b\t\t2a\t\t2b\t\t3a\t\t3b");
+            Log.info("Coverage %:\t"
+                    + String.format("%.1f", constCoverage) + "%\t"
+                    + String.format("%.1f", constProjCoverage) + "%\t"
+                    + String.format("%.1f", compCoverage) + "%\t"
+                    + String.format("%.1f", compProjCoverage) + "%\t"
+                    + String.format("%.1f", predCoverage) + "%\t"
+                    + String.format("%.1f", predProjCoverage) + "%\t");
+            Log.info("Tmpl. Count:\t"
+                    + constTmpl.size() + "\t"
+                    + constProjTmpl.size() + "\t"
+                    + compTmpl.size() + "\t"
+                    + compProjTmpl.size() + "\t"
+                    + predTmpl.size() + "\t"
+                    + predProjTmpl.size() + "\t\n");
         }
 
         // Write to file
