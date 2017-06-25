@@ -103,7 +103,12 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
 
         if (plainSelect.getWhere() != null) {
             this.getBuffer().append(" WHERE ");
-            plainSelect.getWhere().accept(this.getExpressionVisitor());
+
+            if (this.removeWhere) {
+                this.getBuffer().append("#PREDICATE ");
+            } else {
+                plainSelect.getWhere().accept(this.getExpressionVisitor());
+            }
         }
 
         if (plainSelect.getOracleHierarchical() != null) {
