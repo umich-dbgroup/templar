@@ -10,11 +10,11 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
     public static String removeConstantsFromExpr(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof DoubleValue) {
-            sb.append("#DOUBLE");
+            sb.append("#NUM");
         } else if (expr instanceof HexValue) {
-            sb.append("#HEX");
+            sb.append("#NUM");
         } else if (expr instanceof LongValue) {
-            sb.append("#LONG");
+            sb.append("#NUM");
         } else if (expr instanceof StringValue) {
             sb.append("#STR");
         } else if (expr instanceof DateValue) {
@@ -55,12 +55,12 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(DoubleValue doubleValue) {
-        this.getBuffer().append("#DOUBLE");
+        this.getBuffer().append("#NUM");
     }
 
     @Override
     public void visit(HexValue hexValue) {
-        this.getBuffer().append("#HEX");
+        this.getBuffer().append("#NUM");
     }
 
     @Override
@@ -70,7 +70,7 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(LongValue longValue) {
-        this.getBuffer().append("#LONG");
+        this.getBuffer().append("#NUM");
     }
 
     @Override
