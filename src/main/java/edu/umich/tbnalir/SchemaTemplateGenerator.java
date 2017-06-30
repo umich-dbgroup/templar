@@ -1,6 +1,7 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
+import com.opencsv.CSVReader;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
@@ -8,7 +9,6 @@ import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.LiteralExpression;
 import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
-import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Table;
@@ -22,10 +22,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -36,8 +33,8 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("Usage: <json-input-prefix>");
-            System.err.println("Example: SchemaTemplateGenerator data/sdss/schema/bestdr7");
+            System.err.println("Usage: <schema-prefix> <query-log-templates-csv>");
+            System.err.println("Example: SchemaTemplateGenerator data/sdss/schema/bestdr7 bestdr7_0.05_pred_proj.csv");
             System.exit(1);
         }
 
@@ -45,9 +42,12 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         String relationsFile = prefix + ".relations.json";
         String edgesFile = prefix + ".edges.json";
 
+        String logTemplatesFile = args[1];
+
         // read in schema from json files
         JSONParser parser = new JSONParser();
 
+        Log.info("==============================");
         try {
             Log.info("Reading relations info...");
             JSONObject rels = (JSONObject) parser.parse(new FileReader(relationsFile));
@@ -104,13 +104,33 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.info("==============================\n");
 
-        // TODO: construct predicate/projection templates
-        List<String> templates = new ArrayList<String>();
+        // read predicate/projection templates from query log
+        Log.info("==============================");
+        Log.info("Reading templates generated from query log (i.e. test set)...");
+        Map<String, Integer> testTemplateCount = new HashMap<String, Integer>();
+        try {
+            CSVReader reader = new CSVReader(new FileReader(logTemplatesFile), '\t');
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                String testTmpl = nextLine[1].toLowerCase();
+                testTemplateCount.put(testTmpl, Integer.valueOf(nextLine[0]));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.info("Finished reading query log templates.");
+        Log.info("==============================\n");
+
+
+        Log.info("==============================");
+        Log.info("Generating templates using schema...");
+        Set<String> templates = new HashSet<String>();
 
         SchemaTemplateGenerator tg = new SchemaTemplateGenerator();
 
-        // For level 0 (no joins)
+        Log.info("Generating level 0 (no joins, single tables only)...");
         for (Map.Entry<String, Relation> e : relations.entrySet()) {
             Relation r = e.getValue();
 
@@ -158,8 +178,22 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
             templates.add(topTmpl);
         }
 
-        // TODO: read predicate/projection templates from query log
+        int covered = 0;
+        int total = 0;
+        for (Map.Entry<String, Integer> e : testTemplateCount.entrySet()) {
+            total += e.getValue();
+            if (templates.contains(e.getKey())) {
+                covered += e.getValue();
+            }
+        }
+        Log.info("Done generating level 0: " + templates.size() + " templates.");
+        Log.info("==============================\n");
 
-        // TODO: measure coverage
+        Log.info("==============================");
+        Log.info("Measuring coverage...");
+        float predProjCoverage = (float) covered / total * 100;
+        Log.info("Number of templates: " + templates.size());
+        Log.info(String.format("Coverage: %d / %d (%.1f)", covered, total, predProjCoverage) + "%");
+        Log.info("==============================");
     }
 }
