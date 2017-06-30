@@ -1,4 +1,4 @@
-package edu.umich.tbnalir;
+package edu.umich.tbnalir.deparser;
 
 import net.sf.jsqlparser.expression.operators.relational.*;
 
