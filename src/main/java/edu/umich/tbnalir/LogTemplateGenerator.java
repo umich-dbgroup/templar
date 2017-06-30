@@ -344,16 +344,22 @@ public class LogTemplateGenerator {
             switch (level) {
                 case "const":
                     tg.generateTemplates(stmts, tg::noConstantTemplate, outfileName);
+                    break;
                 case "const_proj":
                     tg.generateTemplates(stmts, tg::noConstantProjectionTemplate, outfileName);
+                    break;
                 case "comp":
                     tg.generateTemplates(stmts, tg::noComparisonTemplate, outfileName);
+                    break;
                 case "comp_proj":
                     tg.generateTemplates(stmts, tg::noComparisonProjectionTemplate, outfileName);
+                    break;
                 case "pred":
                     tg.generateTemplates(stmts, tg::noPredicateTemplate, outfileName);
+                    break;
                 case "pred_proj":
                     tg.generateTemplates(stmts, tg::noPredicateProjectionTemplate, outfileName);
+                    break;
                 default:
                     throw new IllegalArgumentException("Invalid level specified: <" + level + ">.");
             }
