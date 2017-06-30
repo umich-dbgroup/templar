@@ -18,4 +18,33 @@ public class Utils {
                         LinkedHashMap::new
                 ));
     }
+
+    public static String convertSQLTypetoConstant(String type) {
+        switch (type) {
+            case "varchar":
+            case "varbinary":
+            case "binary":
+            case "sysname":
+                return Constants.STR;
+            case "real":
+            case "float":
+            case "int":
+            case "bigint":
+            case "smallint":
+            case "tinyint":
+            case "bit":
+                return Constants.NUM;
+            case "datetime":
+                return Constants.DATETIME;
+            case "time":
+                return Constants.TIME;
+            case "timestamp":
+                return Constants.TIMESTAMP;
+            case "date":
+                return Constants.DATE;
+            default:
+                throw new IllegalArgumentException("Did not recognize function parameter type: <" + type + ">");
+        }
+
+    }
 }

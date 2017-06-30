@@ -1,6 +1,7 @@
 package edu.umich.tbnalir.rdbms;
 
 import edu.umich.tbnalir.util.Constants;
+import edu.umich.tbnalir.util.Utils;
 
 import java.util.Map;
 import java.util.StringJoiner;
@@ -36,25 +37,7 @@ public class Function extends Relation {
         for (int i = 1; i < this.inputs.size() + 1; i++) {
             if (this.inputs.get(i) == null) continue;
             String type = this.inputs.get(i).getType();
-            switch (type) {
-                case "varchar":
-                    sj.add(Constants.STR);
-                    break;
-                case "real":
-                    sj.add(Constants.NUM);
-                    break;
-                case "float":
-                    sj.add(Constants.NUM);
-                    break;
-                case "int":
-                    sj.add(Constants.NUM);
-                    break;
-                case "bigint":
-                    sj.add(Constants.NUM);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Did not recognize function parameter type: <" + type + ">");
-            }
+            sj.add(Utils.convertSQLTypetoConstant(type));
         }
         sb.append(sj.toString());
         sb.append(')');
