@@ -24,6 +24,9 @@ public class Relation {
         }
 
         this.attributes = attributes;
+        for (Map.Entry<String, Attribute> e : attributes.entrySet()) {
+            e.getValue().setRelation(this);
+        }
     }
 
     public String getName() {

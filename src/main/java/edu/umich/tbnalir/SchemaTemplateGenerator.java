@@ -1,6 +1,9 @@
 package edu.umich.tbnalir;
 
+import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.rdbms.Function;
+import edu.umich.tbnalir.rdbms.FunctionParameter;
 import edu.umich.tbnalir.rdbms.Relation;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,6 +18,7 @@ import java.util.Map;
  */
 public class SchemaTemplateGenerator {
     static Map<String, Relation> relations = new HashMap<String, Relation>();
+    static Map<Attribute, Attribute> fkpkEdges = new HashMap<Attribute, Attribute>();
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -31,26 +35,58 @@ public class SchemaTemplateGenerator {
         JSONParser parser = new JSONParser();
 
         try {
+            Log.info("Reading relations info...");
             JSONObject rels = (JSONObject) parser.parse(new FileReader(relationsFile));
             for (Object relNameObj : rels.keySet()) {
                 String relName = (String) relNameObj;
                 JSONObject relInfo = (JSONObject) rels.get(relNameObj);
-                JSONArray attrArray = (JSONArray) relInfo.get("attributes");
+                JSONObject attrObj = (JSONObject) relInfo.get("attributes");
                 Map<String, Attribute> attributeMap = new HashMap<String, Attribute>();
-                for (Object attrInfoObj : attrArray) {
-                    JSONObject attrInfo = (JSONObject) attrInfoObj;
+                for (Object attrNameObj : attrObj.keySet()) {
+                    JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
                     String attrName = (String) attrInfo.get("name");
                     String attrType = (String) attrInfo.get("type");
                     Attribute attr = new Attribute(attrName, attrType);
                     attributeMap.put(attrName, attr);
                 }
 
-                Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
-                relations.put(relName, rel);
+
+                // For functions, also add parameters
+                if (relInfo.containsKey("inputs")) {
+                    JSONObject inputObj = (JSONObject) relInfo.get("inputs");
+                    Map<String, FunctionParameter> inputs = new HashMap<String, FunctionParameter>();
+                    for (Object inputNameObj : inputObj.keySet()) {
+                        JSONObject inputInfoObj = (JSONObject) inputObj.get(inputNameObj);
+                        String inputName = (String) inputInfoObj.get("name");
+                        String inputType = (String) inputInfoObj.get("type");
+                        Integer inputIndex = Integer.valueOf((String) inputInfoObj.get("index"));
+                        FunctionParameter param = new FunctionParameter(inputName, inputType, inputIndex);
+                        inputs.put(inputName, param);
+                    }
+                    Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
+                    relations.put(relName, fn);
+                } else {
+                    Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
+                    relations.put(relName, rel);
+                }
+
             }
+            Log.info("Read " + relations.size() + " relations/views/functions.");
 
-            // TODO: READ EDGES
+            Log.info("Reading edges info...");
+            JSONArray edgesArr = (JSONArray) parser.parse(new FileReader(edgesFile));
+            for (Object edgeObj : edgesArr) {
+                JSONObject edge = (JSONObject) edgeObj;
 
+                Relation foreignRelation = relations.get(edge.get("foreignRelation"));
+                Attribute foreignAttribute = foreignRelation.getAttributes().get(edge.get("foreignAttribute"));
+
+                Relation primaryRelation = relations.get(edge.get("primaryRelation"));
+                Attribute primaryAttribute = primaryRelation.getAttributes().get(edge.get("primaryAttribute"));
+
+                fkpkEdges.put(foreignAttribute, primaryAttribute);
+            }
+            Log.info("Read " + fkpkEdges.size() + " FK-PK relationships.");
         } catch (Exception e) {
             e.printStackTrace();
         }

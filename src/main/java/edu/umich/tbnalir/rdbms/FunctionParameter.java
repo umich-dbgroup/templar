@@ -3,14 +3,15 @@ package edu.umich.tbnalir.rdbms;
 /**
  * Created by cjbaik on 6/30/17.
  */
-public class Attribute {
-    Relation relation;
+public class FunctionParameter {
     String name;
     String type;
+    Integer index;
 
-    public Attribute(String name, String type) {
+    public FunctionParameter(String name, String type, Integer index) {
         this.name = name;
         this.type = type;
+        this.index = index;
     }
 
     public String getName() {
@@ -29,11 +30,12 @@ public class Attribute {
         this.type = type;
     }
 
-    public Relation getRelation() {
-        return relation;
+    public Integer getIndex() {
+        return index;
     }
 
-    public void setRelation(Relation relation) {
-        this.relation = relation;
+    public void setIndex(Integer index) {
+        this.index = index;
     }
+
 }
