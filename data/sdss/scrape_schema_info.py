@@ -68,7 +68,7 @@ def read_function_info(relations, edges, pks, function_url):
             }
             relation['attributes'][attr_name] = attribute
 
-            # add primary key relationship if any
+            # add fk-pk relationships if any to relations and views
             if attr_name in pks:
                 for rel in pks[attr_name]:
                     add_foreign_key(edges, relation['name'], rel, attr_name)
@@ -176,6 +176,12 @@ def main():
                                     pks[pk] = [foreign_table_name]
                                 else:
                                     pks[pk].append(foreign_table_name)
+
+                                # check if any views with the same pk
+                                if foreign_table_name in view_map:
+                                    for view in view_map[foreign_table_name]:
+                                        if pk in view['attributes']:
+                                            pks[pk].append(view['name'])
                     i += 1
 
             if attr_name is not None:
