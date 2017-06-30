@@ -1,10 +1,7 @@
-package edu.umich.tbnalir.deparser;
+package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.util.Constants;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.ExpressionVisitor;
-import net.sf.jsqlparser.expression.Function;
-import net.sf.jsqlparser.expression.OracleHint;
+import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.LimitDeparser;
@@ -12,6 +9,7 @@ import net.sf.jsqlparser.util.deparser.OrderByDeParser;
 import net.sf.jsqlparser.util.deparser.SelectDeParser;
 
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 /**
  * Created by cjbaik on 6/20/17.
@@ -170,12 +168,24 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
         this.getBuffer().append(fn.getName());
         this.getBuffer().append('(');
         StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(",");
         for (Expression expr : fn.getParameters().getExpressions()) {
-            sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
-            sb.append(',');
+            sj.add(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
         }
-        sb.deleteCharAt(sb.length() - 1);
+        sb.append(sj.toString());
         sb.append(')');
         this.getBuffer().append(sb.toString());
+    }
+
+    @Override
+    public void visit(Table tableName) {
+        this.getBuffer().append(tableName.getFullyQualifiedName());
+        Pivot pivot = tableName.getPivot();
+        if (pivot != null) {
+            pivot.accept(this);
+        }
+
+        // Whether alias specified or not, replace with a consistent alias name for every instance
+        this.getBuffer().append(" AS #" + tableName.getName() + "_alias");
     }
 }

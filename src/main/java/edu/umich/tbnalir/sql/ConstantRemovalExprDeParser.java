@@ -1,4 +1,4 @@
-package edu.umich.tbnalir.deparser;
+package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.*;
