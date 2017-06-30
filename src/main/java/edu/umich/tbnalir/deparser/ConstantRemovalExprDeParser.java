@@ -1,5 +1,6 @@
 package edu.umich.tbnalir.deparser;
 
+import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 
@@ -10,21 +11,21 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
     public static String removeConstantsFromExpr(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof DoubleValue) {
-            sb.append("#NUM");
+            sb.append(Constants.NUM);
         } else if (expr instanceof HexValue) {
-            sb.append("#NUM");
+            sb.append(Constants.NUM);
         } else if (expr instanceof LongValue) {
-            sb.append("#NUM");
+            sb.append(Constants.NUM);
         } else if (expr instanceof StringValue) {
-            sb.append("#STR");
+            sb.append(Constants.STR);
         } else if (expr instanceof DateValue) {
-            sb.append("#DATE");
+            sb.append(Constants.DATE);
         } else if (expr instanceof TimestampValue) {
-            sb.append("#TIMESTAMP");
+            sb.append(Constants.TIMESTAMP);
         } else if (expr instanceof TimeValue) {
-            sb.append("#TIME");
+            sb.append(Constants.TIME);
         } else if (expr instanceof DateTimeLiteralExpression) {
-            sb.append("#DATETIME");
+            sb.append(Constants.DATETIME);
         } else if (expr instanceof SignedExpression) {
             sb.append(removeConstantsFromExpr(((SignedExpression) expr).getExpression()));
         } else if (expr instanceof BinaryExpression) {
@@ -55,12 +56,12 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(DoubleValue doubleValue) {
-        this.getBuffer().append("#NUM");
+        this.getBuffer().append(Constants.NUM);
     }
 
     @Override
     public void visit(HexValue hexValue) {
-        this.getBuffer().append("#NUM");
+        this.getBuffer().append(Constants.NUM);
     }
 
     @Override
@@ -70,12 +71,12 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(LongValue longValue) {
-        this.getBuffer().append("#NUM");
+        this.getBuffer().append(Constants.NUM);
     }
 
     @Override
     public void visit(StringValue stringValue) {
-        this.getBuffer().append("#STR");
+        this.getBuffer().append(Constants.STR);
     }
 
     @Override
@@ -94,17 +95,17 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(DateValue dateValue) {
-        this.getBuffer().append("#DATE");
+        this.getBuffer().append(Constants.DATE);
     }
 
     @Override
     public void visit(TimestampValue timestampValue) {
-        this.getBuffer().append("#TIMESTAMP");
+        this.getBuffer().append(Constants.TIMESTAMP);
     }
 
     @Override
     public void visit(TimeValue timeValue) {
-        this.getBuffer().append("#TIME");
+        this.getBuffer().append(Constants.TIME);
     }
 
     @Override
@@ -118,6 +119,6 @@ public class ConstantRemovalExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(DateTimeLiteralExpression literal) {
-        this.getBuffer().append("#DATETIME");
+        this.getBuffer().append(Constants.DATETIME);
     }
 }

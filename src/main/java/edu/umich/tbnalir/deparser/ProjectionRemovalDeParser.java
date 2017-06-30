@@ -1,6 +1,6 @@
 package edu.umich.tbnalir.deparser;
 
-import edu.umich.tbnalir.deparser.SelectConstantRemovalDeParser;
+import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
 import net.sf.jsqlparser.expression.OracleHint;
@@ -64,12 +64,12 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
         Top top = plainSelect.getTop();
         if (top != null) {
             // ABSTRACT OUT TOP N
-            this.getBuffer().append("TOP #TOP ");
+            this.getBuffer().append("TOP " + Constants.TOP + " ");
             //this.getBuffer().append(top).append(" ");
         }
 
         // Hide all select items and replace with blanket "projection"
-        this.getBuffer().append("#PROJECTION");
+        this.getBuffer().append(Constants.PROJ);
 
         /*
         for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext();) {
@@ -106,7 +106,7 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
             this.getBuffer().append(" WHERE ");
 
             if (this.removeWhere) {
-                this.getBuffer().append("#PREDICATE ");
+                this.getBuffer().append(Constants.PRED + " ");
             } else {
                 plainSelect.getWhere().accept(this.getExpressionVisitor());
             }

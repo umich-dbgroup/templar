@@ -6,6 +6,7 @@ import edu.umich.tbnalir.deparser.ComparisonRemovalExprDeParser;
 import edu.umich.tbnalir.deparser.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.deparser.ProjectionRemovalDeParser;
 import edu.umich.tbnalir.deparser.SelectConstantRemovalDeParser;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;

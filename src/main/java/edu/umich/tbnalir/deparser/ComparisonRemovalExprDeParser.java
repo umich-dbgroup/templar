@@ -1,5 +1,6 @@
 package edu.umich.tbnalir.deparser;
 
+import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.operators.relational.*;
 
 /**
@@ -9,7 +10,7 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
     public static String removeComparisonOperator(ComparisonOperator cmp) {
         StringBuilder sb = new StringBuilder();
         sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(cmp.getLeftExpression()));
-        sb.append(" #CMP ");
+        sb.append(" " + Constants.CMP + " ");
         sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(cmp.getRightExpression()));
         return sb.toString();
     }

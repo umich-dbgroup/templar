@@ -1,4 +1,4 @@
-package edu.umich.tbnalir;
+package edu.umich.tbnalir.util;
 
 import java.util.*;
 import java.util.stream.Collectors;
