@@ -159,72 +159,8 @@ public class LogTemplateGenerator {
         return covered;
     }
 
-    public static void main (String[] args) {
-        if (args.length < 1) {
-            Log.error("Missing args, need at least CSV file arg.");
-            System.exit(1);
-        }
-
-        String filename = args[0];
-        String basename = FilenameUtils.getBaseName(filename);
-        if (args.length > 1 && args[1].equals("true")) {
-            Log.DEBUG();
-        }
-
+    public static void performCrossValidation(List<Statement> stmts, String basename) {
         LogTemplateGenerator tg = new LogTemplateGenerator();
-
-        // Statistics
-        int totalSQL = 0;
-        int parsedSQL = 0;
-        int lastUpdate = 0;
-
-        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
-        char[] tokensToReplace = {'#', '\u0018', '\u00a0'};
-
-        // Read in all statements first
-        List<Statement> stmts = new ArrayList<Statement>();
-        Log.info("Reading file <" + filename + ">...");
-        try {
-            CSVReader csvr = new CSVReader(new FileReader(filename));
-            String [] nextLine;
-            while ((nextLine = csvr.readNext()) != null) {
-                totalSQL++;
-                if (totalSQL >= (lastUpdate + 20000)) {
-                    Log.info("Parsed " + totalSQL + " statements...");
-                    lastUpdate = totalSQL;
-                }
-
-                if (nextLine.length < 4) continue;
-
-                String sql = nextLine[3];
-
-                for (char token : tokensToReplace) {
-                    sql = sql.replace(token, '_');
-                }
-
-                Log.debug("ORIGINAL: " + sql.replace("\n", " "));
-                Statement stmt;
-                try {
-                    stmt = CCJSqlParserUtil.parse(sql);
-                } catch (JSQLParserException e) {
-                    if (Log.DEBUG) e.printStackTrace();
-                    continue;
-                } catch (Throwable t) {
-                    t.printStackTrace();
-                    continue;
-                }
-                if (stmt == null) continue; // Case that it's not a select statement
-                stmts.add(stmt);
-                parsedSQL++;
-            }
-            csvr.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Log.info("===== Parsing Results =====");
-        Log.info("Total Queries: " + totalSQL);
-        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL + "\n");
 
         // Split into n partitions for cross validation
         int cvSplits = 4;
@@ -321,5 +257,107 @@ public class LogTemplateGenerator {
                     + predTmpl.size() + "\t"
                     + predProjTmpl.size() + "\t\n");
         }
+    }
+
+    public static List<Statement> parseStatements(String filename) {
+        // Statistics
+        int totalSQL = 0;
+        int parsedSQL = 0;
+        int lastUpdate = 0;
+
+        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
+        char[] tokensToReplace = {'#', '\u0018', '\u00a0'};
+
+        // Read in all statements first
+        List<Statement> stmts = new ArrayList<Statement>();
+        Log.info("Reading file <" + filename + ">...");
+        try {
+            CSVReader csvr = new CSVReader(new FileReader(filename));
+            String [] nextLine;
+            while ((nextLine = csvr.readNext()) != null) {
+                totalSQL++;
+                if (totalSQL >= (lastUpdate + 20000)) {
+                    Log.info("Parsed " + totalSQL + " statements...");
+                    lastUpdate = totalSQL;
+                }
+
+                if (nextLine.length < 4) continue;
+
+                String sql = nextLine[3];
+
+                for (char token : tokensToReplace) {
+                    sql = sql.replace(token, '_');
+                }
+
+                Log.debug("ORIGINAL: " + sql.replace("\n", " "));
+                Statement stmt;
+                try {
+                    stmt = CCJSqlParserUtil.parse(sql);
+                } catch (JSQLParserException e) {
+                    if (Log.DEBUG) e.printStackTrace();
+                    continue;
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                    continue;
+                }
+                if (stmt == null) continue; // Case that it's not a select statement
+                stmts.add(stmt);
+                parsedSQL++;
+            }
+            csvr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Log.info("===== Parsing Results =====");
+        Log.info("Total Queries: " + totalSQL);
+        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL + "\n");
+
+        return stmts;
+    }
+
+    public static void main (String[] args) {
+        if (args.length < 2) {
+            Log.error("Usage: <querylog-csv> <levels (comma-sep)>");
+            Log.error("Levels: 'const', 'const_proj', 'comp', 'comp_proj', 'pred', 'pred_proj'");
+            System.exit(1);
+        }
+
+        String filename = args[0];
+        String[] levels = args[1].split(",");
+        if (args.length > 2 && args[2].equals("true")) {
+            Log.DEBUG();
+        }
+
+        List<Statement> stmts = parseStatements(filename);
+
+        // TODO: For testing, perform cross-validation:
+        // performCrossValidation(stmts, FilenameUtils.getBaseName(filename));
+
+        // Generate
+        LogTemplateGenerator tg = new LogTemplateGenerator();
+        for (String level : levels) {
+            String basename = FilenameUtils.getBaseName(filename);
+            String outfileName = basename + "_" + level + ".csv";
+
+            switch (level) {
+                case "const":
+                    tg.generateTemplates(stmts, tg::noConstantTemplate, outfileName);
+                case "const_proj":
+                    tg.generateTemplates(stmts, tg::noConstantProjectionTemplate, outfileName);
+                case "comp":
+                    tg.generateTemplates(stmts, tg::noComparisonTemplate, outfileName);
+                case "comp_proj":
+                    tg.generateTemplates(stmts, tg::noComparisonProjectionTemplate, outfileName);
+                case "pred":
+                    tg.generateTemplates(stmts, tg::noPredicateTemplate, outfileName);
+                case "pred_proj":
+                    tg.generateTemplates(stmts, tg::noPredicateProjectionTemplate, outfileName);
+                default:
+                    throw new IllegalArgumentException("Invalid level specified: <" + level + ">.");
+            }
+        }
+
+
     }
 }
