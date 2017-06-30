@@ -52,4 +52,9 @@ public class Relation {
     public void setAttributes(Map<String, Attribute> attributes) {
         this.attributes = attributes;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

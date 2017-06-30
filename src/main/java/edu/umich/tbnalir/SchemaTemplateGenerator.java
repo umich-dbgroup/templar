@@ -5,6 +5,16 @@ import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
 import edu.umich.tbnalir.rdbms.Relation;
+import edu.umich.tbnalir.util.Constants;
+import net.sf.jsqlparser.expression.Alias;
+import net.sf.jsqlparser.expression.StringValue;
+import net.sf.jsqlparser.expression.UserVariable;
+import net.sf.jsqlparser.schema.Column;
+import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.SelectBody;
+import net.sf.jsqlparser.util.SelectUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -54,14 +64,14 @@ public class SchemaTemplateGenerator {
                 // For functions, also add parameters
                 if (relInfo.containsKey("inputs")) {
                     JSONObject inputObj = (JSONObject) relInfo.get("inputs");
-                    Map<String, FunctionParameter> inputs = new HashMap<String, FunctionParameter>();
+                    Map<Integer, FunctionParameter> inputs = new HashMap<Integer, FunctionParameter>();
                     for (Object inputNameObj : inputObj.keySet()) {
                         JSONObject inputInfoObj = (JSONObject) inputObj.get(inputNameObj);
                         String inputName = (String) inputInfoObj.get("name");
                         String inputType = (String) inputInfoObj.get("type");
                         Integer inputIndex = Integer.valueOf((String) inputInfoObj.get("index"));
                         FunctionParameter param = new FunctionParameter(inputName, inputType, inputIndex);
-                        inputs.put(inputName, param);
+                        inputs.put(inputIndex, param);
                     }
                     Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
                     relations.put(relName, fn);
@@ -91,10 +101,22 @@ public class SchemaTemplateGenerator {
             e.printStackTrace();
         }
 
-
         // TODO: construct predicate/projection templates
 
-        // TODO: generate predicate/projection templates from query log
+        // For level 0 (no joins)
+        for (Map.Entry<String, Relation> e : relations.entrySet()) {
+            Relation r = e.getValue();
+
+            StringBuffer sb = new StringBuffer();
+            sb.append("SELECT ");
+            sb.append(Constants.PROJ);
+            sb.append(" FROM ");
+            sb.append(r);
+            sb.append(" WHERE ");
+            sb.append(Constants.PRED);
+        }
+
+        // TODO: read predicate/projection templates from query log
 
         // TODO: measure coverage
     }
