@@ -1,5 +1,6 @@
-package edu.umich.tbnalir;
+package edu.umich.tbnalir.deparser;
 
+import edu.umich.tbnalir.deparser.ConstantRemovalExprDeParser;
 import net.sf.jsqlparser.expression.NotExpression;
 import net.sf.jsqlparser.expression.SignedExpression;
 import net.sf.jsqlparser.expression.operators.arithmetic.BitwiseAnd;

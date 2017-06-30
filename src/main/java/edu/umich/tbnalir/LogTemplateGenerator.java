@@ -2,6 +2,10 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
+import edu.umich.tbnalir.deparser.ComparisonRemovalExprDeParser;
+import edu.umich.tbnalir.deparser.ConstantRemovalExprDeParser;
+import edu.umich.tbnalir.deparser.ProjectionRemovalDeParser;
+import edu.umich.tbnalir.deparser.SelectConstantRemovalDeParser;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -16,7 +20,7 @@ import java.util.function.Function;
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class TemplateGenerator {
+public class LogTemplateGenerator {
     public String noConstantTemplate(Statement stmt) {
         if (stmt instanceof Select) {
             Select select = (Select) stmt;
@@ -167,7 +171,7 @@ public class TemplateGenerator {
             Log.DEBUG();
         }
 
-        TemplateGenerator tg = new TemplateGenerator();
+        LogTemplateGenerator tg = new LogTemplateGenerator();
 
         // Statistics
         int totalSQL = 0;
