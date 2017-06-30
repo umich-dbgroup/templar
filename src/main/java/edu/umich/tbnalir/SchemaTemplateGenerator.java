@@ -2,6 +2,7 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
@@ -22,6 +23,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 
 /**
@@ -43,6 +45,8 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         String edgesFile = prefix + ".edges.json";
 
         String logTemplatesFile = args[1];
+
+        String errorFileName = "template_errors.out";
 
         // read in schema from json files
         JSONParser parser = new JSONParser();
@@ -77,6 +81,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                         FunctionParameter param = new FunctionParameter(inputName, inputType, inputIndex);
                         inputs.put(inputIndex, param);
                     }
+
                     Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
                     relations.put(relName, fn);
                 } else {
@@ -163,37 +168,69 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
             }
 
             PlainSelect ps = (PlainSelect) select.getSelectBody();
-            ps.setWhere(new LiteralExpression(Constants.PRED));
 
-            // Add vanilla version
-            String vanillaTmpl = tg.noPredicateProjectionTemplate(select);
-            templates.add(vanillaTmpl);
+            // Vanilla Template
+            String vanilla = tg.noPredicateProjectionTemplate(select);
+            templates.add(vanilla);
 
-            // Add top version
+            // Vanilla + Top
             Top top = new Top();
             top.setExpression(new LiteralExpression(Constants.TOP));
             ps.setTop(top);
+            String vanillaTmpl = tg.noPredicateProjectionTemplate(select);
+            templates.add(vanillaTmpl);
+            ps.setTop(null);
 
-            String topTmpl = tg.noPredicateProjectionTemplate(select);
-            templates.add(topTmpl);
+            // Where
+            ps.setWhere(new LiteralExpression(Constants.PRED));
+            String whereTmpl = tg.noPredicateProjectionTemplate(select);
+            templates.add(whereTmpl);
+
+            // Where + Top
+            ps.setTop(top);
+            String whereTopTmpl = tg.noPredicateProjectionTemplate(select);
+            templates.add(whereTopTmpl);
+        }
+
+        Log.info("Done generating level 0: " + templates.size() + " templates.");
+        Log.info("==============================\n");
+
+        CSVWriter writer = null;
+        try {
+            writer = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         int covered = 0;
         int total = 0;
-        for (Map.Entry<String, Integer> e : testTemplateCount.entrySet()) {
+        for (Map.Entry<String, Integer> e : Utils.sortByValueDesc(testTemplateCount).entrySet()) {
             total += e.getValue();
             if (templates.contains(e.getKey())) {
                 covered += e.getValue();
+            } else {
+                String[] row = new String[2];
+                row[0] = e.getValue().toString();
+                row[1] = e.getKey();
+                writer.writeNext(row);
             }
         }
-        Log.info("Done generating level 0: " + templates.size() + " templates.");
-        Log.info("==============================\n");
 
         Log.info("==============================");
         Log.info("Measuring coverage...");
         float predProjCoverage = (float) covered / total * 100;
         Log.info("Number of templates: " + templates.size());
         Log.info(String.format("Coverage: %d / %d (%.1f)", covered, total, predProjCoverage) + "%");
+        Log.info("==============================\n");
+
         Log.info("==============================");
+        Log.info("Templates not covered were printed to <" + errorFileName + ">.");
+        try {
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.info("==============================");
+
     }
 }

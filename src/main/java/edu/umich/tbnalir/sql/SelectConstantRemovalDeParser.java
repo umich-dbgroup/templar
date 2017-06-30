@@ -165,7 +165,9 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
     @Override
     public void visit(TableFunction tableFunction) {
         Function fn = tableFunction.getFunction();
-        this.getBuffer().append(fn.getName());
+        // Strip all prefixes from function name
+        String[] fnNameArr = fn.getName().split("\\.");
+        this.getBuffer().append(fnNameArr[fnNameArr.length - 1]);
         this.getBuffer().append('(');
         StringBuilder sb = new StringBuilder();
         StringJoiner sj = new StringJoiner(",");
@@ -179,7 +181,8 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
 
     @Override
     public void visit(Table tableName) {
-        this.getBuffer().append(tableName.getFullyQualifiedName());
+        // Strip all prefixes from table name
+        this.getBuffer().append(tableName.getName());
         Pivot pivot = tableName.getPivot();
         if (pivot != null) {
             pivot.accept(this);
