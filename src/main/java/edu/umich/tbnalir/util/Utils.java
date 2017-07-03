@@ -106,7 +106,7 @@ public class Utils {
         } else if (fromItem instanceof TableFunction) {
             return Utils.tableFunctionToString((TableFunction) fromItem);
         }
-        return null;
+        return fromItem.toString();
     }
 
     public static boolean isStrangeJoin(Join join) {
