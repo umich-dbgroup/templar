@@ -19,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -270,5 +271,18 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         }
         Log.info("==============================");
 
+        String templateOutFile = "templates.out";
+        Log.info("==============================");
+        Log.info("Printing all templates generated to <" + templateOutFile + ">.");
+        try {
+            PrintWriter tmplWriter = new PrintWriter(templateOutFile, "UTF-8");
+            for (String tmpl : templates) {
+                tmplWriter.println(tmpl);
+            }
+            tmplWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.info("==============================");
     }
 }
