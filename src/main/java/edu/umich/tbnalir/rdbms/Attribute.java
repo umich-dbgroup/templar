@@ -36,4 +36,10 @@ public class Attribute {
     public void setRelation(Relation relation) {
         this.relation = relation;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
 }
