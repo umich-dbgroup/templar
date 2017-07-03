@@ -111,12 +111,6 @@ public class TemplateGenerator {
             if (tmpl != null) {
                 templates.add(tmpl);
 
-                if (tmpl.equals("select #projection where #predicate")) {
-                    System.out.println("STRANGE: " + stmt.toString());
-                } else if (tmpl.equals("select #projection")) {
-                    System.out.println("STRANGE2: " + stmt.toString());
-                }
-
                 if (outFileName != null) {
                     Integer count = templateCounts.get(tmpl);
                     if (count == null) {

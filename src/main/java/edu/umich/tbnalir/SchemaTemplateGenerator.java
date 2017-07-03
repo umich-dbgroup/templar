@@ -137,8 +137,8 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     continue;
                 }
 
-                Log.info("FK: " + foreignRelation + "/" + foreignAttribute + "\t"
-                        + "PK: " + primaryRelation + "/" + primaryAttribute);
+                // Log.info("FK: " + foreignRelation + "/" + foreignAttribute + "\t"
+                        // + "PK: " + primaryRelation + "/" + primaryAttribute);
 
                 Set<Attribute> pks = fkpkEdges.get(foreignAttribute);
                 if (pks == null) {
