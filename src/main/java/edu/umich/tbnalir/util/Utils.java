@@ -79,7 +79,7 @@ public class Utils {
     }
 
     public static String tableFunctionToString(TableFunction tableFunction) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         net.sf.jsqlparser.expression.Function fn = tableFunction.getFunction();
 
         // Strip all prefixes from function name
@@ -97,15 +97,8 @@ public class Utils {
     }
 
     public static String tableToString(Table table) {
-        StringBuffer sb = new StringBuffer();
-        // Strip all prefixes from table name
-        sb.append(table.getName());
-
         // Whether alias specified or not, replace with a consistent alias name for every instance
-        sb.append(" AS #");
-        sb.append(table.getName());
-        sb.append("_alias");
-        return sb.toString();
+        return table.getName() + " AS #" + table.getName() + "_alias";
     }
 
     public static String fromItemToString(FromItem fromItem) {
@@ -118,9 +111,6 @@ public class Utils {
     }
 
     public static boolean isStrangeJoin(Join join) {
-        if (join.isLeft() || join.isRight() || join.isCross() || join.isSemi()) {
-            return true;
-        }
-        return false;
+        return join.isLeft() || join.isRight() || join.isCross() || join.isSemi();
     }
 }
