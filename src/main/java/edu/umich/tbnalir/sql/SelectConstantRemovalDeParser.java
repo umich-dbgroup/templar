@@ -45,11 +45,11 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
                 deparseJoin(join);
             }
         } else {
+            Collections.sort(fromItemList);
             StringJoiner sj = new StringJoiner(", ");
             for (String fi : fromItemList) {
                 sj.add(fi);
             }
-            Collections.sort(fromItemList);
             this.getBuffer().append(sj.toString());
         }
     }
