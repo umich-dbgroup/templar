@@ -101,8 +101,8 @@ public class TemplateGenerator {
 
     public Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn,
                                          String outFileName) {
-        Set<String> templates = new HashSet<String>();
-        Map<String, Integer> templateCounts = new HashMap<String, Integer>();
+        Set<String> templates = new HashSet<>();
+        Map<String, Integer> templateCounts = new HashMap<>();
         for (Statement stmt : stmts) {
             String tmpl = templateFn.apply(stmt);
             if (tmpl != null) {
@@ -136,7 +136,7 @@ public class TemplateGenerator {
     }
 
     public List<String> generateTestTemplates(List<Statement> stmts, Function<Statement, String> templateFn) {
-        List<String> templates = new ArrayList<String>();
+        List<String> templates = new ArrayList<>();
         for (Statement stmt : stmts) {
             templates.add(templateFn.apply(stmt));
         }
@@ -154,7 +154,7 @@ public class TemplateGenerator {
     }
 
     public List<String> generateTemplateVariants(Function<Statement, String> templateFn, Select select) {
-        List<String> templates = new ArrayList<String>();
+        List<String> templates = new ArrayList<>();
 
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
@@ -177,7 +177,7 @@ public class TemplateGenerator {
             if (orderBit == 1) {
                 OrderByElement order = new OrderByElement();
                 order.setExpression(new LiteralExpression(Constants.ORDER));
-                List<OrderByElement> orderList = new ArrayList<OrderByElement>();
+                List<OrderByElement> orderList = new ArrayList<>();
                 ps.setOrderByElements(orderList);
             }
 

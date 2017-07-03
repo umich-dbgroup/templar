@@ -9,7 +9,6 @@ import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.FromItem;
 import net.sf.jsqlparser.statement.select.Join;
-import net.sf.jsqlparser.statement.select.Pivot;
 import net.sf.jsqlparser.statement.select.TableFunction;
 
 import java.util.*;
@@ -64,7 +63,7 @@ public class Utils {
         jsqlFn.setName(fn.getName());
 
         ExpressionList expList = new ExpressionList();
-        List<Expression> expListInternal = new ArrayList<Expression>();
+        List<Expression> expListInternal = new ArrayList<>();
         for (int i = 1; i < fn.getInputs().size() + 1; i++) {
             FunctionParameter param = fn.getInputs().get(i);
             if (param == null) continue;

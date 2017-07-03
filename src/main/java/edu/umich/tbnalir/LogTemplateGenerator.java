@@ -2,16 +2,13 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVReader;
-import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.*;
-import java.util.function.Function;
 
 /**
  * Created by cjbaik on 6/20/17.
@@ -28,7 +25,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
         // Shuffle partitions so cross-validation is randomized
         Collections.shuffle(stmts);
 
-        List<List<Statement>> cvPartitions = new ArrayList<List<Statement>>();
+        List<List<Statement>> cvPartitions = new ArrayList<>();
         int curIndex = 0;
         for (int i = 0; i < cvSplits; i++) {
             int fromIndex = curIndex;
@@ -48,7 +45,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
         Log.info("a <Don't Abs. Projections> / b <Abs. Projections>");
 
         for (int i = 0; i < cvPartitions.size(); i++) {
-            List<Statement> templateGenSet = new ArrayList<Statement>();
+            List<Statement> templateGenSet = new ArrayList<>();
             for (int j = 0; j < cvPartitions.size(); j++) {
                 if (j != i) {
                     templateGenSet.addAll(cvPartitions.get(j));
@@ -127,7 +124,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
         char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018'};
 
         // Read in all statements first
-        List<Statement> stmts = new ArrayList<Statement>();
+        List<Statement> stmts = new ArrayList<>();
         Log.info("Reading file <" + filename + ">...");
         try {
             CSVReader csvr = new CSVReader(new FileReader(filename));

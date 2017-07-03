@@ -1,6 +1,5 @@
 package edu.umich.tbnalir.rdbms;
 
-import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
 
 import java.util.Map;
@@ -29,7 +28,7 @@ public class Function extends Relation {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(this.getName());
         sb.append('(');
 

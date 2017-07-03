@@ -23,7 +23,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
         boolean strangeJoins = false;
 
         // Alphabetize FromItem list
-        List<String> fromItemList = new ArrayList<String>();
+        List<String> fromItemList = new ArrayList<>();
         fromItemList.add(Utils.fromItemToString(fromItem));
 
         if (joins != null) {

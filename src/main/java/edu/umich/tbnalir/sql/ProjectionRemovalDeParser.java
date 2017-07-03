@@ -1,14 +1,11 @@
 package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.util.Constants;
-import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
 import net.sf.jsqlparser.expression.OracleHint;
-import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.LimitDeparser;
-import net.sf.jsqlparser.util.deparser.OrderByDeParser;
 
 import java.util.*;
 
