@@ -92,12 +92,13 @@ public class Utils {
         sb.append(sj.toString());
         sb.append(')');
 
-        return sb.toString();
+        return sb.toString().toLowerCase();
     }
 
     public static String tableToString(Table table) {
         // Whether alias specified or not, replace with a consistent alias name for every instance
-        return table.getName() + " AS #" + table.getName() + "_alias";
+        String result = table.getName() + " AS #" + table.getName() + "_alias";
+        return result.toLowerCase();
     }
 
     public static String fromItemToString(FromItem fromItem) {
@@ -106,7 +107,7 @@ public class Utils {
         } else if (fromItem instanceof TableFunction) {
             return Utils.tableFunctionToString((TableFunction) fromItem);
         }
-        return fromItem.toString();
+        return fromItem.toString().toLowerCase();
     }
 
     public static boolean isStrangeJoin(Join join) {
