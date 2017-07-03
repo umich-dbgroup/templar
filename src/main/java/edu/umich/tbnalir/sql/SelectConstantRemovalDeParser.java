@@ -1,16 +1,15 @@
 package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.util.Constants;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.LimitDeparser;
-import net.sf.jsqlparser.util.deparser.OrderByDeParser;
 import net.sf.jsqlparser.util.deparser.SelectDeParser;
 
-import java.util.Iterator;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * Created by cjbaik on 6/20/17.
@@ -18,8 +17,59 @@ import java.util.StringJoiner;
 public class SelectConstantRemovalDeParser extends SelectDeParser {
     boolean removeWhere;
 
+    public void alphabetizeAndDeparseJoins(FromItem fromItem, List<Join> joins) {
+        boolean strangeJoins = false;
+
+        // Alphabetize FromItem list
+        List<String> fromItemList = new ArrayList<String>();
+        if (fromItem != null) {
+            if (fromItem instanceof Table) {
+                Table table = (Table) fromItem;
+                fromItemList.add(Utils.tableToString(table));
+            } else if (fromItem instanceof TableFunction) {
+                TableFunction tableFunction = (TableFunction) fromItem;
+                fromItemList.add(Utils.tableFunctionToString(tableFunction));
+            }
+            if (joins != null) {
+                for (Join join : joins) {
+                    if (Utils.isStrangeJoin(join)) {
+                        strangeJoins = true;
+                        break;
+                    } else {
+                        fromItemList.add(Utils.fromItemToString(join.getRightItem()));
+                    }
+                }
+            }
+        } else {
+            return;
+        }
+
+        this.getBuffer().append(" FROM ");
+        if (strangeJoins) {
+            fromItem.accept(this);
+
+            for (Join join : joins) {
+                deparseJoin(join);
+            }
+        } else {
+            StringJoiner sj = new StringJoiner(", ");
+            for (String fi : fromItemList) {
+                sj.add(fi);
+            }
+            Collections.sort(fromItemList);
+            this.getBuffer().append(sj.toString());
+        }
+    }
+
     @Override
     public void deparseJoin(Join join) {
+
+        // If join is not left/right/cross/semi, convert to simple join.
+        if (!Utils.isStrangeJoin(join)) {
+            join.setSimple(true);
+        }
+
+
         if (join.isSimple()) {
             this.getBuffer().append(", ");
         } else {
@@ -108,7 +158,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
             if (plainSelect.getDistinct().getOnSelectItems() != null) {
                 this.getBuffer().append("ON (");
                 for (Iterator<SelectItem> iter = plainSelect.getDistinct().getOnSelectItems().
-                        iterator(); iter.hasNext();) {
+                        iterator(); iter.hasNext(); ) {
                     SelectItem selectItem = iter.next();
                     selectItem.accept(this);
                     if (iter.hasNext()) {
@@ -127,7 +177,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
             //this.getBuffer().append(top).append(" ");
         }
 
-        for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext();) {
+        for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext(); ) {
             SelectItem selectItem = iter.next();
             selectItem.accept(this);
             if (iter.hasNext()) {
@@ -146,16 +196,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
             }
         } */
 
-        if (plainSelect.getFromItem() != null) {
-            this.getBuffer().append(" FROM ");
-            plainSelect.getFromItem().accept(this);
-        }
-
-        if (plainSelect.getJoins() != null) {
-            for (Join join : plainSelect.getJoins()) {
-                deparseJoin(join);
-            }
-        }
+        this.alphabetizeAndDeparseJoins(plainSelect.getFromItem(), plainSelect.getJoins());
 
         if (plainSelect.getWhere() != null) {
             this.getBuffer().append(" WHERE ");
@@ -223,31 +264,11 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
 
     @Override
     public void visit(TableFunction tableFunction) {
-        Function fn = tableFunction.getFunction();
-        // Strip all prefixes from function name
-        String[] fnNameArr = fn.getName().split("\\.");
-        this.getBuffer().append(fnNameArr[fnNameArr.length - 1]);
-        this.getBuffer().append('(');
-        StringBuilder sb = new StringBuilder();
-        StringJoiner sj = new StringJoiner(",");
-        for (Expression expr : fn.getParameters().getExpressions()) {
-            sj.add(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
-        }
-        sb.append(sj.toString());
-        sb.append(')');
-        this.getBuffer().append(sb.toString());
+        this.getBuffer().append(Utils.tableFunctionToString(tableFunction));
     }
 
     @Override
     public void visit(Table tableName) {
-        // Strip all prefixes from table name
-        this.getBuffer().append(tableName.getName());
-        Pivot pivot = tableName.getPivot();
-        if (pivot != null) {
-            pivot.accept(this);
-        }
-
-        // Whether alias specified or not, replace with a consistent alias name for every instance
-        this.getBuffer().append(" AS #" + tableName.getName() + "_alias");
+        this.getBuffer().append(Utils.tableToString(tableName));
     }
 }

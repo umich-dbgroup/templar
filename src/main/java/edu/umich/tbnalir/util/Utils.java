@@ -2,9 +2,14 @@ package edu.umich.tbnalir.util;
 
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
+import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.sql.LiteralExpression;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
+import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.statement.select.FromItem;
+import net.sf.jsqlparser.statement.select.Join;
+import net.sf.jsqlparser.statement.select.Pivot;
 import net.sf.jsqlparser.statement.select.TableFunction;
 
 import java.util.*;
@@ -71,5 +76,51 @@ public class Utils {
         TableFunction tFn = new TableFunction();
         tFn.setFunction(jsqlFn);
         return tFn;
+    }
+
+    public static String tableFunctionToString(TableFunction tableFunction) {
+        StringBuffer sb = new StringBuffer();
+        net.sf.jsqlparser.expression.Function fn = tableFunction.getFunction();
+
+        // Strip all prefixes from function name
+        String[] fnNameArr = fn.getName().split("\\.");
+        sb.append(fnNameArr[fnNameArr.length - 1]);
+        sb.append('(');
+        StringJoiner sj = new StringJoiner(",");
+        for (Expression expr : fn.getParameters().getExpressions()) {
+            sj.add(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
+        }
+        sb.append(sj.toString());
+        sb.append(')');
+
+        return sb.toString();
+    }
+
+    public static String tableToString(Table table) {
+        StringBuffer sb = new StringBuffer();
+        // Strip all prefixes from table name
+        sb.append(table.getName());
+
+        // Whether alias specified or not, replace with a consistent alias name for every instance
+        sb.append(" AS #");
+        sb.append(table.getName());
+        sb.append("_alias");
+        return sb.toString();
+    }
+
+    public static String fromItemToString(FromItem fromItem) {
+        if (fromItem instanceof Table) {
+            return Utils.tableToString((Table) fromItem);
+        } else if (fromItem instanceof TableFunction) {
+            return Utils.tableFunctionToString((TableFunction) fromItem);
+        }
+        return null;
+    }
+
+    public static boolean isStrangeJoin(Join join) {
+        if (join.isLeft() || !join.isRight() || !join.isCross() || !join.isSemi()) {
+            return true;
+        }
+        return false;
     }
 }
