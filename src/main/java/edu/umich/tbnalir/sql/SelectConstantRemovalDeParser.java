@@ -2,6 +2,7 @@ package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.*;
+import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.LimitDeparser;
@@ -16,6 +17,59 @@ import java.util.StringJoiner;
  */
 public class SelectConstantRemovalDeParser extends SelectDeParser {
     boolean removeWhere;
+
+    @Override
+    public void deparseJoin(Join join) {
+        if (join.isSimple()) {
+            this.getBuffer().append(", ");
+        } else {
+            if (join.isRight()) {
+                this.getBuffer().append(" RIGHT");
+            } else if (join.isNatural()) {
+                this.getBuffer().append(" NATURAL");
+            } else if (join.isFull()) {
+                this.getBuffer().append(" FULL");
+            } else if (join.isLeft()) {
+                this.getBuffer().append(" LEFT");
+            } else if (join.isCross()) {
+                this.getBuffer().append(" CROSS");
+            }
+
+            /*
+            if (join.isOuter()) {
+                this.getBuffer().append(" OUTER");
+            } else if (join.isInner()) {
+                this.getBuffer().append(" INNER");
+            }*/
+            if (join.isSemi()) {
+                this.getBuffer().append(" SEMI");
+            }
+
+            this.getBuffer().append(" JOIN ");
+
+        }
+
+        FromItem fromItem = join.getRightItem();
+        fromItem.accept(this);
+
+        /* hide ON expressions
+        if (join.getOnExpression() != null) {
+            this.getBuffer().append(" ON ");
+            join.getOnExpression().accept(this.getExpressionVisitor());
+        }*/
+
+        if (join.getUsingColumns() != null) {
+            this.getBuffer().append(" USING (");
+            for (Iterator<Column> iterator = join.getUsingColumns().iterator(); iterator.hasNext();) {
+                Column column = iterator.next();
+                this.getBuffer().append(column.toString());
+                if (iterator.hasNext()) {
+                    this.getBuffer().append(", ");
+                }
+            }
+            this.getBuffer().append(")");
+        }
+    }
 
     public SelectConstantRemovalDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer, boolean removeWhere) {
         super(expressionVisitor, buffer);
