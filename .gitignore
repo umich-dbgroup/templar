@@ -51,3 +51,7 @@ fabric.properties
 # Gradle
 .gradle
 /build/
+
+# Output files
+*.out
+*.csv
