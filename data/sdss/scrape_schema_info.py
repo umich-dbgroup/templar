@@ -59,6 +59,11 @@ def read_function_info(relations, edges, edges_dupl, pks, function_url):
         # for output attributes
         if tr.contents[0]['class'][0] == 'o':
             attr_name = tr.contents[0].contents[0].lower()
+
+            # special case check, SDSS schema names incorrectly
+            if attr_name == 'field':
+                attr_name = 'fieldid'
+
             attr_type = tr.contents[1].contents[0].lower()
             attr_index = tr.contents[4].contents[0]
             attribute = {
