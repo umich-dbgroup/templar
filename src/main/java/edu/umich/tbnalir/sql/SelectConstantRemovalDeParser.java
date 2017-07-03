@@ -81,6 +81,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
             }
         }
 
+        /* Remove INTO
         if (plainSelect.getIntoTables() != null) {
             this.getBuffer().append(" INTO ");
             for (Iterator<Table> iter = plainSelect.getIntoTables().iterator(); iter.hasNext();) {
@@ -89,7 +90,7 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
                     this.getBuffer().append(", ");
                 }
             }
-        }
+        } */
 
         if (plainSelect.getFromItem() != null) {
             this.getBuffer().append(" FROM ");
