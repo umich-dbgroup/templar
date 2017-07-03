@@ -5,10 +5,7 @@ import edu.umich.tbnalir.sql.*;
 import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.Distinct;
-import net.sf.jsqlparser.statement.select.PlainSelect;
-import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.Top;
+import net.sf.jsqlparser.statement.select.*;
 
 import java.io.PrintWriter;
 import java.util.*;
@@ -161,44 +158,52 @@ public class TemplateGenerator {
 
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
-        // Vanilla Template
-        String vanilla = templateFn.apply(select);
-        templates.add(vanilla);
+        // Bitmap used to generate each variant, 0 indicates right-most bit.
+        // bit 0: distinct
+        // bit 1: order
+        // bit 2: where / where + top
 
-        // Vanilla + Distinct
-        Distinct distinct = new Distinct();
-        ps.setDistinct(distinct);
-        String distinctTmpl = templateFn.apply(select);
-        templates.add(distinctTmpl);
-        ps.setDistinct(null);
+        int numVariants = 3;
+        double iterLimit = Math.pow(2, numVariants);
+        for (int i = 0; i < iterLimit; i++) {
 
-        // Vanilla + Top
-        Top top = new Top();
-        top.setExpression(new LiteralExpression(Constants.TOP));
-        ps.setTop(top);
-        String topTmpl = templateFn.apply(select);
-        templates.add(topTmpl);
-        ps.setTop(null);
+            int distinctBit = i & 1;
+            if (distinctBit == 1) {
+                Distinct distinct = new Distinct();
+                ps.setDistinct(distinct);
+            }
 
-        // Where
-        ps.setWhere(new LiteralExpression(Constants.PRED));
-        String whereTmpl = templateFn.apply(select);
-        templates.add(whereTmpl);
+            int orderBit = (i >> 1) & 1;
+            if (orderBit == 1) {
+                OrderByElement order = new OrderByElement();
+                order.setExpression(new LiteralExpression(Constants.ORDER));
+                List<OrderByElement> orderList = new ArrayList<OrderByElement>();
+                ps.setOrderByElements(orderList);
+            }
 
-        // Where + Distinct
-        ps.setDistinct(distinct);
-        String whereDistinctTmpl = templateFn.apply(select);
-        templates.add(whereDistinctTmpl);
-        ps.setDistinct(null);
+            int whereBit = (i >> 2) & 1;
+            if (whereBit == 1) {
+                ps.setWhere(new LiteralExpression(Constants.PRED));
 
-        // Where + Top
-        ps.setTop(top);
-        String whereTopTmpl = templateFn.apply(select);
-        templates.add(whereTopTmpl);
+                // Add variant for top only for where condition
+                Top top = new Top();
+                top.setExpression(new LiteralExpression(Constants.TOP));
+                ps.setTop(top);
 
-        // Reset
-        ps.setWhere(null);
-        ps.setTop(null);
+                String template = templateFn.apply(select);
+                templates.add(template);
+
+                ps.setTop(null);
+            }
+
+            String template = templateFn.apply(select);
+            templates.add(template);
+
+            // Reset everything
+            ps.setDistinct(null);
+            ps.setOrderByElements(null);
+            ps.setWhere(null);
+        }
 
         return templates;
     }
