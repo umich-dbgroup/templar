@@ -118,7 +118,7 @@ public class Utils {
     }
 
     public static boolean isStrangeJoin(Join join) {
-        if (join.isLeft() || !join.isRight() || !join.isCross() || !join.isSemi()) {
+        if (join.isLeft() || join.isRight() || join.isCross() || join.isSemi()) {
             return true;
         }
         return false;

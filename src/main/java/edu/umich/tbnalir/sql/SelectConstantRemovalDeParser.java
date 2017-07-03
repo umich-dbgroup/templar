@@ -18,30 +18,23 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
     boolean removeWhere;
 
     public void alphabetizeAndDeparseJoins(FromItem fromItem, List<Join> joins) {
+        if (fromItem == null) return;
+
         boolean strangeJoins = false;
 
         // Alphabetize FromItem list
         List<String> fromItemList = new ArrayList<String>();
-        if (fromItem != null) {
-            if (fromItem instanceof Table) {
-                Table table = (Table) fromItem;
-                fromItemList.add(Utils.tableToString(table));
-            } else if (fromItem instanceof TableFunction) {
-                TableFunction tableFunction = (TableFunction) fromItem;
-                fromItemList.add(Utils.tableFunctionToString(tableFunction));
-            }
-            if (joins != null) {
-                for (Join join : joins) {
-                    if (Utils.isStrangeJoin(join)) {
-                        strangeJoins = true;
-                        break;
-                    } else {
-                        fromItemList.add(Utils.fromItemToString(join.getRightItem()));
-                    }
+        fromItemList.add(Utils.fromItemToString(fromItem));
+
+        if (joins != null) {
+            for (Join join : joins) {
+                if (Utils.isStrangeJoin(join)) {
+                    strangeJoins = true;
+                    break;
+                } else {
+                    fromItemList.add(Utils.fromItemToString(join.getRightItem()));
                 }
             }
-        } else {
-            return;
         }
 
         this.getBuffer().append(" FROM ");
@@ -63,7 +56,6 @@ public class SelectConstantRemovalDeParser extends SelectDeParser {
 
     @Override
     public void deparseJoin(Join join) {
-
         // If join is not left/right/cross/semi, convert to simple join.
         if (!Utils.isStrangeJoin(join)) {
             join.setSimple(true);
