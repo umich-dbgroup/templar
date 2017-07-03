@@ -135,8 +135,11 @@ public class ProjectionRemovalDeParser extends SelectConstantRemovalDeParser {
         }
 
         if (plainSelect.getOrderByElements() != null) {
-            new OrderByDeParser(this.getExpressionVisitor(), this.getBuffer()).
-                    deParse(plainSelect.isOracleSiblings(), plainSelect.getOrderByElements());
+            this.getBuffer().append(" ORDER BY " + Constants.ORDER);
+
+            // obscure out ORDER BY
+            /*new OrderByDeParser(this.getExpressionVisitor(), this.getBuffer()).
+                    deParse(plainSelect.isOracleSiblings(), plainSelect.getOrderByElements());*/
         }
 
         if (plainSelect.getLimit() != null) {

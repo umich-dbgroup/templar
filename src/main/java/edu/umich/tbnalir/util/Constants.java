@@ -14,4 +14,5 @@ public class Constants {
     public static final String DATETIME = "#DATETIME";
     public static final String TIMESTAMP = "#TIMESTAMP";
     public static final String TIME = "#TIME";
+    public static final String ORDER = "#ORDER";
 }
