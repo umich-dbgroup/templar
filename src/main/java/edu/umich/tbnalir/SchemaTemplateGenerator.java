@@ -10,13 +10,8 @@ import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.LiteralExpression;
 import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
-import net.sf.jsqlparser.expression.Expression;
-import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Table;
-import net.sf.jsqlparser.statement.select.PlainSelect;
-import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.TableFunction;
-import net.sf.jsqlparser.statement.select.Top;
+import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.SelectUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -31,7 +26,8 @@ import java.util.*;
  */
 public class SchemaTemplateGenerator extends TemplateGenerator {
     static Map<String, Relation> relations = new HashMap<String, Relation>();
-    static Map<Attribute, Attribute> fkpkEdges = new HashMap<Attribute, Attribute>();
+    static Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<Attribute, Set<Attribute>>();
+    static Map<Attribute, Set<Attribute>> pkfkEdges = new HashMap<Attribute, Set<Attribute>>();
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -97,15 +93,79 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
             for (Object edgeObj : edgesArr) {
                 JSONObject edge = (JSONObject) edgeObj;
 
-                Relation foreignRelation = relations.get(edge.get("foreignRelation"));
-                Attribute foreignAttribute = foreignRelation.getAttributes().get(edge.get("foreignAttribute"));
+                Object foreignRelationStr = edge.get("foreignRelation");
+                if (foreignRelationStr == null) {
+                    Log.error("Foreign relation not included in edge definition.");
+                    continue;
+                }
+                Relation foreignRelation = relations.get(foreignRelationStr);
+                if (foreignRelation == null) {
+                    Log.error("Could not find relation <" + foreignRelationStr + "> in schema.");
+                    continue;
+                }
+                Object foreignAttributeStr = edge.get("foreignAttribute");
+                if (foreignAttributeStr == null) {
+                    Log.error("Foreign attribute not included in edge definition.");
+                    continue;
+                }
+                Attribute foreignAttribute = foreignRelation.getAttributes().get(foreignAttributeStr);
+                if (foreignAttribute == null) {
+                    Log.error("Could not find attribute <" + foreignAttributeStr +
+                            "> in relation <" + foreignRelation + ">");
+                    continue;
+                }
 
-                Relation primaryRelation = relations.get(edge.get("primaryRelation"));
-                Attribute primaryAttribute = primaryRelation.getAttributes().get(edge.get("primaryAttribute"));
+                Object primaryRelationStr = edge.get("primaryRelation");
+                if (primaryRelationStr == null) {
+                    Log.error("Primary relation not included in edge definition.");
+                    continue;
+                }
+                Relation primaryRelation = relations.get(primaryRelationStr);
+                if (primaryRelation == null) {
+                    Log.error("Could not find relation <" + primaryRelationStr + "> in schema.");
+                    continue;
+                }
+                Object primaryAttributeStr = edge.get("primaryAttribute");
+                if (primaryAttributeStr == null) {
+                    Log.error("Primary attribute not included in edge definition.");
+                    continue;
+                }
+                Attribute primaryAttribute = primaryRelation.getAttributes().get(primaryAttributeStr);
+                if (primaryAttribute == null) {
+                    Log.error("Could not find attribute <" + primaryAttributeStr +
+                            "> in relation <" + primaryRelation + ">");
+                    continue;
+                }
 
-                fkpkEdges.put(foreignAttribute, primaryAttribute);
+                Log.info("FK: " + foreignRelation + "/" + foreignAttribute + "\t"
+                        + "PK: " + primaryRelation + "/" + primaryAttribute);
+
+                Set<Attribute> pks = fkpkEdges.get(foreignAttribute);
+                if (pks == null) {
+                    pks = new HashSet<Attribute>();
+                    fkpkEdges.put(foreignAttribute, pks);
+                }
+                pks.add(primaryAttribute);
+
+                Set<Attribute> fks = pkfkEdges.get(primaryAttribute);
+                if (fks == null) {
+                    fks = new HashSet<Attribute>();
+                    pkfkEdges.put(primaryAttribute, pks);
+                }
+                fks.add(foreignAttribute);
             }
-            Log.info("Read " + fkpkEdges.size() + " FK-PK relationships.");
+
+            int fkpkLength = 0;
+            for (Map.Entry<Attribute, Set<Attribute>> e : fkpkEdges.entrySet()) {
+                fkpkLength += e.getValue().size();
+            }
+            Log.info("Read " + fkpkLength + " FK-PK relationships.");
+
+            int pkfkLength = 0;
+            for (Map.Entry<Attribute, Set<Attribute>> e : pkfkEdges.entrySet()) {
+                pkfkLength += e.getValue().size();
+            }
+            Log.info("Read " + pkfkLength + " PK-FK relationships.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,29 +195,12 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
         SchemaTemplateGenerator tg = new SchemaTemplateGenerator();
 
-        Log.info("Generating level 0 (no joins, single tables only)...");
         for (Map.Entry<String, Relation> e : relations.entrySet()) {
             Relation r = e.getValue();
 
             Select select;
             if (r instanceof Function) {
-                net.sf.jsqlparser.expression.Function fn = new net.sf.jsqlparser.expression.Function();
-                fn.setName(r.getName());
-
-                ExpressionList expList = new ExpressionList();
-                List<Expression> expListInternal = new ArrayList<Expression>();
-                Function mFunc = (Function) r;
-                for (int i = 1; i < mFunc.getInputs().size() + 1; i++) {
-                    FunctionParameter param = mFunc.getInputs().get(i);
-                    if (param == null) continue;
-                    expListInternal.add(new LiteralExpression(Utils.convertSQLTypetoConstant(param.getType())));
-                }
-                expList.setExpressions(expListInternal);
-                fn.setParameters(expList);
-
-                TableFunction tFn = new TableFunction();
-                tFn.setFunction(fn);
-
+                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) r);
                 select = new Select();
                 PlainSelect ps = new PlainSelect();
                 ps.setFromItem(tFn);
@@ -169,30 +212,61 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
             PlainSelect ps = (PlainSelect) select.getSelectBody();
 
-            // Vanilla Template
-            String vanilla = tg.noPredicateProjectionTemplate(select);
-            templates.add(vanilla);
+            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
 
-            // Vanilla + Top
-            Top top = new Top();
-            top.setExpression(new LiteralExpression(Constants.TOP));
-            ps.setTop(top);
-            String vanillaTmpl = tg.noPredicateProjectionTemplate(select);
-            templates.add(vanillaTmpl);
-            ps.setTop(null);
+            // Handling joins
+            for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
+                Set<Attribute> pks = fkpkEdges.get(attrEntry.getValue());
+                if (pks != null) {
+                    for (Attribute pk : pks) {
+                        if (pk != null) {
+                            Join join = new Join();
 
-            // Where
-            ps.setWhere(new LiteralExpression(Constants.PRED));
-            String whereTmpl = tg.noPredicateProjectionTemplate(select);
-            templates.add(whereTmpl);
+                            if (pk.getRelation() instanceof Function) {
+                                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) pk.getRelation());
+                                join.setRightItem(tFn);
+                            } else {
+                                join.setRightItem(new Table(pk.getRelation().toString()));
+                            }
 
-            // Where + Top
-            ps.setTop(top);
-            String whereTopTmpl = tg.noPredicateProjectionTemplate(select);
-            templates.add(whereTopTmpl);
+                            // For simple joins ("table 1, table 2")
+                            join.setSimple(true);
+
+                            List<Join> joins = new ArrayList<Join>();
+                            joins.add(join);
+                            ps.setJoins(joins);
+                            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
+                        }
+                    }
+                }
+
+                Set<Attribute> fks = pkfkEdges.get(attrEntry.getValue());
+                if (fks != null) {
+                    for (Attribute fk : fks) {
+                        if (fk != null) {
+                            Join join = new Join();
+
+                            if (fk.getRelation() instanceof Function) {
+                                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) fk.getRelation());
+                                join.setRightItem(tFn);
+                            } else {
+                                join.setRightItem(new Table(fk.getRelation().toString()));
+                            }
+
+                            // For simple joins ("table 1, table 2")
+                            join.setSimple(true);
+
+                            List<Join> joins = new ArrayList<Join>();
+                            joins.add(join);
+                            ps.setJoins(joins);
+                            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
+                        }
+                    }
+                }
+            }
         }
 
-        Log.info("Done generating level 0: " + templates.size() + " templates.");
+        Log.info("Done generating " + templates.size() + " templates.");
         Log.info("==============================\n");
 
         CSVWriter writer = null;

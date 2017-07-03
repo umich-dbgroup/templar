@@ -1,13 +1,14 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
-import edu.umich.tbnalir.sql.ComparisonRemovalExprDeParser;
-import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
-import edu.umich.tbnalir.sql.ProjectionRemovalDeParser;
-import edu.umich.tbnalir.sql.SelectConstantRemovalDeParser;
+import edu.umich.tbnalir.sql.*;
+import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.select.Distinct;
+import net.sf.jsqlparser.statement.select.PlainSelect;
 import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.Top;
 
 import java.io.PrintWriter;
 import java.util.*;
@@ -161,4 +162,50 @@ public class TemplateGenerator {
         return covered;
     }
 
+    public List<String> generateTemplateVariants(Function<Statement, String> templateFn, Select select) {
+        List<String> templates = new ArrayList<String>();
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
+        // Vanilla Template
+        String vanilla = templateFn.apply(select);
+        templates.add(vanilla);
+
+        // Vanilla + Distinct
+        Distinct distinct = new Distinct();
+        ps.setDistinct(distinct);
+        String distinctTmpl = templateFn.apply(select);
+        templates.add(distinctTmpl);
+        ps.setDistinct(null);
+
+        // Vanilla + Top
+        Top top = new Top();
+        top.setExpression(new LiteralExpression(Constants.TOP));
+        ps.setTop(top);
+        String topTmpl = templateFn.apply(select);
+        templates.add(topTmpl);
+        ps.setTop(null);
+
+        // Where
+        ps.setWhere(new LiteralExpression(Constants.PRED));
+        String whereTmpl = templateFn.apply(select);
+        templates.add(whereTmpl);
+
+        // Where + Distinct
+        ps.setDistinct(distinct);
+        String whereDistinctTmpl = templateFn.apply(select);
+        templates.add(whereDistinctTmpl);
+        ps.setDistinct(null);
+
+        // Where + Top
+        ps.setTop(top);
+        String whereTopTmpl = templateFn.apply(select);
+        templates.add(whereTopTmpl);
+
+        // Reset
+        ps.setWhere(null);
+        ps.setTop(null);
+
+        return templates;
+    }
 }

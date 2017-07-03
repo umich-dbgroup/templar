@@ -1,5 +1,12 @@
 package edu.umich.tbnalir.util;
 
+import edu.umich.tbnalir.rdbms.Function;
+import edu.umich.tbnalir.rdbms.FunctionParameter;
+import edu.umich.tbnalir.sql.LiteralExpression;
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
+import net.sf.jsqlparser.statement.select.TableFunction;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,6 +52,24 @@ public class Utils {
             default:
                 throw new IllegalArgumentException("Did not recognize function parameter type: <" + type + ">");
         }
+    }
 
+    public static TableFunction convertFunctionToTableFunction(Function fn) {
+        net.sf.jsqlparser.expression.Function jsqlFn = new net.sf.jsqlparser.expression.Function();
+        jsqlFn.setName(fn.getName());
+
+        ExpressionList expList = new ExpressionList();
+        List<Expression> expListInternal = new ArrayList<Expression>();
+        for (int i = 1; i < fn.getInputs().size() + 1; i++) {
+            FunctionParameter param = fn.getInputs().get(i);
+            if (param == null) continue;
+            expListInternal.add(new LiteralExpression(Utils.convertSQLTypetoConstant(param.getType())));
+        }
+        expList.setExpressions(expListInternal);
+        jsqlFn.setParameters(expList);
+
+        TableFunction tFn = new TableFunction();
+        tFn.setFunction(jsqlFn);
+        return tFn;
     }
 }
