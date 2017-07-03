@@ -7,8 +7,6 @@ import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
 import edu.umich.tbnalir.rdbms.Relation;
-import edu.umich.tbnalir.sql.LiteralExpression;
-import edu.umich.tbnalir.util.Constants;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -26,8 +24,8 @@ import java.util.*;
  * Created by cjbaik on 6/30/17.
  */
 public class SchemaTemplateGenerator extends TemplateGenerator {
-    static Map<String, Relation> relations = new HashMap<String, Relation>();
-    static Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<Attribute, Set<Attribute>>();
+    static Map<String, Relation> relations = new HashMap<>();
+    static Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<>();
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -55,7 +53,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                 String relName = (String) relNameObj;
                 JSONObject relInfo = (JSONObject) rels.get(relNameObj);
                 JSONObject attrObj = (JSONObject) relInfo.get("attributes");
-                Map<String, Attribute> attributeMap = new HashMap<String, Attribute>();
+                Map<String, Attribute> attributeMap = new HashMap<>();
                 for (Object attrNameObj : attrObj.keySet()) {
                     JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
                     String attrName = (String) attrInfo.get("name");
@@ -68,7 +66,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                 // For functions, also add parameters
                 if (relInfo.containsKey("inputs")) {
                     JSONObject inputObj = (JSONObject) relInfo.get("inputs");
-                    Map<Integer, FunctionParameter> inputs = new HashMap<Integer, FunctionParameter>();
+                    Map<Integer, FunctionParameter> inputs = new HashMap<>();
                     for (Object inputNameObj : inputObj.keySet()) {
                         JSONObject inputInfoObj = (JSONObject) inputObj.get(inputNameObj);
                         String inputName = (String) inputInfoObj.get("name");
@@ -93,7 +91,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
             for (Object edgeObj : edgesArr) {
                 JSONObject edge = (JSONObject) edgeObj;
 
-                Object foreignRelationStr = edge.get("foreignRelation");
+                String foreignRelationStr = (String) edge.get("foreignRelation");
                 if (foreignRelationStr == null) {
                     Log.error("Foreign relation not included in edge definition.");
                     continue;
@@ -103,7 +101,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     Log.error("Could not find relation <" + foreignRelationStr + "> in schema.");
                     continue;
                 }
-                Object foreignAttributeStr = edge.get("foreignAttribute");
+                String foreignAttributeStr = (String) edge.get("foreignAttribute");
                 if (foreignAttributeStr == null) {
                     Log.error("Foreign attribute not included in edge definition.");
                     continue;
@@ -115,7 +113,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     continue;
                 }
 
-                Object primaryRelationStr = edge.get("primaryRelation");
+                String primaryRelationStr = (String) edge.get("primaryRelation");
                 if (primaryRelationStr == null) {
                     Log.error("Primary relation not included in edge definition.");
                     continue;
@@ -125,7 +123,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     Log.error("Could not find relation <" + primaryRelationStr + "> in schema.");
                     continue;
                 }
-                Object primaryAttributeStr = edge.get("primaryAttribute");
+                String primaryAttributeStr = (String) edge.get("primaryAttribute");
                 if (primaryAttributeStr == null) {
                     Log.error("Primary attribute not included in edge definition.");
                     continue;
@@ -144,7 +142,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
                 Set<Attribute> pks = fkpkEdges.get(foreignAttribute);
                 if (pks == null) {
-                    pks = new HashSet<Attribute>();
+                    pks = new HashSet<>();
                     fkpkEdges.put(foreignAttribute, pks);
                 }
                 pks.add(primaryAttribute);
@@ -163,7 +161,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         // read predicate/projection templates from query log
         Log.info("==============================");
         Log.info("Reading templates generated from query log (i.e. test set)...");
-        Map<String, Integer> testTemplateCount = new HashMap<String, Integer>();
+        Map<String, Integer> testTemplateCount = new HashMap<>();
         try {
             CSVReader reader = new CSVReader(new FileReader(logTemplatesFile), '\t');
             String[] nextLine;
@@ -180,7 +178,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
         Log.info("==============================");
         Log.info("Generating templates using schema...");
-        Set<String> templates = new HashSet<String>();
+        Set<String> templates = new HashSet<>();
 
         SchemaTemplateGenerator tg = new SchemaTemplateGenerator();
 
@@ -221,7 +219,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                             // For simple joins ("table 1, table 2")
                             join.setSimple(true);
 
-                            List<Join> joins = new ArrayList<Join>();
+                            List<Join> joins = new ArrayList<>();
                             joins.add(join);
                             ps.setJoins(joins);
                             templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
@@ -234,42 +232,42 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         Log.info("Done generating " + templates.size() + " templates.");
         Log.info("==============================\n");
 
-        CSVWriter writer = null;
-        try {
-            writer = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         int covered = 0;
         int total = 0;
-        for (Map.Entry<String, Integer> e : Utils.sortByValueDesc(testTemplateCount).entrySet()) {
-            total += e.getValue();
-            if (templates.contains(e.getKey())) {
-                covered += e.getValue();
-            } else {
-                String[] row = new String[2];
-                row[0] = e.getValue().toString();
-                row[1] = e.getKey();
-                writer.writeNext(row);
-            }
-        }
-
-        Log.info("==============================");
-        Log.info("Measuring coverage...");
-        float predProjCoverage = (float) covered / total * 100;
-        Log.info("Number of templates: " + templates.size());
-        Log.info(String.format("Coverage: %d / %d (%.1f)", covered, total, predProjCoverage) + "%");
-        Log.info("==============================\n");
-
-        Log.info("==============================");
-        Log.info("Templates not covered were printed to <" + errorFileName + ">.");
+        CSVWriter writer;
         try {
+            writer = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+
+            for (Map.Entry<String, Integer> e : Utils.sortByValueDesc(testTemplateCount).entrySet()) {
+                total += e.getValue();
+                if (templates.contains(e.getKey())) {
+                    covered += e.getValue();
+                } else {
+                    String[] row = new String[2];
+                    row[0] = e.getValue().toString();
+                    row[1] = e.getKey();
+                    writer.writeNext(row);
+                }
+            }
+
+
+            Log.info("==============================");
+            Log.info("Measuring coverage...");
+            float predProjCoverage = (float) covered / total * 100;
+            Log.info("Number of templates: " + templates.size());
+            Log.info(String.format("Coverage: %d / %d (%.1f)", covered, total, predProjCoverage) + "%");
+            Log.info("==============================\n");
+
+            Log.info("==============================");
+            Log.info("Templates not covered were printed to <" + errorFileName + ">.");
+
             writer.close();
+
+            Log.info("==============================");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.info("==============================");
 
         String templateOutFile = "templates.out";
         Log.info("==============================");
