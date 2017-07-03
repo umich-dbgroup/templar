@@ -27,7 +27,6 @@ import java.util.*;
 public class SchemaTemplateGenerator extends TemplateGenerator {
     static Map<String, Relation> relations = new HashMap<String, Relation>();
     static Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<Attribute, Set<Attribute>>();
-    static Map<Attribute, Set<Attribute>> pkfkEdges = new HashMap<Attribute, Set<Attribute>>();
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -146,13 +145,6 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     fkpkEdges.put(foreignAttribute, pks);
                 }
                 pks.add(primaryAttribute);
-
-                Set<Attribute> fks = pkfkEdges.get(primaryAttribute);
-                if (fks == null) {
-                    fks = new HashSet<Attribute>();
-                    pkfkEdges.put(primaryAttribute, pks);
-                }
-                fks.add(foreignAttribute);
             }
 
             int fkpkLength = 0;
@@ -160,12 +152,6 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                 fkpkLength += e.getValue().size();
             }
             Log.info("Read " + fkpkLength + " FK-PK relationships.");
-
-            int pkfkLength = 0;
-            for (Map.Entry<Attribute, Set<Attribute>> e : pkfkEdges.entrySet()) {
-                pkfkLength += e.getValue().size();
-            }
-            Log.info("Read " + pkfkLength + " PK-FK relationships.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -227,30 +213,6 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                                 join.setRightItem(tFn);
                             } else {
                                 join.setRightItem(new Table(pk.getRelation().toString()));
-                            }
-
-                            // For simple joins ("table 1, table 2")
-                            join.setSimple(true);
-
-                            List<Join> joins = new ArrayList<Join>();
-                            joins.add(join);
-                            ps.setJoins(joins);
-                            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
-                        }
-                    }
-                }
-
-                Set<Attribute> fks = pkfkEdges.get(attrEntry.getValue());
-                if (fks != null) {
-                    for (Attribute fk : fks) {
-                        if (fk != null) {
-                            Join join = new Join();
-
-                            if (fk.getRelation() instanceof Function) {
-                                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) fk.getRelation());
-                                join.setRightItem(tFn);
-                            } else {
-                                join.setRightItem(new Table(fk.getRelation().toString()));
                             }
 
                             // For simple joins ("table 1, table 2")
