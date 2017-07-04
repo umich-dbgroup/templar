@@ -161,9 +161,10 @@ public class TemplateGenerator {
         // Bitmap used to generate each variant, 0 indicates right-most bit.
         // bit 0: distinct
         // bit 1: order
-        // bit 2: where / where + top
+        // bit 2: where
+        // bit 3: top
 
-        int numVariants = 3;
+        int numVariants = 4;
         double iterLimit = Math.pow(2, numVariants);
         for (int i = 0; i < iterLimit; i++) {
 
@@ -185,15 +186,14 @@ public class TemplateGenerator {
             if (whereBit == 1) {
                 ps.setWhere(new LiteralExpression(Constants.PRED));
 
-                // Add variant for top only for where condition
+            }
+
+            int topBit = (i >> 3) & 1;
+            if (topBit == 1) {
+                // Add variant for top for where condition
                 Top top = new Top();
                 top.setExpression(new LiteralExpression(Constants.TOP));
                 ps.setTop(top);
-
-                String template = templateFn.apply(select);
-                templates.add(template);
-
-                ps.setTop(null);
             }
 
             String template = templateFn.apply(select);
@@ -203,6 +203,7 @@ public class TemplateGenerator {
             ps.setDistinct(null);
             ps.setOrderByElements(null);
             ps.setWhere(null);
+            ps.setTop(null);
         }
 
         return templates;
