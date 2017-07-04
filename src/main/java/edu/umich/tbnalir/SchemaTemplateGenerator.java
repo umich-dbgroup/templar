@@ -26,11 +26,124 @@ import java.util.*;
 public class SchemaTemplateGenerator extends TemplateGenerator {
     static Map<String, Relation> relations = new HashMap<>();
     static Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<>();
+    static Map<Attribute, Set<Attribute>> pkfkEdges = new HashMap<>();
+
+    public Join createSimpleJoinFromAttribute(Attribute attr) {
+        Join join = new Join();
+
+        if (attr.getRelation() instanceof Function) {
+            TableFunction tFn = Utils.convertFunctionToTableFunction((Function) attr.getRelation());
+            join.setRightItem(tFn);
+        } else {
+            join.setRightItem(new Table(attr.getRelation().toString()));
+        }
+
+        // For simple joins (i.e. of the form "table 1, table 2")
+        join.setSimple(true);
+
+        return join;
+    }
+
+    public void addPKFKJoinTemplates(Set<String> templates, Relation rel, Select select, PlainSelect ps) {
+        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+            Set<Attribute> fks = pkfkEdges.get(attrEntry.getValue());
+
+            if (fks != null) {
+                for (Attribute fk : fks) {
+                    if (fk != null) {
+                        Join join = createSimpleJoinFromAttribute(fk);
+
+                        List<Join> joins = ps.getJoins();
+                        if (joins == null) {
+                            joins = new ArrayList<>();
+                            ps.setJoins(joins);
+                        }
+                        joins.add(join);
+
+                        templates.addAll(this.generateTemplateVariants(this::noPredicateProjectionTemplate, select));
+
+                        // Remove last join to reset to original state
+                        joins.remove(joins.size() - 1);
+                    }
+                }
+            }
+        }
+    }
+
+    public void addFKPKJoinTemplatesRecursive(Set<String> templates, Relation rel, Select select,
+                                              PlainSelect ps, int joinLevelsLeft) {
+        if (joinLevelsLeft == 0) return;
+
+        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+            Set<Attribute> pks = fkpkEdges.get(attrEntry.getValue());
+            if (pks != null) {
+                for (Attribute pk : pks) {
+                    if (pk != null) {
+                        Join firstJoin = this.createSimpleJoinFromAttribute(pk);
+
+                        List<Join> joins = ps.getJoins();
+                        if (joins == null) {
+                            joins = new ArrayList<>();
+                            ps.setJoins(joins);
+                        }
+                        joins.add(firstJoin);
+
+                        templates.addAll(this.generateTemplateVariants(this::noPredicateProjectionTemplate, select));
+
+                        // Next level joins
+                        if (joinLevelsLeft > 1) {
+                            FromItem fromItem = firstJoin.getRightItem();
+
+                            Relation nextJoinRelation = relations.get(fromItem.toString());
+                            if (nextJoinRelation == null) {
+                                throw new RuntimeException("Could not find item <" + fromItem.toString() + ">.");
+                            }
+
+                            // PK from the second table (FK -> PK <- FK)
+                            this.addPKFKJoinTemplates(templates, nextJoinRelation, select, ps);
+
+                            // FK from the second table (FK -> PK/FK -> PK)
+                            this.addFKPKJoinTemplatesRecursive(templates, nextJoinRelation, select,
+                                    ps, joinLevelsLeft - 1);
+                        }
+
+                        // Remove the last join to reset state
+                        joins.remove(joins.size() - 1);
+                    }
+                }
+            }
+        }
+    }
+
+    public Set<String> getTemplatesForRelation(Relation r, int joinLevel) {
+        Set<String> templates = new HashSet<>();
+
+        Select select;
+        if (r instanceof Function) {
+            TableFunction tFn = Utils.convertFunctionToTableFunction((Function) r);
+            select = new Select();
+            PlainSelect ps = new PlainSelect();
+            ps.setFromItem(tFn);
+            select.setSelectBody(ps);
+        } else {
+            Table table = new Table(r.toString());
+            select = SelectUtils.buildSelectFromTable(table);
+        }
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
+        templates.addAll(this.generateTemplateVariants(this::noPredicateProjectionTemplate, select));
+
+        // Handle joins
+        this.addFKPKJoinTemplatesRecursive(templates, r, select, ps, joinLevel);
+
+        return templates;
+    }
 
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("Usage: <schema-prefix> <query-log-templates-csv>");
-            System.err.println("Example: SchemaTemplateGenerator data/sdss/schema/bestdr7 bestdr7_0.05_pred_proj.csv");
+            System.err.println("Usage: <schema-prefix> <query-log-templates-csv> <join-level>");
+            System.err.println("Example: SchemaTemplateGenerator data/sdss/schema/bestdr7 bestdr7_0.05_pred_proj.csv 0");
             System.exit(1);
         }
 
@@ -39,6 +152,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         String edgesFile = prefix + ".edges.json";
 
         String logTemplatesFile = args[1];
+        Integer joinLevel = Integer.valueOf(args[2]);
 
         String errorFileName = "template_errors.out";
 
@@ -146,6 +260,13 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     fkpkEdges.put(foreignAttribute, pks);
                 }
                 pks.add(primaryAttribute);
+
+                Set<Attribute> fks = pkfkEdges.get(primaryAttribute);
+                if (fks == null) {
+                    fks = new HashSet<>();
+                    pkfkEdges.put(primaryAttribute, fks);
+                }
+                fks.add(foreignAttribute);
             }
 
             int fkpkLength = 0;
@@ -153,6 +274,12 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                 fkpkLength += e.getValue().size();
             }
             Log.info("Read " + fkpkLength + " FK-PK relationships.");
+
+            int pkfkLength = 0;
+            for (Map.Entry<Attribute, Set<Attribute>> e : pkfkEdges.entrySet()) {
+                pkfkLength += e.getValue().size();
+            }
+            Log.info("Read " + pkfkLength + " PK-FK relationships.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -177,56 +304,13 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
 
         Log.info("==============================");
-        Log.info("Generating templates using schema...");
+        Log.info("Generating templates using schema for join level: " + joinLevel);
         Set<String> templates = new HashSet<>();
 
         SchemaTemplateGenerator tg = new SchemaTemplateGenerator();
 
         for (Map.Entry<String, Relation> e : relations.entrySet()) {
-            Relation r = e.getValue();
-
-            Select select;
-            if (r instanceof Function) {
-                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) r);
-                select = new Select();
-                PlainSelect ps = new PlainSelect();
-                ps.setFromItem(tFn);
-                select.setSelectBody(ps);
-            } else {
-                Table table = new Table(r.toString());
-                select = SelectUtils.buildSelectFromTable(table);
-            }
-
-            PlainSelect ps = (PlainSelect) select.getSelectBody();
-
-            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
-
-            // Handling joins
-            for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
-                Set<Attribute> pks = fkpkEdges.get(attrEntry.getValue());
-                if (pks != null) {
-                    for (Attribute pk : pks) {
-                        if (pk != null) {
-                            Join join = new Join();
-
-                            if (pk.getRelation() instanceof Function) {
-                                TableFunction tFn = Utils.convertFunctionToTableFunction((Function) pk.getRelation());
-                                join.setRightItem(tFn);
-                            } else {
-                                join.setRightItem(new Table(pk.getRelation().toString()));
-                            }
-
-                            // For simple joins ("table 1, table 2")
-                            join.setSimple(true);
-
-                            List<Join> joins = new ArrayList<>();
-                            joins.add(join);
-                            ps.setJoins(joins);
-                            templates.addAll(tg.generateTemplateVariants(tg::noPredicateProjectionTemplate, select));
-                        }
-                    }
-                }
-            }
+            templates.addAll(tg.getTemplatesForRelation(e.getValue(), joinLevel));
         }
 
         Log.info("Done generating " + templates.size() + " templates.");
