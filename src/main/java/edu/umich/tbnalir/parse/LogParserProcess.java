@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
@@ -33,13 +34,13 @@ public class LogParserProcess {
 
             int nextLineToRead = 0;
             if (linePtrFile.exists()) {
-                nextLineToRead = Integer.valueOf(FileUtils.readFileToString(linePtrFile, "UTF-8"));
+                nextLineToRead = Integer.valueOf(FileUtils.readFileToString(linePtrFile, "UTF-8").trim());
             }
             totalSQL += nextLineToRead;
             lastUpdate += nextLineToRead;
 
             File outFile = new File(outBasename + ".parsed");
-            PrintWriter sqlWriter = new PrintWriter(outFile, "UTF-8");
+            PrintWriter sqlWriter = new PrintWriter(new FileOutputStream(outFile, true));
             PrintWriter linePtrWriter = new PrintWriter(linePtrFile, "UTF-8");
 
             CSVReader csvr = new CSVReader(new FileReader(filename));
