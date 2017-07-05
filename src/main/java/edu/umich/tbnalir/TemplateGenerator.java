@@ -99,7 +99,7 @@ public class TemplateGenerator {
         return null;
     }
 
-    public Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn,
+    protected Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn,
                                          String outFileName) {
         Set<String> templates = new HashSet<>();
         Map<String, Integer> templateCounts = new HashMap<>();
