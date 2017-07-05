@@ -45,3 +45,16 @@ So the final results land in `final/<dbname>.csv` as well-formatted CSV files fo
 * `bestdr3.csv` (1.2G)
 * `bestdr1.csv` (987G)
 * `bestdr8.csv` (594G)
+
+## Step 4: Sampling a subset (optional)
+
+Since some of these files are huge, we want to use subsets of some of these logs instead of the whole thing. For example, we select 5% of the `bestdr7.csv` log to use. For this, we use `get_subset.py`.
+
+## Step 5: Parsing using JSqlParser
+
+When using JSqlParser, we have this annoying error called the `TokenMgrError` that gets thrown whenever the parser encounters an invalid token or has some other parsing issue. The huge problem with this is that it is an `Error` and not an `Exception`, and consequently the entire process goes into an undefined state. To save ourselves some trouble of needing to do tedious process management, we run a pre-processing parser to only keep the statements that are valid and can be parsed (which is the vast majority of statements). We can run this on the main project folder as:
+
+```
+gradle shadowjar          // build
+java -cp build/libs/tb-nalir-all.jar edu.umich.tbnalir.LogParser filename.csv
+```
