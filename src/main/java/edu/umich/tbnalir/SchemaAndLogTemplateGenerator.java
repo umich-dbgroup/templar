@@ -4,6 +4,7 @@ import com.esotericsoftware.minlog.Log;
 import net.sf.jsqlparser.statement.Statement;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -52,7 +53,7 @@ public class SchemaAndLogTemplateGenerator {
     public static void main(String[] args) {
         if (args.length < 5) {
             System.err.println("Usage: <schema-prefix> <query-log-csv> <join-level> <log-template-levels> <% of log used>");
-            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj");
+            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50");
             System.exit(1);
         }
 
@@ -83,8 +84,8 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("==============================\n");
 
             // Separate generation segment of log from test segment of log
+            Collections.shuffle(queryLogStmts);    // Randomize order
             double generationSize = Math.floor(logPercent * queryLogStmts.size());
-
             List<Statement> generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
             List<Statement> testQueryLog = queryLogStmts.subList((int) generationSize, queryLogStmts.size() - 1);
 
