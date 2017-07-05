@@ -1,7 +1,9 @@
 package edu.umich.tbnalir;
 
+import com.esotericsoftware.minlog.Log;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -16,13 +18,16 @@ public class LogParser {
                 + filename;
         CommandLine cmdLine = CommandLine.parse(line);
         DefaultExecutor executor = new DefaultExecutor();
-        try {
-            int exitValue;
-            do {
+        int exitValue = 1;
+        do {
+            try {
+                Log.info("Starting process: <" + cmdLine + ">");
                 exitValue = executor.execute(cmdLine);
-            } while (exitValue != 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            } catch (ExecuteException e) {
+                Log.info("Process terminated.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } while (exitValue != 0);
     }
 }
