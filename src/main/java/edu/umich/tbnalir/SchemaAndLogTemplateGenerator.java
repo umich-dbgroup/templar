@@ -52,7 +52,7 @@ public class SchemaAndLogTemplateGenerator {
 
     public static void main(String[] args) {
         if (args.length < 5) {
-            System.err.println("Usage: <schema-prefix> <query-log-csv> <join-level> <log-template-levels> <% of log used>");
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used>");
             System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50");
             System.exit(1);
         }
@@ -78,7 +78,7 @@ public class SchemaAndLogTemplateGenerator {
 
             Log.info("==============================");
             Log.info("Loading log into memory...");
-            List<String> queryLogSql = ltg.readQueryLogCSV(queryLogFilename);
+            List<String> queryLogSql = ltg.readQueryLogParsed(queryLogFilename);
             Log.info("Parsing statements...");
             List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
             Log.info("==============================\n");

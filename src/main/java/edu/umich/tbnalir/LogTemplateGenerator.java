@@ -5,9 +5,12 @@ import com.opencsv.CSVReader;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -227,23 +230,9 @@ public class LogTemplateGenerator extends TemplateGenerator {
         return templates;
     }
 
-    public List<String> readQueryLogCSV(String filename) {
-        List<String> queryLog = new ArrayList<>();
-
-        Log.info("Reading file <" + filename + ">...");
+    public List<String> readQueryLogParsed(String filename) {
         try {
-            CSVReader csvr = new CSVReader(new FileReader(filename));
-            String [] nextLine;
-
-            while ((nextLine = csvr.readNext()) != null) {
-                if (nextLine.length < 4) continue;
-
-                String sql = nextLine[3];
-                queryLog.add(sql);
-            }
-            csvr.close();
-
-            return queryLog;
+            return FileUtils.readLines(new File(filename), Charset.forName("UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e.getMessage());
@@ -252,7 +241,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
 
     public static void main (String[] args) {
         if (args.length < 2) {
-            Log.error("Usage: <querylog-csv> <levels (comma-sep)>");
+            Log.error("Usage: <querylog.parsed> <levels (comma-sep)>");
             Log.error("Levels: 'const', 'const_proj', 'comp', 'comp_proj', 'pred', 'pred_proj'");
             System.exit(1);
         }
@@ -265,7 +254,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
 
         LogTemplateGenerator tg = new LogTemplateGenerator(levels);
 
-        List<String> sqls = tg.readQueryLogCSV(filename);
+        List<String> sqls = tg.readQueryLogParsed(filename);
         List<Statement> stmts = tg.parseStatements(sqls);
 
         // TODO: For testing, perform cross-validation:
