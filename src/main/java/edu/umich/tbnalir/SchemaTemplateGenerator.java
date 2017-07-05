@@ -24,6 +24,22 @@ import java.util.*;
  * Created by cjbaik on 6/30/17.
  */
 public class SchemaTemplateGenerator extends TemplateGenerator {
+    int joinLevel;
+
+    Map<String, Relation> relations;
+    Map<Attribute, Set<Attribute>> fkpkEdges;
+    Map<Attribute, Set<Attribute>> pkfkEdges;
+
+    public SchemaTemplateGenerator(String relationsFile, String edgesFile, int joinLevel) {
+        this.joinLevel = joinLevel;
+        this.relations = new HashMap<>();
+        this.fkpkEdges = new HashMap<>();
+        this.pkfkEdges = new HashMap<>();
+
+        this.loadRelationsFromFile(relationsFile);
+        this.loadEdgesFromFile(edgesFile);
+    }
+
     public Join createSimpleJoinFromAttribute(Attribute attr) {
         Join join = new Join();
 
@@ -40,10 +56,9 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         return join;
     }
 
-    public void addPKFKJoinTemplates(Map<Attribute, Set<Attribute>> pkfkEdges,
-                                     Set<String> templates, Relation rel, Select select, PlainSelect ps) {
+    public void addPKFKJoinTemplates(Set<String> templates, Relation rel, Select select, PlainSelect ps) {
         for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
-            Set<Attribute> fks = pkfkEdges.get(attrEntry.getValue());
+            Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
 
             if (fks != null) {
                 for (Attribute fk : fks) {
@@ -67,10 +82,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         }
     }
 
-    public void addFKPKJoinTemplatesRecursive(Map<String, Relation> relations,
-                                              Map<Attribute, Set<Attribute>> fkpkEdges,
-                                              Map<Attribute, Set<Attribute>> pkfkEdges,
-                                              Set<String> templates, Relation rel, Select select,
+    public void addFKPKJoinTemplatesRecursive(Set<String> templates, Relation rel, Select select,
                                               PlainSelect ps, int joinLevelsLeft) {
         if (joinLevelsLeft == 0) return;
 
@@ -94,17 +106,16 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                         if (joinLevelsLeft > 1) {
                             FromItem fromItem = firstJoin.getRightItem();
 
-                            Relation nextJoinRelation = relations.get(fromItem.toString());
+                            Relation nextJoinRelation = this.relations.get(fromItem.toString());
                             if (nextJoinRelation == null) {
                                 throw new RuntimeException("Could not find item <" + fromItem.toString() + ">.");
                             }
 
                             // PK from the second table (FK -> PK <- FK)
-                            this.addPKFKJoinTemplates(pkfkEdges, templates, nextJoinRelation, select, ps);
+                            this.addPKFKJoinTemplates(templates, nextJoinRelation, select, ps);
 
                             // FK from the second table (FK -> PK/FK -> PK)
-                            this.addFKPKJoinTemplatesRecursive(relations, fkpkEdges, pkfkEdges, templates,
-                                    nextJoinRelation, select, ps, joinLevelsLeft - 1);
+                            this.addFKPKJoinTemplatesRecursive(templates, nextJoinRelation, select, ps, joinLevelsLeft - 1);
                         }
 
                         // Remove the last join to reset state
@@ -115,8 +126,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         }
     }
 
-    public Map<String, Relation> loadRelationsFromFile(String relationsFileName) {
-        Map<String, Relation> relations = new HashMap<>();
+    public void loadRelationsFromFile(String relationsFileName) {
         JSONParser parser = new JSONParser();
 
         Log.info("==============================");
@@ -151,26 +161,22 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                     }
 
                     Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
-                    relations.put(relName, fn);
+                    this.relations.put(relName, fn);
                 } else {
                     Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
-                    relations.put(relName, rel);
+                    this.relations.put(relName, rel);
                 }
 
             }
-            Log.info("Read " + relations.size() + " relations/views/functions.");
+            Log.info("Read " + this.relations.size() + " relations/views/functions.");
             Log.info("==============================\n");
-            return relations;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public void loadEdgesFromFile(Map<String, Relation> relations,
-                                  Map<Attribute, Set<Attribute>> fkpkEdges,
-                                  Map<Attribute, Set<Attribute>> pkfkEdges, String edgesFileName) {
-
+    public void loadEdgesFromFile(String edgesFileName) {
         try {
             JSONParser parser = new JSONParser();
             Log.info("==============================");
@@ -228,29 +234,29 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
                             + "PK: " + primaryRelation + "/" + primaryAttribute);
                             */
 
-                Set<Attribute> pks = fkpkEdges.get(foreignAttribute);
+                Set<Attribute> pks = this.fkpkEdges.get(foreignAttribute);
                 if (pks == null) {
                     pks = new HashSet<>();
-                    fkpkEdges.put(foreignAttribute, pks);
+                    this.fkpkEdges.put(foreignAttribute, pks);
                 }
                 pks.add(primaryAttribute);
 
-                Set<Attribute> fks = pkfkEdges.get(primaryAttribute);
+                Set<Attribute> fks = this.pkfkEdges.get(primaryAttribute);
                 if (fks == null) {
                     fks = new HashSet<>();
-                    pkfkEdges.put(primaryAttribute, fks);
+                    this.pkfkEdges.put(primaryAttribute, fks);
                 }
                 fks.add(foreignAttribute);
             }
 
             int fkpkLength = 0;
-            for (Map.Entry<Attribute, Set<Attribute>> e : fkpkEdges.entrySet()) {
+            for (Map.Entry<Attribute, Set<Attribute>> e : this.fkpkEdges.entrySet()) {
                 fkpkLength += e.getValue().size();
             }
             Log.info("Read " + fkpkLength + " FK-PK relationships.");
 
             int pkfkLength = 0;
-            for (Map.Entry<Attribute, Set<Attribute>> e : pkfkEdges.entrySet()) {
+            for (Map.Entry<Attribute, Set<Attribute>> e : this.pkfkEdges.entrySet()) {
                 pkfkLength += e.getValue().size();
             }
             Log.info("Read " + pkfkLength + " PK-FK relationships.");
@@ -261,10 +267,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         }
     }
 
-    public Set<String> getTemplatesForRelation(Map<String, Relation> relations,
-                                               Map<Attribute, Set<Attribute>> fkpkEdges,
-                                               Map<Attribute, Set<Attribute>> pkfkEdges,
-                                               Relation r, int joinLevel) {
+    public Set<String> getTemplatesForRelation(Relation r) {
         Set<String> templates = new HashSet<>();
 
         Select select;
@@ -284,8 +287,23 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         templates.addAll(this.generateTemplateVariants(this::noPredicateProjectionTemplate, select));
 
         // Handle joins
-        this.addFKPKJoinTemplatesRecursive(relations, fkpkEdges, pkfkEdges, templates, r, select, ps, joinLevel);
+        this.addFKPKJoinTemplatesRecursive(templates, r, select, ps, this.joinLevel);
 
+        return templates;
+    }
+
+    public Set<String> generate() {
+        Set<String> templates = new HashSet<>();
+
+        Log.info("==============================");
+        Log.info("Generating templates using schema for join level: " + this.joinLevel);
+
+        for (Map.Entry<String, Relation> e : relations.entrySet()) {
+            templates.addAll(this.getTemplatesForRelation(e.getValue()));
+        }
+
+        Log.info("Done generating " + templates.size() + " templates.");
+        Log.info("==============================\n");
         return templates;
     }
 
@@ -305,13 +323,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
 
         String errorFileName = "template_errors.out";
 
-        SchemaTemplateGenerator tg = new SchemaTemplateGenerator();
-
-        Map<String, Relation> relations = tg.loadRelationsFromFile(relationsFile);
-
-        Map<Attribute, Set<Attribute>> fkpkEdges = new HashMap<>();
-        Map<Attribute, Set<Attribute>> pkfkEdges = new HashMap<>();
-        tg.loadEdgesFromFile(relations, fkpkEdges, pkfkEdges, edgesFile);
+        SchemaTemplateGenerator tg = new SchemaTemplateGenerator(relationsFile, edgesFile, joinLevel);
 
         Log.info("==============================");
         Log.info("Reading templates generated from query log (i.e. test set)...");
@@ -329,17 +341,7 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         Log.info("Finished reading query log templates.");
         Log.info("==============================\n");
 
-
-        Log.info("==============================");
-        Log.info("Generating templates using schema for join level: " + joinLevel);
-        Set<String> templates = new HashSet<>();
-
-        for (Map.Entry<String, Relation> e : relations.entrySet()) {
-            templates.addAll(tg.getTemplatesForRelation(relations, fkpkEdges, pkfkEdges, e.getValue(), joinLevel));
-        }
-
-        Log.info("Done generating " + templates.size() + " templates.");
-        Log.info("==============================\n");
+        Set<String> templates = tg.generate();
 
         int covered = 0;
         int total = 0;
