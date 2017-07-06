@@ -2,6 +2,8 @@
 
 Results for generating templates from both the schema (with varying degrees of join levels) and the log (with varying log template types used and amounts of each log used).
 
+It is named "randomized" because we assume no temporal significance in the query logs, and we randomly sample from the query logs. In other words, we assume the last 20% has an identical distribution to the first 20%.
+
 Filename example:
 
 ```
