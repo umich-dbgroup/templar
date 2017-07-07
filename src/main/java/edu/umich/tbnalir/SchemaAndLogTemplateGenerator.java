@@ -51,9 +51,9 @@ public class SchemaAndLogTemplateGenerator {
     }
 
     public static void main(String[] args) {
-        if (args.length < 5) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used>");
-            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50");
+        if (args.length < 6) {
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used> <random|temporal>");
+            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50 random");
             System.exit(1);
         }
 
@@ -66,6 +66,9 @@ public class SchemaAndLogTemplateGenerator {
         Integer joinLevel = Integer.valueOf(args[2]);
         String[] logTemplateLevels = args[3].split(",");
         Float logPercent = (float) Integer.valueOf(args[4]) / 100;
+
+        String randomArg = args[5];
+        boolean randomizeLogOrder = randomArg.equals("random");
 
         Log.info("==============================");
         Log.info("Creating templates from schema...");
@@ -83,8 +86,9 @@ public class SchemaAndLogTemplateGenerator {
             List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
             Log.info("==============================\n");
 
+            if (randomizeLogOrder) Collections.shuffle(queryLogStmts);    // Randomize order
+
             // Separate generation segment of log from test segment of log
-            Collections.shuffle(queryLogStmts);    // Randomize order
             double generationSize = Math.floor(logPercent * queryLogStmts.size());
             List<Statement> generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
             List<Statement> testQueryLog = queryLogStmts.subList((int) generationSize, queryLogStmts.size() - 1);
