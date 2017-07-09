@@ -52,7 +52,7 @@ public class SchemaAndLogTemplateGenerator {
 
     public static void main(String[] args) {
         if (args.length < 6) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50%)|number of queries> <random|temporal>");
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal>");
             System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50 random");
             System.exit(1);
         }
@@ -68,8 +68,8 @@ public class SchemaAndLogTemplateGenerator {
 
         Float logPercent = null;
         Integer numLogQueries = null;
-        if (args[4].contains("%")) {
-            logPercent = (float) Integer.valueOf(args[4].replaceAll("\\%", "")) / 100;
+        if (args[4].contains("p")) {
+            logPercent = (float) Integer.valueOf(args[4].replaceAll("p", "")) / 100;
         } else {
             numLogQueries = Integer.valueOf(args[4]);
         }
