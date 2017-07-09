@@ -52,7 +52,7 @@ public class SchemaAndLogTemplateGenerator {
 
     public static void main(String[] args) {
         if (args.length < 6) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used> <random|temporal>");
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50%)|number of queries> <random|temporal>");
             System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50 random");
             System.exit(1);
         }
@@ -65,7 +65,14 @@ public class SchemaAndLogTemplateGenerator {
 
         Integer joinLevel = Integer.valueOf(args[2]);
         String[] logTemplateLevels = args[3].split(",");
-        Float logPercent = (float) Integer.valueOf(args[4]) / 100;
+
+        Float logPercent = null;
+        Integer numLogQueries = null;
+        if (args[4].contains("%")) {
+            logPercent = (float) Integer.valueOf(args[4].replaceAll("\\%", "")) / 100;
+        } else {
+            numLogQueries = Integer.valueOf(args[4]);
+        }
 
         String randomArg = args[5];
         boolean randomizeLogOrder = randomArg.equals("random");
@@ -89,9 +96,19 @@ public class SchemaAndLogTemplateGenerator {
             if (randomizeLogOrder) Collections.shuffle(queryLogStmts);    // Randomize order
 
             // Separate generation segment of log from test segment of log
-            double generationSize = Math.floor(logPercent * queryLogStmts.size());
-            List<Statement> generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
-            List<Statement> testQueryLog = queryLogStmts.subList((int) generationSize, queryLogStmts.size() - 1);
+            List<Statement> generationQueryLog = null;
+            List<Statement> testQueryLog = null;
+            if (logPercent != null) {
+                double generationSize = Math.floor(logPercent * queryLogStmts.size());
+                generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
+                testQueryLog = queryLogStmts.subList((int) generationSize, queryLogStmts.size() - 1);
+            } else if (numLogQueries != null) {
+                generationQueryLog = queryLogStmts.subList(0, numLogQueries);
+                testQueryLog = queryLogStmts.subList(numLogQueries, queryLogStmts.size() - 1);
+            } else {
+                Log.error("Need to specify either log % number or number of queries to use from log.");
+                System.exit(1);
+            }
 
             Log.info("==============================");
             Log.info("Creating templates from log...");
