@@ -1,7 +1,6 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
-import com.opencsv.CSVReader;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -9,9 +8,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by cjbaik on 6/20/17.
@@ -128,49 +130,56 @@ public class LogTemplateGenerator extends TemplateGenerator {
         }
     }
 
-    public List<Statement> parseStatements(List<String> sqls) {
-        // Statistics
-        int totalSQL = 0;
-        int parsedSQL = 0;
-        int lastUpdate = 0;
-
+    private Runnable getParserRunnable(ConcurrentLinkedQueue<Statement> stmts, String sql) {
         // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
         char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
+        for (char token : tokensToReplace) {
+            sql = sql.replace(token, '_');
+        }
+        final String finalSql = sql;
 
-        // Read in all statements first
-        List<Statement> stmts = new ArrayList<>();
-        for (String sql : sqls) {
-            totalSQL++;
-            if (totalSQL >= (lastUpdate + 20000)) {
-                Log.info("Parsed " + totalSQL + " statements...");
-                lastUpdate = totalSQL;
-            }
-
-            for (char token : tokensToReplace) {
-                sql = sql.replace(token, '_');
-            }
-
-            Log.debug("ORIGINAL: " + sql.replace("\n", " "));
+        return () -> {
             Statement stmt;
             try {
-                stmt = CCJSqlParserUtil.parse(sql);
+                stmt = CCJSqlParserUtil.parse(finalSql);
             } catch (JSQLParserException e) {
                 if (Log.DEBUG) e.printStackTrace();
-                continue;
+                return;
             } catch (Throwable t) {
                 t.printStackTrace();
-                continue;
+                return;
             }
-            if (stmt == null) continue; // Case that it's not a select statement
+            if (stmt == null) return; // Case that it's not a select statement
             stmts.add(stmt);
-            parsedSQL++;
+        };
+    }
+
+    public List<Statement> parseStatements(List<String> sqls) {
+        ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        ConcurrentLinkedQueue<Statement> stmts = new ConcurrentLinkedQueue<>();
+        for (String sql : sqls) {
+            pool.submit(this.getParserRunnable(stmts, sql));
+        }
+
+        pool.shutdown();
+
+        try {
+            if (!pool.awaitTermination(10, TimeUnit.MINUTES)) {
+                pool.shutdownNow();
+                if (!pool.awaitTermination(60, TimeUnit.SECONDS)) {
+                    Log.error("Pool did not terminate");
+                }
+            }
+        } catch (InterruptedException e) {
+            pool.shutdownNow();
+            Thread.currentThread().interrupt();
         }
 
         Log.info("===== Parsing Results =====");
-        Log.info("Total Queries: " + totalSQL);
-        Log.info("Correctly Parsed: " + parsedSQL + "/" + totalSQL + "\n");
+        Log.info("Total Queries: " + sqls.size());
+        Log.info("Correctly Parsed: " + stmts.size() + "/" + sqls.size() + "\n");
 
-        return stmts;
+        return new ArrayList<>(stmts);
     }
 
     public void generateAndSave(List<Statement> stmts, String outBasename) {
