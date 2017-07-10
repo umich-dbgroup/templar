@@ -97,18 +97,19 @@ public class SchemaAndLogTemplateGenerator {
 
             // Separate generation segment of log from test segment of log
             List<Statement> generationQueryLog = null;
-            List<Statement> testQueryLog = null;
             if (logPercent != null) {
                 double generationSize = Math.floor(logPercent * queryLogStmts.size());
                 generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
-                testQueryLog = queryLogStmts.subList((int) generationSize, queryLogStmts.size() - 1);
             } else if (numLogQueries != null) {
                 generationQueryLog = queryLogStmts.subList(0, numLogQueries);
-                testQueryLog = queryLogStmts.subList(numLogQueries, queryLogStmts.size() - 1);
             } else {
                 Log.error("Need to specify either log % number or number of queries to use from log.");
                 System.exit(1);
             }
+
+            // Fix test query log as last 50% no matter what
+            double halfLog = Math.floor(0.5 * queryLogStmts.size());
+            List<Statement> testQueryLog = queryLogStmts.subList((int) halfLog, queryLogStmts.size() - 1);
 
             Log.info("==============================");
             Log.info("Creating templates from log...");
