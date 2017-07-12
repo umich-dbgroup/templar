@@ -1,22 +1,26 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
+import com.opencsv.CSVWriter;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.io.FileWriter;
+import java.util.*;
 
 /**
  * Created by cjbaik on 7/5/17.
  */
 public class SchemaAndLogTemplateGenerator {
+    static Map<String, Integer> errorTemplates = new HashMap<>();
+
     public static boolean isCovered(LogTemplateGenerator ltg, Statement testStatement, Set<String> templates) {
         List<String> levels = new ArrayList<>(ltg.getLevels());
 
         // Add pred_proj by default because this is where schema templates come from
         levels.add("pred_proj");
+
+        String errorCheckingTemplate = null;
 
         for (String level : levels) {
             String template = null;
@@ -38,6 +42,7 @@ public class SchemaAndLogTemplateGenerator {
                     break;
                 case "pred_proj":
                     template = ltg.noPredicateProjectionTemplate(testStatement);
+                    errorCheckingTemplate = template;
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid level specified: <" + level + ">.");
@@ -47,13 +52,19 @@ public class SchemaAndLogTemplateGenerator {
                 return true;
             }
         }
+        Integer errorCount = errorTemplates.get(errorCheckingTemplate);
+        if (errorCount == null) {
+            errorTemplates.put(errorCheckingTemplate, 1);
+        } else {
+            errorTemplates.put(errorCheckingTemplate, errorCount + 1);
+        }
         return false;
     }
 
     public static void main(String[] args) {
-        if (args.length < 6) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal>");
-            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50 random");
+        if (args.length < 7) {
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <error-file-name>");
+            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50p random results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
             System.exit(1);
         }
 
@@ -76,6 +87,8 @@ public class SchemaAndLogTemplateGenerator {
 
         String randomArg = args[5];
         boolean randomizeLogOrder = randomArg.equals("random");
+
+        String errorFileName = args[6];
 
         Log.info("==============================");
         Log.info("Creating templates from schema...");
@@ -127,6 +140,22 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("Number of templates: " + templates.size());
             Log.info(String.format("Coverage: %d / %d (%.1f)", covered, testQueryLog.size(), coverage) + "%");
             Log.info("==============================\n");
+
+            CSVWriter writer = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+
+            for (Map.Entry<String, Integer> e : Utils.sortByValueDesc(errorTemplates).entrySet()) {
+                String[] row = new String[2];
+                row[0] = e.getValue().toString();
+                row[1] = e.getKey();
+                writer.writeNext(row);
+            }
+
+            Log.info("==============================");
+            Log.info("Templates not covered were printed to <" + errorFileName + ">.");
+
+            writer.close();
+
+            Log.info("==============================");
 
         } catch (Exception e) {
             e.printStackTrace();
