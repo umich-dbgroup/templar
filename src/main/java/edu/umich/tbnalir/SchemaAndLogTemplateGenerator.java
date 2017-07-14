@@ -92,8 +92,8 @@ public class SchemaAndLogTemplateGenerator {
         String randomArg = args[5];
         boolean randomizeLogOrder = randomArg.equals("random");
 
-        String templateFileName = args[7];
-        String errorFileName = args[8];
+        String templateFileName = args[6];
+        String errorFileName = args[7];
 
         Log.info("==============================");
         Log.info("Creating templates from schema...");
