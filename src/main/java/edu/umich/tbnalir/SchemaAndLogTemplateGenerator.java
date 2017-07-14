@@ -6,6 +6,7 @@ import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
 
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -62,9 +63,12 @@ public class SchemaAndLogTemplateGenerator {
     }
 
     public static void main(String[] args) {
-        if (args.length < 7) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <error-file-name>");
-            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50p random results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
+        if (args.length < 8) {
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <template-file-name> <error-file-name>");
+            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7" +
+                    " data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50p random" +
+                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.tmpl" +
+                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
             System.exit(1);
         }
 
@@ -88,7 +92,8 @@ public class SchemaAndLogTemplateGenerator {
         String randomArg = args[5];
         boolean randomizeLogOrder = randomArg.equals("random");
 
-        String errorFileName = args[6];
+        String templateFileName = args[7];
+        String errorFileName = args[8];
 
         Log.info("==============================");
         Log.info("Creating templates from schema...");
@@ -141,20 +146,29 @@ public class SchemaAndLogTemplateGenerator {
             Log.info(String.format("Coverage: %d / %d (%.1f)", covered, testQueryLog.size(), coverage) + "%");
             Log.info("==============================\n");
 
-            CSVWriter writer = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
+            PrintWriter templateWriter = new PrintWriter(templateFileName, "UTF-8");
+
+            List<String> templateList = new ArrayList<>(templates);
+            Collections.sort(templateList);
+
+            for (String template : templateList) {
+                templateWriter.println(template);
+            }
+            templateWriter.close();
+
+            CSVWriter errorWriter = new CSVWriter(new FileWriter(errorFileName), '\t', CSVWriter.NO_QUOTE_CHARACTER);
 
             for (Map.Entry<String, Integer> e : Utils.sortByValueDesc(errorTemplates).entrySet()) {
                 String[] row = new String[2];
                 row[0] = e.getValue().toString();
                 row[1] = e.getKey();
-                writer.writeNext(row);
+                errorWriter.writeNext(row);
             }
+            errorWriter.close();
 
             Log.info("==============================");
+            Log.info("Templates generated were printed to <" + templateFileName + ">.");
             Log.info("Templates not covered were printed to <" + errorFileName + ">.");
-
-            writer.close();
-
             Log.info("==============================");
 
         } catch (Exception e) {
