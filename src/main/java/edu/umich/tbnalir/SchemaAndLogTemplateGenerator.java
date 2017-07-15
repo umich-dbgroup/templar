@@ -2,8 +2,13 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import com.opencsv.CSVWriter;
+import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.select.Join;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -62,11 +67,78 @@ public class SchemaAndLogTemplateGenerator {
         return false;
     }
 
+    // If we have a statement with multiple joins, then generate variants from each level of join
+    public static Set<String> generateSubsetExpansionJoins(Select select, SchemaTemplateGenerator stg) {
+        Set<String> templates = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
+        List<Join> joins = ps.getJoins();
+        if (joins != null && joins.size() > 0) {
+            System.out.println("There's at least 1 join.");
+            for (int i = 1; i <= joins.size(); i++) {
+                System.out.println("For join subset 0 to " + (i-1) + "...");
+                // For each subset of join tables (from the first join to 1 less than the full amount of tables)
+                List<Join> subsetJoins = joins.subList(0, i);
+
+                // For each table in the join, add its FK/PK and PK/FK relationships
+                for (Join curJoin : subsetJoins) {
+                    Relation rel = stg.getRelations().get(curJoin.getRightItem().toString());
+                    if (rel != null) {
+                        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+                            Set<Attribute> fks = stg.getPkfkEdges().get(attrEntry.getValue());
+                            if (fks != null) {
+                                for (Attribute fk : fks) {
+                                    if (fk != null) {
+                                        Join newFKJoin = stg.createSimpleJoinFromAttribute(fk);
+                                        List<Join> newJoins = new ArrayList<>(subsetJoins);
+                                        newJoins.add(newFKJoin);
+
+                                        ps.setJoins(newJoins);
+                                        templates.addAll(stg.generateTemplateVariants(stg::noPredicateProjectionTemplate, select));
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+                        Set<Attribute> pks = stg.getFkpkEdges().get(attrEntry.getValue());
+                        if (pks != null) {
+                            for (Attribute pk : pks) {
+                                if (pk != null) {
+                                    Join newPKJoin = stg.createSimpleJoinFromAttribute(pk);
+                                    List<Join> newJoins = new ArrayList<>(subsetJoins);
+                                    newJoins.add(newPKJoin);
+
+                                    templates.addAll(stg.generateTemplateVariants(stg::noPredicateProjectionTemplate, select));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Reset state for joins
+        ps.setJoins(joins);
+
+        return templates;
+    }
+
+    public static Set<String> generateSubsetExpansionJoinsAll(List<Statement> stmts, SchemaTemplateGenerator stg) {
+        Set<String> templates = new HashSet<>();
+        for (Statement stmt : stmts) {
+            templates.addAll(generateSubsetExpansionJoins((Select) stmt, stg));
+        }
+        return templates;
+    }
+
     public static void main(String[] args) {
         if (args.length < 8) {
             System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <template-file-name> <error-file-name>");
             System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7" +
-                    " data/sdss/final/bestdr7_0.05.csv 0 pred_proj 50p random" +
+                    " data/sdss/final/bestdr7_0.05.parsed 0 pred_proj 50p random" +
                     " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.tmpl" +
                     " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
             System.exit(1);
@@ -113,6 +185,15 @@ public class SchemaAndLogTemplateGenerator {
 
             if (randomizeLogOrder) Collections.shuffle(queryLogStmts);    // Randomize order
 
+            // Used for testing generateSubsetExpansionJoinsAll
+            /*List<String> queryLogSql = new ArrayList<>();
+            queryLogSql.add("SELECT * FROM PhotoPrimary LEFT JOIN SpecObjAll LEFT JOIN Galaxy".toLowerCase());
+            List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
+            Set<String> tmpl = generateSubsetExpansionJoinsAll(queryLogStmts, stg);
+            for (String t : tmpl) {
+                System.out.println(t);
+            }*/
+
             // Separate generation segment of log from test segment of log
             List<Statement> generationQueryLog = null;
             if (logPercent != null) {
@@ -132,6 +213,11 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("==============================");
             Log.info("Creating templates from log...");
             templates.addAll(ltg.generate(generationQueryLog));
+            Log.info("==============================\n");
+
+            Log.info("==============================");
+            Log.info("Creating subset expansion join templates from logs...");
+            templates.addAll(generateSubsetExpansionJoinsAll(generationQueryLog, stg));
             Log.info("==============================\n");
 
             Log.info("==============================");
@@ -170,7 +256,6 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("Templates generated were printed to <" + templateFileName + ">.");
             Log.info("Templates not covered were printed to <" + errorFileName + ">.");
             Log.info("==============================");
-
         } catch (Exception e) {
             e.printStackTrace();
         }

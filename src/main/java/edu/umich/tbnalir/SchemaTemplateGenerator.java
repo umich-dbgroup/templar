@@ -40,6 +40,18 @@ public class SchemaTemplateGenerator extends TemplateGenerator {
         this.loadEdgesFromFile(edgesFile);
     }
 
+    public Map<String, Relation> getRelations() {
+        return relations;
+    }
+
+    public Map<Attribute, Set<Attribute>> getFkpkEdges() {
+        return fkpkEdges;
+    }
+
+    public Map<Attribute, Set<Attribute>> getPkfkEdges() {
+        return pkfkEdges;
+    }
+
     public Join createSimpleJoinFromAttribute(Attribute attr) {
         Join join = new Join();
 

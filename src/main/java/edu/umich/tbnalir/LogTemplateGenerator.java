@@ -136,7 +136,7 @@ public class LogTemplateGenerator extends TemplateGenerator {
         for (char token : tokensToReplace) {
             sql = sql.replace(token, '_');
         }
-        final String finalSql = sql;
+        final String finalSql = sql.toLowerCase();
 
         return () -> {
             Statement stmt;
