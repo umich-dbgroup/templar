@@ -129,7 +129,9 @@ public class SchemaAndLogTemplateGenerator {
     public static Set<String> generateSubsetExpansionJoinsAll(List<Statement> stmts, SchemaTemplateGenerator stg) {
         Set<String> templates = new HashSet<>();
         for (Statement stmt : stmts) {
-            templates.addAll(generateSubsetExpansionJoins((Select) stmt, stg));
+            if (stmt instanceof Select) {
+                templates.addAll(generateSubsetExpansionJoins((Select) stmt, stg));
+            }
         }
         return templates;
     }
