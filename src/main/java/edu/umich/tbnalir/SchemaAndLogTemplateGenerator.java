@@ -83,7 +83,7 @@ public class SchemaAndLogTemplateGenerator {
 
                 // For each table in the join, add its FK/PK and PK/FK relationships
                 for (Join curJoin : subsetJoins) {
-                    Relation rel = stg.getRelations().get(curJoin.getRightItem().toString());
+                    Relation rel = stg.getRelations().get(curJoin.getRightItem().toString().toLowerCase());
                     if (rel != null) {
                         for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
                             Set<Attribute> fks = stg.getPkfkEdges().get(attrEntry.getValue());
@@ -100,18 +100,18 @@ public class SchemaAndLogTemplateGenerator {
                                 }
                             }
                         }
-                    }
 
-                    for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
-                        Set<Attribute> pks = stg.getFkpkEdges().get(attrEntry.getValue());
-                        if (pks != null) {
-                            for (Attribute pk : pks) {
-                                if (pk != null) {
-                                    Join newPKJoin = stg.createSimpleJoinFromAttribute(pk);
-                                    List<Join> newJoins = new ArrayList<>(subsetJoins);
-                                    newJoins.add(newPKJoin);
+                        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+                            Set<Attribute> pks = stg.getFkpkEdges().get(attrEntry.getValue());
+                            if (pks != null) {
+                                for (Attribute pk : pks) {
+                                    if (pk != null) {
+                                        Join newPKJoin = stg.createSimpleJoinFromAttribute(pk);
+                                        List<Join> newJoins = new ArrayList<>(subsetJoins);
+                                        newJoins.add(newPKJoin);
 
-                                    templates.addAll(stg.generateTemplateVariants(stg::noPredicateProjectionTemplate, select));
+                                        templates.addAll(stg.generateTemplateVariants(stg::noPredicateProjectionTemplate, select));
+                                    }
                                 }
                             }
                         }
