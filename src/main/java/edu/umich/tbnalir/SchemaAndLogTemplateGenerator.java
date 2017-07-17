@@ -6,10 +6,7 @@ import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.Join;
-import net.sf.jsqlparser.statement.select.PlainSelect;
-import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.SelectBody;
+import net.sf.jsqlparser.statement.select.*;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -80,15 +77,33 @@ public class SchemaAndLogTemplateGenerator {
 
         List<Join> joins = ps.getJoins();
         if (joins != null && joins.size() > 0) {
-            System.out.println("There's at least 1 join.");
             for (int i = 1; i <= joins.size(); i++) {
-                System.out.println("For join subset 0 to " + (i-1) + "...");
                 // For each subset of join tables (from the first join to 1 less than the full amount of tables)
                 List<Join> subsetJoins = joins.subList(0, i);
+                List<FromItem> tableItems = new ArrayList<>();
+                tableItems.add(ps.getFromItem());
 
-                // For each table in the join, add its FK/PK and PK/FK relationships
-                for (Join curJoin : subsetJoins) {
-                    Relation rel = stg.getRelations().get(curJoin.getRightItem().toString().toLowerCase());
+                for (Join join : subsetJoins) {
+                    tableItems.add(join.getRightItem());
+                }
+
+                // For each table, add its FK/PK and PK/FK relationships
+                for (FromItem curItem : tableItems) {
+                    // Clear out aliases
+                    curItem.setAlias(null);
+
+                    // Clean up to simplified schema names
+                    String relationName;
+                    if (curItem instanceof TableFunction) {
+                        relationName = ((TableFunction) curItem).getFunction().getName();
+                    } else {
+                        relationName = curItem.toString();
+                    }
+
+                    String[] relationSplitName = relationName.split("\\.");
+                    relationName = relationSplitName[relationSplitName.length - 1].toLowerCase();
+
+                    Relation rel = stg.getRelations().get(relationName);
                     if (rel != null) {
                         for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
                             Set<Attribute> fks = stg.getPkfkEdges().get(attrEntry.getValue());
@@ -174,6 +189,7 @@ public class SchemaAndLogTemplateGenerator {
         String templateFileName = args[6];
         String errorFileName = args[7];
 
+
         Log.info("==============================");
         Log.info("Creating templates from schema...");
         SchemaTemplateGenerator stg = new SchemaTemplateGenerator(relationsFile, edgesFile, joinLevel);
@@ -193,8 +209,9 @@ public class SchemaAndLogTemplateGenerator {
             if (randomizeLogOrder) Collections.shuffle(queryLogStmts);    // Randomize order
 
             // Used for testing generateSubsetExpansionJoinsAll
-            /*List<String> queryLogSql = new ArrayList<>();
-            queryLogSql.add("SELECT * FROM PhotoPrimary LEFT JOIN SpecObjAll LEFT JOIN Galaxy".toLowerCase());
+            /*
+            List<String> queryLogSql = new ArrayList<>();
+            queryLogSql.add("SELECT str(p.ra, 13, 8) AS ra, str(p.dec, 13, 8) AS dec, p.dered_r, ISNULL(str(s.z, 6, 4), -9999) AS z, ISNULL(str(pz1.z, 6, 4), -9999) AS pzz1, ISNULL(str(pz2.photozcc2, 6, 4), -9999) AS pzz2 FROM BESTDR7..Galaxy AS p LEFT OUTER JOIN SpecObj AS s ON s.bestObjID = p.objID LEFT OUTER JOIN Photoz AS pz1 ON pz1.ObjID = p.objID LEFT OUTER JOIN Photoz2 AS pz2 ON pz2.ObjID = p.objID LEFT OUTER JOIN runqa");
             List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
             Set<String> tmpl = generateSubsetExpansionJoinsAll(queryLogStmts, stg);
             for (String t : tmpl) {
