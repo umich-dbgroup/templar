@@ -9,6 +9,7 @@ import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.Join;
 import net.sf.jsqlparser.statement.select.PlainSelect;
 import net.sf.jsqlparser.statement.select.Select;
+import net.sf.jsqlparser.statement.select.SelectBody;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -70,6 +71,10 @@ public class SchemaAndLogTemplateGenerator {
     // If we have a statement with multiple joins, then generate variants from each level of join
     public static Set<String> generateSubsetExpansionJoins(Select select, SchemaTemplateGenerator stg) {
         Set<String> templates = new HashSet<>();
+
+        SelectBody sb = select.getSelectBody();
+
+        if (!(sb instanceof PlainSelect))  return templates;
 
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
