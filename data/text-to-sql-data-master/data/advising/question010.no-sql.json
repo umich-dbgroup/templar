@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "As Cathy mentioned, not sure."
+    ],
+    "paraphrases": [],
+    "sentence": "When was EECS 281 first offered?",
+    "sentence-with-vars": "When was department0 number0 first offered?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

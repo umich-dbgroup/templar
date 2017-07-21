@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the area of the state with the largest population density ?", 
+ "sentence-with-vars": "what is the area of the state with the largest population density ?", 
+ "sql": "select state.area from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "sql-with-vars": "select state.area from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "variables": []
+}

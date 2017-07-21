@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "name the states which have no surrounding states ?", 
+ "sentence-with-vars": "name the states which have no surrounding states ?", 
+ "sql": "select state.state_name from state where state.state_name not in ( select border_info.state_name from border_info ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name not in ( select border_info.state_name from border_info ) ;", 
+ "variables": []
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point of the state with the smallest population density ?", 
+ "sentence-with-vars": "what is the highest point of the state with the smallest population density ?", 
+ "sql": "select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.density = ( select min ( state.density ) from state ) ) ;", 
+ "sql-with-vars": "select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.density = ( select min ( state.density ) from state ) ) ;", 
+ "variables": []
+}

@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not a DB question"
+    ],
+    "paraphrases": [],
+    "sentence": "Is Prof. Smith available for an independent study?",
+    "sentence-with-vars": "Is instructor0 available for an independent study?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": ""
+        }
+	]
+}

@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For EECS 373 what prerequistes do I have already ?",
+        "For EECS 373 , what prerequisites have I fulfilled ?",
+        "For EECS 373 , which prerequisites have I already completed ?",
+        "I have fulfilled what prereuuisites for EECS 373 already ?",
+        "List the prerequisites I 've finished for EECS 373 .",
+        "Of the prerequisites , what have I already fulfilled for EECS 373 ?",
+        "What are the prerequisites that I have met for EECS 373 ?",
+        "What prerequesites for EECS 373 have I already fulfilled ?",
+        "What requirements have I fulfilled for EECS 373 ?",
+        "Which prerequisites for EECS 373 have I already fulfilled ?",
+        "Which prerequisites have I already completed for EECS 373 ?",
+        "Which prerequisites have I already fulfilled for EECS 373 ?",
+        "Which prerequisites have I completed for EECS 373 ?"
+    ],
+    "sentence": "What prerequisites have I already fulfilled for EECS 373 ?",
+    "sentence-with-vars": "What prerequisites have I already fulfilled for department0 number0 ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 373 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.STUDENT_ID = 1 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number0 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.STUDENT_ID = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "373",
+            "sql-value": "373"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

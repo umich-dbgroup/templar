@@ -1,0 +1,42 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the student_id to be 1.",
+        "LZ - Student_id = 1?"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Am I able to view my transcript ?",
+        "Bring up my transcript .",
+        "Can I view my transcript ?",
+        "Can you show me my transcript ?",
+        "I need to see my transcript .",
+        "I want to see my transcripts .",
+        "I would like to see my transcript .",
+        "Is it possible to see my transcript ?",
+        "Is my transcript something that 's available for me to see ?",
+        "May I look at my transcript ?",
+        "May I please see my transcript ?",
+        "May I see my transcript ?",
+        "May I view my transcript ?",
+        "May i look at my transcript ?",
+        "My transcript , can i see it ?",
+        "Please let me see my transcript .",
+        "Show me my transcript ."
+    ],
+    "sentence": "Can I see my transcript ?",
+    "sentence-with-vars": "Can I see my transcript ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR , STUDENT_RECORDalias0.GRADE FROM COURSE AS COURSEalias0 , SEMESTER AS SEMESTERalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE STUDENT_ID = 1 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.SEMESTER = SEMESTERalias0.SEMESTER_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR , STUDENT_RECORDalias0.GRADE FROM COURSE AS COURSEalias0 , SEMESTER AS SEMESTERalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE STUDENT_ID = 1 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.SEMESTER = SEMESTERalias0.SEMESTER_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

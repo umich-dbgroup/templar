@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what does c p stand for and n x stand for",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_name||'\"', '\"'||v0.airline_code||'\"' FROM airline v0 \nWHERE ((v0.airline_code = 'CP') OR (v0.airline_code = 'NX'));",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_NAME , AIRLINE.AIRLINE_CODE FROM AIRLINE WHERE ( AIRLINE.AIRLINE_CODE = ' CP ' OR AIRLINE.AIRLINE_CODE = ' NX ' ) ) ;"
+    ],
+    "variables": []
+}

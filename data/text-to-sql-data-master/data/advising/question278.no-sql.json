@@ -1,0 +1,35 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "require reasoning"
+    ],
+    "paraphrases": [],
+    "sentence": "Is there a schedule where I can take EECS 485 EECS 486 and EECS 388 next semester?",
+    "sentence-with-vars": "Is there a schedule where I can take department0 number0 department0 number1 and department0 number2 next semester?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "485",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "486",
+            "sql-value": ""
+        },
+        {
+            "name": "number2",
+            "sentence-value": "388",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "how many jamerican cuisine are there in santa cruz county ?",
+     "sentence-with-vars": "how many VARrest are there in VARcounty ?",
+     "sql": [
+          "select count(*) from RESTAURANT,GEOGRAPHIC where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.COUNTY='santa cruz county' and RESTAURANT.NAME='jamerican cuisine'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from RESTAURANT,GEOGRAPHIC where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.COUNTY='VARcounty' and RESTAURANT.NAME='VARrest'"
+     ],
+     "variables": [
+          {
+               "name": "VARcounty",
+               "sentence-value": "santa cruz county",
+               "sql-value": "santa cruz county"
+          },
+          {
+               "name": "VARrest",
+               "sentence-value": "jamerican cuisine",
+               "sql-value": "jamerican cuisine"
+          }
+     ]
+}

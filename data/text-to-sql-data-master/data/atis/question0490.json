@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me city served both by nationair and canadian airlines international",
+    "sq2": "SELECT DISTINCT  '\"'||v1.city_code||'\"', '\"'||v3.to_airport||'\"',\n '\"'||v3.airline_code||'\"', '\"'||v4.city_code||'\"', '\"'||v6.to_airport||'\"',\n '\"'||v6.airline_code||'\"', '\"'||v3.flight_id||'\"',\n '\"'||v6.flight_id||'\"' FROM city v0, airport_service v1,\n airport v2, flight v3, airport_service v4, airport v5,\n flight v6 \nWHERE (((v0.city_code = ANY v1.city_code) AND ((v1.airport_code = ANY v2.airport_code) \nAND ((v2.airport_code = ANY v3.to_airport) \nAND ((v3.airline_code = 'NX') AND ( 1 =  1))))) \nAND ((v0.city_code = ANY v4.city_code) AND ((v4.airport_code = ANY v5.airport_code) \nAND ((v5.airport_code = ANY v6.to_airport) \nAND ((v6.airline_code = 'CP') AND ( 1 =  1))))));",
+    "sql": [
+        "( SELECT DISTINCT CITY.CITY_CODE FROM CITY WHERE ( CITY . CITY_CODE IN ( SELECT AIRPORT_SERVICE . CITY_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . AIRPORT_CODE IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT . AIRPORT_CODE IN ( SELECT FLIGHT . TO_AIRPORT FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' NX ' AND 1 = 1 ) ) ) ) AND CITY . CITY_CODE IN ( SELECT AIRPORT_SERVICE . CITY_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . AIRPORT_CODE IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT . AIRPORT_CODE IN ( SELECT FLIGHT . TO_AIRPORT FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' CP ' AND 1 = 1 ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

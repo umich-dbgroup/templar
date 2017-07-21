@@ -1,0 +1,86 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "JKK - Where it's a name it seems unfair to go straight to uniqname..."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any classes Dr. Peter Chen has taught before ?",
+        "Can you list all of the classes that Dr. Peter Chen has taught to date ?",
+        "Can you list the classes that Dr. Peter Chen has taught ?",
+        "Can you state what classes Dr. Peter Chen taught in the past ?",
+        "Can you tell me what classes Dr. Peter Chen has taught in the past ?",
+        "Could you tell me what classes Dr.Chen has taught before ?",
+        "Did Dr. Peter Chen teach any other classes before ?",
+        "Do you know what classes Dr. Peter Chen taught in the past ?",
+        "Do you know which class Dr. Peter Chen has taught previously ?",
+        "Dr. Peter Chen has taught what classes in the past ?",
+        "Dr. Peter Chen , what classes has he taught in the past ?",
+        "Dr. Peter Chen has taught what classes in the past ?",
+        "Dr. Peter Chen has taught which classes in the past ?",
+        "Dr. Peter Chen has taught which classes ?",
+        "Dr. Peter Chen taught which classes in the past ?",
+        "Dr. Peter Chen taught which classes ?",
+        "Dr. Peter Chen , what classes has he taught in the past ?",
+        "For what classes Dr. Peter Chang has been the teacher before ?",
+        "In the past what classes has Dr. Peter Chen taught ?",
+        "In the past what courses has Dr. Pete Chen taught ?",
+        "In the past , Dr. Peter Chen taught what classes ?",
+        "In the past , what classes has Dr. Peter Chen taught ?",
+        "In the past , which classes has Dr. Peter Chen taught ?",
+        "Name all of the classes Dr. Peter Chen has previously taught .",
+        "Of all the classes Dr. Peter Chen has taught in the past what were the subjects ?",
+        "Professor Peter Chen has taught which courses ?",
+        "What are all the classes Dr. Peter Chen has taught previously ?",
+        "What are the classes that Dr. Peter Chen has taught ?",
+        "What are the classes that Dr. Peter Chen taught in the past ?",
+        "What are the past classes Dr. Peter Chen has taught ?",
+        "What classes does Dr. Peter Chen have experience teaching ?",
+        "What classes from the past has Dr. Peter Chen taught ?",
+        "What classes has Dr. Peter Chen taught ?",
+        "What classes have been taught by Dr. Peter Chen in the past ?",
+        "What classes have previously been taught by Dr. Peter Chen ?",
+        "What courses has Dr. Peter Chen lectured in the past ?",
+        "What courses has Dr. Peter Chen taught in the past ?",
+        "What has Dr. Chen taught ?",
+        "What has Dr. Peter Chen taught before ?",
+        "What has Dr. Peter Chen taught in the past ?",
+        "What has Dr. Peter Chen taught previously ?",
+        "What other classes has Dr. Peter Chen taught in the past ?",
+        "What past classes has Dr. Chen taught ?",
+        "Which classes are educated by Dr.Peter Chen ?",
+        "Which classes are handled by Dr. Peter Chen ?",
+        "Which classes did Dr. Peter Chen teach in the past ?",
+        "Which classes has Dr. Peter Chen historically taught ?",
+        "Which classes has Dr. Peter Chan taught previously ?",
+        "Which classes has Dr. Peter Chen taught before ?",
+        "Which classes has Dr. Peter Chen taught in the past ?",
+        "Which classes has Dr. Peter Chen taught previously ?",
+        "Which classes were previously taught by Dr. Peter Chen ?",
+        "Which classes were taught by Dr. Peter Chen ?",
+        "Which courses did Dr. Peter Chen teach before ?",
+        "Which courses has Dr. Peter Chen taught before ?",
+        "Which past classes has Dr. Peter Chen taught ?",
+        "which classes has Dr.Chen taught before ?"
+    ],
+    "sentence": "What classes has Dr. Peter Chen taught in the past ?",
+    "sentence-with-vars": "What classes has instructor0 taught in the past ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSE_OFFERINGalias0.SEMESTER < 2070 AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.UNIQNAME LIKE \"%peter chen%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSE_OFFERINGalias0.SEMESTER < 2070 AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.UNIQNAME LIKE \"instructor0\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Dr. Peter Chen",
+            "sql-value": "peter chen"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "RUI - 0",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 1",
+        "DRK - 2"
+    ],
+    "info": [
+        "There has to be some reasoning about any yes-or-no question; we need to decide whether we want to include them in our dataset"
+    ],
+    "paraphrases": [
+        "Are we going to have a seminar for NLP this year ?",
+        "During this year will there be an NLP seminar ?",
+        "For NLP , will there be a seminar this year ?",
+        "Is an NLP seminar occurring this year ?",
+        "Is an NLP seminar planned for this year ?",
+        "Is there going to be an NLP seminar this year ?",
+        "Should we expect there to be an NLP seminar in 2016 ?",
+        "This year will there be a seminar on NLP ?",
+        "This year , is there going to be an NLP seminar ?",
+        "This year , will NLP have it 's seminar ?",
+        "This year , will there be a NLP seminar ?",
+        "This year , will there be an NLP seminar ?",
+        "Will the NLP seminar happen this year ?",
+        "Will this year have an NLP seminar ?",
+        "Will we have an NLP seminar this year ?"
+    ],
+    "sentence": "Will there be an NLP seminar this year ?",
+    "sentence-with-vars": "Will there be an NLP seminar this year ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSEalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( COURSEalias0.DESCRIPTION LIKE \"%seminar%\" OR COURSEalias0.NAME LIKE \"%Seminar%\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NAME LIKE \"%Natural language processing%\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSEalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( COURSEalias0.DESCRIPTION LIKE \"%seminar%\" OR COURSEalias0.NAME LIKE \"%Seminar%\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NAME LIKE \"%Natural language processing%\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

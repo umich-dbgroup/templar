@@ -1,0 +1,61 @@
+{
+    "accuracy": [
+        "DRK - 1"
+    ],
+    "comments": [
+        "SRS - I think this brings up results from semesters besides the current",
+        "DRK - The second query has a comment about the query that looks out of format"
+    ],
+    "helpfulness": [
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "280 is taught by professors other than Prof. Smith ?",
+        "280 is taught by teachers other than Prof. Smith ?",
+        "Any other teacher teach 280 other than Prof. Smith ?",
+        "Any other teacher teach 280 rather than Professor Smith",
+        "Any other teachers teach 280 other than Professor Smith ?",
+        "Anyone teach 280 other than Professor Smith ?",
+        "Does anyone other than Professor Smith teach 280 ?",
+        "Is 280 being taught by anyone else other than Prof. Smith ?",
+        "Is 280 taught by anyone besides Professor Smith ?",
+        "Is 280 taught by anyone other than Prof. Smith ?",
+        "Name the Professor who teach 280 other than Professor Smith .",
+        "Name the Prof. who teach 280 other than Professor Smith .",
+        "Name the other teacher who teaches 280 other than Prof. Smith .",
+        "Name the teacher who teach 280 other than Prof. Smith .",
+        "Other than Professor Smith , does anyone teach 280 ?",
+        "Other than Prof. Smith , does anyone teach 280 ?",
+        "Other than Prof. Smith , is 280 taught by others ?",
+        "Other than Prof. Smith , name the Professor who teach 280 .",
+        "Other than Prof. Smith , who else teaches 280 .",
+        "Which Professors , besides Prof. Smith teach 280 ?",
+        "Who besides Prof. Smith teaches 280 ?",
+        "Who teaches 280 besides Prof. Smith ?"
+    ],
+    "sentence": "Does anyone other than Prof. Smith teach 280 ?",
+    "sentence-with-vars": "Does anyone other than instructor0 teach number0 ?",
+    "sql": [
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND INSTRUCTORalias0.NAME NOT LIKE \"%Smith%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME NOT LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "Smith"
+        }
+    ]
+}

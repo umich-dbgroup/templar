@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many citizens does the biggest city have in the usa ?", 
+ "sentence-with-vars": "how many citizens does the biggest city have in the usa ?", 
+ "sql": "select city.population from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "sql-with-vars": "select city.population from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "variables": []
+}

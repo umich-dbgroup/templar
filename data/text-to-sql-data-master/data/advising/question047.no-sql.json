@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "What languages do they use in 388?",
+    "sentence-with-vars": "What languages do they use in number0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "388",
+            "sql-value": ""
+        }
+    ]
+}

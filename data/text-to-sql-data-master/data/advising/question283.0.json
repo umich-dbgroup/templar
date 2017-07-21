@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "LZ - They teach what?"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For the upper-level classes , who is teaching them ?",
+        "In reference to upper-level classes , who would be teaching ?",
+        "In regardless to upper-level classes , who teaches them ?",
+        "Upper-level classes are taught by what professors ?",
+        "Upper-level classes will be taught by whom ?",
+        "What professors teach upper-level classes ?",
+        "Which people teach upper-level classes ?",
+        "Which professor will be teaching upper-level classes ?",
+        "Who are the instructors for upper-level classes ?",
+        "Who are the teachers of upper-level classes ?",
+        "Who are the upper-level class teachers ?",
+        "Who are the upper-level classes taught by ?",
+        "Who are upper-level classes taught by ?",
+        "Who will teach upper-level classes ?"
+    ],
+    "sentence": "Who teaches upper-level classes ?",
+    "sentence-with-vars": "Who teaches upper-level classes ?",
+    "sql": [
+        "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSEalias0.NUMBER > 299 ;"
+    ],
+    "sql-with-vars": "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSEalias0.NUMBER > 299 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

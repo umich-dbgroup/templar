@@ -1,0 +1,55 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "JKK - There seems to be unnecessary joining here",
+        "LZ - fixed SQL as of 1.17"
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Class EECS 281 meets how often ?",
+        "Does EECS 281 meet often ?",
+        "Does the class meet for EECS 281 often ?",
+        "For class EECS 281 , how often does it meet ?",
+        "How frequently does EECS 281 meet for class ?",
+        "How frequently does the class meet for EECS 281 ?",
+        "How many time a week does the class meet for EECS 281 ?",
+        "How many times does the class meet for EECS 281 ?",
+        "How often does EECS 281 meet ?",
+        "How often does the EECS 281 class meet ?",
+        "How often does the class EECS 281 meet ?",
+        "How often does the class convene for EECS 281 ?",
+        "How often does the course EECS 281 meet ?",
+        "How often during the semester does the class meet for EECS 281 ?",
+        "How often is class held for EECS 281 ?",
+        "In EECS 281 how regularly does the class meet ?",
+        "The EECS 281 class meets how often ?",
+        "When does the class meet for EECS 281 ?",
+        "how frequently does the class meet for EECS 281 ?"
+    ],
+    "sentence": "How often does the class meet for EECS 281 ?",
+    "sentence-with-vars": "How often does the class meet for department0 number0 ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

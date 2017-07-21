@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many cities are there in the united states ?", 
+ "sentence-with-vars": "how many cities are there in the united states ?", 
+ "sql": "select count ( city.city_name ) from city ;", 
+ "sql-with-vars": "select count ( city.city_name ) from city ;", 
+ "variables": []
+}

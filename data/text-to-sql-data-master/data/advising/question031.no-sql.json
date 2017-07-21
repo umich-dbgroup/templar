@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not covered by the database"
+    ],
+    "paraphrases": [],
+    "sentence": "Is EECS 376 a required class for minoring in EECS?",
+    "sentence-with-vars": "Is department0 number0 a required class for minoring in department0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "376",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

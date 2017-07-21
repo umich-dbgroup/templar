@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many airlines fly from new york to los angeles by way of milwaukee",
+    "sq2": "SELECT  COUNT(*) FROM airline v0 \nWHERE (v0.airline_code IN (\nSELECT v1.airline_code FROM flight v1 \nWHERE ((v1.from_airport IN (\nSELECT v2.airport_code FROM airport_service v2 \nWHERE (v2.city_code IN (\nSELECT v3.city_code FROM city v3 \nWHERE (v3.city_name = 'NEW YORK'))))) \nAND ((v1.to_airport IN (\nSELECT v4.airport_code FROM airport_service v4 \nWHERE (v4.city_code IN (\nSELECT v5.city_code FROM city v5 \nWHERE (v5.city_name = 'LOS ANGELES'))))) \nAND (v1.flight_id IN (\nSELECT v6.flight_id FROM flight_stop v6 \nWHERE (v6.stop_airport IN (\nSELECT v7.airport_code FROM airport_service v7 \nWHERE (v7.city_code IN (\nSELECT v8.city_code FROM city v8 \nWHERE (v8.city_name = 'MILWAUKEE')))))))))));",
+    "sql": [
+        "SELECT COUNT ( * ) FROM AIRLINE WHERE AIRLINE . AIRLINE_CODE IN ( SELECT FLIGHT . AIRLINE_CODE FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' LOS ANGELES ' ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MILWAUKEE ' ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

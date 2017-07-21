@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of the largest city in the state with the largest area ?", 
+ "sentence-with-vars": "what is the population of the largest city in the state with the largest area ?", 
+ "sql": "select city.population from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select city.population from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "variables": []
+}

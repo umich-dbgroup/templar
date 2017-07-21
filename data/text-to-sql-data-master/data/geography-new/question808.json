@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the tallest mountain in america ?", 
+ "sentence-with-vars": "what is the tallest mountain in america ?", 
+ "sql": "select mountain.mountain_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;", 
+ "sql-with-vars": "select mountain.mountain_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;", 
+ "variables": [
+  {
+   "name": "", 
+   "sentence-value": "", 
+   "sql-value": ""
+  }
+ ]
+}

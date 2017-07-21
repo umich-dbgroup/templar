@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "LZ - 0"
+    ],
+    "comments": [
+        "JKK - These are copied from the old doc and should be checked",
+        "LZ - It's answering how many, not what"
+    ],
+    "helpfulness": [
+        "JKK - 0",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "In Winter 2017 , what courses does Prof. DeOrio teach ?",
+        "In winter 2017 , which courses are taught by Prof. DeOrio ?",
+        "Name the courses that Prof. DeOrio will teach in winter 2017 ?",
+        "Name the courses that are taught by Prof. DeOrio in winter 2017",
+        "Prof. DeOrio teaches in Winter 2017 what courses ?",
+        "Prof. DeOrio teaches which courses in Winter 2017 ?",
+        "This Winter , what courses does Prof. DeOrio teach ?",
+        "What are the classes Professor DeOrio teaches Winter 2017 ?",
+        "What classes does Prof. DeOrio teach in Winter 2017 ?",
+        "What is the class schedule for Prof. DeOrio in winter 217 ?",
+        "What will Prof. DeOrio be teaching in the winter of 2017 ?"
+    ],
+    "sentence": "What courses does Prof. DeOrio teach in Winter 2017 ?",
+    "sentence-with-vars": "What courses does instructor0 teach in semester0 year0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%deorio%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = YEAR0 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2017 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. DeOrio",
+            "sql-value": "deorio"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Winter",
+            "sql-value": ""
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2017",
+            "sql-value": "2017"
+        }
+    ]
+}

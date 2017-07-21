@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - This shows courses from multiple years instead of current/future year."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses I can take in the Spring or Summer semester to satisfy my MDE requirement ?",
+        "By taking which courses in Spring or Summer , my MDE requirement will be satisfied ?",
+        "I need to satisfy my MDE requirement , so what courses can I take in Spring or Summer semester ?",
+        "In order to fulfill my MDE requirement , which spring/summer courses can I take ?",
+        "Of all the courses which 1 can I take in the Spring or Summer semester to satisfy my MDE requirement ?",
+        "To meet the MDE requirement which courses can I take in the Spring or Summer semester ?",
+        "What courses are available for me to take in spring or summer to meet my MDE requirement ?",
+        "What courses can I take in the Spring or Summer semester to satisfy my MDE requirement ?",
+        "What courses in Spring or Summer will satisfy my MDE requirement ?",
+        "What courses offered in the Spring or Summer semester allow me to satisfy my MDE requirement ?",
+        "What spring/summer courses can I take to fulfill my MDE requirement ?",
+        "Which Spring or Summer classes can I take in order to meet my MDE requirement ?",
+        "Which Spring or summer courses are available to meet my MDE requirement ?",
+        "Which courses can I take during the Spring or Summer semester to meet my MDE requirement ?"
+    ],
+    "sentence": "Which courses can I take in the Spring or Summer semester to satisfy my MDE requirement ?",
+    "sentence-with-vars": "Which courses can I take in the semester0 or semester1 semester to satisfy my MDE requirement ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE ( SEMESTERalias0.SEMESTER = \"SP\" OR SEMESTERalias0.SEMESTER = \"SU\" ) AND PROGRAM_COURSEalias0.CATEGORY LIKE \"MDE\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE ( SEMESTERalias0.SEMESTER = \"semester0\" OR SEMESTERalias0.SEMESTER = \"semester1\" ) AND PROGRAM_COURSEalias0.CATEGORY LIKE \"MDE\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "Spring",
+            "sql-value": "SP"
+        },
+        {
+            "name": "semester1",
+            "sentence-value": "Summer",
+            "sql-value": "SU"
+        }
+    ]
+}

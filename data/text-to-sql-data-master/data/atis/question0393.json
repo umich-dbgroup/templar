@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what is the abbreviation d ten",
+    "sq2": "SELECT DISTINCT  '\"'||v0.aircraft_description||'\"', '\"'||v0.aircraft_code||'\"' FROM aircraft v0 \nWHERE (v0.aircraft_code = 'D10');",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.AIRCRAFT_DESCRIPTION FROM AIRCRAFT WHERE AIRCRAFT.AIRCRAFT_CODE = ' D10 ' ) ;"
+    ],
+    "variables": []
+}

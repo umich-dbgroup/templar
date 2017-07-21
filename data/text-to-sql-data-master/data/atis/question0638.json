@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "united airlines flights stopping in denver before noon",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"', '\"'||v1.flight_id||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"',\n '\"'||v4.flight_id||'\"', '\"'||v5.flight_id||'\"',\n '\"'||v6.airport_code||'\"', '\"'||v7.city_code||'\"',\n '\"'||v7.city_name||'\"', v5.arrival_time, v1.stop_number, v4.leg_number FROM flight v0,\n flight_stop v1, airport_service v2,\n city v3, flight_leg v4, flight v5, airport_service v6, city v7 \nWHERE ((v0.airline_code = 'UA') AND (((v0.flight_id = ANY v1.flight_id) \nAND ((v1.stop_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) AND (v3.city_name = 'DENVER')))) \nAND ((v0.flight_id = ANY v4.flight_id) AND ((v4.leg_flight = ANY v5.flight_id) \nAND (((v5.to_airport = ANY v6.airport_code) \nAND ((v6.city_code = ANY v7.city_code) \nAND (v7.city_name = 'DENVER'))) AND (v5.arrival_time <  1200))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' UA ' AND ( FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_LEG . FLIGHT_ID FROM FLIGHT_LEG WHERE FLIGHT_LEG . LEG_FLIGHT IN ( SELECT FLIGHT . FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND FLIGHT.ARRIVAL_TIME < 1200 ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

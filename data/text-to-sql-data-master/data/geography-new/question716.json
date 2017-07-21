@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers run through the states bordering colorado ?", 
+ "sentence-with-vars": "how many rivers run through the states bordering state0 ?", 
+ "sql": "select count ( river.river_name ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' colorado ' ) ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "colorado", 
+   "sql-value": "colorado"
+  }
+ ]
+}

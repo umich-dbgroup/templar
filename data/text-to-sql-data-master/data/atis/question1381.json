@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "nonstop or connecting flights from seattle to boston",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.stops, v0.connections,\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"' FROM flight v0, airport_service v1,\n city v2, airport_service v3, city v4 \nWHERE ((((v0.stops =  0) \nAND ( 1 =  1)) OR ((v0.connections >  0) AND ( 1 =  1))) \nAND (((v0.from_airport = ANY v1.airport_code) AND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'SEATTLE'))) \nAND ((v0.to_airport = ANY v3.airport_code) AND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'BOSTON')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( ( FLIGHT.STOPS = 0 AND 1 = 1 ) OR ( FLIGHT.CONNECTIONS > 0 AND 1 = 1 ) ) AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SEATTLE ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' BOSTON ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what state has the largest area ?", 
+ "sentence-with-vars": "what state has the largest area ?", 
+ "sql": "select state.state_name from state where state.area = ( select max ( state.area ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.area = ( select max ( state.area ) from state ) ;", 
+ "variables": [
+  {
+   "name": "", 
+   "sentence-value": "", 
+   "sql-value": ""
+  }
+ ]
+}

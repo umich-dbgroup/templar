@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states have major rivers ?", 
+ "sentence-with-vars": "how many states have major rivers ?", 
+ "sql": "select count ( river.traverse ) from river where river.length > 750 ;", 
+ "sql-with-vars": "select count ( river.traverse ) from river where river.length > number0 ;", 
+ "variables": [
+    {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "750"
+   }
+ ]
+}

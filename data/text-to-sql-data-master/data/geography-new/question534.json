@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state is mount mckinley in ?", 
+ "sentence-with-vars": "which state is mountain0 in ?", 
+ "sql": "select mountain.state_name from mountain where mountain.mountain_name = ' mckinley ' ;", 
+ "sql-with-vars": "select mountain.state_name from mountain where mountain.mountain_name = ' mountain0 ' ;", 
+ "variables": [
+  {
+   "name": "mountain0", 
+   "sentence-value": "mount mckinley", 
+   "sql-value": "mckinley"
+  }
+ ]
+}

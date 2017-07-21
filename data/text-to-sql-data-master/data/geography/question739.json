@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the cities of the state with the highest point ?", 
+ "sentence-with-vars": "what are the cities of the state with the highest point ?", 
+ "sql": "select city.city_name from city where city.state_name in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) ;", 
+ "variables": []
+}

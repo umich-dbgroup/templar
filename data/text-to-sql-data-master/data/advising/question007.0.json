@@ -1,0 +1,53 @@
+{
+    "accuracy": [
+        "DRK - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "JKK - Is there a way to simplify this?"
+    ],
+    "helpfulness": [
+        "DRK - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Any suggestions for some easier software classes than EECS 281 ?",
+        "Are there any other software courses that are easier than EECS 281 ?",
+        "Are there software courses that are easier than EECS 281 ?",
+        "Are there some easier software courses than EECS 281 , that you could suggest ?",
+        "Can you advise me on software courses that are easier than EECS 281 ?",
+        "Could you tell me which software course might be more simple than EECS 281 ?",
+        "Do you have any other suggestions for easier software classes than EECS 281 ?",
+        "Do you have any suggestions for software courses that are easier than EECS 281 ?",
+        "Do you know of any other software courses that are easier than EECS 281 ?",
+        "Do you know of any software courses that are easier than EECS 281 ?",
+        "Give a listing of software courses easier than EECS 281 .",
+        "Please help me find software courses that are more facile than EECS 281 .",
+        "Recommend software courses which are easier than EECS 281 .",
+        "Since EECS 281 is too hard , can you suggest some easier software courses ?",
+        "What are some software courses that are easier than EECS 281 ?",
+        "What are your suggestions for software courses that are easier than EECS 281 ?",
+        "What software courses are easier than EECS 281 ?",
+        "Which software courses are easier than EECS 281 ?"
+    ],
+    "sentence": "Can you suggest some software courses that are easier than EECS 281 ?",
+    "sentence-with-vars": "Can you suggest some software courses that are easier than department0 number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%software%\" AND PROGRAM_COURSEalias0.WORKLOAD < ( SELECT PROGRAM_COURSEalias1.WORKLOAD FROM COURSE AS COURSEalias1 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias1 ON PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID WHERE COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 281 ) ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%software%\" AND PROGRAM_COURSEalias0.WORKLOAD < ( SELECT PROGRAM_COURSEalias1.WORKLOAD FROM COURSE AS COURSEalias1 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias1 ON PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID WHERE COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number0 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

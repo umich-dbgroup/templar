@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the total length of all the rivers in the usa ?", 
+ "sentence-with-vars": "what is the total length of all the rivers in the usa ?", 
+ "sql": "select sum ( river.length ) from river ;", 
+ "sql-with-vars": "select sum ( river.length ) from river ;", 
+ "variables": []
+}

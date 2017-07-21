@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "I want to pursue a career in web development. What courses should I take?",
+    "sentence-with-vars": "I want to pursue a career in topic0. What courses should I take?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "topic0",
+            "sentence-value": "web development",
+            "sql-value": ""
+        }
+	]
+}

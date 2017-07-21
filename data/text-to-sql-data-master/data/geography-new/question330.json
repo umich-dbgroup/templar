@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "give me the cities in usa ?", 
+ "sentence-with-vars": "give me the cities in usa ?", 
+ "sql": "select city.city_name from city ;", 
+ "sql-with-vars": "select city.city_name from city ;", 
+ "variables": []
+}

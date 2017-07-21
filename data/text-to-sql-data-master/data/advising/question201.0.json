@@ -1,0 +1,63 @@
+{
+    "accuracy": [
+        "SRS - 0",
+        "DRK - 0"
+    ],
+    "comments": [
+        "SRS - The query searches for FA 2016 instead of 2015.",
+        "DRK - Question asks for Fall 2015, query uses Fall 2016"
+    ],
+    "helpfulness": [
+        "SRS - 0",
+        "DRK - 2"
+    ],
+    "info": [
+        "LZ - fixed SQL year=2015->2016 as of 1.19"
+    ],
+    "paraphrases": [
+        "281 is taught in the Fall of 2015 in the afternoon ?",
+        "During Fall 2015 , is 281 offered in the afternoon ?",
+        "For 281 , is it being offered in the afternoon in the fall of 2015 ?",
+        "In Fall 2015 is 281 offered in the afternoon ?",
+        "In Fall 2015 , in the afternoon , will 281 be available ?",
+        "In Fall of 2015 is 281 offered in the afternoon ?",
+        "In regards to 281 , is it offered in Fall 2015 sometime after noon ?",
+        "In the Fall 2015 in the afternoon is 281 offered ?",
+        "In the Fall 2015 is 281 offered in the afternoon ?",
+        "In the Fall of 2015 is 281 offered in the afternoon ?",
+        "In the afternoon for Fall 2015 , is 281 offered ?",
+        "In the afternoon in Fall 2015 , is 281 offered ?",
+        "In the afternoon of Autumn 2015 , is 281 available ?",
+        "In the afternoon of Fall 2015 is 281 offered ?",
+        "Is there an afternoon 281 class in Fall 2015 ?"
+    ],
+    "sentence": "Is 281 offered in Fall 2015 in the afternoon ?",
+    "sentence-with-vars": "Is number0 offered in semester0 year0 in the afternoon ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , COURSE_OFFERINGalias0.START_TIME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME >= \"12 : 00 : 00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2015 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , COURSE_OFFERINGalias0.START_TIME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME >= \"12:00:00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": "FA"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2015",
+            "sql-value": "2015"
+        }
+    ]
+}

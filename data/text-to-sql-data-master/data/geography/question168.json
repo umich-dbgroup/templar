@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the length of the colorado river in texas ?", 
+ "sentence-with-vars": "what is the length of the river0 in state0 ?", 
+ "sql": "select river.length from river where river.river_name = ' colorado ' and river.traverse = ' texas ' ;", 
+ "sql-with-vars": "select river.length from river where river.river_name = ' river0 ' and river.traverse = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "colorado river", 
+   "sql-value": "colorado"
+  }, 
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  }
+ ]
+}

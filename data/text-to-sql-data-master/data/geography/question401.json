@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major cities of the united states ?", 
+ "sentence-with-vars": "what are the major cities of the united states ?", 
+ "sql": "select city.city_name from city where city.population > 150000 ;", 
+ "sql-with-vars": "select city.city_name from city where city.population > number0 ;", 
+ "variables": [
+  {
+  "name": "number0",
+	"sentence-value": "",
+  "sql-value": "150000"
+}
+ ]
+}

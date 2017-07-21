@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Between CHEM 125 and CHEM 130 , how are they different ?",
+        "Can you tell me what 's different between CHEM 130 and CHEM 125 ?",
+        "Differentiate between CHEM 125 and CHEM 130 .",
+        "How are CHEM 130 and CHEM 125 different ?",
+        "How does CHEM 130 differ from CHEM 125 ?",
+        "How is CHEM 130 different from CHEM 125 ?",
+        "Name the difference between CHEM 130 and CHEM 125 .",
+        "Tell me the difference between courses CHEM 130 and CHEM 125 .",
+        "Tell me the differences between CHEM 130 and CHEM 125 .",
+        "What are the major differences between CHEM 130 and CHEM 125 ?",
+        "What is the difference between the courses CHEM 130 and CHEM 125 ?",
+        "What 's different between the CHEM 130 class and the CHEM 125 class ?",
+        "What 's the difference between CHEM 125 and CHEM 130 ?",
+        "What 's the difference between courses CHEM 130 and CHEM 125 ?"
+    ],
+    "sentence": "What 's the difference between CHEM 130 and CHEM 125 ?",
+    "sentence-with-vars": "What 's the difference between department0 number0 and department0 number1 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.DESCRIPTION , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( COURSEalias0.DEPARTMENT = \"CHEM\" AND COURSEalias0.NUMBER = 125 ) OR ( COURSEalias0.DEPARTMENT = \"CHEM\" AND COURSEalias0.NUMBER = 130 ) ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.DESCRIPTION , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ) OR ( COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number1 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "130",
+            "sql-value": "130"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "125",
+            "sql-value": "125"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "CHEM",
+            "sql-value": "CHEM"
+        }
+    ]
+}

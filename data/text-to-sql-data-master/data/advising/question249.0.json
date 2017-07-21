@@ -1,0 +1,54 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "LZ - 1"
+    ],
+    "comments": [
+        "CFD - query will be >1 when 494's workload is less than 381's, so it answers \"Is 494 easier than 381?\" Switch < to > when comparing workloads.",
+        "LZ - Better just show the difficulty"
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "LZ - 1"
+    ],
+    "info": [
+        "Alternate - Is EECS 281 harder than EECS 280?"
+    ],
+    "paraphrases": [
+        "Compared to EECS 381 , is EECS 494 more tough ?",
+        "Do you find that EECS 494 is more of a challenge than EECS 381 ?",
+        "For EECS 381 , is EECS 494 more difficult ?",
+        "Is EECS 381 easier than EECS 494 ?",
+        "Is EECS 494 a lot harder than EECS 381 ?",
+        "Is EECS 494 harder than EECS 381 ?",
+        "Is the EECS 494 class considered more difficult than EECS 381 ?",
+        "When comparing to EECS 381 , is EECS 494 more difficult ?",
+        "Would EECS 381 be easier than EECS 494 ?",
+        "Would you say EECS 494 is harder to pass than EECS 381 ?",
+        "Would you say that EECS 494 is more difficult that EECS 381 ?"
+    ],
+    "sentence": "Is EECS 494 more difficult than EECS 381 ?",
+    "sentence-with-vars": "Is department0 number0 more difficult than department0 number1 ?",
+    "sql": [
+        "SELECT COUNT( * ) > 1 FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias1 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 494 AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 381 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD < PROGRAM_COURSEalias1.WORKLOAD AND PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * )> 1 FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias1 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number1 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD < PROGRAM_COURSEalias1.WORKLOAD AND PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "494",
+            "sql-value": "494"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "381",
+            "sql-value": "381"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the average population per square km in the us ?", 
+ "sentence-with-vars": "what is the average population per square km in the us ?", 
+ "sql": "select sum ( state.population ) / sum ( state.area ) from state ;", 
+ "sql-with-vars": "select sum ( state.population ) / sum ( state.area ) from state ;", 
+ "variables": []
+}

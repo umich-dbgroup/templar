@@ -1,0 +1,37 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Any Senior Design Capstones classes available next term ?",
+        "Any available Senior Design Capstones next semester ?",
+        "Are any classes available next semester for Senior Design Capstone fulfillment ?",
+        "Are there any classes available next semester as Senior Design Capstones ?",
+        "For Senior Design Capstones , what classes can I take next semester ?",
+        "In the next semester which classes are available as Senior Design Capstones ?",
+        "Name the classes next semester which are available as senior design capstones ?",
+        "Next semester which classes are available as Senior Design Capstones ?",
+        "Next semester , what Senior Design Capstone courses are available ?",
+        "Next semester , what classes are available as Senior Design Capstones ?",
+        "Next semester , what classes can I take that are Senior Design Capstones ?",
+        "What classes available as Senior Design Capstones are there for next semester ?",
+        "Which classes are available as Senior Design Capstones from the classes next semester ?",
+        "Which classes are available as Senior Design Capstones next semester ?",
+        "Which of next semester 's classes can be taken as Senior Design Capstones ?"
+    ],
+    "sentence": "What classes next semester are available as Senior Design Capstones ?",
+    "sentence-with-vars": "What classes next semester are available as Senior Design Capstones ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

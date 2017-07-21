@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all of the !daily flights arriving in denver between eight and nine p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.flight_days||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n v0.arrival_time FROM flight v0, airport_service v1,\n city v2 \nWHERE ((v0.flight_days = 'DAILY') AND (((v0.to_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'DENVER'))) AND ((v0.arrival_time >=  2000) \nAND (v0.arrival_time <=  2100))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.FLIGHT_DAYS = ' DAILY ' AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND ( FLIGHT.ARRIVAL_TIME > = 2000 AND FLIGHT.ARRIVAL_TIME < = 2100 ) ) ) ) ;"
+    ],
+    "variables": []
+}

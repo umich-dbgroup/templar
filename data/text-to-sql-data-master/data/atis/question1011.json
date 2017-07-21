@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "only show continental flights",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"' FROM flight v0 \nWHERE ((v0.airline_code = 'CO') AND ( 1 =  1));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' CO ' AND 1 = 1 ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,58 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "CFD - Tells us whether the courses are available, but not if this student is eligible to take them.",
+        "SRS - Assumes year 2016"
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Am I able to take 400-level classes in spring or summer term ?",
+        "Are 400-level classes offered for me in spring term or summer term ?",
+        "Can 400-level classes be taken by me in the spring or summer term ?",
+        "Can I enroll in 400-level classes for the spring or summer term ?",
+        "During the spring or summer term can I take 400-level classes ?",
+        "For the spring or summer term , can I take 400-level classes ?",
+        "In the spring or summer term are there 400-level classes available to take ?",
+        "Is it ok to take 400-level classes in spring or summer term ?",
+        "Is it possible for me to take the 400-level classes , in the spring or summer term ?",
+        "Is it possible to take 400-level classes in spring or summer ?",
+        "Are there any 400-level courses in the spring or summer term that I can take ?",
+        "May I sign up for 400-level classes in spring or summer term ?"
+    ],
+    "sentence": "Can I take 400-level classes in the Spring or Summer term ?",
+    "sentence-with-vars": "Can I take number0 classes in semester0 or semester1 term ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER >= 400 AND SEMESTERalias0.SEMESTER IN ( \"SP\" , \"SU\" , \"SS\" ) AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER >= number0 AND SEMESTERalias0.SEMESTER IN ( \"semester0\" , \"semester1\" , \"SS\" ) AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "number0",
+            "sentence-value": "400-level",
+            "sql-value": "400"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Spring",
+            "sql-value": "SP"
+        },
+        {
+            "name": "semester1",
+            "sentence-value": "Summer",
+            "sql-value": "SU"
+        }
+    ]
+}

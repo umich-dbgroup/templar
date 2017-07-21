@@ -1,0 +1,36 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "how many french restaurants are there in palo alto ?",
+          "how many french restaurant are there in palo alto ?",
+          "how many places for french are there in palo alto ?"
+     ],
+     "paraphrases-with-vars": [
+          "how many VARfood restaurants are there in VARcity ?",
+          "how many VARfood restaurant are there in VARcity ?",
+          "how many places for VARfood are there in VARcity ?"
+     ],
+     "sentence": "how many places for french food are there in palo alto ?",
+     "sentence-with-vars": "how many places for VARfood food are there in VARcity ?",
+     "sql": [
+          "select count(*) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='palo alto' and RESTAURANT.FOOD_TYPE='french'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='VARcity' and RESTAURANT.FOOD_TYPE='VARfood'"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "palo alto",
+               "sql-value": "palo alto"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

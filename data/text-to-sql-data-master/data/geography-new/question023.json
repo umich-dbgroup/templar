@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point of the state with the largest area ?", 
+ "sentence-with-vars": "what is the highest point of the state with the largest area ?", 
+ "sql": "select highlow.highest_point from highlow , state where highlow.state_name = state.state_name and state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select highlow.highest_point from highlow , state where highlow.state_name = state.state_name and state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "variables": []
+}

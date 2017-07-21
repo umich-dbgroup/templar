@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "CFD - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "About EECS 281 , do you know what days it 's taught on exactly ?",
+        "Can you tell me the days of the week that EECS 281 is taught ?",
+        "EECS 281 is offered on which days ?",
+        "EECS 281 is taught in which days of the week ?",
+        "EECS 281 is taught on what days of the week ?",
+        "EECS 281 is taught on which days of the week ?",
+        "EECS 281 is taught when in the week ?",
+        "In regards to EECS 281 , what days during the week is the class held ?",
+        "Name the days of the week EECS 281 is taught .",
+        "Name the days when EECS 281 is taught .",
+        "On what days of the week are the EECS 281 classes ?",
+        "What days is EECS 281 going on ?",
+        "What days of the week does EECS 281 meet ?",
+        "When are the EECS 281 classes in the week .",
+        "Which days is EECS 281 taught in a week ?",
+        "Which days is EECS 281 taught ?"
+    ],
+    "sentence": "Which days of the week is EECS 281 taught ?",
+    "sentence-with-vars": "Which days of the week is department0 number0 taught ?",
+    "sql": [
+        "SELECT DISTINCT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 ORDER BY SEMESTERalias0.YEAR DESC ;",
+        "SELECT DISTINCT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.SATURDAY , COURSE_OFFERINGalias0.SUNDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ORDER BY SEMESTERalias0.YEAR DESC ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

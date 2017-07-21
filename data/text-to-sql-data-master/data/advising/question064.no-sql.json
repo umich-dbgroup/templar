@@ -1,0 +1,14 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "reasoning"
+    ],
+    "paraphrases": [],
+    "sentence": "Can I sign up for a CS thesis course this semester, or are there other classes I need to take first?",
+    "sentence-with-vars": "Can I sign up for a CS thesis course this semester, or are there other classes I need to take first?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": []
+}

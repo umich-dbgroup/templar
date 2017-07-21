@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "CFD - Delete s.semester and s.year from select clause?"
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "482 is offered when in next semester ?",
+        "482 will be offered at what times during next semester ?",
+        "For next semester , when is 482 offered ?",
+        "In next semester when is 482 offered ?",
+        "Is 482 offered next semester and when ?",
+        "Next semester when is 482 offered ?",
+        "482 is offered next semester when ?",
+        "What is the schedule of 482 next semester ?",
+        "What time next semester is 482 offered ?",
+        "What time is 482 offered the next semester ?",
+        "What 's 482 's schedule next semester ?",
+        "When is 482 being given next semester ?",
+        "When is 482 going to be offered next semester ?"
+    ],
+    "sentence": "When is 482 offered next semester ?",
+    "sentence-with-vars": "When is number0 offered next semester ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.SATURDAY , COURSE_OFFERINGalias0.SECTION_NUMBER , COURSE_OFFERINGalias0.START_TIME , COURSE_OFFERINGalias0.SUNDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 482 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.SATURDAY , COURSE_OFFERINGalias0.SECTION_NUMBER , COURSE_OFFERINGalias0.START_TIME , COURSE_OFFERINGalias0.SUNDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

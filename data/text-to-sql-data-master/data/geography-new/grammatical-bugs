@@ -1,0 +1,19 @@
+
+"which states do colorado river flow through ?"
+"what are the population of mississippi ?"
+"what is capital of iowa ?"
+
+- "sentence": "what cities in texas have the highest populations ?",
++ "sentence": "what cities in texas have highest populations ?",
+- "sentence": "what are the major cities in texas ?",
++ "sentence": "what is the major cities in texas ?",
+- "sentence": "give me the cities in california .",
++ "sentence": "give me the cities in california ?",
+- "sentence": "give me the longest river that runs through a state in the us .",
++ "sentence": "give me the longest river that runs through a state in the us ?",
+- "sentence": "what is the tallest mountain in the us ?",
++ "sentence": "what is the tallest mountain in us ?",
+- "sentence": "which states does the colorado traverse ?",
++ "sentence": "which states does the colorado ?",
+
+"name all the lakes of us ?"

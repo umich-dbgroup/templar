@@ -1,0 +1,227 @@
+what is the highest point of the usa ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+what is the highest point in the country ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+what is the highest point in the usa ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+what is the highest point in the us ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+
+what are the capitals of the states that border texas ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 texas : s ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+
+how many cities named austin are there in the usa ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( named : <e,<n,t>> $0 austin : n ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+
+what is the most populated state bordering oklahoma ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 oklahoma : s ) ) ) ( lambda $1 : e ( population : <lo,i> $1 ) ) )
+
+which is the smallest state ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) )
+what state has the smallest area ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( area : <lo,i> $1 ) ) )
+what is the smallest state in the usa ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) )
+what is the state with the smallest area ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( area : <lo,i> $1 ) ) )
+
+how many states are next to major rivers ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( river : <r,t> $1 ) ( major : <lo,t> $1 ) ( next_to : <lo,<lo,t>> $0 $1 ) ) ) ) ) ) )
+
+what rivers flow through the state with the largest population ? ||| ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( population : <lo,i> $2 ) ) ) ) ) )
+
+what is the population of the state with the largest area ? ||| ( population : <lo,i> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( area : <lo,i> $1 ) ) ) )
+what is the population of the largest state ? ||| ( population : <lo,i> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) ) )
+
+what is the capital of the state that has the longest river ? ||| ( capital : <s,c> ( the : <<e,t>,e> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( river : <r,t> $1 ) ) ( lambda $2 : e ( len : <r,i> $2 ) ) ) $0 ) ) ) ) )
+what is the capital of the state with the longest river ? ||| ( capital : <s,c> ( the : <<e,t>,e> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( river : <r,t> $1 ) ) ( lambda $2 : e ( len : <r,i> $2 ) ) ) $0 ) ) ) ) )
+
+what is the area of maine ? ||| ( area : <lo,i> maine : s )
+what is the area of texas ? ||| ( area : <lo,i> texas : s )
+what is the area of the texas state ? ||| ( area : <lo,i> texas : s )
+how large is alaska ? ||| ( size : <lo,i> alaska : s )
+what is the area of alaska ? ||| ( area : <lo,i> alaska : s )
+how large is texas ? ||| ( size : <lo,i> texas : s )
+what is the area of south carolina ? ||| ( area : <lo,i> south_carolina : s )
+what is the area of idaho ? ||| ( area : <lo,i> idaho : s )
+what is the area of wisconsin ? ||| ( area : <lo,i> wisconsin : s )
+what is the area of florida ? ||| ( area : <lo,i> florida : s )
+how big is new mexico ? ||| ( size : <lo,i> new_mexico : s )
+how big is minnesota ? ||| ( size : <lo,i> minnesota : s )
+how big is north dakota ? ||| ( size : <lo,i> north_dakota : s )
+how big is alaska ? ||| ( size : <lo,i> alaska : s )
+how big is massachusetts ? ||| ( size : <lo,i> massachusetts : s )
+what is the area of california ? ||| ( area : <lo,i> california : s )
+what is the size of texas ? ||| ( size : <lo,i> texas : s )
+what is the size of florida ? ||| ( size : <lo,i> florida : s )
+what is the size of california ? ||| ( size : <lo,i> california : s )
+how big is texas ? ||| ( size : <lo,i> texas : s )
+what is the area of new mexico ? ||| ( area : <lo,i> new_mexico : s )
+what is the area of ohio ? ||| ( area : <lo,i> ohio : s )
+what is the area of maryland in square kilometers ? ||| ( area : <lo,i> maryland : s )
+
+how many states border the state with the largest population ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( population : <lo,i> $2 ) ) ) ) ) ) )
+
+what is the largest city in smallest state through which the mississippi runs ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> mississippi_river : r $1 ) ) ) ( lambda $2 : e ( size : <lo,i> $2 ) ) ) ) ) ) ( lambda $3 : e ( size : <lo,i> $3 ) ) )
+
+what rivers flow through states that border the state with the largest population ? ||| ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $2 : e ( state : <s,t> $2 ) ) ( lambda $3 : e ( population : <lo,i> $3 ) ) ) ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+
+what is the capital of the state with the highest point ? ||| ( capital : <s,c> ( the : <<e,t>,e> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) ) ) )
+what is the capital of the state with the highest elevation ? ||| ( capital : <s,c> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) ) )
+
+what state borders the state with the smallest population ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( population : <lo,i> $2 ) ) ) ) ) )
+
+what is the population of the capital of the largest state ? ||| ( population : <lo,i> ( capital : <s,c> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) ) ) )
+
+name all the lakes of us . ||| ( lambda $0 : e ( and : <t*,t> ( lake : <l,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) )
+
+how many rivers do not traverse the state with the capital albany ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( not : <t,t> ( loc : <lo,<lo,t>> $0 ( the : <<e,t>,e> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( capital2 : <s,<c,t>> $1 albany_ny : c ) ) ) ) ) ) ) ) )
+
+what are the population densities of each us state ? ||| ( lambda $0 : e ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( density : <lo,<i,t>> $1 $0 ) ) ) ) )
+
+what is the area of the smallest state ? ||| ( area : <lo,i> ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) ) )
+
+what is the highest point in the state with the smallest population ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( population : <lo,i> $2 ) ) ) ) ) ) ( lambda $3 : e ( elevation : <lo,i> $3 ) ) )
+
+what is the highest point of the state with the largest area ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( area : <lo,i> $2 ) ) ) ) ) ) ( lambda $3 : e ( elevation : <lo,i> $3 ) ) )
+
+where is mount whitney located ? ||| ( lambda $0 : e ( loc : <lo,<lo,t>> mount_whitney : m $0 ) )
+where is mount whitney ? ||| ( lambda $0 : e ( loc : <lo,<lo,t>> mount_whitney : m $0 ) )
+which state is mount mckinley in ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mount_mckinley : m $0 ) ) )
+in what state is mount mckinley ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mount_mckinley : m $0 ) ) )
+in what state is mount mckinley ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mount_mckinley : m $0 ) ) )
+
+what is the capital of maine ? ||| ( capital : <s,c> maine : s )
+what is the capital of georgia ? ||| ( capital : <s,c> georgia : s )
+what is the capital of new hampshire ? ||| ( capital : <s,c> new_hampshire : s )
+what is the capital of hawaii ? ||| ( capital : <s,c> hawaii : s )
+what is the capital of iowa ? ||| ( capital : <s,c> iowa : s )
+what is the capital of illinois ? ||| ( capital : <s,c> illinois : s )
+what is the capital of utah ? ||| ( capital : <s,c> utah : s )
+what is the capital of north dakota ? ||| ( capital : <s,c> north_dakota : s )
+what is the capital of vermont ? ||| ( capital : <s,c> vermont : s )
+what is the capital of washington ? ||| ( capital : <s,c> washington : s )
+what are the capital city in texas ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ( city : <c,t> $0 ) ) )
+can you tell me the capital of texas ? ||| ( capital : <s,c> texas : s )
+what is the capital of the alabama state ? ||| ( capital : <s,c> alabama : s )
+what is the capital of indiana ? ||| ( capital : <s,c> indiana : s )
+what is the capital of new york ? ||| ( capital : <s,c> new_york : s )
+what is the capital of colorado ? ||| ( capital : <s,c> colorado : s )
+what is the capital of the state texas ? ||| ( capital : <s,c> texas : s )
+what is the capital of ohio ? ||| ( capital : <s,c> ohio : s )
+what is the capital of california ? ||| ( capital : <s,c> california : s )
+what is the capital of texas ? ||| ( capital : <s,c> texas : s )
+what is the capital of new jersey ? ||| ( capital : <s,c> new_jersey : s )
+what is the capital of michigan ? ||| ( capital : <s,c> michigan : s )
+what is the capital of maryland ? ||| ( capital : <s,c> maryland : s )
+what is the capital of massachusetts ? ||| ( capital : <s,c> massachusetts : s )
+what is the capital of the florida state ? ||| ( capital : <s,c> florida : s )
+
+what is the highest point in the state with the most rivers ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( place : <p,t> $0 ) ( loc : <lo,<lo,t>> $0 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( count : <<e,t>,i> ( lambda $3 : e ( and : <t*,t> ( river : <r,t> $3 ) ( loc : <lo,<lo,t>> $3 $2 ) ) ) ) ) ) ) ) ) ( lambda $4 : e ( elevation : <lo,i> $4 ) ) )
+
+what are the capital cities of the states which border texas ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( city : <c,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 texas : s ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+what are the capitals of states that border missouri ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 missouri : s ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+which capitals are in states that border texas ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 texas : s ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+what are the capitals of states that border texas ? ||| ( lambda $0 : e ( and : <t*,t> ( capital : <c,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( next_to : <lo,<lo,t>> $1 texas : s ) ( loc : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+
+how many rivers are in the state with the highest point ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 ( the : <<e,t>,e> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $2 : e ( place : <p,t> $2 ) ) ( lambda $3 : e ( elevation : <lo,i> $3 ) ) ) $1 ) ) ) ) ) ) ) )
+
+what states border states that the mississippi runs through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> mississippi_river : r $1 ) ( next_to : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+what states border states that the ohio runs through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> ohio_river : r $1 ) ( next_to : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+what states border states which the mississippi runs through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> mississippi_river : r $1 ) ( next_to : <lo,<lo,t>> $0 $1 ) ) ) ) ) )
+
+give me the lakes in california ? ||| ( lambda $0 : e ( and : <t*,t> ( lake : <l,t> $0 ) ( loc : <lo,<lo,t>> $0 california : s ) ) )
+
+how many states are there in the united states ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are there ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( state : <s,t> $0 ) ) )
+how many states does usa have ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are there in the usa ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are in the united states ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are there in the usa ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are in the usa ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+how many states are there in united states ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) )
+
+what state contains the highest point in the us ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( and : <t*,t> ( place : <p,t> $1 ) ( loc : <lo,<lo,t>> $1 usa : co ) ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+which state has the highest point ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+what is the state that contains the highest point ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+what state has the highest elevation ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+what state has highest elevation ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+which state has the highest elevation ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+in which state does the highest point in usa exist ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( and : <t*,t> ( place : <p,t> $1 ) ( loc : <lo,<lo,t>> $1 usa : co ) ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+
+what cities in texas have the highest populations ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) ) ( lambda $1 : e ( population : <lo,i> $1 ) ) )
+
+what is the name of the state with the lowest point ? ||| ( lambda $0 : e ( named : <e,<n,t>> ( the : <<e,t>,e> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( loc : <lo,<lo,t>> ( argmin : <<e,t>,<<e,i>,e>> ( lambda $2 : e ( place : <p,t> $2 ) ) ( lambda $3 : e ( elevation : <lo,i> $3 ) ) ) $1 ) ) ) ) $0 ) )
+what is the state with the lowest point ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( place : <p,t> $1 ) ) ( lambda $2 : e ( elevation : <lo,i> $2 ) ) ) $0 ) ) )
+which state has the lowest elevation ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+
+what states border the state with the smallest area ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( area : <lo,i> $2 ) ) ) ) ) )
+which states border the state with the smallest area ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 ( argmin : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( state : <s,t> $1 ) ) ( lambda $2 : e ( area : <lo,i> $2 ) ) ) ) ) )
+
+what are the cities in california ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 california : s ) ) )
+give me the cities in virginia ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 virginia : s ) ) )
+give me the cities which are in texas ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) )
+give me the cities in texas ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) )
+give me the cities in california ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 california : s ) ) )
+what cities in california ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 california : s ) ) )
+what cities are located in pennsylvania ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 pennsylvania : s ) ) )
+tell me what cities are in texas ? ||| ( lambda $0 : e ( and : <t*,t> ( city : <c,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) )
+
+which states have points higher than the highest point in colorado ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( place : <p,t> $1 ) ( > : <i,<i,t>> ( elevation : <lo,i> $1 ) ( elevation : <lo,i> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $2 : e ( and : <t*,t> ( place : <p,t> $2 ) ( loc : <lo,<lo,t>> $2 colorado : s ) ) ) ( lambda $3 : e ( elevation : <lo,i> $3 ) ) ) ) ) ) ) ) ) )
+
+what is the height of the highest mountain in texas ? ||| ( elevation : <lo,i> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( mountain : <m,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) ) )
+
+what is the population density in the state with capital austin ? ||| ( density : <lo,i> ( the : <<e,t>,e> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( capital2 : <s,<c,t>> $0 austin_tx : c ) ) ) ) )
+
+which states does the longest river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( river : <r,t> $1 ) ) ( lambda $2 : e ( len : <r,i> $2 ) ) ) $0 ) ) )
+which state has the longest river ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( river : <r,t> $1 ) ) ( lambda $2 : e ( len : <r,i> $2 ) ) ) $0 ) ) )
+what are the states through which the longest river runs ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( river : <r,t> $1 ) ) ( lambda $2 : e ( len : <r,i> $2 ) ) ) $0 ) ) )
+
+what is the highest point in each state whose lowest point is sea level ? ||| ( lambda $0 : e ( equals : <e,<e,t>> $0 ( argmax : <<e,t>,<<e,i>,e>> ( lambda $1 : e ( and : <t*,t> ( place : <p,t> $1 ) ( exists : <<e,t>,t> ( lambda $2 : e ( and : <t*,t> ( state : <s,t> $2 ) ( = : <i,<i,t>> ( elevation : <lo,i> ( argmin : <<e,t>,<<e,i>,e>> ( lambda $3 : e ( and : <t*,t> ( place : <p,t> $3 ) ( loc : <lo,<lo,t>> $3 $2 ) ) ) ( lambda $4 : e ( elevation : <lo,i> $4 ) ) ) ) 0 : i ) ( loc : <lo,<lo,t>> $0 $2 ) ) ) ) ) ) ( lambda $5 : e ( elevation : <lo,i> $5 ) ) ) ) )
+
+what is the shortest river in iowa ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 iowa : s ) ) ) ( lambda $1 : e ( len : <r,i> $1 ) ) )
+what is the shortest river in texas ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) ) ( lambda $1 : e ( len : <r,i> $1 ) ) )
+what is the shortest river in nebraska ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 nebraska : s ) ) ) ( lambda $1 : e ( len : <r,i> $1 ) ) )
+what is the shortest river in alaska ? ||| ( argmin : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 alaska : s ) ) ) ( lambda $1 : e ( len : <r,i> $1 ) ) )
+
+where is massachusetts ? ||| ( lambda $0 : e ( loc : <lo,<lo,t>> massachusetts : s $0 ) )
+where is new hampshire ? ||| ( lambda $0 : e ( loc : <lo,<lo,t>> new_hampshire : s $0 ) )
+
+what states does the missouri run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> missouri_river : r $0 ) ) )
+what are the states that the potomac run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> potomac_river : r $0 ) ) )
+what states does the ohio river go through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ohio_river : r $0 ) ) )
+what states does the delaware river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> delaware_river : r $0 ) ) )
+what states does the ohio river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> ohio_river : r $0 ) ) )
+which states does the mississippi run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+which states does colorado river flow through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> colorado_river : r $0 ) ) )
+which states does the missouri river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> missouri_river : r $0 ) ) )
+which states does the missouri run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> missouri_river : r $0 ) ) )
+which states does the mississippi river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+what states does the missouri river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> missouri_river : r $0 ) ) )
+what states does the mississippi run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+what states does the colorado river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> colorado_river : r $0 ) ) )
+which state has the red river ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> red_river : r $0 ) ) )
+what are the states next to the mississippi ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+through which states does the mississippi flow ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+through which states does the mississippi run ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> mississippi_river : r $0 ) ) )
+what states have rivers named colorado ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( named : <e,<n,t>> $1 colorado : n ) ( river : <r,t> $1 ) ( loc : <lo,<lo,t>> $1 $0 ) ) ) ) ) )
+where is the chattahoochee river ? ||| ( lambda $0 : e ( loc : <lo,<lo,t>> chattahoochee_river : r $0 ) )
+which states does the chattahoochee river run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> chattahoochee_river : r $0 ) ) )
+which states does the colorado run through ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> colorado_river : r $0 ) ) )
+
+what is the highest mountain in us ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( mountain : <m,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+what is the highest mountain in the us ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( mountain : <m,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+what is the tallest mountain in us ? ||| ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( and : <t*,t> ( mountain : <m,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) ) ( lambda $1 : e ( elevation : <lo,i> $1 ) ) )
+
+what are the states ? ||| ( lambda $0 : e ( state : <s,t> $0 ) )
+give me all the states of usa ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( loc : <lo,<lo,t>> $0 usa : co ) ) )
+list the states ? ||| ( lambda $0 : e ( state : <s,t> $0 ) )
+
+how many rivers in washington ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 washington : s ) ) ) )
+how many rivers run through texas ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) ) )
+how many rivers are there in idaho ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 idaho : s ) ) ) )
+how many rivers are found in colorado ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 colorado : s ) ) ) )
+how many rivers are in new york ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 new_york : s ) ) ) )
+how many rivers in iowa ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 iowa : s ) ) ) )
+how many rivers are in missouri ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 missouri : s ) ) ) )
+how many rivers are in texas ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 texas : s ) ) ) )
+how many rivers are in colorado ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 colorado : s ) ) ) )
+give me the number of rivers in california ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 california : s ) ) ) )
+how many rivers does colorado have ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( river : <r,t> $0 ) ( loc : <lo,<lo,t>> $0 colorado : s ) ) ) )
+
+what states border texas and have a major river ? ||| ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 texas : s ) ( exists : <<e,t>,t> ( lambda $1 : e ( and : <t*,t> ( major : <lo,t> $1 ) ( river : <r,t> $1 ) ( loc : <lo,<lo,t>> $1 $0 ) ) ) ) ) )
+
+how many states border the state whose capital is boston ? ||| ( count : <<e,t>,i> ( lambda $0 : e ( and : <t*,t> ( state : <s,t> $0 ) ( next_to : <lo,<lo,t>> $0 ( the : <<e,t>,e> ( lambda $1 : e ( and : <t*,t> ( state : <s,t> $1 ) ( capital2 : <s,<c,t>> $1 boston_ma : c ) ) ) ) ) ) ) )
+
+what is the area of the states ? ||| ( area : <lo,i> usa : co )
+
+what is the population density of the largest state ? ||| ( density : <lo,i> ( argmax : <<e,t>,<<e,i>,e>> ( lambda $0 : e ( state : <s,t> $0 ) ) ( lambda $1 : e ( size : <lo,i> $1 ) ) ) )
+

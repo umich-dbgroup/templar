@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "JKK - Providing more than requested (explicitly says course number, but we give departnment and name too)"
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 2"
+    ],
+    "info": [
+        "Again, might do better with Lucene or IR-based approach. This query gives us 0 results if we look for \"%video game%\" instead of \"%game%\""
+    ],
+    "paraphrases": [
+        "For the class about video games , what is the course number ?",
+        "For the video game class , what is its course number ?",
+        "For the video game class , what is the course number ?",
+        "For the video game class , what 's the course number ?",
+        "The course number for the video game class is what ?",
+        "The video game class has what for a course number ?",
+        "What is the class number of the video game course ?",
+        "What is the number of the course for video games ?",
+        "What is the video game class course number ?",
+        "What 's the number of the course on video games ?",
+        "What 's the video game class course number ?",
+        "When it comes to the video game course , what 's the course number ?"
+    ],
+    "sentence": "What 's the course number for the video game class ?",
+    "sentence-with-vars": "What 's the course number for the video game class ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( COURSEalias0.DESCRIPTION LIKE \"%game%\" OR COURSEalias0.NAME LIKE \"%game%\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( COURSEalias0.DESCRIPTION LIKE \"%game%\" OR COURSEalias0.NAME LIKE \"%game%\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

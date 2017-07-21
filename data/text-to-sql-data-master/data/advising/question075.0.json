@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [
+        "Again, every yes/no question requires a little bit of reasoning. We could check if the instructor for 482 is p.chen, we could check if 482 is a list of all the courses p.chen is teaching next semester, or we could check if the set of courses that are 482 and have instructor p.chen is non-empty. Our query depends somewhat on our reasoning."
+    ],
+    "paraphrases": [
+        "Class 482 , is P.Chen teaching it next winter ?",
+        "Does P.Chen teach 482 next winter ?",
+        "For 482 , is P. Chen the teacher next winter ?",
+        "In 482 class is P.Chen teaching next winter ?",
+        "Is 482 being taught by P. Chen next winter ?",
+        "Is next winter 's 482 class taught by P. Chen ?",
+        "Is the 482 winter class being taught by P.Chen ?",
+        "Next winter is P. Chen teaching 482 ?",
+        "Next winter , is P. Chen teaching 482 ?",
+        "Next winter , will P. Chen be teaching 482 ?",
+        "Who is teaching 482 next winter ?",
+        "Will P. Chen be teaching 482 for next winter ?"
+    ],
+    "sentence": "Is P. Chen teaching 482 next winter ?",
+    "sentence-with-vars": "Is instructor0 teaching number0 next winter ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 482 AND INSTRUCTORalias0.NAME LIKE \"%chen%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"wn\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2017 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"wn\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2017 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "P. Chen",
+            "sql-value": "chen"
+        }
+    ]
+}

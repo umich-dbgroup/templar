@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest state that borders the state with the highest population ?", 
+ "sentence-with-vars": "what is the largest state that borders the state with the highest population ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select border_info.state_name from border_info where border_info.border in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select border_info.state_name from border_info where border_info.border in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select border_info.state_name from border_info where border_info.border in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select border_info.state_name from border_info where border_info.border in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) ) ;", 
+ "variables": []
+}

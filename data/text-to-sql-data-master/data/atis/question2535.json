@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many flights does northwest have leaving dulles",
+    "sq2": "SELECT  COUNT(*), '\"'||v0.airline_code||'\"' FROM flight v0 \nWHERE ((v0.airline_code = 'NW') AND (v0.from_airport IN (\nSELECT v1.airport_code FROM airport v1 \nWHERE (v1.airport_code = 'IAD')))) GROUP BY v0.airline_code;",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' NW ' AND FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' IAD ' ) ) ;"
+    ],
+    "variables": []
+}

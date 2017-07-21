@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please give me the number of flights that depart from lester b pearson international airport on april twenty fifth",
+    "sq2": "SELECT  COUNT(*) FROM flight v0 \nWHERE ((v0.from_airport IN (\nSELECT v1.airport_code FROM airport v1 \nWHERE (v1.airport_name = 'LESTER B. PEARSON INTERNATIONAL'))) \nAND (v0.flight_days IN (\nSELECT v2.days_code FROM days v2 \nWHERE (v2.day_name IN (\nSELECT v3.day_name FROM date_day v3 \nWHERE (((v3.year =  1994) \nAND (v3.month_number =  4)) AND (v3.day_number =  25)))))));",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_NAME = ' LESTER B. PEARSON INTERNATIONAL ' ) AND FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1994 AND DATE_DAY.MONTH_NUMBER = 4 AND DATE_DAY.DAY_NUMBER = 25 ) ) ) ;"
+    ],
+    "variables": []
+}

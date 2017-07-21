@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what rivers flow through the largest state ?", 
+ "sentence-with-vars": "what rivers flow through the largest state ?", 
+ "sql": "select river.river_name from river where river.traverse in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "variables": []
+}

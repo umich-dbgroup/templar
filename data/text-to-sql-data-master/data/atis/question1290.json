@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me all flights from san diego to new york using d c tens",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"', '\"'||v3.airport_code||'\"',\n '\"'||v4.city_code||'\"', '\"'||v4.city_name||'\"',\n '\"'||v5.aircraft_code_sequence||'\"', '\"'||v6.aircraft_code||'\"',\n '\"'||v6.basic_type||'\"' FROM flight v0, airport_service v1,\n city v2, airport_service v3, city v4, equipment_sequence v5,\n aircraft v6 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'SAN DIEGO'))) \nAND (((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) AND (v4.city_name = 'NEW YORK'))) \nAND ((v0.aircraft_code_sequence = ANY v5.aircraft_code_sequence) \nAND ((v5.aircraft_code = ANY v6.aircraft_code) \nAND (v6.basic_type = 'DC10')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SAN DIEGO ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) AND FLIGHT . AIRCRAFT_CODE_SEQUENCE IN ( SELECT EQUIPMENT_SEQUENCE . AIRCRAFT_CODE_SEQUENCE FROM EQUIPMENT_SEQUENCE WHERE EQUIPMENT_SEQUENCE . AIRCRAFT_CODE IN ( SELECT AIRCRAFT . AIRCRAFT_CODE FROM AIRCRAFT WHERE AIRCRAFT.BASIC_TYPE = ' DC10 ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

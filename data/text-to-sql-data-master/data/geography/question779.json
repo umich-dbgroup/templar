@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest state traversed by the mississippi river ?", 
+ "sentence-with-vars": "what is the largest state traversed by the river0 ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' state0 ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi river", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

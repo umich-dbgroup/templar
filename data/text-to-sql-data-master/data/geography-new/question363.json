@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "show major cities in colorado ?", 
+ "sentence-with-vars": "show major cities in state0 ?", 
+ "sql": "select city.city_name from city where city.state_name = ' colorado ' and city.population > 150000 ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "colorado", 
+   "sql-value": "colorado"
+  }, 
+  {
+   "name": "number0", 
+   "sentence-value": "", 
+   "sql-value": "150000"
+  }
+ ]
+}

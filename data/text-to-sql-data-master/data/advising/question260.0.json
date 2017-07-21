@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "SRS - In this case, a yes-no answer may be more helpful."
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Do you only offer the class EECS 280 in the fall semester ?",
+        "Does EECS 280 get taught in the fall only ?",
+        "EECS 280 is only offered in the fall , correct ?",
+        "Is EECS 280 not offered in any semester other than the fall ?",
+        "Is EECS 280 taught only in the fall ?",
+        "Is fall the only time EECS 280 is offered ?",
+        "Is it true that EECS 280 is only available in the fall ?",
+        "Is the fall the only time that EECS 280 is offered ?",
+        "Is the only time EECS 280 is offered , the fall ?",
+        "The fall is the only time EECS 280 will be offered ?"
+    ],
+    "sentence": "Is EECS 280 only offered in the fall ?",
+    "sentence-with-vars": "Is department0 number0 only offered in the semester0 ?",
+    "sql": [
+        "SELECT DISTINCT SEMESTERalias0.SEMESTER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT SEMESTERalias0.SEMESTER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "fall",
+            "sql-value": ""
+        }
+    ]
+}

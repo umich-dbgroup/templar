@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states have a higher point than the highest point of the state with the largest capital city in the us ?", 
+ "sentence-with-vars": "how many states have a higher point than the highest point of the state with the largest capital city in the us ?", 
+ "sql": "select count ( highlow.state_name ) from highlow where highlow.highest_elevation > ( select highlow.highest_elevation from highlow where highlow.state_name = ( select state.state_name from state where state.capital = ( select city.city_name from city where city.population = ( select max ( city.population ) from city ) ) ) ) ;", 
+ "sql-with-vars": "select count ( highlow.state_name ) from highlow where highlow.highest_elevation > ( select highlow.highest_elevation from highlow where highlow.state_name = ( select state.state_name from state where state.capital = ( select city.city_name from city where city.population = ( select max ( city.population ) from city ) ) ) ) ;", 
+ "variables": []
+}

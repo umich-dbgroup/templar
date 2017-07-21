@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the largest cities in the states that border the largest state ?", 
+ "sentence-with-vars": "what are the largest cities in the states that border the largest state ?", 
+ "sql": "select city.city_name from state , city where state.state_name in ( select border_info.border from state , border_info where state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) and state.state_name = border_info.state_name ) and state.state_name = city.state_name and city.population = ( select max ( city.population ) from state , city where state.state_name in ( select border_info.border from state , border_info where state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) and state.state_name = border_info.state_name ) and state.state_name = city.state_name ) ;", 
+ "sql-with-vars": "select city.city_name from state , city where state.state_name in ( select border_info.border from state , border_info where state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) and state.state_name = border_info.state_name ) and state.state_name = city.state_name and city.population = ( select max ( city.population ) from state , city where state.state_name in ( select border_info.border from state , border_info where state.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) and state.state_name = border_info.state_name ) and state.state_name = city.state_name ) ;", 
+ "variables": []
+}

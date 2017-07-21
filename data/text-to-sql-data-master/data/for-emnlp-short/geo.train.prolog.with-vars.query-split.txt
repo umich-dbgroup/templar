@@ -1,0 +1,793 @@
+what are the major rivers in the cc0 ? ||| answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what cities in s0 have highest populations ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+what cities in s0 have the highest number of citizens ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+which city in s0 has the largest population ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+what is the most populous city in s0 ? ||| answer ( A , largest ( A , ( population ( B , A ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+what is the most populous city in s0 ? ||| answer ( A , largest ( B , ( population ( A , B ) , city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) ) ) )
+what is the city in s0 with the largest population ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city of s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest city in s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what s0 city has the largest population ? ||| answer ( A , largest ( B , ( const ( C , stateid ( s0 ) ) , city ( A ) , loc ( A , C ) , population ( A , B ) ) ) )
+what is the largest city in s0 by population ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+
+give me the cities in cc0 ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+
+what is the area of the state with the capital c0 ? ||| answer ( A , ( area ( B , A ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( c0 , _ ) ) ) )
+
+how many rivers are in the state with the largest population ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , largest ( D , ( state ( C ) , population ( C , D ) ) ) ) , A ) )
+
+which state is traversed by the most rivers ? ||| answer ( A , most ( A , B , ( state ( A ) , loc ( B , A ) , river ( B ) ) ) )
+
+what are the cities of the state with the lowest point ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , lowest ( C , place ( C ) ) ) )
+
+what is the area of the largest state ? ||| answer ( A , ( area ( B , A ) , largest ( B , state ( B ) ) ) )
+
+what is the largest city in a state that borders s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+what is the longest river in the state with the highest point ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , highest ( C , place ( C ) ) ) ) )
+
+what are the major rivers in s0 ? ||| answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what major rivers run through s0 ? ||| answer ( A , ( major ( A ) , river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major rivers in s0 ? ||| answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+name the major rivers in s0 . ||| answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are major rivers in s0 ? ||| answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+
+what is the longest river in the states that border s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+what is the longest river that flows through a state that borders s0 ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+what is the population of the largest city in the state with the largest area ? ||| answer ( A , ( population ( B , A ) , largest ( B , ( city ( B ) , loc ( B , C ) , largest ( D , ( state ( C ) , area ( C , D ) ) ) ) ) ) )
+
+how many states border the state that borders the most states ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , most ( C , D , ( state ( C ) , next_to ( C , D ) , state ( D ) ) ) ) , A ) )
+
+what is the smallest city in the smallest state ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) )
+
+what state has the longest river ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , longest ( B , river ( B ) ) ) )
+
+how large is the largest city in s0 ? ||| answer ( A , ( size ( B , A ) , largest ( B , ( city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+how many people live in the biggest city in s0 state ? ||| answer ( A , ( population ( B , A ) , largest ( B , ( city ( B ) , loc ( B , C ) , const ( C , stateid ( ' s0 ' ) ) , state ( C ) ) ) ) )
+
+what is the most populous state through which the r0 runs ? ||| answer ( A , largest ( B , ( population ( A , B ) , state ( A ) , const ( C , riverid ( r0 ) ) , traverse ( C , A ) ) ) )
+
+what are the major cities in the states through which the major river in s0 runs ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , state ( B ) , river ( C ) , loc ( C , D ) , const ( D , stateid ( s0 ) ) , traverse ( C , B ) ) )
+
+what is the highest point in the states bordering s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+what is the biggest city in the smallest state ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , smallest ( B , state ( B ) ) ) ) )
+what is the largest city in the smallest state in the cc0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) )
+
+how many states border s1 and border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s1 ) ) , next_to ( B , D ) , const ( D , stateid ( ' s0 ' ) ) ) , A ) )
+
+what is the total population of the states that border s0 ? ||| answer ( A , sum ( B , ( population ( C , B ) , state ( C ) , next_to ( D , C ) , const ( D , stateid ( s0 ) ) ) , A ) )
+
+what is the largest state that the r0 runs through ? ||| answer ( A , largest ( A , ( state ( A ) , const ( B , riverid ( ' r0 ' ) ) , traverse ( B , A ) ) ) )
+
+what is the shortest river ? ||| answer ( A , shortest ( A , river ( A ) ) )
+which is the shortest river ? ||| answer ( A , shortest ( A , river ( A ) ) )
+what is the shortest river in the cc0 ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the shortest river in the cc0 ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the shortest river in the cc0 ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+how many states do not have rivers ? ||| answer ( A , count ( B , ( state ( B ) , \ + ( loc ( C , B ) , river ( C ) ) ) , A ) )
+
+which state has the largest city ? ||| answer ( A , largest ( B , ( state ( A ) , loc ( B , A ) , city ( B ) ) ) )
+what state has the city with the most population ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , largest ( C , ( city ( B ) , population ( B , C ) ) ) ) )
+what state has the city with the largest population ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , largest ( C , ( city ( B ) , population ( B , C ) ) ) ) )
+what state has the largest city ? ||| answer ( A , largest ( B , ( state ( A ) , loc ( B , A ) , city ( B ) ) ) )
+
+what is the population of the capital of the largest state through which the r0 runs ? ||| answer ( A , ( population ( B , A ) , capital ( B ) , loc ( B , C ) , largest ( C , ( state ( C ) , const ( D , riverid ( r0 ) ) , traverse ( D , C ) ) ) ) )
+
+what is the capital of the state with the largest population density ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , density ( B , C ) ) ) ) )
+
+what is the length of the river that flows through the most states ? ||| answer ( A , ( len ( B , A ) , most ( B , C , ( river ( B ) , traverse ( B , C ) , state ( C ) ) ) ) )
+what is the length of the river that runs through the most number of states ? ||| answer ( A , ( len ( B , A ) , most ( B , C , ( river ( B ) , traverse ( B , C ) , state ( C ) ) ) ) )
+what is the length of the river that runs through the most states ? ||| answer ( A , ( len ( B , A ) , most ( B , C , ( river ( B ) , traverse ( B , C ) , state ( C ) ) ) ) )
+what is the length of the river that traverses the most states ? ||| answer ( A , ( len ( B , A ) , most ( B , C , ( river ( B ) , traverse ( B , C ) , state ( C ) ) ) ) )
+
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many citizens live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many citizens in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people stay in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( s0 , _ ) ) ) )
+how many people reside in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people are in the state of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many residents live in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how many people are there in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+how many people are there in s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+how much population does s0 have ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what can you tell me about the population of s0 ? ||| answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+
+what rivers run through the states that border the state with the capital c0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , state ( C ) , loc ( D , C ) , capital ( D ) , const ( D , cityid ( c0 , _ ) ) ) )
+
+what are the rivers in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the rivers of s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what river flows through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the rivers in the state of s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) )
+what are the rivers in the state of s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers flow through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers run through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what river flows through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what river runs through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what river runs through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers run through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what river flows through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+rivers in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what rivers are there in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+which rivers flow through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are all the rivers in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+name the rivers in s0 . ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+name all the rivers in s0 . ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers run through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what rivers run through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what rivers run through s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what rivers are in s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what is the river that cross over s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+
+count the states which have elevations lower than what s0 has ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , low_point ( B , C ) , lower ( C , D ) , low_point ( E , D ) , const ( E , stateid ( s0 ) ) , loc ( D , E ) ) , A ) )
+
+how many major cities are there ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) ) , A ) )
+
+what is the biggest city in the cc0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the largest city ? ||| answer ( A , largest ( A , city ( A ) ) )
+what city has the most people ? ||| answer ( A , largest ( B , ( city ( A ) , population ( A , B ) ) ) )
+what city has the largest population ? ||| answer ( A , largest ( B , ( city ( A ) , population ( A , B ) ) ) )
+what is the biggest city in the cc0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the biggest city in cc0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the most populous city ? ||| answer ( A , largest ( B , ( population ( A , B ) , city ( A ) ) ) )
+what city in the cc0 has the highest population density ? ||| answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , countryid ( co0 ) ) , density ( A , B ) ) ) )
+
+c0 is the capital of which state ? ||| answer ( A , ( const ( B , cityid ( c0 , _ ) ) , capital ( B ) , loc ( B , A ) , state ( A ) ) )
+what states capital is c0 ? ||| answer ( A , ( state ( A ) , capital ( A , B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what state has the capital c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , capital ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what state is c0 the capital of ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , capital ( B ) , loc ( B , A ) ) )
+what state is c0 the capital of ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , capital ( B ) , loc ( B , A ) ) )
+
+what are the highest points of all the states ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) ) ) )
+
+what is the largest state that borders s0 ? ||| answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what is the lowest elevation in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what is the capital of the state with the lowest point ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , lowest ( C , ( state ( B ) , loc ( C , B ) , place ( C ) ) ) ) )
+
+what is the area of the state with the largest population density ? ||| answer ( A , ( area ( B , A ) , largest ( C , ( state ( B ) , density ( B , C ) ) ) ) )
+
+what is the smallest state through which the longest river runs ? ||| answer ( A , smallest ( A , ( state ( A ) , longest ( B , river ( B ) ) , traverse ( B , A ) ) ) )
+
+what is the population of c0 massachusetts ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , ma ) ) ) )
+what is the population of c0 missouri ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , mo ) ) ) )
+how many people live in c0 texas ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , tx ) ) ) )
+what is the population of c0 pennsylvania ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , pa ) ) ) )
+what is the population of c0 arizona ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , az ) ) ) )
+what is the population of c0 washington ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , wa ) ) ) )
+what is the population of c0 maine ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , me ) ) ) )
+how many people live in c0 washington ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , wa ) ) ) )
+what is the population of c0 texas ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , tx ) ) ) )
+
+how many states does the r0 river run through ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) , A ) )
+how many states does the s0 river run through ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , riverid ( s0 ) ) , river ( C ) , traverse ( C , B ) ) , A ) )
+how many states does the r0 river run through ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) , A ) )
+how many states does the r0 run through ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , riverid ( r0 ) ) , traverse ( C , B ) ) , A ) )
+how many states does the r0 river flow through ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) , A ) )
+
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the longest river that flows through s0 ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the longest river flowing through s0 ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest river in s0 state ? ||| answer ( A , largest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the biggest river in s0 ? ||| answer ( A , largest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what are the biggest rivers in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the longest river in s0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what are the cities of the state with the highest point ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , highest ( C , place ( C ) ) ) )
+
+what are the major cities in states through which the r0 runs ? ||| answer ( A , ( major ( A ) , city ( A ) , state ( B ) , traverse ( C , B ) , const ( C , riverid ( r0 ) ) ) )
+
+what is the longest river in the smallest state in the cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) )
+
+what is the population density of the state with the smallest population ? ||| answer ( A , ( density ( B , A ) , smallest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+how many states have a higher point than the highest point of the state with the largest capital city in the cc0 ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , higher ( C , D ) , place ( C ) , highest ( D , ( place ( D ) , loc ( D , E ) , state ( E ) , loc ( F , E ) , largest ( F , ( capital ( F ) , city ( F ) , loc ( F , G ) , const ( G , countryid ( co0 ) ) ) ) ) ) ) , A ) )
+
+which state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what states have towns named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+what states have a city named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what state is c0 located in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( ' c0 ' , _ ) ) , loc ( B , A ) ) )
+what state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+what states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+which states have cities named c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+which state is the city c0 located in ? ||| answer ( A , ( state ( A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what state has the city c0 ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) )
+in which state is c0 ? ||| answer ( A , ( loc ( B , A ) , state ( A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+where is c0 ? ||| answer ( A , ( loc ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+what state is c0 in ? ||| answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , loc ( B , A ) ) )
+c0 is in what state ? ||| answer ( A , ( const ( B , cityid ( ' c0 ' , _ ) ) , loc ( B , A ) , state ( A ) ) )
+
+what is the capital of the state with the largest population ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+what state bordering s0 has the largest population ? ||| answer ( A , largest ( B , ( state ( A ) , next_to ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) )
+
+what is the population of the smallest state ? ||| answer ( A , smallest ( B , ( population ( B , A ) , state ( B ) ) ) )
+
+what states in the cc0 have a city of c0 ? ||| answer ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) , loc ( C , A ) , const ( C , cityid ( c0 , _ ) ) ) )
+
+what is the highest point in the state with capital c0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( ' c0 ' , _ ) ) ) ) )
+what is the highest point in the state with capital c0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( c0 , _ ) ) ) ) )
+what is the highest point in the state with the capital c0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( ' c0 ' , _ ) ) ) ) )
+
+how many rivers in s0 are longer than the r0 ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) , longer ( B , D ) , const ( D , riverid ( r0 ) ) ) , A ) )
+
+what is the highest elevation in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest elevation in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+how tall is the highest point in s0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+how high is the highest point of s0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+how high is the highest point of s0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+how high is the highest point of s0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+how high is the highest point of s0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 in meters ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what states border states that border states that border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , next_to ( B , C ) , state ( C ) , next_to ( C , D ) , const ( D , stateid ( s0 ) ) ) )
+
+how tall is p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+
+what is the combined population of all 50 states ? ||| answer ( A , sum ( B , ( population ( C , B ) , state ( C ) ) , A ) )
+how many people live in the cc0 ? ||| answer ( A , ( population ( B , A ) , const ( B , countryid ( co0 ) ) ) )
+
+what rivers flow through the largest state ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , largest ( B , state ( B ) ) ) )
+
+what is the lowest point in the cc0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the lowest point in the cc0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the lowest point in cc0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+what is the largest city in states that border s0 ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+how many people live in the capital of s0 ? ||| answer ( A , ( population ( B , A ) , capital ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+what are the names of the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what major cities are located in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in c0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( c0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+show major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what is the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what is the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities of s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the major cities in s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+
+what is the length of the r0 river in s0 ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+what is the longest river in the largest state ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , largest ( B , state ( B ) ) ) ) )
+
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+where is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+where is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+could you tell me what is the highest point in the state of s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest point in s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest mountain in s0 ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the highest mountain in s0 ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the high point of s0 ? ||| answer ( A , ( high_point ( B , A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+
+what is the population density of s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population density of s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the population density of s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the density of s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+what is the density of s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) )
+
+what is the highest point in the cc0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+what is the longest river that passes the states that border the state that borders the most states ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , most ( C , D , ( state ( C ) , next_to ( C , D ) , state ( D ) ) ) ) ) )
+
+what is the lowest point of all states through which the r0 river runs through ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) ) )
+
+what city has the least population ? ||| answer ( A , smallest ( B , ( city ( A ) , population ( A , B ) ) ) )
+what is the smallest city in the cc0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the city with the smallest population ? ||| answer ( A , smallest ( B , ( city ( A ) , population ( A , B ) ) ) )
+what is the smallest city in the cc0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+what are the major cities in the largest state ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , largest ( B , state ( B ) ) ) )
+
+what is the lowest point of the state with the largest area ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) )
+
+how many major cities are in s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many major cities are there in s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many major cities are in s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many major cities are in s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many big cities are in s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+
+how high is the highest point in the largest state ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , largest ( C , state ( C ) ) ) ) ) )
+
+what is the largest state that borders the state with the highest population ? ||| answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) ) )
+
+how long is the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( ' r0 ' ) ) , river ( B ) ) )
+how long is the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( ' r0 ' ) ) , river ( B ) ) )
+what is the length of the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+what length is the r0 ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) ) )
+how long is the s0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( s0 ) ) , river ( B ) ) )
+how long is the s0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( s0 ) ) , river ( B ) ) )
+how long is the s0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( s0 ) ) , river ( B ) ) )
+how long is the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+how long is the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+how long is the r0 ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) ) )
+how long is r0 ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( ' r0 ' ) ) ) )
+how long is the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+how long is the r0 river in miles ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+
+how many r0 rivers are there ? ||| answer ( A , count ( B , ( const ( B , riverid ( r0 ) ) , river ( B ) ) , A ) )
+how many rivers are called r0 ? ||| answer ( A , count ( B , ( river ( B ) , const ( B , riverid ( r0 ) ) ) , A ) )
+
+how many major cities are in states bordering s0 ? ||| answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , state ( C ) , next_to ( C , D ) , const ( D , stateid ( s0 ) ) ) , A ) )
+
+what is the smallest state that borders s0 ? ||| answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the smallest state bordering s0 ? ||| answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+which is the smallest state bordering s0 ? ||| answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the smallest state that borders s0 ? ||| answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+give me the largest state ? ||| answer ( A , largest ( A , state ( A ) ) )
+what is the state with the largest area ? ||| answer ( A , largest ( B , ( state ( A ) , area ( A , B ) ) ) )
+state the state with the largest area ? ||| answer ( A , ( state ( A ) , largest ( B , ( state ( A ) , area ( A , B ) ) ) ) )
+what is the largest state ? ||| answer ( A , largest ( A , state ( A ) ) )
+what is the biggest state ? ||| answer ( A , largest ( A , state ( A ) ) )
+what is the biggest state in the cc0 ? ||| answer ( A , largest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the state with the largest area ? ||| answer ( A , largest ( B , ( state ( A ) , area ( A , B ) ) ) )
+what is the largest state in the cc0 ? ||| answer ( A , largest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the largest state in cc0 ? ||| answer ( A , largest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what state is the biggest ? ||| answer ( A , largest ( A , state ( A ) ) )
+what is the biggest state in continental cc0 ? ||| answer ( A , largest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+what is the largest state bordering s0 ? ||| answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the largest state bordering s0 ? ||| answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what states does the shortest river run through ? ||| answer ( A , ( state ( A ) , shortest ( B , river ( B ) ) , traverse ( B , A ) ) )
+
+what is the capital of states that have cities named c0 ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , city ( C ) , const ( C , cityid ( c0 , _ ) ) ) )
+
+what is the capital of the largest state ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , largest ( B , state ( B ) ) ) )
+what is the capital of the largest state in cc0 ? ||| answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , largest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+what is the capital city of the largest state in the cc0 ? ||| answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , largest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+
+what is the longest river in the state with the most major cities ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , most ( B , C , ( state ( B ) , loc ( C , B ) , major ( C ) , city ( C ) ) ) ) ) )
+
+what mountains are in s0 ? ||| answer ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+
+how many citizens does the biggest city have in the usa ? ||| answer ( A , ( population ( B , A ) , largest ( B , city ( B ) ) ) )
+
+what is the highest point of the state with the smallest population density ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , smallest ( C , ( state ( B ) , density ( B , C ) ) ) ) ) )
+
+what is the biggest american city in a state with a river ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , river ( C ) ) ) )
+
+what is the capital of the state that borders the most states ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , most ( B , C , ( state ( B ) , next_to ( B , C ) , state ( C ) ) ) ) )
+
+how many people live in the state with the largest population density ? ||| answer ( A , ( population ( B , A ) , largest ( C , ( state ( B ) , density ( B , C ) ) ) ) )
+what is the population of the state with the highest population density ? ||| answer ( A , ( population ( B , A ) , largest ( C , ( state ( B ) , density ( B , C ) ) ) ) )
+
+what is the total length of all the rivers in the usa ? ||| answer ( A , sum ( B , ( len ( C , B ) , river ( C ) ) , A ) )
+
+what is the largest state traversed by the r0 river ? ||| answer ( A , largest ( A , ( state ( A ) , traverse ( B , A ) , const ( B , riverid ( r0 ) ) ) ) )
+
+where is the highest mountain of the cc0 ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+how many states have major rivers ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , major ( C ) , river ( C ) ) , A ) )
+
+name the states which have no surrounding states . ||| answer ( A , ( state ( A ) , \ + ( next_to ( A , B ) , state ( B ) ) ) )
+
+what is the combined area of all 50 states ? ||| answer ( A , sum ( B , ( area ( C , B ) , state ( C ) ) , A ) )
+what is the total area of the cc0 ? ||| answer ( A , ( area ( B , A ) , const ( B , countryid ( co0 ) ) ) )
+how many square kilometers in the cc0 ? ||| answer ( A , ( area ( B , A ) , const ( B , countryid ( co0 ) ) ) )
+what is the area of all the states combined ? ||| answer ( A , sum ( B , ( area ( C , B ) , state ( C ) ) , A ) )
+
+what is the longest river that runs through a state that borders s0 ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+how many people live in the smallest state bordering s0 ? ||| answer ( A , ( population ( B , A ) , smallest ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+
+what is the longest river in the state with the highest point ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , highest ( C , place ( C ) ) ) ) )
+
+what state has the largest population density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what state has the greatest population density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the largest density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the greatest density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the highest population density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what is the most dense state in the cc0 ? ||| answer ( A , largest ( B , ( density ( A , B ) , state ( A ) , loc ( A , C ) , const ( C , countryid ( co0 ) ) ) ) )
+what is the state with the largest population density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what state has the highest population density ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what is the state with the largest density in cc0 ? ||| answer ( A , largest ( B , ( state ( A ) , density ( A , B ) , loc ( A , C ) , const ( C , countryid ( co0 ) ) ) ) )
+
+how many states border the largest state ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , largest ( C , state ( C ) ) ) , A ) )
+
+how many cities are there in the cc0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many cities are there in the cc0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many cities are there in the cc0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many cities are there in cc0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many cities does the cc0 have ? ||| answer ( A , count ( B , ( city ( B ) , const ( C , countryid ( co0 ) ) , loc ( B , C ) ) , A ) )
+
+how many rivers are in the state that has the most rivers ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , most ( C , D , ( state ( C ) , loc ( D , C ) , river ( D ) ) ) ) , A ) )
+
+how long is the shortest river in the cc0 ? ||| answer ( A , ( len ( B , A ) , shortest ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+
+what is the area of the state with the smallest population density ? ||| answer ( A , ( area ( B , A ) , smallest ( C , ( state ( B ) , density ( B , C ) ) ) ) )
+
+how long is the longest river in s0 ? ||| answer ( A , ( len ( B , A ) , longest ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+what is the length of the longest river that runs through s0 ? ||| answer ( A , ( len ( B , A ) , longest ( B , ( river ( B ) , traverse ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+
+how many rivers run through the states bordering s0 ? ||| answer ( A , count ( B , ( river ( B ) , traverse ( B , C ) , state ( C ) , next_to ( C , D ) , const ( D , stateid ( s0 ) ) ) , A ) )
+
+what is the elevation of p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+
+what is the longest river in cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the longest river ? ||| answer ( A , longest ( A , river ( A ) ) )
+what is the longest river in the cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+which is the longest river in cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the longest river in the cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+give me the longest river that passes through the cc0 ? ||| answer ( A , longest ( A , ( river ( A ) , traverse ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+name the longest river in cc0 . ||| answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+how many states in the cc0 does the shortest river run through ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) , shortest ( D , river ( D ) ) , traverse ( D , B ) ) , A ) )
+
+what is the highest elevation in the cc0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the height of the highest point in the cc0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+what is the elevation of the highest point in the cc0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+how high is the highest point in cc0 ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+
+what is the most populous state ? ||| answer ( A , largest ( B , ( population ( A , B ) , state ( A ) ) ) )
+what is the most populous state in the cc0 ? ||| answer ( A , largest ( B , ( population ( A , B ) , state ( A ) , loc ( A , C ) , const ( C , countryid ( co0 ) ) ) ) )
+what state has the largest population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+which state has the biggest population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+which state has the greatest population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+which state has the most people ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+which state has the most population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+what state has the most people ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+what state has the highest population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+what state is the largest in population ? ||| answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) )
+
+how high is p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+how high is p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+
+what capital has the largest population ? ||| answer ( A , largest ( B , ( capital ( A ) , population ( A , B ) ) ) )
+what capital is the largest in the cc0 ? ||| answer ( A , largest ( A , ( capital ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is largest capital ? ||| answer ( A , largest ( A , capital ( A ) ) )
+what is the biggest capital city in the cc0 ? ||| answer ( A , largest ( A , ( capital ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the largest capital city in the cc0 ? ||| answer ( A , largest ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+what is the largest state capital in population ? ||| answer ( A , largest ( B , ( state ( C ) , capital ( C , A ) , population ( A , B ) ) ) )
+what is the most populated capital in the cc0 ? ||| answer ( A , largest ( B , ( population ( A , B ) , capital ( A ) , loc ( A , C ) , const ( C , countryid ( co0 ) ) ) ) )
+
+how many capitals does s0 have ? ||| answer ( A , count ( B , ( capital ( B ) , const ( C , stateid ( ' s0 ' ) ) , loc ( B , C ) ) , A ) )
+
+what state has the shortest river ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , shortest ( B , river ( B ) ) ) )
+
+what states border the most populous state ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , largest ( C , ( population ( B , C ) , state ( B ) ) ) ) )
+
+which state has the smallest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what state has the least population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the sparsest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what state has the sparsest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the least population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+which state has the lowest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what state has the smallest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+what is the state with the lowest population density ? ||| answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) )
+
+how high are the highest points of all the states ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , state ( C ) ) ) ) )
+
+what states border states that border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+what states border states that border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+what is the average population per square km in the cc0 ? ||| answer ( A , ( density ( B , A ) , const ( B , countryid ( co0 ) ) ) )
+
+what is the height of p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+how tall is p0 ? ||| answer ( A , ( elevation ( B , A ) , const ( B , placeid ( ' p0 ' ) ) ) )
+
+which states does not border s0 ? ||| answer ( A , ( state ( A ) , \ + ( next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+how many rivers in s0 are longer than the r0 ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) , longer ( B , D ) , const ( D , riverid ( r0 ) ) ) , A ) )
+
+what is the least populous state ? ||| answer ( A , smallest ( B , ( population ( A , B ) , state ( A ) ) ) )
+what state has the smallest population ? ||| answer ( A , smallest ( B , ( state ( A ) , population ( A , B ) ) ) )
+what is the state with the lowest population ? ||| answer ( A , smallest ( B , ( state ( A ) , population ( A , B ) ) ) )
+
+how many rivers are there in the cc0 ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many rivers are there in cc0 ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+how many rivers are there in cc0 ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) , A ) )
+
+what is the lowest point in the state of s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in the state of s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+where is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point of s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the lowest point in s0 in meters ? ||| answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what is the capital of the state with the most inhabitants ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+what is the capital of the smallest state ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , smallest ( B , state ( B ) ) ) )
+
+which is the highest mountain in the cc0 ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) )
+
+what are the highest points of states surrounding s0 ? ||| answer ( A , ( highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) ) ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+where are mountains ? ||| answer ( A , ( loc ( B , A ) , mountain ( B ) ) )
+
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+people in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+citizens in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+number of people in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+number of citizens in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many citizens in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many inhabitants does c0 have ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ga ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 city ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+c0 population ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how big is the city of c0 ? ||| answer ( A , ( size ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 ) ) ) )
+how many people lived in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 ) ) ) )
+how many people live in c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+what is the population of c0 ? ||| answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) )
+
+what are the populations of states which border s0 ? ||| answer ( A , ( population ( B , A ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+what is the average population per square km in s0 ? ||| answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) )
+
+name the 50 capitals in the cc0 . ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+
+what are the populations of states through which the r0 runs ? ||| answer ( A , ( population ( B , A ) , state ( B ) , const ( C , riverid ( r0 ) ) , traverse ( C , B ) ) )
+what are the populations of the states through which the r0 runs ? ||| answer ( A , ( population ( B , A ) , state ( B ) , const ( C , riverid ( r0 ) ) , traverse ( C , B ) ) )
+what are the populations of the states through which the r0 river runs ? ||| answer ( A , ( population ( B , A ) , state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) )
+what are the populations of states through which the r0 river runs ? ||| answer ( A , ( population ( B , A ) , state ( B ) , const ( C , riverid ( r0 ) ) , river ( C ) , traverse ( C , B ) ) )
+
+of the states washed by the r0 river which has the lowest point ? ||| answer ( A , lowest ( B , ( state ( A ) , traverse ( C , A ) , const ( C , riverid ( r0 ) ) , loc ( B , A ) , place ( B ) ) ) )
+
+what is the length of the r0 river ? ||| answer ( A , ( len ( B , A ) , const ( B , riverid ( r0 ) ) , river ( B ) ) )
+
+what are the states that border the state with the greatest population ? ||| answer ( A , ( state ( A ) , next_to ( B , A ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+what are the major cities in the state of s0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) )
+
+what is the smallest city in the largest state ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , largest ( B , state ( B ) ) ) ) )
+
+how many states border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many states border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many states border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many states border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many states border s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+what is the number of neighboring states for s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+number of states bordering s0 ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+s0 borders how many states ? ||| answer ( A , count ( B , ( const ( C , stateid ( s0 ) ) , next_to ( C , B ) , state ( B ) ) , A ) )
+how many states does s0 border ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , stateid ( s0 ) ) , next_to ( C , B ) ) , A ) )
+how many states does s0 border ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , stateid ( s0 ) ) , next_to ( C , B ) ) , A ) )
+how many states does s0 border ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , stateid ( s0 ) ) , next_to ( C , B ) ) , A ) )
+s0 borders how many states ? ||| answer ( A , count ( B , ( const ( C , stateid ( s0 ) ) , next_to ( C , B ) , state ( B ) ) , A ) )
+
+what are the major cities in the smallest state in the cc0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+
+what rivers do not run through s0 ? ||| answer ( A , ( river ( A ) , \ + ( traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+which rivers do not run through s0 ? ||| answer ( A , ( river ( A ) , \ + ( traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what rivers do not run through s0 ? ||| answer ( A , ( river ( A ) , \ + ( traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what is the average population of the cc0 by state ? ||| answer ( A , ( density ( B , A ) , const ( B , countryid ( co0 ) ) ) )
+
+how many major rivers cross s0 ? ||| answer ( A , count ( B , ( major ( B ) , river ( B ) , traverse ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+
+what are the populations of all the major cities in s0 ? ||| answer ( A , ( population ( B , A ) , major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+what are the populations of the major cities of s0 ? ||| answer ( A , ( population ( B , A ) , major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+what is the population of the major cities in s0 ? ||| answer ( A , ( population ( B , A ) , major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+
+what is the smallest city in s0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the smallest city in s0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the smallest city in s0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+what is the smallest city in s0 ? ||| answer ( A , smallest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) )
+
+what are the major cities of the cc0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+what are the major cities in the cc0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+what are the major cities of the cc0 ? ||| answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) )
+
+how many states border the r0 river ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , riverid ( r0 ) ) , river ( C ) ) , A ) )
+
+what is the highest point in the smallest state ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , smallest ( B , state ( B ) ) ) ) )
+
+what is the highest point in states bordering s0 ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) )
+
+which states have a river ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , river ( B ) ) )
+
+what is the population of the capital of the smallest state ? ||| answer ( A , ( population ( B , A ) , capital ( B ) , loc ( B , C ) , smallest ( C , state ( C ) ) ) )
+
+what are the cities in states through which the r0 runs ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , traverse ( C , B ) , const ( C , riverid ( r0 ) ) ) )
+
+how many states border at least one other state ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , state ( C ) ) , A ) )
+
+through which states does the longest river in s0 run ? ||| answer ( A , ( longest ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) , traverse ( B , A ) ) )
+
+what is the population of the largest state that borders s0 ? ||| answer ( A , ( population ( B , A ) , largest ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) )
+
+what is the largest state that borders the state with the lowest point in the cc0 ? ||| answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , loc ( C , B ) , lowest ( C , ( place ( C ) , loc ( C , D ) , const ( D , countryid ( co0 ) ) ) ) ) ) )
+
+what is the population density of the state with the smallest area ? ||| answer ( A , ( density ( B , A ) , smallest ( C , ( state ( B ) , area ( B , C ) ) ) ) )
+what is the population density of the smallest state ? ||| answer ( A , ( density ( B , A ) , smallest ( B , state ( B ) ) ) )
+what is the population density of the smallest state ? ||| answer ( A , ( density ( B , A ) , smallest ( B , state ( B ) ) ) )
+what is the population density of the smallest state ? ||| answer ( A , ( density ( B , A ) , smallest ( B , state ( B ) ) ) )
+
+how many states have a city named c0 ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , const ( C , cityid ( c0 , _ ) ) ) , A ) )
+how many states have cities named c0 ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , city ( C ) , const ( C , cityid ( c0 , _ ) ) ) , A ) )
+how many states have a city called c0 ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , const ( C , cityid ( c0 , _ ) ) ) , A ) )
+how many states have cities or towns named c0 ? ||| answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , city ( C ) , const ( C , cityid ( c0 , _ ) ) ) , A ) )
+
+which states adjoin s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states neighbor s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what are the neighboring states for s0 ? ||| answer ( A , ( next_to ( A , B ) , state ( A ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states are next to s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states are next to s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which state borders s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which state borders s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what state borders s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+what state borders s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states surround s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which state border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) )
+give me the states that border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+what is the adjacent state of s0 ? ||| answer ( A , ( next_to ( A , B ) , state ( A ) , const ( B , stateid ( s0 ) ) ) )
+states bordering s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+which states border s0 ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) )
+
+what rivers flow through states that s0 borders ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , const ( C , stateid ( s0 ) ) , next_to ( C , B ) ) )
+which rivers are in states that border s0 ? ||| answer ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( s0 ) ) ) )
+which rivers run through states bordering s0 ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( ' s0 ' ) ) ) )
+
+what is the longest river that does not run through s0 ? ||| answer ( A , longest ( A , ( river ( A ) , \ + ( traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) )
+
+what is the population of the state that borders the most states ? ||| answer ( A , ( population ( B , A ) , most ( B , C , ( state ( B ) , next_to ( B , C ) , state ( C ) ) ) ) )
+
+what is the length of the longest river in the cc0 ? ||| answer ( A , ( len ( B , A ) , longest ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+how long is the longest river in the cc0 ? ||| answer ( A , ( len ( B , A ) , longest ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) )
+
+how many cities are in s0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many cities are in s0 ? ||| answer ( A , count ( B , ( city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) )
+how many cities does s0 have ? ||| answer ( A , count ( B , ( city ( B ) , const ( C , stateid ( s0 ) ) , loc ( B , C ) ) , A ) )
+
+what are the largest cities in the states that border the largest state ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , largest ( C , state ( C ) ) ) ) )
+
+where is the smallest city ? ||| answer ( A , ( loc ( B , A ) , smallest ( B , city ( B ) ) ) )
+

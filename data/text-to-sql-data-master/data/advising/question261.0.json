@@ -1,0 +1,56 @@
+{
+    "accuracy": [
+        "SRS - 0",
+        "LZ - 1"
+    ],
+    "comments": [
+        "SRS - This only brings up all offerings of EECS 280 that were taught by them. Instead, should query for offerings not taught by them."
+    ],
+    "helpfulness": [
+        "SRS - 0",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are Prof. Smith and Prof. James the only teachers who teach EECS 280 ?",
+        "Are Prof. Smith and Prof. Jones the only people that teach EECS 280 ?",
+        "Are Professors Smith and Jones the only ones to teach EECS 280 ?",
+        "Do only Prof. Smith and Prof. James teach EECS 280 ?",
+        "Does Prof. Smith or Prof. Jones always teach EECS 280 ?",
+        "For EECS 280 , is it always taught by either Prof. Smith or Prof. Jones ?",
+        "Is EECS 280 always taught by Prof. Smith or Prof. Jones ?",
+        "Is EECS 280 only taught by Professors Jones or Smith ?",
+        "Is Prof. Smith or Prof. Jones the only ones that teach EECS 280 ?",
+        "Is it always Prof. Smith or Prof. Jones who teaches EECS 280 ?",
+        "Will EECS 280 always be taught by either Prof. Smith or Jones ?"
+    ],
+    "sentence": "Is EECS 280 always taught by either Prof. Smith or Prof. Jones ?",
+    "sentence-with-vars": "Is department0 number0 always taught by either instructor0 or instructor1 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE ( INSTRUCTORalias0.NAME LIKE \"%jones%\" OR INSTRUCTORalias0.NAME LIKE \"%smith%\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE ( INSTRUCTORalias0.NAME LIKE \"%instructor0%\" OR INSTRUCTORalias0.NAME LIKE \"%instructor1%\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        },
+        {
+            "name": "instructor1",
+            "sentence-value": "Prof. Jones",
+            "sql-value": "jones"
+        }
+    ]
+}

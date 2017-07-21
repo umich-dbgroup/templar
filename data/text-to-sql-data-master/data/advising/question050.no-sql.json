@@ -1,0 +1,22 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Requires reasoning, better for Pyke?"
+    ],
+    "paraphrases": [
+        "Can I take EECS 281 next semester?"
+    ],
+    "sentence": "Can I take 281 next semester?",
+    "sentence-with-vars": "Can I take number0 next semester?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        }
+    ]
+}

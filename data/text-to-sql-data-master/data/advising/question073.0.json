@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Autonomous Robotics were , are , or will be taught by whom ?",
+        "Do you know who will teach , is teaching or has taught in the past autonomous robotics ?",
+        "For autonomous robotics , who has taught , is currently teaching or will teach the class ?",
+        "For the autonomous robotics class , who taught it in the past , who is currently teaching it , and who will teach it in the future ?",
+        "In autonomous robotics , who has , is or will teach this ?",
+        "In autonomous robotics , who have all the teachers been past present and future ?",
+        "In regard to autonomous robotics , who has , is or will teach it ?",
+        "Tell me all who has , is , or will be teaching autonomous robitics ?",
+        "Who has taught , teaches or will teach autonomous robotics ?",
+        "Who has , is , or will be teaching autonomous robotics ?",
+        "Who in the past has taught , currently is teaching or in the future will teach autonomous robotics ?",
+        "Who is the past , present or future autonomous robotics teacher ?",
+        "Who is the previous , current or upcoming autonomous robotics teacher ?",
+        "Who is the professor that teaches , has taught or will teach autonomous robotics ?",
+        "Who is , was , or will be teaching autonomous robotics ?",
+        "Who taught in the past , will be teaching in the future , or is currently teaching autonomous robotics ?",
+        "Who teaches autonomous robotics ?"
+    ],
+    "sentence": "Who has taught , is teaching , or will teach autonomous robotics ?",
+    "sentence-with-vars": "Who has taught , is teaching , or will teach autonomous robotics ?",
+    "sql": [
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Autonomous Robotics\" ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Autonomous Robotics\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

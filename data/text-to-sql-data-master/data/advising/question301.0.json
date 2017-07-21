@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 0",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "All classes potentially taught by Quentin Stout",
+        "Can you list all of Professor Quentin Stout 's clases , past , future and current ?",
+        "Classes taught by Quentin Stout in any semester , what are they ?",
+        "Is there a list of every class Quentin Stout has ever taught or will teach ?",
+        "Of all the courses , which have been taught or will be taught by Quenton Stout ?",
+        "Quentin Stout teaches which courses currently , previously or in the future ?",
+        "Since teaching what are all the classes Quentin Stout has taught , will teach or is teaching ? ?",
+        "What are all of the courses that Quentin Stout has ever taught or will teach ?",
+        "What are all the classes Quentin Scott will be involved in for his entire career ?",
+        "What classes were , or will be taught , by Quentin Stout ?",
+        "What courses does Quentin Stout teach ?",
+        "Which Courses have been taught now , later , or previously by Quentin Stout ?",
+        "Which classes have been or will be taught by Professor Stout ?",
+        "Which courses are taught by Quentin Stout ?",
+        "Which courses have been or will be taught by Quentin Stout ?",
+        "Which courses that have been taught , are being taught , or will be taught , are by Quentin Stout ?",
+        "Which of all the courses in the past , present or future of the planet have , are or will be taught by Quentin Stout ?",
+        "Would you identify all the courses taught by Quentin Stout over the entire span of his lifetime ?"
+    ],
+    "sentence": "Of all the courses , which have been taught , are being taught , or will be taught , by Quentin Stout ?",
+    "sentence-with-vars": "Of all the courses , which have been taught , are being taught , or will be taught , by instructor0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%Quentin Stout%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Quentin Stout",
+            "sql-value": "Quentin Stout"
+        }
+    ]
+}

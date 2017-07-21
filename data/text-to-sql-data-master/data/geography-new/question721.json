@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states border colorado and border new mexico ?", 
+ "sentence-with-vars": "how many states border state0 and border state1 ?", 
+ "sql": "select count ( border_info.border ) from border_info where border_info.state_name = ' colorado ' and border_info.border in ( select border_info.border from border_info where border_info.state_name = ' new mexico ' ) ;", 
+ "sql-with-vars": "select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' and border_info.border in ( select border_info.border from border_info where border_info.state_name = ' state1 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "colorado", 
+   "sql-value": "colorado"
+  },
+  {
+   "name": "state1", 
+   "sentence-value": "new mexico", 
+   "sql-value": "new mexico"
+  }
+ ]
+}

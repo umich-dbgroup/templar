@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what flights from any city land at general mitchell international",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"' FROM flight v0,\n airport v1, airport_service v2, city v3 \nWHERE (((v0.to_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'MKE')) \nAND ((v0.from_airport = ANY v2.airport_code) AND ((v2.city_code = ANY v3.city_code) \nAND ( 1 =  1))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' MKE ' ) AND FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE 1 = 1 ) ) ) ) ;"
+    ],
+    "variables": []
+}

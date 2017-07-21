@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "It doesn't seem like our data has discussion section times"
+    ],
+    "paraphrases": [],
+    "sentence": "Are there any discussion sections for 280 that meet in the afternoon?",
+    "sentence-with-vars": "Are there any discussion sections for number0 that meet in the afternoon?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

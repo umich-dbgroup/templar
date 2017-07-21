@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is largest capital ?", 
+ "sentence-with-vars": "what is largest capital ?", 
+ "sql": "select city.city_name from city where city.population = ( select max ( city.population ) from city , state where city.city_name = state.capital ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population = ( select max ( city.population ) from city , state where city.city_name = state.capital ) ;", 
+ "variables": []
+}

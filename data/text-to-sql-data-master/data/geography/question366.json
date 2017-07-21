@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the biggest city in the smallest state ?", 
+ "sentence-with-vars": "what is the biggest city in the smallest state ?", 
+ "sql": "select city.city_name from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "variables": []
+}

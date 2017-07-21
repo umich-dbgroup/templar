@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please give me all flights departing from lester b pearson international airport on april twenty fifth",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v1.airport_name||'\"', '\"'||v2.days_code||'\"', '\"'||v3.day_name||'\"',\n v3.year, v3.month_number, v3.day_number FROM flight v0,\n airport v1, days v2, date_day v3 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_name = 'LESTER B. PEARSON INTERNATIONAL')) \nAND ((v0.flight_days = ANY v2.days_code) \nAND ((v2.day_name = ANY v3.day_name) AND (((v3.year =  1994) \nAND (v3.month_number =  4)) AND (v3.day_number =  25)))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_NAME = ' LESTER B. PEARSON INTERNATIONAL ' ) AND FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1994 AND DATE_DAY.MONTH_NUMBER = 4 AND DATE_DAY.DAY_NUMBER = 25 ) ) ) ) ;"
+    ],
+    "variables": []
+}

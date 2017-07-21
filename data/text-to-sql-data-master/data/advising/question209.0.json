@@ -1,0 +1,33 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Does Intro AI have any advisory prereqs ?",
+        "Does Intro AI have any advisory prerequisites ?",
+        "For Intro AI , are there any advisory prerequisites ?",
+        "For Intro AI , are there any classes I need to have taken ?",
+        "For Intro AI , is there an advisory pre-requirement ?",
+        "Name the advisory prerequisites for Intro AI .",
+        "What are the advisory prerequisites for Intro AI ?",
+        "What are the advisory prerequisites for taking Intro AI ?",
+        "What are the advisory prerequisites for the Intro AI class ?",
+        "What prerequisites are advised for Intro AI ?",
+        "Which , if any , advisory prerequisites are there for Intro AI ?"
+    ],
+    "sentence": "Are there any advisory prerequisites for Intro AI ?",
+    "sentence-with-vars": "Are there any advisory prerequisites for Intro AI ?",
+    "sql": [
+        "SELECT COURSEalias0.ADVISORY_REQUIREMENT FROM COURSE AS COURSEalias0 WHERE COURSEalias0.NAME LIKE \"Introduction to artificial intelligence\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.ADVISORY_REQUIREMENT FROM COURSE AS COURSEalias0 WHERE COURSEalias0.NAME LIKE \"Introduction to artificial intelligence\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

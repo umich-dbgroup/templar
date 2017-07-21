@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "where can i eat french food in mountain view ?",
+     "sentence-with-vars": "where can i eat VARfood food in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='mountain view' and RESTAURANT.FOOD_TYPE='french'"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='VARcity' and RESTAURANT.FOOD_TYPE='VARfood'"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "mountain view",
+               "sql-value": "mountain view"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the river that cross over ohio ?", 
+ "sentence-with-vars": "what is the river that cross over state0 ?", 
+ "sql": "select river.river_name from river where river.traverse = ' ohio ' ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "ohio", 
+   "sql-value": "ohio"
+  }
+ ]
+}

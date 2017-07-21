@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point in each state whose lowest point is sea level ?", 
+ "sentence-with-vars": "what is the highest point in each state whose lowest point is sea level ?", 
+ "sql": "select highlow.highest_point , highlow.state_name from highlow where highlow.lowest_elevation = 0 ;", 
+ "sql-with-vars": "select highlow.highest_point , highlow.state_name from highlow where highlow.lowest_elevation = number0 ;", 
+ "variables": [
+{
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "0"
+   }
+ ]
+}

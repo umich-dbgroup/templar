@@ -1,0 +1,54 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses that are prerequisites for EECS 281 ?",
+        "Can you tell me what the course prerequisites are for EECS 281 ?",
+        "Does EECS 281 have any prerequisite courses ?",
+        "Does EECS have any prereqs ?",
+        "EECS 281 has which courses as prerequisites ?",
+        "For EECS 281 what are the course prerequisites ?",
+        "For EECS 281 which are the prerequisites courses ?",
+        "For EECS 281 , what are the prerequisites ?",
+        "Name the courses required for EECS 281 ?",
+        "Name the courses that are mandatory for EECS 281 ?",
+        "Off all the courses which ones are prerequisites for EECS 281 ?",
+        "Required courses for EECS 281 are ?",
+        "The course prerequisites for EECS 281 are ?",
+        "The prerequisite courses for EECS 281 are ?",
+        "What are EECS 281 's course prerequisite requirements ?",
+        "What are the course requirements for EECS 281 ?",
+        "What classes need to be taken before EECS 281 ?",
+        "What course prerequisites does EECS 281 have ?",
+        "What exactly are the prerequisites for the course EECS 281 ?",
+        "What prerequisites are required for EECS 281 ?"
+    ],
+    "sentence": "What are the course prerequisites for EECS 281 ?",
+    "sentence-with-vars": "What are the course prerequisites for department0 number0 ?",
+    "sql": [
+        "SELECT COURSEalias1.DEPARTMENT , COURSEalias1.NAME , COURSEalias1.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 ON COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID INNER JOIN COURSE AS COURSEalias1 ON COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 281 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias1.DEPARTMENT , COURSEalias1.NAME , COURSEalias1.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 ON COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID INNER JOIN COURSE AS COURSEalias1 ON COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

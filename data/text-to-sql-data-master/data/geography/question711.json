@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers are there in us ?", 
+ "sentence-with-vars": "how many rivers are there in us ?", 
+ "sql": "select count ( river.river_name ) from river ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river ;", 
+ "variables": []
+}

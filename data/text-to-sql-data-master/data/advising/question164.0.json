@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "LZ - 0"
+    ],
+    "comments": [
+        "JKK - Ends halfway through, and is counting offerings, not courses",
+        "LZ - Why does the query ends with an \"AND\"?"
+    ],
+    "helpfulness": [
+        "JKK - 0",
+        "LZ - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "At the upper level , what number of classes are there that have labs ?",
+        "For how many upper level classes are there labs ?",
+        "How many classes of the upper level have labs ?",
+        "How many of the upper level classes have labs ?",
+        "Labs are in what number of upper level courses ?",
+        "Labs are included in how many of the upper level classes ?",
+        "Labs are part of how many classes at the upper level ?",
+        "Labs are there in how many upper level classes ?",
+        "Of all the upper level classes , how many have labs ?",
+        "Of the upper level classes , how many have labs ?",
+        "Out of all the upper level classes , what number have labs ?",
+        "Out of the upper level classes , how many have labs ?",
+        "Regarding upper level classes , what 's the count on the number that have labs ?",
+        "There are labs for how many of the upper level classes ?",
+        "There are labs in how many upper level classes ?",
+        "What amount of upper level classes have labs ?",
+        "What is the number of upper level classes that have labs ?",
+        "What is the total no . of upper level classes that have labs ?",
+        "What number of classes at the upper level have labs ?",
+        "What number of upper level classes have labs ?",
+        "What number of upper level courses have labs ?"
+    ],
+    "sentence": "How many upper level classes have labs ?",
+    "sentence-with-vars": "How many upper level classes have labs ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.OFFERING ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.OFFERING ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

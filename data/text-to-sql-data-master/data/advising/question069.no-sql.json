@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "reasoning"
+    ],
+    "paraphrases": [],
+    "sentence": "I definitely want to take 492 next semester. What classes do I need to take this semester to be eligible for it?",
+    "sentence-with-vars": "I definitely want to take number0 next semester. What classes do I need to take this semester to be eligible for it?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": ""
+        }
+    ]
+}

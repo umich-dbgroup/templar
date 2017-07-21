@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Info not in db"
+    ],
+    "paraphrases": [],
+    "sentence": "What are each of the sections of ENGR 100 about?",
+    "sentence-with-vars": "What are each of the sections of department0 number0 about?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "100",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": ""
+        }
+    ]
+}

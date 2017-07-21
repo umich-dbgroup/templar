@@ -1,0 +1,42 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "SRS - 1"
+    ],
+    "comments": [
+        "CFD - Add \"AND C.NUMBER<400\" and change the >300 to >=300?",
+        "SRS - This assumes that \"easy\" implies a workload of less than 3."
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Show me easy 300 level courses .",
+        "Show me some easy 300 level classes .",
+        "Which 300 level courses are easy ?",
+        "I want you to show me some 300 level courses that are easy .",
+        "Show me easy 300 level classes .",
+        "Provide me with some easy 300 level courses ?",
+        "What are some easy 300 level classes ?",
+        "Which 300 level courses are the least difficult ?",
+        "What are some easy 300 level courses ?",
+        "Tell me a few easy 300 level courses .",
+        "Show me 300 level courses that are easy ."
+    ],
+    "sentence": "Show me some easy 300 level courses .",
+    "sentence-with-vars": "Show me some easy number0 level courses .",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.NUMBER > 300 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD < 3 ORDER BY PROGRAM_COURSEalias0.WORKLOAD DESC LIMIT 10 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.NUMBER > number0 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD < 3 ORDER BY PROGRAM_COURSEalias0.WORKLOAD DESC LIMIT 10 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "300",
+            "sql-value": "300"
+        }
+    ]
+}

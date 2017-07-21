@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what state is des moines located in ?", 
+ "sentence-with-vars": "what state is city0 located in ?", 
+ "sql": "select city.state_name from city where city.city_name = ' des moines ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "des moines", 
+   "sql-value": "des moines"
+  }
+ ]
+}

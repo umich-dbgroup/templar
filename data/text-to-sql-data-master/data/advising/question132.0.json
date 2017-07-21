@@ -1,0 +1,107 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "DRK - 0"
+    ],
+    "comments": [
+        "DRK - The question asks for EECS 281, but the query specifies EECS 280"
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "DRK - 1"
+    ],
+    "info": [
+        "Require reasoning, or a different interpretation"
+    ],
+    "paraphrases": [
+        "Are EECS 280 and EECS 370 favorable courses to take at the same time ?",
+        "Do you advise me taking EECS 280 and EECS 370 at the same time ?",
+        "Do you think I should take EECS 280 and EECS 370 at the same time ?",
+        "Do you think I should take EECS 280 and EECS 370 in the same semester ?",
+        "Do you think it is a good idea to take EECS 280 and EECS 370 at the same time ?",
+        "How wise is it to take EECS 280 and EECS 270 at the same time ?",
+        "Is it OK to take EECS 280 and EECS 370 at the same time ?",
+        "Is it a good idea to take EECS 280 and EECS 370 at the same time ?",
+        "Is it a good idea to take EECS 281 and EECS 370 at the same time ?",
+        "Is it advisable for me to take EECS 280 and EECS 370 at the same time ?",
+        "Is it advisable to study both EECS 280 and EECS 370 at the same time ?",
+        "Is it advisable to take EECS 280 and EECS 370 at the same time ?",
+        "Is it advisable to take EECS 370 and EECS 280 simultaneously ?",
+        "Is it best to simultaneously take EECS 280 and EECS 370 ?",
+        "Is it best to take EECS 280 and 370 together ?",
+        "Is it fine if I take EECS 281 and EECS 370 simultaneously ?",
+        "Is it good to take both EECS 280 and EECS 370 at once ?",
+        "Is it ok to take EECS 280 and EECS 370 at the same time ?",
+        "Is it okay , if I take EECS 281 and EECS 370 at the same time ?",
+        "Is it recommended to take EECS 280 and 370 at the same time ?",
+        "Is it recommended to take EECS 280 and EECS 370 at the same time ?",
+        "Is it recommended to take EECS 280 and EECS 370 together ?",
+        "Is it recommended to take both EECS 280 and EECS 370 concurrently ?",
+        "Is it recommended to take both EECS 370 and 280 at the same time ?",
+        "Is it useful to take EECS 280 and EECS 370 concurrently ?",
+        "Is it wise to take EECS 280 and EECS 370 at the same time ?",
+        "Is it wise to take EECS 280 and EESC 270 at the same time ?",
+        "Is taking EECS 280 and EECS simultaneously smart ?",
+        "Is taking EECS 280 and EECS 370 at the same time wise ?",
+        "Might it be wise to ingest both EECS 280 and EECS 370 together ?",
+        "Of the courses , are EECS 280 and EECS 370 ones that should be taken at the same time ?",
+        "Should EECS 280 and EECS 370 be taken at the same time ?",
+        "Should EECS 280 and EECS 370 be taken simultaneously ?",
+        "Should EECS 280 be taken at the same time as EECS 370 ?",
+        "Should EECS 280 and EECS 370 be taken at the same time ?",
+        "Should I do EECS 280 and EECS 370 simultaneously ?",
+        "Should I enroll in EECS 280 and EECS 370 simultaneously ?",
+        "Should I simultaneously take EECS 281 and EECS 370 ?",
+        "Should I take EECS 280 and 370 at the same time ?",
+        "Should I take EECS 280 and EECS 370 both at the same time ?",
+        "Should I take EECS 280 and EECS 370 concurrently ?",
+        "Should I take EECS 280 and EECS 370 simultaneously ?",
+        "Should I take EECS 280 and EECS 370 together ?",
+        "Should I take EECS 281 and 370 simultaneously ?",
+        "Should I take EECS 281 and EECS 370 simultaneously ?",
+        "Should I take EECS 281 and EECS 370 together ?",
+        "Should I take both EECS 280 and EECS 370 at the same time ?",
+        "Should I take both EECS 280 and EECS 370 in the same semester ?",
+        "Should I take both EECS 280 and EECS 370 together ?",
+        "Should I take both the EECS 260 and EECS 370 courses simultaneously ?",
+        "Should I take the courses EECS 281 and EECS 370 at the same time ?",
+        "Should I , at the same time , take EECS 280 and EECS 370 ?",
+        "Should both EECS 280 and EECS 370 be take together ?",
+        "Taking EECS 281 and EECS 370 simultaneously is good or not ?",
+        "Will I be ok taking EECS 280 and EECS 370 together ?",
+        "Will I see benefits from doing EECS 280 and 370 simultaneously ?",
+        "Will it be okay if I take EECS 280 and EECS 370 at the same time ?",
+        "Would it be a good idea to take EECS 280 and EECS 370 the same semester ?",
+        "Would it be better to take EECS 280 and EECS 370 together ?",
+        "Would it be good for me to do EECS 280 and EECS 370 simultaneously ?",
+        "Would it be wise for me to take EECS 280 and EEC370 at the same time ?",
+        "Would it be wise to take EECS 280 and EECS 370 at the same time ?",
+        "Would taking EECS 280 and EECS 370 concurrently be okay ?",
+        "Would you advise I take EECS 280 and EECS 370 concurrently ?",
+        "Would you recommend taking EECS 280 and EECS 370 together ?"
+    ],
+    "sentence": "Should I take EECS 281 and EECS 370 at the same time ?",
+    "sentence-with-vars": "Should I take department0 number0 and department0 number1 at the same time ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE ( ( COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ) OR ( COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 ) ) AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE ( ( COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = 280 ) OR ( COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number1 ) ) AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

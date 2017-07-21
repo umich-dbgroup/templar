@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of the state with the highest elevation ?", 
+ "sentence-with-vars": "what is the capital of the state with the highest elevation ?", 
+ "sql": "select state.capital from state , highlow where state.state_name = highlow.state_name and highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select state.capital from state , highlow where state.state_name = highlow.state_name and highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "variables": []
+}

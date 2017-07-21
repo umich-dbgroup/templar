@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is scotts valley ?", 
+ "sentence-with-vars": "where is city0 ?", 
+ "sql": "select city.state_name from city where city.city_name = ' scotts valley ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "scotts valley", 
+   "sql-value": "scotts valley"
+  }
+ ]
+}

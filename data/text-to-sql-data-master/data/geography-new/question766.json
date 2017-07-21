@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point in states bordering georgia ?", 
+ "sentence-with-vars": "what is the highest point in states bordering state0 ?", 
+ "sql": "select highlow.highest_point from highlow where highlow.state_name in ( select border_info.border from border_info where border_info.state_name = ' georgia ' ) order by highlow.highest_elevation desc limit 1 ;", 
+ "sql-with-vars": "select highlow.highest_point from highlow where highlow.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) order by highlow.highest_elevation desc limit 1 ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "georgia", 
+   "sql-value": "georgia"
+  }
+ ]
+}

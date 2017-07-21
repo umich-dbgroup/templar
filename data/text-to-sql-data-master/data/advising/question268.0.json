@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "JKK - Break up into multiple lines for readability"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Do you have a list of the courses Prof. Smith will be teaching next year ?",
+        "Next year , do you know which courses Prof. Smith will be teaching ?",
+        "Next year , which courses will Prof. Smith be teaching ?",
+        "Over the next year , what classes will Prof. Smith be teaching ?",
+        "Over the next year , what classes will Prof. Smith teach ?",
+        "Over the next year , which courses is Prof. Smith teaching ?",
+        "Professor Smith will be teaching which courses over the next year ?",
+        "What are the names of prof smith taught classes this year ?",
+        "What classes will have Prof. Smith instructing over the next year ?",
+        "What classes will professor smith be teaching this year ?",
+        "What will Prof. Smith be teaching next year ?",
+        "Which classes will Prof. Smith instruct this coming year ?",
+        "Which courses has Proof . Smith been assigned to teach for the coming year ?",
+        "Which courses is Prof. Smith scheduled to teach over the next year ?",
+        "Which courses next year are taught by Prof. Smith ?"
+    ],
+    "sentence": "Which courses will Prof. Smith be teaching over the next year ?",
+    "sentence-with-vars": "Which courses will instructor0 be teaching over the next year ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%smith%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.SEMESTER_ID IN ( 2110 , 2120 ) ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.SEMESTER_ID IN ( 2110 , 2120 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        }
+    ]
+}

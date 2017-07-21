@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people lived in austin ?", 
+ "sentence-with-vars": "how many people lived in city0 ?", 
+ "sql": "select city.population from city where city.city_name = ' austin ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "austin", 
+   "sql-value": "austin"
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not a DB question"
+    ],
+    "paraphrases": [],
+    "sentence": "How much harder are 500 level courses compared to 400 level courses?",
+    "sentence-with-vars": "How much harder are number0 level courses compared to number1 level courses?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "number0",
+            "sentence-value": "500",
+            "sql-value": ""
+        },
+		{
+            "name": "number1",
+            "sentence-value": "400",
+            "sql-value": ""
+        }
+	]
+}

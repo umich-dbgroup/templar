@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "reasoning-based"
+    ],
+    "paraphrases": [],
+    "sentence": "If I take 494 next semester, I will have fulfilled all the requirements for a CS major, right?",
+    "sentence-with-vars": "If I take number0 next semester, I will have fulfilled all the requirements for a CS major, right?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "494",
+            "sql-value": ""
+        }
+    ]
+}

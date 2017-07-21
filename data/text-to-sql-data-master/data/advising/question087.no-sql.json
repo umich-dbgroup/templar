@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "if the student wants to ask if they would still satisfy the degree requirement, it is a reasoning question"
+    ],
+    "paraphrases": [],
+    "sentence": "Can I just audit 492?",
+    "sentence-with-vars": "Can I just audit number0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": ""
+        }
+    ]
+}

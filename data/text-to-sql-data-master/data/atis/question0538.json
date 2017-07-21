@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what is that fare",
+    "sq2": "SELECT DISTINCT  '\"'||v0.round_trip_required||'\"', '\"'||v1.fare_id||'\"',\n '\"'||v2.flight_id||'\"', '\"'||v3.airport_code||'\"',\n '\"'||v4.city_code||'\"', '\"'||v4.city_name||'\"', '\"'||v5.airport_code||'\"',\n '\"'||v6.city_code||'\"', '\"'||v6.city_name||'\"' FROM fare v0,\n flight_fare v1, flight v2, airport_service v3,\n city v4, airport_service v5, city v6 \nWHERE ((v0.round_trip_required = 'NO') \nAND ((v0.fare_id = ANY v1.fare_id) AND ((v1.flight_id = ANY v2.flight_id) \nAND (((v2.from_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'TACOMA'))) AND ((v2.to_airport = ANY v5.airport_code) \nAND ((v5.city_code = ANY v6.city_code) AND (v6.city_name = 'MONTREAL')))))));",
+    "sql": [
+        "( SELECT DISTINCT FARE.FARE_ID FROM FARE WHERE ( FARE.ROUND_TRIP_REQUIRED = ' NO ' AND FARE . FARE_ID IN ( SELECT FLIGHT_FARE . FARE_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FLIGHT_ID IN ( SELECT FLIGHT . FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TACOMA ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MONTREAL ' ) ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

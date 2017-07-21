@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all flights , leaving denver , on continental , on sunday , after nine thirty four p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n '\"'||v3.days_code||'\"', '\"'||v4.day_name||'\"',\n v4.year, v4.month_number, v4.day_number, v0.departure_time FROM flight v0,\n airport_service v1, city v2, days v3,\n date_day v4 \nWHERE ((v0.airline_code = 'CO') AND (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'DENVER'))) AND (((v0.flight_days = ANY v3.days_code) \nAND ((v3.day_name = ANY v4.day_name) \nAND (((v4.year =  1993) AND (v4.month_number =  3)) AND (v4.day_number =  7)))) \nAND (v0.departure_time >  2134))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' CO ' AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND ( FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 3 AND DATE_DAY.DAY_NUMBER = 7 ) ) AND FLIGHT.DEPARTURE_TIME > 2134 ) ) ) ) ;"
+    ],
+    "variables": []
+}

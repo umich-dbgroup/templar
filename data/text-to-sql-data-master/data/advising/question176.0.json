@@ -1,0 +1,60 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "SRS - It might be more helpful if the requirements are shown for the two courses separately, instead of together. Not sure though."
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Do you know the prerequisites for EECS 203 and 280 ?",
+        "EECS 203 and 280 have what prerequisites ?",
+        "EECS 203 and 280 need which prerequisites ?",
+        "For EECS 203 and 208 , what are the prerequisites ?",
+        "For EECS 203 and 280 what are the prerequisites ?",
+        "For EECS 203 and 280 , what are the prerequisites ?",
+        "Name the prerequisites for EECS 203 and 208 .",
+        "Regarding EECS 203 and 280 , what are the prerequisites ?",
+        "Tell me the prerequisites for EECS 203 and 280 .",
+        "The prerequisites for EECS 203 and 280 are what ?",
+        "To take EECS 203 and 280 , what prerequisites are necessary ?",
+        "What are the EECS 203 and 280 prerequisites ?",
+        "What are the mandatory classes for EECS 203 and 280 ?",
+        "What are the prerequisites for EECS 203 and EECS 280 ?",
+        "What do I need before taking EECS 203 and 280 ?",
+        "What is required for EECS 203 and 280 ?",
+        "What prerequisites do I need for EECS 203 and 280 ?",
+        "Which prerequisites are necessary for EECS 203 and 280 ?",
+        "Which prerequisites do EECS 203 and 280 have ?",
+        "Which prerequistes are required for EECS 203 and 280 ?"
+    ],
+    "sentence": "What are the prerequisites for EECS 203 and 280 ?",
+    "sentence-with-vars": "What are the prerequisites for department0 number0 and number1 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE ( COURSEalias1.NUMBER = 203 OR COURSEalias1.NUMBER = 280 ) AND COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE ( COURSEalias1.NUMBER = number0 OR COURSEalias1.NUMBER = number1 ) AND COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"department0\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

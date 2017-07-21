@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "LZ - fixed SQL as of 1.17"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "1 -credit courses is EECS ?",
+        "Are any courses in EECS for 1 -credit ?",
+        "Are there 1 -credit courses that are EECS ?",
+        "Are there EECS courses that are 1 -credit ?",
+        "Are there any 1 -credit EECS classes ?",
+        "Are there any 1-creedit courses for EECS ?",
+        "Are there any courses for 1 -credit in EECS ?",
+        "Are there any single credit EECS classes ?",
+        "Are there 1 -credit EECS courses ?",
+        "Are there 1 -credit courses for EECS1 ?",
+        "Does EECS have any one-credit classes ?",
+        "Does EECS offer 1 -credit courses ?",
+        "Does EECS offer any courses worth 1 -credit ?",
+        "Is EECS offered as a 1 -credit class ?",
+        "Is there such a thing as an EECS 1 -credit course ?",
+        "Which courses are EECS 1 -credit courses ?"
+    ],
+    "sentence": "Are there EECS 1 -credit courses ?",
+    "sentence-with-vars": "Are there department0 1 -credit courses ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" COURSEalias0.CREDITS = 1 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" COURSEalias0.CREDITS = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

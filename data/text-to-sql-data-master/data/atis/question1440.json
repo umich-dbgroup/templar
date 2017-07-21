@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what's the difference between fare code q and fare code b",
+    "sq2": "SELECT DISTINCT  '\"'||v0.booking_class||'\"', v0.rank, '\"'||v0.class_description||'\"' FROM class_of_service v0 \nWHERE ((v0.booking_class = 'Q') OR (v0.booking_class = 'B'));",
+    "sql": [
+        "( SELECT DISTINCT CLASS_OF_SERVICE.BOOKING_CLASS , CLASS_OF_SERVICE.RANK , CLASS_OF_SERVICE.CLASS_DESCRIPTION FROM CLASS_OF_SERVICE WHERE ( CLASS_OF_SERVICE.BOOKING_CLASS = ' Q ' OR CLASS_OF_SERVICE.BOOKING_CLASS = ' B ' ) ) ;"
+    ],
+    "variables": []
+}

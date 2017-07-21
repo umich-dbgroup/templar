@@ -1,0 +1,37 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Engineering CS students take what core classes ?",
+        "For the EECS major , what are the core classes ?",
+        "For the Engineering CS major , what are the core courses ?",
+        "Name core courses for Engineering CS .",
+        "Name the main courses for the engineering CS major ?",
+        "What are the Engineering CS major 's core courses ?",
+        "What are the core classes for EECS majors ?",
+        "What are the core classes for the EECS major ?",
+        "What core classes are required for EECS majors ?",
+        "What core classes are required for an EECS major ?",
+        "What core courses do I need to take for the engineering CS major ?",
+        "What main courses do I need to take for an Engineering CS major ?",
+        "Which classes make up an EECS major 's core ?"
+    ],
+    "sentence": "What are the core courses for the Engineering CS major ?",
+    "sentence-with-vars": "What are the core courses for the Engineering CS major ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM PROGRAM_COURSE AS PROGRAM_COURSEalias0 INNER JOIN COURSE AS COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE PROGRAM_COURSEalias0.CATEGORY = \"core\" ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"core\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE PROGRAM_COURSEalias0.CATEGORY = \"core\" ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM PROGRAM_COURSE AS PROGRAM_COURSEalias0 INNER JOIN COURSE AS COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE PROGRAM_COURSEalias0.CATEGORY = \"Core\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

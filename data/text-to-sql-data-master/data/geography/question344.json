@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "which states have a river ?", 
+ "sentence-with-vars": "which states have a river ?", 
+ "sql": "select river.traverse from river ;", 
+ "sql-with-vars": "select river.traverse from river ;", 
+ "variables": []
+}

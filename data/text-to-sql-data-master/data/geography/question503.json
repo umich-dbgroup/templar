@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of austin texas ?", 
+ "sentence-with-vars": "what is the population of city0 state0 ?", 
+ "sql": "select city.population from city where city.city_name = ' austin ' and city.state_name = ' texas ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' and city.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  },
+    {
+   "name": "city0", 
+   "sentence-value": "austin", 
+   "sql-value": "austin"
+  }
+ ]
+}

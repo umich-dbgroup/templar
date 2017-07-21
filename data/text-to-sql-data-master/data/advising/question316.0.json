@@ -1,0 +1,6 @@
+{
+    "sentence": "Are any of the courses I 've taken hardware courses ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN STUDENT_RECORD AS STUDENT_RECORDalias0 ON STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN AREA AS AREAalias0 ON STUDENT_RECORDalias0.COURSE_ID = AREAalias0.COURSE_ID WHERE AREAalias0.AREA LIKE \"%hardware%\" AND STUDENT_RECORDalias0.STUDENT_ID = 1 ;"
+    ]
+}

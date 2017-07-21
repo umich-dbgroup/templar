@@ -1,0 +1,14 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Can't answer -- info not in DB"
+    ],
+    "paraphrases": [],
+    "sentence": "What are some less than 3 credits flexible electives?",
+    "sentence-with-vars": "What are some less than 3 credits flexible electives?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": []
+}

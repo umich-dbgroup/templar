@@ -1,0 +1,30 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Probably more of a Pyke question"
+    ],
+    "paraphrases": [],
+    "sentence": "Do I need to take 183 or ENGR 101?",
+    "sentence-with-vars": "Do I need to take number0 or department0 number1?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "183",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "101",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": ""
+        }
+    ]
+}

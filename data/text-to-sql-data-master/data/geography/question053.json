@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "which states does the longest river run through ?", 
+ "sentence-with-vars": "which states does the longest river run through ?", 
+ "sql": "select river.traverse from river where river.length = ( select max ( river.length ) from river ) ;", 
+ "sql-with-vars": "select river.traverse from river where river.length = ( select max ( river.length ) from river ) ;", 
+ "variables": []
+}

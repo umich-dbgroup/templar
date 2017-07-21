@@ -1,0 +1,50 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "What is the best french in san francisco ?",
+          "What is the best place in san francisco for french food ?",
+          "Give me the best place in san francisco for french food ?",
+          "Where is the best french in san francisco ?",
+          "Give me the best french in san francisco ?",
+          "Where is the best french restaurant in san francisco ?",
+          "Give me the best restaurant in san francisco for french food ?",
+          "Give me the best french restaurant in san francisco ?",
+          "What is the best restaurant in san francisco for french food ?",
+          "Where is the best restaurant in san francisco for french food ?"
+     ],
+     "paraphrases-with-vars": [
+          "What is the best VARfood in VARcity ?",
+          "What is the best place in VARcity for VARfood food ?",
+          "Give me the best place in VARcity for VARfood food ?",
+          "Where is the best VARfood in VARcity ?",
+          "Give me the best VARfood in VARcity ?",
+          "Where is the best VARfood restaurant in VARcity ?",
+          "Give me the best restaurant in VARcity for VARfood food ?",
+          "Give me the best VARfood restaurant in VARcity ?",
+          "What is the best restaurant in VARcity for VARfood food ?",
+          "Where is the best restaurant in VARcity for VARfood food ?"
+     ],
+     "sentence": "what is the best french restaurant in san francisco ?",
+     "sentence-with-vars": "what is the best VARfood restaurant in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.FOOD_TYPE='french' and LOCATION.CITY_NAME='san francisco'and RESTAURANT.RATING=(select max(RESTAURANT.RATING) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.FOOD_TYPE='french' and LOCATION.CITY_NAME='san francisco')"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.FOOD_TYPE='VARfood' and LOCATION.CITY_NAME='VARcity'and RESTAURANT.RATING=(select max(RESTAURANT.RATING) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.FOOD_TYPE='VARfood' and LOCATION.CITY_NAME='VARcity')"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "san francisco",
+               "sql-value": "san francisco"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

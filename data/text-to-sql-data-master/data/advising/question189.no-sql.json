@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Lack information"
+    ],
+    "paraphrases": [],
+    "sentence": "Does EECS 280 include lectures and labs?",
+    "sentence-with-vars": "Does department0 number0 include lectures and labs?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

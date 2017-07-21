@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Probably requires reasoning? We'd need to say 280 isn't a prereq for discrete math and discrete math isn't a prereq for 280."
+    ],
+    "paraphrases": [],
+    "sentence": "Can I take discrete math and 280 at the same time?",
+    "sentence-with-vars": "Can I take topic0 and number0 at the same time?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+		{
+            "name": "topic0",
+            "sentence-value": "discrete math",
+            "sql-value": ""
+        }
+    ]
+}

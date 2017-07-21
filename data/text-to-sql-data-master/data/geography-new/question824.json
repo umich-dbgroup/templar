@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state has the smallest average urban population ?", 
+ "sentence-with-vars": "which state has the smallest average urban population ?", 
+ "sql": "select state.state_name from state where state.density = ( select min ( state.density ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.density = ( select min ( state.density ) from state ) ;", 
+ "variables": [
+  {
+   "name": "", 
+   "sentence-value": "", 
+   "sql-value": ""
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Courses for Spring 2015 included Prof. Brehob for EECS 2013 ?",
+        "Did Prof. Brehob in Spring 2015 teach EECS 203 ?",
+        "For EECS 2013 , did Professor Brehob teach in Spring 2015 ?",
+        "I understand that Prof. Brehob taught EECS 203 in the Spring 2015 semester , is that correct ?",
+        "In Spring 2015 , did Prof. Brehob teach EECS 203 ?",
+        "In spring 2015 , did Prof. Brehob teach EECS 203 ?",
+        "In spring 2015 , was Prof. Brehob teaching EECS 203 ?",
+        "Was EECS 203 taught by Prof. Brehob in Spring 2015 ?",
+        "Was Prof. Brehob the person who taught EECS 203 in the Spring of 2015 ?",
+        "Who taught EECS 203 in Spring 2015 , was it Prof. Brehob ?",
+        "in Spring 2015 , did Prof. Brehob teach EECS 203 ?"
+    ],
+    "sentence": "Did Prof. Brehob teach EECS 203 in Spring 2015 ?",
+    "sentence-with-vars": "Did instructor0 teach department0 number0 in semester0 year0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 203 AND INSTRUCTORalias0.NAME LIKE \"%brehob%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"SP\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2015 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"instructor0\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Brehob",
+            "sql-value": "brehob"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Spring",
+            "sql-value": "SP"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2015",
+            "sql-value": "2015"
+        }
+    ]
+}

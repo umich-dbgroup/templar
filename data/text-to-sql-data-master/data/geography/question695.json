@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the smallest state through which the longest river runs ?", 
+ "sentence-with-vars": "what is the smallest state through which the longest river runs ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) and state.area = ( select min ( state.area ) from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) and state.area = ( select min ( state.area ) from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) ) ;", 
+ "variables": []
+}

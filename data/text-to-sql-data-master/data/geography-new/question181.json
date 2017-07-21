@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of sacramento ?", 
+ "sentence-with-vars": "what is the population of city0 ?", 
+ "sql": "select city.population from city where city.city_name = ' sacramento ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "sacramento", 
+   "sql-value": "sacramento"
+  }
+ ]
+}

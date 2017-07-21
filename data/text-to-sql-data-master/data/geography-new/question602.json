@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is new orleans ?", 
+ "sentence-with-vars": "where is city0 ?", 
+ "sql": "select city.state_name from city where city.city_name = ' new orleans ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "new orleans", 
+   "sql-value": "new orleans"
+  }
+ ]
+}

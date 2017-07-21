@@ -1,0 +1,40 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of current semester.",
+        "DRK - Again, next semester taken to be Fall 2016"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any upper level elective courses that do n't meet on Fridays next semester ?",
+        "Are there upper elective classes next semester that do not meet on Friday ?",
+        "For upper level elective classes offered next semester , which ones do n't meet on Fridays ?",
+        "Next semester are their any upper level elective classes that do not meet on Friday ?",
+        "Next semester , which upper elective classes will have Fridays off ?",
+        "Next semester , which upper level elective classes are not meeting on Fridays ?",
+        "Next semester , which upper level elective classes do not meet on Friday ?",
+        "Next semester , which upper level elective classes only meet Monday , Tuesday , Wednesday and/or Thursday ?",
+        "Of the upper level elective classes that are taking place next semester , which ones do n't meet on Fridays ?",
+        "WHich upper elective classes will not be meeting on Fridays next semester ?",
+        "What are the upper level options next semester that do not meet on Friday ?",
+        "What upper level classes next semester will not have to meet on Fridays ?",
+        "Which elective classes next semester are upper level and do not meet on Fridays ?",
+        "Which upper level elective classes next semester meet on days other than Fridays ?",
+        "Which upper level electives do n't meet on Friday next term ?"
+    ],
+    "sentence": "Which upper level elective classes next semester do not meet on Fridays ?",
+    "sentence-with-vars": "Which upper level elective classes next semester do not meet on Fridays ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY <> \"Y\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY <> \"Y\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

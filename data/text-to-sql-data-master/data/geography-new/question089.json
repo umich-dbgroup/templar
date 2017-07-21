@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population density of the state with the smallest population ?", 
+ "sentence-with-vars": "what is the population density of the state with the smallest population ?", 
+ "sql": "select state.density from state where state.population = ( select min ( state.population ) from state ) ;", 
+ "sql-with-vars": "select state.density from state where state.population = ( select min ( state.population ) from state ) ;", 
+ "variables": []
+}

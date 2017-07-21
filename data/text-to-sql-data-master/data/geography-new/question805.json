@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which states border states through which the mississippi traverses ?", 
+ "sentence-with-vars": "which states border states through which the state0 traverses ?", 
+ "sql": "select border_info.border from border_info where border_info.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) ;", 
+ "sql-with-vars": "select border_info.border from border_info where border_info.state_name in ( select river.traverse from river where river.river_name = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "mississippi", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

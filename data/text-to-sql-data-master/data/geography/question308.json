@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the least populous state ?", 
+ "sentence-with-vars": "what is the least populous state ?", 
+ "sql": "select state.state_name from state where state.population = ( select min ( state.population ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.population = ( select min ( state.population ) from state ) ;", 
+ "variables": []
+}

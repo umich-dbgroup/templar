@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state has the red river ?", 
+ "sentence-with-vars": "which state has the river0 ?", 
+ "sql": "select river.traverse from river where river.river_name = ' red ' ;", 
+ "sql-with-vars": "select river.traverse from river where river.river_name = ' river0 ' ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "red river", 
+   "sql-value": "red"
+  }
+ ]
+}

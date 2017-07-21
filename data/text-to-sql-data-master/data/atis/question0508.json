@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me . the airlines",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"' FROM airline v0 \nWHERE ( 1 =  1);",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_CODE FROM AIRLINE WHERE 1 = 1 ) ;"
+    ],
+    "variables": []
+}

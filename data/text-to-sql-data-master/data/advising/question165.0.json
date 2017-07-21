@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "CFD - If our database were complete, we could be confident that this is correct. But our database only goes back a certain number of years."
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "An offering of EECS 280 has been made how many times ?",
+        "EECS 280 has been a course for what number of times ?",
+        "EECS 280 has been offered how many times ?",
+        "EECS 280 has been taught what number of times ?",
+        "EECS 280 , how many times has it been offered ?",
+        "EECS has been offered how many times ?",
+        "In regards to EECS 280 , how many times has it been offered ?",
+        "What is the frequency with which EECS 280 has been offered ?",
+        "What is the number of times that EECS has been offered ?",
+        "What is the total number of times EECS 280 was made available ?",
+        "What number of times has EECS 280 been offered ?",
+        "What 's the number of times EECS 280 has been offered ?"
+    ],
+    "sentence": "How many times has EECS 280 been offered ?",
+    "sentence-with-vars": "How many times has department0 number0 been offered ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.OFFERING_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.OFFERING_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

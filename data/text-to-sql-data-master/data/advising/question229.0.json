@@ -1,0 +1,53 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are 300-level classes offered next semester ?",
+        "Can you list the 300-level courses for next semester ?",
+        "For our next semester , will 300-level classes be offered ?",
+        "I need a list of the 300-level classes offered next semester .",
+        "In the next semester if 300-level classes are offered what kind of classes can be taken ?",
+        "In the next semester , which 300-level courses will be available ?",
+        "Is there a list for next semester of 300-level courses being offered ?",
+        "Next semester , what 300-level classes are offered ?",
+        "Next semester , what 300-level classes are there ?",
+        "Next semester , what 300-level classes will be offered ?",
+        "Next semester , what are the 300 level classes ?",
+        "Next semester , what are the 300-level classes ?",
+        "Next semester , what classes are offered at 300-level ?",
+        "Next semester , which 300-level classes are available ?",
+        "What 300-level classes can I anticipate next semester ?",
+        "What are next semester 's 300-level classes ?",
+        "What classes at the 300-level are offered next semester ?",
+        "Which 300 level classes are offered for next semester ?",
+        "Which 300 level courses are presented after this semester ?",
+        "Which 300-level classes will be offered next semester ?"
+    ],
+    "sentence": "What 300-level classes are offered next semester ?",
+    "sentence-with-vars": "What number0 classes are offered next semester ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER < 400 AND COURSEalias0.NUMBER >= 300 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER < 400 AND COURSEalias0.NUMBER >= number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "300-level",
+            "sql-value": "300"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

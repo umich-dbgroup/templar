@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the smallest state bordering ohio ?", 
+ "sentence-with-vars": "what is the smallest state bordering state0 ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' ohio ' ) and state.area = ( select min ( state.area ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' ohio ' ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.area = ( select min ( state.area ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "ohio", 
+   "sql-value": "ohio"
+  }
+ ]
+}

@@ -1,0 +1,42 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "JKK - Adjust to avoid subquery",
+        "SRS - It would be more helpful to know the hardest few classes, not just the hardest. Otherwise, it's more like trivia."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Is there 1 class that 's harder than the rest ?",
+        "Of all the classes , which is the hardest ?",
+        "Of the classes , which is the hardest ?",
+        "The hardest class is what ?",
+        "The hardest class is ?",
+        "The hardest class would be what ?",
+        "What class is hardest ?",
+        "What class is most difficult ?",
+        "What class is the hardest ?",
+        "What do you think the hardest class is ?",
+        "What is the class that is the hardest ?",
+        "What is the most challenging class ?",
+        "What 's the most difficult class ?",
+        "When it comes to classes , which 1 's the hardest ?",
+        "Which class do you think was the hardest ?",
+        "Which class is the hardest ?",
+        "Which course is the most difficult ?"
+    ],
+    "sentence": "What 's the hardest class ?",
+    "sentence-with-vars": "What 's the hardest class ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM ( SELECT MAX( PROGRAM_COURSEalias1.WORKLOAD ) AS DERIVED_FIELDalias0 FROM PROGRAM_COURSE AS PROGRAM_COURSEalias1 ) AS DERIVED_TABLEalias0 , COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD = DERIVED_TABLEalias0.DERIVED_FIELDalias0 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM ( SELECT MAX( PROGRAM_COURSEalias1.WORKLOAD ) AS DERIVED_FIELDalias0 FROM PROGRAM_COURSE AS PROGRAM_COURSEalias1 ) AS DERIVED_TABLEalias0 , COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD = DERIVED_TABLEalias0.DERIVED_FIELDalias0 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

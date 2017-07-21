@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Needs reasoning."
+    ],
+    "paraphrases": [],
+    "sentence": "Is it possible to take three EECS courses in the same semester?",
+    "sentence-with-vars": "Is it possible to take three department0 courses in the same semester?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the longest river that passes the states that border the state that borders the most states ?", 
+ "sentence-with-vars": "what is the longest river that passes the states that border the state that borders the most states ?", 
+ "sql": "select river.river_name from river , border_info where river.traverse = border_info.state_name and border_info.border = ( select border from border_info group by state_name order by count ( distinct border_info.border ) desc limit 1 ) order by river.length desc limit 1 ;", 
+ "sql-with-vars": "select river.river_name from river , border_info where river.traverse = border_info.state_name and border_info.border = ( select border from border_info group by state_name order by count ( distinct border_info.border ) desc limit 1 ) order by river.length desc limit 1 ;", 
+ "variables": []
+}

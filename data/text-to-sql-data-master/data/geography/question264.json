@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is the lowest point in maryland ?", 
+ "sentence-with-vars": "where is the lowest point in state0 ?", 
+ "sql": "select highlow.lowest_point from highlow where highlow.state_name = ' maryland ' ;", 
+ "sql-with-vars": "select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "maryland", 
+   "sql-value": "maryland"
+  }
+ ]
+}

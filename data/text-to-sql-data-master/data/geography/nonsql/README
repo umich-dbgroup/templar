@@ -1,0 +1,1 @@
+This directory contains data and code to help identify which questions are usually part of the train set and which are usually part of the test set in non-SQL GeoQuery's 600-200 split. Data from https://github.com/pks/rebol/tree/master/data/geoquery; code is our own.

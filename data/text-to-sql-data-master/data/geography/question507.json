@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what rivers flow through states that border the state with the largest population ?", 
+ "sentence-with-vars": "what rivers flow through states that border the state with the largest population ?", 
+ "sql": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ) ;", 
+ "variables": []
+}

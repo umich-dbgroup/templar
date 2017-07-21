@@ -1,0 +1,43 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Among EECS classes , which are the ones that can be counted as a capstone ?",
+        "For a capstone , which EECS classes can be counted ?",
+        "For fulfilling the capstone which EECS classes are acceptable ?",
+        "For the capstone requirement , which EECS class fulfills it ?",
+        "From all the EECS classes , which ones are considered to be a capstone ?",
+        "What EECS classes are counted as capstone ?",
+        "What EECS classes can be counted as a capstone ?",
+        "What are the names of EECS classes that are considered to be capstones ?",
+        "What are the names of the EECS classes that count as a capstone ?",
+        "What options do I have for my final capstone project ?",
+        "Which EECS classes are capstones ?",
+        "Which EECS classes can be considered a capstone ?",
+        "Which are the EECS classes that are counted as a capstone ?",
+        "Which of the EECS classes can be used as a capstone ?",
+        "Which of the EECS classes count as a capstone ?"
+    ],
+    "sentence": "Which EECS classes can be counted as a capstone ?",
+    "sentence-with-vars": "Which department0 classes can be counted as a capstone ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

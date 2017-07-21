@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "SRS - This would be more helpful if the easiest EECS classes were listed, since very few might have a workload of 1, or the student may have already taken those classes.",
+        "LZ - Maybe sort by easiness"
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "An easy EECS class is what I need .",
+        "An easy EECS class is what I 'm looking for .",
+        "Are there any easy EECS classes that I can take ?",
+        "Can you recommend an easy EECS class ?",
+        "I could use an easy EECS class .",
+        "I have to take an EECS class .",
+        "I require a less demanding EECS class .",
+        "I want an easy EECS class .",
+        "I would prefer an EECS class that is easy .",
+        "I 'd like to take an easy EECS course .",
+        "I 'm looking for an EECS course that 's simple and easy .",
+        "What EECS class has a reputation for being easy ?",
+        "What EECS class is an easy option ?",
+        "What EECS class is easy ?"
+    ],
+    "sentence": "I need an easy EECS class .",
+    "sentence-with-vars": "I need an easy department0 class .",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD = 1 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.WORKLOAD = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

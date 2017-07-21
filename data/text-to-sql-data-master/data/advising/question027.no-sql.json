@@ -1,0 +1,41 @@
+{
+    "accuracy": [],
+    "comments": [
+        "JKK - We can answer the question \"What 300-level classes do not have EECS 280 as a prerequisite?\" But we don't know, and SQL isn't a good way to figure out, what courses have 280 somewhere in their prerequisite chain -- e.g., if 280 is a prereq for 281, and 281 is a prerequisite for some 300-level courses.",
+        "JKK - SELECT C.NUMBER, C.NAME",
+        "JKK - FROM COURSE C",
+        "JKK - WHERE C.DEPARTMENT = 'EECS' AND C.NUMBER >= 300 AND C.NUMBER < 400 AND C.COURSE_ID NOT IN",
+        "JKK - (SELECT CP.COURSE_ID AS BAD_IDS",
+        "JKK - FROM COURSE C1, COURSE_PREREQUISITE CP",
+        "JKK - WHERE C1.DEPARTMENT='EECS' AND C1.NUMBER = 280",
+        "JKK - AND C1.COURSE_ID = CP.PRE_COURSE_ID)"
+    ],
+    "helpfulness": [],
+    "info": [
+        "Pyke question"
+    ],
+    "paraphrases": [
+        "Is there any 400-level class that does not require me to take EECS 280 as a prerequisite?"
+    ],
+    "sentence": "What 300-level classes can I take without taking EECS 280?",
+    "sentence-with-vars": "What number1 classes can I take without taking department0 number0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+		{
+            "name": "number1",
+            "sentence-value": "300-level",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

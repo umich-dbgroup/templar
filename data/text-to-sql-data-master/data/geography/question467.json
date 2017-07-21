@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states have cities named austin ?", 
+ "sentence-with-vars": "how many states have cities named city0 ?", 
+ "sql": "select count ( city.state_name ) from city where city.city_name = ' austin ' ;", 
+ "sql-with-vars": "select count ( city.state_name ) from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "austin", 
+   "sql-value": "austin"
+  }
+ ]
+}

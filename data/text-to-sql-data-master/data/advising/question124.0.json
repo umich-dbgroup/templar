@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "At what time do EECS 492 course lectures start next semester ?",
+        "At what time do EECS 492 lectures start next semester ?",
+        "Next semester , what time does the EECS 492 lecture begin ?",
+        "Next semester , what time is the EECS 492 lecture ?",
+        "What are the class hours next semester for the EECS 492 lecture ?",
+        "What is the lecture time for EECS 492 next semester ?",
+        "What is the time slot for next semester 's EECS 492 lectures ?",
+        "What time do EECS 492 lectures start next semester ?",
+        "What time of the day do EECS 492 lectures start next semester ?",
+        "What time of the day does EECS 492 start next semester ?",
+        "What will be the time for EECS 492 lectures next semester ?"
+    ],
+    "sentence": "What time do EECS 492 lectures start next semester ?",
+    "sentence-with-vars": "What time do department0 number0 lectures start next semester ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.START_TIME FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 492 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.START_TIME FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": "492"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

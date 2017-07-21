@@ -1,0 +1,27 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not a DB query -- Pyke is better if the implied question is \"Assuming I take 280, will I have taken all of the prerequisites for 492?\""
+    ],
+    "paraphrases": [
+        "If I'm taking EECS 281 this semester, will I be able to take EECS 483 next semester?"
+    ],
+    "sentence": "Can I take 280 this term and 492 the semester after?",
+    "sentence-with-vars": "Can I take number0 this term and number1 the semester after?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "492",
+            "sql-value": ""
+        }
+    ]
+}

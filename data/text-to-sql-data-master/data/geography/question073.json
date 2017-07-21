@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of states that have cities named durham ?", 
+ "sentence-with-vars": "what is the capital of states that have cities named city0 ?", 
+ "sql": "select state.capital from state , city where state.state_name = city.state_name and city.city_name = ' durham ' ;", 
+ "sql-with-vars": "select state.capital from state , city where state.state_name = city.state_name and city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "durham", 
+   "sql-value": "durham"
+  }
+ ]
+}

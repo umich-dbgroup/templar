@@ -1,0 +1,80 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "280 class has a lab ?",
+        "280 has a lab , does it ?",
+        "280 has a lab , right ?",
+        "280 has a lab ?",
+        "280 , does it have a lab ?",
+        "A 280 lab , does 1 exist ?",
+        "And does 280 have a lab ?",
+        "Are there additional laboratory requirements for the 280 course ?",
+        "Are there any labs in 280 ?",
+        "Do I have to take a lab for 280 ?",
+        "Do you have to take a lab with 280 ?",
+        "Do you know if 280 has a lab ?",
+        "Does 280 contain a lab ?",
+        "Does 280 have a lab as well ?",
+        "Does 280 include a lab ?",
+        "Does 280 include any lab ?",
+        "Does 280 include lab ?",
+        "Does a 280 lab exist ?",
+        "Does the class 280 have lab ?",
+        "For 280 , is there a lab ?",
+        "If I take 280 do I also have to complete a lab ?",
+        "In 280 is there a lab ?",
+        "In 280 , does it have a lab ?",
+        "In 280 , is there a lab ?",
+        "Is a lab included in 280 ?",
+        "Is a lab required for 280 ?",
+        "Is lab also included in 280 ?",
+        "Is there a 280 lab ?",
+        "Is there a lab associated with the 280 level course ?",
+        "Is there a lab component for 280 ?",
+        "Is there a lab for 280 ?",
+        "Is there a lab for the 280 class ?",
+        "Is there a lab in 280 ?",
+        "Is there a lab involved in 280 ?",
+        "Is there a lab portion for 280 ?",
+        "Is there a lab required for the 280 course ?",
+        "Is there a lab requirement for 280 ?",
+        "Is there a lab that accompanies 280 ?",
+        "Is there a lab which belongs to 280 ?",
+        "Is there a lab with 280 ?",
+        "Is there any lab for 280 ?",
+        "Is there lab for 280 ?",
+        "Will 280 have a lab ?",
+        "Would there be a 280 lab ?",
+        "is 280 among classes with lab ?",
+        "is there a lab for 280 ?",
+        "is there a lab with 280 ?",
+        "what labs are associated with 280 ?"
+    ],
+    "sentence": "Does 280 always have a lab ?",
+    "sentence-with-vars": "Does number0 always have a lab ?",
+    "sql": [
+        "SELECT COURSEalias0.HAS_LAB FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.HAS_LAB FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

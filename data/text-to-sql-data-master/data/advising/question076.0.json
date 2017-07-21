@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 2"
+    ],
+    "info": [
+        "Another ambiguous one. Does the student really mean AND or OR? As a human, I construe it as non-exclusive or."
+    ],
+    "paraphrases": [
+        "During the spring and summer , what are all the upper-level electives being offered ?",
+        "During the spring and summer , what upper-level electives are being offered ?",
+        "During the spring and summer , what upper-level electives are offered ?",
+        "For spring and summer electives , are there any offerings that are considered upper level ?",
+        "For the spring and summer , what upper-level electives are offered ?",
+        "In the spring and summer , what upper-level electives are offered ?",
+        "Out of the upper-level electives , which ones are offered in the spring and summer ?",
+        "What are all the upper-level electives being offered in the spring and summer ?",
+        "What are the upper-level elective options for the spring and summer ?",
+        "What classes during the spring and summer terms are upper-level electives ?",
+        "What is the spring and summer schedule for upper-level electives ?",
+        "Which upper-level electives are offered in the spring and summer ?"
+    ],
+    "sentence": "What upper-level electives are offered in the spring and summer ?",
+    "sentence-with-vars": "What upper-level electives are offered in the semester0 and semester1 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE ( SEMESTERalias0.SEMESTER = \"SP\" OR SEMESTERalias0.SEMESTER = \"SS\" OR SEMESTERalias0.SEMESTER = \"SU\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE ( SEMESTERalias0.SEMESTER = \"SS\" OR SEMESTERalias0.SEMESTER = \"semester0\" OR SEMESTERalias0.SEMESTER = \"semester1\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "spring",
+            "sql-value": "SP"
+        },
+        {
+            "name": "semester1",
+            "sentence-value": "summer",
+            "sql-value": "SU"
+        }
+    ]
+}

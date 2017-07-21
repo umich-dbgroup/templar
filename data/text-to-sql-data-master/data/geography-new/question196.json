@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the smallest city in hawaii ?", 
+ "sentence-with-vars": "what is the smallest city in state0 ?", 
+ "sql": "select city.city_name from city where city.state_name = ' hawaii ' and city.population = ( select min ( city.population ) from city where city.state_name = ' hawaii ' ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select min ( city.population ) from city where city.state_name = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "hawaii", 
+   "sql-value": "hawaii"
+  }
+ ]
+}

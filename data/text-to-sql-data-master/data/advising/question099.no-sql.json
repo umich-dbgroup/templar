@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "The TA table is currently empty"
+    ],
+    "paraphrases": [],
+    "sentence": "Who are the GSIs for 281 this fall?",
+    "sentence-with-vars": "Who are the GSIs for number0 this semester0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "fall",
+            "sql-value": ""
+        }
+    ]
+}

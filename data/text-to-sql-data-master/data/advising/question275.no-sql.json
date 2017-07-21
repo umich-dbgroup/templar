@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "lack information"
+    ],
+    "paraphrases": [],
+    "sentence": "Which is the best ENGR 100 section for CS?",
+    "sentence-with-vars": "Which is the best department0 number0 section for CS?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "100",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": ""
+        }
+    ]
+}

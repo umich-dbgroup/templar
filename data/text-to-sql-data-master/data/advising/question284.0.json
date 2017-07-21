@@ -1,0 +1,51 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "LZ - 0"
+    ],
+    "comments": [
+        "LZ - Didn't mention last semester"
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you identify the GSIs from last semester for EECS 280 ?",
+        "Can you tell me who the GSIs were for last semester 's EECS 280 ?",
+        "During the last semester in EECS 280 , who were the GSIs ?",
+        "During the last semester , who were the GSIs for EECS 280 ?",
+        "EECS 280 had who for GSIs last semester ?",
+        "For EECS 280 last semester , who were the GSIs ?",
+        "For EECS 280 , who were the GSIs last semester ?",
+        "For last semester 's EECS 280 class , who were the GSIs ?",
+        "Last semester in EECS 280 , who were the GSIs ?",
+        "Last semester who were the GSIs for EECS 280 ?",
+        "Last semester , the GSIs for EECS 220 were who ?",
+        "Last semester , who were the GSIs for EECS 280 ?",
+        "Last year , who were the GSI 's for EECS 280 ?",
+        "The GSIs for last semester 's EECS 280 were who ?",
+        "What are the names of the GSIs for last semester 's EECS 280 ?",
+        "Who were the GSIs for EECS 280 last semester ?"
+    ],
+    "sentence": "Who were the GSIs for EECS 280 last semester ?",
+    "sentence-with-vars": "Who were the GSIs for department0 number0 last semester ?",
+    "sql": [
+        "SELECT STUDENTalias0.FIRSTNAME , STUDENTalias0.LASTNAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN GSI AS GSIalias0 ON GSIalias0.COURSE_OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN STUDENT AS STUDENTalias0 ON STUDENTalias0.STUDENT_ID = GSIalias0.STUDENT_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2015 ;"
+    ],
+    "sql-with-vars": "SELECT STUDENTalias0.FIRSTNAME , STUDENTalias0.LASTNAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN GSI AS GSIalias0 ON GSIalias0.COURSE_OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN STUDENT AS STUDENTalias0 ON STUDENTalias0.STUDENT_ID = GSIalias0.STUDENT_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2015 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

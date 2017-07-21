@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is houston ?", 
+ "sentence-with-vars": "where is city0 ?", 
+ "sql": "select city.state_name from city where city.city_name = ' houston ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "houston", 
+   "sql-value": "houston"
+  }
+ ]
+}

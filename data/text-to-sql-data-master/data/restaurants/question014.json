@@ -1,0 +1,77 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "where are some good arabics on buchanan in san francisco ?",
+          "where is a good arabic restaurant on buchanan in san francisco ?",
+          "what are some good places for arabic on buchanan in san francisco ?",
+          "give me a good arabic on buchanan in san francisco ?",
+          "give me some restaurants good for arabic food on buchanan in san francisco ?",
+          "give me a good place on buchanan in san francisco for arabic food ?",
+          "where is a good place on buchanan in san francisco for arabic food ?",
+          "where can i eat arabic food on buchanan in san francisco ?",
+          "give me some good places on buchanan in san francisco for arabic food ?",
+          "where is a arabic restaurant on buchanan in san francisco ?",
+          "give me a restaurant on buchanan in san francisco that serves good arabic food ?",
+          "give me a good restaurant on buchanan in san francisco for arabic food ?",
+          "where is a restaurant on buchanan in san francisco that serves good arabic food ?",
+          "give me some good restaurants on buchanan in san francisco for arabic food ?",
+          "give me some good places for arabic on buchanan in san francisco ?",
+          "where can i eat some good arabic food on buchanan in san francisco ?",
+          "where is a good arabic on buchanan in san francisco ?",
+          "where are some restaurants good for arabic food on buchanan in san francisco ?",
+          "where are some good places for arabic on buchanan in san francisco ?",
+          "give me a good arabic restaurant on buchanan in san francisco ?",
+          "give me some good arabics on buchanan in san francisco ?"
+     ],
+     "paraphrases-with-vars": [
+          "where are some good VARfoods on VARstreet in VARcity ?",
+          "where is a good VARfood restaurant on VARstreet in VARcity ?",
+          "what are some good places for VARfood on VARstreet in VARcity ?",
+          "give me a good VARfood on VARstreet in VARcity ?",
+          "give me some restaurants good for VARfood food on VARstreet in VARcity ?",
+          "give me a good place on VARstreet in VARcity for VARfood food ?",
+          "where is a good place on VARstreet in VARcity for VARfood food ?",
+          "where can i eat VARfood food on VARstreet in VARcity ?",
+          "give me some good places on VARstreet in VARcity for VARfood food ?",
+          "where is a VARfood restaurant on VARstreet in VARcity ?",
+          "give me a restaurant on VARstreet in VARcity that serves good VARfood food ?",
+          "give me a good restaurant on VARstreet in VARcity for VARfood food ?",
+          "where is a restaurant on VARstreet in VARcity that serves good VARfood food ?",
+          "give me some good restaurants on VARstreet in VARcity for VARfood food ?",
+          "give me some good places for VARfood on VARstreet in VARcity ?",
+          "where can i eat some good VARfood food on VARstreet in VARcity ?",
+          "where is a good VARfood on VARstreet in VARcity ?",
+          "where are some restaurants good for VARfood food on VARstreet in VARcity ?",
+          "where are some good places for VARfood on VARstreet in VARcity ?",
+          "give me a good VARfood restaurant on VARstreet in VARcity ?",
+          "give me some good VARfoods on VARstreet in VARcity ?"
+     ],
+     "sentence": "where is a good restaurant on buchanan in san francisco for arabic food ?",
+     "sentence-with-vars": "where is a good restaurant on VARstreet in VARcity for VARfood food ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and LOCATION.CITY_NAME='san francisco' and RESTAURANT.FOOD_TYPE='arabic' and LOCATION.STREET_NAME='buchanan'"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and LOCATION.CITY_NAME='VARcity' and RESTAURANT.FOOD_TYPE='VARfood' and LOCATION.STREET_NAME='VARstreet'"
+     ],
+     "variables": [
+          {
+               "name": "VARstreet",
+               "sentence-value": "buchanan",
+               "sql-value": "buchanan"
+          },
+          {
+               "name": "VARcity",
+               "sentence-value": "san francisco",
+               "sql-value": "san francisco"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "arabic",
+               "sql-value": "arabic"
+          }
+     ]
+}

@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "lack information"
+    ],
+    "paraphrases": [],
+    "sentence": "Can I possibly take 281 without 280?",
+    "sentence-with-vars": "Can I possibly take number0 without number1?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

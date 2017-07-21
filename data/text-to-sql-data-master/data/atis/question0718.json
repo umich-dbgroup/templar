@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many first class flights does delta have today",
+    "sq2": "SELECT  COUNT(*), '\"'||v0.airline_code||'\"' FROM flight v0 \nWHERE ((v0.airline_code = 'DL') AND ((v0.flight_days IN (\nSELECT v1.days_code FROM days v1 \nWHERE (v1.day_name IN (\nSELECT v2.day_name FROM date_day v2 \nWHERE (((v2.year =  1993) AND (v2.month_number =  4)) \nAND (v2.day_number =  29)))))) AND (v0.flight_id IN (\nSELECT v3.flight_id FROM flight_fare v3 \nWHERE (v3.fare_id IN (\nSELECT v4.fare_id FROM fare v4 \nWHERE ((v4.fare_basis_code IN (\nSELECT v5.fare_basis_code FROM fare_basis v5 \nWHERE (v5.class_type = 'FIRST'))) AND (v4.fare_basis_code IN (\nSELECT v6.fare_basis_code FROM fare_basis v6 \nWHERE (v6.basis_days IN (\nSELECT v7.days_code FROM days v7 \nWHERE (v7.day_name IN (\nSELECT v8.day_name FROM date_day v8 \nWHERE (((v8.year =  1993) \nAND (v8.month_number =  4)) AND (v8.day_number =  29))))))))))))))) GROUP BY v0.airline_code;",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' DL ' AND ( FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 4 AND DATE_DAY.DAY_NUMBER = 29 ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_FARE . FLIGHT_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FARE_ID IN ( SELECT FARE . FARE_ID FROM FARE WHERE ( FARE.FARE_BASIS_CODE IN ( SELECT FARE_BASIS.FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS.CLASS_TYPE = ' FIRST ' ) AND FARE . FARE_BASIS_CODE IN ( SELECT FARE_BASIS . FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS . BASIS_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 4 AND DATE_DAY.DAY_NUMBER = 29 ) ) ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

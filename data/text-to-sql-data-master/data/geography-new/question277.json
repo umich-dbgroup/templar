@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what state has the capital salem ?", 
+ "sentence-with-vars": "what state has the capital city0 ?", 
+ "sql": "select state.state_name from state where state.capital = ' salem ' ;", 
+ "sql-with-vars": "select state.state_name from state where state.capital = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "salem", 
+   "sql-value": "salem"
+  }
+ ]
+}

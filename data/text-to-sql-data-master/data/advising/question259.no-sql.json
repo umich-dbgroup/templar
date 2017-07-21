@@ -1,0 +1,14 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "complex query -- to come back"
+    ],
+    "paraphrases": [],
+    "sentence": "Are there any introductory courses that don't have three lectures a week?",
+    "sentence-with-vars": "Are there any introductory courses that don't have three lectures a week?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": []
+}

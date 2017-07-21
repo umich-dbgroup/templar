@@ -1,0 +1,6 @@
+{
+    "sentence": "Which department is discrete math in ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT FROM COURSE AS COURSEalias0 WHERE COURSEalias0.NAME LIKE \"%discrete math%\" ;"
+    ]
+}

@@ -1,0 +1,74 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "what are some good places in mountain view for arabic food ?",
+          "where are some good arabic restaurants in mountain view ?",
+          "show me a good arabic restaurant in mountain view ?",
+          "give me a good arabic in mountain view ?",
+          "give me a good arabic restaurant in mountain view ?",
+          "give me a good place in mountain view for arabic food ?",
+          "where are some good arabics in mountain view ?",
+          "where is a restaurant in mountain view that serves good arabic food ?",
+          "what are some good restaurants in mountain view for arabic food ?",
+          "give me some restaurants good for arabic food in mountain view ?",
+          "where can i eat some good arabic food in mountain view ?",
+          "give me some good places for arabic in mountain view ?",
+          "where is a good arabic in mountain view ?",
+          "give me a restaurant in mountain view that serves good arabic food ?",
+          "give me some good arabic restaurants in mountain view ?",
+          "where are some good places for arabic in mountain view ?",
+          "give me some good arabics in mountain view ?",
+          "give me a good restaurant in mountain view for arabic food ?",
+          "where is a good arabic restaurant in mountain view ?",
+          "what are some good places for arabic in mountain view ?",
+          "where is a good restaurant in mountain view for arabic food ?",
+          "where is a good place in mountain view for arabic food ?"
+     ],
+     "paraphrases-with-vars": [
+          "what are some good places in VARcity for VARfood food ?",
+          "where are some good VARfood restaurants in VARcity ?",
+          "show me a good VARfood restaurant in VARcity ?",
+          "give me a good VARfood in VARcity ?",
+          "give me a good VARfood restaurant in VARcity ?",
+          "give me a good place in VARcity for VARfood food ?",
+          "where are some good VARfoods in VARcity ?",
+          "where is a restaurant in VARcity that serves good VARfood food ?",
+          "what are some good restaurants in VARcity for VARfood food ?",
+          "give me some restaurants good for VARfood food in VARcity ?",
+          "where can i eat some good VARfood food in VARcity ?",
+          "give me some good places for VARfood in VARcity ?",
+          "where is a good VARfood in VARcity ?",
+          "give me a restaurant in VARcity that serves good VARfood food ?",
+          "give me some good VARfood restaurants in VARcity ?",
+          "where are some good places for VARfood in VARcity ?",
+          "give me some good VARfoods in VARcity ?",
+          "give me a good restaurant in VARcity for VARfood food ?",
+          "where is a good VARfood restaurant in VARcity ?",
+          "what are some good places for VARfood in VARcity ?",
+          "where is a good restaurant in VARcity for VARfood food ?",
+          "where is a good place in VARcity for VARfood food ?"
+     ],
+     "sentence": "where are some restaurants good for arabic food in mountain view ?",
+     "sentence-with-vars": "where are some restaurants good for VARfood food in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and RESTAURANT.FOOD_TYPE='arabic' and LOCATION.CITY_NAME='mountain view'"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and RESTAURANT.FOOD_TYPE='VARfood' and LOCATION.CITY_NAME='VARcity'"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "mountain view",
+               "sql-value": "mountain view"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "arabic",
+               "sql-value": "arabic"
+          }
+     ]
+}

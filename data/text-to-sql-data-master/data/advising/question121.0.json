@@ -1,0 +1,32 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Which courses are the least difficult ?",
+        "What are the simplest courses ?",
+        "Which classes are the least difficult ?",
+        "Which courses are least difficult ?",
+        "Which classes are easiest ?",
+        "The easiest courses are ?",
+        "Which courses are easiest ?",
+        "What are the easiest courses for me to take ?",
+        "Which classes are easiest ?",
+        "What are the easiest classes ?"
+    ],
+    "sentence": "What are the easiest courses ?",
+    "sentence-with-vars": "What are the easiest courses ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.WORKLOAD IS NOT NULL ORDER BY PROGRAM_COURSEalias0.WORKLOAD LIMIT 10 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.WORKLOAD IS NOT NULL ORDER BY PROGRAM_COURSEalias0.WORKLOAD LIMIT 10 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

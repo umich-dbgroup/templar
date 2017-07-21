@@ -1,0 +1,40 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 0"
+    ],
+    "comments": [
+        "SRS - Assumes that 'upper-level' is >299, and not ULCS."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there upper level classes that have projects but no exams ?",
+        "Are there upper-level classes that have projects but do not have exams ?",
+        "Are there upper-level classes that have projects without exams ?",
+        "Do any upper-level classes exist that have projects but no exams/",
+        "Is there any upper-level classes without exams that have projects ?",
+        "What classes in the upper-level have projects but no exams .",
+        "What upper level classes are offered that do n't require exams but have projects ?",
+        "What upper level classes can I take to avoid exams and only do projects ?",
+        "What upper-level classes require projects in place of exams .",
+        "Which classes are upper level and have projects but not exams ?",
+        "Which classes have projects , no exams , and are upper level ?",
+        "Which classes in the upper-level have projects and do n't have exams ?",
+        "Which upper level classes use projects rather than exams for evaluation ?",
+        "Which upper-level classes exempt final exams but require projects ?",
+        "Which upper-level classes have no exams but require projects ?",
+        "Which upper-level classes require only projects and no exams ?"
+    ],
+    "sentence": "Which upper-level classes have projects but no exams ?",
+    "sentence-with-vars": "Which upper-level classes have projects but no exams ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_EXAMS = \"Y\" AND COURSEalias0.HAS_PROJECTS = \"Y\" AND COURSEalias0.NUMBER > 299 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_EXAMS = \"Y\" AND COURSEalias0.HAS_PROJECTS = \"Y\" AND COURSEalias0.NUMBER > 299 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

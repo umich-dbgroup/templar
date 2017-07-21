@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "i want to see all flights arriving and departing lester b pearson international airport",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v1.airport_name||'\"' FROM flight v0, airport v1 \nWHERE (((v0.to_airport = ANY v1.airport_code) AND (v1.airport_name = 'LESTER B. PEARSON INTERNATIONAL')) OR ((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_name = 'LESTER B. PEARSON INTERNATIONAL')));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_NAME = ' LESTER B. PEARSON INTERNATIONAL ' ) OR FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_NAME = ' LESTER B. PEARSON INTERNATIONAL ' ) ) ) ;"
+    ],
+    "variables": []
+}

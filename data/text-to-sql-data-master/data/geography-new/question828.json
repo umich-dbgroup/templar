@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people in boulder ?", 
+ "sentence-with-vars": "how many people in boulder ?", 
+ "sql": "select city.population from city where city.city_name = ' boulder ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' boulder ' ;", 
+ "variables": [
+  {
+   "name": "", 
+   "sentence-value": "", 
+   "sql-value": ""
+  }
+ ]
+}

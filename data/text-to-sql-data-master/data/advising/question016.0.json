@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "DRK - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "DRK - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses which require taking EECS 281 first ?",
+        "As far as prerequisites , is EECS 281 necessary ?",
+        "Does any course have EECS 281 as an enforced prerequisite ?",
+        "EECS 281 is a have-to for what classes ?",
+        "EECS 281 is mandatory for anything ?",
+        "Is EECS 281 a must-take prerequisite for any other course ?",
+        "Is EECS 281 a prerequisite for anything ?",
+        "Is EECS 281 a required prerequisite for any class ?",
+        "Is EECS 281 required for anything ?",
+        "Is there anything for which EECS 281 is an enforced prerequisite ?",
+        "Regarding prerequisites , is EECS 281 mantadory ?",
+        "What is 281 a prerequisite for ?",
+        "Which EECS courses require 281 ?",
+        "Which classes need EECS 281 as a prerequisite ?"
+    ],
+    "sentence": "Is EECS 281 an enforced prerequisite for anything ?",
+    "sentence-with-vars": "Is department0 number0 an enforced prerequisite for anything ?",
+    "sql": [
+        "SELECT COURSEalias1.DEPARTMENT , COURSEalias1.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias1.DEPARTMENT , COURSEalias1.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

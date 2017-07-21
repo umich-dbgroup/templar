@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what does the meal code s slash stand for",
+    "sq2": "SELECT DISTINCT  '\"'||v0.meal_description||'\"', '\"'||v0.meal_code||'\"',\n v0.meal_number, '\"'||v0.compartment||'\"' FROM food_service v0 \nWHERE (v0.meal_code LIKE '%S/%');",
+    "sql": [
+        "( SELECT DISTINCT FOOD_SERVICE.MEAL_DESCRIPTION FROM FOOD_SERVICE WHERE FOOD_SERVICE.MEAL_CODE LIKE '% S / %' ) ;"
+    ],
+    "variables": []
+}

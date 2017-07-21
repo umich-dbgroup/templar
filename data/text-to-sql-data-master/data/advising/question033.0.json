@@ -1,0 +1,51 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - I think some classes can have multiple categories. For instance, MATH 216 can either be a core class or a flex-tech depending on whether MATH 215 has been taken."
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Besides a general elective , would EECS 285 fulfill any requirements ?",
+        "Could EECS 285 fulfill something other than a general elective ?",
+        "What requirements would EECS 285 meet other than a general elective ?",
+        "What requirement other than general elective would be fulfilled by EECS 285 ?",
+        "Besides general elective , what requirements does EECS 285 fulfill ?",
+        "Does EECS 285 only fulfill the general elective ?",
+        "Are there any non-general elective requirements that EECS 285 would fulfill for me ?",
+        "Are there other requirements that EECS 285 would fill besides the general elective ?",
+        "Other than as a general elective , would EECS 285 satisfy any requirements ?",
+        "Will EECS 285 help me fulfill any requirement besides general elective ?",
+        "Aside from general elective , does EECS 285 fulfill any requirements ?",
+        "Although EECS 285 is a general elective , what other requirements would it fulfill ?",
+        "Does EECS 285 fulfill requirements aside from general elective ?",
+        "Besides the general elective , does EECS 285 fulfill any other requirements ?",
+        "Would any requirements be fulfilled by EECS 285 besides general elective ?",
+        "Are any other requirements fulfilled for EECS 285 besides general elective ?"
+    ],
+    "sentence": "Would EECS 285 fulfill any requirements besides general elective ?",
+    "sentence-with-vars": "Would department0 number0 fulfill any requirements besides general elective ?",
+    "sql": [
+        "SELECT PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 285 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "285",
+            "sql-value": "285"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

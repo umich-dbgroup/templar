@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please list the morning flights from , kansas city to atlanta",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.departure_time, '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"' FROM flight v0, airport_service v1,\n city v2, airport_service v3, city v4 \nWHERE ((v0.departure_time BETWEEN  0 \nAND  1200) AND (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'KANSAS CITY'))) \nAND ((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) AND (v4.city_name = 'ATLANTA')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.DEPARTURE_TIME BETWEEN 0 AND 1200 AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' KANSAS CITY ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ATLANTA ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

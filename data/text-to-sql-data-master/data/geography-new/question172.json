@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what states border missouri ?", 
+ "sentence-with-vars": "what states border state0 ?", 
+ "sql": "select border_info.border from border_info where border_info.state_name = ' missouri ' ;", 
+ "sql-with-vars": "select border_info.border from border_info where border_info.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "missouri", 
+   "sql-value": "missouri"
+  }
+ ]
+}

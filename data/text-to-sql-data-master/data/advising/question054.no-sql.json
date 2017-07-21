@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "The CLASS_ADDRESS field in the COURSE_OFFERING table is null for every line; but even aside from this, there would need to be some reasoning to decide whether the address was on central or north"
+    ],
+    "paraphrases": [],
+    "sentence": "If I take 183, do I have to go to Central campus?",
+    "sentence-with-vars": "If I take number0, do I have to go to Central campus?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "183",
+            "sql-value": ""
+        }
+    ]
+}

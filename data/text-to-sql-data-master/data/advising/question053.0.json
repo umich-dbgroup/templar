@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [
+        "Technically, this should be answered yes or no, so we should select count, and if it's >0, the answer is yes. But the pragmatics of the question probably imply \"and if he does, what are they?\""
+    ],
+    "paraphrases": [
+        "Among the upper-level courses are any taught by DeOrio ?",
+        "Are any upper-level courses taught by DeOrio ?",
+        "Are there any upper level courses tuaght by DeOrio ?",
+        "Are there any upper-level courses taught by DeOrio ?",
+        "DeOrio , does he teach any upper-level courses ?",
+        "Does DeOrio give upper-level courses ?",
+        "Does DeOrio provide teaching for any upper-level courses ?",
+        "Does Professor DeOrio have any upper-level courses he teaches ?",
+        "For the upper-level courses is the instuctor ever DeOrio ?",
+        "For the upper-level courses , are there any taught by DeOrio ?",
+        "Is DeOrio teaching any of the upper-level classes ?",
+        "Is there an upper-level course taught by DeOrio ?",
+        "Of the upper-level courses are any taught by DeOrio ?",
+        "What upper level courses does DeOrio teach ?",
+        "What upper-level courses does DeOrio teach ?",
+        "Which upper-level courses are taught by DeOrio ?",
+        "Which upper-level courses does DeOrio teach ?"
+    ],
+    "sentence": "Does DeOrio teach any upper-level courses ?",
+    "sentence-with-vars": "Does instructor0 teach any upper-level courses ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE INSTRUCTORalias0.NAME LIKE \"%deorio%\" AND PROGRAM_COURSEalias0.CATEGORY LIKE \"ULCS\" ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND PROGRAM_COURSEalias0.CATEGORY LIKE \"ULCS\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "DeOrio",
+            "sql-value": "deorio"
+        }
+    ]
+}

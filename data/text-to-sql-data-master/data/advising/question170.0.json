@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of program to be CS_LSA.",
+        "JKK - What is program ID? We're going to need a detailed explanation of every field in the database."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "All of the MDE classes are ?",
+        "Could you please name all of the MDE classes for me ?",
+        "MDE classes are ?",
+        "May I know all of the MDE classes from you ?",
+        "Name for me all the MDE classed .",
+        "Name for me all MDE classed .",
+        "Name all MDE classes for me .",
+        "Name all the MDE classes for me .",
+        "Please tell me , what are all the MDE classes ?",
+        "What are all of the MDE classes ?",
+        "What are all the courses for MDE ?",
+        "What are the all of the MDE classes ?",
+        "Would you mind informing me what all of the MDE classes are ?"
+    ],
+    "sentence": "Can you tell me all of the MDE classes ?",
+    "sentence-with-vars": "Can you tell me all of the MDE classes ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

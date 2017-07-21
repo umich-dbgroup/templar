@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "RUI - 0",
+        "SRS - 1"
+    ],
+    "comments": [
+        "RUI - is MDE categorized as \"ULCS\"?",
+        "SRS - Would this bring up courses from multiple spring semesters, and not just next spring? Maybe that's fine."
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there MDE courses or pre-major courses for Spring ?",
+        "Are there MDE or pre-major course offered in the Spring ?",
+        "Are there any Spring pre-major or MDE courses ?",
+        "Does the spring term offer any pre-major or MDE courses ?",
+        "Does the university offer MDE or pre-major classes for the Spring term ?",
+        "During the Spring term are any pre-major or MDE courses offered ?",
+        "For Spring term , are any pre-major or MDE courses offered ?",
+        "For the Spring term , are any pre-major or MDE classes offered ?",
+        "In the Spring term will there be MDE or pre-major courses available ?",
+        "In the Spring term , are any pre-major or MDE courses offered ?",
+        "In the Spring term , are there any pre-major or MDE courses offered ?",
+        "In the spring term are any pre-major or MDE courses offered ?",
+        "Name the pre-major or MDE courses offered in the spring term .",
+        "What are the pre-major or MDE courses offered in the Spring term ?",
+        "Which MDE or pre-major courses are offered in the spring ?",
+        "what pre-major or MDE courses are available in the Spring ?"
+    ],
+    "sentence": "Are any pre-major or MDE courses offered in the Spring term ?",
+    "sentence-with-vars": "Are any pre-major or MDE courses offered in the semester0 term ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY IN ( \"PreMajor\" , \"ULCS\" ) AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"SP\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY IN ( \"PreMajor\" , \"ULCS\" ) AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "Spring",
+            "sql-value": "SP"
+        }
+    ]
+}

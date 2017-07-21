@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Completed but doable"
+    ],
+    "paraphrases": [],
+    "sentence": "What 300-level classes can I take next semester?",
+    "sentence-with-vars": "What number0 classes can I take next semester?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "300-level",
+            "sql-value": ""
+        }
+    ]
+}

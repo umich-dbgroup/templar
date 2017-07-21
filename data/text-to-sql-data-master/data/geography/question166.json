@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of springfield missouri ?", 
+ "sentence-with-vars": "what is the population of city0 state0 ?", 
+ "sql": "select city.population from city where city.city_name = ' springfield ' and city.state_name = ' missouri ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' and city.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "springfield", 
+   "sql-value": "springfield"
+  }, 
+  {
+   "name": "state0", 
+   "sentence-value": "missouri", 
+   "sql-value": "missouri"
+  }
+ ]
+}

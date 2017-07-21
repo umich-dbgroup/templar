@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all flights at general mitchell international",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.to_airport||'\"',\n '\"'||v0.from_airport||'\"' FROM flight v0 \nWHERE ((v0.to_airport IN (\nSELECT v1.airport_code FROM airport v1 \nWHERE (v1.airport_code = 'MKE'))) OR (v0.from_airport IN (\nSELECT v2.airport_code FROM airport v2 \nWHERE (v2.airport_code = 'MKE'))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' MKE ' ) OR FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' MKE ' ) ) ) ;"
+    ],
+    "variables": []
+}

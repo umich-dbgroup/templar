@@ -1,0 +1,491 @@
+ci0 to ci1
+ground transport ci0
+ci0 to ci1
+train to ci0
+ci0 to ci1
+what is ap0
+what is sa
+ci0 to ci1
+defin airlin al0
+ci0 to ci1
+i'm start from ci0
+from ci0 to ci1
+what doe ap0 mean
+what doe al0 mean
+what doe ap0 mean
+ci0 to ci1 da0
+doe al0 serv ci0
+ground transport in ci0
+explain the restrict rc0
+ci0 to ci1 daili
+explain restrict rc0 pleas
+what airlin is al0
+from ap0 to ci0
+rental car in ci0
+which airlin serv ci0
+flight from ci0 to ci1
+what aircraft is al0 fn0
+flight from ci1 to ci0
+where doe al0 intern fli
+pm flight ci0 to ci1
+flight from ci1 to ci0
+al0 to ci0 from ci1
+flight between ci0 and ci1
+ci1 to ci0 on al0
+flight from ci0 to ci1
+what is the fb0 code
+flight from ci0 to ci1
+what doe ap0 stand for
+al0 from ci0 to ci1
+show me airport in ci0
+are there al0 leav ci0
+flight from ci0 to ci1
+flight from ci0 to ci1
+flight from ci0 to ci1
+what airport is at ci0
+flight leav ci0 to ci1
+what airlin go to ci0
+fn0 from ci0 to ci1
+list flight from ci0 to ci1
+flight inform from ci0 to ci1
+what flight from ci1 to ci0
+how mani flight arriv at ap0
+what the capac of an ac0
+show flight from ci1 to ci0
+look for a flight to ci0
+what is fare code fb0 mean
+i'm travel to ci0 from ci1
+show me ground transport in ci0
+what airlin fli out of ci0
+what doe fare code fb0 mean
+what doe code fb0 stand for
+cheapest flight from ci0 to ci1
+how mani seat in a ac0
+pleas list ground transport in ci0
+what limousin servic is in ci0
+what flight from ci1 to ci0
+what flight from ci0 to ci1
+show flight between ci1 and ci0
+show me flight from ci0 to ci1
+list all flight from ci0 to ci1
+inform on flight from ci0 to ci1
+from ci0 to ci1 in the afternoon
+al0 flight depart from ci0 around ti0
+al0 next da0 from ci0 to ci1
+flight from ap0 or ap1 to ci0
+how mani al0 are there to ci0
+what are all the flight into ap0
+what doe the fare code fb0 mean
+show me flight from ci0 to ci1
+what ground transport is avail in ci0
+which flight go from ci1 to ci0
+doe al0 fli from ci0 to ci1
+flight from ci0 to ci1 on da0
+show me the car rental in ci0
+list al0 flight from ci0 to ci1
+what airlin fli from ci0 to ci1
+show me flight from ci0 to ci1
+show me flight from ci0 to ci1
+show morn flight from ci0 to ci1
+tell me about ground transport at ci0
+show first flight from ci0 to ci1
+show me the aircraft that al0 use
+round trip flight between ci1 and ci0
+what airlin is al0 the abbrevi for
+pleas show me ground transport in ci0
+show me all the flight leav ci0
+what airlin fli from ci1 to ci0
+show all flight from ci1 to ci0
+what class of servic doe al0 have
+show me the latest flight to ap0
+what ground transport is avail in ci0
+what type of airplan is an ac0
+give me fare from ci0 to ci1
+show me fare from ci1 to ci0
+what flight go from ci0 to ci1
+fare and flight from ci0 to ci1
+show me flight from ci0 to ci1
+show me fare from ci0 to ci1
+show me the flight from ci0 to ci1
+what flight are there from ci0 to ci1
+show me the flight from ci0 to ci1
+show me the flight from ci0 to ci1
+what are the flight from ci0 to ci1
+list round trip flight from ci1 to ci0
+list all direct flight from ci0 to ci1
+what flight are avail from ci0 to ci1
+i need to go from ci0 to ci1
+show me all flight from ci1 to ci0
+what are the al0 from ci0 to ci1
+show me the flight from ci0 to ci1
+i need a flight from ci0 to ci1
+show me the flight from ci0 to ci1
+show me about the ground transport in ci0
+show me the flight from ci0 to ci1
+what flight are avail from ci0 to ci1
+what are the class of servic on al0
+show me the flight to and from ap0
+are there ani flight from ci0 to ci1
+show me the airlin between ci0 and ci1
+show me the citi serv by al0 intern
+which airlin have connect between ci0 and ci1
+show me the al0 from ap0 to ci0
+show me flight from ci0 to ci1 pleas
+pleas show me flight from ci0 to ci1
+list least expens flight from ci0 to ci1
+can you list cost of ci0 rental car
+show me the flight from ci0 to ci1
+morn flight from ci0 to ci1 on da0
+what flight leav ci0 befor ti0 on al0
+list all the flight that fli into ap0
+show me the flight from ci0 to ci1
+is there an airport limousin at the ap0
+what the earliest flight from ci0 to ci1
+list all the flight that arriv at ap0
+show me the flight from ci0 to ci1
+i want to go between ci1 and ci0
+show me the fare from ci1 to ci0
+what are the flight from ci1 to ci0
+show me the flight from ci0 to ci1
+what flight are avail tomorrow from ci0 to ci1
+show me the afternoon flight from ci0 to ci1
+pleas list all flight between ci1 and ci0 nonstop
+what flight doe al0 fli from ci0 to ci1
+show me all al0 flight from ci0 to ci1
+i need an earli flight from ci0 to ci1
+list aircraft type that fli between ci1 and ci0
+i would like a flight from ci0 to ci1
+which citi are servic by both al0 and al1
+i would like a flight from ci0 to ci1
+what is the earliest flight from ci0 to ci1
+airlin that fli to ci1 from ci0 on da0
+list all flight on al0 from ci0 to ci1
+what is the earliest flight from ci1 to ci0
+what car rental are avail next da0 from ap0
+show me all the flight from ci0 to ci1
+from ci0 to ci1 a nonstop al0 and fare
+i need a cheap flight from ci1 to ci0
+show me the nonstop flight from ci1 to ci0
+what are the differ class that an airlin offer
+how much doe the limousin servic cost within ci0
+which airlin provid direct flight between ci0 and ci1
+show me the nonstop flight from ci0 to ci1
+what flight arriv in ci0 on da0 on al0
+show me the flight from ap0 to other airport
+give me flight on al0 from ci0 to ci1
+show me the al0 flight from ci0 to ci1
+on da0 show me flight from ci0 to ci1
+all flight from ci1 to ci0 on mn0 dn0
+tell me about ground transport between ap0 and ci0
+list the flight from ci1 to ci0 on al0
+what afternoon flight are avail from ci1 to ci0
+when is first flight leav from ci0 to ci1
+i'd like the earliest flight from ci0 to ci1
+give me all the flight from ci0 to ci1
+i need inform on flight from ci0 to ci1
+show me flight from ci0 to ci1 on weekday
+show me all the flight from ci0 to ci1
+show me the al0 leav ci0 earli da0 morn
+i'd like to fli al0 from ci0 to ci1
+i'd like to see flight from ci0 to ci1
+what flight do you have from ci1 to ci0
+what flight leav from ci0 to ci1 on da0
+i need a flight from ci1 to ci0 citi
+what kind of ground transport is there in ci0
+pleas show me the flight from ci1 to ci0
+show me all the flight from ci1 to ci0
+list the flight from ci0 to ci1 on al0
+show me the da0 flight from ci0 to ci1
+show me all economi price from ci0 to ci1
+show me all the flight out of ci0 today
+show me time for flight from ci0 to ci1
+what kind of ground transport is there in ci0
+show me round trip fare from ci1 to ci0
+show me the cheapest fare from ci0 to ci1
+show flight from ci0 to ci1 on a da0
+list daili flight from ci0 to ci1 use al0
+what flight are avail from ci0 to ci1 today
+flight number from ci1 to ci0 on mn0 dn0
+locat flight from ci0 to ci1 stop in ap0
+i would like a flight from ci0 to ci1
+what flight are avail da0 to ci0 from ci1
+i'd like to fli from ci1 to ci0 through ci2
+what flight from ci0 to ci1 on da0 on al0
+is there a flight on al0 from ci0 to ci1
+what is the earliest flight leav ci0 go to ci1
+display all flight from ci0 to ci1 on mn0 dn0
+give me a flight from ci0 to ci1 on da0
+i would like to see flight from ci0 to ci1
+pleas give me flight leav ci0 and go to ci1
+is there a flight on al0 from ci0 to ci1
+show busi class fare from ci0 to ci1 on al0
+i'd like to fli from ci0 to ci1 through ci2
+show me all first class price from ci0 to ci1
+show me the fare for al0 from ci1 to ci0
+pleas list nonstop flight from ci0 to ci1 on al0
+i need a flight from ci0 to ci1 on da0
+could you show me all flight from ci0 to ci1
+what the most expens way i can fli to ci0
+show flight from ci0 to ci1 on da0 and da1
+i want to fli from ci0 to ci1 round trip
+give me the flight from ci0 to ci1 on da0
+what flight are avail on da0 from ci1 to ci0
+how far from the airport in the ap0 is ci0
+i'd like a al0 flight from ci0 to ci1 nonstop
+can you list all the flight between ci1 and ci0
+what the lowest round trip fare from ci0 to ap0
+show me flight from ci1 to ci0 leav befor ti0
+list flight from ci1 to ci0 no ci1 to ci2
+round trip flight from ci1 to ci0 coach economi fare
+what are the flight and fare from ci0 to ci1
+show me the flight on al0 that go through ci0
+what morn flight do you have between ci0 and ci1
+on da0 i'd like to fli from ci1 to ci0
+show me flight from ci0 to ci1 arriv after ti0
+show me the flight to ap0 from all other airport
+what are the flight from ci0 to ci1 and back
+list the fare of al0 flight from ci0 to ci1
+what flight from ci0 to ci1 arriv earliest in ci1
+i would like to fli al0 from ci0 to ci1
+what is the ground transport from ap0 to ci0 downtown
+what is the earliest flight from ci0 to ci1 tomorrow
+what is the latest flight depart from ci1 to ci0
+what first class fare round trip from ci0 to ci1
+give me flight from ci0 to ci1 on da0 morn
+show all flight between ci0 and ci1 for mn0 dn0
+list the flight on da0 afternoon from ci0 to ci1
+find a flight from ci0 to ci1 stop in ci2
+what is the latest even flight leav ci0 for ci1
+flight from ci0 to ci1 on da0 or da1 al0
+is there a flight tomorrow morn from ci0 to ci1
+what are the earli morn flight from ci0 to ci1
+what'r the lowest one way fare from ci0 to ci1
+is there a al0 leav from ci0 to ci1 nonstop
+which flight from ci1 to ci2 also stop in ci0
+what the fare for al0 fn0 from ci1 to ci0
+how can i get from the ap0 to ci0 downtown
+list type of plane that fli between ci0 and ci1
+what flight from ci0 to ci1 on da0 on al0
+pleas give me the cheapest flight from ci0 to ci1
+which airlin fli from ci1 to ci0 via other citi
+what the lowest round trip fare from ci0 to ani citi
+what flight doe al0 have from ci0 to ci1 on da0
+what flight doe al0 have from ci0 to ci1 after ti0
+what is the price of al0 fn0 from ci0 to ci1
+what are the cost of flight from ci0 to ci1 tomorrow
+show flight leav ci0 on da0 morn and arriv in ci1
+i want a flight from ci0 to ci1 on da0 morn
+what are the cheapest one way flight from ci0 to ci1
+what flight are avail from ci0 to ci1 on da0 morn
+what the earliest flight from ci0 to ap0 that serv lunch
+i'd like to know the latest flight from ci0 to ci1
+what flight from ci0 to ci1 on da0 with supper serv
+is it possibl for me to fli from ci1 to ci0
+list all flight on al0 leav ci0 on da0 after ti0
+show me flight on da0 from ci0 to ci1 after ti0
+what is the cheapest one way fare from ci0 to ci1
+how much doe it cost to fli from ci1 to ci0
+doe flight al0 fn0 from ci0 to ci1 have a meal
+give me al0 flight for next da0 from ci0 to ci1
+what is the fare on al0 fn0 from ci0 to ci1
+what is ground transport between the ap0 and the ci0 citi
+how much doe flight al0 fn0 from ci1 to ci0 cost
+show me all flight from ci0 to ci1 ci2 or ci3
+show me the flight from ci0 to ci1 in the morn
+what are all of the flight into and out of ap0
+what flight from ci1 to ci0 on da0 arriv around ti0
+give me the flight from ci1 to ci0 leav da0 morn
+show me the earliest flight on da0 from ci0 to ci1
+i need to revers the flight from ci0 to ci1 pleas
+pleas give me the earliest flight tomorrow from ci0 to ci1
+show me the flight from ci0 to ci1 with one stop
+also give me a list of flight between ci0 and ci1
+what are the flight between ci0 and ci1 on mn0 dn0
+what flight leav ci0 on da0 even and arriv in ci1
+what is the cheapest round trip flight from ci0 to ci1
+what afternoon flight are avail from ci1 to ci0 on da0
+list the morn flight at a do0 from ci0 to ci1
+is there ani flight leav ci0 around ti0 o'clock for ci1
+how much is the ti0 flight from ci0 to ci1 al0
+i want to travel from ci0 to ci1 on da0 morn
+give me the flight from ci0 to ci1 for mn0 dn0
+list nonstop flight from ci0 to ci1 on da0 befor ti0
+do you have a flight from ci0 to ci1 next da0
+how much is a round trip fare from ci0 to ci1
+give me the flight from ci1 to ci0 on da0 even
+what flight from ci0 to ci1 on da0 with a meal
+how long doe it take to get from ci0 to ci1
+i'm look for flight from ci0 to ci1 leav befor ti0
+now i need a flight on da0 from ci0 to ci1
+give me the flight from ci0 to ci1 for mn0 dn0
+what is the fare from ci1 to ci0 on al0 fn0
+show me the flight from ci0 to ci1 that leav da0
+how much doe flight al0 fn0 from ci0 to ci1 cost
+could you pleas show me all flight from ci0 to ci1
+i want to go from ci0 to ci1 on da0 morn
+is there ground transport from the ap0 airport to downtown ci0
+show me all flight from ci0 to ap0 on boe ac0
+pleas give me all flight from ci0 to ci1 befor ti0
+list the flight from ci0 to ci1 and from ci0 to ci2
+hello i would like to plan a flight from ci0 to ci1
+find travel arrang for a round trip flight from ci0 to ci1
+give me the flight from ci0 to ci1 citi arriv befor ti0
+how mani flight are there between ci0 and ci1 on mn0 dn0
+in ci0 is there ground transport between ap0 airport and ci0 downtown
+what ground transport is avail from the ap0 to the ci0 town
+show flight leav ci0 to ci1 on al0 that leav after ti0
+i want a flight from ci0 to ci1 that leav after ti0
+what is first class fare for a round trip ci0 to ci1
+a first class flight on al0 to ci0 on the come da0
+doe ani airlin have an earli afternoon flight from ci0 to ci1
+pleas list all flight from ci0 to ci1 on da0 and da1
+i need a list of late afternoon flight from ci0 to ci1
+what flight leav ci0 for ci1 and depart befor ti0 on al0
+can you show me one way economi fare from ci0 to ci1
+could you tell me the flight leav ci0 around ti0 for ci1
+pleas list the flight from ci0 to ci1 ci2 on mn0 dn0
+what are the flight from ci0 to ci1 on da0 mn0 dn0
+list all flight from ci1 to ci0 with more than 3 stop
+what is the latest flight on da0 go from ci1 to ci0
+what nonstop flight between ci0 and ci1 arriv after ti0 o'clock pm
+is there ground transport in ci0 from the ap0 to downtown ci0
+show me all flight from ci1 to ci0 on a boe ac0
+show me all direct flight from ci0 to either ci1 or ci2
+i would like an afternoon flight from ci0 colorado to ci1 texa
+list lowest cost flight from ci0 to ci1 that serv a meal
+i would like to fli from ci0 to ci1 on da0 dn0
+pleas list all flight from ci0 to ci1 two da0 from now
+what are the coach class fare on flight from ci0 to ci1
+could you pleas find me the earliest flight from ci0 to ci1
+what are the flight from ci1 to ci0 on da0 mn0 dn0
+list nonstop flight from ap0 to ci0 that depart in the afternoon
+show me the flight from ci0 to ci1 with stop in ci2
+show price for all flight from ci0 to ci1 on mn0 dn0
+show me all fare from ci0 to ci1 leav on a da0
+show me all flight from ci0 to ci1 on al0 on da0
+all flight from ci0 to ci1 next da0 arriv near ti0 o'clock
+what are the flight on mn0 dn0 yr0 from ci1 to ci0
+show me the flight from ci0 to ci1 that stop in ci2
+what is the earliest flight you have leav ci0 head to ci1
+i would like the even schedul of flight from ci0 to ci1
+list all flight from ci1 to ci0 with the maximum number of stop
+show me the flight arriv in ci0 from ci1 at about ti0 o'clock
+what are the flight and price from ci0 to ci1 for da0 morn
+what are the flight avail between ti0 and ti1 between ci1 and ci0
+what is the cost of al0 fn0 from ci1 to ci0 da0 night
+show me the flight from ci1 to ci0 stop in ci2 on al0
+i want an earli morn flight between ci0 and ci1 on da0 morn
+now i'd like flight from ci0 to ci1 leav between ti0 and ti1
+list all round trip flight between ci0 and ci1 on dn0 of mn0
+leav ci1 fli to ci0 befor ti0 what type of aircraft is use
+show me the ground transport schedul in ci0 in the morn on da0
+what is first flight from ci0 to ci1 leav on da0 mn0 dn0
+i would like an al0 flight from ci0 to ci1 leav this afternoon
+doe al0 offer a flight from ci0 to ci1 which stop in ci2
+anyth from ci1 or ci2 with a stopov in ci3 go to ci0
+i would like an earli morn flight from ci0 into ci1 on al0
+all flight from ci1 to ci0 after ti0 on mn0 dn0 economi class
+what is the cheapest flight from ci0 to ci1 leav on mn0 dn0
+how much doe it cost to fli on al0 from ci0 to ci1
+how mani first class flight doe al0 have leav from all citi today
+i want to go from ci1 to ci0 with a stopov in ci2
+is there a flight between ci1 and ci2 with a stopov in ci0
+what type of aircraft doe al0 fli from ci0 to ci1 befor ti0
+show me all the flight from ci0 to ci1 for mn0 dn0 yr0
+pleas tell me how mani nonstop flight there are from ci0 to ci1
+list all flight from ci0 to ci1 befor ti0 o'clock am on da0
+list all flight from ci0 to ci1 after ti0 o'clock pm on da0
+list all arriv from ani airport to ci0 on da0 morn arriv befor ti0
+list all flight from ci0 florida to ci1 that are the cheapest one way
+i wish to fli from ci0 to ci1 pleas find an airlin for me
+i would like to see the flight avail from ci1 to ci0 for da0
+list all flight on al0 depart on da0 befor ti0 from ci0 to ci1
+what is the round trip first class fare on al0 from ci1 to ci0
+find me the cheapest one way fare i can get from ci0 to ci1
+list all nonstop flight from ci0 to ci1 which arriv befor ti0 on da0
+what type of ground transport is avail between the ap0 airport and downtown ci0
+show me the list of flight from ci0 to ci1 on al0 and al1
+what nonstop flight are avail from ci0 to ci1 arriv between ti0 and ti1
+what first class flight are avail on mn0 dn0 yr0 from ci0 to ci1
+what is the fare on mn0 dn0 go one way from ci0 to ci1
+give me inform on flight from ci1 to ci0 leav on da0 befor ti0
+show me the least expens flight from ci0 to ci1 on da0 after ti0
+on the ti0 flight from ci0 to ci1 what type of aircraft is use
+i'd like inform on the least expens airfar round trip from ci0 to ci1
+what is the earliest flight leav ci0 and arriv in ci1 on mn0 dn0
+what are the flight from ci0 to ci1 on da0 mn0 dn0 on al0
+is al0 flight 497766 from ci0 to ci1 with one stop avail tomorrow morn
+tell me about flight from ci1 to ci0 leav ci1 between ti0 and ti1
+what is the cost of round trip ticket first class between ci0 and ci1
+now pleas give me the latest flight tomorrow on al0 from ci0 to ci1
+show me which flight from ci0 to ci1 on a da0 are first class
+give me the flight on mn0 dn0 with the fare from ci0 to ci1
+i need a flight to ci0 leav from ci1 make a stop in ci2
+what is the lowest cost for a one way ticket from ci0 to ci1
+show me all first class fare from ci0 to ci1 leav on a da0
+i would like inform for flight from ci0 to ci1 on earli da0 morn
+tell me which airlin have flight from ci1 to ci0 on da0 mn0 dn0
+what the cheapest fare for a round trip from ci0 to ci1 on mn0 dn0
+are there ani flight from ci0 to ci1 that leav between ti0 and ti1 o'clock
+could you tell me if there is ground transport between the ap0 and ci0 downtown
+all flight and fare from ci0 to ci1 round trip after ti0 less than do0
+show me all the al0 flight leav ci0 between ti0 and ti1 in the afternoon
+all flight and fare from ci0 to ci1 round trip after ti0 less than do0
+what is the earliest flight that has no stop from ci1 to ci0 on da0
+can you show me fare for mn0 dn0 from ci0 to ci1 one way onli
+i want a flight origin in ci0 go to ci1 and ci2 in either order
+i need to go to ci0 from ci1 but i want to stopov in ci2
+i want a flight from ci2 to ci0 that stop in ci1 are there flight
+i'd like the flight from ci0 to ci1 on the morn of da0 mn0 dn0
+i'd like to book the cheapest one way flight from ci0 to ci1 on mn0 dn0
+can you show me what flight are avail on mn0 dn0 go from ci0 to ci1
+what are the flight from ci0 to ci1 which arriv in ci1 at ti0 o'clock pm
+what round trip ticket are there from ci0 to ci1 on al0 that arriv befor ti0
+show me all flight from ci0 to ci1 on da0 after da1 which leav after ti0
+show me all flight from ci0 to ci1 leav on a da0 and return on da1
+show me round trip flight from ci0 to ci1 that offer first class servic on al0
+give me the least expens first class round trip ticket on al0 from ci0 to ci1
+what is the cheapest one way fare from ci0 to ci1 travel on da0 mn0 dn0
+could you tell me about flight from ci0 to ci1 that arriv in the earli afternoon
+could you pleas give me the cost of a round trip flight from ci0 to ci1
+what is the least expens one way ticket from ci0 to ci1 leav on mn0 dn0
+show me the flight from ci0 to ci1 and the return flight from ci1 to ci0
+okay i'd like a flight on al0 from ci1 to ci0 in the afternoon what avail
+may i have a list of flight go from ci0 to ci1 on dn0 of mn0
+i would like a flight from ci0 to ci1 at ti0 in the afternoon arriv at ti1
+i would like inform on flight from ci0 to ci1 arriv in ci1 befor ti0 on da0
+i would like to fli from ci1 to ci0 on da0 and arriv in ci0 befor ti0
+what ground transport is avail from the ap0 to ci0 downtown and how much doe it cost
+i need a flight this da0 from ci1 to ci0 and i would prefer a morn flight
+what are the fare for flight serv a meal from ci0 to ci1 befor ti0 on da0
+pleas give me the flight time the morn on al0 for mn0 dn0 from ci1 to ci0
+is there a flight between ci0 and ci1 that leav ci0 around ti0 o'clock in the afternoon
+can you list flight from ci0 to ci1 with the lowest one way fare that leav on da0
+i want inform on flight from ci1 to ci0 give me inform on flight after ti0 on da0
+what the price of the least expens first class round trip ticket on al0 from ci0 to ci1
+i need an earli flight from ci1 to ci0 pleas and i would like breakfast serv on that
+i would like a flight as earli as possibl in the day leav from ci0 and to ci1
+give me the cheapest one way flight between ci0 and ci1 which arriv after ti0 on a da0
+i would like a flight between ci1 and ci0 leav from ci1 in the afternoon and arriv at ti0
+i need to go from ci0 to ci1 in the same day find me the earliest flight from ci0
+i'd like also to book a one way flight from ci0 to ci1 the cheapest one on mn0 dn0
+could you pleas find me a nonstop flight from ci0 to ci1 on a boe ac0 arriv at ti0
+i want to go from ci0 to ci1 on al0 and leav at ti0 which flight should i take
+i would like to book an earli morn flight from ci0 florida to ci1 north carolina on mn0 dn0
+could you tell me what the earliest flight that goe between ci0 and ci1 is which serv a meal
+what is a flight that goe from ci1 to ci0 and arriv at ci0 at ti0 on a da0
+pleas give me the flight time i would like to fli from ci0 to ci1 in the morn befor ti0
+i'd like to fli from ci1 to ci2 with a stopov in ci0 and i want to fli on al0
+give me a list of all the flight from ci0 to ci1 or ci2 to ci1 or ci3 to ci1
+pleas show me the cost of flight al0 fn0 from ci0 to ci1 and flight al0 fn1 from ci0 to ci1
+yes i'm look for a flight between ci1 and ci2 with a stopov in ci0 do you have one of those
+yes i live in ci1 and i want to make a trip to ci0 which airlin may i use for this trip
+show me all flight from ci1 to ci0 on da0 mn0 dn0 arriv in ci0 at around ti0 o'clock in the even
+well i'll tri last time tell me the kind of aircraft al0 fli from ci1 to ci0 befor ti0 o'clock in the morn
+i would like to know if i fli on al0 number fn0 from ci0 to ci1 if i will stop enrout at anoth citi
+i'm travel from ci0 to ci1 and i'd like to go sometim after ti0 but i want to know what kind of airplan it on
+thank you for that inform now i would like to book a flight from ci0 to ci1 on the night of mn0 dn0 around ti0 o'clock
+i have two friend that would like to visit me on da0 here in ci0 one of them live in ci1 and the other live in ci2
+my question is i want to go to ci0 and i live in ci1 and i would like to fli on al0 do you have an earli flight
+find me the earliest ci0 departur for ci1 and the lastest return trip from ci1 so that i can be in ci1 the longest amount of time but return to ci0 the same day
+find me the earliest ci0 departur and the latest ci1 return trip so that i can be on the ground the maximum amount of time in ci1 and return to ci0 on the same day

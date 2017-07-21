@@ -1,0 +1,35 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "opinion related"
+    ],
+    "paraphrases": [],
+    "sentence": "Should I take EECS 482 under Andrew DeOrio or Peter Chen?",
+    "sentence-with-vars": "Should I take department0 number0 under instructor0 or instructor1?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        },
+		{
+            "name": "instructor0",
+            "sentence-value": "Andrew DeOrio",
+            "sql-value": ""
+        },
+		{
+            "name": "instructor1",
+            "sentence-value": "Peter Chen",
+            "sql-value": ""
+        }
+    ]
+}

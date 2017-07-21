@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "Show me courses in artificial intelligence that have good instructors.",
+    "sentence-with-vars": "Show me courses in topic0 that have good instructors.",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "topic0",
+            "sentence-value": "artificial intelligence",
+            "sql-value": ""
+        }
+	]
+}

@@ -1,0 +1,40 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "LZ - capstone??"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you name for me the classes that can be taken as a capstone next semester ?",
+        "Next semester , which classes can be taken as a capstone ?",
+        "Of the classes , which can be taken as a capstone next semester ?",
+        "What are the classes that can be taken as a capstone next semester ?",
+        "What capstone classes are offered next semester ?",
+        "What classes are allowed for capstone next semester ?",
+        "What classes are available to be taken as a capstone next semester ?",
+        "What classes can serve as a capstone next semester ?",
+        "What classes fulfill my capstone requirement next semester ?",
+        "What classes will count as a capstone next semester ?",
+        "What courses can be taken for capstone next semester ?",
+        "Which capstone classes can be taken next semester ?",
+        "Which classes are allowed for capstone this coming semester ?",
+        "Which classes next semester can be taken as a capstone ?",
+        "Which courses count for capstone next semester ?",
+        "Which of these classes can be taken as a capstone next semester ?"
+    ],
+    "sentence": "Which classes can be taken as a capstone next semester ?",
+    "sentence-with-vars": "Which classes can be taken as a capstone next semester ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

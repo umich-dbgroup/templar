@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the area of the states ?", 
+ "sentence-with-vars": "what is the area of the states ?", 
+ "sql": "select state.area from state ;", 
+ "sql-with-vars": "select state.area from state ;", 
+ "variables": []
+}

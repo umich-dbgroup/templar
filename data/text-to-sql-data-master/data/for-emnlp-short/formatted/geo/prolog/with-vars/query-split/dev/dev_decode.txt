@@ -1,0 +1,100 @@
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , city ( B ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , largest ( B , ( city ( A ) , loc ( A , C ) , const ( C , stateid ( s0 ) ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , largest ( B , ( city ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , countryid ( co0 ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( len ( B , A ) , const ( B , riverid ( s0 ) ) , river ( B ) ) ) ) .
+answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , most ( B , C , ( state ( B ) , next_to ( B , C ) , state ( C ) ) ) ) ) ) .
+answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( s0 , _ ) ) ) ) ) .
+answer ( A , ( len ( B , A ) , shortest ( B , ( river ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) ) .
+answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , cityid ( ' c0 ' , _ ) ) ) ) ) .
+answer ( A , ( len ( B , A ) , const ( B , riverid ( s0 ) ) , river ( B ) ) ) ) .
+answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , sum ( B , ( area ( C , B ) , state ( C ) ) , A ) ) ) .
+answer ( A , largest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , city ( C ) , const ( C , cityid ( c0 , _ ) ) ) , A ) ) ) .
+answer ( A , ( population ( B , A ) , largest ( B , ( city ( B ) , loc ( B , C ) , largest ( D , ( state ( C ) , area ( C , D ) ) ) ) ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( C , B ) , low_point ( B , C ) , lower ( C , D ) , low_point ( E , D ) , const ( E , stateid ( s0 ) ) , loc ( D , E ) ) , A ) ) ) .
+answer ( A , largest ( A , capital ( A ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , largest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) ) .
+answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) ) ) .
+answer ( A , smallest ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , cityid ( ' c0 ' , _ ) ) , loc ( B , A ) ) ) ) .
+answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) ) .
+answer ( A , largest ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , loc ( C , B ) , lowest ( C , ( place ( C ) , loc ( C , D ) , const ( D , countryid ( co0 ) ) ) ) ) ) ) ) .
+answer ( A , smallest ( B , ( city ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , largest ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( co0 ) ) ) ) ) ) ) .
+answer ( A , ( longest ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , const ( C , stateid ( s0 ) ) , next_to ( C , B ) ) , A ) ) ) .
+answer ( A , largest ( A , ( state ( A ) , traverse ( B , A ) , const ( B , riverid ( r0 ) ) ) ) ) ) .
+answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , largest ( C , ( state ( B ) , density ( B , C ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , cityid ( c0 , _ ) ) , capital ( B ) , loc ( B , A ) ) ) ) .
+answer ( A , count ( B , ( river ( B ) , const ( B , riverid ( r0 ) ) ) , A ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , count ( B , ( major ( B ) , city ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) , A ) ) ) .
+answer ( A , ( len ( B , A ) , const ( B , riverid ( ' r0 ' ) ) , river ( B ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , const ( C , stateid ( s1 ) ) , next_to ( B , D ) , const ( D , stateid ( ' s0 ' ) ) ) , A ) ) ) .
+answer ( A , smallest ( B , ( state ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , stateid ( s0 ) ) ) ) ) ) ) .
+answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , ( river ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , shortest ( B , river ( B ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( major ( A ) , river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) ) .
+answer ( A , smallest ( B , ( state ( A ) , density ( A , B ) ) ) ) ) .
+answer ( A , ( state ( A ) , \ + ( next_to ( A , B ) , state ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( major ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( c0 ) ) ) ) ) .
+answer ( A , ( density ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , lowest ( A , ( place ( A ) , loc ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) ) .
+answer ( A , largest ( B , ( population ( A , B ) , city ( A ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , state ( B ) , traverse ( C , B ) , const ( C , riverid ( r0 ) ) ) ) ) .
+answer ( A , largest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) ) ) .
+answer ( A , largest ( B , ( state ( A ) , population ( A , B ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , longest ( A , ( river ( A ) , loc ( A , B ) , const ( B , countryid ( co0 ) ) ) ) ) ) .
+answer ( A , ( elevation ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , state ( C ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , ( next_to ( A , B ) , state ( A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( river ( A ) , traverse ( A , B ) , const ( B , stateid ( ' s0 ' ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , cityid ( c0 , _ ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , const ( B , stateid ( s0 ) ) ) ) ) .
+answer ( A , shortest ( A , river ( A ) ) ) ) .

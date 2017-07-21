@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of \"upper-level classes\". Not sure if HAS_EXAMS is populated."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are exams always a part of the upper-level classes ?",
+        "Are exams necessary for all upper-level classes ?",
+        "Are exams part of all upper-level classes ?",
+        "Are there exams for all upper-level classes ?",
+        "Are there exams in all upper-level classes ?",
+        "Do all senior level classes require exams ?",
+        "Do all the classes in the upper-level have exams ?",
+        "Do all upper-level classes contain exams ?",
+        "Do upper-level classes all have exams ?",
+        "Does every upper-level class have an examination ?",
+        "Does every upper-level class have exams ?",
+        "For upper-level classes , do they all have exams ?",
+        "Is it true that all upper-level classes have exams ?",
+        "Is there an exam for every upper-level class ?"
+    ],
+    "sentence": "Do all upper-level classes have exams ?",
+    "sentence-with-vars": "Do all upper-level classes have exams ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_EXAMS = \"N\" AND COURSEalias0.NUMBER > 299 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_EXAMS = \"N\" AND COURSEalias0.NUMBER > 299 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

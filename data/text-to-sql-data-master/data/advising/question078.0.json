@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "EECS 370 has what kind of workload ?",
+        "EECS 370 workload is like ?",
+        "EECS 370 workload like ?",
+        "For EECS 370 , what is the workload like ?",
+        "How is the workload in EECS 370 ?",
+        "How much is the workload in EECS 370 ?",
+        "In EECS 370 how is work load ?",
+        "In EECS 370 how is workload ?",
+        "Is there a lot of work given in the EECS 370 course ?",
+        "What is the workload like in EECS 370 ?",
+        "What 's the workload like in EECS 370 ?"
+    ],
+    "sentence": "What kind of workload does 370 have ?",
+    "sentence-with-vars": "What kind of workload does number0 have ?",
+    "sql": [
+        "SELECT PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = number0 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": "370"
+        }
+    ]
+}

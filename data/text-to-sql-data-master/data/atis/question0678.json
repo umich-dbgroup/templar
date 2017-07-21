@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "[noise/] please list [/noise] all flights on united airlines and northwest airlines that go into denver and all flights on northwest airlines and united airlines that fly out of denver",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"',\n '\"'||v0.to_airport||'\"', '\"'||v0.from_airport||'\"' FROM flight v0 \nWHERE ((((v0.airline_code = 'UA') AND ( 1 =  1)) OR ((v0.airline_code = 'NW') \nAND ( 1 =  1))) AND ((v0.to_airport IN (\nSELECT v1.airport_code FROM airport_service v1 \nWHERE (v1.city_code IN (\nSELECT v2.city_code FROM city v2 \nWHERE (v2.city_name = 'DENVER'))))) OR (v0.from_airport IN (\nSELECT v3.airport_code FROM airport_service v3 \nWHERE (v3.city_code IN (\nSELECT v4.city_code FROM city v4 \nWHERE (v4.city_name = 'DENVER')))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( ( FLIGHT.AIRLINE_CODE = ' UA ' AND 1 = 1 ) OR ( FLIGHT.AIRLINE_CODE = ' NW ' AND 1 = 1 ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) OR FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please list all flights that leave . denver before noon on northwest [noise] airlines",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n v0.departure_time FROM flight v0, airport_service v1,\n city v2 \nWHERE ((v0.airline_code = 'NW') AND (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'DENVER'))) AND (v0.departure_time <  1200)));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' NW ' AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND FLIGHT.DEPARTURE_TIME < 1200 ) ) ) ;"
+    ],
+    "variables": []
+}

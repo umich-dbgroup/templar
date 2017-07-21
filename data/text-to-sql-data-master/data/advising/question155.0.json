@@ -1,0 +1,43 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses taught by Prof. Smith ?",
+        "List the courses Professor Smith teaches .",
+        "Name the courses taught by Prof. Smith .",
+        "Prof. Smith teaches what classes ?",
+        "Prof. Smith teaches what courses ?",
+        "Prof. Smith teaches which courses ?",
+        "The names of Prof. Smiths courses ?",
+        "What are all the courses Prof. Smith teaches ?",
+        "What are the names of the courses Prof. Smith teaches ?",
+        "What classes will Prof. Smith be teaching ?",
+        "What courses are taught by Prof. Smith ?",
+        "What courses is Prof. Smith the teacher of ?",
+        "What does Professor Smith teach ?",
+        "Which courses have Prof. Smith as the teacher ?",
+        "Which courses is Prof. Smith teaching ?"
+    ],
+    "sentence": "Which courses does Prof. Smith teach ?",
+    "sentence-with-vars": "Which courses does instructor0 teach ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%Smith%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "Smith"
+        }
+    ]
+}

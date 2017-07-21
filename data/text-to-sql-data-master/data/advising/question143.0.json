@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "SRS - Similar to Q125. Is this a meaningful variant?",
+        "SRS - Does this bring up descriptions from multiple semesters?"
+    ],
+    "helpfulness": [
+        "SRS - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "What class is ENGR 280 ?",
+        "What is the course ENGR 280 ?",
+        "What 's ENGR 280 ?"
+    ],
+    "sentence": "What is the course name for ENGR 280 ?",
+    "sentence-with-vars": "What is the course name for department0 number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"ENGR\" AND COURSEalias0.NUMBER = 280 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": "ENGR"
+        }
+    ]
+}

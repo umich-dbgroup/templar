@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "SRS - 1"
+    ],
+    "comments": [
+        "CFD - Delete the final \"and CO.FRIDAY='Y'\"?",
+        "CFD - Add wildcards around %X%"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there Friday classes for Prof. Smith 's 280 class ?",
+        "Are there Friday classes for Prof. Smith 's 280 course ?",
+        "Are there Friday classes when Prof. Smith teaches 280 ?",
+        "Are there classes on Friday for 280 with Prof. Smith ?",
+        "Are there classes on Friday for when Prof. Smith teaches 280 ?",
+        "Are there classes on Friday when Prof. Smith teaches 280 ?",
+        "Are there classes on Friday in 280 when Prof. Smith teaches ?",
+        "Does 280 have classes on Friday when Prof. Smith teaches it ?",
+        "Does Prof. Smith teach 280 classes on Fridays ?",
+        "For course 280 with Professor Smith , is the class held Fridays ?",
+        "On Friday , are there classes when Professor Smith teaches 280 ?",
+        "When Prof. Smith teaches 280 , will there be classes on Friday ?",
+        "When Smith is the instructor for 280 , does the class meet Fridays ?"
+    ],
+    "sentence": "When Prof. Smith teaches 280 are there classes on Friday ?",
+    "sentence-with-vars": "When instructor0 teaches number0 are there classes on Friday ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSE_OFFERINGalias0.FRIDAY = \"Y\" AND INSTRUCTORalias0.NAME LIKE \"%smith%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSE_OFFERINGalias0.FRIDAY = \"Y\" AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers are in the state with the largest population ?", 
+ "sentence-with-vars": "how many rivers are in the state with the largest population ?", 
+ "sql": "select count ( river.river_name ) from river , state where river.traverse = state.state_name and state.state_name = ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river , state where river.traverse = state.state_name and state.state_name = ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;", 
+ "variables": []
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "san antonio is in what state ?", 
+ "sentence-with-vars": "city0 is in what state ?", 
+ "sql": "select city.state_name from city where city.city_name = ' san antonio ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "san antonio", 
+   "sql-value": "san antonio"
+  }
+ ]
+}

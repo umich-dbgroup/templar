@@ -1,0 +1,27 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "where are some restaurants good for french food ?"
+     ],
+     "paraphrases-with-vars": [
+          "where are some restaurants good for VARfood food ?"
+     ],
+     "sentence": "give me some restaurants good for french food ?",
+     "sentence-with-vars": "give me some restaurants good for VARfood food ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.FOOD_TYPE='french' and RESTAURANT.RATING>2.5 and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.FOOD_TYPE='VARfood' and RESTAURANT.RATING>2.5 and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "variables": [
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

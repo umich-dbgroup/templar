@@ -1,0 +1,55 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "CFD - Rather than a yes/no, give the section number.",
+        "CFD - Wrong c.number; should be 203",
+        "SRS - Checks for EECS 370 instead of 203.",
+        "SRS - Assumes a semester ID."
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "SRS - 0"
+    ],
+    "info": [
+        "LZ - Fixed SQL number 370->203 as of 1.19"
+    ],
+    "paraphrases": [
+        "Are there sections of EECS 203 between the hours of 10 A.M. and 3 P.M. ?",
+        "Between 10 A.M. and 3 P.M. is there any section of EECS 203 ?",
+        "Between 10 A.M. and 3 P.M. is there any section of EECS 203 offered ?",
+        "Between 10 A.M. and 3 P.M. , are there any EECS 203 sections ?",
+        "Between 10 A.M. and 3 P.M. , is there a section of EECS 203 ?",
+        "Between 10 A.M. and 3 P.M. , is there any section in EECS 203 ?",
+        "Between 10 A.M. and 3 P.M. , will there be any sections of EECS 203 ?",
+        "Does EECS 203 have a section between 10 A.M. and 3 P.M. ?",
+        "From 10 A.M. to 3 P.M. , are there EECS 203 sections ?",
+        "I need a section of EECS 2013 between 10 A.M. and 3 P.M.. Is there 1 ?",
+        "IS EECS 203 offered in any section between the hours of 10 A.M. and 3 P.M. ?",
+        "Is any EECS 203 section scheduled between 10 and 3 ?",
+        "Is any section of EECS 203 offered between 10 A.M. and 3 P.M. ?",
+        "Is there any section between 10 A.M. and 3 P.M. for EECS 203 ?",
+        "What is the availability of section EECS 203 between 10 A.M. and 3 P.M. ?"
+    ],
+    "sentence": "Is there any section of EECS 203 that is between 10 A.M. and 3 P.M. ?",
+    "sentence-with-vars": "Is there any section of department0 number0 that is between 10 A.M. and 3 P.M. ?",
+    "sql": [
+        "SELECT COUNT( * ) AS DERIVED_FIELDalias0 FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSE_OFFERINGalias0.SEMESTER = 2070 AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.DERIVED_FIELDalias0 = 203 AND END_TIME <= \"15 : 00 : 00\" AND START_TIME >= \"10 : 00 : 00\" ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) AS DERIVED_FIELDalias0 FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSE_OFFERINGalias0.SEMESTER = 2070 AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.DERIVED_FIELDalias0 = number0 AND END_TIME <= \"15:00:00\" AND START_TIME >= \"10:00:00\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

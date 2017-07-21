@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the cities of the state with the lowest point ?", 
+ "sentence-with-vars": "what are the cities of the state with the lowest point ?", 
+ "sql": "select city.city_name from city , highlow where city.state_name = highlow.state_name and highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select city.city_name from city , highlow where city.state_name = highlow.state_name and highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "variables": []
+}

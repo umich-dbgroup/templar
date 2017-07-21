@@ -1,0 +1,41 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of \"upper-level\" classes."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For 4 credits , how many upper-level classes are there ?",
+        "Four credit upper-level classes number how many ?",
+        "Four credits are awarded for how many classes at the upper level ?",
+        "How many classes are upper-level and also 4 credits ?",
+        "How many classes of the upper level are 4 credits ?",
+        "How many 4 -credit classes are upper-level classes ?",
+        "How many 4 -credit upper-level classes are there ?",
+        "How many 4 -credit , upper-level classes are there ?",
+        "How many four-credit classes are in the upper level ?",
+        "How many of the 4 -credit classes are upper level ?",
+        "How many upper-level classes are 4 -credit hours ?",
+        "Of the upper level classes what number are 4 credits ?",
+        "Of the upper-level classes , how many are 4 credits ?",
+        "What is the number of upper-level classes that are 4 credits ?",
+        "What is the quantity of upper-level classes that are 4 credits ?",
+        "What is the total no . of upper-level classes that are 4 credits ?",
+        "What number of upper-level classes are worth 4 credits ?"
+    ],
+    "sentence": "How many upper-level classes are 4 credits ?",
+    "sentence-with-vars": "How many upper-level classes are 4 credits ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSEalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 WHERE COURSEalias0.CREDITS = 4 AND COURSEalias0.NUMBER > 299 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSEalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 WHERE COURSEalias0.CREDITS = 4 AND COURSEalias0.NUMBER > 299 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

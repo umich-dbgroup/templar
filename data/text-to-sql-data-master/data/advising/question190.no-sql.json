@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Lack information"
+    ],
+    "paraphrases": [],
+    "sentence": "What EECS classes do I need to take for minoring in EECS?",
+    "sentence-with-vars": "What department0 classes do I need to take for minoring in department0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

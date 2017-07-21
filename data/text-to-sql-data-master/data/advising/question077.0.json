@@ -1,0 +1,40 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 1",
+        "JKK - 2"
+    ],
+    "info": [
+        "This type of thing makes me want to have a Lucene component or something else more IR-based. Networks isn't an area. It might or might not appear in the title of a course; it's more likely to appear in the description, but SQL isn't super-awesome at partial matches. Also, this is going to give us every class that mentions \"network\"; IR has spent a long time figuring out better approaches."
+    ],
+    "paraphrases": [
+        "Among the Computer Science classes offered , is there a class about networks ?",
+        "Are there any classes about networks ?",
+        "Are there classes about networks ?",
+        "Do they offer a class about networks ?",
+        "Does a class about networks exist ?",
+        "Does a networks class exist ?",
+        "Does networks have a class ?",
+        "I would be interested in a class about networks . Does that exist ?",
+        "Is networks a class that is offered ?",
+        "Is there a class that focuses on networks ?",
+        "Is there a networks class ?",
+        "Of the classes , is there 1 about networks ?",
+        "Regarding networks , Is there a class ?",
+        "To learn about networks , is there a class offered here ?",
+        "What classes about networks are there ?",
+        "With regards to classes , are there any about networks ?"
+    ],
+    "sentence": "Is there a class about networks ?",
+    "sentence-with-vars": "Is there a class about networks ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.DESCRIPTION , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( DESCRIPTION LIKE \"%network%\" OR NAME LIKE \"%network%\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.DESCRIPTION , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE ( DESCRIPTION LIKE \"%network%\" OR NAME LIKE \"%network%\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

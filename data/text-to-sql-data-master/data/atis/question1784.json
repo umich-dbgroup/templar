@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please show me all flights , from newark , to los angeles , on wednesday morning",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.departure_time, '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', '\"'||v5.days_code||'\"', '\"'||v6.day_name||'\"',\n v6.year, v6.month_number, v6.day_number FROM flight v0,\n airport_service v1, city v2, airport_service v3,\n city v4, days v5, date_day v6 \nWHERE ((v0.departure_time BETWEEN  0 \nAND  1200) AND (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'NEWARK'))) \nAND (((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) AND (v4.city_name = 'LOS ANGELES'))) \nAND ((v0.flight_days = ANY v5.days_code) AND ((v5.day_name = ANY v6.day_name) \nAND (((v6.year =  1993) \nAND (v6.month_number =  7)) AND (v6.day_number =  28)))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.DEPARTURE_TIME BETWEEN 0 AND 1200 AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEWARK ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' LOS ANGELES ' ) ) AND FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 7 AND DATE_DAY.DAY_NUMBER = 28 ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

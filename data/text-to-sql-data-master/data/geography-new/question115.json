@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what rivers do not run through tennessee ?", 
+ "sentence-with-vars": "what rivers do not run through state0 ?", 
+ "sql": "select river.river_name from river where river.river_name not in ( select river.river_name from river where river.traverse = ' tennessee ' ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.river_name not in ( select river.river_name from river where river.traverse = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "tennessee", 
+   "sql-value": "tennessee"
+  }
+ ]
+}

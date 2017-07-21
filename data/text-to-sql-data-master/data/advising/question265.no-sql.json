@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "the timings of the labs are not covered by the database"
+    ],
+    "paraphrases": [],
+    "sentence": "How long are the labs in 280?",
+    "sentence-with-vars": "How long are the labs in number0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

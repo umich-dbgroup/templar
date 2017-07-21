@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "how many denny's are there in the bay area ?",
+     "sentence-with-vars": "how many VARrest are there in the VARregion ?",
+     "sql": [
+          "select count(*) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.NAME='denny's' and GEOGRAPHIC.REGION='bay area'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.NAME='VARrest' and GEOGRAPHIC.REGION='VARregion'"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          },
+          {
+               "name": "VARrest",
+               "sentence-value": "denny's",
+               "sql-value": "denny's"
+          }
+     ]
+}

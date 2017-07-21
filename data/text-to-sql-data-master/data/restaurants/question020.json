@@ -1,0 +1,50 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "what are some good places in the yosemite and mono lake area for french food ?",
+          "give me a good restaurant in the yosemite and mono lake area for french food ?",
+          "give me a good french restaurant in the yosemite and mono lake area ?",
+          "where is a good place in the yosemite and mono lake area for french food ?",
+          "where are some restaurants good for french food in the yosemite and mono lake area ?",
+          "give me a good place in the yosemite and mono lake area for french food ?",
+          "where is a good restaurant in the yosemite and mono lake area for french food ?",
+          "what are some good restaurants in the yosemite and mono lake area for french food ?",
+          "where is a good french restaurant in the yosemite and mono lake area ?",
+          "where can i eat some good french food in the yosemite and mono lake area ?"
+     ],
+     "paraphrases-with-vars": [
+          "what are some good places in the VARregion for VARfood food ?",
+          "give me a good restaurant in the VARregion for VARfood food ?",
+          "give me a good VARfood restaurant in the VARregion ?",
+          "where is a good place in the VARregion for VARfood food ?",
+          "where are some restaurants good for VARfood food in the VARregion ?",
+          "give me a good place in the VARregion for VARfood food ?",
+          "where is a good restaurant in the VARregion for VARfood food ?",
+          "what are some good restaurants in the VARregion for VARfood food ?",
+          "where is a good VARfood restaurant in the VARregion ?",
+          "where can i eat some good VARfood food in the VARregion ?"
+     ],
+     "sentence": "give me some restaurants good for french food in the yosemite and mono lake area ?",
+     "sentence-with-vars": "give me some restaurants good for VARfood food in the VARregion ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.RATING>2.5 and GEOGRAPHIC.REGION='yosemite and mono lake area' and RESTAURANT.FOOD_TYPE='french' and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.RATING>2.5 and GEOGRAPHIC.REGION='VARregion' and RESTAURANT.FOOD_TYPE='VARfood' and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "yosemite and mono lake area",
+               "sql-value": "yosemite and mono lake area"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

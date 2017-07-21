@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "which is the smallest state ?", 
+ "sentence-with-vars": "which is the smallest state ?", 
+ "sql": "select state.state_name from state where state.area = ( select min ( state.area ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.area = ( select min ( state.area ) from state ) ;", 
+ "variables": []
+}

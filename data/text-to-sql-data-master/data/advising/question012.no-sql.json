@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not a valid question itself"
+    ],
+    "paraphrases": [],
+    "sentence": "Which classes do the lectures for 280 clash with?",
+    "sentence-with-vars": "Which classes do the lectures for number0 clash with?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

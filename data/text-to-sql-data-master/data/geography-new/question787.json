@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the longest river in the state with the most major cities ?", 
+ "sentence-with-vars": "what is the longest river in the state with the most major cities ?", 
+ "sql": "select river.river_name from river where river.traverse = ( select city.state_name from city where city.population > 150000 group by city.state_name order by count ( city_name ) desc limit 1 ) order by river.length desc limit 1 ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ( select city.state_name from city where city.population > number0 group by city.state_name order by count ( city_name ) desc limit 1 ) order by river.length desc limit 1 ;", 
+ "variables": [
+  {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "150000"
+   }
+ ]
+}

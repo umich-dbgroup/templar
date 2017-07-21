@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "where can i eat french food in the bay area ?",
+     "sentence-with-vars": "where can i eat VARfood food in the VARregion ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,GEOGRAPHIC,LOCATION where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.REGION='bay area' and RESTAURANT.FOOD_TYPE='french' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,GEOGRAPHIC,LOCATION where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.REGION='VARregion' and RESTAURANT.FOOD_TYPE='VARfood' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "french",
+               "sql-value": "french"
+          }
+     ]
+}

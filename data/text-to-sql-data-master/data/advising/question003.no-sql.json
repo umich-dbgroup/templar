@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "Would MECHENG 211 be counted towards my flex tech?",
+    "sentence-with-vars": "Would department0 number0 be counted towards my flex tech?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "211",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "MECHENG",
+            "sql-value": ""
+        }
+    ]
+}

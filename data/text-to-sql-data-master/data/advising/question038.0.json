@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "SRS - Would be more helpful to list the results instead of just a count."
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "How many courses are not taught by a professor on their own ?",
+        "How many courses are there that 2 or more professors teach ?",
+        "If I want 2 or more professors for a course how many choices do I have ?",
+        "Many courses are taught by more than 2 professors , how many ?",
+        "More than 2 professors teach how many courses ?",
+        "Of the courses , how many are taught by more than 2 professors ?",
+        "Please tell me the number of courses that 2 or more faculty members teach .",
+        "What is the number of courses that are taught by 3 or more professors ?",
+        "What is the number of courses which are being taught by more than 2 professors ?",
+        "What 's the number of courses taught by more than 2 professors ?"
+    ],
+    "sentence": "How many courses are taught by more than 2 professors ?",
+    "sentence-with-vars": "How many courses are taught by more than 2 professors ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias1 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias2 WHERE OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID < OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID < OFFERING_INSTRUCTORalias2.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias1.OFFERING_ID = OFFERING_INSTRUCTORalias0.OFFERING_ID AND OFFERING_INSTRUCTORalias2.OFFERING_ID = OFFERING_INSTRUCTORalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias1 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias2 WHERE OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID < OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID < OFFERING_INSTRUCTORalias2.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias1.OFFERING_ID = OFFERING_INSTRUCTORalias0.OFFERING_ID AND OFFERING_INSTRUCTORalias2.OFFERING_ID = OFFERING_INSTRUCTORalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

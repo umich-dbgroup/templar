@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what states border the state with the smallest area ?", 
+ "sentence-with-vars": "what states border the state with the smallest area ?", 
+ "sql": "select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "variables": []
+}

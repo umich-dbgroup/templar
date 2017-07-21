@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "can you show the evening flights from los angeles international to tacoma",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.departure_time, '\"'||v1.airport_code||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"',\n '\"'||v3.city_name||'\"' FROM flight v0, airport v1,\n airport_service v2, city v3 \nWHERE ((v0.departure_time BETWEEN  1800 \nAND  2200) AND (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'LAX')) AND ((v0.to_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'TACOMA')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.DEPARTURE_TIME BETWEEN 1800 AND 2200 AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' LAX ' ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TACOMA ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

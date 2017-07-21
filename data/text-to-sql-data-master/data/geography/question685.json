@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many capitals does rhode island have ?", 
+ "sentence-with-vars": "how many capitals does state0 have ?", 
+ "sql": "select count ( state.capital ) from state where state.state_name = ' rhode island ' ;", 
+ "sql-with-vars": "select count ( state.capital ) from state where state.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "rhode island", 
+   "sql-value": "rhode island"
+  }
+ ]
+}

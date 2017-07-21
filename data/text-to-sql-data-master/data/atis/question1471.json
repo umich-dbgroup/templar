@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "flights from j f k or la guardia to cleveland",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.from_airport||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"', '\"'||v4.city_name||'\"' FROM flight v0,\n airport_service v3, city v4 \nWHERE (((v0.from_airport IN (\nSELECT v1.airport_code FROM airport v1 \nWHERE (v1.airport_code = 'JFK'))) OR (v0.from_airport IN (\nSELECT v2.airport_code FROM airport v2 \nWHERE (v2.airport_code = 'LGA')))) \nAND ((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) AND (v4.city_name = 'CLEVELAND'))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' JFK ' ) OR FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' LGA ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' CLEVELAND ' ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the student to be 1."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "As of right now , what 's my GPA ?",
+        "Can you report my current GPA ?",
+        "Can you tell me my GPA scale ?",
+        "Can you tell me what my GPA is ?",
+        "Currently , what is my GPA ?",
+        "How high is my current GPA ?",
+        "How much is my current GPA ?",
+        "My GPA is how much ?",
+        "My current GPA is ?",
+        "Please remind me my GPA scale , please ?",
+        "Tell me my current GPA .",
+        "Tell me what my GPA is .",
+        "What is my GPA at present ?",
+        "What is my grade point average ?",
+        "Where is my GPA now ?"
+    ],
+    "sentence": "What 's my current GPA ?",
+    "sentence-with-vars": "What 's my current GPA ?",
+    "sql": [
+        "SELECT STUDENTalias0.TOTAL_GPA FROM STUDENT AS STUDENTalias0 WHERE STUDENTalias0.STUDENT_ID = 1 ;"
+    ],
+    "sql-with-vars": "SELECT STUDENTalias0.TOTAL_GPA FROM STUDENT AS STUDENTalias0 WHERE STUDENTalias0.STUDENT_ID = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

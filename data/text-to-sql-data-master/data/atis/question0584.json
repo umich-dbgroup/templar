@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me the type of aircraft that c p uses",
+    "sq2": "SELECT DISTINCT  '\"'||v0.basic_type||'\"', '\"'||v1.aircraft_code||'\"',\n '\"'||v2.aircraft_code_sequence||'\"', '\"'||v2.airline_code||'\"',\n '\"'||v2.flight_id||'\"' FROM aircraft v0, equipment_sequence v1,\n flight v2 \nWHERE ((v0.aircraft_code = ANY v1.aircraft_code) \nAND ((v1.aircraft_code_sequence = ANY v2.aircraft_code_sequence) \nAND (v2.airline_code = 'CP')));",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.BASIC_TYPE FROM AIRCRAFT WHERE AIRCRAFT . AIRCRAFT_CODE IN ( SELECT EQUIPMENT_SEQUENCE . AIRCRAFT_CODE FROM EQUIPMENT_SEQUENCE WHERE EQUIPMENT_SEQUENCE . AIRCRAFT_CODE_SEQUENCE IN ( SELECT FLIGHT . AIRCRAFT_CODE_SEQUENCE FROM FLIGHT WHERE FLIGHT.AIRLINE_CODE = ' CP ' ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,14 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "\"Lower-level classes\" is not defined for the DB"
+    ],
+    "paraphrases": [],
+    "sentence": "Do all of the lower-level classes meet on Friday?",
+    "sentence-with-vars": "Do all of the lower-level classes meet on Friday?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": []
+}

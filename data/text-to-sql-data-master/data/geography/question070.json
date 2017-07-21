@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state is kalamazoo in ?", 
+ "sentence-with-vars": "which state is city0 in ?", 
+ "sql": "select city.state_name from city where city.city_name = ' kalamazoo ' ;", 
+ "sql-with-vars": "select city.state_name from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "kalamazoo", 
+   "sql-value": "kalamazoo"
+  }
+ ]
+}

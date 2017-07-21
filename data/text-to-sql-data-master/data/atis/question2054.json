@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please flights from washington d c to los angeles",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"', '\"'||v3.state_code||'\"',\n '\"'||v4.airport_code||'\"', '\"'||v5.city_code||'\"',\n '\"'||v5.city_name||'\"' FROM flight v0, airport_service v1,\n city v2, state v3, airport_service v4, city v5 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND ((v2.city_name = 'WASHINGTON') \nAND ((v2.state_code = ANY v3.state_code) AND (v3.state_code = 'DC'))))) \nAND ((v0.to_airport = ANY v4.airport_code) AND ((v4.city_code = ANY v5.city_code) \nAND (v5.city_name = 'LOS ANGELES'))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE ( CITY.CITY_NAME = ' WASHINGTON ' AND CITY . STATE_CODE IN ( SELECT STATE . STATE_CODE FROM STATE WHERE STATE.STATE_CODE = ' DC ' ) ) ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' LOS ANGELES ' ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point in the state with capital austin ?", 
+ "sentence-with-vars": "what is the highest point in the state with capital city0 ?", 
+ "sql": "select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.capital = ' austin ' ) ;", 
+ "sql-with-vars": "select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.capital = ' city0 ' ) ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "austin", 
+   "sql-value": "austin"
+  }
+ ]
+}

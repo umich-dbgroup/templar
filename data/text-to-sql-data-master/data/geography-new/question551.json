@@ -1,0 +1,24 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major cities in the states through which the major river in virginia runs ?", 
+ "sentence-with-vars": "what are the major cities in the states through which the major river in state0 runs ?", 
+ "sql": "select city.city_name from city where city.population > 150000 and city.state_name in ( select river.traverse from river where river.traverse = ' virginia ' and river.length > 750 ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population > number0 and city.state_name in ( select river.traverse from river where river.traverse = ' state0 ' and river.length > number1 ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "virginia", 
+   "sql-value": "virginia"
+  },
+     {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "150000"
+   },
+     {
+     "name": "number1",
+   	"sentence-value": "",
+     "sql-value": "750"
+   }
+ ]
+}

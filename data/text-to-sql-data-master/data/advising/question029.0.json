@@ -1,0 +1,79 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any classes I must take to be able to declare an EECS major ?",
+        "Are there prerequisite classes I should take before I declare a major in EECS ?",
+        "Can I have a list of the prerequisites necessary to declare EECS as my major ?",
+        "Can you advise me of the courses that I should take to declare a major in EECS ?",
+        "Declaring a major in EECS requires me to take which classes ?",
+        "For a major in EECS , what classes am I required to take ?",
+        "I want to declare a major in EECS , what classes if any do I need to take ?",
+        "I want to declare my major as EECS , what classes should I take ?",
+        "I want to major in EECS , which classes do I need to take ?",
+        "If I want to declare EECS as my major , which classes am I going to have to take ?",
+        "If I want to declare a major in EECS , then what classes to do I need to take ?",
+        "If I want to declare a major in EECS , what classes do I need to take ?",
+        "If I were to declare a major in EECS , what classes would I need ?",
+        "In order to declare a major in EECS what classes would I need to take ?",
+        "In order to declare a major in EECS , what classes do I need to take ?",
+        "In order to declare a major in EECS , what classes must I take ?",
+        "In order to declare a major in EECS , which classes do I need to take ?",
+        "In order to declare my major as EECS , what classes do I need to have taken ?",
+        "In order to major in EECS , what classes do I need to take ?",
+        "To declare a major in EECS which classes do I need to take ?",
+        "To declare a major in EECS which courses are required ?",
+        "To declare a major in EECS , are there certain classes that I need to take ?",
+        "To declare a major in EECS , what classes do I need to take ?",
+        "To declare a major in EECS , what classes must I take ?",
+        "To declare a major in EECS , which classes are required ?",
+        "To get a major in EECS , what classes are neccesary ?",
+        "Were I to declare a major in EECS , which classes would I need to take ?",
+        "What Courses do I need to declare a major in EECS ?",
+        "What are prerequisites to declare a major in EECS ?",
+        "What are the classes required to declare a major in EECS ?",
+        "What are the prerequisite classes for the EECS major ?",
+        "What classes are necessary to declare a major in EECS ?",
+        "What classes are required for me to declare EECS as my major ?",
+        "What classes are required in order to declare a major in EECS ?",
+        "What classes are required to declare EECS as a major ?",
+        "What classes are required to declare a major in EECS ?",
+        "What classes qualify me to declare a major in EECS ?",
+        "What classes should I enroll in in order to declare a major in EECS ?",
+        "What courses must I take to declare a major in EECS ?",
+        "When declaring EECS as a major what classes do I need to take ?",
+        "Which are the classes required to declare a major in EECS ?",
+        "Which classes are necessary for a declared major in EECS ?",
+        "Which classes are needed in order to declare a major in EECS ?",
+        "Which classes are needed to obtain a major in EECS ?",
+        "Which classes are required to declare EECS my major ?",
+        "Which classes are required to declare a major in EECS ?",
+        "Which classes do I have to take for me to declare a major in EECS ?",
+        "Which classes do I have to take to declare an EECS major ?",
+        "Which classes do I need to take in order to declare a major in EECS ?",
+        "Which classes must I take in order to declare a major in EECS ?",
+        "Which classes would I need to take to declare a major in EECS ?",
+        "what will be the prerequisites courses to declare a majorin EFCS ?"
+    ],
+    "sentence": "What classes do I need to take in order to declare a major in EECS ?",
+    "sentence-with-vars": "What classes do I need to take in order to declare a major in department0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY LIKE \"PreMajor\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY LIKE \"PreMajor\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

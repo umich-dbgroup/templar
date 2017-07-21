@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the average population per square km in pennsylvania ?", 
+ "sentence-with-vars": "what is the average population per square km in state0 ?", 
+ "sql": "select state.population / state.area from state where state.state_name = ' pennsylvania ' ;", 
+ "sql-with-vars": "select state.population / state.area from state where state.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "pennsylvania", 
+   "sql-value": "pennsylvania"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what kind of aircraft is used on a flight from cleveland to dallas",
+    "sq2": "SELECT DISTINCT  '\"'||v1.aircraft_code||'\"', '\"'||v2.aircraft_code_sequence||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', '\"'||v5.airport_code||'\"',\n '\"'||v6.city_code||'\"', '\"'||v6.city_name||'\"', '\"'||v2.flight_id||'\"' FROM aircraft v0,\n equipment_sequence v1, flight v2,\n airport_service v3, city v4, airport_service v5, city v6 \nWHERE ((v0.aircraft_code = ANY v1.aircraft_code) AND ((v1.aircraft_code_sequence = ANY v2.aircraft_code_sequence) \nAND (((v2.from_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'CLEVELAND'))) AND ((v2.to_airport = ANY v5.airport_code) \nAND ((v5.city_code = ANY v6.city_code) \nAND (v6.city_name = 'DALLAS'))))));",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.AIRCRAFT_CODE FROM AIRCRAFT WHERE AIRCRAFT . AIRCRAFT_CODE IN ( SELECT EQUIPMENT_SEQUENCE . AIRCRAFT_CODE FROM EQUIPMENT_SEQUENCE WHERE EQUIPMENT_SEQUENCE . AIRCRAFT_CODE_SEQUENCE IN ( SELECT FLIGHT . AIRCRAFT_CODE_SEQUENCE FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' CLEVELAND ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DALLAS ' ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

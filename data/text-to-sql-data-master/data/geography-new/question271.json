@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major rivers in the us ?", 
+ "sentence-with-vars": "what are the major rivers in the us ?", 
+ "sql": "select river.river_name from river ;", 
+ "sql-with-vars": "select river.river_name from river ;", 
+ "variables": []
+}

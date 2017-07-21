@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "the timings of the labs are not covered by the database"
+    ],
+    "paraphrases": [],
+    "sentence": "Does 280 always have morning labs?",
+    "sentence-with-vars": "Does number0 always have morning labs?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

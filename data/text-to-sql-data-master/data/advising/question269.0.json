@@ -1,0 +1,82 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Am I able to take 280 on Mondays and Wednesdays ?",
+        "Am I allowed to take 280 on Mondays and Wednesdays ?",
+        "Are Mondays and Wednesdays good for me to take 280 ?",
+        "Can 280 be taken on Mondays and Wednesdays ?",
+        "Can I attend 280 on Mondays and Wednesdays ?",
+        "Can I register for 280 Mondays and Wednesdays ?",
+        "Can I take 280 on Mondays and Wednesday ?",
+        "Can I take 280 on days like Monday and Wednesday ?",
+        "Can course 280 be taken on Mondays and Wednesdays ?",
+        "Could I take 280 Mondays and Wednesdays ?",
+        "Is 280 Available on Monday and Wednesday ?",
+        "Is 280 available as a Monday/Wednesday class ?",
+        "Is 280 available on Mondays and Wednesdays ?",
+        "Is 280 available to take on Mondays and Wednesdays ?",
+        "Is 280 available to take on both Mondays and Wednesdays ?",
+        "Is 280 offered on Mondays and Wednesdays ?",
+        "Is 280 offered on monday and wednesday ?",
+        "Is it okay if I take 280 on Mondays and Wednesdays ?",
+        "Is it permissible to take 280 on Mondays and Wednesdays ?",
+        "Is it possible for me to take 280 on Mondays and Wednesday ?",
+        "Is it possible for me to take 280 on Mondays and Wednesdays ?",
+        "Is it possible to take 280 on Mondays and Wednesdays ?",
+        "Is it possible to take 280 on Wednesdays and Mondays ?",
+        "May I have 280 on Mondays and Wednesdays ?",
+        "Mondays and Wednesdays can I take 280 ?",
+        "On Monday and Wednesday is 280 offered ?",
+        "On Monday and Wednesday , is 280 available ?",
+        "On Mondays and Wednesday is 280 available to take ?",
+        "On Mondays and Wednesday , can I take 280 ?",
+        "On Mondays and Wednesday , is it possible for me to take 280 ?",
+        "On Mondays and Wednesdays is it possible to take 280 ?",
+        "On Mondays and Wednesdays would I be able to take 280 ?",
+        "On Mondays and Wednesdays , am I able to take 280 ?",
+        "On Mondays and Wednesdays , can I take 280 ?",
+        "On Mondays and wednesdays , can I take 280 ?",
+        "Will I be able to take 280 on Mondays and Wednesdays ?",
+        "Will you allow me to take 280 on Mondays and Wednesdays ?",
+        "Would I be able to take 280 on Wednesday and Mondays ?",
+        "Would it be possible to take 280 on Monday and Wednesday ?",
+        "is there a possibility to take 280 on Mondays and Wednesdays ?"
+    ],
+    "sentence": "Can I take 280 on Mondays and Wednesdays ?",
+    "sentence-with-vars": "Can I take number0 on Mondays and Wednesdays ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSE_OFFERINGalias0.MONDAY = \"Y\" AND COURSE_OFFERINGalias0.THURSDAY = \"N\" AND COURSE_OFFERINGalias0.TUESDAY = \"N\" AND COURSE_OFFERINGalias0.WEDNESDAY = \"Y\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSE_OFFERINGalias0.MONDAY = \"Y\" AND COURSE_OFFERINGalias0.THURSDAY = \"N\" AND COURSE_OFFERINGalias0.TUESDAY = \"N\" AND COURSE_OFFERINGalias0.WEDNESDAY = \"Y\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "",
+            "sql-value": "WN"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

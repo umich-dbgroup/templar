@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what does the airline code d l stand for",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_name||'\"', '\"'||v0.airline_code||'\"' FROM airline v0 \nWHERE (v0.airline_code = 'DL');",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_NAME FROM AIRLINE WHERE AIRLINE.AIRLINE_CODE = ' DL ' ) ;"
+    ],
+    "variables": []
+}

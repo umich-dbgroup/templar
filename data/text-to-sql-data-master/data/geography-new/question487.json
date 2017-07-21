@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the populations of the states through which the mississippi river runs ?", 
+ "sentence-with-vars": "what are the populations of the states through which the river0 river runs ?", 
+ "sql": "select state.population from state where state.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) ;", 
+ "sql-with-vars": "select state.population from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

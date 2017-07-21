@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can I enroll in 484 during the next 2 years ?",
+        "Can I expect 484 to be offered within the next 2 years ?",
+        "Can I take 484 some time in the next 2 years ?",
+        "Do we know for sure that 484 will be available sometime in the next 2 years ?",
+        "Does the department offer 484 in the next 2 years ?",
+        "During the next 2 years will 484 be offered ?",
+        "In the next 2 years , is 484 offered ?",
+        "In the next 2 years , will 484 be offered ?",
+        "Is it a certainty that 484 will be offered in the next 2 years ?",
+        "Over the next 2 years , is 484 offered ?",
+        "Will you be offering 484 in the next 2 years ?"
+    ],
+    "sentence": "Is 484 offered in the next 2 years ?",
+    "sentence-with-vars": "Is number0 offered in the next 2 years ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 484 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR IN ( 2016 , 2017 ) ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR IN ( 2016 , 2017 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "484",
+            "sql-value": "484"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

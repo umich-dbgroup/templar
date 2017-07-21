@@ -1,0 +1,43 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - Is this a meaningful vairant of Q256?"
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any classes I can use for my major design experience ?",
+        "For Major Design Experience what classes do I need ?",
+        "For my Major Design Experience , which classes are applicable ?",
+        "For my Major Design Experience , which classes count toward it ?",
+        "For my Major Design Experience , which courses qualify ?",
+        "Major Design Experience requires what classes ?",
+        "My Major Design Experience permits which courses ?",
+        "What are the class requirements for my Major Design Experience ?",
+        "What are the classes that can be used for my Major Design Experience ?",
+        "What are the classes that comprise Major Design Experience ?",
+        "What classes am I allowed to take for my Major Design Experience ?",
+        "What classes can be used for Major Design Experience ?",
+        "What classes have Major design experience in them ?",
+        "What courses fulfill the Major Design Experience requirement ?",
+        "What useful classes are there for the Major Design Experience ?",
+        "Which classes are useful for my Major Design Experience ?",
+        "Which classes can I also use for my major design experience ?",
+        "Which classes should I take to use toward my Major Design Experience ?",
+        "With regards to my Major Design experience , what classes will work ?"
+    ],
+    "sentence": "What classes can I use for my Major Design Experience ?",
+    "sentence-with-vars": "What classes can I use for my Major Design Experience ?",
+    "sql": [
+        "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY LIKE \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY LIKE \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

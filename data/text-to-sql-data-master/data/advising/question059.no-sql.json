@@ -1,0 +1,35 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "This requires some reasoning: is 370 required for the student's degree program, and has the student not taken it already?"
+    ],
+    "paraphrases": [
+        "Do I need to take 370?"
+    ],
+    "sentence": "Am I going to have to take 370 eventually?",
+    "sentence-with-vars": "Am I going to have to take number0 eventually?",
+    "sql": [],
+    "sql-with-vars": "",
+    "unchecked-paraphrases": [
+        "Is 370 necessary for me?",
+        "Is 370 really a requirement?",
+        "Is it required to take 370?",
+        "370 is required to take?",
+        "Is 370 required for me?",
+        "Am I required to take 370?",
+        "Is 370 required for my major?",
+        "Do I need to take 370?",
+        "Is 370 a required course?",
+        "Is 370 a requirement for me?",
+        "Is 370 required?"
+    ],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": ""
+        }
+    ]
+}

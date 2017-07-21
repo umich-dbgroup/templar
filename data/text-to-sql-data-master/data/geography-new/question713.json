@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers does colorado have ?", 
+ "sentence-with-vars": "how many rivers does state0 have ?", 
+ "sql": "select count ( river.river_name ) from river where river.traverse = ' colorado ' ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river where river.traverse = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "colorado", 
+   "sql-value": "colorado"
+  }
+ ]
+}

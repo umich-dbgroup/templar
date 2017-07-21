@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many northwest flights leave saint paul [loud_breath]",
+    "sq2": "SELECT  COUNT(*), '\"'||v0.airline_code||'\"' FROM flight v0 \nWHERE ((v0.airline_code = 'NW') AND (v0.from_airport IN (\nSELECT v1.airport_code FROM airport_service v1 \nWHERE (v1.city_code IN (\nSELECT v2.city_code FROM city v2 \nWHERE (v2.city_name = 'ST. PAUL')))))) GROUP BY v0.airline_code;",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' NW ' AND FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ST. PAUL ' ) ) ) ;"
+    ],
+    "variables": []
+}

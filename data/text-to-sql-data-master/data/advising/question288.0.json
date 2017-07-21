@@ -1,0 +1,40 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "JKK - 1"
+    ],
+    "comments": [
+        "CFD - Should probably narrow it down by semester; otherwise it's anwsering \"Are there now or have there ever been...\""
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any EECS classes besides on Friday ?",
+        "Are there any EECS classes that meet on any day but Friday ?",
+        "Are there any EECS classes that meet on days other than Friday ?",
+        "Are there classes in EECS that do not meet on Friday ?",
+        "Can you tell me if any EECS classes meet on another day besides Friday ?",
+        "Do any EECS classes meet on a day other than Friday ?",
+        "Do any EECS classes occur other than on Friday ?",
+        "Do you know which EECS classes do not meet on Friday ?",
+        "What EECS classes do not meet on Friday ?",
+        "Which EECS classes do n't meet on Friday ?"
+    ],
+    "sentence": "Are there any EECS classes that do n't meet on Friday ?",
+    "sentence-with-vars": "Are there any department0 classes that do n't meet on Friday ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSEalias0.DEPARTMENT = \"EECS\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSEalias0.DEPARTMENT = \"department0\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,458 @@
+which state has the most population ? ||| select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;
+
+what is the length of the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+what length is the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+how many people reside in state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+how much population does state0 have ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+how many cities are there in the united states ? ||| select count ( city.city_name ) from city ;
+
+what states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the highest point in state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+how many people live in city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what is the largest capital city in the usa ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city , state where city.city_name = state.capital ) ;
+
+where are mountains ? ||| select mountain.state_name from mountain ;
+
+what major cities are located in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what states border the state with the smallest area ? ||| select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;
+
+how many states are there ? ||| select count ( state.state_name ) from state ;
+
+which rivers do not run through state0 ? ||| select river.river_name from river where river.river_name not in ( select river.river_name from river where river.traverse = ' state0 ' ) ;
+
+where is city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+city0 is in what state ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the state with the smallest area ? ||| select state.state_name from state where state.area = ( select min ( state.area ) from state ) ;
+
+how many people live in the biggest city in state0 state ? ||| select city.population from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+what states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+how many states border the state with the largest population ? ||| select count ( border_info.border ) from border_info where border_info.state_name in ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;
+
+what are all the rivers in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+what is the highest elevation in state0 ? ||| select highlow.highest_elevation from highlow where highlow.state_name = ' state0 ' ;
+
+what is the largest state bordering state0 ? ||| select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;
+
+which states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the highest point in state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what is the population of city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+what is the capital of states that have cities named city0 ? ||| select state.capital from state , city where state.state_name = city.state_name and city.city_name = ' city0 ' ;
+
+which is the smallest state ? ||| select state.state_name from state where state.area = ( select min ( state.area ) from state ) ;
+
+what is the population of city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+what states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the population of the largest city in the state with the largest area ? ||| select city.population from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what are the capitals of states that border state0 ? ||| select state.capital from state , border_info where border_info.border = state.state_name and border_info.state_name = ' state0 ' ;
+
+what is the lowest point in state0 in meters ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+which state has the smallest population density ? ||| select state.state_name from state where state.density = ( select min ( state.density ) from state ) ;
+
+which state has the lowest population density ? ||| select state.state_name from state where state.density = ( select min ( state.density ) from state ) ;
+
+what rivers run through state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+which states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what are the major cities in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+number of states bordering state0 ? ||| select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' ;
+
+what is the smallest city in the us ? ||| select city.city_name from city where city.population = ( select min ( city.population ) from city ) ;
+
+where is city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the population of the state with the highest population density ? ||| select state.population from state where state.density = ( select max ( state.density ) from state ) ;
+
+which state has the highest population density ? ||| select state.state_name from state where state.density = ( select max ( state.density ) from state ) ;
+
+what is the capital of the state with the longest river ? ||| select state.capital from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+how many rivers does state0 have ? ||| select count ( river.river_name ) from river where river.traverse = ' state0 ' ;
+
+how tall is mountain0 ? ||| select highlow.highest_elevation from highlow where highlow.highest_point = ' mountain0 ' ;
+
+how many river0 rivers are there ? ||| select count ( river.river_name ) from river where river.river_name = ' river0 ' ;
+
+what is the largest city in smallest state through which the river0 runs ? ||| select city.city_name from city where city.state_name in ( select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' state0 ' ) and state.area = ( select min ( state.area ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ) ) order by city.population desc limit 1 ;
+
+which state borders state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what is the most populous state ? ||| select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;
+
+how high is the highest point in america ? ||| select max ( highlow.highest_elevation ) from highlow ;
+
+give me the number of rivers in state0 ? ||| select count ( river.river_name ) from river where river.traverse = ' state0 ' ;
+
+what is the longest river in the largest state ? ||| select river.river_name from river where river.traverse in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ) ;
+
+what is the highest point in the usa  ? ||| select distinct highlow.highest_point from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;
+
+what is the highest point of the state with the smallest population density ? ||| select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.density = ( select min ( state.density ) from state ) ) ;
+
+what state bordering state0 has the largest population ? ||| select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;
+
+what is the area of state0 ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what is the most populous city ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;
+
+where is the highest point in state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+how tall is mountain0 ? ||| select highlow.highest_elevation from highlow where highlow.highest_point = ' mountain0 ' ;
+
+what are the major cities in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+how many states border state0 ? ||| select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' ;
+
+what is the largest city in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+how many states have a higher point than the highest point of the state with the largest capital city in the us ? ||| select count ( highlow.state_name ) from highlow where highlow.highest_elevation > ( select highlow.highest_elevation from highlow where highlow.state_name = ( select state.state_name from state where state.capital = ( select city.city_name from city where city.population = ( select max ( city.population ) from city ) ) ) ) ;
+
+what states does the river0 run through ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+how long is the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+what is the population of city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+how many capitals does state0 have ? ||| select count ( state.capital ) from state where state.state_name = ' state0 ' ;
+
+what states does the river0 run through ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+state0 borders how many states ? ||| select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' ;
+
+what is the highest elevation in the united states ? ||| select max ( highlow.highest_elevation ) from highlow ;
+
+what is the highest point of the usa ? ||| select distinct highlow.highest_point from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;
+
+what is the highest point in state0 ? ||| select highlow.highest_elevation from highlow where highlow.state_name = ' state0 ' ;
+
+what are the major cities in the state of state0 ? ||| select city.city_name from city where city.population > number0 and city.state_name = ' state0 ' ;
+
+how high is the highest point of state0 ? ||| select highlow.highest_elevation from highlow where highlow.state_name = ' state0 ' ;
+
+which is the longest river in usa ? ||| select river.river_name from river where river.length = ( select max ( river.length ) from river ) ;
+
+what is the combined area of all number0 states ? ||| select sum ( state.area ) from state ;
+
+what is the highest point in states bordering state0 ? ||| select highlow.highest_point from highlow where highlow.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) order by highlow.highest_elevation desc limit 1 ;
+
+what is the length of the longest river that runs through state0 ? ||| select river.length from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;
+
+which states does the river0 run through ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+what is the state with the largest area ? ||| select state.state_name from state where state.area = ( select max ( state.area ) from state ) ;
+
+count the states which have elevations lower than what state0 has ? ||| select count ( highlow.state_name ) from highlow where highlow.lowest_elevation < ( select highlow.lowest_elevation from highlow where highlow.state_name = ' state0 ' ) ;
+
+how many states are in the usa ? ||| select count ( state.state_name ) from state ;
+
+name the major rivers in state0 . ||| select river.river_name from river where river.traverse = ' state0 ' and river.length > number0 ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+how high is high_point0 ? ||| select highlow.highest_elevation from highlow where highlow.highest_point = ' high_point0 ' ;
+
+which city in state0 has the largest population ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+what is the area of the state0 state ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what states border states that border state0 ? ||| select border_info.border from border_info where border_info.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ;
+
+which state has the highest point ? ||| select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;
+
+how many people live in the capital of state0 ? ||| select city.population from city where city.city_name = ( select state.capital from state where state.state_name = ' state0 ' ) ;
+
+how many states are there in the usa ? ||| select count ( state.state_name ) from state ;
+
+what state has the longest river ? ||| select distinct river.traverse from river where river.length = ( select max ( distinct river.length ) from river ) ;
+
+which state is mountain0 in ? ||| select mountain.state_name from mountain where mountain.mountain_name = ' mountain0 ' ;
+
+which state has the greatest population ? ||| select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what is the lowest point of all states through which the river0 runs through ? ||| select highlow.lowest_point from highlow where highlow.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) order by highlow.lowest_elevation limit 1 ;
+
+what rivers are in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+how many people live in state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what state borders state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what state is city0 in ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the population of city0 state0 ? ||| select city.population from city where city.city_name = ' city0 ' and city.state_name = ' state0 ' ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what is the biggest city in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+what are the highest points of all the states ? ||| select highlow.highest_point from highlow ;
+
+what is the largest city in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+what is the population of the smallest state ? ||| select state.population from state where state.area = ( select min ( state.area ) from state ) ;
+
+what is the most populous state through which the river0 runs ? ||| select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+how large is state0 ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what states border state0 and have a major river ? ||| select border_info.state_name from border_info where border_info.border = ' state0 ' and border_info.state_name in ( select river.traverse from river where river.length > number0 ) ;
+
+what is the longest river in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;
+
+how long is the longest river in the usa ? ||| select river.length from river where river.length = ( select max ( river.length ) from river ) ;
+
+how many states are there in the usa ? ||| select count ( state.state_name ) from state ;
+
+what states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what state is city0 in ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the longest river that flows through a state that borders state0 ? ||| select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;
+
+where is the highest mountain of the united states ? ||| select mountain.state_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;
+
+what is the high point of state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what are the major rivers in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' and river.length > number0 ;
+
+what rivers are there in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+how long is the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+what city has the most people ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;
+
+how long is the longest river in state0 ? ||| select river.length from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+how many people lived in city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+where is the lowest point in state0 ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what states surround state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+state0 borders how many states ? ||| select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' ;
+
+how tall is the highest point in state0 ? ||| select highlow.highest_elevation from highlow where highlow.state_name = ' state0 ' ;
+
+what is the least populous state ? ||| select state.state_name from state where state.population = ( select min ( state.population ) from state ) ;
+
+what is the highest mountain in the us ? ||| select mountain.mountain_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;
+
+how many states does state0 border ? ||| select count ( border_info.border ) from border_info where border_info.state_name = ' state0 ' ;
+
+what is the capital of the smallest state ? ||| select state.capital from state where state.area = ( select min ( state.area ) from state ) ;
+
+what is the capital of the state with the largest population density ? ||| select distinct state.capital from state where state.density = ( select max ( state.density ) from state ) ;
+
+what is the length of the river that flows through the most states ? ||| select river.length from river group by ( river.river_name ) order by count ( distinct river.traverse ) desc limit 1 ;
+
+rivers in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+which state has the highest elevation ? ||| select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;
+
+which state has the lowest elevation ? ||| select highlow.state_name from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;
+
+what is the length of the state0 river ? ||| select river.length from river where river.river_name = ' state0 ' ;
+
+which states does the river0 run through ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+how long is the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+how many citizens does the biggest city have in the usa ? ||| select city.population from city where city.population = ( select max ( city.population ) from city ) ;
+
+give me the states that border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what is the lowest point in usa ? ||| select highlow.lowest_point from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;
+
+what are the major cities in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+what is the longest river in the state with the most major cities ? ||| select river.river_name from river where river.traverse = ( select city.state_name from city where city.population > number0 group by city.state_name order by count ( city_name ) desc limit 1 ) order by river.length desc limit 1 ;
+
+how many rivers are in the state that has the most rivers ? ||| select max ( tmp.rivers ) from ( select count ( river.river_name ) as rivers , traverse from river group by traverse ) as tmp ;
+
+what states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+how many people live in the united states ? ||| select sum ( state.population ) from state ;
+
+what is the lowest point in state0 ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what is the capital of the state with the most inhabitants ? ||| select state.capital from state where state.population = ( select max ( state.population ) from state ) ;
+
+what city in the united states has the highest population density ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;
+
+what is the population of city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+where is the river0 ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+what is the longest river in the states that border state0 ? ||| select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;
+
+how many residents live in state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+how many people live in city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+what is the area of state0 ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what is the population density of state0 ? ||| select state.density from state where state.state_name = ' state0 ' ;
+
+how large is state0 ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what is the highest point in state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what states border the most populous state ? ||| select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;
+
+what are the population densities of each us state ? ||| select state.density from state ;
+
+what is the most dense state in the usa ? ||| select state.state_name from state where state.density = ( select max ( state.density ) from state ) ;
+
+what states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what is the population density of the largest state ? ||| select state.density from state where state.area = ( select max ( state.area ) from state ) ;
+
+what is the lowest point in the state of state0 ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what states have cities named city0 ? ||| select city.state_name from city where city.city_name = ' city0 ' ;
+
+what is the area of state0 ? ||| select state.area from state where state.state_name = ' state0 ' ;
+
+what is the biggest american city in a state with a river ? ||| select distinct city.city_name from city , river where city.state_name = river.traverse and city.population = ( select max ( city.population ) from city , river where city.state_name = river.traverse ) ;
+
+which states does the longest river run through ? ||| select river.traverse from river where river.length = ( select max ( river.length ) from river ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what are the cities in states through which the river0 runs ? ||| select city.city_name from city where city.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ;
+
+what is the biggest capital city in the us ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city , state where city.city_name = state.capital ) ;
+
+tell me what cities are in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' ;
+
+which states have a river ? ||| select river.traverse from river ;
+
+how many states does usa have ? ||| select count ( state.state_name ) from state ;
+
+what is the highest point in the state with capital city0 ? ||| select highlow.highest_point from highlow where highlow.state_name in ( select state.state_name from state where state.capital = ' city0 ' ) ;
+
+what are the populations of the major cities of state0 ? ||| select city.population from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+what is the highest point in the states bordering state0 ? ||| select highlow.highest_point from highlow where highlow.state_name in ( select border_info.border from state , border_info where state.state_name = ' state0 ' ) order by highlow.highest_elevation desc limit 1 ;
+
+where is the smallest city ? ||| select city.state_name from city where city.population = ( select min ( city.population ) from city ) ;
+
+through which states does the longest river in state0 run ? ||| select river.traverse from river where river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;
+
+what are the rivers in state0 ? ||| select river.river_name from river where river.traverse = ' state0 ' ;
+
+what is the largest river in state0 state ? ||| select river.river_name from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;
+
+what states are next to state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what are the cities of the state with the highest point ? ||| select city.city_name from city where city.state_name in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) ;
+
+what is the length of the river that runs through the most states ? ||| select river.length from river group by ( river.river_name ) order by count ( distinct river.traverse ) desc limit 1 ;
+
+what is the highest mountain in us ? ||| select mountain.mountain_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;
+
+what is the state with the largest area ? ||| select state.state_name from state where state.area = ( select max ( state.area ) from state ) ;
+
+which states border state0 ? ||| select border_info.border from border_info where border_info.state_name = ' state0 ' ;
+
+what is the population of city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+what is the population of city0 state0 ? ||| select city.population from city where city.city_name = ' city0 ' and city.state_name = ' state0 ' ;
+
+what are the major cities in states through which the river0 runs ? ||| select city.city_name from city where city.population > 150000 and city.state_name in ( select river.traverse from river where river.river_name = ' river0 ' and river.length > number0 ) ;
+
+what states border states that the river0 runs through ? ||| select border_info.border from border_info where border_info.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ;
+
+how many people live in state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+
+what are the major cities in the usa ? ||| select city.city_name from city where city.population > number0 ;
+
+how many states do not have rivers ? ||| select count ( distinct state.state_name ) from state where state.state_name not in ( select river.traverse from river ) ;
+
+what is the biggest city in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;
+
+what is the highest point in state0 ? ||| select highlow.highest_point from highlow where highlow.state_name = ' state0 ' ;
+
+which state has the biggest population ? ||| select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;
+
+what is the capital of state0 ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what is the highest point in state0 in meters ? ||| select highlow.highest_elevation from highlow where highlow.state_name = ' state0 ' ;
+
+what states does the river0 run through ? ||| select river.traverse from river where river.river_name = ' river0 ' ;
+
+what are the major cities in state0 ? ||| select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;
+
+what is the lowest point in state0 ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what is the smallest city in the usa ? ||| select city.city_name from city where city.population = ( select min ( city.population ) from city ) ;
+
+what is the capital of the state0 state ? ||| select state.capital from state where state.state_name = ' state0 ' ;
+
+what state is the largest in population ? ||| select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;
+
+number of people in city0 ? ||| select city.population from city where city.city_name = ' city0 ' ;
+
+how long is the river0 ? ||| select river.length from river where river.river_name = ' river0 ' ;
+
+what is the population of the state that borders the most states ? ||| select state.population from state where state.state_name = ( select border from border_info group by state_name order by count ( distinct border_info.border ) desc limit 1 ) ;
+
+which states border the state with the smallest area ? ||| select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;
+
+what is the lowest point in state0 ? ||| select highlow.lowest_point from highlow where highlow.state_name = ' state0 ' ;
+
+what is the capital of the state with the largest population ? ||| select distinct state.capital from state where state.population = ( select max ( state.population ) from state ) ;
+
+what is the largest city in the smallest state in the usa ? ||| select city.city_name from city where city.population = ( select max ( city.population ) from city where city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ) and city.state_name in ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;
+
+what is the population of state0 ? ||| select state.population from state where state.state_name = ' state0 ' ;
+

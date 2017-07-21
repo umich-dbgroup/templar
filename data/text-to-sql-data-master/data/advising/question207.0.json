@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of current semester."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any ENGR 151 sections next semester that are n't on Monday ?",
+        "For ENGR 151 next semester , are there any sections not on Monday ?",
+        "For ENGR 151 , is there a section next semester that is not on Monday ?",
+        "In next semester is there an ENGR 151 section available not on Monday ?",
+        "Is ENGR 151 offering sections on days other than Monday next semester ?",
+        "Is there a section of ENGR 151 that meets on a day other than Monday next semester ?",
+        "Is there an ENGR 151 section on any day other than Monday next semester ?",
+        "Is there an ENGR 151 section that is not on Monday next semester ?",
+        "Next semester , are there any ENGR 151 sections that are not on Monday ?",
+        "Next semester , is ENGR 151 available on days that are not Monday ?",
+        "Next semester , is there a section of ENGR 151 that 's not on Mondays ?",
+        "Next semester , is there an ENGR 151 section not on Monday ?",
+        "Next semester , is there an ENGR 151 section that does n't occur on Monday ?",
+        "Next semester , will there be an ENGR 151 section not on Monday ?",
+        "Will there be an ENGR 151 section not on Monday next semester ?"
+    ],
+    "sentence": "Is there an ENGR 151 section not on Monday next semester ?",
+    "sentence-with-vars": "Is there an department0 number0 section not on Monday next semester ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.MONDAY = \"N\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"ENGR\" AND COURSEalias0.NUMBER = 151 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.MONDAY = \"N\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "151",
+            "sql-value": "151"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": "ENGR"
+        }
+    ]
+}

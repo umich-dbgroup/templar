@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not covered"
+    ],
+    "paraphrases": [],
+    "sentence": "On which days of the week does 280 have labs?",
+    "sentence-with-vars": "On which days of the week does number0 have labs?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

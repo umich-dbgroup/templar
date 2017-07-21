@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "DRK - 1",
+        "LZ - 0"
+    ],
+    "comments": [
+        "JKK - These are copied from the old doc and should be checked",
+        "KR - This is checking if the course is offered and does not take into account if the student is eligible to take the course."
+    ],
+    "helpfulness": [
+        "DRK - 1",
+        "LZ - 0"
+    ],
+    "info": [
+        "only partially answers the question"
+    ],
+    "paraphrases": [
+        "Am I able to take EECS 281 right now ?",
+        "Am I eligible to take EECS 281 right now ?",
+        "Any chances I can take EECS 281 now ?",
+        "Can I do EECS 281 immediately ?",
+        "Can I take EECS 281 today ?",
+        "Can I take the class EECS 281 right now ?",
+        "Can I take the course EECS 281 right now ?",
+        "EECS 281 can be taken at the moment ?",
+        "Is EECS 281 available right now ?",
+        "Is EECS 281 available to take immediately ?",
+        "Is EECS 281 offered right now ?",
+        "Right now can I take EECS 281 ?"
+    ],
+    "sentence": "Can I take EECS 281 right now ?",
+    "sentence-with-vars": "Can I take department0 number0 right now ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

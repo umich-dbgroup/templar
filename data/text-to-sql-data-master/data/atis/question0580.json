@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me the aircraft that canadian airlines uses",
+    "sq2": "SELECT DISTINCT  '\"'||v1.aircraft_code||'\"', '\"'||v2.aircraft_code_sequence||'\"',\n '\"'||v3.airline_code||'\"', '\"'||v3.airline_name||'\"',\n '\"'||v2.flight_id||'\"' FROM aircraft v0, equipment_sequence v1,\n flight v2, airline v3 \nWHERE ((v0.aircraft_code = ANY v1.aircraft_code) \nAND ((v1.aircraft_code_sequence = ANY v2.aircraft_code_sequence) \nAND ((v2.airline_code = ANY v3.airline_code) \nAND (v3.airline_name LIKE '%CANADIAN AIRLINES%'))));",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.AIRCRAFT_CODE FROM AIRCRAFT WHERE AIRCRAFT . AIRCRAFT_CODE IN ( SELECT EQUIPMENT_SEQUENCE . AIRCRAFT_CODE FROM EQUIPMENT_SEQUENCE WHERE EQUIPMENT_SEQUENCE . AIRCRAFT_CODE_SEQUENCE IN ( SELECT FLIGHT . AIRCRAFT_CODE_SEQUENCE FROM FLIGHT WHERE FLIGHT . AIRLINE_CODE IN ( SELECT AIRLINE . AIRLINE_CODE FROM AIRLINE WHERE AIRLINE.AIRLINE_NAME LIKE '% CANADIAN AIRLINES %' ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the biggest rivers in texas ?", 
+ "sentence-with-vars": "what are the biggest rivers in state0 ?", 
+ "sql": "select river.river_name from river where river.traverse = ' texas ' and river.length = ( select max ( river.length ) from river where river.traverse = ' texas ' ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  }
+ ]
+}

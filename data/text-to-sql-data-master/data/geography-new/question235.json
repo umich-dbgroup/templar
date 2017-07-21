@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest state that borders california ?", 
+ "sentence-with-vars": "what is the largest state that borders state0 ?", 
+ "sql": "select state.state_name from border_info , state where state.state_name = border_info.border and border_info.state_name = ' california ' and state.area = ( select max ( state.area ) from border_info , state where state.state_name = border_info.border and border_info.state_name = ' california ' ) ;", 
+ "sql-with-vars": "select state.state_name from border_info , state where state.state_name = border_info.border and border_info.state_name = ' state0 ' and state.area = ( select max ( state.area ) from border_info , state where state.state_name = border_info.border and border_info.state_name = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "california", 
+   "sql-value": "california"
+  }
+ ]
+}

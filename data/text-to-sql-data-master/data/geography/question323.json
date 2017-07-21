@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many square kilometers in the us ?", 
+ "sentence-with-vars": "how many square kilometers in the us ?", 
+ "sql": "select sum ( state.area ) from state ;", 
+ "sql-with-vars": "select sum ( state.area ) from state ;", 
+ "variables": []
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states do not have rivers ?", 
+ "sentence-with-vars": "how many states do not have rivers ?", 
+ "sql": "select count ( distinct state.state_name ) from state where state.state_name not in ( select river.traverse from river ) ;", 
+ "sql-with-vars": "select count ( distinct state.state_name ) from state where state.state_name not in ( select river.traverse from river ) ;", 
+ "variables": []
+}

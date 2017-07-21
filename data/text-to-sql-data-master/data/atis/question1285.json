@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me the flights from dulles to san francisco leaving after six p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"',\n v0.departure_time FROM flight v0, airport v1,\n airport_service v2, city v3 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'IAD')) AND (((v0.to_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'SAN FRANCISCO'))) AND (v0.departure_time >  1800)));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' IAD ' ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SAN FRANCISCO ' ) ) AND FLIGHT.DEPARTURE_TIME > 1800 ) ) ) ;"
+    ],
+    "variables": []
+}

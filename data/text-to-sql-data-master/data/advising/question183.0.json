@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "JKK - 1"
+    ],
+    "comments": [
+        "JKK - A case of 'next'"
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "492 is in next term ?",
+        "492 is offered next semester ?",
+        "Can I take the 492 course next term ?",
+        "Is 492 available next term ?",
+        "For next term , is 492 offered ?",
+        "In next term is 492 available ?",
+        "In next term is 492 offered ?",
+        "Is the 492 course available next term ?",
+        "Next term 492 is offered ?",
+        "Will 492 be offered next term ?"
+    ],
+    "sentence": "Is 492 offered next term ?",
+    "sentence-with-vars": "Is number0 offered next term ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 492 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": "492"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

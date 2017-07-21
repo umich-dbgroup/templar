@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of the capital of the smallest state ?", 
+ "sentence-with-vars": "what is the population of the capital of the smallest state ?", 
+ "sql": "select city.population from city where city.city_name = ( select state.capital from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ( select state.capital from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "variables": []
+}

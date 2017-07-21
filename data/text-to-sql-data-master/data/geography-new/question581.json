@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people live in the smallest state bordering wyoming ?", 
+ "sentence-with-vars": "how many people live in the smallest state bordering state0 ?", 
+ "sql": "select state.population from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' wyoming ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' wyoming ' ) ) ;", 
+ "sql-with-vars": "select state.population from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "wyoming", 
+   "sql-value": "wyoming"
+  }
+ ]
+}

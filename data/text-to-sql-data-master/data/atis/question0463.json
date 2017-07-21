@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many flights arrive at general mitchell international",
+    "sq2": "SELECT  COUNT(*) FROM flight v0 \nWHERE (v0.to_airport IN (\nSELECT v1.airport_code FROM airport v1 \nWHERE (v1.airport_code = 'MKE')));",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FLIGHT WHERE FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' MKE ' ) ;"
+    ],
+    "variables": []
+}

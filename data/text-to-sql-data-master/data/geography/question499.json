@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major cities in the smallest state in the us ?", 
+ "sentence-with-vars": "what are the major cities in the smallest state in the us ?", 
+ "sql": "select city.city_name from city where city.population > 150000 and city.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population > number0 and city.state_name = ( select state.state_name from state where state.area = ( select min ( state.area ) from state ) ) ;", 
+ "variables": [
+     {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "150000"
+   }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the most dense state in the usa ?", 
+ "sentence-with-vars": "what is the most dense state in the usa ?", 
+ "sql": "select state.state_name from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "variables": []
+}

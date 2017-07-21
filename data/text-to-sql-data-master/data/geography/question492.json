@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states have cities or towns named springfield ?", 
+ "sentence-with-vars": "how many states have cities or towns named city0 ?", 
+ "sql": "select count ( city.state_name ) from city where city.city_name = ' springfield ' ;", 
+ "sql-with-vars": "select count ( city.state_name ) from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "springfield", 
+   "sql-value": "springfield"
+  }
+ ]
+}

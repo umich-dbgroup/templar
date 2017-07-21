@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "requires reasoning - a task for Pyke"
+    ],
+    "paraphrases": [],
+    "sentence": "Can you recommend a theory class?",
+    "sentence-with-vars": "Can you recommend a topic0 class?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "topic0",
+            "sentence-value": "theory",
+            "sql-value": ""
+        }
+	]
+}

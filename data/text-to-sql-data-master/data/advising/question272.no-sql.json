@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "lack information"
+    ],
+    "paraphrases": [],
+    "sentence": "Who are the instructors for 280 labs?",
+    "sentence-with-vars": "Who are the instructors for number0 labs?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        }
+    ]
+}

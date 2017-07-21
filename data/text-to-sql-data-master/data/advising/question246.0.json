@@ -1,0 +1,66 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - Assumes that a course that is not offered in any of the other semesters is offered in the Fall. Are we certain that there are no \"ghost courses\"?",
+        "SRS - Also, this list might be pretty long. Should it be limited?"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses that are only offered in fall ?",
+        "Are there courses that are only available in the Fall ?",
+        "Of the courses offered , which ones are only available in the Fall ?",
+        "What are the courses which are only offered in the Fall ?",
+        "What classes are only available in the Fall ?",
+        "What classes can I only take in the Fall ?",
+        "What classes can I take only in the fall ?",
+        "Which Fall courses are only offered then ?",
+        "Which courses are only available during Fall ?",
+        "Which courses can I only take in Fall ?"
+    ],
+    "sentence": "What courses are only offered in the Fall ?",
+    "sentence-with-vars": "What courses are only offered in the semester0 ?",
+    "sql": [
+        "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.COURSE_ID NOT IN ( SELECT COURSE_OFFERINGalias0.COURSE_ID FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE SEMESTERalias0.SEMESTER = \"SP\" OR SEMESTERalias0.SEMESTER = \"SS\" OR SEMESTERalias0.SEMESTER = \"SU\" OR SEMESTERalias0.SEMESTER = \"WN\" ) AND COURSEalias0.DEPARTMENT = \"EECS\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.COURSE_ID NOT IN ( SELECT COURSE_OFFERINGalias0.COURSE_ID FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE SEMESTERalias0.SEMESTER = \"semester1\" OR SEMESTERalias0.SEMESTER = \"semester2\" OR SEMESTERalias0.SEMESTER = \"semester3\" OR SEMESTERalias0.SEMESTER = \"semester4\" ) AND COURSEalias0.DEPARTMENT = \"department0\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": ""
+        },
+        {
+            "name": "semester1",
+            "sentence-value": "",
+            "sql-value": "WN"
+        },
+        {
+            "name": "semester2",
+            "sentence-value": "",
+            "sql-value": "SP"
+        },
+        {
+            "name": "semester3",
+            "sentence-value": "",
+            "sql-value": "SS"
+        },
+        {
+            "name": "semester4",
+            "sentence-value": "",
+            "sql-value": "SU"
+        }
+    ]
+}

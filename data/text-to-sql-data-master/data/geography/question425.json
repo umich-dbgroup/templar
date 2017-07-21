@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how big is new mexico ?", 
+ "sentence-with-vars": "how big is state0 ?", 
+ "sql": "select state.area from state where state.state_name = ' new mexico ' ;", 
+ "sql-with-vars": "select state.area from state where state.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "new mexico", 
+   "sql-value": "new mexico"
+  }
+ ]
+}

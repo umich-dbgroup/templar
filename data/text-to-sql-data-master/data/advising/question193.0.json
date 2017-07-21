@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any EECS classes offerred in the spring term ?",
+        "During the spring term , what EECS classes are offered ?",
+        "In spring term what EECS classes are offered ?",
+        "In spring term which EECS classes are offered ?",
+        "In the spring term , what EECS classes are offered ?",
+        "In the spring term , what EECS courses are being taught ?",
+        "Name the EECS classes offered in spring term .",
+        "Name the EECS classes that are offered in spring term .",
+        "Of the spring term classes offered , which are EECS classes ?",
+        "What EECS classes can I enroll in for the spring term ?",
+        "What Electrical Engineering and Computer Science classes do you offer in the spring term ?",
+        "What are the available EECS classes in spring ?",
+        "What spring EECS classes are offered ?",
+        "What spring term classes are there that are EECS ?"
+    ],
+    "sentence": "What EECS classes are offered in spring term ?",
+    "sentence-with-vars": "What department0 classes are offered in semester0 term ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND SEMESTERalias0.SEMESTER = \"SP\" ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND SEMESTERalias0.SEMESTER = \"semester0\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "spring",
+            "sql-value": "SP"
+        }
+    ]
+}

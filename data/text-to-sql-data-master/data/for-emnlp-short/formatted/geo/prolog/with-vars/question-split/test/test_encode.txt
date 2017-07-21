@@ -1,0 +1,280 @@
+name all the rivers in s0 .
+count the states which have elevations lower than what s0 has ?
+give me the number of rivers in s0 ?
+give me the states that border s0 ?
+how high is p0 ?
+how high is the highest point in cc0 ?
+how high is the highest point of s0 ?
+how large is s0 ?
+how large is s0 ?
+how long is the r0 river ?
+how long is the s0 river ?
+how long is the longest river in s0 ?
+how long is the longest river in the cc0 ?
+how long is the r0 river ?
+how long is the s0 river ?
+how many capitals does s0 have ?
+how many cities are there in the cc0 ?
+how many citizens does the biggest city have in the usa ?
+how many r0 rivers are there ?
+how many people live in c0 ?
+how many people live in c0 ?
+how many people live in c0 minnesota ?
+how many people live in s0 ?
+how many people live in s0 ?
+how many people live in the biggest city in s0 state ?
+how many people live in the capital of s0 ?
+how many people live in the cc0 ?
+how many people lived in c0 ?
+how many people reside in s0 ?
+how many residents live in s0 ?
+how many rivers are in s0 ?
+how many rivers are in the state that has the most rivers ?
+how many rivers does s0 have ?
+how many states are in the cc0 ?
+how many states are there ?
+how many states are there in the cc0 ?
+how many states border s0 ?
+how many states border the state with the largest population ?
+how many states do not have rivers ?
+how many states does s0 border ?
+how many states does cc0 have ?
+how many states have a higher point than the highest point of the state with the largest capital city in the cc0 ?
+how much population does s0 have ?
+how tall is p0 ?
+how tall is the highest point in s0 ?
+s0 borders how many states ?
+name the major rivers in s0 .
+number of people in c0 ?
+number of states bordering s0 ?
+rivers in s0 ?
+c0 is in what state ?
+tell me what cities are in s0 ?
+through which states does the longest river in s0 run ?
+what are all the rivers in s0 ?
+what are the capital city in s0 ?
+what are the capitals of states that border s0 ?
+what are the cities in states through which the r0 runs ?
+what are the cities of the state with the highest point ?
+what are the highest points of all the states ?
+what are the major cities in s0 ?
+what are the major cities in s0 ?
+what are the major cities in s0 ?
+what are the major cities in states through which the r0 runs ?
+what are the major cities in the state of s0 ?
+what are the major cities in the cc0 ?
+what are the major cities in s0 ?
+what are the major rivers in s0 ?
+what are the population densities of each us state ?
+what are the population of s0 ?
+what are the populations of states through which the r0 river runs ?
+what are the populations of states through which the r0 runs ?
+what are the populations of states which border s0 ?
+what are the populations of the major cities of s0 ?
+what are the rivers in s0 ?
+what city has the most people ?
+what city in the cc0 has the highest population density ?
+what is capital of the state with the lowest point ?
+what is the area of s0 ?
+what is the area of s0 ?
+what is the area of the s0 state ?
+what is the area of s0 ?
+what is the biggest american city in a state with a river ?
+what is the biggest capital city in the cc0 ?
+what is the biggest city in s0 ?
+what is the biggest city in s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of s0 ?
+what is the capital of states that have cities named c0 ?
+what is the capital of the s0 state ?
+what is the capital of the smallest state ?
+what is the capital of the state with the largest population ?
+what is the capital of the state with the largest population density ?
+what is the capital of the state with the longest river ?
+what is the capital of the state with the most inhabitants ?
+what is the combined area of all 50 states ?
+what is the density of the s0 ?
+what is the high point of s0 ?
+what is the highest elevation in s0 ?
+what is the highest elevation in the cc0 ?
+what is the highest mountain in the cc0 ?
+what is the highest mountain in cc0 ?
+what is the highest point in s0 ?
+what is the highest point in s0 ?
+what is the highest point in s0 ?
+what is the highest point in s0 ?
+what is the highest point in s0 in meters ?
+what is the highest point in states bordering s0 ?
+what is the highest point in the state with capital c0 ?
+what is the highest point in the states bordering s0 ?
+what is the highest point in the cc0 ?
+what is the highest point in s0 ?
+what is the highest point of the state with the smallest population density ?
+what is the highest point of the cc0 ?
+what is the largest capital city in the cc0 ?
+what is the largest city in s0 ?
+what is the largest city in s0 ?
+what is the largest city in smallest state through which the r0 runs ?
+what is the largest city in the smallest state in the cc0 ?
+what is the largest river in s0 state ?
+what is the largest state bordering s0 ?
+what is the largest state that borders s0 ?
+what is the least populous state ?
+what is the length of the r0 river ?
+what is the length of the longest river that runs through s0 ?
+what is the length of the r0 river ?
+what is the length of the river that flows through the most states ?
+what is the length of the river that runs through the most states ?
+what is the longest river in s0 ?
+what is the longest river in the largest state ?
+what is the longest river in the state with the most major cities ?
+what is the longest river in the states that border s0 ?
+what is the longest river that flows through a state that borders s0 ?
+what is the lowest point in s0 ?
+what is the lowest point in s0 ?
+what is the lowest point in s0 ?
+what is the lowest point in s0 in meters ?
+what is the lowest point in the state of s0 ?
+what is the lowest point in cc0 ?
+what is the lowest point of all states through which the r0 river runs through ?
+what is the maximum elevation of c0 ?
+what is the most dense state in the cc0 ?
+what is the most populous city ?
+what is the most populous state ?
+what is the most populous state through which the r0 runs ?
+what is the population density of s0 ?
+what is the population density of the largest state ?
+what is the population of s0 ?
+what is the population of c0 ?
+what is the population of c0 pennsylvania ?
+what is the population of s0 ?
+what is the population of c0 ?
+what is the population of s0 ?
+what is the population of s0 ?
+what is the population of c0 city ?
+what is the population of c0 ?
+what is the population of c0 arizona ?
+what is the population of the largest city in the state with the largest area ?
+what is the population of the smallest state ?
+what is the population of the state that borders the most states ?
+what is the population of the state with the highest population density ?
+what is the population of c0 ?
+what is the population of s0 ?
+what is the population of s0 ?
+what is the smallest city in the cc0 ?
+what is the smallest city in the cc0 ?
+what is the smallest state bordering s0 ?
+what is the smallest state that borders the most states ?
+what is the smallest state that the r0 river runs through ?
+what is the state with the largest area ?
+what is the state with the smallest area ?
+what is the total length of all rivers in the usa ?
+what length is the r0 ?
+what major cities are located in s0 ?
+what river flows through the most states ?
+what river runs through the state with the most cities ?
+what river traverses the state which borders the most states ?
+what rivers are in states that border s0 ?
+what rivers are in s0 ?
+what rivers are there in s0 ?
+what rivers run through s0 ?
+what rivers traverses the state which borders the most states ?
+what state bordering s0 has the largest population ?
+what state borders s0 ?
+what state borders the most states ?
+what state contains the highest point of those the r0 river traverses ?
+what state has the largest area ?
+what state has the largest capital ?
+what state has the longest river ?
+what state has the lowest population density ?
+what state has the most major cities ?
+what state has the most rivers ?
+what state has the smallest urban population ?
+what state is c0 in ?
+what state is c0 in ?
+what state is the largest in population ?
+what states are next to s0 ?
+what states border s0 ?
+what states border s0 ?
+what states border s0 ?
+what states border s0 ?
+what states border s0 ?
+what states border states that border s0 ?
+what states border states that the s0 runs through ?
+what states border s0 and have a major river ?
+what states border the most populous state ?
+what states border the state that borders the most states ?
+what states border the state with the most cities ?
+what states border the state with the most major cities ?
+what states border the state with the smallest area ?
+what states contain at least one major rivers ?
+what states does the s0 river run through ?
+what states does the r0 river run through ?
+what states does the s0 run through ?
+what states does the s0 river run through ?
+what states have cities named c0 ?
+what states have cities named c0 ?
+what states have cities named c0 ?
+what states have cities named c0 ?
+what states have cities named c0 ?
+what states surround s0 ?
+where are mountains ?
+where is c0 ?
+where is c0 ?
+where is the r0 river ?
+where is the highest mountain of the cc0 ?
+where is the highest point in s0 ?
+where is the lowest point in s0 ?
+where is the most populated area of s0 ?
+where is the smallest city ?
+which city in s0 has the largest population ?
+which is the density of the state that the largest river in the cc0 runs through ?
+which is the highest peak not in s0 ?
+which is the longest river in cc0 ?
+which is the smallest state ?
+which of the states bordering s0 has the largest population ?
+which river goes through the most states ?
+which river runs through most states ?
+which river traverses most states ?
+which rivers do not run through s0 ?
+which rivers do not run through cc0 ?
+which rivers run through states that border the state with the capital c0 ?
+which rivers run through states with fewest cities ?
+which state borders s0 ?
+which state borders the most states ?
+which state capital has the smallest population ?
+which state has the biggest population ?
+which state has the greatest population ?
+which state has the highest elevation ?
+which state has the highest point ?
+which state has the highest population density ?
+which state has the lowest elevation ?
+which state has the lowest point that borders s0 ?
+which state has the lowest population density ?
+which state has the most major cities ?
+which state has the most major rivers ?
+which state has the most major rivers running through it ?
+which state has the most population ?
+which state has the most rivers ?
+which state has the smallest average urban population ?
+which state has the smallest population density ?
+which state is p0 in ?
+which state is the smallest ?
+which states border s0 ?
+which states border s0 ?
+which states border the s0 river ?
+which states border the state with the smallest area ?
+which states capital city is the largest ?
+which states does the r0 river run through ?
+which states does the longest river run through ?
+which states does the r0 run through ?
+which states have a river ?
+which states have cities named c0 ?
+which us city has the highest population density ?

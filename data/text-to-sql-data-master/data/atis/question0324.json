@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what does restriction a p slash five seven mean",
+    "sq2": "SELECT DISTINCT  '\"'||v0.restriction_code||'\"', v0.advance_purchase,\n '\"'||v0.stopovers||'\"', '\"'||v0.saturday_stay_required||'\"',\n v0.minimum_stay, v0.maximum_stay, '\"'||v0.application||'\"',\n '\"'||v0.no_discounts||'\"' FROM restriction v0 \nWHERE (v0.restriction_code = 'AP/57');",
+    "sql": [
+        "( SELECT DISTINCT RESTRICTION.RESTRICTION_CODE , RESTRICTION.ADVANCE_PURCHASE , RESTRICTION.STOPOVERS , RESTRICTION.SATURDAY_STAY_REQUIRED , RESTRICTION.MINIMUM_STAY , RESTRICTION.MAXIMUM_STAY , RESTRICTION.APPLICATION , RESTRICTION.NO_DISCOUNTS FROM RESTRICTION WHERE RESTRICTION.RESTRICTION_CODE = ' AP / 57 ' ) ;"
+    ],
+    "variables": []
+}

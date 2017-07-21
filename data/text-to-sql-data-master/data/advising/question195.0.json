@@ -1,0 +1,37 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "LZ - 1"
+    ],
+    "comments": [
+        "JKK - Low accuracy is because it doesn't cover 'electives'"
+    ],
+    "helpfulness": [
+        "JKK - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "CS majors are offered what upper level electives ?",
+        "For CS majors what are the upper level electives ?",
+        "For CS majors what are the upper level electviess offered ?",
+        "For CS majors who are interested in taking upper level electives , which ones are being offered ?",
+        "For CS majors , what are the upper level electives available ?",
+        "For CS majors , what upper level electives are offered ?",
+        "Name the upper level electives which are offered for CS majors .",
+        "What are the offerings of upper level electives for CS majors ?",
+        "What are the upper level electives that are offered for CS majors ?",
+        "What electives are offered for CS majors that are upper level ?",
+        "What is offerd for CS majors that are upper level electives ?",
+        "What is offered for upper level electives for CS majors ?",
+        "Which ones are the upper level electives that CS majors can take ?"
+    ],
+    "sentence": "What upper level electives are offered for CS majors ?",
+    "sentence-with-vars": "What upper level electives are offered for CS majors ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

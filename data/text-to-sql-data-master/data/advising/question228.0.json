@@ -1,0 +1,57 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - I think a helpfulness score of 2 is okay since I don't think additional information would really be helpful for this yes-no question.",
+        "JKK - One of the paraphrases is arguably different - could be interpreted as being about multi-step pre-reqs (i.e. to do X I need Y, and to do Y I need Z)"
+    ],
+    "helpfulness": [
+        "JKK - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Before I take EECS 370 , do I need to take EECS 270 ?",
+        "Do I need to take EECS 270 before taking EECS 370 ?",
+        "Do I need to take EECS 270 to take EECS 370 ?",
+        "Does EECS 370 have 270 as a prerequisite ?",
+        "Does EECS 370 require EECS 270 as a prerequisite ?",
+        "For EECS 370 is EECS 270 is necessary ?",
+        "For EECS 370 is EECS 270 required ?",
+        "For EECS 370 , is EECS 270 a prerequisite ?",
+        "Is EECS 270 always required before EECS 370 ?",
+        "Is EECS 270 needed for EECS 370 ?",
+        "Is EECS 270 needed to take EECS 370 ?",
+        "Is EECS 270 required before EECS 370 ?",
+        "Is EECS 270 required for EECS 370 ?",
+        "Is EECS 270 required to take the course EECS 370 ?",
+        "Is it a prerequitsite for EECS 370 to have EECS 270 ?",
+        "To take EECS 370 , is the prerequisite EECS 270 ?"
+    ],
+    "sentence": "Is EECS 270 a prerequisite for EECS 370 ?",
+    "sentence-with-vars": "Is department0 number0 a prerequisite for department0 number1 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 270 AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 370 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "270",
+            "sql-value": "270"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

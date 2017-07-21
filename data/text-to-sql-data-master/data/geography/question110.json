@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest city in states that border california ?", 
+ "sentence-with-vars": "what is the largest city in states that border state0 ?", 
+ "sql": "select city.city_name from city where city.state_name in ( select border_info.state_name from border_info where border_info.border = ' california ' ) and city.population = ( select max ( city.population ) from city where city.state_name in ( select border_info.state_name from border_info where border_info.border = ' california ' ) ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name in ( select border_info.state_name from border_info where border_info.border = ' state0 ' ) and city.population = ( select max ( city.population ) from city where city.state_name in ( select border_info.state_name from border_info where border_info.border = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "california", 
+   "sql-value": "california"
+  }
+ ]
+}

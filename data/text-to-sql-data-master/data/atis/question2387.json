@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what does fare code !b h mean",
+    "sq2": "SELECT DISTINCT  '\"'||v0.fare_basis_code||'\"', '\"'||v0.booking_class||'\"',\n '\"'||v0.class_type||'\"', '\"'||v0.premium||'\"',\n '\"'||v0.economy||'\"', '\"'||v0.discounted||'\"', '\"'||v0.night||'\"',\n '\"'||v0.season||'\"', '\"'||v0.basis_days||'\"' FROM fare_basis v0 \nWHERE (v0.fare_basis_code = 'BH');",
+    "sql": [
+        "( SELECT DISTINCT FARE_BASIS.FARE_BASIS_CODE , FARE_BASIS.BOOKING_CLASS , FARE_BASIS.CLASS_TYPE , FARE_BASIS.PREMIUM , FARE_BASIS.ECONOMY , FARE_BASIS.DISCOUNTED , FARE_BASIS.NIGHT , FARE_BASIS.SEASON , FARE_BASIS.BASIS_DAYS FROM FARE_BASIS WHERE FARE_BASIS.FARE_BASIS_CODE = ' BH ' ) ;"
+    ],
+    "variables": []
+}

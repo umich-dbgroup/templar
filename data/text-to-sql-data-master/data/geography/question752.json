@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the average population of the us by state ?", 
+ "sentence-with-vars": "what is the average population of the us by state ?", 
+ "sql": "select avg ( state.population ) from state ;", 
+ "sql-with-vars": "select avg ( state.population ) from state ;", 
+ "variables": []
+}

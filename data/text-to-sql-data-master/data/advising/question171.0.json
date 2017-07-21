@@ -1,0 +1,41 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any courses required for the major that are not in the EECS department ?",
+        "Name the courses required for the major but not in the EECS department .",
+        "Name the courses required to major but not in the EECS department .",
+        "Name the courses required for the major but not in the EECS department .",
+        "Name the courses that are mandotary for the major but not in the EECS department .",
+        "Name the courses that are required to major but not in the EECS department .",
+        "What are the courses required to major but not in the EECS department ?",
+        "What are the courses that are needed to major but not in the EECS department ?",
+        "What courses are not in the EECS department but are required for the major ?",
+        "Which are the courses required for the major but not in the EECS department ?",
+        "Which courses are compulsory for the major but not in the EECS department ?",
+        "Which non-EECS courses are required for the major ?",
+        "Without including the EECS department , what are the required courses for the major ?"
+    ],
+    "sentence": "What courses are required for the major but not in the EECS department ?",
+    "sentence-with-vars": "What courses are required for the major but not in the department0 department ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT <> \"EECS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT <> \"department0\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

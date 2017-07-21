@@ -1,0 +1,31 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "what are some good restaurants in the bay area ?",
+          "give me some good restaurants in the bay area ?",
+          "what is a good restaurant in the bay area ?"
+     ],
+     "paraphrases-with-vars": [
+          "what are some good restaurants in the VARregion ?",
+          "give me some good restaurants in the VARregion ?",
+          "what is a good restaurant in the VARregion ?"
+     ],
+     "sentence": "give me a good restaurant in the bay area ?",
+     "sentence-with-vars": "give me a good restaurant in the VARregion ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.ID=LOCATION.RESTAURANT_ID and RESTAURANT.RATING>2.5 and RESTAURANT.CITY_NAME in (select GEOGRAPHIC.CITY_NAME from GEOGRAPHIC where GEOGRAPHIC.REGION='bay area')"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.ID=LOCATION.RESTAURANT_ID and RESTAURANT.RATING>2.5 and RESTAURANT.CITY_NAME in (select GEOGRAPHIC.CITY_NAME from GEOGRAPHIC where GEOGRAPHIC.REGION='VARregion')"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          }
+     ]
+}

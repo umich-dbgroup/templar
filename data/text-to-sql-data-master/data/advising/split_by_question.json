@@ -1,0 +1,8232 @@
+{
+  "test": [
+    [
+      "052", 
+      "Which is less difficult, EECS 484, or EECS 485?"
+    ], 
+    [
+      "292", 
+      "Does a 280 lab exist?"
+    ], 
+    [
+      "106", 
+      "I need to know artificial intelligence courses with no prerequisites."
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and 485, which one is easier to get through?"
+    ], 
+    [
+      "255", 
+      "Are any of the EECS 280 classes before noon?"
+    ], 
+    [
+      "126", 
+      "What is the title of EECS 492?"
+    ], 
+    [
+      "074", 
+      "Who is the EECS 203 teacher?"
+    ], 
+    [
+      "071", 
+      "Next winter, which professor is teaching MDE classes?"
+    ], 
+    [
+      "213", 
+      "Which course is required prior to the 489 course?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016 how many professors teach EECS 280?"
+    ], 
+    [
+      "239", 
+      "How long have they been offering EECS 280?"
+    ], 
+    [
+      "117", 
+      "Show me some easy 300 level classes."
+    ], 
+    [
+      "177", 
+      "What are the course prerequisites for EECS 281?"
+    ], 
+    [
+      "255", 
+      "Is there an EECS 280 class in the morning?"
+    ], 
+    [
+      "156", 
+      "Of all the courses, has Prof. Smith ever taught EECS 280?"
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesday, can I take 280?"
+    ], 
+    [
+      "183", 
+      "For next term, is 492 offered?"
+    ], 
+    [
+      "084", 
+      "Can you tell me which MDE classes will be offered next winter?"
+    ], 
+    [
+      "181", 
+      "What's my current GPA?"
+    ], 
+    [
+      "132", 
+      "Is it a good idea to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "021", 
+      "Are there any three credit courses?"
+    ], 
+    [
+      "174", 
+      "Which courses are offered in the next 6 semesters?"
+    ], 
+    [
+      "213", 
+      "What are the prerequisites for 489?"
+    ], 
+    [
+      "126", 
+      "What course name does EECS 492 have?"
+    ], 
+    [
+      "024", 
+      "What's EECS 388 about?"
+    ], 
+    [
+      "052", 
+      "Which is easier EECS 484 or EECS 485?"
+    ], 
+    [
+      "071", 
+      "Who teaches MDE classes next winter?"
+    ], 
+    [
+      "152", 
+      "Name the math prerequisites needed for CS majors."
+    ], 
+    [
+      "152", 
+      "What math must I take to major in CS?"
+    ], 
+    [
+      "113", 
+      "How often does the class EECS 281 meet?"
+    ], 
+    [
+      "304", 
+      "Of the courses being offered this Fall, which are upper-level EECS classes?"
+    ], 
+    [
+      "052", 
+      "Of the classes EECS484 and EECS 485, which is easier."
+    ], 
+    [
+      "179", 
+      "When is 482 being given next semester?"
+    ], 
+    [
+      "117", 
+      "Show me easy 300 level classes."
+    ], 
+    [
+      "269", 
+      "Mondays and Wednesdays can I take 280?"
+    ], 
+    [
+      "134", 
+      "For EECS 280 how many sections are there?"
+    ], 
+    [
+      "024", 
+      "What is EECS 388 about?"
+    ], 
+    [
+      "304", 
+      "During the Fall, which EECS classes, upper level, are offered?"
+    ], 
+    [
+      "201", 
+      "Is 281 offered in Fall 2015 in the afternoon?"
+    ], 
+    [
+      "017", 
+      "Beginning next semester; which classes will be taught by Dr. DeOrio?"
+    ], 
+    [
+      "175", 
+      "What number of credits is EECS 381?"
+    ], 
+    [
+      "219", 
+      "What number of professors teach EECS 280 in Fall 2016"
+    ], 
+    [
+      "237", 
+      "What are all the classes Dr. Peter Chen has taught previously?"
+    ], 
+    [
+      "074", 
+      "Of all the teachers, which one teaches EECS 203?"
+    ], 
+    [
+      "152", 
+      "As a CS major, what MATH classes are required to graduate?"
+    ], 
+    [
+      "052", 
+      "Is EECS 484 easier, or EECS 485?"
+    ], 
+    [
+      "213", 
+      "Is there a pre-requisite class before I can do 489?"
+    ], 
+    [
+      "176", 
+      "What do I need before taking EECS 203 and 280?"
+    ], 
+    [
+      "001", 
+      "Which classes that satisfy the capstone necessity are least demanding?"
+    ], 
+    [
+      "177", 
+      "EECS 281 has which courses as prerequisites?"
+    ], 
+    [
+      "029", 
+      "what will be the prerequisites courses to declare a majorin EFCS?"
+    ], 
+    [
+      "255", 
+      "In the morning, are any of the classes EECS 280?"
+    ], 
+    [
+      "081", 
+      "Is Professor Stout the only person who teaches Algorithms?"
+    ], 
+    [
+      "109", 
+      "I need to satisfy my MDE requirement, so what courses can I take in Spring or Summer semester?"
+    ], 
+    [
+      "237", 
+      "Are there any classes Dr. Peter Chen has taught before?"
+    ], 
+    [
+      "152", 
+      "What math prerequisites allow a CS major?"
+    ], 
+    [
+      "081", 
+      "Is Professor Stout the only teacher of algorithms?"
+    ], 
+    [
+      "170", 
+      "What are the all of the MDE classes?"
+    ], 
+    [
+      "029", 
+      "What Courses do I need to declare a major in EECS?"
+    ], 
+    [
+      "172", 
+      "I need to know the requirements for a CS-LSA degree."
+    ], 
+    [
+      "113", 
+      "The EECS 281 class meets how often?"
+    ], 
+    [
+      "299", 
+      "When can I take operating systems?"
+    ], 
+    [
+      "193", 
+      "Name the EECS classes offered in spring term."
+    ], 
+    [
+      "052", 
+      "Which one is easier, EECS 484 or EECS 485?"
+    ], 
+    [
+      "173", 
+      "Can you show me my transcript?"
+    ], 
+    [
+      "126", 
+      "What is the full name of course EECS 492?"
+    ], 
+    [
+      "017", 
+      "Of all the classes next semester, which ones are being taught by Dr. DeOrio?"
+    ], 
+    [
+      "247", 
+      "When is the next time EECS 483 will be offered?"
+    ], 
+    [
+      "174", 
+      "Name the classes that will be offered over the next 6 semester."
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesdays would I be able to take 280?"
+    ], 
+    [
+      "219", 
+      "How many professors will teach EECS 280 during the Fall Semester of 2016?"
+    ], 
+    [
+      "292", 
+      "Is there a lab in 280?"
+    ], 
+    [
+      "060", 
+      "When will 482 be offered?"
+    ], 
+    [
+      "282", 
+      "Who has never taught EECS 280?"
+    ], 
+    [
+      "175", 
+      "Can I ask how many credits is 381?"
+    ], 
+    [
+      "017", 
+      "For next semester, which classes are taught by Dr. DeOrio?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016, how many professors teach EECS 280?"
+    ], 
+    [
+      "016", 
+      "Is EECS 281 required for anything?"
+    ], 
+    [
+      "292", 
+      "In 280, is there a lab?"
+    ], 
+    [
+      "237", 
+      "Of all the classes Dr. Peter Chen has taught in the past what were the subjects?"
+    ], 
+    [
+      "113", 
+      "How often during the semester does the class meet for EECS 281?"
+    ], 
+    [
+      "176", 
+      "Which prerequisites are necessary for EECS 203 and 280?"
+    ], 
+    [
+      "116", 
+      "Which courses are useful to take before taking EECS 280?"
+    ], 
+    [
+      "179", 
+      "When is 482 going to be offered next semester?"
+    ], 
+    [
+      "285", 
+      "What options are offered for the upper-level four credit classes?"
+    ], 
+    [
+      "226", 
+      "Does EECS 270 have any section after 10am?"
+    ], 
+    [
+      "213", 
+      "Before taking 489, what classes must I complete?"
+    ], 
+    [
+      "121", 
+      "Which courses are least difficult?"
+    ], 
+    [
+      "292", 
+      "Does 280 have a lab as well?"
+    ], 
+    [
+      "084", 
+      "Of the classes offered next winter, which are MDE?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 280 been taught?"
+    ], 
+    [
+      "117", 
+      "Which 300 level courses are the least difficult?"
+    ], 
+    [
+      "248", 
+      "Is 484 offered in the next two years?"
+    ], 
+    [
+      "169", 
+      "The main classes are?"
+    ], 
+    [
+      "074", 
+      "Who is the instructor for EECS 203?"
+    ], 
+    [
+      "113", 
+      "How often does EECS 281 meet?"
+    ], 
+    [
+      "017", 
+      "What classes will Dr. Deorio be teaching this upcoming semester?"
+    ], 
+    [
+      "173", 
+      "Is my transcript something that's available for me to see?"
+    ], 
+    [
+      "007", 
+      "Can you suggest some software courses that are easier than EECS 281?"
+    ], 
+    [
+      "071", 
+      "The MDE classes are being taught by who next winter?"
+    ], 
+    [
+      "084", 
+      "What are the MDE classes that will be offered in the winter?"
+    ], 
+    [
+      "179", 
+      "Is 482 offered next semester and when?"
+    ], 
+    [
+      "171", 
+      "Name the courses required to major but not in the EECS department."
+    ], 
+    [
+      "113", 
+      "in EECS 281 how regularly does the class meet?"
+    ], 
+    [
+      "024", 
+      "What kinds of things will I learn in 388?"
+    ], 
+    [
+      "176", 
+      "The prerequisites for EECS 203 and 280 are what?"
+    ], 
+    [
+      "213", 
+      "Before taking 489, which courses do I need to take?"
+    ], 
+    [
+      "071", 
+      "Who is the professor for MDE classes next winter?"
+    ], 
+    [
+      "140", 
+      "What are the major differences between CHEM 130 and CHEM 125?"
+    ], 
+    [
+      "000", 
+      "Are undergrads included in those who can take 595?"
+    ], 
+    [
+      "132", 
+      "Is it advisable to study both EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "213", 
+      "Before 489, which courses do I need to take?"
+    ], 
+    [
+      "179", 
+      "What is the schedule of 482 next semester?"
+    ], 
+    [
+      "285", 
+      "Are there any upper-level classes with four credits?"
+    ], 
+    [
+      "116", 
+      "?Would it be beneficial to take certain courses prior to taking EECS 280?"
+    ], 
+    [
+      "029", 
+      "To get a major in EECS, what classes are neccesary?"
+    ], 
+    [
+      "269", 
+      "Is it okay if I take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "247", 
+      "When is 483 going to be offered again?"
+    ], 
+    [
+      "239", 
+      "What is the total amount of time the EECS 280 has been offered?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen taught which classes?"
+    ], 
+    [
+      "123", 
+      "Which upper level CS courses are offered this following semester?"
+    ], 
+    [
+      "182", 
+      "How difficult are all of the CS-LSA courses?"
+    ], 
+    [
+      "132", 
+      "Should I take EECS 280 and EECS 370 concurrently?"
+    ], 
+    [
+      "121", 
+      "What are the easiest courses?"
+    ], 
+    [
+      "156", 
+      "Did Prof. Smith ever teach EECS 280?"
+    ], 
+    [
+      "237", 
+      "Which courses did Dr. Peter Chen teach before?"
+    ], 
+    [
+      "052", 
+      "EECS 484 and EECS 485, which one is easier?"
+    ], 
+    [
+      "164", 
+      "How many upper level classes have labs?"
+    ], 
+    [
+      "016", 
+      "Does any course have EECS 281 as an enforced prerequisite?"
+    ], 
+    [
+      "052", 
+      "Which is easier? EECS 484 or EECS 485?"
+    ], 
+    [
+      "255", 
+      "Are there morning class offerings for EECS 280?"
+    ], 
+    [
+      "217", 
+      "For EECS 370, how many sections are there?"
+    ], 
+    [
+      "219", 
+      "How many professors will teach EECS 280 during the Fall semester of 2016?"
+    ], 
+    [
+      "116", 
+      "What  courses would be helpful before taking EECS 280?"
+    ], 
+    [
+      "219", 
+      "In fall 2016 how many professors teach EECS 280."
+    ], 
+    [
+      "219", 
+      "How many professors teach EECS 370 in Fall 2016?"
+    ], 
+    [
+      "116", 
+      "What are some of the useful courses I should take before EECS 280?"
+    ], 
+    [
+      "177", 
+      "What are the course requirements for EECS 281?"
+    ], 
+    [
+      "132", 
+      "Is it OK to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "247", 
+      "When is 483 available to take?"
+    ], 
+    [
+      "117", 
+      "Show me easy 300 level courses."
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesdays is it possible to take 280?"
+    ], 
+    [
+      "184", 
+      "Name the courses that count as upper level electives."
+    ], 
+    [
+      "237", 
+      "Which classes are handled by Dr. Peter Chen?"
+    ], 
+    [
+      "184", 
+      "To count as upper level elective, what courses can I take?"
+    ], 
+    [
+      "016", 
+      "Is EECS 281 an enforced prerequisite for anything?"
+    ], 
+    [
+      "233", 
+      "What times is 280 taught during the summer terms?"
+    ], 
+    [
+      "304", 
+      "Are any EECS classes considered upper-level being offered this fall?"
+    ], 
+    [
+      "071", 
+      "Do you know who is the MDE classes teacher next winter?"
+    ], 
+    [
+      "197", 
+      "EECS 381 counts for ULCS?"
+    ], 
+    [
+      "219", 
+      "For Fall 2016, how many professors teach EECS 280?"
+    ], 
+    [
+      "180", 
+      "Do you know what courses are offered this semester?"
+    ], 
+    [
+      "285", 
+      "Some of the upper level classes are worth four credits, which ones?"
+    ], 
+    [
+      "285", 
+      "Of the four credit classes, which ones are upper-level?"
+    ], 
+    [
+      "169", 
+      "Name the main classes."
+    ], 
+    [
+      "016", 
+      "Is EECS 281 a required prerequisite for any class?"
+    ], 
+    [
+      "178", 
+      "So far, how many credits do I have?"
+    ], 
+    [
+      "084", 
+      "Next winter, which MDE classes are offered?"
+    ], 
+    [
+      "193", 
+      "Name the EECS classes that are offered in spring term."
+    ], 
+    [
+      "247", 
+      "When is EECS 483 being offered?"
+    ], 
+    [
+      "103", 
+      "Show me artificial intelligence courses of 4 credits."
+    ], 
+    [
+      "269", 
+      "Will you allow me to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "304", 
+      "Of all the classes offered this Fall, which ones are upper-level EECS cLasses?"
+    ], 
+    [
+      "292", 
+      "Is there a lab for 280?"
+    ], 
+    [
+      "250", 
+      "Which course has a higher workload - 482 or 485?"
+    ], 
+    [
+      "116", 
+      "What classes should I take before enrolling in EECS 280?"
+    ], 
+    [
+      "106", 
+      "What artificial intelligence classes have no prerequisites?"
+    ], 
+    [
+      "237", 
+      "Name all of the classes Dr. Peter Chen has previously taught."
+    ], 
+    [
+      "001", 
+      "Which class that fulfills the capstone requirement takes the least amount of effort?"
+    ], 
+    [
+      "174", 
+      "Which courses will be held in the next six semesters?"
+    ], 
+    [
+      "081", 
+      "Does any one else teach Algorithms other than Professor Stout?"
+    ], 
+    [
+      "071", 
+      "What professor is teaching MDE next winter?"
+    ], 
+    [
+      "255", 
+      "Is a morning class available for EECS 280?"
+    ], 
+    [
+      "001", 
+      "How can I most easily fulfill the capstone requirement with a class?"
+    ], 
+    [
+      "016", 
+      "Which classes need EECS 281 as a prerequisite?"
+    ], 
+    [
+      "116", 
+      "Are there any courses that'll be beneficial in taking before taking EECS 280?"
+    ], 
+    [
+      "174", 
+      "Over the course of the next 6 semesters, what classes will be available?"
+    ], 
+    [
+      "237", 
+      "Can you state what classes Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "062", 
+      "When does 482 meet in the fall?"
+    ], 
+    [
+      "001", 
+      "Is there an easy class I can take in order to complete the capstone requirement?"
+    ], 
+    [
+      "132", 
+      "Should I take both the EECS 260 and EECS 370 courses simultaneously?"
+    ], 
+    [
+      "285", 
+      "Among the upper-level classes, which are four credits?"
+    ], 
+    [
+      "143", 
+      "ENGR 280 is?"
+    ], 
+    [
+      "111", 
+      "What are the courses that involve parts of software engineering and artificial intelligence?"
+    ], 
+    [
+      "213", 
+      "Before I take 489, which other courses must I complete?"
+    ], 
+    [
+      "304", 
+      "In the Fall which upper level EECS classes will there be?"
+    ], 
+    [
+      "001", 
+      "I need to fulfill a capstone requirement, what class would be the easiest?"
+    ], 
+    [
+      "129", 
+      "Are there any 1-credit EECS classes?"
+    ], 
+    [
+      "017", 
+      "What is Dr. DeOrio is class schedule next semester?"
+    ], 
+    [
+      "029", 
+      "Which classes would I need to take to declare a major in EECS?"
+    ], 
+    [
+      "292", 
+      "Does the class 280 have lab?"
+    ], 
+    [
+      "219", 
+      "During the fall of 2016 how many professors teach EECS 280?"
+    ], 
+    [
+      "168", 
+      "280 is taught by professors other than Prof. Smith?"
+    ], 
+    [
+      "052", 
+      "Which course is easier: EECS 484 or EECS 485?"
+    ], 
+    [
+      "299", 
+      "When is operating systems being offered?"
+    ], 
+    [
+      "219", 
+      "What is the total number of professors for EECS 280 in fall 2016?"
+    ], 
+    [
+      "113", 
+      "how frequently does the class meet for EECS 281?"
+    ], 
+    [
+      "084", 
+      "For the winter, what type of MDE classes are available?"
+    ], 
+    [
+      "071", 
+      "Who's teaching the MDE classes next winter?"
+    ], 
+    [
+      "001", 
+      "Which class is the easiest class to take to fulfill the capstone requirement?"
+    ], 
+    [
+      "179", 
+      "Next semester when is 482 offered?"
+    ], 
+    [
+      "237", 
+      "Could you tell me what classes Dr.Chen has taught before?"
+    ], 
+    [
+      "237", 
+      "In the past, what classes has Dr. Peter Chen taught?"
+    ], 
+    [
+      "084", 
+      "In the winter classes offered, what are MDE classes?"
+    ], 
+    [
+      "029", 
+      "What classes are required to declare a major in EECS?"
+    ], 
+    [
+      "213", 
+      "What are the courses required before taking 489?"
+    ], 
+    [
+      "000", 
+      "Is 595 available for undergrads to take?"
+    ], 
+    [
+      "029", 
+      "Which classes do I have to take for me to declare a major in EECS?"
+    ], 
+    [
+      "132", 
+      "Will it be okay if I take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "213", 
+      "Before taking course 489, which courses do I need to take?"
+    ], 
+    [
+      "017", 
+      "Next semester, which classes are Dr. DeOrio teaching?"
+    ], 
+    [
+      "288", 
+      "Are there any EECS classes that don't meet on Friday?"
+    ], 
+    [
+      "255", 
+      "Are there morning classes of EECS 280?"
+    ], 
+    [
+      "001", 
+      "In order to fulfill the capstone requirement, which classes are the easiest"
+    ], 
+    [
+      "171", 
+      "Name the courses that are required to major but not in the EECS department."
+    ], 
+    [
+      "092", 
+      "Which 400 level courses don't have labs?"
+    ], 
+    [
+      "176", 
+      "For EECS 203 and 208, what are the prerequisites?"
+    ], 
+    [
+      "078", 
+      "What is the workload like in EECS 370?"
+    ], 
+    [
+      "154", 
+      "What are the Engineering CS major's core courses?"
+    ], 
+    [
+      "113", 
+      "How frequently does the class meet for EECS 281?"
+    ], 
+    [
+      "001", 
+      "Which class would be the easiest class for me to take to meet the capstone requirement?"
+    ], 
+    [
+      "255", 
+      "Which morning classes does EECS 280 have?"
+    ], 
+    [
+      "081", 
+      "Is Professor Stout the only teacher who teaches Algorithms?"
+    ], 
+    [
+      "202", 
+      "Does Prof. Provost teach 492 next semester?"
+    ], 
+    [
+      "074", 
+      "Who has taught, is teaching, or will teach EECS 203?"
+    ], 
+    [
+      "123", 
+      "What is the upper level CS course list for next semester?"
+    ], 
+    [
+      "219", 
+      "EECS 280 will have how many professors fall 2016?"
+    ], 
+    [
+      "132", 
+      "Should I take EECS 281 and EECS 370 at the same time?"
+    ], 
+    [
+      "170", 
+      "Could you please name all of the MDE classes for me?"
+    ], 
+    [
+      "247", 
+      "Do you know when 483 is offered?"
+    ], 
+    [
+      "167", 
+      "In the next semester, how many classes are being offered?"
+    ], 
+    [
+      "052", 
+      "Which class is easier, EECS 484 or EECS 485?"
+    ], 
+    [
+      "177", 
+      "Required courses for EECS 281 are?"
+    ], 
+    [
+      "081", 
+      "Are there any other professors teaching Algorithms besides Professor Stout?"
+    ], 
+    [
+      "213", 
+      "Are there any courses I must have previously taken to enroll in 489?"
+    ], 
+    [
+      "113", 
+      "How many time a week does the class meet for EECS 281?"
+    ], 
+    [
+      "001", 
+      "What class is the easiest that I can take to fulfill the capstone requirement?"
+    ], 
+    [
+      "285", 
+      "Of the upper level classes, do any of them give four credits?"
+    ], 
+    [
+      "021", 
+      "Are any of these courses worth three credits?"
+    ], 
+    [
+      "169", 
+      "Which ones are the core classes?"
+    ], 
+    [
+      "116", 
+      "Is there a course that can help prepare me for EECS 280?"
+    ], 
+    [
+      "166", 
+      "EECS 280 has how many lectures per week?"
+    ], 
+    [
+      "016", 
+      "Which EECS courses require 281?"
+    ], 
+    [
+      "239", 
+      "How old is the EECS 280 course?"
+    ], 
+    [
+      "247", 
+      "When can I take 483?"
+    ], 
+    [
+      "181", 
+      "Can you report my current GPA?"
+    ], 
+    [
+      "213", 
+      "What are the  prerequisite courses to 489?"
+    ], 
+    [
+      "247", 
+      "When will EECS 483 be offered again?"
+    ], 
+    [
+      "152", 
+      "If I want to graduate with a CS major which math classes do I need to do?"
+    ], 
+    [
+      "228", 
+      "Is EECS 270 a prerequisite for EECS 370?"
+    ], 
+    [
+      "029", 
+      "Which classes do I need to take in order to declare a major in EECS?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS which courses are required?"
+    ], 
+    [
+      "201", 
+      "In the Fall of 2015 is 281 offered in the afternoon?"
+    ], 
+    [
+      "213", 
+      "What courses are required before 489?"
+    ], 
+    [
+      "016", 
+      "What is 281 a prerequisite for?"
+    ], 
+    [
+      "304", 
+      "Which one of the upper-level EECS classes will be available this Fall?"
+    ], 
+    [
+      "156", 
+      "Does Prof. Smith ever teach EECS 280?"
+    ], 
+    [
+      "081", 
+      "Are there any professors who teach Algorithms, other than Professor Stout?"
+    ], 
+    [
+      "213", 
+      "Do I need to take any courses before taking 489?"
+    ], 
+    [
+      "024", 
+      "What subjects does EECS 388 cover?"
+    ], 
+    [
+      "179", 
+      "482 is offered next semester when?"
+    ], 
+    [
+      "213", 
+      "What courses do I need to take before taking 489?"
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesdays, can I take 280?"
+    ], 
+    [
+      "269", 
+      "Will I be able to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "081", 
+      "is there any other person besides Professor Stout who teaches Algorithms?"
+    ], 
+    [
+      "247", 
+      "When is the next time EECS 483 is offered?"
+    ], 
+    [
+      "213", 
+      "What are the required classes I need before taking 489?"
+    ], 
+    [
+      "228", 
+      "For EECS 370 is EECS 270 is necessary?"
+    ], 
+    [
+      "155", 
+      "Prof. Smith teaches what courses?"
+    ], 
+    [
+      "285", 
+      "Of all the upper-leve; classes, which are four credits?"
+    ], 
+    [
+      "021", 
+      "What course will get me three credits?"
+    ], 
+    [
+      "021", 
+      "Which classes give three credits?"
+    ], 
+    [
+      "237", 
+      "What past classes has Dr Chen taught?"
+    ], 
+    [
+      "174", 
+      "What are the courses that will be offered for the upcoming 6 semesters?"
+    ], 
+    [
+      "132", 
+      "Would it be a good idea to take EECS 280 and EECS 370 the same semester?"
+    ], 
+    [
+      "071", 
+      "Are any professors appointed for winter MDE classes?"
+    ], 
+    [
+      "100", 
+      "What is the size of 280?"
+    ], 
+    [
+      "084", 
+      "In next winter season what are the MDE classes that are offered?"
+    ], 
+    [
+      "293", 
+      "Which upper-level classes have projects but no exams?"
+    ], 
+    [
+      "071", 
+      "Next winter, who will teach the MDE classes?"
+    ], 
+    [
+      "239", 
+      "EECS 280 has been in the course listings for how long?"
+    ], 
+    [
+      "074", 
+      "For EECS 203, who is the teacher?"
+    ], 
+    [
+      "269", 
+      "Is 280 available to take on both Mondays and Wednesdays?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are being offered next winter?"
+    ], 
+    [
+      "269", 
+      "Is 280 Available on Monday and Wednesday?"
+    ], 
+    [
+      "116", 
+      "Before taking EECS 280, what are some useful courses to take?"
+    ], 
+    [
+      "132", 
+      "Of the courses, are EECS 280 and EECS 370 ones that should be taken at the same time?"
+    ], 
+    [
+      "213", 
+      "What are the prerequisites for taking 489?"
+    ], 
+    [
+      "071", 
+      "Which teacher is doing MDE classes next winter?"
+    ], 
+    [
+      "174", 
+      "Which classes are going to be offered over the ensuing 6 semesters?"
+    ], 
+    [
+      "239", 
+      "How many semesters  has EECS 280 been offered?"
+    ], 
+    [
+      "304", 
+      "Which upper-level classes in EECS are being offered this fall."
+    ], 
+    [
+      "016", 
+      "EECS 281 is a have-to for what classes?"
+    ], 
+    [
+      "237", 
+      "What has Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "167", 
+      "In the next semester, what is the total number of classes being offered?"
+    ], 
+    [
+      "071", 
+      "What are the names of the people that are teaching MDE classes next winter?"
+    ], 
+    [
+      "156", 
+      "Was EECS 280 ever been taught by Prof. Smith?"
+    ], 
+    [
+      "200", 
+      "Are any pre-major or MDE courses offered in the Spring term?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016, how many professors taught EECS 280?"
+    ], 
+    [
+      "285", 
+      "Are there any upper-lever classes that have four credits?"
+    ], 
+    [
+      "154", 
+      "What core classes are required for an EECS major?"
+    ], 
+    [
+      "176", 
+      "What are the EECS 203 and 280 prerequisites?"
+    ], 
+    [
+      "132", 
+      "Would taking EECS 280 and EECS 370 concurrently be okay?"
+    ], 
+    [
+      "017", 
+      "Dr.DeOrio is teaching which classes next semester?"
+    ], 
+    [
+      "132", 
+      "Should EECS 280 and EECS 370 be taken at the same time?"
+    ], 
+    [
+      "117", 
+      "I want you to show me some 300 level courses that are easy."
+    ], 
+    [
+      "180", 
+      "Which courses are there this semester?"
+    ], 
+    [
+      "104", 
+      "Which AI courses fulfill the MDE requirement?"
+    ], 
+    [
+      "104", 
+      "the MDE requirement is satisfied by which courses in artificial intelligence?"
+    ], 
+    [
+      "184", 
+      "Name the courses that count for upper level electives."
+    ], 
+    [
+      "071", 
+      "What professor is going to be teaching MDE classes next winter?"
+    ], 
+    [
+      "021", 
+      "I'm looking for courses worth three credits, which are they?"
+    ], 
+    [
+      "116", 
+      "Before I take EECS 280 which other courses should I take?"
+    ], 
+    [
+      "081", 
+      "Is there any professor other than professor Stout who teaches Algorithms?"
+    ], 
+    [
+      "029", 
+      "In order to declare a major in EECS, what classes must I take?"
+    ], 
+    [
+      "018", 
+      "What is the class schedule for Prof. DeOrio in winter 217?"
+    ], 
+    [
+      "200", 
+      "In the spring term are any pre-major or MDE courses offered?"
+    ], 
+    [
+      "074", 
+      "If I were to take EECS 203, who would be the instructor?"
+    ], 
+    [
+      "116", 
+      "Before I take EECS 280, what would be some useful courses I could take?"
+    ], 
+    [
+      "098", 
+      "What class can I take this semester that's a prerequisite for most other classes?"
+    ], 
+    [
+      "116", 
+      "What courses are useful precursors to EECS 280?"
+    ], 
+    [
+      "156", 
+      "Has Prof. Smith ever taught the class EECS 280?"
+    ], 
+    [
+      "131", 
+      "Is EECS 280 difficult?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are available next winter?"
+    ], 
+    [
+      "173", 
+      "Can I see my transcript?"
+    ], 
+    [
+      "140", 
+      "Name the difference between CHEM 130 and CHEM 125."
+    ], 
+    [
+      "052", 
+      "Which one is easier EECS 484 or EECS 485?"
+    ], 
+    [
+      "177", 
+      "The prerequisite courses for EECS 281 are?"
+    ], 
+    [
+      "219", 
+      "The EECS 280 in Fall 2016 is taught by what number of professors?"
+    ], 
+    [
+      "255", 
+      "Are EECS 280 classes given in the morning?"
+    ], 
+    [
+      "168", 
+      "Any other teacher teach 280 rather than Prof Smith"
+    ], 
+    [
+      "081", 
+      "Does someone besides Professor Stout teach Algorithms?"
+    ], 
+    [
+      "285", 
+      "Which classes are upper-level and worth four credits?"
+    ], 
+    [
+      "148", 
+      "Is EECS 376 a required course for my major?"
+    ], 
+    [
+      "100", 
+      "How big is 280?"
+    ], 
+    [
+      "269", 
+      "Is it possible to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "084", 
+      "What are my options for MDE classes during the winter semester?"
+    ], 
+    [
+      "116", 
+      "Are there other useful courses I can take before EECS 280?"
+    ], 
+    [
+      "167", 
+      "How many classes are there available next semester?"
+    ], 
+    [
+      "052", 
+      "Which is less difficult, EECS379 or EECS485?"
+    ], 
+    [
+      "001", 
+      "What classes are available to easily fulfill the capstone requirement?"
+    ], 
+    [
+      "255", 
+      "Are there classes in the morning that are EECS 280?"
+    ], 
+    [
+      "285", 
+      "Of all the upper-level classes, which ones are four credits?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are taught this Fall?"
+    ], 
+    [
+      "304", 
+      "What are the names of the upper-level EECS classes that can be taken in the Fall?"
+    ], 
+    [
+      "106", 
+      "What AI courses don't have any prerequisites?"
+    ], 
+    [
+      "071", 
+      "For the Winter MDE course who is teaching?"
+    ], 
+    [
+      "255", 
+      "Do you know if EECS 280 has morning classes?"
+    ], 
+    [
+      "250", 
+      "Which course is harder between 482 and 485?"
+    ], 
+    [
+      "292", 
+      "Is there a lab involved in 280?"
+    ], 
+    [
+      "213", 
+      "What are the prerequites courses I need before taking 489?"
+    ], 
+    [
+      "175", 
+      "How many total credits do I recieve for 381?"
+    ], 
+    [
+      "084", 
+      "For next winter, do you know which MDE classes are offered?"
+    ], 
+    [
+      "071", 
+      "Of all the professors next winter who is teaching the MDE classes?"
+    ], 
+    [
+      "021", 
+      "Are there any courses worth three credits?"
+    ], 
+    [
+      "116", 
+      "Are there any course I should take before EECS 280?"
+    ], 
+    [
+      "177", 
+      "The course prerequisites for EECS 281 are?"
+    ], 
+    [
+      "116", 
+      "Before taking EECS 280, what are some other courses that might be useful to take?"
+    ], 
+    [
+      "184", 
+      "Name the upper level electives courses."
+    ], 
+    [
+      "175", 
+      "How many credits is 381 worth?"
+    ], 
+    [
+      "123", 
+      "Next semester, what upper level CS classes will there be?"
+    ], 
+    [
+      "111", 
+      "Show me any courses that cover parts of artificial intelligence and software engineering."
+    ], 
+    [
+      "132", 
+      "Might it be wise to ingest both EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "100", 
+      "280 is how large?"
+    ], 
+    [
+      "181", 
+      "Currently, what is my GPA?"
+    ], 
+    [
+      "170", 
+      "Name for me all MDE classed."
+    ], 
+    [
+      "071", 
+      "Next winter, who are the professors for the MDE classes available?"
+    ], 
+    [
+      "111", 
+      "Of all the courses show me the ones that involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "177", 
+      "For EECS 281, what are the prerequisites?"
+    ], 
+    [
+      "168", 
+      "Other than Prof. Smith, is 280 taught by others?"
+    ], 
+    [
+      "304", 
+      "Which classes being offered this Fall are upper-level EECS?"
+    ], 
+    [
+      "111", 
+      "Which courses involve parts of software engineering and artificial intelligence, can you show me?"
+    ], 
+    [
+      "100", 
+      "What is the size of the 280 class?"
+    ], 
+    [
+      "188", 
+      "When are the EECS 281 classes in the week."
+    ], 
+    [
+      "111", 
+      "Show me classes that involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "285", 
+      "What upper level classes produce four credits?"
+    ], 
+    [
+      "084", 
+      "what MDE classes can I take next winter?"
+    ], 
+    [
+      "134", 
+      "For EECS 280 hom many sections are there?"
+    ], 
+    [
+      "074", 
+      "The teacher for EECS 203 is who?"
+    ], 
+    [
+      "237", 
+      "What classes have been taught by Dr. Peter Chen in the past?"
+    ], 
+    [
+      "285", 
+      "What upper-level classes are four credits?"
+    ], 
+    [
+      "285", 
+      "Which classes that are upper-level give four credits?"
+    ], 
+    [
+      "247", 
+      "483 is available when?"
+    ], 
+    [
+      "133", 
+      "Is the class ENGR 100 section 500 offered in the Winter 2016 semester?"
+    ], 
+    [
+      "015", 
+      "Will EECS 270 be offered in the Summer of 2016?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016 what number of professors will teach EECS 280?"
+    ], 
+    [
+      "213", 
+      "Which courses need to be taken before taking 489?"
+    ], 
+    [
+      "071", 
+      "Of those teaching next winter, who is teaching MDE classes?"
+    ], 
+    [
+      "269", 
+      "Am I allowed to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "084", 
+      "Which classes will be offered next winter in MDE?"
+    ], 
+    [
+      "123", 
+      "Are there any upper level CS classes offered next semester, which are they?"
+    ], 
+    [
+      "180", 
+      "Which courses are offered this semester?"
+    ], 
+    [
+      "172", 
+      "What are the requirements for a CS-LSA degree?"
+    ], 
+    [
+      "021", 
+      "What are the courses that are worth three Credits ?"
+    ], 
+    [
+      "001", 
+      "The easiest class I can take to fulfill the capstone requirement is what?"
+    ], 
+    [
+      "237", 
+      "Do you know what classes Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "237", 
+      "Which classes has Dr Peter Chen historically taught?"
+    ], 
+    [
+      "018", 
+      "Prof. DeOrio teaches which courses in Winter 2017?"
+    ], 
+    [
+      "209", 
+      "Are there any advisory prerequisites for Intro AI?"
+    ], 
+    [
+      "024", 
+      "What does EECS 388 cover?"
+    ], 
+    [
+      "132", 
+      "Do you think I should take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "239", 
+      "What would be timeframe wherein they have offered EECS 280?"
+    ], 
+    [
+      "074", 
+      "Who is EECS 203 taught by?"
+    ], 
+    [
+      "021", 
+      "For which classes could I earn three credits?"
+    ], 
+    [
+      "018", 
+      "Name the courses that are taught by Prof. DeOrio in winter 2017"
+    ], 
+    [
+      "029", 
+      "I want to declare a major in EECS, what classes if any do I need to take?"
+    ], 
+    [
+      "081", 
+      "Is Algorithms only taught by one person, Professor Stout?"
+    ], 
+    [
+      "061", 
+      "When will operating systems be offered next?"
+    ], 
+    [
+      "304", 
+      "Of all the upper-level EECS classes, which are being offered this fall?"
+    ], 
+    [
+      "174", 
+      "What classes will be offered in the next 6 semesters?"
+    ], 
+    [
+      "084", 
+      "Will MDE classes be open next winter?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen has taught which classes in the past?"
+    ], 
+    [
+      "177", 
+      "Can you tell me what the course prerequisites are for EECS 281?"
+    ], 
+    [
+      "292", 
+      "For 280, is there a lab?"
+    ], 
+    [
+      "157", 
+      "When was the last time EECS 281 was offered?"
+    ], 
+    [
+      "001", 
+      "To fulfill the capstone requirement what is the easiest class I can take?"
+    ], 
+    [
+      "148", 
+      "To graduate, do I need to take EECS 376?"
+    ], 
+    [
+      "051", 
+      "Will there be an NLP seminar this year?"
+    ], 
+    [
+      "017", 
+      "Do you have a list of Dr. DeOrio's classes for next semester?"
+    ], 
+    [
+      "132", 
+      "Would it be better to take EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "292", 
+      "Do you have to take a lab with 280?"
+    ], 
+    [
+      "269", 
+      "Can I take 280 on days like Monday and Wednesday?"
+    ], 
+    [
+      "017", 
+      "Which of the classes are being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "285", 
+      "Which four-credit classes are upper-level?"
+    ], 
+    [
+      "084", 
+      "What MDE classes, if any, are available in next winter?"
+    ], 
+    [
+      "239", 
+      "Exactly how long has EECS 280 been offered for?"
+    ], 
+    [
+      "213", 
+      "Of all  the courses, which ones have to be taken before taking 489?"
+    ], 
+    [
+      "071", 
+      "Who will teach the MDE classes next winter?"
+    ], 
+    [
+      "052", 
+      "Which class is easier: EECS 484 or EECS 485?"
+    ], 
+    [
+      "239", 
+      "How many years has EECS 280 been taught?"
+    ], 
+    [
+      "168", 
+      "Other than Prof Smith, does anyone teach 280?"
+    ], 
+    [
+      "170", 
+      "What are all the courses for MDE?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes will be offered this Fall?"
+    ], 
+    [
+      "111", 
+      "Show me courses which involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "304", 
+      "What upper-level EECS classes could be taken this Fall?"
+    ], 
+    [
+      "132", 
+      "Is it wise to take EECS280 and EECS370 at the same time?"
+    ], 
+    [
+      "124", 
+      "At what time do EECS 492 course lectures start next semester?"
+    ], 
+    [
+      "084", 
+      "Are there any MDE classes in the winter?"
+    ], 
+    [
+      "285", 
+      "What are the names of the upper-level classes that are four credits?"
+    ], 
+    [
+      "195", 
+      "For CS majors what are the upper level electives?"
+    ], 
+    [
+      "081", 
+      "Is there anyone else who teaches Algorithms besides Professor Stout?"
+    ], 
+    [
+      "052", 
+      "What class do you think would be the easiest, EECS 485 or EECS 484?"
+    ], 
+    [
+      "116", 
+      "Are there any useful courses that I should take before EECS 280?"
+    ], 
+    [
+      "285", 
+      "Are there any 4 credit upper level classes?"
+    ], 
+    [
+      "176", 
+      "What are the prerequisites for EECS 203 and EECS 280?"
+    ], 
+    [
+      "207", 
+      "Is there an ENGR 151 section not on Monday next semester?"
+    ], 
+    [
+      "132", 
+      "Is taking EECS280 and EECS370 at the same time wise?"
+    ], 
+    [
+      "109", 
+      "Which Spring or summer courses are available to meet my MDE requirement?"
+    ], 
+    [
+      "071", 
+      "What professor is teaching MDE classes next winter?"
+    ], 
+    [
+      "029", 
+      "For a major in EECS, what classes am I required to take?"
+    ], 
+    [
+      "052", 
+      "What class is easier, EECS 484 or EECS 485?"
+    ], 
+    [
+      "024", 
+      "Can you tell me more about EECS 388?"
+    ], 
+    [
+      "116", 
+      "I would like a list of the best courses to enroll in prior to enrolling in EECS 280."
+    ], 
+    [
+      "255", 
+      "Is EECS 280 taught in the morning?"
+    ], 
+    [
+      "285", 
+      "Of all the upper-level classes, which are four credits?"
+    ], 
+    [
+      "021", 
+      "Which courses can I take which provide three credits?"
+    ], 
+    [
+      "255", 
+      "Of all the EECS 280 classes, are there any before noon?"
+    ], 
+    [
+      "132", 
+      "How wise is it to take EECS280 and EECS270 at the same time?"
+    ], 
+    [
+      "177", 
+      "What exactly are the prerequisites for the course EECS 281?"
+    ], 
+    [
+      "239", 
+      "What period of time has EECS 280 been available?"
+    ], 
+    [
+      "171", 
+      "Without including the EECS department, what are the required courses for the major?"
+    ], 
+    [
+      "219", 
+      "What's the number of professors that teach EECS 280 in Fall 2016?"
+    ], 
+    [
+      "173", 
+      "May I see my transcript?"
+    ], 
+    [
+      "077", 
+      "Is there a class about networks?"
+    ], 
+    [
+      "074", 
+      "What is the name of the EECS 203 class teacher?"
+    ], 
+    [
+      "165", 
+      "What number of times has EECS 280 been offered?"
+    ], 
+    [
+      "071", 
+      "The MDE classes next winter, who is teaching those?"
+    ], 
+    [
+      "001", 
+      "What class is the easiest one I can take in order to fulfill the capstone requirement?"
+    ], 
+    [
+      "269", 
+      "Can I attend 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "152", 
+      "For CS majors what math prerequistes needed?"
+    ], 
+    [
+      "116", 
+      "What course can help me prep for EECS 280?"
+    ], 
+    [
+      "292", 
+      "Is lab also included in 280?"
+    ], 
+    [
+      "132", 
+      "Do you think I should take EECS 280 and EECS 370 in the same semester?"
+    ], 
+    [
+      "178", 
+      "Do I have any credits so far, if yes how many?"
+    ], 
+    [
+      "081", 
+      "Is Algorithms taught only by Professor Stout?"
+    ], 
+    [
+      "154", 
+      "What are the core courses for the Engineering CS major?"
+    ], 
+    [
+      "014", 
+      "Can I take EECS 281 right now?"
+    ], 
+    [
+      "219", 
+      "How many professors are teaching EECS 280 in Fall 2016"
+    ], 
+    [
+      "081", 
+      "Is there another teacher of Algorithms aside from Professor Stout?"
+    ], 
+    [
+      "193", 
+      "What EECS classes are offered in spring term?"
+    ], 
+    [
+      "176", 
+      "EECS 203 and 280 have what prerequisites?"
+    ], 
+    [
+      "052", 
+      "Of the two, which is easier? EECS 484 and EECS 485 "
+    ], 
+    [
+      "188", 
+      "What days of the week does EECS 281 meet?"
+    ], 
+    [
+      "165", 
+      "EECS 280 has been a course for what number of times?"
+    ], 
+    [
+      "213", 
+      "Before taking 489, which courses do I need?"
+    ], 
+    [
+      "213", 
+      "What are the required completed courses in order to take 489?"
+    ], 
+    [
+      "001", 
+      "Which classes are the easiest for the capstone requirement?"
+    ], 
+    [
+      "285", 
+      "Of the upper level classes, which get you four credits?"
+    ], 
+    [
+      "285", 
+      "WHAT ARE THE UPPER-LEVEL CLASSES THAT OFFER FOUR CREDITS?"
+    ], 
+    [
+      "132", 
+      "Are EECS 280 and EECS 370 favorable courses to take at the same time?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS, are there certain classes that I need to take?"
+    ], 
+    [
+      "071", 
+      "Which professor is teaching MDE classes next winter?"
+    ], 
+    [
+      "013", 
+      "What classes next semester are available as Senior Design Capstones?"
+    ], 
+    [
+      "208", 
+      "Name the upper elective courses that are offered for CS."
+    ], 
+    [
+      "183", 
+      "In next term is 492 offered?"
+    ], 
+    [
+      "219", 
+      "EECS 280 is taught be how many professors in the fall of 2016?"
+    ], 
+    [
+      "304", 
+      "What upper-level classes, in the fall, are being offered for EECS."
+    ], 
+    [
+      "071", 
+      "Next winter who is teaching MDE classes?"
+    ], 
+    [
+      "078", 
+      "How is the workload in EECS 370?"
+    ], 
+    [
+      "175", 
+      "For EECS 381, how many credits is it?"
+    ]
+  ], 
+  "train": [
+    [
+      "304", 
+      "Of the courses offered this Fall, which of them are upper-level EECS classes?"
+    ], 
+    [
+      "001", 
+      "Of the classes that fill the capstone requirement, which one is the easiest?"
+    ], 
+    [
+      "179", 
+      "482 will be offered at what times during next semester?"
+    ], 
+    [
+      "001", 
+      "Is there an easy class to take wherein I could fulfill the capstone requirement?"
+    ], 
+    [
+      "201", 
+      "In Fall of 2015 is 281 offered in the afternoon?"
+    ], 
+    [
+      "111", 
+      "Display courses that involve any parts of artificial intelligence and software engineering."
+    ], 
+    [
+      "017", 
+      "Is Dr. DeOrio teaching any classes next semester?"
+    ], 
+    [
+      "140", 
+      "Differentiate between CHEM 125 and CHEM 130."
+    ], 
+    [
+      "213", 
+      "What courses are the prerequisites needed for 489?"
+    ], 
+    [
+      "152", 
+      "What math courses are required for the CS major?"
+    ], 
+    [
+      "171", 
+      "Name the courses that are mandotary for the major but not in the EECS department."
+    ], 
+    [
+      "129", 
+      "Are there one credit EECS courses?"
+    ], 
+    [
+      "132", 
+      "Would it be wise for me to take EECS280 and EEC370 at the same time?"
+    ], 
+    [
+      "071", 
+      "Who teaches MDE courses in the winter semester?"
+    ], 
+    [
+      "078", 
+      "EECS 370 workload like?"
+    ], 
+    [
+      "100", 
+      "How large is course 280?"
+    ], 
+    [
+      "285", 
+      "What are the upper-level classes that have four credits?"
+    ], 
+    [
+      "269", 
+      "Can 280 be taken on Mondays and Wednesdays?"
+    ], 
+    [
+      "213", 
+      "Which courses must be completed to be able to take 489?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes will be available during the winter semester?"
+    ], 
+    [
+      "169", 
+      "Which are the core classes?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016, how many EECS 280 professors are there?"
+    ], 
+    [
+      "255", 
+      "I'm trying to find out if EECS 280 has morning classes?"
+    ], 
+    [
+      "172", 
+      "Could I see the requirements for a CS-LSA degree?"
+    ], 
+    [
+      "074", 
+      "Who is the professor for EECS 203?"
+    ], 
+    [
+      "001", 
+      "What's the easiest class to take to fulfill the capstone requirement?"
+    ], 
+    [
+      "237", 
+      "What has Dr. Peter Chen taught before?"
+    ], 
+    [
+      "132", 
+      "Should I take EECS 280 and 370 at the same time?"
+    ], 
+    [
+      "081", 
+      "Is Dr. Stout the only teacher of Algorithms?"
+    ], 
+    [
+      "239", 
+      "How many years has EECS 280 been offered?"
+    ], 
+    [
+      "285", 
+      "List all upper-level class that are four credits."
+    ], 
+    [
+      "116", 
+      "Which courses would be helpful to take before taking EECS 280?"
+    ], 
+    [
+      "116", 
+      "Which useful courses are available before taking EECS 280?"
+    ], 
+    [
+      "081", 
+      "Do any people besides Professor Stout teach Algorithms?"
+    ], 
+    [
+      "178", 
+      "How many credits do I have?"
+    ], 
+    [
+      "074", 
+      "The teacher for EECS 203 is whom?"
+    ], 
+    [
+      "018", 
+      "In Winter 2017, what courses does Prof. DeOrio teach?"
+    ], 
+    [
+      "183", 
+      "Is 492 offered next term?"
+    ], 
+    [
+      "017", 
+      "Will Dr. DeOrio be teaching any classes next semester?"
+    ], 
+    [
+      "304", 
+      "During this fall, which upper-level EECS classes are being offered?"
+    ], 
+    [
+      "172", 
+      "Explain to me all the requirements of the CS-LSA degree."
+    ], 
+    [
+      "152", 
+      "As a CS major, which MATH classes do I have to take to graduate?"
+    ], 
+    [
+      "017", 
+      "If I want to take a class with Dr. DeOrio next semester, what are my choices?"
+    ], 
+    [
+      "000", 
+      "Is 595 open to be taken by undergrads?"
+    ], 
+    [
+      "213", 
+      "What are the pre requisites for 489?"
+    ], 
+    [
+      "205", 
+      "What upper level electives are available next Fall after 10:00 AM?"
+    ], 
+    [
+      "237", 
+      "Which classes has Dr. Peter Chan taught previously?"
+    ], 
+    [
+      "173", 
+      "Is it possible to see my transcript?"
+    ], 
+    [
+      "157", 
+      "The last time EECS 281 was offered was when?"
+    ], 
+    [
+      "017", 
+      "Which classes will be taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "074", 
+      "who lectures EECS 203?"
+    ], 
+    [
+      "074", 
+      "What is the name of the instructor for EECS 203?"
+    ], 
+    [
+      "239", 
+      "EECS 280 , how long has it been offered for?"
+    ], 
+    [
+      "174", 
+      "What classes will be offered in the next 6 semesters?"
+    ], 
+    [
+      "116", 
+      "What classes should I take before I enroll in EECS 280?"
+    ], 
+    [
+      "106", 
+      "Of all the courses on artificial intelligence, which have no prerequisites?"
+    ], 
+    [
+      "247", 
+      "483 can be taken when?"
+    ], 
+    [
+      "299", 
+      "At what times will operating systems be offered?"
+    ], 
+    [
+      "219", 
+      "What is the number of instructors who taught EECS 280 during the Fall 2016 semester?"
+    ], 
+    [
+      "029", 
+      "What classes are required for me to declare EECS as my major?"
+    ], 
+    [
+      "116", 
+      "Name some useful courses before EECS 280."
+    ], 
+    [
+      "043", 
+      "Which professors don't teach classes with labs?"
+    ], 
+    [
+      "032", 
+      "What classes can I use for my Major Design Experience?"
+    ], 
+    [
+      "121", 
+      "Which courses are the least difficult?"
+    ], 
+    [
+      "078", 
+      "What's the workload like in EECS 370?"
+    ], 
+    [
+      "182", 
+      "Show me the difficulty for all the CS-LSA courses."
+    ], 
+    [
+      "132", 
+      "Is it ok to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "116", 
+      "Before taking EECS 280, what other courses are useful?"
+    ], 
+    [
+      "292", 
+      "And does 280 have a lab?"
+    ], 
+    [
+      "126", 
+      "What is EECS 492?"
+    ], 
+    [
+      "029", 
+      "In order to declare my major as EECS, what classes do I need to have taken?"
+    ], 
+    [
+      "132", 
+      "Is it advisable for me to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "173", 
+      "Please let me see my transcript."
+    ], 
+    [
+      "084", 
+      "What MDE classes are provided next winter?"
+    ], 
+    [
+      "168", 
+      "Other than Prof. Smith, does anyone teach 280?"
+    ], 
+    [
+      "152", 
+      "What math classes are needed for CS majors?"
+    ], 
+    [
+      "204", 
+      "What classes are available this summer that would count towards a CS major?"
+    ], 
+    [
+      "021", 
+      "What classes give you three credits?"
+    ], 
+    [
+      "100", 
+      "How big is 280?"
+    ], 
+    [
+      "071", 
+      "Who is teaching MDE classes next winter?"
+    ], 
+    [
+      "213", 
+      "Do I need to take any specific courses before taking 489?"
+    ], 
+    [
+      "001", 
+      "Which class is the easiest I can take to fulfill the capstone requirement?"
+    ], 
+    [
+      "140", 
+      "What's the difference between CHEM 130 and CHEM 125?"
+    ], 
+    [
+      "213", 
+      "Which courses are required before going into 489?"
+    ], 
+    [
+      "029", 
+      "When declaring EECS as a major what classes do I need to take?"
+    ], 
+    [
+      "230", 
+      "I need an easy EECS class."
+    ], 
+    [
+      "113", 
+      "How often does the class meet for EECS 281?"
+    ], 
+    [
+      "219", 
+      "What number of professors will be teaching EECS 280 in Fall 2016?"
+    ], 
+    [
+      "013", 
+      "Next semester, what classes are available as Senior Design Capstones?"
+    ], 
+    [
+      "173", 
+      "Can I view my transcript?"
+    ], 
+    [
+      "124", 
+      "What time do EECS 492 lectures start next semester?"
+    ], 
+    [
+      "106", 
+      "What artificial intelligence courses have no prerequisites?"
+    ], 
+    [
+      "239", 
+      "How long has the school been offering EECS 280?"
+    ], 
+    [
+      "021", 
+      "What classes on this list are for three credits?"
+    ], 
+    [
+      "104", 
+      "Which courses in artificial intelligence will allow me to satisfy the MDE requirement?"
+    ], 
+    [
+      "100", 
+      "280 is what size?"
+    ], 
+    [
+      "081", 
+      "The only person who teaches Algorithms, is it Professor Stout?"
+    ], 
+    [
+      "014", 
+      "Is EECS 281 available to take immediately?"
+    ], 
+    [
+      "269", 
+      "Can course 280 be taken on Mondays and Wednesdays?"
+    ], 
+    [
+      "001", 
+      "Which class is easier for me to fulfill capstone requirement?"
+    ], 
+    [
+      "116", 
+      "I need to prep for EECS 280, can I take a course to help me?"
+    ], 
+    [
+      "237", 
+      "Professor Peter Chen has taught which courses?"
+    ], 
+    [
+      "116", 
+      "Useful courses to take before taking EECS 280?"
+    ], 
+    [
+      "018", 
+      "Prof. DeOrio teaches in Winter 2017 what courses?"
+    ], 
+    [
+      "126", 
+      "What is the actual name of EECS 492?"
+    ], 
+    [
+      "001", 
+      "In order to fulfill the capstone requirement, what's the easiest class I can take?"
+    ], 
+    [
+      "141", 
+      "Is there an EECS 400 level class that is 3-credit?"
+    ], 
+    [
+      "239", 
+      "What length of time has EECS 280 been offered for?"
+    ], 
+    [
+      "172", 
+      "What is required for a CS-LSA degree?"
+    ], 
+    [
+      "029", 
+      "If I were to declare a major in EECS, what classes would I need?"
+    ], 
+    [
+      "237", 
+      "What has Dr Chen taught?"
+    ], 
+    [
+      "084", 
+      "Next winter they are offering MDE classes,wonder what they will be?"
+    ], 
+    [
+      "178", 
+      "How many credits do I have total?"
+    ], 
+    [
+      "113", 
+      "When does the class meet for EECS 281?"
+    ], 
+    [
+      "000", 
+      "Are undergrads allowed to take 595?"
+    ], 
+    [
+      "292", 
+      "Would there be a 280 lab?"
+    ], 
+    [
+      "100", 
+      "How small is 280?"
+    ], 
+    [
+      "074", 
+      "EECS 203 is taught by which professor?"
+    ], 
+    [
+      "001", 
+      "Which class is the easiest class to fulfil the capstone requirement that I can take?"
+    ], 
+    [
+      "084", 
+      "What classes next winter are MDE?"
+    ], 
+    [
+      "133", 
+      "In the Winter 2016 semester, will ENGR 100 section 500 be offered?"
+    ], 
+    [
+      "116", 
+      "Are there any courses that would be useful for me to take before I take EECS 280?"
+    ], 
+    [
+      "239", 
+      "EECS 280 has been available for how long?"
+    ], 
+    [
+      "017", 
+      "Which courses are Dr. DeOrio teaching next semester?"
+    ], 
+    [
+      "100", 
+      "That 280 exactly how big is it?"
+    ], 
+    [
+      "140", 
+      "What is the difference between the courses CHEM 130 and CHEM 125?"
+    ], 
+    [
+      "070", 
+      "Who's teaching NLP next winter?"
+    ], 
+    [
+      "133", 
+      "In the Winter 2016 semester is ENGR 100 section 500 offered?"
+    ], 
+    [
+      "071", 
+      "For next winter, who will teach the MDE classes?"
+    ], 
+    [
+      "213", 
+      "What is the prerequisite for 489?"
+    ], 
+    [
+      "177", 
+      "What course prerequisites does EECS 281 have?"
+    ], 
+    [
+      "106", 
+      "Which artificial intelligence classes have no prerequisites?"
+    ], 
+    [
+      "170", 
+      "Name all the MDE classes for me."
+    ], 
+    [
+      "292", 
+      "Does 280 include any lab?"
+    ], 
+    [
+      "292", 
+      "Is there a lab for the 280 class?"
+    ], 
+    [
+      "188", 
+      "Name the days of the week EECS 281 is taught."
+    ], 
+    [
+      "117", 
+      "Provide me with some easy 300 level courses?"
+    ], 
+    [
+      "071", 
+      "Next winter, who is teaching the MDE classes?"
+    ], 
+    [
+      "213", 
+      "What courses are required in order to take 489?"
+    ], 
+    [
+      "133", 
+      "Can I take ENGR 100 section 500 in the winter 2016 semester?"
+    ], 
+    [
+      "181", 
+      "My current GPA is?"
+    ], 
+    [
+      "292", 
+      "Does 280 always have a lab?"
+    ], 
+    [
+      "285", 
+      "Which are the four-credit upper-level classes?"
+    ], 
+    [
+      "213", 
+      "Which courses do I need before taking 489"
+    ], 
+    [
+      "116", 
+      "Are there any good courses to take before enrolling in EECS 280?"
+    ], 
+    [
+      "176", 
+      "Tell me the prerequisites for EECS 203 and 280."
+    ], 
+    [
+      "154", 
+      "For the Engineering CS major, what are the core courses?"
+    ], 
+    [
+      "001", 
+      "Which classes are the least demanding to satisfy the capstone requirement?"
+    ], 
+    [
+      "084", 
+      "Are they any MDE classes offered next winter?"
+    ], 
+    [
+      "184", 
+      "What upper level elective courses are offered?"
+    ], 
+    [
+      "124", 
+      "What time do EECS 492 lectures start next semester?"
+    ], 
+    [
+      "116", 
+      "Which courses should I take before I take EECS 280?"
+    ], 
+    [
+      "237", 
+      "Which courses has Dr. Peter Chen taught before?"
+    ], 
+    [
+      "052", 
+      "what class is easier if the choice is between EECS 484 and EECS 485?"
+    ], 
+    [
+      "134", 
+      "For EECS 280, how many sections are included?"
+    ], 
+    [
+      "092", 
+      "Which classes don't have a lab at the 400 level?"
+    ], 
+    [
+      "269", 
+      "May I have 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "304", 
+      "In the Fall, what upper-level EECS classes are offered?"
+    ], 
+    [
+      "071", 
+      "Are there MDE class professors appointed for the winter?"
+    ], 
+    [
+      "052", 
+      "Would taking EECS 484 be easier or would taking EECS 485 be easier?"
+    ], 
+    [
+      "304", 
+      "Of the classes being offered this Fall, which ones are upper-level EECS classes?"
+    ], 
+    [
+      "213", 
+      "Are there courses I need to take before taking 489?"
+    ], 
+    [
+      "132", 
+      "Is it recommended to take EECS 280 and 370 at the same time?"
+    ], 
+    [
+      "117", 
+      "What are some easy 300 level classes?"
+    ], 
+    [
+      "126", 
+      "What is the name of EECS 492?"
+    ], 
+    [
+      "014", 
+      "Is EECS 281 available right now?"
+    ], 
+    [
+      "285", 
+      "What are the four credit upper-level classes?"
+    ], 
+    [
+      "017", 
+      "Is Dr. DeOrio teaching classes next semester?"
+    ], 
+    [
+      "116", 
+      "What courses would it be helpful to take before taking EECS 280?"
+    ], 
+    [
+      "129", 
+      "Does EECS offer any courses worth one credit?"
+    ], 
+    [
+      "074", 
+      "Of the EECS classes, who teaches 203?"
+    ], 
+    [
+      "104", 
+      "Name the courses in artificial intelligence that satisfy the MDE requirement"
+    ], 
+    [
+      "247", 
+      "When is 483 going to be offered next?"
+    ], 
+    [
+      "213", 
+      "Before taking 489, what courses must I take?"
+    ], 
+    [
+      "219", 
+      "In Fall of 2016, how many professors taught EECS 280?"
+    ], 
+    [
+      "016", 
+      "EECS 281 is mandatory for anything?"
+    ], 
+    [
+      "217", 
+      "What number of sections of EECS 370 are there?"
+    ], 
+    [
+      "052", 
+      "Which is easier between EECS 484 and EECS 485?"
+    ], 
+    [
+      "165", 
+      "EECS 280 has been offered how many times?"
+    ], 
+    [
+      "168", 
+      "Does anyone other than Prof. Smith teach 280?"
+    ], 
+    [
+      "084", 
+      "Can I find any MDE classes for the winter term?"
+    ], 
+    [
+      "292", 
+      "Do I have to take a lab for 280?"
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesdays, am I able to take 280?"
+    ], 
+    [
+      "180", 
+      "What are the courses offered this semester?"
+    ], 
+    [
+      "084", 
+      "The MDE classes next winter what are they?"
+    ], 
+    [
+      "171", 
+      "Which are the courses required for the major but not in the EECS department?"
+    ], 
+    [
+      "100", 
+      "What size would 280 be?"
+    ], 
+    [
+      "116", 
+      "What should I take before EECS 280?"
+    ], 
+    [
+      "152", 
+      "List CS major math requirements."
+    ], 
+    [
+      "304", 
+      "Kindly give me a list of the upper level EECS classes offered this fall.."
+    ], 
+    [
+      "179", 
+      "What time next semester is 482 offered?"
+    ], 
+    [
+      "286", 
+      "How many upper-level classes are four credits?"
+    ], 
+    [
+      "084", 
+      "Of all the MDE classes, which ones are in winter."
+    ], 
+    [
+      "172", 
+      "Inform me of what's needed for a CS-LSA degree."
+    ], 
+    [
+      "195", 
+      "Name the upper level electives which are offered for CS majors."
+    ], 
+    [
+      "071", 
+      "What professors have been appointed for winter MDE classes?"
+    ], 
+    [
+      "132", 
+      "Should EECS280 and EECS370 be taken at the same time?"
+    ], 
+    [
+      "182", 
+      "Is it possible to see the difficulty for all the CS-LSA courses?"
+    ], 
+    [
+      "052", 
+      "Comparing EECS 484 and EECS 485, which is easier.?"
+    ], 
+    [
+      "106", 
+      "Which artificial intelligence courses are there with no prerequisites?"
+    ], 
+    [
+      "146", 
+      "Is there a section of EECS 280 after 12 pm?"
+    ], 
+    [
+      "181", 
+      "How high is my current GPA?"
+    ], 
+    [
+      "001", 
+      "What easy class can I take that will fulfill the capstone requirement?"
+    ], 
+    [
+      "116", 
+      "What courses could I take to prepare for EECS 280?"
+    ], 
+    [
+      "029", 
+      "Can I have a list of the prerequisites necessary to declare EECS as my major?"
+    ], 
+    [
+      "169", 
+      "Regarding core classes, which are they?"
+    ], 
+    [
+      "103", 
+      "Which artifical intelligence courses are 4 credits?"
+    ], 
+    [
+      "001", 
+      "What classes are easiest, while still fulfilling the capstone requirement?"
+    ], 
+    [
+      "109", 
+      "By taking which courses in Spring or Summer, my MDE requirement will be satisfied?"
+    ], 
+    [
+      "213", 
+      "What classes do I have to take before I can take EECS 489?"
+    ], 
+    [
+      "074", 
+      "EECS 203 is taught by whom?"
+    ], 
+    [
+      "071", 
+      "By whom will the winter MDE classes be taught?"
+    ], 
+    [
+      "247", 
+      "EECS 483 is offered when next time?"
+    ], 
+    [
+      "021", 
+      "Which classes are worth three credits?"
+    ], 
+    [
+      "081", 
+      "Professor Stout is the only person who teaches Algorithms, correct?"
+    ], 
+    [
+      "255", 
+      "Are AM classes available for the EECS 280 course?"
+    ], 
+    [
+      "132", 
+      "Is it best to simultaneously take EECS 280 and EECS 370?"
+    ], 
+    [
+      "116", 
+      "Are there some useful courses that I could take before I take EECS 280?"
+    ], 
+    [
+      "116", 
+      "I will be taking EECS 280, what courses should I take before it?"
+    ], 
+    [
+      "021", 
+      "Can I get three credits from taking any of these courses?"
+    ], 
+    [
+      "202", 
+      "492 is being taught by Prof. Provost next semester?"
+    ], 
+    [
+      "155", 
+      "What does Professor Smith teach?"
+    ], 
+    [
+      "132", 
+      "Should EECS 280 be taken at the same time as EECS 370?"
+    ], 
+    [
+      "247", 
+      "When's the next time EECS 483 will be offered?"
+    ], 
+    [
+      "116", 
+      "What classes will help me be better prepared for taking EECS 280?"
+    ], 
+    [
+      "285", 
+      "which of the upper-level classes carries four credits?"
+    ], 
+    [
+      "103", 
+      "Make me aware of artificial intelligence courses of 4 credits."
+    ], 
+    [
+      "132", 
+      "Is it recommended to take both EECS 280 and EECS 370 concurrently?"
+    ], 
+    [
+      "148", 
+      "Do I need to take EECS 376 in order to graduate?"
+    ], 
+    [
+      "084", 
+      "Next winter, what MDE classes are being offered?"
+    ], 
+    [
+      "126", 
+      "EECS 492 name is?"
+    ], 
+    [
+      "246", 
+      "What courses are only offered in the Fall?"
+    ], 
+    [
+      "001", 
+      "What class will make fulfilling the capstone requirement easier?"
+    ], 
+    [
+      "193", 
+      "In spring term what EECS classes are offered?"
+    ], 
+    [
+      "269", 
+      "Is 280 available to take on Mondays and Wednesdays?"
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485, which is easier?"
+    ], 
+    [
+      "132", 
+      "Would it be wise to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "255", 
+      "Is EECS 280 offered in the morning?"
+    ], 
+    [
+      "211", 
+      "How many of the prerequisites for EECS 492 have I met?"
+    ], 
+    [
+      "170", 
+      "Would you mind informing me what all of the MDE classes are?"
+    ], 
+    [
+      "001", 
+      "What do you think is the easiest class I can take to fulfill the capstone requirement?"
+    ], 
+    [
+      "285", 
+      "Which classes in the upper-level are 4 credits?"
+    ], 
+    [
+      "184", 
+      "For upper level electives, which courses count?"
+    ], 
+    [
+      "170", 
+      "May I know all of the MDE classes from you?"
+    ], 
+    [
+      "021", 
+      "Are there any courses available that provide three credits?"
+    ], 
+    [
+      "154", 
+      "Name core courses for Engineering CS."
+    ], 
+    [
+      "237", 
+      "What classes has Dr. Peter Chen taught?"
+    ], 
+    [
+      "074", 
+      "Who is the teacher of EECS 203?"
+    ], 
+    [
+      "169", 
+      "Core classes are?"
+    ], 
+    [
+      "029", 
+      "What courses must I take to declare a major in EECS?"
+    ], 
+    [
+      "000", 
+      "Can undergrads take 595?"
+    ], 
+    [
+      "084", 
+      "Among the MDE classes, which are being offered next winter?"
+    ], 
+    [
+      "109", 
+      "What courses offered in the Spring or Summer semester allow me to satisfy my MDE requirement?"
+    ], 
+    [
+      "052", 
+      "Is EECS 484 or EECS 485 easier?"
+    ], 
+    [
+      "021", 
+      "Which courses are worth three credits?"
+    ], 
+    [
+      "269", 
+      "Would I be able to take 280 on Wednesday and Mondays?"
+    ], 
+    [
+      "116", 
+      "are there any useful courses to take before taking EECS 280?"
+    ], 
+    [
+      "173", 
+      "May I look at my transcript?"
+    ], 
+    [
+      "103", 
+      "What courses on artificial intelligence have 4 credits?"
+    ], 
+    [
+      "017", 
+      "Which classes are being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesday, is it possible for me to take 280?"
+    ], 
+    [
+      "157", 
+      "When did they offer EECS 281 last time?"
+    ], 
+    [
+      "304", 
+      "What upper-level EECS courses are scheduled for this Fall?"
+    ], 
+    [
+      "084", 
+      "Are MDE classes available next winter?"
+    ], 
+    [
+      "021", 
+      "What are names of three-credit courses?"
+    ], 
+    [
+      "113", 
+      "How often is class held for EECS 281?"
+    ], 
+    [
+      "174", 
+      "What courses will be available during the upcoming 6 semeters?"
+    ], 
+    [
+      "152", 
+      "Are there any math prerequisites for CS majors?"
+    ], 
+    [
+      "124", 
+      "What will be the time for EECS 492 lectures next semester?"
+    ], 
+    [
+      "255", 
+      "Does the course EECS 280 have any morning sessions?"
+    ], 
+    [
+      "208", 
+      "For CS, what are the upper elective courses offered?"
+    ], 
+    [
+      "255", 
+      "Is EECS280 included in the morning class list?"
+    ], 
+    [
+      "000", 
+      "Is it true? Undergrads taking 595?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 280 been offered?"
+    ], 
+    [
+      "017", 
+      "During next semester, what classes will Dr. DeOrio be teaching?"
+    ], 
+    [
+      "006", 
+      "Can I take EECS 281 and EECS 370 in the same semester?"
+    ], 
+    [
+      "116", 
+      "What courses would be a good choice to take before taking EECS 280?"
+    ], 
+    [
+      "195", 
+      "For CS majors what are the upper level electviess offered?"
+    ], 
+    [
+      "113", 
+      "Class EECS 281 meets how often?"
+    ], 
+    [
+      "116", 
+      "What courses would you suggest I take before taking EECS 280?"
+    ], 
+    [
+      "269", 
+      "Can I register for 280 Mondays and Wednesdays?"
+    ], 
+    [
+      "024", 
+      "What is the class EECS 388 about?"
+    ], 
+    [
+      "021", 
+      "Can you tell me the three credit courses?"
+    ], 
+    [
+      "029", 
+      "Were I to declare a major in EECS, which classes would I need to take?"
+    ], 
+    [
+      "152", 
+      "What are the MATH classes I have to take to graduate as a CS major?"
+    ], 
+    [
+      "001", 
+      "What are the least demanding courses necessary to satisfy the capstone requirement?"
+    ], 
+    [
+      "255", 
+      "Any morning classes for EECS 280?"
+    ], 
+    [
+      "024", 
+      "What's there in EECS 388?"
+    ], 
+    [
+      "237", 
+      "Which classes has Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "285", 
+      "Which upper level classes let you earn four credits?"
+    ], 
+    [
+      "301", 
+      "Of all the courses, which have been taught, are being taught, or will be taught, by Quentin Stout?"
+    ], 
+    [
+      "292", 
+      "280 has a lab, does it?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are being offered this Fall?"
+    ], 
+    [
+      "180", 
+      "During this semester, what courses are offered?"
+    ], 
+    [
+      "292", 
+      "Does 280 include lab?"
+    ], 
+    [
+      "100", 
+      "How large is 280?"
+    ], 
+    [
+      "173", 
+      "My transcript, can i see it?"
+    ], 
+    [
+      "052", 
+      "Looking at EECS 484 and EECS 485, which is the easier course?"
+    ], 
+    [
+      "109", 
+      "What courses offered in Spring or Summer meet the MDE requirement?"
+    ], 
+    [
+      "017", 
+      "What classes next semester is Dr. DeOrio teaching?"
+    ], 
+    [
+      "239", 
+      "How long has it been since the school started offering EECS 280?"
+    ], 
+    [
+      "132", 
+      "Should I do EECS 280 and EECS 370 simultaneously?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are open for registration this Fall?"
+    ], 
+    [
+      "100", 
+      "How big is the 280 class?"
+    ], 
+    [
+      "132", 
+      "Is it recommended to take EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "024", 
+      "What is the topic of EECS 388?"
+    ], 
+    [
+      "292", 
+      "Is there a lab component for 280?"
+    ], 
+    [
+      "024", 
+      "What is the EECS 388 course about?"
+    ], 
+    [
+      "132", 
+      "Is it recommended to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "071", 
+      "Who is teaching MDE next winter?"
+    ], 
+    [
+      "081", 
+      "Does Algorithms have only one teacher, Professor Stout?"
+    ], 
+    [
+      "239", 
+      "What is the length of time that the EECS 280 has been offered for?"
+    ], 
+    [
+      "001", 
+      "Which capstone course is easiest?"
+    ], 
+    [
+      "123", 
+      "What upper level CS classes are offered next semester?"
+    ], 
+    [
+      "029", 
+      "What classes are required to declare EECS as a major?"
+    ], 
+    [
+      "029", 
+      "What are prerequisites to declare a major in EECS?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 provided in the winter 2016 semester?"
+    ], 
+    [
+      "029", 
+      "Are there any classes I must take to be able to declare an EECS major?"
+    ], 
+    [
+      "292", 
+      "Does 280 include a lab?"
+    ], 
+    [
+      "017", 
+      "Next semester, what courses is Dr. DeOrio teaching?"
+    ], 
+    [
+      "171", 
+      "Which courses are compulsory for the major but not in the EECS department?"
+    ], 
+    [
+      "116", 
+      "What courses help you prepare for EECS 280?"
+    ], 
+    [
+      "117", 
+      "Show me some easy 300 level courses."
+    ], 
+    [
+      "182", 
+      "For all the CS-LSA courses can I see difficulties?"
+    ], 
+    [
+      "219", 
+      "In 2016 Fall, EECS 280 will have how many professors teaching it?"
+    ], 
+    [
+      "021", 
+      "Please name some courses worth three credits."
+    ], 
+    [
+      "134", 
+      "How many EECS 280 sections are there?"
+    ], 
+    [
+      "147", 
+      "Has Quentin Stout ever taught EECS 203?"
+    ], 
+    [
+      "104", 
+      "Of all the artificial intelligence courses available, which satisfy the MDE requirement?"
+    ], 
+    [
+      "146", 
+      "after 12 pm is there an EECS 280 section?"
+    ], 
+    [
+      "285", 
+      "Are there any upper-level classes that are four credits?"
+    ], 
+    [
+      "071", 
+      "Which teacher will teach the MDE classes next winter?"
+    ], 
+    [
+      "106", 
+      "Of the artificial intelligence courses which ones have no prerequisites?"
+    ], 
+    [
+      "255", 
+      "For EECS 280, are there morning classes?"
+    ], 
+    [
+      "104", 
+      "For the MDE requirement, which artificial intelligence courses are there?"
+    ], 
+    [
+      "213", 
+      "Before 489 what courses do I need?"
+    ], 
+    [
+      "015", 
+      "Can I take EECS 270 in Summer 2016?"
+    ], 
+    [
+      "016", 
+      "Is EECS 281 a prerequisite for anything?"
+    ], 
+    [
+      "228", 
+      "Is EECS 270 required for EECS 370?"
+    ], 
+    [
+      "174", 
+      "During the next 6 semesters which classes will be offered?"
+    ], 
+    [
+      "000", 
+      "is 595 available to undergrads"
+    ], 
+    [
+      "237", 
+      "In the past what courses has Dr. Pete Chen taught?"
+    ], 
+    [
+      "152", 
+      "For CS majors what are the math prerequisites?"
+    ], 
+    [
+      "116", 
+      "What courses are useful for EECS 280?"
+    ], 
+    [
+      "227", 
+      "Is there any section of EECS 203 that is between 10am and 3pm?"
+    ], 
+    [
+      "170", 
+      "All of the MDE classes are?"
+    ], 
+    [
+      "237", 
+      "Which classes has Dr. Peter Chen taught before?"
+    ], 
+    [
+      "103", 
+      "What are some 4 credit artificial intelligence courses?"
+    ], 
+    [
+      "171", 
+      "What courses are not in the EECS department but are required for the major?"
+    ], 
+    [
+      "184", 
+      "As upper level electives which courses count?"
+    ], 
+    [
+      "169", 
+      "Of all the classes, which are the core ones?"
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485, which would be easier?"
+    ], 
+    [
+      "116", 
+      "What are some useful courses to take before taking EECS 545?"
+    ], 
+    [
+      "132", 
+      "Should I take both EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "017", 
+      "Of all of the classes next semester, which ones are Dr. DeOrio teaching?"
+    ], 
+    [
+      "001", 
+      "If I need to fulfill the capstone requirement, what's the easiest class I can take?"
+    ], 
+    [
+      "001", 
+      "Which class that meets the capstone requirement is the least difficult?"
+    ], 
+    [
+      "071", 
+      "MDE classes are being taught next winter by whom?"
+    ], 
+    [
+      "167", 
+      "What is the number of classes being offered next semester?"
+    ], 
+    [
+      "166", 
+      "EECS 280 has how many lectures a week?"
+    ], 
+    [
+      "292", 
+      "280 class has a lab?"
+    ], 
+    [
+      "172", 
+      "I want to see the requirements for a CS-LSA degree."
+    ], 
+    [
+      "213", 
+      "Prior to taking 489 which courses should I take?"
+    ], 
+    [
+      "132", 
+      "Is it good to take both EECS 280 and EECS 370 at once?"
+    ], 
+    [
+      "021", 
+      "Can you give me a list of classes that result in three course credit?"
+    ], 
+    [
+      "084", 
+      "Are there MDE classes on the schedule next winter?"
+    ], 
+    [
+      "116", 
+      "Can you name courses that would prepare me for taking EECS 280?"
+    ], 
+    [
+      "074", 
+      "By whom is EECS 203 taught?"
+    ], 
+    [
+      "285", 
+      "What upper-level classes have four credits?"
+    ], 
+    [
+      "219", 
+      "How many different people taught EECS 280 in the fall of 2016?"
+    ], 
+    [
+      "001", 
+      "Which class should I take to fulfill the capstone requirement if I want the easiest one?"
+    ], 
+    [
+      "225", 
+      "Can I take EECS 370 in Summer 2016?"
+    ], 
+    [
+      "174", 
+      "In the next 6 semesters, what courses will be offered?"
+    ], 
+    [
+      "132", 
+      "Would it be good for me to do EECS 280 and EECS 370 simultaneously?"
+    ], 
+    [
+      "182", 
+      "In CS-LSA courses can I see the hardness?"
+    ], 
+    [
+      "237", 
+      "Which classes did Dr. Peter Chen teach in the past?"
+    ], 
+    [
+      "001", 
+      "Which class is easiest in order to fulfill the capstone requirement"
+    ], 
+    [
+      "001", 
+      "To fulfill the capstone requirement, what's the easiest class to take?"
+    ], 
+    [
+      "113", 
+      "How often does the class convene for EECS 281?"
+    ], 
+    [
+      "081", 
+      "Is the class on Algorithms only taught by Professor Stout?"
+    ], 
+    [
+      "140", 
+      "Tell me the difference between courses CHEM 130 and CHEM 125."
+    ], 
+    [
+      "071", 
+      "Who will teach MDE classes next winter?"
+    ], 
+    [
+      "141", 
+      "Is there an EECS 400 level course that is 3-credit?"
+    ], 
+    [
+      "106", 
+      "Which artificial intelligence courses don't have prerequisites?"
+    ], 
+    [
+      "021", 
+      "Can you tell me which courses count for three credits?"
+    ], 
+    [
+      "116", 
+      "What courses would be useful to take before EECS 280?"
+    ], 
+    [
+      "021", 
+      "What three-credit courses are available?"
+    ], 
+    [
+      "053", 
+      "Does DeOrio teach any upper-level courses?"
+    ], 
+    [
+      "154", 
+      "Which classes make up an EECS major's core?"
+    ], 
+    [
+      "213", 
+      "Are there courses I have to take before EECS 489?"
+    ], 
+    [
+      "249", 
+      "Is EECS 494 more difficult than EECS 381?"
+    ], 
+    [
+      "300", 
+      "Who is teaching autonomous robotics?"
+    ], 
+    [
+      "179", 
+      "In next semester when is 482 offered?"
+    ], 
+    [
+      "304", 
+      "What are the Fall options for upper-level EECS classes?"
+    ], 
+    [
+      "018", 
+      "What classes does Prof. DeOrio teach in Winter 2017?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are offered this fall?"
+    ], 
+    [
+      "177", 
+      "For EECS 281 which are the prerequisites courses?"
+    ], 
+    [
+      "255", 
+      "Does EECS 280 offer morning classes?"
+    ], 
+    [
+      "071", 
+      "Who is teaching the MDE classes in the winter?"
+    ], 
+    [
+      "018", 
+      "What are the classes Professor DeOrio teaches Winter 2017?"
+    ], 
+    [
+      "106", 
+      "What courses on artificial intelligence have no prerequisites?"
+    ], 
+    [
+      "285", 
+      "Which four credit classes are upper-level?"
+    ], 
+    [
+      "134", 
+      "How many sections does EECS 280 have?"
+    ], 
+    [
+      "292", 
+      "Is a lab required for 280?"
+    ], 
+    [
+      "001", 
+      "What would be the easiest class to take to fulfill the capstone requirement?"
+    ], 
+    [
+      "029", 
+      "In order to declare a major in EECS, which classes do I need to take?"
+    ], 
+    [
+      "175", 
+      "381 is worth how many credits?"
+    ], 
+    [
+      "021", 
+      "What courses are worth three credits?"
+    ], 
+    [
+      "166", 
+      "What's the number of weekly lectures for EECS 280?"
+    ], 
+    [
+      "172", 
+      "For a CS-LSA degree, show me the requirements?"
+    ], 
+    [
+      "029", 
+      "Which are the classes required to declare a major in EECS?"
+    ], 
+    [
+      "204", 
+      "In summer, name the classes that are available that count towards CS major."
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485 what is easier?"
+    ], 
+    [
+      "106", 
+      "Name the artificial intelligence courses that require no pre-qualification?"
+    ], 
+    [
+      "109", 
+      "What spring/summer courses can I take to fulfill my MDE requirement?"
+    ], 
+    [
+      "040", 
+      "Are all the upper-level classes four credits?"
+    ], 
+    [
+      "084", 
+      "Of all the MDE classes, which are offered next winter?"
+    ], 
+    [
+      "239", 
+      "What is the length of time that EECS 280 has been offered?"
+    ], 
+    [
+      "029", 
+      "If I want to declare EECS as my major, which classes am I going to have to take?"
+    ], 
+    [
+      "239", 
+      "EECS 280 has been in the course listings how many years?"
+    ], 
+    [
+      "052", 
+      "Which of the two are easier, EECS 484, or EECS 485?"
+    ], 
+    [
+      "239", 
+      "EECS  280 has been offered for how long?"
+    ], 
+    [
+      "213", 
+      "In order to take 489, what courses are required to be completed?"
+    ], 
+    [
+      "166", 
+      "How many EECS 280 lectures are there each week?"
+    ], 
+    [
+      "001", 
+      "Of all the classes that can fulfill the capstone requirement, what's the easiest?"
+    ], 
+    [
+      "116", 
+      "Which classes prepare you for EECS 280?"
+    ], 
+    [
+      "017", 
+      "What will be the classes that are taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "132", 
+      "Should I take EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "071", 
+      "Which teacher is teaching the MDE classes next winter?"
+    ], 
+    [
+      "001", 
+      "What's the easiest class I can take to fulfill the MDE requirement?"
+    ], 
+    [
+      "304", 
+      "What are the upper-level EECS classes being offered this Fall?"
+    ], 
+    [
+      "285", 
+      "Which upper level classes get you four credits?"
+    ], 
+    [
+      "156", 
+      "Does Prof. Smith teach EECS 280 ever?"
+    ], 
+    [
+      "074", 
+      "Who teaches EECS 203?"
+    ], 
+    [
+      "170", 
+      "What are all of the MDE classes?"
+    ], 
+    [
+      "177", 
+      "Name the courses required for EECS 281?"
+    ], 
+    [
+      "116", 
+      "Before I take EECS 280 what classes do you recommend that I take?"
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485; which is the easiest?"
+    ], 
+    [
+      "176", 
+      "What is required for EECS 203 and 280?"
+    ], 
+    [
+      "219", 
+      "How many options are there for professors of EECS 280 in Fall 2016?"
+    ], 
+    [
+      "154", 
+      "For the EECS major, what are the core classes?"
+    ], 
+    [
+      "124", 
+      "What is the lecture time for EECS 492 next semester?"
+    ], 
+    [
+      "071", 
+      "What teachers are offering MDE classes next winter?"
+    ], 
+    [
+      "213", 
+      "What courses are required as a prerequisite to 489?"
+    ], 
+    [
+      "033", 
+      "Would EECS 285 fulfill any requirements besides general elective?"
+    ], 
+    [
+      "074", 
+      "Which person is the teacher of EECS 203?"
+    ], 
+    [
+      "074", 
+      "can you tell me the professor who is teaching EECS 203?"
+    ], 
+    [
+      "255", 
+      "Can I take the EECS 280 class in the AM?"
+    ], 
+    [
+      "081", 
+      "Is the only Algorithms professor Professor Stout?"
+    ], 
+    [
+      "202", 
+      "Will Prof. Provost teach 492 next semester?"
+    ], 
+    [
+      "001", 
+      "To fulfill the capstone requirement, what is the easiest class I can take?"
+    ], 
+    [
+      "169", 
+      "Which all are the core classes?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 offered this Winter 2016 semester?"
+    ], 
+    [
+      "017", 
+      "Speaking of next semester, what classes is Dr. DeOrio teaching?"
+    ], 
+    [
+      "104", 
+      "How can the MDE requirement be satisfied with AI courses?"
+    ], 
+    [
+      "170", 
+      "Please tell me, what are all the MDE classes?"
+    ], 
+    [
+      "188", 
+      "EECS 281 is taught on which days of the week?"
+    ], 
+    [
+      "247", 
+      "EECS 483 offered when next?"
+    ], 
+    [
+      "169", 
+      "What core classes are there?"
+    ], 
+    [
+      "021", 
+      "What courses give you three credits?"
+    ], 
+    [
+      "169", 
+      "Name the main classes?"
+    ], 
+    [
+      "219", 
+      "Can you tell me the number of professors that teach EECS 280 this Fall 2016?"
+    ], 
+    [
+      "213", 
+      "Are there any courses that I'm required to take before taking 489?"
+    ], 
+    [
+      "177", 
+      "Name the courses that are mandatory for EECS 281?"
+    ], 
+    [
+      "071", 
+      "Next winter, who is teaching MDE classes?"
+    ], 
+    [
+      "021", 
+      "Of the courses I have to choose from, which ones are worth three credits?"
+    ], 
+    [
+      "255", 
+      "When does EECS 280 meet in the mornings?"
+    ], 
+    [
+      "236", 
+      "How many lecture sections are offered for EECS 482 next semester?"
+    ], 
+    [
+      "285", 
+      "Of all the upper level classes, which ones are four credits?"
+    ], 
+    [
+      "148", 
+      "Will I need EECS 376 to graduate?"
+    ], 
+    [
+      "134", 
+      "What number of sections are there for EECS 280?"
+    ], 
+    [
+      "100", 
+      "How many students in 280?"
+    ], 
+    [
+      "183", 
+      "Can I take the 492 course next term?"
+    ], 
+    [
+      "000", 
+      "Is 595 available for undergrads?"
+    ], 
+    [
+      "202", 
+      "492 will be taught by Prof. Provost next semester?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are offered next winter?"
+    ], 
+    [
+      "279", 
+      "What classes will I be able to take once I take Math 214?"
+    ], 
+    [
+      "213", 
+      "What courses must I take to be allowed to take 489?"
+    ], 
+    [
+      "021", 
+      "Could you list me courses that helps me get three credits?"
+    ], 
+    [
+      "219", 
+      "Was EECS 280 offered by more than one teacher during the fall of 2016, if so how many?"
+    ], 
+    [
+      "213", 
+      "What are the prerequisite courses for 489?"
+    ], 
+    [
+      "015", 
+      "Is EECS 270 available in the Summer of 2016?"
+    ], 
+    [
+      "237", 
+      "What classes does Dr. Peter Chen have experience teaching?"
+    ], 
+    [
+      "132", 
+      "Will I see benefits from doing EECS 280 and 370 simultaneously?"
+    ], 
+    [
+      "116", 
+      "What courses are useful to take before EECS 280?"
+    ], 
+    [
+      "078", 
+      "How much is the workload in EECS 370?"
+    ], 
+    [
+      "170", 
+      "Can you tell me all of the MDE classes?"
+    ], 
+    [
+      "106", 
+      "What AI classes don't require prerequisites?"
+    ], 
+    [
+      "166", 
+      "How many times a week does EECS 280 meet?"
+    ], 
+    [
+      "169", 
+      "Name the main classses?"
+    ], 
+    [
+      "180", 
+      "What are the offered courses this semester?"
+    ], 
+    [
+      "109", 
+      "To meet the MDE requirement which courses can I take in the Spring or Summer semester?"
+    ], 
+    [
+      "237", 
+      "For what classes Dr. Peter Chang has been the teacher before?"
+    ], 
+    [
+      "285", 
+      "Are there classes that are four credits in upper-level?"
+    ], 
+    [
+      "171", 
+      "Are there any courses required for the major that are not in the EECS department?"
+    ], 
+    [
+      "074", 
+      "Who is the teacher for EECS 203?"
+    ], 
+    [
+      "168", 
+      "Any other teachers teach 280 other than Prof Smith?"
+    ], 
+    [
+      "001", 
+      "To fulfill the capstone requirement, what's the easiest class I can take?"
+    ], 
+    [
+      "001", 
+      "To fulfil the capstone requirement, which classes are the easiest?"
+    ], 
+    [
+      "156", 
+      "Is there a time that Prof Smith taught EECS 280?"
+    ], 
+    [
+      "154", 
+      "Engineering CS students take what core classes?"
+    ], 
+    [
+      "255", 
+      "Are there any morning sessions for EECS 280?"
+    ], 
+    [
+      "174", 
+      "Name the classes offered in the next 6 semesters."
+    ], 
+    [
+      "269", 
+      "Is it possible for me to take 280 on Mondays and Wednesday?"
+    ], 
+    [
+      "255", 
+      "What are the morning times for the EECS 280 course?"
+    ], 
+    [
+      "021", 
+      "What courses count as three credits?"
+    ], 
+    [
+      "300", 
+      "Who teaches autonomous robotics this semester?"
+    ], 
+    [
+      "084", 
+      "Are there any MDE classes that are offered next winter?"
+    ], 
+    [
+      "183", 
+      "492 is in next term?"
+    ], 
+    [
+      "177", 
+      "What are EECS 281's course prerequisite requirements?"
+    ], 
+    [
+      "171", 
+      "What courses are required for the major but not in the EECS department?"
+    ], 
+    [
+      "017", 
+      "What are the course numbers Dr. DeOrio is teaching next semester?"
+    ], 
+    [
+      "104", 
+      "Which artificial intelligence classes handle the MDE requirement?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are offered during the winter semester?"
+    ], 
+    [
+      "071", 
+      "Who is the professor for the winter MDE classes?"
+    ], 
+    [
+      "176", 
+      "Name the prerequisites for EECS 203 and 208."
+    ], 
+    [
+      "014", 
+      "Am I able to take EECS 281 right now?"
+    ], 
+    [
+      "143", 
+      "tell me about ENGR 280?"
+    ], 
+    [
+      "304", 
+      "Are any of the EECS classes this fall considered upper-level?"
+    ], 
+    [
+      "285", 
+      "What are the four credits classes in upper-level?"
+    ], 
+    [
+      "292", 
+      "Is there a lab which belongs to 280?"
+    ], 
+    [
+      "021", 
+      "What three credit course are there?"
+    ], 
+    [
+      "132", 
+      "Is taking EECS 280 and EECS simultaneously smart?"
+    ], 
+    [
+      "304", 
+      "During the Fall, which upper-level EECS classes are available?"
+    ], 
+    [
+      "092", 
+      "Can I get a list of classes without labs at the 400 level?"
+    ], 
+    [
+      "029", 
+      "I want to declare my major as EECS, what classes should I take?"
+    ], 
+    [
+      "082", 
+      "What's the course number for the video game class?"
+    ], 
+    [
+      "071", 
+      "Do you know who is teaching MDE classes next winter?"
+    ], 
+    [
+      "285", 
+      "Four credits are given by which upper-level classes?"
+    ], 
+    [
+      "116", 
+      "Can you tell me which courses would be most useful to take before EECS 280?"
+    ], 
+    [
+      "193", 
+      "In spring term which EECS classes are offered?"
+    ], 
+    [
+      "141", 
+      "Is there an EECS 400 level course that contains 3 credits?"
+    ], 
+    [
+      "182", 
+      "What is the difficulty level for all of the CS-LSA courses?"
+    ], 
+    [
+      "239", 
+      "EECS 280 has been offered for how long now?"
+    ], 
+    [
+      "174", 
+      "In the next 6 semesters, what classes will be offered?"
+    ], 
+    [
+      "021", 
+      "Can you highlight the courses that grant three credits upon completion?"
+    ], 
+    [
+      "304", 
+      "What high-level EECS courses are given this fall?"
+    ], 
+    [
+      "017", 
+      "Could you tell me what classes will be taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "242", 
+      "What are some of the 400/500 level EECS courses with the least workload?"
+    ], 
+    [
+      "052", 
+      "Of the following [classes], EECS 484 and EECS 485, which is easiest?"
+    ], 
+    [
+      "029", 
+      "Declaring a major in EECS requires me to take which classes?"
+    ], 
+    [
+      "018", 
+      "Name the courses that Prof. DeOrio will teach in winter 2017?"
+    ], 
+    [
+      "175", 
+      "What number of credits do I get for 381?"
+    ], 
+    [
+      "071", 
+      "Who is the instructor for MDE winter classes?"
+    ], 
+    [
+      "029", 
+      "What are the prerequisite classes for the EECS major?"
+    ], 
+    [
+      "021", 
+      "if i wanted to get 3 credits, which courses should i sign up for?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 going to be offered in the Winter 2016 semester?"
+    ], 
+    [
+      "255", 
+      "Which morning classes are for EECS 280?"
+    ], 
+    [
+      "084", 
+      "What does the selection of MDE classes look like for next winter?"
+    ], 
+    [
+      "134", 
+      "How many sections are there for EECS 280?"
+    ], 
+    [
+      "205", 
+      "Name the upper level electives that are available next fall after 10 am."
+    ], 
+    [
+      "237", 
+      "Do you know which class Dr. Peter Chen has taught previously?"
+    ], 
+    [
+      "304", 
+      "This fall, which upper-level EECS classes are being offered?"
+    ], 
+    [
+      "116", 
+      "Please give me advice on which courses are best taken prior to EECS 280."
+    ], 
+    [
+      "074", 
+      "EECS 203 is taught by whom?"
+    ], 
+    [
+      "180", 
+      "The courses that are offered this semester are?"
+    ], 
+    [
+      "304", 
+      "Of the EECS classes offered this Fall, which are upper level?"
+    ], 
+    [
+      "013", 
+      "Any Senior Design Capstones classes available next term?"
+    ], 
+    [
+      "132", 
+      "Should EECS 280 and EECS 370 be taken simultaneously?"
+    ], 
+    [
+      "071", 
+      "Which professor is running the MDE classes next winter?"
+    ], 
+    [
+      "001", 
+      "In order to fulfill the capstone requirement what is the easiest class to take?"
+    ], 
+    [
+      "052", 
+      "Which one is easiest, EECS 484 or EECS 485?"
+    ], 
+    [
+      "269", 
+      "Am I able to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "071", 
+      "The MDE classes , who is teaching them next winter?"
+    ], 
+    [
+      "074", 
+      "Who instructs EECS 203?"
+    ], 
+    [
+      "237", 
+      "What courses has Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "213", 
+      "Before taking 489, which courses do i need to take?"
+    ], 
+    [
+      "071", 
+      "MDE classed are being taught by who next winter?"
+    ], 
+    [
+      "235", 
+      "Which classes can be taken as a capstone next semester?"
+    ], 
+    [
+      "182", 
+      "For CS-LSA courses show me difficulty."
+    ], 
+    [
+      "239", 
+      "EECS 280 has been taught how many semesters?"
+    ], 
+    [
+      "001", 
+      "What classes are least demanding, while as yet satisfying the capstone necessity?"
+    ], 
+    [
+      "165", 
+      "EECS has been offered how many times?"
+    ], 
+    [
+      "052", 
+      "Which is easiest out of EECS 484 and EECS 485?"
+    ], 
+    [
+      "021", 
+      "Courses worth three credits?"
+    ], 
+    [
+      "304", 
+      "What are the EECS classes that will be available this Fall?"
+    ], 
+    [
+      "052", 
+      "Which course is less difficult, EECS 484 or EECS 485?"
+    ], 
+    [
+      "166", 
+      "How many lectures are there for EECS 280 every week?"
+    ], 
+    [
+      "181", 
+      "Can you tell me what my GPA is?"
+    ], 
+    [
+      "285", 
+      "Which upper level classes are worth four credits?"
+    ], 
+    [
+      "155", 
+      "Which courses does Prof. Smith teach?"
+    ], 
+    [
+      "017", 
+      "Dr. DeOrio is instructing which classes next semester?"
+    ], 
+    [
+      "071", 
+      "MDE classes next winter are being taught by who?"
+    ], 
+    [
+      "052", 
+      "Do you find EECS 484 or EECS 485 easier?"
+    ], 
+    [
+      "179", 
+      "482 is offered when in next semester?"
+    ], 
+    [
+      "285", 
+      "Of all the upper-level classes, what classes involve four credits?"
+    ], 
+    [
+      "304", 
+      "What upper-level EECS classes are being offered this Fall?"
+    ], 
+    [
+      "092", 
+      "Which of the 400 level classes do not have a lab component?"
+    ], 
+    [
+      "166", 
+      "Every week, how many lectures are offered by EECS 280?"
+    ], 
+    [
+      "165", 
+      "What is the total number of times EECS 280 was made available?"
+    ], 
+    [
+      "294", 
+      "Do all upper-level classes have exams?"
+    ], 
+    [
+      "247", 
+      "Can i take 483 when?"
+    ], 
+    [
+      "071", 
+      "Which teacher is teaching the winter MDE classes?"
+    ], 
+    [
+      "001", 
+      "In order to fulfill the capstone requirement, what easy course can I take?"
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485, which is easier?"
+    ], 
+    [
+      "295", 
+      "Does Prof. Smith always set exams for their classes?"
+    ], 
+    [
+      "021", 
+      "What is the list of courses that are 3 credits?"
+    ], 
+    [
+      "075", 
+      "Is P. Chen teaching 482 next winter?"
+    ], 
+    [
+      "188", 
+      "Which days of the week is EECS 281 taught?"
+    ], 
+    [
+      "016", 
+      "Are there any courses which require taking EECS 281 first?"
+    ], 
+    [
+      "017", 
+      "Which classes will Dr. DeOrio be teaching next semester?"
+    ], 
+    [
+      "166", 
+      "EECS 280 has how many lectures every week?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 280 been in the course listings?"
+    ], 
+    [
+      "116", 
+      "Which courses will be useful before taking EECS 280?"
+    ], 
+    [
+      "066", 
+      "I need to leave for work at 5:00 every day. If I take 492 and 445, can I do that?"
+    ], 
+    [
+      "021", 
+      "What courses offer 3 credit hours?"
+    ], 
+    [
+      "134", 
+      "How many sections does EECS 280 include?"
+    ], 
+    [
+      "206", 
+      "Which upper level elective classes next semester do not meet on Fridays?"
+    ], 
+    [
+      "123", 
+      "Which upper level CS classes are offered next semester?"
+    ], 
+    [
+      "304", 
+      "Are there any upper-level EECS classes being given this Fall?"
+    ], 
+    [
+      "133", 
+      "Are they offering ENGR 100 section 500 in the Winter 2016 semester?"
+    ], 
+    [
+      "132", 
+      "Do you think it is a good idea to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "157", 
+      "EECS 281, when was it last offered?"
+    ], 
+    [
+      "166", 
+      "What's the total number of weekly lectures for EECS 280?"
+    ], 
+    [
+      "173", 
+      "Am I able to view my transcript?"
+    ], 
+    [
+      "018", 
+      "What will Prof. DeOrio be teaching in the winter of 2017?"
+    ], 
+    [
+      "176", 
+      "What are the prerequisites for EECS 203 and 280?"
+    ], 
+    [
+      "074", 
+      "What is the instructors name that teaches EECS 203?"
+    ], 
+    [
+      "237", 
+      "What are the past classes Dr. Peter Chen has taught?"
+    ], 
+    [
+      "074", 
+      "Do you know who the teacher of EECS 203 is?"
+    ], 
+    [
+      "182", 
+      "Show me the difficulty for all of the CS-LSA courses."
+    ], 
+    [
+      "304", 
+      "Are any upper-level EECS classes being offered this Fall?"
+    ], 
+    [
+      "168", 
+      "Does anyone other than Professor Smith teach 280?"
+    ], 
+    [
+      "052", 
+      "Which one of the following classes is easier: EECS 484 or EECS 485?"
+    ], 
+    [
+      "166", 
+      "Each week, how many lectures does EECS have?"
+    ], 
+    [
+      "183", 
+      "Will 492 be offered next term?"
+    ], 
+    [
+      "181", 
+      "How much is my current GPA?"
+    ], 
+    [
+      "304", 
+      "Of the EECS classes offered this fall, which are considered upper-level?"
+    ], 
+    [
+      "213", 
+      "Which courses am I required to take prior to 489?"
+    ], 
+    [
+      "017", 
+      "What classes is Dr. DeOrio teaching for the next semester?"
+    ], 
+    [
+      "021", 
+      "What are the courses which are worth three credits?"
+    ], 
+    [
+      "269", 
+      "Is 280 offered on monday and wednesday?"
+    ], 
+    [
+      "013", 
+      "Name the classes next semester which are available as senior design capstones?"
+    ], 
+    [
+      "071", 
+      "Of all the instructors, who will be teaching MDE classes next winter?"
+    ], 
+    [
+      "147", 
+      "EECS 203 is taught by Quentin Stout?"
+    ], 
+    [
+      "222", 
+      "What EECS classes can be counted as cap stone?"
+    ], 
+    [
+      "285", 
+      "Are there any upper level classes that produce four credits?"
+    ], 
+    [
+      "113", 
+      "How often does the course EECS 281 meet?"
+    ], 
+    [
+      "177", 
+      "What prerequisites are required for EECS 281?"
+    ], 
+    [
+      "170", 
+      "Name all MDE classes for me."
+    ], 
+    [
+      "284", 
+      "Who were the GSIs for EECS 280 last semester?"
+    ], 
+    [
+      "169", 
+      "What are the names of the core classes?"
+    ], 
+    [
+      "285", 
+      "Of the upper-level classes, which are four credits?"
+    ], 
+    [
+      "126", 
+      "What is EECS 492 really called?"
+    ], 
+    [
+      "015", 
+      "Will I be allowed to take EECS 270 in Summer 2016?"
+    ], 
+    [
+      "014", 
+      "Am I eligible to take EECS 281 right now?"
+    ], 
+    [
+      "116", 
+      "Are there certain courses that are useful before taking EECS 280?"
+    ], 
+    [
+      "213", 
+      "Which courses do I need to take before 489?"
+    ], 
+    [
+      "100", 
+      "Just how big do you think 280 is?"
+    ], 
+    [
+      "052", 
+      "Of EECS 484 and EECS 485, which is easier?"
+    ], 
+    [
+      "178", 
+      "I have how many credits so far?"
+    ], 
+    [
+      "285", 
+      "Out of all the highest-level classes, which ones are 4 credits?"
+    ], 
+    [
+      "072", 
+      "Who teaches EECS 482 next semester?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen, what classes has he taught in the past?"
+    ], 
+    [
+      "014", 
+      "Can I take the course EECS 281 right now?"
+    ], 
+    [
+      "014", 
+      "Is EECS 281 offered right now?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 485 been offered for?"
+    ], 
+    [
+      "168", 
+      "Is 280 taught by anyone besides Prof Smith?"
+    ], 
+    [
+      "074", 
+      "Who teaches EECS 203?"
+    ], 
+    [
+      "219", 
+      "How many professors in Fall 2016 are teaching EECS 280?"
+    ], 
+    [
+      "116", 
+      "Which courses would be useful to take before taking EECS 280?"
+    ], 
+    [
+      "174", 
+      "In the next 6 semesters what are the classes offered?"
+    ], 
+    [
+      "285", 
+      "What are four credit classes that are upper-level?"
+    ], 
+    [
+      "140", 
+      "Tell me the differences between CHEM 130 and CHEM 125."
+    ], 
+    [
+      "001", 
+      "Which class is the easiest I can take to the fulfill the Capstone requirement?"
+    ], 
+    [
+      "132", 
+      "Would you recommend taking EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "247", 
+      "When is 483 offered?"
+    ], 
+    [
+      "103", 
+      "Display artificial intelligence courses of 4 credits."
+    ], 
+    [
+      "173", 
+      "May i look at my transcript?"
+    ], 
+    [
+      "251", 
+      "What's the hardest class?"
+    ], 
+    [
+      "205", 
+      "After 10 am, what are the upper level electives that are available next fall?"
+    ], 
+    [
+      "166", 
+      "How many lectures each week does EECS 280 have?"
+    ], 
+    [
+      "092", 
+      "If I don't want to do a lab, which 400 level courses should I consider?"
+    ], 
+    [
+      "169", 
+      "Can you tell me the core classes?"
+    ], 
+    [
+      "111", 
+      "Can you show me which courses involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "116", 
+      "Which course are useful before taking EECS 280?"
+    ], 
+    [
+      "255", 
+      "What morning classes does EECS 280 have?"
+    ], 
+    [
+      "148", 
+      "Is EECS 376 essential to my graduation?"
+    ], 
+    [
+      "291", 
+      "Does EECS 280 have a lab when Prof. Smith teaches it?"
+    ], 
+    [
+      "239", 
+      "How long has there been an offering of EECS 280?"
+    ], 
+    [
+      "156", 
+      "Has Prof. Smith ever taught the course EECS 280?"
+    ], 
+    [
+      "109", 
+      "In order to fulfill my MDE requirement, which spring/summer courses can I take?"
+    ], 
+    [
+      "121", 
+      "Which courses are easiest?"
+    ], 
+    [
+      "076", 
+      "What upper-level electives are offered in the spring and summer?"
+    ], 
+    [
+      "131", 
+      "Is EECS 280 hard?"
+    ], 
+    [
+      "124", 
+      "What time of the day does EECS 492 start next semester?"
+    ], 
+    [
+      "219", 
+      "Do you know the number of professors who teach EECS 280 in Fall 2016?"
+    ], 
+    [
+      "165", 
+      "How many times has EECS 280 been offered?"
+    ], 
+    [
+      "071", 
+      "Next winter , who is teaching the MDE classes?"
+    ], 
+    [
+      "269", 
+      "Is 280 offered on Mondays and Wednesdays?"
+    ], 
+    [
+      "285", 
+      "Which upper-level classes offer four credits?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS, which classes are required?"
+    ], 
+    [
+      "304", 
+      "This fall, what are the upper level EECS classes being offered?"
+    ], 
+    [
+      "172", 
+      "Which requirements do I need to meet for a CS-LSA degree?"
+    ], 
+    [
+      "269", 
+      "Is 280 available on Mondays and Wednesdays?"
+    ], 
+    [
+      "178", 
+      "Can you tell me how many credits I have so far?"
+    ], 
+    [
+      "134", 
+      "What is the number of sections available for EECS 280?"
+    ], 
+    [
+      "074", 
+      "What teacher teaches EECS 203?"
+    ], 
+    [
+      "021", 
+      "Which of the courses are worth three credits?"
+    ], 
+    [
+      "304", 
+      "This fall's upper-level EECS classes include which ones?"
+    ], 
+    [
+      "100", 
+      "What's the size of 280?"
+    ], 
+    [
+      "116", 
+      "What are good classes to take before enrolling in EECS 280?"
+    ], 
+    [
+      "123", 
+      "What upper level CS classes are available next semester?"
+    ], 
+    [
+      "172", 
+      "Display to me what is required for a CS-LSA degree."
+    ], 
+    [
+      "017", 
+      "Which courses is professor DeOrio teaching next semester?"
+    ], 
+    [
+      "071", 
+      "Who is the teacher for the MDE classes next winter?"
+    ], 
+    [
+      "081", 
+      "Is Algorithms only taught by Professor Stout?"
+    ], 
+    [
+      "074", 
+      "EECS 203 is taught by who?"
+    ], 
+    [
+      "021", 
+      "What are the three credit courses offered?"
+    ], 
+    [
+      "247", 
+      "In which semester will 483 be offered next?"
+    ], 
+    [
+      "255", 
+      "Is EECS 280 scheduled for morning classes?"
+    ], 
+    [
+      "123", 
+      "in next semester which upper level CS classes are offered?"
+    ], 
+    [
+      "182", 
+      "Can I see the difficulty for all of the CS-LSA courses?"
+    ], 
+    [
+      "081", 
+      "Does anyone teach Algorithms besides Professor Stout?"
+    ], 
+    [
+      "116", 
+      "Which course can I take to prepare myself for EECS 280?"
+    ], 
+    [
+      "100", 
+      "Exactly how big is 280?"
+    ], 
+    [
+      "174", 
+      "Which classes will the next six semesters have?"
+    ], 
+    [
+      "209", 
+      "What are the advisory prerequisites for Intro AI?"
+    ], 
+    [
+      "292", 
+      "Is there a lab associated with the 280 level course?"
+    ], 
+    [
+      "218", 
+      "After 10 am, how many sections of EECS 281 are there?"
+    ], 
+    [
+      "220", 
+      "Is there a 3-credit upper level class in Spring 2016?"
+    ], 
+    [
+      "296", 
+      "Did Prof. Smith set an exam for 280 last time they taught it?"
+    ], 
+    [
+      "237", 
+      "In the past what classes has Dr. Peter Chen taught?"
+    ], 
+    [
+      "269", 
+      "On Mondays and wednesdays, can I take 280?"
+    ], 
+    [
+      "074", 
+      "EECS 203, who teaches it?"
+    ], 
+    [
+      "172", 
+      "What are the requirements for getting a CS-LSA degree?"
+    ], 
+    [
+      "255", 
+      "Does EECS 280 have classes in the morning?"
+    ], 
+    [
+      "213", 
+      "Prior to taking 489 what courses do I need to take?"
+    ], 
+    [
+      "219", 
+      "How many professors will teach EECS 280 in the fall of 2016?"
+    ], 
+    [
+      "152", 
+      "Math prerequisites required by CS majors include what courses?"
+    ], 
+    [
+      "001", 
+      "For fulfilling the capstone requirement, what's the easiest class?"
+    ], 
+    [
+      "017", 
+      "Next semester, which classes is Dr. DeOrio teaching?"
+    ], 
+    [
+      "219", 
+      "In the Fall 2016 semester, EECS 280 is taught by how many professors?"
+    ], 
+    [
+      "081", 
+      "Is Professor Stout the only professor available for Algorithms?"
+    ], 
+    [
+      "154", 
+      "What are the core classes for EECS majors?"
+    ], 
+    [
+      "219", 
+      "EECS 280 will be taught by how many professors in 2016 fall?"
+    ], 
+    [
+      "116", 
+      "Before taking EECS 280, which courses should I take?"
+    ], 
+    [
+      "213", 
+      "Which courses do I need to take before taking 489?"
+    ], 
+    [
+      "173", 
+      "I need to see my transcript."
+    ], 
+    [
+      "239", 
+      "EECS 280 has been offer for how long?"
+    ], 
+    [
+      "143", 
+      "What is ENGR 280?"
+    ], 
+    [
+      "126", 
+      "What is the name of the EECS 492 class?"
+    ], 
+    [
+      "132", 
+      "Should I take both EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "081", 
+      "Is Stout the only Algorithms instructor?"
+    ], 
+    [
+      "000", 
+      "595 is taken by undergrads?"
+    ], 
+    [
+      "124", 
+      "Next semester, what time is the EECS 492 lecture?"
+    ], 
+    [
+      "247", 
+      "483 offered when?"
+    ], 
+    [
+      "100", 
+      "The 280 class - how big is it?"
+    ], 
+    [
+      "071", 
+      "Which teachers will be teaching MDE next winter?"
+    ], 
+    [
+      "219", 
+      "How many professors teach the EECS 280 course in the fall of 2016?"
+    ], 
+    [
+      "156", 
+      "Was Prof. Smith ever taught EECS 280?"
+    ], 
+    [
+      "103", 
+      "Show me some artificial intelligence courses of 4 credits."
+    ], 
+    [
+      "017", 
+      "What classes is Dr. DeOrio teaching next semester?"
+    ], 
+    [
+      "103", 
+      "I'd like to see 4 credit artificial intelligence courses."
+    ], 
+    [
+      "170", 
+      "MDE classes are?"
+    ], 
+    [
+      "126", 
+      "What is the course name of EECS 492?"
+    ], 
+    [
+      "100", 
+      "What's the size of the 280 course?"
+    ], 
+    [
+      "182", 
+      "For all the CS-LSA courses can I see the difficulty?"
+    ], 
+    [
+      "219", 
+      "How many total professors during the Fall 2016 semester teach EECS280?"
+    ], 
+    [
+      "092", 
+      "Which classes at the 400 level don't have labs?"
+    ], 
+    [
+      "017", 
+      "Can you provide me with a list of classes being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "086", 
+      "Does 281 have a lab?"
+    ], 
+    [
+      "219", 
+      "Do you know how many professors are going to teach EECS 280 this Fall 2016?"
+    ], 
+    [
+      "021", 
+      "I need to take 3 credit courses so which ones are worth 3 credits?"
+    ], 
+    [
+      "176", 
+      "For EECS 203 and 280 what are the prerequisites?"
+    ], 
+    [
+      "237", 
+      "What has Dr. Peter Chen taught previously?"
+    ], 
+    [
+      "177", 
+      "Off all the courses which ones are prerequisites for EECS 281?"
+    ], 
+    [
+      "132", 
+      "Should I, at the same time, take EECS 280 and EECS 370?"
+    ], 
+    [
+      "021", 
+      "Can you list the courses that are worth three credits?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are offered over the winter?"
+    ], 
+    [
+      "052", 
+      "If you compared EECS 484 and EECS 485, which would you consider to be least difficult?"
+    ], 
+    [
+      "129", 
+      "Are there any 1-creedit courses for EECS?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS, what classes must I take?"
+    ], 
+    [
+      "304", 
+      "What upper level EECS classes are available this Fall?"
+    ], 
+    [
+      "255", 
+      "Are any morning classes available for EECS 280?"
+    ], 
+    [
+      "180", 
+      "What courses are offered this semester?"
+    ], 
+    [
+      "124", 
+      "Next semester, what time does the EECS 492 lecture begin?"
+    ], 
+    [
+      "106", 
+      "Tell me which AI courses do not have prerequisites."
+    ], 
+    [
+      "174", 
+      "Show me the next 6 semesters of classes."
+    ], 
+    [
+      "017", 
+      "Next semester, which classes are being taught by Dr. DeOrio?"
+    ], 
+    [
+      "173", 
+      "Show me my tasnscript."
+    ], 
+    [
+      "084", 
+      "What MDE classes will be offered over the winter?"
+    ], 
+    [
+      "175", 
+      "How many credits do I get for 381"
+    ], 
+    [
+      "017", 
+      "Which of Dr. DeOrio's classes are being offered next semester?"
+    ], 
+    [
+      "029", 
+      "Can you advise me of the courses that I should take to declare a major in EECS?"
+    ], 
+    [
+      "116", 
+      "Are there any courses that are useful to take before taking EECS 280?"
+    ], 
+    [
+      "113", 
+      "How frequently does EECS 281 meet for class?"
+    ], 
+    [
+      "254", 
+      "Is EECS 281 offered every semester?"
+    ], 
+    [
+      "255", 
+      "Are there morning classes for EECS 280?"
+    ], 
+    [
+      "285", 
+      "What upper-level classes are worth four credits?"
+    ], 
+    [
+      "074", 
+      "Can you tell me who the teacher is for EECS 203?"
+    ], 
+    [
+      "078", 
+      "In EECS 370 how is work load?"
+    ], 
+    [
+      "304", 
+      "What upper level EECS classes are available fall semester?"
+    ], 
+    [
+      "168", 
+      "Anyone teach 280 other than Prof Smith?"
+    ], 
+    [
+      "100", 
+      "How huge is 280?"
+    ], 
+    [
+      "172", 
+      "Can you show me the requirements for a CS-LSA degree?"
+    ], 
+    [
+      "132", 
+      "Do you advise me taking EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "029", 
+      "Which classes must I take in order to declare a major in EECS?"
+    ], 
+    [
+      "021", 
+      "Please name the courses that provide three credits."
+    ], 
+    [
+      "093", 
+      "I'm thinking about taking a hardware course. Where can I start?"
+    ], 
+    [
+      "021", 
+      "Are there courses that will offer three credits?"
+    ], 
+    [
+      "183", 
+      "Is 492 available next term?"
+    ], 
+    [
+      "000", 
+      "Is 595 available for undergraduates?"
+    ], 
+    [
+      "237", 
+      "Did Dr. Peter Chen teach any other classes before?"
+    ], 
+    [
+      "178", 
+      "How many credits do I have now?"
+    ], 
+    [
+      "292", 
+      "Does 280 contain a lab?"
+    ], 
+    [
+      "184", 
+      "Which courses count as upper level electives?"
+    ], 
+    [
+      "074", 
+      "For EECS 203, who is teaching?"
+    ], 
+    [
+      "213", 
+      "Which courses are required before I can take 489?"
+    ], 
+    [
+      "078", 
+      "EECS 370 workload is like?"
+    ], 
+    [
+      "021", 
+      "List some courses worth three credits."
+    ], 
+    [
+      "081", 
+      "Do any professors besides Stout teach Algorithms?"
+    ], 
+    [
+      "123", 
+      "What are the upper level CS classes that are available next semester?"
+    ], 
+    [
+      "231", 
+      "Which classes are available this summer?"
+    ], 
+    [
+      "132", 
+      "Should both EECS280 and EECS 370 be take together?"
+    ], 
+    [
+      "071", 
+      "Which professors are teaching the MDE courses next winter?"
+    ], 
+    [
+      "255", 
+      "Does EECS 280 have classes in the mornings?"
+    ], 
+    [
+      "180", 
+      "Of all courses, which ones are offered this semester?"
+    ], 
+    [
+      "255", 
+      "Are there EECS 280 morning classes?"
+    ], 
+    [
+      "017", 
+      "Will all of Dr. DeOrio's classes be available next semester and if not, which ones will be available??"
+    ], 
+    [
+      "021", 
+      "Which courses have a value of three credits?"
+    ], 
+    [
+      "219", 
+      "During the 2016 fall, how many professors teach EECS 280"
+    ], 
+    [
+      "207", 
+      "Is there an ENGR 151 section that is not on Monday next semester?"
+    ], 
+    [
+      "156", 
+      "Was EECS 280 ever taught by Prof. Smith?"
+    ], 
+    [
+      "001", 
+      "Which is the easiest class that fulfills the capstone requirement?"
+    ], 
+    [
+      "000", 
+      "Can undergrads enroll in the course 595?"
+    ], 
+    [
+      "228", 
+      "Is EECS 270 needed for EECS 370?"
+    ], 
+    [
+      "132", 
+      "Will I be ok taking EECS 280 and EECS 370 together?"
+    ], 
+    [
+      "169", 
+      "Name the core classes?"
+    ], 
+    [
+      "177", 
+      "For EECS 281 what are the course prerequisites?"
+    ], 
+    [
+      "104", 
+      "Which courses in artificial intelligence meet the MDE need?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 offered in the Winter 2016 semester?"
+    ], 
+    [
+      "124", 
+      "What are the class hours next semester for the EECS 492 lecture?"
+    ], 
+    [
+      "081", 
+      "Besides Professor Stout, is there any other person teaching Algorithms?"
+    ], 
+    [
+      "017", 
+      "Are there any courses being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "029", 
+      "Which classes do I have to take to declare an EECS major?"
+    ], 
+    [
+      "167", 
+      "How many classes across all departments are being offered next semester?"
+    ], 
+    [
+      "071", 
+      "Do you know who is teaching MDE classes in the winter?"
+    ], 
+    [
+      "030", 
+      "Can I take 400-level classes in spring or summer term?"
+    ], 
+    [
+      "171", 
+      "Name the courses required for the major but not in the EECS department."
+    ], 
+    [
+      "001", 
+      "Is there a class that's the easiest one I can take to fulfill the Capstone requirement?"
+    ], 
+    [
+      "304", 
+      "What upper level EECS classes are being offered this Fall?"
+    ], 
+    [
+      "147", 
+      "Is EECS 203 is instructed by quentin stout?"
+    ], 
+    [
+      "091", 
+      "What upper-level electives are offered next semester that don't meet on Monday or Friday?"
+    ], 
+    [
+      "121", 
+      "Which classes are easiest?"
+    ], 
+    [
+      "222", 
+      "Which EECS classes can be counted as a capstone?"
+    ], 
+    [
+      "255", 
+      "Do we have morning classes for EECS 280?"
+    ], 
+    [
+      "001", 
+      "Can you tell me which class will be the easiest to meet the requirements for capstone?"
+    ], 
+    [
+      "100", 
+      "How large is the class 280?"
+    ], 
+    [
+      "029", 
+      "What classes do I need to take in order to declare a major in EECS?"
+    ], 
+    [
+      "171", 
+      "Name the courses required for the major but not in the EECS department."
+    ], 
+    [
+      "084", 
+      "What MDE classes are scheduled for next winter?"
+    ], 
+    [
+      "292", 
+      "Is there a lab requirement for 280?"
+    ], 
+    [
+      "029", 
+      "What are the classes required to declare a major in EECS?"
+    ], 
+    [
+      "219", 
+      "The professors teaching eecs 280 in fall 2016, how many are they?"
+    ], 
+    [
+      "132", 
+      "Would you advise I take EECS 280 and EECS 370 concurrently?"
+    ], 
+    [
+      "304", 
+      "Which classes offered this Fall at EECS are upper-level classes?"
+    ], 
+    [
+      "071", 
+      "Who are the winter MDE class teachers?"
+    ], 
+    [
+      "078", 
+      "In EECS 370 how is workload?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 280 been up for offer?"
+    ], 
+    [
+      "121", 
+      "The easiest courses are?"
+    ], 
+    [
+      "021", 
+      "Which are the three credit courses?"
+    ], 
+    [
+      "078", 
+      "For EECS 370, what is the workload like?"
+    ], 
+    [
+      "147", 
+      "Has EECS 203 been taught by Quentin Stout?"
+    ], 
+    [
+      "074", 
+      "Can you identify who teaches EECS 203?"
+    ], 
+    [
+      "239", 
+      "How many terms has EECS been running?"
+    ], 
+    [
+      "109", 
+      "Which Spring or Summer classes can I take in order to meet my MDE requirement?"
+    ], 
+    [
+      "146", 
+      "Is there a section of EECS 280 that takes place after 12pm?"
+    ], 
+    [
+      "197", 
+      "For ULCS does EECS 381 count?"
+    ], 
+    [
+      "084", 
+      "Which are the MDE classes offered next winter?"
+    ], 
+    [
+      "140", 
+      "What's the difference between courses CHEM 130 and CHEM 125?"
+    ], 
+    [
+      "255", 
+      "Are there morning classes in EECS 280?"
+    ], 
+    [
+      "052", 
+      "Of these two, which is less difficult: EECS 484 or EECS 485?"
+    ], 
+    [
+      "304", 
+      "This fall are there any EECS classes considered upper-level?"
+    ], 
+    [
+      "103", 
+      "Let me see four credit artificial intelligence classes."
+    ], 
+    [
+      "104", 
+      "Which courses in artificial intelligence satisfy the MDE requirement?"
+    ], 
+    [
+      "240", 
+      "Has EECS 370 ever been offered over the summer?"
+    ], 
+    [
+      "017", 
+      "Which classes are Dr. DeOrio teaching next semester?"
+    ], 
+    [
+      "084", 
+      "Which MDE classes are given next winter?"
+    ], 
+    [
+      "202", 
+      "In next semester does Prof. Provost teach 492?"
+    ], 
+    [
+      "285", 
+      "Of all the upper level classes, which produce four credits?"
+    ], 
+    [
+      "154", 
+      "What are the core classes for the EECS major?"
+    ], 
+    [
+      "132", 
+      "Is it recommended to take both EECS 370 and 280 at the same time?"
+    ], 
+    [
+      "219", 
+      "In Fall 2016, how many professors will teach EECS 280?"
+    ], 
+    [
+      "129", 
+      "Is EECS offered as a 1-credit class?"
+    ], 
+    [
+      "084", 
+      "What MDE classes are offered during the winter semester?"
+    ], 
+    [
+      "172", 
+      "The CS-LSA degree has what requirements?"
+    ], 
+    [
+      "017", 
+      "Can I have a list of the classes Dr. DeOrio is teaching next semester?"
+    ], 
+    [
+      "021", 
+      "Three credits are given for which courses?"
+    ], 
+    [
+      "269", 
+      "Are Mondays and Wednesdays good for me to take 280?"
+    ], 
+    [
+      "111", 
+      "Show me courses that include any parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "021", 
+      "Which courses are available that provide three credits?"
+    ], 
+    [
+      "116", 
+      "Are there any recommended courses to take before taking EECS 280?"
+    ], 
+    [
+      "237", 
+      "Which classes were taught by Dr. Peter Chen?"
+    ], 
+    [
+      "239", 
+      "For how many years has EECS 280 been offered?"
+    ], 
+    [
+      "084", 
+      "What MDE classes are offered in the winter?"
+    ], 
+    [
+      "000", 
+      "Can undergrads to 595?"
+    ], 
+    [
+      "081", 
+      "Is there another person besides Professor Stout that teaches Algorithms?"
+    ], 
+    [
+      "154", 
+      "What core classes are required for EECS majors?"
+    ], 
+    [
+      "092", 
+      "Please tell me all of the 400 level courses without labs."
+    ], 
+    [
+      "123", 
+      "Next semester, what are the available upper level CS classes?"
+    ], 
+    [
+      "171", 
+      "What are the courses that are needed to major but not in the EECS department?"
+    ], 
+    [
+      "156", 
+      "Has Prof. Smith ever taught EECS 280?"
+    ], 
+    [
+      "304", 
+      "This Fall, which upper-level EECS classes are being offered?"
+    ], 
+    [
+      "292", 
+      "Is a lab included in 280?"
+    ], 
+    [
+      "195", 
+      "What upper level electives are offered for CS majors?"
+    ], 
+    [
+      "177", 
+      "What classes need to be taken before EECS 281?"
+    ], 
+    [
+      "121", 
+      "What are the easiest classes?"
+    ], 
+    [
+      "180", 
+      "In this semester which courses offered?"
+    ], 
+    [
+      "014", 
+      "Any chances I can take EECS 281 now?"
+    ], 
+    [
+      "024", 
+      "Tell me more about EECS 388."
+    ], 
+    [
+      "213", 
+      "Before I take 489 what do I need to take?"
+    ], 
+    [
+      "304", 
+      "What upper-level EECS courses are available this autumn?"
+    ], 
+    [
+      "071", 
+      "MDE classes are being offered by which teachers next winter?"
+    ], 
+    [
+      "285", 
+      "Of the four credit classes which are upper-level?"
+    ], 
+    [
+      "285", 
+      "what upper-level classes have four credits?"
+    ], 
+    [
+      "213", 
+      "What course requirements does 489 have?"
+    ], 
+    [
+      "155", 
+      "What courses are taught by Prof. Smith?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS which classes do I need to take?"
+    ], 
+    [
+      "014", 
+      "Can I take EECS 281 today?"
+    ], 
+    [
+      "157", 
+      "When was EECS 281 last offered?"
+    ], 
+    [
+      "172", 
+      "Show me CS-LSA degree reuirements."
+    ], 
+    [
+      "255", 
+      "Does EECS 280 meet in the morning?"
+    ], 
+    [
+      "013", 
+      "What classes available as Senior Design Capstones are there for next semester?"
+    ], 
+    [
+      "213", 
+      "Which courses are required before taking 489?"
+    ], 
+    [
+      "021", 
+      "If I wanted to earn three credits per course, which courses should I select?"
+    ], 
+    [
+      "074", 
+      "Who is teaching EECS 203?"
+    ], 
+    [
+      "084", 
+      "What classes are offered next winter for MDE?"
+    ], 
+    [
+      "285", 
+      "Of the classes that are four credits, which of those are upper-level classes?"
+    ], 
+    [
+      "014", 
+      "Can I do EECS 281 immediately?"
+    ], 
+    [
+      "071", 
+      "Which professor is teaching MDE next winter?"
+    ], 
+    [
+      "143", 
+      "ENGR 280 is what?"
+    ], 
+    [
+      "237", 
+      "which classes has Dr.Chen taught before?"
+    ], 
+    [
+      "071", 
+      "Do you know what teacher is going to teach the MDE classes next winter?"
+    ], 
+    [
+      "255", 
+      "Of the classes in the morning, are there any EECS 280?"
+    ], 
+    [
+      "238", 
+      "Can EECS 482 be taken as a capstone?"
+    ], 
+    [
+      "180", 
+      "This semester, which courses are offered?"
+    ], 
+    [
+      "174", 
+      "Which classes are offered in the next 6 semesters?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are available this Fall?"
+    ], 
+    [
+      "292", 
+      "Is there a lab that accompanies 280?"
+    ], 
+    [
+      "015", 
+      "Is EECS 270 available summer 2016?"
+    ], 
+    [
+      "081", 
+      "Is it true that Professor Stout is the only person who teaches Algorithms?"
+    ], 
+    [
+      "213", 
+      "What other classes must I take prior to studying 489?"
+    ], 
+    [
+      "155", 
+      "Name the courses taught by Prof. Smith."
+    ], 
+    [
+      "021", 
+      "Are there any courses that are worth three credits?"
+    ], 
+    [
+      "180", 
+      "This semester offers which courses?"
+    ], 
+    [
+      "001", 
+      "To complete the capstone requirement, what would be the easiest class to take?"
+    ], 
+    [
+      "132", 
+      "Is it wise to take EECS280 and EESC270 at the same time?"
+    ], 
+    [
+      "175", 
+      "What's the number of credits for 381?"
+    ], 
+    [
+      "219", 
+      "EECS 280 courses will be taught by how many professors in fall 2016?"
+    ], 
+    [
+      "229", 
+      "What 300-level classes are offered next semester?"
+    ], 
+    [
+      "113", 
+      "For class EECS 281, how often does it meet?"
+    ], 
+    [
+      "127", 
+      "Which programs require PHYSICS 240?"
+    ], 
+    [
+      "239", 
+      "How many years has EECS 280 been available?"
+    ], 
+    [
+      "029", 
+      "Are there prerequisite classes I should take before I declare a major in EECS?"
+    ], 
+    [
+      "173", 
+      "I would like to see my transcript."
+    ], 
+    [
+      "213", 
+      "What are the prerequisites to 489?"
+    ], 
+    [
+      "084", 
+      "Next winter, what MDE classes are offered?"
+    ], 
+    [
+      "081", 
+      "Is the only person who teaches Algorithms Professor Stout?"
+    ], 
+    [
+      "304", 
+      "What upper level EECS classes will be offered this Fall?"
+    ], 
+    [
+      "178", 
+      "How many credits have I earned at this point in time?"
+    ], 
+    [
+      "029", 
+      "What classes should I enroll in in order to declare a major in EECS?"
+    ], 
+    [
+      "084", 
+      "What MDE classes are available next winter?"
+    ], 
+    [
+      "001", 
+      "Which class is the easiest to take in order to fulfill the capstone requirement?"
+    ], 
+    [
+      "146", 
+      "Is there a section of EECS 280 that is after 12pm?"
+    ], 
+    [
+      "285", 
+      "Can you tell me the names of the upper-level classes that are four credits?"
+    ], 
+    [
+      "126", 
+      "What is the course name for EECS 492?"
+    ], 
+    [
+      "104", 
+      "To satisfy the MDE requirement, which courses of artificial intelligence are acceptable?"
+    ], 
+    [
+      "001", 
+      "Which class will fulfill the capstone requirement the easiest?"
+    ], 
+    [
+      "174", 
+      "The next 6 semesters, what classes will be offered?"
+    ], 
+    [
+      "084", 
+      "Can you specify the MDE classes that are offered next winter?"
+    ], 
+    [
+      "132", 
+      "Is it advisable to take EECS 370 and EECS 280 simultaneously?"
+    ], 
+    [
+      "148", 
+      "Do I need EECS 376 to graduate"
+    ], 
+    [
+      "071", 
+      "Do you know who will be teaching MDE classes next winter?"
+    ], 
+    [
+      "017", 
+      "Next semester, what classes will Dr. DeOrio teach?"
+    ], 
+    [
+      "088", 
+      "Is there a project for 595?"
+    ], 
+    [
+      "052", 
+      "What is easier out of EECS 484 and EECS 485?"
+    ], 
+    [
+      "169", 
+      "What are the main classes?"
+    ], 
+    [
+      "285", 
+      "Of all upper-level classes, which ones have four credits?"
+    ], 
+    [
+      "100", 
+      "The 280 class, how big is it?"
+    ], 
+    [
+      "123", 
+      "Which upper level CS classes are offered this upcoming semester?"
+    ], 
+    [
+      "074", 
+      "Name the professor or teacher teaching EECS 203?"
+    ], 
+    [
+      "042", 
+      "Does 281 usually have two or three lectures a week?"
+    ], 
+    [
+      "269", 
+      "Is it possible for me to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 being offered in the Winter 2016 semester?"
+    ], 
+    [
+      "237", 
+      "Can you list all of the classes that Dr. Peter Chen has taught to date?"
+    ], 
+    [
+      "017", 
+      "Please provide me with a list of classes being taught by Dr. DeOrio next semester."
+    ], 
+    [
+      "166", 
+      "How many lectures does EECS 280 have each week?"
+    ], 
+    [
+      "239", 
+      "How long has EECS 280 been taught for?"
+    ], 
+    [
+      "292", 
+      "Will 280 have a lab?"
+    ], 
+    [
+      "304", 
+      "This FAll, what upper level EECS classes are offered."
+    ], 
+    [
+      "237", 
+      "Dr Peter Chen has taught what classes in the past?"
+    ], 
+    [
+      "081", 
+      "Does only Professor Stout teach Algorithms?"
+    ], 
+    [
+      "222", 
+      "What options do I have for my final capstone project?"
+    ], 
+    [
+      "239", 
+      "For what length of time has EECS been offered?"
+    ], 
+    [
+      "021", 
+      "What are all of the three credit courses?"
+    ], 
+    [
+      "133", 
+      "In the winter 2016 semester is ENGR 100 section 500 offered?"
+    ], 
+    [
+      "219", 
+      "Are there multiple professors who teach EECS 280 in Fall 2016?"
+    ], 
+    [
+      "071", 
+      "The MDE classes next winter, will be taught by whom?"
+    ], 
+    [
+      "285", 
+      "What upper-level courses are four credits?"
+    ], 
+    [
+      "176", 
+      "Regarding EECS 203 and 280, what are the prerequisites?"
+    ], 
+    [
+      "213", 
+      "What courses must I take before 489?"
+    ], 
+    [
+      "171", 
+      "What are the courses required to major but not in the EECS department?"
+    ], 
+    [
+      "167", 
+      "Next semester how many classes are offered?"
+    ], 
+    [
+      "116", 
+      "What courses should I take before taking EECS 280?"
+    ], 
+    [
+      "304", 
+      "Out of the upper-level classes this fall are any EECS classes?"
+    ], 
+    [
+      "018", 
+      "What courses does Prof. DeOrio teach in Winter 2017?"
+    ], 
+    [
+      "292", 
+      "Do you know if 280 has a lab?"
+    ], 
+    [
+      "237", 
+      "In the past, Dr Peter Chen taught what classes?"
+    ], 
+    [
+      "304", 
+      "What upper-level EECs classes are available in the fall?"
+    ], 
+    [
+      "013", 
+      "Which classes are available as Senior Design Capstones next semester?"
+    ], 
+    [
+      "078", 
+      "EECS 370 has what kind of workload?"
+    ], 
+    [
+      "285", 
+      "Four credits are for which upper-level classes?"
+    ], 
+    [
+      "100", 
+      "How big is course 280?"
+    ], 
+    [
+      "169", 
+      "What are the core classes?"
+    ], 
+    [
+      "304", 
+      "During fall semester what EECS up level classes are there?"
+    ], 
+    [
+      "143", 
+      "What's ENGR 280?"
+    ], 
+    [
+      "165", 
+      "EECS 280 has been taught what number of times?"
+    ], 
+    [
+      "239", 
+      "How many years ago was EECS 280 first offered?"
+    ], 
+    [
+      "021", 
+      "Of all the courses, which are worth three credits?"
+    ], 
+    [
+      "001", 
+      "Which is the easiest class I can take to fulfill the capstone requirement?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen taught which classes in the past?"
+    ], 
+    [
+      "001", 
+      "To satisfy the capstone requirement, which classes are the least demanding?"
+    ], 
+    [
+      "280", 
+      "Who has taught EECS 280 most recently?"
+    ], 
+    [
+      "213", 
+      "Before taking course 489, which courses need I take?"
+    ], 
+    [
+      "001", 
+      "Which course would be the easiest I can take to finish the capstone requirement?"
+    ], 
+    [
+      "001", 
+      "What is the easiest class that fulfills the capstone requirement?"
+    ], 
+    [
+      "213", 
+      "What are the prerequisites for me before enrolling in 489?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen has taught which classes?"
+    ], 
+    [
+      "131", 
+      "Is EECS 280 hard?"
+    ], 
+    [
+      "219", 
+      "How many professors are employed to teach EECS 280 in fall 2016?"
+    ], 
+    [
+      "165", 
+      "What's the number of times EECS 280 has been offered?"
+    ], 
+    [
+      "219", 
+      "In the fall how many professors will teach EECS 280?"
+    ], 
+    [
+      "121", 
+      "Which classes are easiest?"
+    ], 
+    [
+      "239", 
+      "The EECS 280 class how long has it been offered?"
+    ], 
+    [
+      "155", 
+      "Which courses is Prof. Smith teaching?"
+    ], 
+    [
+      "269", 
+      "On Mondays and Wednesday is 280 available to take?"
+    ], 
+    [
+      "017", 
+      "What classes will Dr DeOrio be teaching next semester?"
+    ], 
+    [
+      "052", 
+      "Which is easier, 484 or 485?"
+    ], 
+    [
+      "183", 
+      "Is the 492 course available next term?"
+    ], 
+    [
+      "146", 
+      "Is there a section of EECS 280 that occurs after 12pm?"
+    ], 
+    [
+      "017", 
+      "Which classes are taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "148", 
+      "Do I have to take EECS 376 in order to graduate?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen has taught what classes in the past?"
+    ], 
+    [
+      "084", 
+      "What are the classes offered for MDE next winter?"
+    ], 
+    [
+      "100", 
+      "How large do you think 280 is?"
+    ], 
+    [
+      "146", 
+      "After 12 pm is there a section of EECS 280?"
+    ], 
+    [
+      "197", 
+      "For a ULCS does EECS 381 count?"
+    ], 
+    [
+      "304", 
+      "Will there be any upper-level EECS classes to take this Fall?"
+    ], 
+    [
+      "178", 
+      "What's the total number of credits I have right now?"
+    ], 
+    [
+      "017", 
+      "Next semester which classes will Dr. DeOrio be teaching?"
+    ], 
+    [
+      "239", 
+      "The EECS 280 has been offered for how long?"
+    ], 
+    [
+      "018", 
+      "This Winter, what courses does Prof. DeOrio teach?"
+    ], 
+    [
+      "217", 
+      "How many sections of EECS 370 are there?"
+    ], 
+    [
+      "116", 
+      "What courses should I take before EECS 280?"
+    ], 
+    [
+      "292", 
+      "what labs are associated with 280?"
+    ], 
+    [
+      "084", 
+      "Which classes are offered next winter for MDE?"
+    ], 
+    [
+      "116", 
+      "Are there courses that would be useful to take before taking EECS 280?"
+    ], 
+    [
+      "084", 
+      "Of all the winter classes, are any of MDE?"
+    ], 
+    [
+      "239", 
+      "What length of time has EECS been offered for?"
+    ], 
+    [
+      "304", 
+      "In the fall which upper-level EECS classes are being offered?"
+    ], 
+    [
+      "132", 
+      "Is it best to take EECS 280 and 370 together?"
+    ], 
+    [
+      "154", 
+      "Name the main courses for the engineering CS major?"
+    ], 
+    [
+      "219", 
+      "What is the number of professors teaching EECS280 in fall 2016?"
+    ], 
+    [
+      "237", 
+      "Which classes has Dr. Peter Chen taught previously?"
+    ], 
+    [
+      "000", 
+      "is it possible for undergrads to take 595?"
+    ], 
+    [
+      "109", 
+      "Which courses can I take in the Spring or Summer semester to satisfy my MDE requirement?"
+    ], 
+    [
+      "237", 
+      "What are the classes that Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "181", 
+      "My GPA is how much?"
+    ], 
+    [
+      "092", 
+      "Of all the 400 level courses, which ones do not include labs?"
+    ], 
+    [
+      "017", 
+      "Dr. DeOrio is teaching which classes next semester?"
+    ], 
+    [
+      "205", 
+      "In next fall after 10 am, which upper level electives are available?"
+    ], 
+    [
+      "001", 
+      "In order to fulfill my capstone, which class would be the easiest to take?"
+    ], 
+    [
+      "172", 
+      "To get a CS-LSA degree, what are the requirements?"
+    ], 
+    [
+      "168", 
+      "Is 280 being taught by anyone else other than Prof. Smith?"
+    ], 
+    [
+      "285", 
+      "What are some classes that are upper-level offering four credits."
+    ], 
+    [
+      "132", 
+      "Should I take EECS 280 and EECS 370 simultaneously?"
+    ], 
+    [
+      "001", 
+      "What is the easiest course for completing the capstone requirement?"
+    ], 
+    [
+      "052", 
+      "What is easiest EECS 484 or EECS 485 "
+    ], 
+    [
+      "180", 
+      "What are the names of courses that are offered this semester?"
+    ], 
+    [
+      "140", 
+      "How are CHEM 130 and CHEM 125 different?"
+    ], 
+    [
+      "304", 
+      "Which EECS classes offered this fall are considered upper-level?"
+    ], 
+    [
+      "084", 
+      "Which classes of MDE occur in the winter?"
+    ], 
+    [
+      "113", 
+      "How many times does the class meet for EECS 281?"
+    ], 
+    [
+      "152", 
+      "What are the math requirements for CS major?"
+    ], 
+    [
+      "071", 
+      "What professor next winter is teaching the MDE classeS?"
+    ], 
+    [
+      "116", 
+      "Can you tell me what other courses you would take before taking EECS 280?"
+    ], 
+    [
+      "221", 
+      "What upper-level EECS classes are offering this Fall?"
+    ], 
+    [
+      "183", 
+      "In next term is 492 available?"
+    ], 
+    [
+      "071", 
+      "During next winter who will be teaching MDE classes?"
+    ], 
+    [
+      "219", 
+      "In the fall of 2016, how many professors teach EECS 280?"
+    ], 
+    [
+      "304", 
+      "From all the EECS upper-level classes, which ones are being provided this autumn?"
+    ], 
+    [
+      "255", 
+      "Are there any morning classes in EECS 280?"
+    ], 
+    [
+      "213", 
+      "Any prerequisits for course 489?"
+    ], 
+    [
+      "219", 
+      "Do you know how many teachers taught EECS 280 during the Fall of 2016?"
+    ], 
+    [
+      "255", 
+      "Is EECS 280 having morning classes?"
+    ], 
+    [
+      "071", 
+      "Who will be teaching MDE classes next winter?"
+    ], 
+    [
+      "148", 
+      "To complete my graduation is EECS 376 necessary?"
+    ], 
+    [
+      "176", 
+      "EECS 203 and 280 need which prerequisites?"
+    ], 
+    [
+      "174", 
+      "Of the classes offered, which will be available during the next 6 semesters?"
+    ], 
+    [
+      "116", 
+      "What course can I take to help prepare for EECS 280?"
+    ], 
+    [
+      "143", 
+      "What is the course ENGR 280?"
+    ], 
+    [
+      "213", 
+      "What classes before 489 do I need to take?"
+    ], 
+    [
+      "029", 
+      "I want to major in EECS, which classes do I need to take?"
+    ], 
+    [
+      "228", 
+      "Is EECS 270 needed to take EECS 370?"
+    ], 
+    [
+      "116", 
+      "Prior to taking EECS 280, what are some useful courses to take?"
+    ], 
+    [
+      "084", 
+      "Are there any MDE classes offered during the winter?"
+    ], 
+    [
+      "021", 
+      "Of all classes which ones offer three credits?"
+    ], 
+    [
+      "052", 
+      "Of the two classes, which is easier, EECS 484 or EECS 485?"
+    ], 
+    [
+      "024", 
+      "388 EECS is about?"
+    ], 
+    [
+      "132", 
+      "Should I take EECS 280 and EECS 370 both at the same time?"
+    ], 
+    [
+      "204", 
+      "Name the classes available this summer that would count toward a CS major."
+    ], 
+    [
+      "123", 
+      "Which upper level CS courses are offered next semester?"
+    ], 
+    [
+      "092", 
+      "I'd like to take a 400 level course, but don't want to do a lab, what are my options?"
+    ], 
+    [
+      "018", 
+      "In winter 2017, which courses are taught by Prof. DeOrio?"
+    ], 
+    [
+      "021", 
+      "Of all courses, which ones are worth three credits?"
+    ], 
+    [
+      "213", 
+      "What are the pre requisite courses for 489"
+    ], 
+    [
+      "084", 
+      "What MDE classes are offered next winter?"
+    ], 
+    [
+      "100", 
+      "How many people are in 280?"
+    ], 
+    [
+      "013", 
+      "Are any classes available next semester for Senior Design Capstone fulfillment?"
+    ], 
+    [
+      "219", 
+      "EECS 280 in Fall 2016 , how many professors teach these?"
+    ], 
+    [
+      "074", 
+      "Who teaches the EECS 203 class?"
+    ], 
+    [
+      "001", 
+      "To fulfill the capstone requirement , what's the easiest class I can take?"
+    ], 
+    [
+      "281", 
+      "Who has taught EECS 280 in the past?"
+    ], 
+    [
+      "152", 
+      "What are the math classes needed to graduate as a CS major?"
+    ], 
+    [
+      "016", 
+      "Is there anything for which EECS 281 is an enforced prerequisite?"
+    ], 
+    [
+      "001", 
+      "If I have to fulfill the capstone requirement, what easy class can I take?"
+    ], 
+    [
+      "029", 
+      "Which classes are required to declare a major in EECS?"
+    ], 
+    [
+      "234", 
+      "What upper level electives are offered before noon?"
+    ], 
+    [
+      "134", 
+      "How many sections are there for course EECS 280?"
+    ], 
+    [
+      "021", 
+      "What courses should I take if I need three credits?"
+    ], 
+    [
+      "029", 
+      "In order to declare a major in EECS, what classes do I need to take?"
+    ], 
+    [
+      "116", 
+      "Are there any courses I should take prior to taking EECS 280 that would help me?"
+    ], 
+    [
+      "015", 
+      "Is EECS 270 available to me in Summer 2016?"
+    ], 
+    [
+      "084", 
+      "Which of the MDE classes are offered next winter?"
+    ], 
+    [
+      "134", 
+      "In EECS 280 how many sections are there?"
+    ], 
+    [
+      "081", 
+      "Is there anyone other than Professor Stout that teaches Algorithms?"
+    ], 
+    [
+      "016", 
+      "As far as prerequisites, is EECS 281 necessary?"
+    ], 
+    [
+      "180", 
+      "What classes are offered this semester?"
+    ], 
+    [
+      "029", 
+      "What classes qualify me to declare a major in EECS?"
+    ], 
+    [
+      "017", 
+      "Is Dr DeOrio teaching any classes next semester?"
+    ], 
+    [
+      "239", 
+      "How many years have they offered EECS 280?"
+    ], 
+    [
+      "071", 
+      "Next winter who is going to teach MDE classes?"
+    ], 
+    [
+      "292", 
+      "A 280 lab, does one exist?"
+    ], 
+    [
+      "237", 
+      "What classes have previously been taught by Dr. Peter Chen?"
+    ], 
+    [
+      "052", 
+      "Out of EECS 484 and EECS 485, which is easier?"
+    ], 
+    [
+      "084", 
+      "Can you tell me which MDE classes are available next winter?"
+    ], 
+    [
+      "304", 
+      "Which EECS classes are considered upper-level this fall?"
+    ], 
+    [
+      "237", 
+      "Which classes were previously taught by Dr. Peter Chen?"
+    ], 
+    [
+      "167", 
+      "What's the number of available classes for the upcoming semester?"
+    ], 
+    [
+      "172", 
+      "Display requirements for a degree in CS-LSA."
+    ], 
+    [
+      "071", 
+      "What's the name of the teacher for Winter MDE course?"
+    ], 
+    [
+      "201", 
+      "281 is taught in the Fall of 2015 in the afternoon?"
+    ], 
+    [
+      "052", 
+      "Of EECS 484 and EECS 485 which is less difficult?"
+    ], 
+    [
+      "239", 
+      "How long has the university been offering EECS 280?"
+    ], 
+    [
+      "038", 
+      "How many courses are taught by more than two professors?"
+    ], 
+    [
+      "219", 
+      "How many professors are teaching EECS 280 in Fall 2016?"
+    ], 
+    [
+      "213", 
+      "What courses are the prerequisites to 489?"
+    ], 
+    [
+      "116", 
+      "If I want to be prepared for EECS 280, what course should I take?"
+    ], 
+    [
+      "255", 
+      "Does EECS 280 have morning courses?"
+    ], 
+    [
+      "074", 
+      "Can you tell me who the EECS 203 teacher is?"
+    ], 
+    [
+      "147", 
+      "Does Quentin Stout teach the class EECS 203?"
+    ], 
+    [
+      "052", 
+      "Is either EECS 484 or EECS 485 easier?"
+    ], 
+    [
+      "219", 
+      "The Fall 2016 EECS 280 classes are taught by how many professors?"
+    ], 
+    [
+      "117", 
+      "Tell me a few easy 300 level courses."
+    ], 
+    [
+      "029", 
+      "Which classes are necessary for a declared major in EECS?"
+    ], 
+    [
+      "218", 
+      "Of the sections of EECS 281, how many are after 10 am?"
+    ], 
+    [
+      "123", 
+      "what are the upper level CS classes provided in next semester?"
+    ], 
+    [
+      "029", 
+      "In order to major in EECS, what classes do I need to take?"
+    ], 
+    [
+      "176", 
+      "Do you know the prerequisites for EECS 203 and 280?"
+    ], 
+    [
+      "213", 
+      "Are there courses I need to take before 489?"
+    ], 
+    [
+      "213", 
+      "Are there any courses I must take before taking 489?"
+    ], 
+    [
+      "017", 
+      "Which classes will Dr. DeOrio instruct next semester?"
+    ], 
+    [
+      "074", 
+      "Which instructor teaches EECS 203?"
+    ], 
+    [
+      "124", 
+      "At what time do EECS 492 lectures start next semester?"
+    ], 
+    [
+      "207", 
+      "In next semester is there an ENGR 151 section available not on Monday?"
+    ], 
+    [
+      "017", 
+      "Next semester which classes is Dr. DeOrio teaching?"
+    ], 
+    [
+      "071", 
+      "When classes start next winter, who is teaching MDE classes?"
+    ], 
+    [
+      "092", 
+      "Please list courses without labs that are at the 400 level."
+    ], 
+    [
+      "176", 
+      "Which prerequisites do EECS 203 and 280 have?"
+    ], 
+    [
+      "188", 
+      "EECS 281 is taught when in the week?"
+    ], 
+    [
+      "219", 
+      "What is the number of professors I could choose from for EECS 280 in Fall 2016?"
+    ], 
+    [
+      "239", 
+      "EECS has been a subject choice for how long?"
+    ], 
+    [
+      "085", 
+      "When is the next time Honglak Lee will teach 445?"
+    ], 
+    [
+      "017", 
+      "What courses are being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "285", 
+      "What classes are both upper-level and four credits?"
+    ], 
+    [
+      "029", 
+      "To declare a major in EECS, what classes do I need to take?"
+    ], 
+    [
+      "013", 
+      "Next semester, what Senior Design Capstone courses are available?"
+    ], 
+    [
+      "197", 
+      "Does EECS 381 count for ULCS?"
+    ], 
+    [
+      "024", 
+      "What materials are covered in EECS 388?"
+    ], 
+    [
+      "141", 
+      "Is there a 3-credit EECS 400 level course?"
+    ], 
+    [
+      "176", 
+      "Which prerequistes are required for EECS 203 and 280?"
+    ], 
+    [
+      "255", 
+      "Are there any morning classes for EECS 280?"
+    ], 
+    [
+      "074", 
+      "Who is the instructor for course EECS 203?"
+    ], 
+    [
+      "001", 
+      "Which class is easiest to fulfill the capstone requirement?"
+    ], 
+    [
+      "084", 
+      "What MDE courses are offered next winter?"
+    ], 
+    [
+      "008", 
+      "Who usually teaches EECS 280?"
+    ], 
+    [
+      "052", 
+      "Which class is easier out of EECS 484 and EECS 485?"
+    ], 
+    [
+      "243", 
+      "Are there any upper level classes that do not require 281?"
+    ], 
+    [
+      "213", 
+      "What are the courses that I should take before 489?"
+    ], 
+    [
+      "132", 
+      "Should I enroll in EECS 280 and EECS 370 simultaneously?"
+    ], 
+    [
+      "213", 
+      "Are there any classes I need to take before 489, and if so, which ones?"
+    ], 
+    [
+      "106", 
+      "Which artificial intelligence courses have no prerequisites?"
+    ], 
+    [
+      "014", 
+      "EECS 281 can be taken at the moment?"
+    ], 
+    [
+      "292", 
+      "280, does it have a lab?"
+    ], 
+    [
+      "174", 
+      "Over the next 6 semesters, what classes will be offered?"
+    ], 
+    [
+      "292", 
+      "In 280, does it have a lab?"
+    ], 
+    [
+      "152", 
+      "For graduating as CS major what math classes do I need to take?"
+    ], 
+    [
+      "285", 
+      "Which upper-level classes are worth four credits?"
+    ], 
+    [
+      "074", 
+      "Do you know the teacher for EECS 203?"
+    ], 
+    [
+      "197", 
+      "EECS 381 counts for a ULCS?"
+    ], 
+    [
+      "188", 
+      "EECS 281 is offered on which days?"
+    ], 
+    [
+      "074", 
+      "What professor teaches EECS 203?"
+    ], 
+    [
+      "017", 
+      "Next semester are there any classes taught by Dr DeOrio?"
+    ], 
+    [
+      "237", 
+      "Which past classes has Dr. Peter Chen taught?"
+    ], 
+    [
+      "071", 
+      "For winter MDE classes who is the professor?"
+    ], 
+    [
+      "213", 
+      "Which courses are the prerequisites for 489?"
+    ], 
+    [
+      "287", 
+      "Does EECS 280 have class on Friday?"
+    ], 
+    [
+      "017", 
+      "Over next semester, what classes is Dr. DeOrio teaching?"
+    ], 
+    [
+      "175", 
+      "If I take 381, how many credits will I receive?"
+    ], 
+    [
+      "029", 
+      "Which classes are needed in order to declare a major in EECS?"
+    ], 
+    [
+      "074", 
+      "What is the teacher's name for  EECS 203?"
+    ], 
+    [
+      "021", 
+      "Of all the courses which are worth three credits?"
+    ], 
+    [
+      "109", 
+      "What courses are available for me to take in spring or summer to meet my MDE requirement?"
+    ], 
+    [
+      "180", 
+      "What all courses are being offered currently?"
+    ], 
+    [
+      "100", 
+      "What is 280's size?"
+    ], 
+    [
+      "021", 
+      "I need 3 credit courses, which courses should I take?"
+    ], 
+    [
+      "219", 
+      "EECS 280 is taught by how many professors during Fall 2016?"
+    ], 
+    [
+      "237", 
+      "Can you tell me what classes Dr. Peter Chen has taught in the past?"
+    ], 
+    [
+      "255", 
+      "Is there a morning class for EECS 280?"
+    ], 
+    [
+      "285", 
+      "Of the upper-level classes, which ones are four credits?"
+    ], 
+    [
+      "000", 
+      "Is 595 for undergrads too?"
+    ], 
+    [
+      "017", 
+      "Do you know what Dr. DeOrio is teaching next semester?"
+    ], 
+    [
+      "213", 
+      "Are there any courses that I am required to take before course 489?"
+    ], 
+    [
+      "213", 
+      "Do I need to take any courses before 489?"
+    ], 
+    [
+      "172", 
+      "Display the requirements to get a CS-LSA degree."
+    ], 
+    [
+      "253", 
+      "How many times has Prof. DeOrio taught 280?"
+    ], 
+    [
+      "269", 
+      "Can I take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "302", 
+      "How many EECS classes are being offered next semester?"
+    ], 
+    [
+      "052", 
+      "Which is easier, EECS 484 or EECS 485?"
+    ], 
+    [
+      "021", 
+      "Which three credit courses are there?"
+    ], 
+    [
+      "179", 
+      "When is 482 offered next semester?"
+    ], 
+    [
+      "081", 
+      "Is the Algorithms class only taught by Professor Stout?"
+    ], 
+    [
+      "167", 
+      "Next semester, how many classes are being offered?"
+    ], 
+    [
+      "116", 
+      "what will be the prerequisites that will be useful for understanding EECS 280?"
+    ], 
+    [
+      "228", 
+      "Do I need to take EECS 270 before taking EECS 370?"
+    ], 
+    [
+      "269", 
+      "Is it permissible to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "269", 
+      "Is 280 available as a Monday/Wednesday class?"
+    ], 
+    [
+      "029", 
+      "In order to declare a major in EECS what classes would I need to take?"
+    ], 
+    [
+      "290", 
+      "Do Prof. Smith's classes always meet on Friday?"
+    ], 
+    [
+      "175", 
+      "How many credits is 381?"
+    ], 
+    [
+      "223", 
+      "How many upper-level three-credit EECS classes are offered this Fall?"
+    ], 
+    [
+      "213", 
+      "What are the pre-requisites for 489?"
+    ], 
+    [
+      "021", 
+      "What are the 3-credit courses?"
+    ], 
+    [
+      "029", 
+      "If I want to declare a major in EECS, what classes do I need to take?"
+    ], 
+    [
+      "131", 
+      "Is EECS 280 quite difficult?"
+    ], 
+    [
+      "283", 
+      "Who teaches upper-level classes?"
+    ], 
+    [
+      "181", 
+      "Tell me my current GPA."
+    ], 
+    [
+      "299", 
+      "When will operating systems be offered?"
+    ], 
+    [
+      "021", 
+      "To get 3 credits, which courses should i take?"
+    ], 
+    [
+      "176", 
+      "To take EECS 203 and 280, what prerequisites are necessary?"
+    ], 
+    [
+      "017", 
+      "Next semester, what classes will Dr. DeOrio be teaching?"
+    ], 
+    [
+      "285", 
+      "Of all the upper-level classes, which ones have four credits?"
+    ], 
+    [
+      "017", 
+      "Is Dr. DeOrio teaching next semester, which courses?"
+    ], 
+    [
+      "017", 
+      "What classes next semester are being taught by Dr. DeOrio?"
+    ], 
+    [
+      "016", 
+      "Is EECS 281 a must-take prerequisite for any other course?"
+    ], 
+    [
+      "179", 
+      "For next semester, when is 482 offered?"
+    ], 
+    [
+      "052", 
+      "Out of EECS 484 and EECS 485, which one is more effortless?"
+    ], 
+    [
+      "111", 
+      "Show me courses that incorporate software engineering and artificial intelligence."
+    ], 
+    [
+      "239", 
+      "EECS 280 has been offered for how long?"
+    ], 
+    [
+      "285", 
+      "Which of the upper-level classes being offered are four credits?"
+    ], 
+    [
+      "228", 
+      "For EECS 370 is EECS 270 required?"
+    ], 
+    [
+      "289", 
+      "When Prof. Smith teaches 280 are there classes on Friday?"
+    ], 
+    [
+      "285", 
+      "Which upper-level courses are four credits?"
+    ], 
+    [
+      "285", 
+      "Which upper-level classes are four credits?"
+    ], 
+    [
+      "129", 
+      "1-credit courses is EECS?"
+    ], 
+    [
+      "285", 
+      "Of the upper-level classes, which ones are four credit hours?"
+    ], 
+    [
+      "269", 
+      "is there a possibility to take 280 on Mondays and Wednesdays?"
+    ], 
+    [
+      "081", 
+      "Aside from Professor Stout, does anyone else teach Algorithms?"
+    ], 
+    [
+      "021", 
+      "Name the courses that are worth three credits."
+    ], 
+    [
+      "178", 
+      "How many credits do I have so far?"
+    ], 
+    [
+      "213", 
+      "What are the prerequisite classes for 489?"
+    ], 
+    [
+      "172", 
+      "Name the requirements for CS-LSA degree."
+    ], 
+    [
+      "237", 
+      "What are the classes that Dr. Peter Chen has taught?"
+    ], 
+    [
+      "078", 
+      "Is there a lot of work given in the EECS 370 course?"
+    ], 
+    [
+      "213", 
+      "Do I need to take courses before taking 489?"
+    ], 
+    [
+      "237", 
+      "Dr. Peter Chen , what classes has he taught in the past?"
+    ], 
+    [
+      "017", 
+      "Of the classes next semester, which are Dr. DeOrio teaching?"
+    ], 
+    [
+      "269", 
+      "On Monday and Wednesday, is 280 available?"
+    ], 
+    [
+      "157", 
+      "EECS 281 was offered last time when?"
+    ], 
+    [
+      "121", 
+      "What are the easiest courses for me to take?"
+    ], 
+    [
+      "084", 
+      "Of all the MDE classes which ones are offered next winter?"
+    ], 
+    [
+      "184", 
+      "What courses count as upper level electives?"
+    ], 
+    [
+      "285", 
+      "What upper-level classes offer four credits?"
+    ], 
+    [
+      "111", 
+      "What classes involve software engineering and AI?"
+    ], 
+    [
+      "052", 
+      "What's easier out of the two? EECS 484 or EECS 485?"
+    ], 
+    [
+      "292", 
+      "Is there a lab portion for 280?"
+    ], 
+    [
+      "178", 
+      "How many credits so far do I have?"
+    ], 
+    [
+      "285", 
+      "What classes are four credits that are upper-level?"
+    ], 
+    [
+      "269", 
+      "Could I take 280 Mondays and Wednesdays?"
+    ], 
+    [
+      "071", 
+      "The MDE classes will be taught by whom next winter?"
+    ], 
+    [
+      "292", 
+      "Is there a lab with 280?"
+    ], 
+    [
+      "258", 
+      "IS EECS 496 being offered next semester?"
+    ], 
+    [
+      "074", 
+      "what professor is teaching EECS 203?"
+    ], 
+    [
+      "239", 
+      "Since when has EECS 280 been offered?"
+    ], 
+    [
+      "178", 
+      "How many credits have I got so far?"
+    ], 
+    [
+      "255", 
+      "Do the morning classes include EECS280?"
+    ], 
+    [
+      "180", 
+      "Name the courses offered this semester."
+    ], 
+    [
+      "014", 
+      "Can I take the class EECS 281 right now?"
+    ], 
+    [
+      "237", 
+      "What classes has Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "052", 
+      "What is the easier option? EECS 484 or EECS 485?"
+    ], 
+    [
+      "111", 
+      "Name the courses that include parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "239", 
+      "For how long has EECS 280 been offered"
+    ], 
+    [
+      "255", 
+      "Are there any morning EECS 280 classes?"
+    ], 
+    [
+      "078", 
+      "What kind of workload does 370 have?"
+    ], 
+    [
+      "017", 
+      "What is on Dr. DeOrios roster for the next term?"
+    ], 
+    [
+      "021", 
+      "Of all the courses, which ones are worth three credits?"
+    ], 
+    [
+      "116", 
+      "Can you tell me some useful courses to take before taking EECS 280?"
+    ], 
+    [
+      "292", 
+      "is there a lab with 280?"
+    ], 
+    [
+      "017", 
+      "Next semester Dr. DeOrio is teaching which courses?"
+    ], 
+    [
+      "175", 
+      "How many credits does 381 get?"
+    ], 
+    [
+      "188", 
+      "Name the days when EECS 281 is taught."
+    ], 
+    [
+      "029", 
+      "What classes are required in order to declare a major in EECS?"
+    ], 
+    [
+      "173", 
+      "Bring up my transcript."
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are offered this Fall?"
+    ], 
+    [
+      "000", 
+      "Can undergrads sign up for 595?"
+    ], 
+    [
+      "285", 
+      "The upper-levels classes that are four credits what are they?"
+    ], 
+    [
+      "113", 
+      "How often does the EECS 281 class meet?"
+    ], 
+    [
+      "081", 
+      "Is the only one that teaches Algorithms Professor Stout?"
+    ], 
+    [
+      "168", 
+      "Is 280 taught by anyone other than Prof. Smith?"
+    ], 
+    [
+      "219", 
+      "What's the number of professors who teach EECS 280 in Fall 2016?"
+    ], 
+    [
+      "239", 
+      "Do you know how long they offered EECS 280?"
+    ], 
+    [
+      "183", 
+      "Next term 492 is offered?"
+    ], 
+    [
+      "052", 
+      "Which is less demanding out of EECS 484 and EECS 485?"
+    ], 
+    [
+      "074", 
+      "Could you tell me which professor teaches EECS 203?"
+    ], 
+    [
+      "212", 
+      "What prerequisites have I already fulfilled for EECS 373?"
+    ], 
+    [
+      "204", 
+      "For CS majors, name the classes that are available this summer."
+    ], 
+    [
+      "021", 
+      "Are there courses worth three credits?"
+    ], 
+    [
+      "204", 
+      "Name the classes that are available this summer that would count toward a CS major."
+    ], 
+    [
+      "152", 
+      "What math prerequisites are needed for CS majors?"
+    ], 
+    [
+      "208", 
+      "What upper elective courses are offered for CS?"
+    ], 
+    [
+      "117", 
+      "Which 300 level courses are easy?"
+    ], 
+    [
+      "109", 
+      "Which courses can I take during the Spring or Summer semester to meet my MDE requirement?"
+    ], 
+    [
+      "001", 
+      "I need to take an easy class to fulfill the capstone requirement, which one should it be?"
+    ], 
+    [
+      "074", 
+      "In EECS 203, would you happen to know who teaches?"
+    ], 
+    [
+      "304", 
+      "During this Fall, which upper-level EECS classes are being offered?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes are being listed for the upcoming fall semester?"
+    ], 
+    [
+      "218", 
+      "How many sections of EECS 281 are after 10 am?"
+    ], 
+    [
+      "021", 
+      "What courses can I take that will give me three credits?"
+    ], 
+    [
+      "304", 
+      "What are the upper-level EECS classes that will be available this Autumn?"
+    ], 
+    [
+      "024", 
+      "What material does EECS 388 go over?"
+    ], 
+    [
+      "015", 
+      "In Summer 2016, can I apply for EECS 270?"
+    ], 
+    [
+      "285", 
+      "what are the upper-level classes that are worth four credits?"
+    ], 
+    [
+      "001", 
+      "Is there an easy class available to fulfill the capstone requirement?"
+    ], 
+    [
+      "124", 
+      "What is the time slot for next semester's EECS 492 lectures?"
+    ], 
+    [
+      "084", 
+      "What MDE courses are available during winter?"
+    ]
+  ], 
+  "dev": [
+    [
+      "017", 
+      "What classes will Dr. DeOrio be teaching next semester?"
+    ], 
+    [
+      "237", 
+      "Which classes are educated by Dr.Peter Chen?"
+    ], 
+    [
+      "292", 
+      "If I take 280 do I also have to complete a lab?"
+    ], 
+    [
+      "116", 
+      "What course can I take to prepare for EECS 280?"
+    ], 
+    [
+      "152", 
+      "CS majors have to take what for Math?"
+    ], 
+    [
+      "292", 
+      "is 280 among classes with lab?"
+    ], 
+    [
+      "081", 
+      "Does anyone teach teach Algorithms aside from Professor Stout?"
+    ], 
+    [
+      "285", 
+      "Please let me know the upper level classes that offer four credits?"
+    ], 
+    [
+      "021", 
+      "I would like to know the names of courses that are worth three credits."
+    ], 
+    [
+      "117", 
+      "Show me 300 level courses that are easy."
+    ], 
+    [
+      "116", 
+      "What are the best classes to take before starting EECS 280?"
+    ], 
+    [
+      "247", 
+      "483 is offered when?"
+    ], 
+    [
+      "074", 
+      "EECS 203 has who as a teacher?"
+    ], 
+    [
+      "304", 
+      "Are there any upper-level EECS classes available this Fall?"
+    ], 
+    [
+      "084", 
+      "Next winter, what are the MDE classes being offered?"
+    ], 
+    [
+      "021", 
+      "What courses provide three credits?"
+    ], 
+    [
+      "017", 
+      "Next semester what classes will Dr. DeOrio be teaching. ?"
+    ], 
+    [
+      "001", 
+      "What class fulfills the capstone requirement with the least effort?"
+    ], 
+    [
+      "084", 
+      "In the classes for next winter, what MDE classes are offered?"
+    ], 
+    [
+      "029", 
+      "Which classes are required to declare EECS my major?"
+    ], 
+    [
+      "268", 
+      "Which courses will Prof. Smith be teaching over the next year?"
+    ], 
+    [
+      "071", 
+      "Who is teaching MDE classes in the winter term?"
+    ], 
+    [
+      "068", 
+      "What special topics classes are there next winter?"
+    ], 
+    [
+      "183", 
+      "492 is offered next semester?"
+    ], 
+    [
+      "169", 
+      "Which classes are the core ones?"
+    ], 
+    [
+      "292", 
+      "Is there a 280 lab?"
+    ], 
+    [
+      "219", 
+      "What's the number of professors teaching EECS 280 in Fall 2016?"
+    ], 
+    [
+      "205", 
+      "Name the upper level electives that are offered next fall after 10 am."
+    ], 
+    [
+      "001", 
+      "Are there any easy classes that fulfill the capstone requirement?"
+    ], 
+    [
+      "001", 
+      "What is the easiest courses I can take to complete the capstone requirement?"
+    ], 
+    [
+      "255", 
+      "Does EECS 281 have morning classes?"
+    ], 
+    [
+      "084", 
+      "Do you know what they are offering for the winter MDE classes?"
+    ], 
+    [
+      "176", 
+      "For EECS 203 and 280, what are the prerequisites?"
+    ], 
+    [
+      "073", 
+      "Who has taught, is teaching, or will teach autonomous robotics?"
+    ], 
+    [
+      "292", 
+      "Is there lab for 280?"
+    ], 
+    [
+      "132", 
+      "Is it useful to take EECS 280 and EECS 370 concurrently?"
+    ], 
+    [
+      "013", 
+      "Any available Senior Design Capstones next semester?"
+    ], 
+    [
+      "219", 
+      "In Fall of 2016 how many professors teach EECS 280?"
+    ], 
+    [
+      "001", 
+      "Which class that fulfills the capstone requirement is the easiest?"
+    ], 
+    [
+      "224", 
+      "Did Prof. Brehob teach EECS 203 in Spring 2015?"
+    ], 
+    [
+      "213", 
+      "Prior to taking 489, which courses do I need to complete?"
+    ], 
+    [
+      "213", 
+      "After taking what courses can I take 489?"
+    ], 
+    [
+      "269", 
+      "Would it be possible to take 280 on Monday and Wednesday?"
+    ], 
+    [
+      "239", 
+      "How long has the EECS 280 course been offered for?"
+    ], 
+    [
+      "116", 
+      "What should I take before I take EECS 280?"
+    ], 
+    [
+      "304", 
+      "This Fall, which upper division EECS courses are available?"
+    ], 
+    [
+      "074", 
+      "Who is the EECS 203 professor?"
+    ], 
+    [
+      "001", 
+      "What class is the easiest to fulfill the capstone requirement?"
+    ], 
+    [
+      "111", 
+      "I want to see only those courses which involves part of software engineering and artificial intelligence."
+    ], 
+    [
+      "213", 
+      "Are there any courses required prior to taking 489?"
+    ], 
+    [
+      "116", 
+      "Are there classes that would be useful for me to take before taking EECS 280?"
+    ], 
+    [
+      "269", 
+      "On Monday and Wednesday is 280 offered?"
+    ], 
+    [
+      "147", 
+      "Does Quentin Stout teach EECS 203?"
+    ], 
+    [
+      "071", 
+      "What is the name of the professor teaching MDE class next winter?"
+    ], 
+    [
+      "184", 
+      "For upper level electives which are the courses?"
+    ], 
+    [
+      "121", 
+      "What are the simplest courses?"
+    ], 
+    [
+      "132", 
+      "Should I take both EECS 280 and EECS 370 in the same semester?"
+    ], 
+    [
+      "021", 
+      "What courses are three credits?"
+    ], 
+    [
+      "285", 
+      "Do you know of any upper level classes that are four credits?"
+    ], 
+    [
+      "052", 
+      "Between EECS 484 and EECS 485 which is easier than the other?"
+    ], 
+    [
+      "255", 
+      "Is EECS 280 available as a morning class?"
+    ], 
+    [
+      "100", 
+      "What size is 280?"
+    ], 
+    [
+      "168", 
+      "280 is taught by teachers other than Prof. Smith?"
+    ], 
+    [
+      "154", 
+      "What main courses do I need to take for an Engineering CS major?"
+    ], 
+    [
+      "017", 
+      "Next semester is Dr. DeOrio teaching any classes and which if so?"
+    ], 
+    [
+      "029", 
+      "If I want to declare a major in EECS, then what classes to do I need to take?"
+    ], 
+    [
+      "304", 
+      "Which upper-level EECS classes can I take this Fall?"
+    ], 
+    [
+      "219", 
+      "EECS 280 is taught by how many professors in Fall 2016?"
+    ], 
+    [
+      "001", 
+      "What easy class can I take to fulfill the requirement for capstone?"
+    ], 
+    [
+      "016", 
+      "Regarding prerequisites, is EECS 281 mantadory?"
+    ], 
+    [
+      "168", 
+      "Any other teacher teach 280 other than Prof. Smith?"
+    ], 
+    [
+      "081", 
+      "Is the only person who teaches Algorithms, Professor Stout?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 available in the Winter 2016 semester?"
+    ], 
+    [
+      "213", 
+      "Which courses are pre-requisite to taking 489?"
+    ], 
+    [
+      "172", 
+      "Show me the requirements for a CS-LSA degree."
+    ], 
+    [
+      "116", 
+      "Which classes are useful to take before taking EECS 280?"
+    ], 
+    [
+      "269", 
+      "Can I take 280 on Mondays and Wednesday?"
+    ], 
+    [
+      "237", 
+      "What other classes has Dr. Peter Chen taught in the past?"
+    ], 
+    [
+      "111", 
+      "Are there courses that involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "116", 
+      "Before I take EECS 280 what other courses would be useful to have?"
+    ], 
+    [
+      "304", 
+      "This fall, which upper-lever EECS classes are being offered?"
+    ], 
+    [
+      "023", 
+      "What classes don't have lab sessions?"
+    ], 
+    [
+      "071", 
+      "Is there a professor assigned to teach MDE classes next winter?"
+    ], 
+    [
+      "247", 
+      "When will EECS 483 be offered?"
+    ], 
+    [
+      "237", 
+      "What courses has Dr. Peter Chen lectured in the past?"
+    ], 
+    [
+      "213", 
+      "What courses are needed before I take 489?"
+    ], 
+    [
+      "156", 
+      "Do you know if Prof. Smith has ever been the instructor for EECS 280?"
+    ], 
+    [
+      "103", 
+      "Show me four credit artificial intelligence classes."
+    ], 
+    [
+      "188", 
+      "Which days is EECS 281 taught?"
+    ], 
+    [
+      "261", 
+      "Is EECS 280 always taught by either Prof. Smith or Prof. Jones?"
+    ], 
+    [
+      "304", 
+      "What EECS upper-level classes are scheduled for this Fall?"
+    ], 
+    [
+      "017", 
+      "What classes are Dr. DeOrio teaching next semester?"
+    ], 
+    [
+      "132", 
+      "Is it advisable to take EECS 280 and EECS 370 at the same time?"
+    ], 
+    [
+      "304", 
+      "Speaking of upper-level EECS classes, which are available this Fall?"
+    ], 
+    [
+      "174", 
+      "Name the classes that will be offered in the next 6 semesters."
+    ], 
+    [
+      "219", 
+      "In Fall 2016, how many professors are teaching EECS 280?"
+    ], 
+    [
+      "213", 
+      "What courses do I need to take before course 489?"
+    ], 
+    [
+      "074", 
+      "Who is scheduled to teach EECS 203?"
+    ], 
+    [
+      "029", 
+      "Which classes are needed to obtain a major in EECS?"
+    ], 
+    [
+      "255", 
+      "Of all the eecs 280 classes which ones are in the morning."
+    ], 
+    [
+      "173", 
+      "May I view my transcript?"
+    ], 
+    [
+      "111", 
+      "I want to see any courses that have something to do with software engineering and artificial intelligence."
+    ], 
+    [
+      "239", 
+      "The course listings have included EECS 280 for how long?"
+    ], 
+    [
+      "124", 
+      "What time of the day do EECS 492 lectures start next semester?"
+    ], 
+    [
+      "169", 
+      "Which classes are core classes?"
+    ], 
+    [
+      "173", 
+      "I want to see my transcripts."
+    ], 
+    [
+      "292", 
+      "Is there a lab required for the 280 course?"
+    ], 
+    [
+      "074", 
+      "Which teacher gives the class EECS 203?"
+    ], 
+    [
+      "239", 
+      "EECS 280 has been in existence for how long?"
+    ], 
+    [
+      "213", 
+      "Before I take 489, what other courses do I need to complete?"
+    ], 
+    [
+      "219", 
+      "How many professors will be teaching EECS 280 in the fall of 2016?"
+    ], 
+    [
+      "141", 
+      "Is there a three credit EECS 400 level course?"
+    ], 
+    [
+      "121", 
+      "Which classes are the least difficult?"
+    ], 
+    [
+      "154", 
+      "What core courses do I need to take for the engineering CS major?"
+    ], 
+    [
+      "106", 
+      "Of all the artificial intelligence courses, which ones have no prerequisites?"
+    ], 
+    [
+      "170", 
+      "Name for me all the MDE classed."
+    ], 
+    [
+      "017", 
+      "What are the class numbers Dr. DeOrio is doing in the next semester?"
+    ], 
+    [
+      "175", 
+      "The EECS 381 class is how many credits?"
+    ], 
+    [
+      "219", 
+      "Who are the professors teaching EECS 280 in the Fall 2016 semester?"
+    ], 
+    [
+      "179", 
+      "What's 482's schedule next semester?"
+    ], 
+    [
+      "255", 
+      "Are there any EECS 280 classes in the morning?"
+    ], 
+    [
+      "084", 
+      "Which winter MDE classes are offered?"
+    ], 
+    [
+      "247", 
+      "When can I take EECS 483?"
+    ], 
+    [
+      "239", 
+      "For how long has EECS 280 been offered?"
+    ], 
+    [
+      "071", 
+      "Who will be teaching MDE next winter?"
+    ], 
+    [
+      "171", 
+      "Which non-EECS courses are required for the major?"
+    ], 
+    [
+      "015", 
+      "In summer 2016 can I join EECS 270?"
+    ], 
+    [
+      "084", 
+      "What MDE classes can be taken next winter?"
+    ], 
+    [
+      "247", 
+      "Next time when EECS 483 will be offered?"
+    ], 
+    [
+      "084", 
+      "Are there any MDE classes in the winter semester?"
+    ], 
+    [
+      "255", 
+      "Are morning classes conducted in EECS 280?"
+    ], 
+    [
+      "084", 
+      "Can you tell me what MDE classes are offered next winter?"
+    ], 
+    [
+      "014", 
+      "Right now can I take EECS 281?"
+    ], 
+    [
+      "071", 
+      "Who are the MDE teachers next winter?"
+    ], 
+    [
+      "117", 
+      "What are some easy 300 level courses?"
+    ], 
+    [
+      "195", 
+      "What are the upper level electives that are offered for CS majors?"
+    ], 
+    [
+      "237", 
+      "What classes from the past has Dr. Peter Chen taught?"
+    ], 
+    [
+      "304", 
+      "Are there upper level EECS classes being offered this Fall?"
+    ], 
+    [
+      "179", 
+      "What time is 482 offered the next semester?"
+    ], 
+    [
+      "285", 
+      "Which of the upper level classes get you four credits?"
+    ], 
+    [
+      "021", 
+      "What Courses are three credits?"
+    ], 
+    [
+      "172", 
+      "What are the requirements to get a CS-LSA degree?"
+    ], 
+    [
+      "213", 
+      "What courses must be completed to take 489?"
+    ], 
+    [
+      "037", 
+      "What other courses does Prof. Kuipers teach besides 203?"
+    ], 
+    [
+      "155", 
+      "Prof. Smith teaches what classes?"
+    ], 
+    [
+      "074", 
+      "Which professor teaches EECS 203?"
+    ], 
+    [
+      "060", 
+      "At what times of the week will 482 be offered?"
+    ], 
+    [
+      "239", 
+      "How long EECS 280 has been in the course listings?"
+    ], 
+    [
+      "260", 
+      "Is EECS 280 only offered in the fall?"
+    ], 
+    [
+      "176", 
+      "What are the mandatory classes for EECS 203 and 280?"
+    ], 
+    [
+      "172", 
+      "What requirements are there for a degree in CS-LSA?"
+    ], 
+    [
+      "133", 
+      "Is ENGR 100 section 500 offered in the Winter 2016 semester?"
+    ], 
+    [
+      "292", 
+      "is there a lab for 280?"
+    ], 
+    [
+      "213", 
+      "What prerequisites do I still need to take in order to take EECS 489?"
+    ], 
+    [
+      "174", 
+      "Which courses will be offered during the next 6 semesters?"
+    ], 
+    [
+      "228", 
+      "Is EECS 270 required to take the course EECS 370?"
+    ], 
+    [
+      "173", 
+      "May I please see my transcript?"
+    ], 
+    [
+      "239", 
+      "Around what length of time has EECS 280 been around for?"
+    ], 
+    [
+      "021", 
+      "Please advise me regarding courses worth three credits."
+    ], 
+    [
+      "237", 
+      "Can you list the classes that Dr. Peter Chen has taught?"
+    ], 
+    [
+      "175", 
+      "How many credits is EECS 381?"
+    ], 
+    [
+      "304", 
+      "Are there any EECS upper-level courses being offered this Fall?"
+    ], 
+    [
+      "116", 
+      "I am taking EECS 280, what courses should I take first?"
+    ], 
+    [
+      "271", 
+      "Who teaches EECS 280 this spring?"
+    ], 
+    [
+      "029", 
+      "What classes are necessary to declare a major in EECS?"
+    ], 
+    [
+      "182", 
+      "Name all the difficulties for all of the CS-LSA courses."
+    ], 
+    [
+      "152", 
+      "CS Majors require which math prerequisites?"
+    ], 
+    [
+      "239", 
+      "How long has the school offered EECS 280?"
+    ], 
+    [
+      "073", 
+      "Who teaches autonomous robotics?"
+    ], 
+    [
+      "116", 
+      "What courses are helpful to take before taking EECS 280?"
+    ], 
+    [
+      "184", 
+      "What are the upper level elective courses?"
+    ], 
+    [
+      "214", 
+      "Are there any 400-level classes in spring or summer term?"
+    ], 
+    [
+      "174", 
+      "In the next 6 semesters name the classes that are offered?"
+    ], 
+    [
+      "084", 
+      "What are the MDE classes offered next winter?"
+    ], 
+    [
+      "001", 
+      "What are the easiest classes for when you need to fulfill capstone requirements?"
+    ], 
+    [
+      "292", 
+      "Are there additional laboratory requirements for the 280 course?"
+    ], 
+    [
+      "111", 
+      "Show me courses that involve parts of software engineering and artificial intelligence."
+    ], 
+    [
+      "304", 
+      "What is on the list of the Fall EECS upper-level classes?"
+    ], 
+    [
+      "001", 
+      "What's the easiest class I can take to fulfill the capstone requirement?"
+    ], 
+    [
+      "060", 
+      "When is 482 being offered?"
+    ], 
+    [
+      "269", 
+      "Is it possible to take 280 on Wednesdays and Mondays?"
+    ], 
+    [
+      "285", 
+      "In upper-lever classes, which one are four credits?"
+    ], 
+    [
+      "081", 
+      "Is the only person teaching Algorithms Professor Stout?"
+    ], 
+    [
+      "237", 
+      "In the past, which classes has Dr. Peter Chen taught?"
+    ], 
+    [
+      "021", 
+      "What courses provide one/you with three credits?"
+    ], 
+    [
+      "176", 
+      "What prerequisites do I need for EECS 203 and 280?"
+    ], 
+    [
+      "100", 
+      "280 is how big?"
+    ], 
+    [
+      "304", 
+      "Are there any upper-level EECS classes offered this fall?"
+    ], 
+    [
+      "017", 
+      "What classes are being taught by Dr. DeOrio next semester?"
+    ], 
+    [
+      "239", 
+      "How many years has EECS 280 been offered for?"
+    ], 
+    [
+      "129", 
+      "Are there EECS 1-credit courses?"
+    ], 
+    [
+      "074", 
+      "The EECS 203 teacher, who is it?"
+    ], 
+    [
+      "134", 
+      "How many sections does EECS 280 contain?"
+    ], 
+    [
+      "074", 
+      "Do you know who the teacher is for EECS 203?"
+    ], 
+    [
+      "213", 
+      "What classes are essential before I can start 489?"
+    ], 
+    [
+      "103", 
+      "I'd like to see artificial intelligence courses of 4 credits."
+    ], 
+    [
+      "001", 
+      "Is there an easy class that will fulfill the capstone requirement?"
+    ], 
+    [
+      "157", 
+      "EECS 281 was last taught when?"
+    ], 
+    [
+      "017", 
+      "In this next semester what will Dr. DeOrio be teaching?"
+    ], 
+    [
+      "175", 
+      "381 is how many credits?"
+    ]
+  ]
+}

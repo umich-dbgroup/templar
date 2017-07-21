@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "JKK - Does this work? 'semester' and 'start_time' do not have a table"
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "After 10 A.M. , are there any sections for EECS 270 ?",
+        "After 10 A.M. are there any sections in EECS 270 ?",
+        "After 10 A.M. does EECS 270 have any section ?",
+        "After 10 A.M. , are there any sections for EECS 270 ?",
+        "After 10 A.M. , does EECS 270 have any sections ?",
+        "After 10 A.M. , is there a section for EECS 270 ?",
+        "Are there any EECS 270 sections after 10 A.M. ?",
+        "Are there any section available after 10 A.M. for EECS 270",
+        "Are there any sections done by EECS 270 after 10 A.M. ?",
+        "Are there any sections of EECS 270 that are at a time post 10 A.M. ?",
+        "Does EECS 270 only have sections before 10 A.M. , or are there any after ?",
+        "Does any section of EECS 270 start after 10 A.M. ?",
+        "For EECS 270 , is there any section after 10 A.M. ?",
+        "Is there a section for EECS 270 after 10 A.M. ?",
+        "Is there any section after 10 A.M. for EECS 270",
+        "Is there any section after 10 A.M. in EECS 270 ?",
+        "Which section after 10 A.M. is in EECS 270 ?"
+    ],
+    "sentence": "Does EECS 270 have any section after 10 A.M. ?",
+    "sentence-with-vars": "Does department0 number0 have any section after 10 A.M. ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 AND START_TIME > \"10 : 00 : 00\" ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = 370 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 AND START_TIME > \"10:00:00\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "270",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

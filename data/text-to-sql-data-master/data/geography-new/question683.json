@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "list the states ?", 
+ "sentence-with-vars": "list the states ?", 
+ "sql": "select state.state_name from state ;", 
+ "sql-with-vars": "select state.state_name from state ;", 
+ "variables": []
+}

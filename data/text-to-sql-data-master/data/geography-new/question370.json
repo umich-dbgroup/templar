@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the smallest city in the us ?", 
+ "sentence-with-vars": "what is the smallest city in the us ?", 
+ "sql": "select city.city_name from city where city.population = ( select min ( city.population ) from city ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population = ( select min ( city.population ) from city ) ;", 
+ "variables": []
+}

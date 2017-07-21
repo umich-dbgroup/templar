@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "name the major rivers in florida ?", 
+ "sentence-with-vars": "name the major rivers in state0 ?", 
+ "sql": "select river.river_name from river where river.traverse = ' florida ' and river.length > 750 ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ' state0 ' and river.length > number0 ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "florida", 
+   "sql-value": "florida"
+  }, 
+  {
+   "name": "number0", 
+   "sentence-value": "", 
+   "sql-value": "750"
+  }
+ ]
+}

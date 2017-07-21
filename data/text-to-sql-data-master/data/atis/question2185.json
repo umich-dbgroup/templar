@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list l a",
+    "sq2": "SELECT DISTINCT  '\"'||v0.city_code||'\"', '\"'||v0.city_name||'\"' FROM city v0 \nWHERE (v0.city_name = 'LOS ANGELES');",
+    "sql": [
+        "( SELECT DISTINCT CITY.CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' LOS ANGELES ' ) ;"
+    ],
+    "variables": []
+}

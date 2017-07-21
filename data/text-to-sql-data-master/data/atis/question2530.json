@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what type of plane is a d nine s",
+    "sq2": "SELECT DISTINCT  '\"'||v0.aircraft_description||'\"', '\"'||v0.aircraft_code||'\"' FROM aircraft v0 \nWHERE (v0.aircraft_code = 'D9S');",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.AIRCRAFT_DESCRIPTION FROM AIRCRAFT WHERE AIRCRAFT.AIRCRAFT_CODE = ' D9S ' ) ;"
+    ],
+    "variables": []
+}

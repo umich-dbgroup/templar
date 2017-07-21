@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any that have not taught EECS 280 ?",
+        "Concerning EECS 280 , who has never taught the class ?",
+        "EECS 280 has never been taught by which professors ?",
+        "EECS 280 has never been taught by who ?",
+        "EECS 280 has never been taught by whom ?",
+        "Is there anyone who has n't taught EECS 280 ?",
+        "Regarding , EECS 280 , who has never taught the class ?",
+        "What individuals have never taught EECS 280 ?",
+        "Which of you has not taught EECS 280 ?",
+        "Which professors have never taught EECS 280 ?",
+        "Which teachers have not taught EECS 280 ?",
+        "Who are the professors that have no experience teaching EECS 280 ?",
+        "Who has never been a teacher in EECS 280 ?",
+        "Who has not taught EECS 280 ?"
+    ],
+    "sentence": "Who has never taught EECS 280 ?",
+    "sentence-with-vars": "Who has never taught department0 number0 ?",
+    "sql": [
+        "SELECT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 WHERE INSTRUCTORalias0.NAME NOT IN ( SELECT INSTRUCTORalias1.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias1 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias1.INSTRUCTOR_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ) ;"
+    ],
+    "sql-with-vars": "SELECT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 WHERE INSTRUCTORalias0.NAME NOT IN ( SELECT INSTRUCTORalias1.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias1 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias1.INSTRUCTOR_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

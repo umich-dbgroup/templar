@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "RUI - 1"
+    ],
+    "comments": [
+        "RUI - no semster info in SQL"
+    ],
+    "helpfulness": [
+        "RUI - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "EECS 281 was last offered when ?",
+        "EECS 281 was last taught when ?",
+        "EECS 281 was offered last time when ?",
+        "EECS 281 , when was it last offered ?",
+        "How recently has EECS 281 been offered ?",
+        "How recently were classes in EECS 281 given ?",
+        "The last time EECS 281 was offered was when ?",
+        "What was the last time period the class EECS 281 was offered ?",
+        "What was the last time someone taught EECS 281 ?",
+        "When did they offer EECS 281 last time ?",
+        "When was EECS 281 last offered ?",
+        "When was EECS 281 offered previously ?",
+        "When was the EECS 281 class offered last ?",
+        "When was the last EECS 281 course offered ?",
+        "When was the last time EECS 281 was given ?"
+    ],
+    "sentence": "When was the last time EECS 281 was offered ?",
+    "sentence-with-vars": "When was the last time department0 number0 was offered ?",
+    "sql": [
+        "SELECT SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR DESC LIMIT 1 ;"
+    ],
+    "sql-with-vars": "SELECT SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR DESC LIMIT 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

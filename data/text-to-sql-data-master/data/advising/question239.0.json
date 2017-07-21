@@ -1,0 +1,85 @@
+{
+    "accuracy": [
+        "DRK - 0",
+        "RUI - 0"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "DRK - 1",
+        "RUI - 1"
+    ],
+    "info": [
+        "Should we try to answer this? The query tells us the earliest year the database knows of that the course was offered, so the dialog system would theoretically be able to say \"Since 2005.\" But the database doesn't necessarily contain the complete history of course offerings; I think it only goes back to about 2004."
+    ],
+    "paraphrases": [
+        "Around what length of time has EECS 280 been around for ?",
+        "Do you know how long they offered EECS 280 ?",
+        "EECS 280 has been offered for how long ?",
+        "EECS 280 , how long has it been offered for ?",
+        "EECS 280 has been available for how long ?",
+        "EECS 280 has been in existence for how long ?",
+        "EECS 280 has been in the course listings for how long ?",
+        "EECS 280 has been in the course listings how many years ?",
+        "EECS 280 has been offer for how long ?",
+        "EECS 280 has been offered for how long now ?",
+        "EECS 280 has been offered for how long ?",
+        "EECS 280 has been taught how many semesters ?",
+        "EECS has been a subject choice for how long ?",
+        "Exactly how long has EECS 280 been offered for ?",
+        "For how long has EECS 280 been offered",
+        "For how long has EECS 280 been offered ?",
+        "For how many years has EECS 280 been offered ?",
+        "For what length of time has EECS been offered ?",
+        "How long EECS 280 has been in the course listings ?",
+        "How long has EECS 280 been in the course listings ?",
+        "How long has EECS 280 been offered ?",
+        "How long has EECS 280 been taught for ?",
+        "How long has EECS 280 been taught ?",
+        "How long has EECS 280 been up for offer ?",
+        "How long has it been since the school started offering EECS 280 ?",
+        "How long has the EECS 280 course been offered for ?",
+        "How long has the school been offering EECS 280 ?",
+        "How long has the school offered EECS 280 ?",
+        "How long has the university been offering EECS 280 ?",
+        "How long has there been an offering of EECS 280 ?",
+        "How long have they been offering EECS 280 ?",
+        "How many semesters has EECS 280 been offered ?",
+        "How many terms has EECS been running ?",
+        "How many years ago was EECS 280 first offered ?",
+        "How many years has EECS 280 been available ?",
+        "How many years has EECS 280 been offered for ?",
+        "How many years has EECS 280 been offered ?",
+        "How many years has EECS 280 been taught ?",
+        "How many years have they offered EECS 280 ?",
+        "How old is the EECS 280 course ?",
+        "Since when has EECS 280 been offered ?",
+        "The EECS 280 class how long has it been offered ?",
+        "The EECS 280 has been offered for how long ?",
+        "The course listings have included EECS 280 for how long ?",
+        "What is the length of time that EECS 280 has been offered ?",
+        "What is the length of time that the EECS 280 has been offered for ?",
+        "What is the total amount of time the EECS 280 has been offered ?",
+        "What length of time has EECS 280 been offered for ?",
+        "What length of time has EECS been offered for ?",
+        "What period of time has EECS 280 been available ?",
+        "What would be timeframe wherein they have offered EECS 280 ?"
+    ],
+    "sentence": "How long has EECS 485 been offered for ?",
+    "sentence-with-vars": "How long has department0 number0 been offered for ?",
+    "sql": [
+        "SELECT SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 485 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR ASC LIMIT 1 ;"
+    ],
+    "sql-with-vars": "SELECT SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR ASC LIMIT 1 ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "485",
+            "sql-value": "485"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

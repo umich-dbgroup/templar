@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Apart from 203 , what courses does Prof. Kuipers teach ?",
+        "Besides 203 what classes does Prof. Kuipers teach ?",
+        "Besides 203 , what other courses does Prof. Kuipers teach ?",
+        "Can you list the courses other than 203 that Prof. Kuipers teaches ?",
+        "Does Prof. Kuipers only teach 203 ?",
+        "Does Prof. Kuipers teach other courses besides 203 ?",
+        "Other than 203 , what courses does Professor Kuipers teach ?",
+        "Prof. Kuipers teaches what other courses besides 203 ?",
+        "What courses does Prof. Kuipers teach besides 203 ?",
+        "What courses does Prof. Kuipers teach , excluding 203 ?",
+        "What courses , besides 203 , does Professor Kuipers teach ?",
+        "What other courses , besides 203 , does Prof. Kuipers teach ?",
+        "Which courses besides 203 are available with Prof. Kuipers ?",
+        "Which courses does Prof. Kuipers teach in addition to 203 ?"
+    ],
+    "sentence": "What other courses does Prof. Kuipers teach besides 203 ?",
+    "sentence-with-vars": "What other courses does instructor0 teach besides number0 ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER <> 203 AND INSTRUCTORalias0.NAME LIKE \"%kuipers%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER <> number0 AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Kuipers",
+            "sql-value": "kuipers"
+        }
+    ]
+}

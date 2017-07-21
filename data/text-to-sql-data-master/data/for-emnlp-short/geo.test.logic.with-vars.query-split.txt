@@ -1,0 +1,227 @@
+what is the highest point of the co0 ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+what is the highest point in the co0 ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+what is the highest point in the co0 ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+what is the highest point in the co0 ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+
+what are the capit of the state that border s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 s0 ) ( loc : t $0 $1 ) ) ) ) )
+
+how mani citi n0 are there in the co0 ||| ( count $0 ( and ( city : t $0 ) ( named : t $0 n0 ) ( loc : t $0 co0 ) ) )
+
+what is the most popul state border s0 ||| ( argmax $0 ( and ( state : t $0 ) ( next_to : t $0 s0 ) ) ( population : i $0 ) )
+
+which is the smallest state ||| ( argmin $0 ( state : t $0 ) ( size : i $0 ) )
+what state has the smallest area ||| ( argmin $0 ( state : t $0 ) ( area : i $0 ) )
+what is the smallest state in the co0 ||| ( argmin $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) ( size : i $0 ) )
+what is the state with the smallest area ||| ( argmin $0 ( state : t $0 ) ( area : i $0 ) )
+
+how mani state are next to major river ||| ( count $0 ( and ( state : t $0 ) ( exists $1 ( and ( river : t $1 ) ( major : t $1 ) ( next_to : t $0 $1 ) ) ) ) )
+
+what river flow through the state with the largest popul ||| ( lambda $0 e ( and ( river : t $0 ) ( loc : t $0 ( argmax $1 ( state : t $1 ) ( population : i $1 ) ) ) ) )
+
+what is the popul of the state with the largest area ||| ( population : i ( argmax $0 ( state : t $0 ) ( area : i $0 ) ) )
+what is the popul of the largest state ||| ( population : i ( argmax $0 ( state : t $0 ) ( size : i $0 ) ) )
+
+what is the capit of the state that has the longest river ||| ( capital : c ( the $1 ( and ( state : t $1 ) ( loc : t ( argmax $2 ( river : t $2 ) ( len : i $2 ) ) $1 ) ) ) )
+what is the capit of the state with the longest river ||| ( capital : c ( the $1 ( and ( state : t $1 ) ( loc : t ( argmax $2 ( river : t $2 ) ( len : i $2 ) ) $1 ) ) ) )
+
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of the s0 state ||| ( area : i s0 )
+how big is s0 ||| ( size : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+how big is s0 ||| ( size : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+how big is s0 ||| ( size : i s0 )
+how big is s0 ||| ( size : i s0 )
+how big is s0 ||| ( size : i s0 )
+how big is s0 ||| ( size : i s0 )
+how big is s0 ||| ( size : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the size of s0 ||| ( size : i s0 )
+what is the size of s0 ||| ( size : i s0 )
+what is the size of s0 ||| ( size : i s0 )
+how big is s0 ||| ( size : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 ||| ( area : i s0 )
+what is the area of s0 in squar kilomet ||| ( area : i s0 )
+
+how mani state border the state with the largest popul ||| ( count $0 ( and ( state : t $0 ) ( next_to : t $0 ( argmax $1 ( state : t $1 ) ( population : i $1 ) ) ) ) )
+
+what is the largest citi in smallest state through which the r0 run ||| ( argmax $0 ( and ( city : t $0 ) ( loc : t $0 ( argmin $1 ( and ( state : t $1 ) ( loc : t r0 $1 ) ) ( size : i $1 ) ) ) ) ( size : i $0 ) )
+
+what river flow through state that border the state with the largest popul ||| ( lambda $0 e ( and ( river : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 ( argmax $2 ( state : t $2 ) ( population : i $2 ) ) ) ( loc : t $0 $1 ) ) ) ) )
+
+what is the capit of the state with the highest point ||| ( capital : c ( the $1 ( and ( state : t $1 ) ( loc : t ( argmax $2 ( place : t $2 ) ( elevation : i $2 ) ) $1 ) ) ) )
+what is the capit of the state with the highest elev ||| ( capital : c ( argmax $1 ( state : t $1 ) ( elevation : i $1 ) ) )
+
+what state border the state with the smallest popul ||| ( lambda $0 e ( and ( state : t $0 ) ( next_to : t $0 ( argmin $1 ( state : t $1 ) ( population : i $1 ) ) ) ) )
+
+what is the popul of the capit of the largest state ||| ( population : i ( capital : c ( argmax $1 ( state : t $1 ) ( size : i $1 ) ) ) )
+
+name all the lake of co0 ||| ( lambda $0 e ( and ( lake : t $0 ) ( loc : t $0 co0 ) ) )
+
+how mani river do not travers the state with the capit c0 ||| ( count $0 ( and ( river : t $0 ) ( not ( loc : t $0 ( the $1 ( and ( state : t $1 ) ( capital : t $1 c0 ) ) ) ) ) ) )
+
+what are the popul densiti of each co0 state ||| ( lambda $0 e ( exists $1 ( and ( state : t $1 ) ( density : i $1 $0 ) ) ) )
+
+what is the area of the smallest state ||| ( area : i ( argmin $0 ( state : t $0 ) ( size : i $0 ) ) )
+
+what is the highest point in the state with the smallest popul ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 ( argmin $1 ( state : t $1 ) ( population : i $1 ) ) ) ) ( elevation : i $0 ) )
+
+what is the highest point of the state with the largest area ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 ( argmax $1 ( state : t $1 ) ( area : i $1 ) ) ) ) ( elevation : i $0 ) )
+
+where is m0 locat ||| ( lambda $0 e ( loc : t m0 $0 ) )
+where is m0 ||| ( lambda $0 e ( loc : t m0 $0 ) )
+which state is m0 in ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t m0 $0 ) ) )
+in what state is m0 ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t m0 $0 ) ) )
+in what state is m0 ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t m0 $0 ) ) )
+
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what are the capit citi in s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( loc : t $0 s0 ) ( city : t $0 ) ) )
+can you tell me the capit of s0 ||| ( capital : c s0 )
+what is the capit of the s0 state ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of the state s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of s0 ||| ( capital : c s0 )
+what is the capit of the s0 state ||| ( capital : c s0 )
+
+what is the highest point in the state with the most river ||| ( argmax $0 ( and ( place : t $0 ) ( loc : t $0 ( argmax $1 ( state : t $1 ) ( count $2 ( and ( river : t $2 ) ( loc : t $2 $1 ) ) ) ) ) ) ( elevation : i $0 ) )
+
+what are the capit citi of the state which border s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( city : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 s0 ) ( loc : t $0 $1 ) ) ) ) )
+what are the capit of state that border s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 s0 ) ( loc : t $0 $1 ) ) ) ) )
+which capit are in state that border s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 s0 ) ( loc : t $0 $1 ) ) ) ) )
+what are the capit of state that border s0 ||| ( lambda $0 e ( and ( capital : t $0 ) ( exists $1 ( and ( state : t $1 ) ( next_to : t $1 s0 ) ( loc : t $0 $1 ) ) ) ) )
+
+how mani river are in the state with the highest point ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 ( the $1 ( and ( state : t $1 ) ( loc : t ( argmax $2 ( place : t $2 ) ( elevation : i $2 ) ) $1 ) ) ) ) ) )
+
+what state border state that the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( exists $1 ( and ( state : t $1 ) ( loc : t r0 $1 ) ( next_to : t $0 $1 ) ) ) ) )
+what state border state that the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( exists $1 ( and ( state : t $1 ) ( loc : t r0 $1 ) ( next_to : t $0 $1 ) ) ) ) )
+what state border state which the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( exists $1 ( and ( state : t $1 ) ( loc : t r0 $1 ) ( next_to : t $0 $1 ) ) ) ) )
+
+give me the lake in s0 ||| ( lambda $0 e ( and ( lake : t $0 ) ( loc : t $0 s0 ) ) )
+
+how mani state are there in the co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are there ||| ( count $0 ( state : t $0 ) )
+how mani state doe co0 have ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are there in the co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are in the co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are there in the co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are in the co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+how mani state are there in co0 ||| ( count $0 ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+
+what state contain the highest point in the co0 ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( and ( place : t $1 ) ( loc : t $1 co0 ) ) ( elevation : i $1 ) ) $0 ) ) )
+which state has the highest point ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( place : t $1 ) ( elevation : i $1 ) ) $0 ) ) )
+what is the state that contain the highest point ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( place : t $1 ) ( elevation : i $1 ) ) $0 ) ) )
+what state has the highest elev ||| ( argmax $1 ( state : t $1 ) ( elevation : i $1 ) )
+what state has highest elev ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( place : t $1 ) ( elevation : i $1 ) ) $0 ) ) )
+which state has the highest elev ||| ( argmax $1 ( state : t $1 ) ( elevation : i $1 ) )
+in which state doe the highest point in co0 exist ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( and ( place : t $1 ) ( loc : t $1 co0 ) ) ( elevation : i $1 ) ) $0 ) ) )
+
+what citi in s0 have the highest popul ||| ( argmax $0 ( and ( city : t $0 ) ( loc : t $0 s0 ) ) ( population : i $0 ) )
+
+what is the name of the state with the lowest point ||| ( lambda $2 e ( named : t ( the $0 ( and ( state : t $0 ) ( loc : t ( argmin $1 ( place : t $1 ) ( elevation : i $1 ) ) $0 ) ) ) $2 ) )
+what is the state with the lowest point ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmin $1 ( place : t $1 ) ( elevation : i $1 ) ) $0 ) ) )
+which state has the lowest elev ||| ( argmin $0 ( state : t $0 ) ( elevation : i $0 ) )
+
+what state border the state with the smallest area ||| ( lambda $0 e ( and ( state : t $0 ) ( next_to : t $0 ( argmin $1 ( state : t $1 ) ( area : i $1 ) ) ) ) )
+which state border the state with the smallest area ||| ( lambda $0 e ( and ( state : t $0 ) ( next_to : t $0 ( argmin $1 ( state : t $1 ) ( area : i $1 ) ) ) ) )
+
+what are the citi in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+give me the citi in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+give me the citi which are in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+give me the citi in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+give me the citi in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+what citi in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+what citi are locat in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+tell me what citi are in s0 ||| ( lambda $0 e ( and ( city : t $0 ) ( loc : t $0 s0 ) ) )
+
+which state have point -er than the highest point in s0 ||| ( lambda $0 e ( and ( state : t $0 ) ( exists $1 ( and ( place : t $1 ) ( > ( elevation : i $1 ) ( elevation : i ( argmax $2 ( and ( place : t $2 ) ( loc : t $2 s0 ) ) ( elevation : i $2 ) ) ) ) ) ) ) )
+
+what is the height of the highest mountain in s0 ||| ( elevation : i ( argmax $0 ( and ( mountain : t $0 ) ( loc : t $0 s0 ) ) ( elevation : i $0 ) ) )
+
+what is the popul densiti in the state with capit c0 ||| ( density : i ( the $0 ( and ( state : t $0 ) ( capital : t $0 c0 ) ) ) )
+
+which state doe the longest river run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( river : t $1 ) ( len : i $1 ) ) $0 ) ) )
+which state has the longest river ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( river : t $1 ) ( len : i $1 ) ) $0 ) ) )
+what are the state through which the longest river run ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t ( argmax $1 ( river : t $1 ) ( len : i $1 ) ) $0 ) ) )
+
+what is the highest point in each state whose lowest point is sea level ||| ( lambda $0 e ( equals : t $0 ( argmax $1 ( and ( place : t $1 ) ( exists $2 ( and ( state : t $2 ) ( equals : t ( elevation : i ( argmin $3 ( and ( place : t $3 ) ( loc : t $3 $2 ) ) ( elevation : i $3 ) ) ) 0 : i ) ( loc : t $0 $2 ) ) ) ) ( elevation : i $1 ) ) ) )
+
+what is the shortest river in s0 ||| ( argmin $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) ( len : i $0 ) )
+what is the shortest river in s0 ||| ( argmin $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) ( len : i $0 ) )
+what is the shortest river in s0 ||| ( argmin $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) ( len : i $0 ) )
+what is the shortest river in s0 ||| ( argmin $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) ( len : i $0 ) )
+
+where is s0 ||| ( lambda $0 e ( loc : t s0 $0 ) )
+where is s0 ||| ( lambda $0 e ( loc : t s0 $0 ) )
+
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what are the state that the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 go through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe r0 flow through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state has the r0 ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what are the state next to the r0 ||| ( lambda $0 e ( and ( state : t $0 ) ( next_to : t $0 r0 ) ) )
+through which state doe the r0 flow ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+through which state doe the r0 run ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+what state have river n0 ||| ( lambda $0 e ( and ( state : t $0 ) ( exists $1 ( and ( named : t $1 n0 ) ( river : t $1 ) ( loc : t $1 $0 ) ) ) ) )
+where is the r0 ||| ( lambda $0 e ( loc : t r0 $0 ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+which state doe the r0 run through ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t r0 $0 ) ) )
+
+what is the highest mountain in co0 ||| ( argmax $0 ( and ( mountain : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+what is the highest mountain in the co0 ||| ( argmax $0 ( and ( mountain : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+what is the highest mountain in co0 ||| ( argmax $0 ( and ( mountain : t $0 ) ( loc : t $0 co0 ) ) ( elevation : i $0 ) )
+
+what are the state ||| ( lambda $0 e ( state : t $0 ) )
+give me all the state of co0 ||| ( lambda $0 e ( and ( state : t $0 ) ( loc : t $0 co0 ) ) )
+list the state ||| ( lambda $0 e ( state : t $0 ) )
+
+how mani river in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river run through s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are there in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are found in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river are in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+give me the number of river in s0 ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+how mani river doe s0 have ||| ( count $0 ( and ( river : t $0 ) ( loc : t $0 s0 ) ) )
+
+what state border s0 and have a major river ||| ( lambda $0 e ( and ( state : t $0 ) ( next_to : t $0 s0 ) ( exists $1 ( and ( major : t $1 ) ( river : t $1 ) ( loc : t $1 $0 ) ) ) ) )
+
+how mani state border the state whose capit is c0 ||| ( count $0 ( and ( state : t $0 ) ( next_to : t $0 ( the $1 ( and ( state : t $1 ) ( capital : t $1 c0 ) ) ) ) ) )
+
+what is the area of the state ||| ( area : i usa : co )
+
+what is the popul densiti of the largest state ||| ( density : i ( argmax $0 ( state : t $0 ) ( size : i $0 ) ) )
+

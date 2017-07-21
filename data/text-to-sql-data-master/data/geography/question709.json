@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers are in the state with the highest point ?", 
+ "sentence-with-vars": "how many rivers are in the state with the highest point ?", 
+ "sql": "select count ( river.river_name ) from river , highlow where river.traverse = highlow.state_name and highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river , highlow where river.traverse = highlow.state_name and highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "variables": []
+}

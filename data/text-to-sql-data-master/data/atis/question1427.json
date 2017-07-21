@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what's the airport at orlando",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airport_name||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"' FROM airport v0,\n airport_service v1, city v2 \nWHERE ((v0.airport_code = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'ORLANDO')));",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT.AIRPORT_NAME FROM AIRPORT WHERE AIRPORT . AIRPORT_CODE IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ORLANDO ' ) ) ) ;"
+    ],
+    "variables": []
+}

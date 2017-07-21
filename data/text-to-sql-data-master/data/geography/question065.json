@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people live in kalamazoo ?", 
+ "sentence-with-vars": "how many people live in city0 ?", 
+ "sql": "select city.population from city where city.city_name = ' kalamazoo ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "kalamazoo", 
+   "sql-value": "kalamazoo"
+  }
+ ]
+}

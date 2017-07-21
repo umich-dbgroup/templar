@@ -1,0 +1,42 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "info": [
+        "answers a slightly different question - lists available hardware courses"
+    ],
+    "paraphrases": [
+        "Can you give me a starting point for selecting a hardware class ?",
+        "Do you know anywhere that offers hardware courses ?",
+        "For taking a hardware course , where can I start as I am thinking about it ?",
+        "I may wish to take a hardware course and I 'm looking for suggestions as to where to begin .",
+        "I might take a hardware course . Where should I start ?",
+        "I want to take a hardware course and would like to know where I can start .",
+        "I 'd like to take a hardware course . Where do you think I should start ?",
+        "Where can I find a list of hardware courses ?",
+        "Where can I start taking a hardware course ?",
+        "Where can I take a hardware course ? I 'm thinking of taking 1 .",
+        "Where should I begin if I want to take a hardware course ?",
+        "Where should I start if I am thinking about taking a hardware course ?"
+    ],
+    "sentence": "I 'm thinking about taking a hardware course . Where can I start ?",
+    "sentence-with-vars": "I 'm thinking about taking a topic0 course . Where can I start ?",
+    "sql": [
+        "SELECT AREAalias0.AREA , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM AREA AS AREAalias0 , COURSE AS COURSEalias0 WHERE AREAalias0.AREA = \"Computer hardware\" AND COURSEalias0.COURSE_ID = AREAalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT AREAalias0.AREA , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM AREA AS AREAalias0 , COURSE AS COURSEalias0 WHERE AREAalias0.AREA = \"topic0\" AND COURSEalias0.COURSE_ID = AREAalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "topic0",
+            "sentence-value": "hardware",
+            "sql-value": "Computer hardware"
+        }
+    ]
+}

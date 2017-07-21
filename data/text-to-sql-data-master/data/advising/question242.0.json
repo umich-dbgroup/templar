@@ -1,0 +1,54 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "SRS - Would be more helpful to list easiest course by sorting workload instead of assuming workload to be 1."
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any 400 / 500 level EECS courses with a small workload ?",
+        "Are there more 400 / 500 level EECS classes with less workloads ?",
+        "Could you tell me about some of the 400 / 500 level EECS courses with the least workload ?",
+        "For EECS courses in the 400 / 500 level , which have the least workload ?",
+        "For the 400 / 500 level EECS courses , which have the least workload ?",
+        "For the 400 / 500 level EECS courses , which have the lightest workload ?",
+        "I want the least amount of workload avaliable in the 400 / 500 level EECS courses .",
+        "If I want to have an easy workload , what 400 / 500 level EECS courses should I take ?",
+        "List 400 / 500 level coures in EECS that are the easiest .",
+        "What are the easiest 400 / 500 level EECS courses ?",
+        "Which 400 / 500 level EECS courses have the least workload ?",
+        "Which 400 / 500 level EECS courses have the lightest workload ?",
+        "Which 400 / 500 level EECS courses have the smallest workloads ?",
+        "which classes in the EECS 400 / 500 level have the least amount of work ?"
+    ],
+    "sentence": "What are some of the 400 / 500 level EECS courses with the least workload ?",
+    "sentence-with-vars": "What are some of the number0/number1 level department0 courses with the least workload ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER < 600 AND COURSEalias0.NUMBER >= 400 AND PROGRAM_COURSEalias0.WORKLOAD = 1 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER < 600 AND COURSEalias0.NUMBER >= number0 AND PROGRAM_COURSEalias0.WORKLOAD = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "400",
+            "sql-value": "400"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "500",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the most populated state bordering oklahoma ?", 
+ "sentence-with-vars": "what is the most populated state bordering state0 ?", 
+ "sql": "select distinct state.state_name from border_info , state where border_info.state_name = ' oklahoma ' and state.state_name = border_info.border and state.population = ( select max ( state.population ) from border_info , state where border_info.state_name = ' oklahoma ' and state.state_name = border_info.border ) ;", 
+ "sql-with-vars": "select distinct state.state_name from border_info , state where border_info.state_name = ' state0 ' and state.state_name = border_info.border and state.population = ( select max ( state.population ) from border_info , state where border_info.state_name = ' state0 ' and state.state_name = border_info.border ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "oklahoma", 
+   "sql-value": "oklahoma"
+  }
+ ]
+}

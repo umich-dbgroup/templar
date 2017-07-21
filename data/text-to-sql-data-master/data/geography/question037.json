@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many inhabitants does montgomery have ?", 
+ "sentence-with-vars": "how many inhabitants does city0 have ?", 
+ "sql": "select city.population from city where city.city_name = ' montgomery ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "montgomery", 
+   "sql-value": "montgomery"
+  }
+ ]
+}

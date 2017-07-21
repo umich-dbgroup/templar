@@ -1,0 +1,61 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "JKK - Missing prof var"
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Did Quentin Stout ever teach EECS 203 ?",
+        "Does Quentin Stout teach EECS 203 ?",
+        "Does Quentin Stout teach the class EECS 203 ?",
+        "EECS 203 is taught by Quentin Stout ?",
+        "Has EECS 203 been taught by Quentin Stout ?",
+        "Has the class EECS 203 been taught by anyone else , specifically Quentin Stout ?",
+        "Has the person Quentin Stout ever taught the class EECS 203 ?",
+        "Is EECS 203 is instructed by quentin stout ?",
+        "Was EECS 203 taught by Quentin Stout ?",
+        "Was EECS 203 ever been taught by Quentin Stout ?",
+        "Was EECS 203 ever been taught by a Quentin Stout ?",
+        "Do you know if Quentin Stout has ever been the instructor for EECS 203 ?",
+        "Does Quentin Stout ever teach EECS 203 ?",
+        "Does Quentin Stout teach EECS 203 ever ?",
+        "Has Quentin Stout ever taught the class EECS 203 ?",
+        "Has Quentin Stout ever taught the course EECS 203 ?",
+        "Is there a time that Professor Smith taught EECS 203 ?",
+        "Of all the courses , has Quentin Stout ever taught EECS 203 ?",
+        "Was EECS 203 ever been taught by Quentin Stout ?",
+        "Was EECS 203 ever taught by Quentin Stout ?",
+        "Was Quentin Stout ever taught EECS 203 ?"
+    ],
+    "sentence": "Has Quentin Stout ever taught EECS 203 ?",
+    "sentence-with-vars": "Has instructor0 ever taught department0 number0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 203 AND INSTRUCTORalias0.NAME LIKE \"%quentin stout%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"instructor0\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Quentin Stout",
+            "sql-value": "quentin stout"
+        }
+    ]
+}

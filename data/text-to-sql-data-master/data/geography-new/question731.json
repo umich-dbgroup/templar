@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "name the 50 capitals in the usa ?", 
+ "sentence-with-vars": "name the 50 capitals in the usa ?", 
+ "sql": "select distinct state.capital from state ;", 
+ "sql-with-vars": "select distinct state.capital from state ;", 
+ "variables": []
+}

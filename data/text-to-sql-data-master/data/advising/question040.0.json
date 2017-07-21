@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of \"upper-level classes\" to be 'ULCS'."
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are 4 -credit classes the only option for upper level classes ?",
+        "Are 4 credits available for all upper-level classes ?",
+        "Are 4 credits given to all Upper-level classes ?",
+        "Are 4 credits the only option for upper-level classes ?",
+        "Are the classes in the upper-levels all worth 4 credits ?",
+        "Are the upper-level classes all 4 credits ?",
+        "Are there any upper-level classes other than 4 -credit classes ?",
+        "Are upper-level classes all 4 credits ?",
+        "Do I earn 4 credits for the upper-level classes ?",
+        "Do all of the upper-level classes count for 4 credits ?",
+        "Do all of the upper-level classes have 4 credits ?",
+        "Do all upper-level classes have 4 credits ?",
+        "Do the upper-level classes all offer 4 credits ?",
+        "Is it true that all upper level classes are 4 credits ?",
+        "The upper-level classes , are they all worth 4 credits ?"
+    ],
+    "sentence": "Are all the upper-level classes 4 credits ?",
+    "sentence-with-vars": "Are all the upper-level classes 4 credits ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE CATEGORY = \"ULCS\" AND COURSEalias0.CREDITS <> 4 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE CATEGORY = \"ULCS\" AND COURSEalias0.CREDITS <> 4 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

@@ -1,0 +1,22 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [
+        "How can I declare a major in EECS?"
+    ],
+    "sentence": "How do I declare an EECS major?",
+    "sentence-with-vars": "How do I declare an department0 major?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+	]
+}

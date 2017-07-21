@@ -1,0 +1,53 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are Fridays a day where EECS 280 is being taught ?",
+        "Are there Friday classes for EECS 280 ?",
+        "Do the classes on Friday include EECS 280 ?",
+        "Is EECS 280 having class on Friday ?",
+        "Is EECS 280 scheduled for any class on Friday ?",
+        "Is Friday a class day for ECCS 280 ?",
+        "Is there EECS 280 class on Friday ?",
+        "Is there a EECS 280 class on Friday ?",
+        "Is there class for EECS 280 on Friday ?",
+        "On Friday does EECS 280 have class ?",
+        "On Friday , does EECS 280 have a class ?",
+        "On Friday , does EECS 280 have class ?",
+        "On Friday , is there a EECS 280 class ?",
+        "On Friday , is there class for EECS 280 ?",
+        "Regarding the EECS 280 class , is there 1 on Friday ?",
+        "Will EECS 280 be having class on Friday ?",
+        "Will EECS 280 classes take place on Friday ?",
+        "Will an EECS 280 class be offered on Friday ?",
+        "Will there be a class for EECS 280 on Friday ?",
+        "Will there be any EECS 280 classes on Friday ?"
+    ],
+    "sentence": "Does EECS 280 have class on Friday ?",
+    "sentence-with-vars": "Does department0 number0 have class on Friday ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

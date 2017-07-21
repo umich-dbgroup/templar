@@ -1,0 +1,30 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "reasoning"
+    ],
+    "paraphrases": [],
+    "sentence": "If I take 370 next semester, can I take 381 in the Fall?",
+    "sentence-with-vars": "If I take number0 next semester, can I take number1 in the semester0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "381",
+            "sql-value": ""
+        },
+		{
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": ""
+        }
+    ]
+}

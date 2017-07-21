@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what is the abbreviation for canadian airlines international",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"', '\"'||v0.airline_name||'\"' FROM airline v0 \nWHERE (v0.airline_name LIKE '%CANADIAN AIRLINES INTERNATIONAL%');",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_CODE FROM AIRLINE WHERE AIRLINE.AIRLINE_NAME LIKE '% CANADIAN AIRLINES INTERNATIONAL %' ) ;"
+    ],
+    "variables": []
+}

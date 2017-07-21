@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population density in the state with capital austin ?", 
+ "sentence-with-vars": "what is the population density in the state with capital  ?", 
+ "sql": "select state.density from state where state.capital = ' austin ' ;", 
+ "sql-with-vars": "select state.density from state where state.capital = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "austin", 
+   "sql-value": "austin"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the length of the river that runs through the most states ?", 
+ "sentence-with-vars": "what is the length of the river that runs through the most states ?", 
+ "sql": "select river.length from river group by ( river.river_name ) order by count ( distinct river.traverse ) desc limit 1 ;", 
+ "sql-with-vars": "select river.length from river group by ( river.river_name ) order by count ( distinct river.traverse ) desc limit 1 ;", 
+ "variables": []
+}

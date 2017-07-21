@@ -1,0 +1,55 @@
+{
+    "accuracy": [
+        "JKK - 0"
+    ],
+    "comments": [
+        "JKK - Currently includes future semesters, should constrain to only pre winter 2016"
+    ],
+    "helpfulness": [
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "EECS 280 has been taught by who in the past ?",
+        "EECS 280 has been taught by whom in the past ?",
+        "In reference to EECS 280 , who has taught it in the past ?",
+        "In the past , who has taught EECS 280 ?",
+        "In the past , who taught EECS 280 ?",
+        "Tell me who taught EECS 280 in the past ?",
+        "Who are the people that have taught EECS 280 in the past ?",
+        "Who has taught EECS 280 ?",
+        "Who have been the past instructors for EECS 280 ?",
+        "Who in the past has taught EECS 280 ?",
+        "Who was EECS 280 taught by in the past ?",
+        "Who was the past teacher for EECS 280 ?"
+    ],
+    "sentence": "Who has taught EECS 280 in the past ?",
+    "sentence-with-vars": "Who has taught department0 number0 in the past ?",
+    "sql": [
+        "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND NOT ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ) ;"
+    ],
+    "sql-with-vars": "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND NOT ( SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.YEAR = year0 ) ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "",
+            "sql-value": "WN"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

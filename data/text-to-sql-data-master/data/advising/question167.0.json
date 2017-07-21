@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Across all departments , how many classes are being offered next semester ?",
+        "How many classes are being offered next semester ?",
+        "How many classes are there available next semester ?",
+        "How many classes will be offered next semester across all departments ?",
+        "How many classes will be offered next semester ?",
+        "In the next semester , how many classes are being offered ?",
+        "In the next semester , what is the total number of classes being offered ?",
+        "Next semester how many classes are offered ?",
+        "Next semester in all departments , how many classes are being offered ?",
+        "Next semester , how many classes are being offered across all departments ?",
+        "Next semester , how many classes are being offered ?",
+        "Next semester , how many classes will be offered across all departments ?",
+        "What is the number of classes being offered next semester ?",
+        "What 's the number of available classes for the upcoming semester ?"
+    ],
+    "sentence": "How many classes across all departments are being offered next semester ?",
+    "sentence-with-vars": "How many classes across all departments are being offered next semester ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

@@ -1,0 +1,35 @@
+{
+    "accuracy": [],
+    "comments": [
+        "SRS - This query may produce a large number of results. Perhaps the results should be limited.",
+        "LZ - No limit?"
+    ],
+    "helpfulness": [],
+    "info": [],
+    "paraphrases": [
+        "Do you know what courses are offered this semester ?",
+        "During this semester , what courses are offered ?",
+        "In this semester which courses offered ?",
+        "Name the courses offered this semester .",
+        "Of all courses , which ones are offered this semester ?",
+        "The courses that are offered this semester are ?",
+        "This semester offers which courses ?",
+        "This semester , which courses are offered ?",
+        "What all courses are being offered currently ?",
+        "What are the names of courses that are offered this semester ?",
+        "What are the courses offered this semester ?",
+        "What are the offered courses this semester ?",
+        "What classes are offered this semester ?",
+        "What courses are offered this semester ?",
+        "Which courses are there this semester ?"
+    ],
+    "sentence": "Which courses are offered this semester ?",
+    "sentence-with-vars": "Which courses are offered this semester ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSE_OFFERINGalias0.SEMESTER = 2070 AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

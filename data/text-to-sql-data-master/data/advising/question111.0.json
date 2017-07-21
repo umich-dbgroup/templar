@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Show me classes that involve parts of software engineering and artificial intelligence .",
+        "What classes involve software engineering and AI ?",
+        "Show me courses that incorporate software engineering and artificial intelligence .",
+        "Of all the courses show me the ones that involve parts of software engineering and artificial intelligence .",
+        "Are there courses that involve parts of software engineering and artificial intelligence .",
+        "Display courses that involve any parts of artificial intelligence and software engineering .",
+        "Show me courses that include any parts of software engineering and artificial intelligence .",
+        "Show me any courses that cover parts of artificial intelligence and software engineering .",
+        "Can you show me which courses involve parts of software engineering and artificial intelligence .",
+        "Show me courses which involve parts of software engineering and artificial intelligence .",
+        "I want to see only those courses which involves part of software engineering and artificial intelligence .",
+        "Which courses involve parts of software engineering and artificial intelligence , can you show me ?",
+        "Name the courses that include parts of software engineering and artificial intelligence .",
+        "I want to see any courses that have something to do with software engineering and artificial intelligence .",
+        "What are the courses that involve parts of software engineering and artificial intelligence ?"
+    ],
+    "sentence": "Show me courses that involve parts of software engineering and artificial intelligence .",
+    "sentence-with-vars": "Show me courses that involve parts of topic1 and topic0 .",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%artificial intelligence%\" OR LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%software engineering%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%topic0%\" OR LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%topic1%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "topic0",
+            "sentence-value": "artificial intelligence",
+            "sql-value": "artificial intelligence"
+        },
+        {
+            "name": "topic1",
+            "sentence-value": "software engineering",
+            "sql-value": "software engineering"
+        }
+    ]
+}

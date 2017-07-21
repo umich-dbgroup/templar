@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Could you tell me about EECS 388 ?",
+        "EECS 388 is what ?",
+        "EECS 388 is ?",
+        "Explain what EECS 388 contains .",
+        "Tell me about EECS 388 .",
+        "What does EECS 388 entail ?",
+        "388 EECS is about ?",
+        "Can you tell me more about EECS 388 ?",
+        "What does EECS 388 cover ?",
+        "What is EECS 388 about ?",
+        "What is the EECS 388 course about ?",
+        "What is the class EECS 388 about ?",
+        "What is the topic of EECS 388 ?",
+        "What kinds of things will I learn in 388 ?",
+        "What material does EECS 388 go over ?",
+        "What materials are covered in EECS 388 ?",
+        "What subjects does EECS 388 cover ?",
+        "What 's EECS 388 about ?",
+        "What 's there in EECS 388 ?"
+    ],
+    "sentence": "Tell me more about EECS 388 .",
+    "sentence-with-vars": "Tell me more about department0 number0 .",
+    "sql": [
+        "SELECT COURSEalias0.DESCRIPTION , COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 388 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DESCRIPTION , COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "388",
+            "sql-value": "388"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "SRS - Shouldn't the results be sorted by year ascending, not descending?",
+        "DRK - I think order by ASC would be more useful"
+    ],
+    "helpfulness": [
+        "SRS - 2",
+        "DRK - 1"
+    ],
+    "info": [
+        "I don't think there's a way to sort semesters properly; that is, assuming the same year, Winter, Spring, Spring-Summer, Summer, Fall"
+    ],
+    "paraphrases": [
+        "At what time will Honglak Lee teach 445 next ?",
+        "At what time will Honglak Lee teach 445 ?",
+        "Honglak Lee will teach 445 again when ?",
+        "What time is Honglak Lee next teaching 445 ?",
+        "When does Honglak Lee teach 445 again ?",
+        "When does the next 445 taught by Honglak Lee happen ?",
+        "When is Honglak Lee next scheduled to teach 445 ?",
+        "When is Honglak Lee teaching 445 next ?",
+        "When is class 445 offered with Honglak Lee ?",
+        "When is the next available class 445 with Honglak Lee teaching ?",
+        "When is the next time 445 , taught by Honglak Lee be offered ?",
+        "When will 445 be taught by Hongak Lee again ?",
+        "When will Honglak Lee teach 445 again ?",
+        "When will Honglak Lee teach 445 next ?",
+        "Will 445 be taught by Honglak Lee in the future ?",
+        "Will Honglak Lee teach 445 again ?"
+    ],
+    "sentence": "When is the next time Honglak Lee will teach 445 ?",
+    "sentence-with-vars": "When is the next time Honglak Lee will teach number0 ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , INSTRUCTORalias0.NAME , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER = 445 AND INSTRUCTORalias0.NAME LIKE \"lee , honglak\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER > 2070 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR DESC ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , INSTRUCTORalias0.NAME , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"lee , honglak\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER > 2070 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR DESC ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "445",
+            "sql-value": "445"
+        }
+    ]
+}

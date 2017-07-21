@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how tall is mount mckinley ?", 
+ "sentence-with-vars": "how tall is mountain0 ?", 
+ "sql": "select highlow.highest_elevation from highlow where highlow.highest_point = ' mckinley ' ;", 
+ "sql-with-vars": "select highlow.highest_elevation from highlow where highlow.highest_point = ' mountain0 ' ;", 
+ "variables": [
+  {
+   "name": "mountain0", 
+   "sentence-value": "mount mckinley", 
+   "sql-value": "mckinley"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the highest point in the united states ?", 
+ "sentence-with-vars": "what is the highest point in the united states ?", 
+ "sql": "select highlow.highest_point from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select highlow.highest_point from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ;", 
+ "variables": []
+}

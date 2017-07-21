@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what city in the united states has the highest population density ?", 
+ "sentence-with-vars": "what city in the united states has the highest population density ?", 
+ "sql": "select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "variables": []
+}

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what airlines fly between baltimore and san francisco on friday",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airline_code||'\"', '\"'||v2.airport_code||'\"',\n '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"', '\"'||v4.airport_code||'\"',\n '\"'||v5.city_code||'\"', '\"'||v5.city_name||'\"',\n '\"'||v6.days_code||'\"', '\"'||v7.day_name||'\"',\n v7.year, v7.month_number, v7.day_number, '\"'||v1.flight_id||'\"' FROM airline v0,\n flight v1, airport_service v2, city v3,\n airport_service v4, city v5, days v6, date_day v7 \nWHERE ((v0.airline_code = ANY v1.airline_code) \nAND (((v1.from_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'BALTIMORE'))) AND (((v1.to_airport = ANY v4.airport_code) \nAND ((v4.city_code = ANY v5.city_code) \nAND (v5.city_name = 'SAN FRANCISCO'))) AND ((v1.flight_days = ANY v6.days_code) \nAND ((v6.day_name = ANY v7.day_name) \nAND (((v7.year =  1993) AND (v7.month_number =  8)) AND (v7.day_number =  27)))))));",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_CODE FROM AIRLINE WHERE AIRLINE . AIRLINE_CODE IN ( SELECT FLIGHT . AIRLINE_CODE FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' BALTIMORE ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SAN FRANCISCO ' ) ) AND FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 8 AND DATE_DAY.DAY_NUMBER = 27 ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

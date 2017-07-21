@@ -1,0 +1,27 @@
+This data has been adapted and improved from the original Trento version.
+
+Some defintions:
+
+major city = population > 150,000 people
+major river = length > 750 km
+major lake = area > 3,000 km^2 (note, this was unspecified in geoquery)
+
+Issues we found:
+
+- The Trento mapping of variables led to some errors (e.g. two different states in the same query becoming a single variable)
+- The Trento data contains extra questions, some poorly formed - "which states does the colorado"
+- The Trento data lacks many of the original questions
+
+In the process of filling in missing queries we also noticed:
+
+- The original prolog is wrong in some cases (e.g. selecting the name of the state instead of the name of the mountain for "what is the highest mountain in the us?", and in "what states are next to the mississippi?")
+- There are grammatical errors in the original data (often missing articles)
+
+TODO:
+
+- Check field names (looks like some were changed, e.g. mountain name and altitude)
+- 'river.traverse' is sometimes used with the expectation of a single value, and other times with a set:
+  "what states are next to the mississippi"
+  select river.traverse from river where river.river_name='mississippi';
+  "how many rivers are in iowa"
+  select count(river.river_name) from river where river.traverse='iowa';

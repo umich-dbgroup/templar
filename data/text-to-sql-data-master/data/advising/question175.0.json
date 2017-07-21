@@ -1,0 +1,45 @@
+{
+    "accuracy": [],
+    "comments": [
+        "JKK - Are the differences here superficial enough to collapse these two? (and should we add this as another form of variation, or standardise on using names?)",
+        "JKK - Duplicate, 175, 215",
+        "DRK - Two version of the same query with and without an alias"
+    ],
+    "helpfulness": [],
+    "info": [],
+    "paraphrases": [
+        "381 is how many credits ?",
+        "381 is worth how many credits ?",
+        "Can I ask how many credits is 381 ?",
+        "For EECS 381 , how many credits is it ?",
+        "How many credits do I get for 381",
+        "How many credits does 381 get ?",
+        "How many credits is 381 worth ?",
+        "How many credits is EECS 381 ?",
+        "How many total credits do I recieve for 381 ?",
+        "If I take 381 , how many credits will I receive ?",
+        "The EECS 381 class is how many credits ?",
+        "What number of credits do I get for 381 ?",
+        "What number of credits is EECS 381 ?",
+        "What 's the number of credits for 381 ?"
+    ],
+    "sentence": "How many credits is 381 ?",
+    "sentence-with-vars": "How many credits is number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.CREDITS FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = \"381\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.CREDITS FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = \"number0\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "381",
+            "sql-value": "381"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

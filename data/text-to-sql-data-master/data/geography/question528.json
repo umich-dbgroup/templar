@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "name all the lakes of us ?", 
+ "sentence-with-vars": "name all the lakes of us ?", 
+ "sql": "select lake.lake_name from lake ;", 
+ "sql-with-vars": "select lake.lake_name from lake ;", 
+ "variables": []
+}

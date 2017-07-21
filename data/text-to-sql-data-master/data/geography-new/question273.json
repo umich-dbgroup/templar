@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what major rivers run through illinois ?", 
+ "sentence-with-vars": "what major rivers run through state0 ?", 
+ "sql": "select river.river_name from river where river.traverse = ' illinois ' and river.length > 750 ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ' state0 ' and river.length > number0 ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "illinois", 
+   "sql-value": "illinois"
+  }, 
+  {
+   "name": "number0", 
+   "sentence-value": "", 
+   "sql-value": "750"
+  }
+ ]
+}

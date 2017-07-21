@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state has the most people ?", 
+ "sentence-with-vars": "which state has the most people ?", 
+ "sql": "select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.population = ( select max ( state.population ) from state ) ;", 
+ "variables": []
+}

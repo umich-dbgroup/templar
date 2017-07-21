@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major cities in rhode island ?", 
+ "sentence-with-vars": "what are the major cities in state0 ?", 
+ "sql": "select city.city_name from city where city.state_name = ' rhode island ' and city.population > 150000 ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name = ' state0 ' and city.population > number0 ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "rhode island", 
+   "sql-value": "rhode island"
+  }, 
+  {
+   "name": "number0", 
+   "sentence-value": "", 
+   "sql-value": "150000"
+  }
+ ]
+}

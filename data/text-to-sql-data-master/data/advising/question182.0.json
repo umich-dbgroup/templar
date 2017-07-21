@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For all the CS-LSA courses can I see difficulties ?",
+        "For all the CS-LSA courses can I see the difficulty ?",
+        "For CS-LSA courses show me difficulty .",
+        "How difficult are all of the CS-LSA courses ?",
+        "In CS-LSA courses can I see the hardness ?",
+        "Is it possible to see the difficulty for all the CS-LSA courses ?",
+        "Is there a list with the difficulty for all CS-LSA courses ?",
+        "Name all the difficulties for all of the CS-LSA courses .",
+        "Show me the difficulty for all of the CS-LSA courses .",
+        "Show me the difficulty for all the CS-LSA courses .",
+        "What is the difficulty level for all of the CS-LSA courses ?",
+        "What is the difficulty ranking for all CS-LSA classes ?"
+    ],
+    "sentence": "Can I see the difficulty for all of the CS-LSA courses ?",
+    "sentence-with-vars": "Can I see the difficulty for all of the CS-LSA courses ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "DRK - 1"
+    ],
+    "comments": [
+        "CFD - This assumes all courses in PROGRAM_COURSE are mandatory.",
+        "CFD - This lists all of the math courses that appear in PROGRAM_COURSE. Currently, these are all courses that happen to be required by the major. However, what happens if an ULCS course or something like that is cross-listed in the math department?"
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any math prerequisites for CS majors ?",
+        "As a CS major , what MATH classes are required to graduate ?",
+        "As a CS major , which MATH classes do I have to take to graduate ?",
+        "CS Majors require which math prerequisites ?",
+        "CS majors have to take what for Math ?",
+        "For CS majors what are the math prerequisites ?",
+        "For CS majors what math prerequistes needed ?",
+        "For graduating as CS major what math classes do I need to take ?",
+        "If I want to graduate with a CS major which math classes do I need to do ?",
+        "List CS major math requirements .",
+        "Math prerequisites required by CS majors include what courses ?",
+        "Name the math prerequisites needed for CS majors .",
+        "What are the math classes needed to graduate as a CS major ?",
+        "What are the math requirements for CS major ?",
+        "What math classes are needed for CS majors ?",
+        "What math courses are required for the CS major ?",
+        "What math must I take to major in CS ?",
+        "What math prerequisites allow a CS major ?",
+        "What math prerequisites are needed for CS majors ?"
+    ],
+    "sentence": "What are the MATH classes I have to take to graduate as a CS major ?",
+    "sentence-with-vars": "What are the department0 classes I have to take to graduate as a CS major ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM PROGRAM_COURSE AS PROGRAM_COURSEalias0 INNER JOIN COURSE AS COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"MATH\" ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM PROGRAM_COURSE AS PROGRAM_COURSEalias0 INNER JOIN COURSE AS COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "MATH",
+            "sql-value": ""
+        }
+    ]
+}

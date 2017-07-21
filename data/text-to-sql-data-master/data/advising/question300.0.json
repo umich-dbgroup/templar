@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Autonomous robotics is taught by whom this semester ?",
+        "Autonomous robotics will be taught by whom this semester ?",
+        "Can you tell me who teaches autonomous robitics this semester ?",
+        "Do you know who teaches autonomous robotics this semester ?",
+        "Do you know who the instructor is for autonomous robotics this semester ?",
+        "For the autonomous robotics class , who is the teacher ?",
+        "For this semester 's autonomous robotics class , who is the instructor ?",
+        "This semester who is teaching autonomous robotics ?",
+        "This semester who will be the professor for autonomous robotics ?",
+        "This semester who will teach autonomous robotics ?",
+        "This semester , autonomous robotics is taught by whom ?",
+        "This semester , who is teaching autonomous robotics ?",
+        "This semester , who is the teacher of autonomous robotics ?",
+        "What professors teach autonomous robotic this semester ?",
+        "Which professor is teaching autonomous robotics this semester ?",
+        "Which teacher will teach autonomous robotics this semester ?",
+        "Who are my options for autonomous robotics professors ?",
+        "Who is going to teach autonomous robotics for this semester ?",
+        "Who is teaching autonomous robotics ?",
+        "Who is the teacher of autonomous robotics in this semester ?",
+        "Who is the teacher this semester for the autonomous robotics class ?",
+        "Who is this semester 's autonomous robotics teacher ?",
+        "Who will be teaching autonomous robotics this semester ?"
+    ],
+    "sentence": "Who teaches autonomous robotics this semester ?",
+    "sentence-with-vars": "Who teaches autonomous robotics this semester ?",
+    "sql": [
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.NAME LIKE \"Autonomous Robotics\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.NAME LIKE \"Autonomous Robotics\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

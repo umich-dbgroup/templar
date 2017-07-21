@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the most populous state through which the mississippi runs ?", 
+ "sentence-with-vars": "what is the most populous state through which the river0 runs ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

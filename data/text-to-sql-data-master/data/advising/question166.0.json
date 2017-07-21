@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "JKK - Discuss removing this query given how weird it is."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "SRS - 2"
+    ],
+    "info": [
+        "I don't think we should use SQL for this. I find this query appalling. Also, if the course is offered more than once in a semester, the answers could be different for different sections"
+    ],
+    "paraphrases": [
+        "EECS 280 has how many lectures a week ?",
+        "EECS 280 has how many lectures every week ?",
+        "EECS 280 has how many lectures per week ?",
+        "Each week , how many lectures does EECS have ?",
+        "Every week , how many lectures are offered by EECS 280 ?",
+        "How many EECS 280 lectures are there each week ?",
+        "How many lectures are there for EECS 280 every week ?",
+        "How many lectures each week does EECS 280 have ?",
+        "How many times a week does EECS 280 meet ?",
+        "What 's the number of weekly lectures for EECS 280 ?",
+        "What 's the total number of weekly lectures for EECS 280 ?"
+    ],
+    "sentence": "How many lectures does EECS 280 have each week ?",
+    "sentence-with-vars": "How many lectures does department0 number0 have each week ?",
+    "sql": [
+        "SELECT M + T + W + TH + F + S + SU FROM ( SELECT SUM( CASE WHEN X.FRIDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias4 , SUM( CASE WHEN X.MONDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias0 , SUM( CASE WHEN X.SATURDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias5 , SUM( CASE WHEN X.SUNDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias6 , SUM( CASE WHEN X.THURSDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias3 , SUM( CASE WHEN X.TUESDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias1 , SUM( CASE WHEN X.WEDNESDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias2 FROM ( SELECT COURSE_OFFERINGalias0. * FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 LIMIT 1 ) AS DERIVED_TABLEalias0 ) AS DERIVED_TABLEalias1 ;"
+    ],
+    "sql-with-vars": "SELECT M + T + W + TH + F + S + SU FROM ( SELECT SUM( CASE WHEN X.FRIDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias4 , SUM( CASE WHEN X.MONDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias0 , SUM( CASE WHEN X.SATURDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias5 , SUM( CASE WHEN X.SUNDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias6 , SUM( CASE WHEN X.THURSDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias3 , SUM( CASE WHEN X.TUESDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias1 , SUM( CASE WHEN X.WEDNESDAY = \"Y\" THEN 1 ELSE 0 END ) AS DERIVED_FIELDalias2 FROM ( SELECT COURSE_OFFERINGalias0. * FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 LIMIT 1 ) AS DERIVED_TABLEalias0 ) AS DERIVED_TABLEalias1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

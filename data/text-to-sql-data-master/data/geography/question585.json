@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "which state has the lowest elevation ?", 
+ "sentence-with-vars": "which state has the lowest elevation ?", 
+ "sql": "select highlow.state_name from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select highlow.state_name from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "variables": []
+}

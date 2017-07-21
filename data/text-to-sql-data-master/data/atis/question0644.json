@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "all united airlines flights with stopovers in denver",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"', '\"'||v1.flight_id||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"',\n v1.stop_number FROM flight v0, flight_stop v1,\n airport_service v2, city v3 \nWHERE ((v0.airline_code = 'UA') \nAND ((v0.flight_id = ANY v1.flight_id) AND ((v1.stop_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'DENVER')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' UA ' AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

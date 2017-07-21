@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population density of texas ?", 
+ "sentence-with-vars": "what is the population density of state0 ?", 
+ "sql": "select state.density from state where state.state_name = ' texas ' ;", 
+ "sql-with-vars": "select state.density from state where state.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  }
+ ]
+}

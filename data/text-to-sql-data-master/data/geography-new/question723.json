@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states border the state whose capital is boston ?", 
+ "sentence-with-vars": "how many states border the state whose capital is city0 ?", 
+ "sql": "select count ( border_info.border ) from border_info where border_info.state_name = ( select state.state_name from state where state.capital = ' boston ' ) ;", 
+ "sql-with-vars": "select count ( border_info.border ) from border_info where border_info.state_name = ( select state.state_name from state where state.capital = ' city0 ' ) ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "boston", 
+   "sql-value": "boston"
+  }
+ ]
+}

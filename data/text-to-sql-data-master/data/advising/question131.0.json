@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "RUI - The scores are based on the assumption between \"hard\" and \"workload\"."
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Do you know whether EECS 280 is hard ?",
+        "EECS 280 , is it hard ?",
+        "For EECS 280 , is it always hard ?",
+        "Is EECS 280 a difficult class ?",
+        "Is EECS 280 a hard course ?",
+        "Is EECS 280 difficult ?",
+        "Is EECS 280 hard ?",
+        "Is EECS 280 quite difficult ?",
+        "Will EECS 280 be a challenging course ?",
+        "Would EECS 280 be considered difficult ?",
+        "Would EECS 280 be considered harder than most ?",
+        "Would you rate EECS 280 as hard ?",
+        "Would you say that EECS 280 is hard ?"
+    ],
+    "sentence": "Is EECS 280 hard ?",
+    "sentence-with-vars": "Is department0 number0 hard ?",
+    "sql": [
+        "SELECT PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

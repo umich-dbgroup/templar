@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "LZ - 1"
+    ],
+    "comments": [
+        "LZ - Fixed SQL as of 1.17"
+    ],
+    "helpfulness": [
+        "JKK - 1",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any EECS 400 level courses that are 3 credits ?",
+        "Can you tell me if there is a 3 -credit EECS 400 level course ?",
+        "In the 3 -credit courses are there any EECS 400 level ?",
+        "Is there a 3 -credit course that is EECS 400 level ?",
+        "Is there a 3 -credit EECS 400 level course ?",
+        "Is there a 3 -credit EECS class that is level 400 ?",
+        "Is there a 3 -credit course that is a 400 level EECS course ?",
+        "Is there a level 400 , 3 -credit EECS course ?",
+        "Is there a 3 -credit EECS 400 level course ?",
+        "Is there an EECS 400 level class that is 3 -credit ?",
+        "Is there an EECS 400 level course that contains 3 credits ?",
+        "Name the EECS 400 level course that have 3-credits .",
+        "Tell me if there are any 3 -credit courses in the EECS 400 level .",
+        "What 3 -credit courses are there that are on the EECS 400 level ?"
+    ],
+    "sentence": "Is there an EECS 400 level course that is worth 3-credits ?",
+    "sentence-with-vars": "Is there an department0 number0 level course that is worth 3-credits ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.CREDITS = 3 AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER > 399 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.CREDITS = 3 AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER > 399 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "400",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

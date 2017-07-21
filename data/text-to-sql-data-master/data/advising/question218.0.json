@@ -1,0 +1,53 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "CFD - with corrected c.number, accuracy would be 1.",
+        "SRS - Query checks for EECS 370 instead of EECS 281",
+        "SRS - Also, I may be mistaken, but aren't individual lectures also considered course offerings?",
+        "SRS - Assumes a particular semester number"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "SRS - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "After 10 A.M. , how many sections of EECS 281 are there ?",
+        "After 10 A.M. , how many sections of EECS 281 are there ?",
+        "After 10 A.M. , how many sections are there of EECS 281 ?",
+        "After 10 A.M. , how many sections of EECS 281 are there ?",
+        "After 10 A.M. , what is the quantity of EECS 281 sections ?",
+        "After 10 A.M. , how many EECS 281 sections are there ?",
+        "Are there many sections of EECS 281 after 10 A.M. ?",
+        "For EECS 281 , how many sections are after 10 A.M. ?",
+        "For EECS 281 , how many sections are after 10 A.M. ?",
+        "For EECS 281 , how many sections are offered after 10 A.M. ?",
+        "For EECS 281 , what is the number of sections available that are not before 10 A.M. ?",
+        "How many sections does EECS 281 have after 10 in the morning ?",
+        "How many sections of EECS 281 meet after 10 in the morning ?",
+        "Of the sections of EECS 281 , how many are after 10 A.M. ?",
+        "What is the number of EECS 281 sections that are after 10 A.M. ?"
+    ],
+    "sentence": "How many sections of EECS 281 are after 10 A.M. ?",
+    "sentence-with-vars": "How many sections of department0 number0 are after 10 A.M. ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 AND START_TIME > \"10 : 00 : 00\" ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 AND START_TIME > \"10:00:00\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

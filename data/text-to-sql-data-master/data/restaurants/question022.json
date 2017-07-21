@@ -1,0 +1,34 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "where is jamerican cuisine in san francisco ?",
+          "where is a jamerican cuisine in san francisco ?"
+     ],
+     "paraphrases-with-vars": [
+          "where is VARrest in VARcity ?",
+          "where is a VARrest in VARcity ?"
+     ],
+     "sentence": "where can i find a jamerican cuisine in san francisco ?",
+     "sentence-with-vars": "where can i find a VARrest in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='san francisco' and RESTAURANT.NAME='jamerican cuisine'"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='VARcity' and RESTAURANT.NAME='VARrest'"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "san francisco",
+               "sql-value": "san francisco"
+          },
+          {
+               "name": "VARrest",
+               "sentence-value": "jamerican cuisine",
+               "sql-value": "jamerican cuisine"
+          }
+     ]
+}

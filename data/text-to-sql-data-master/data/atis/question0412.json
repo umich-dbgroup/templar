@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please list the t w a flights from las vegas to new york and fare",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v2.fare_id||'\"',\n '\"'||v0.airline_code||'\"', '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', '\"'||v5.airport_code||'\"',\n '\"'||v6.city_code||'\"', '\"'||v6.city_name||'\"', '\"'||v1.flight_id||'\"',\n '\"'||v1.fare_id||'\"' FROM flight v0,\n flight_fare v1, fare v2, airport_service v3, city v4, airport_service v5,\n city v6 \nWHERE (((((v0.airline_code = 'TW') AND (((v0.from_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'LAS VEGAS'))) AND ((v0.to_airport = ANY v5.airport_code) \nAND ((v5.city_code = ANY v6.city_code) \nAND (v6.city_name = 'NEW YORK'))))) AND (v0.flight_id = v1.flight_id)) \nAND (v1.fare_id = v2.fare_id)) \nAND ( 1 =  1));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID , FARE.FARE_ID FROM FLIGHT , FLIGHT_FARE , FARE WHERE ( FLIGHT.AIRLINE_CODE = ' TW ' AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' LAS VEGAS ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) ) ) AND FLIGHT.FLIGHT_ID = FLIGHT_FARE.FLIGHT_ID AND FLIGHT_FARE.FARE_ID = FARE.FARE_ID AND 1 = 1 ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [
+        "the has_projects attribute currently has no values. If it did, the following is the query:"
+    ],
+    "paraphrases": [
+        "Are there projects for 595 ?",
+        "Do we have a project for 595 ?",
+        "Does 595 have a project assigned to it ?",
+        "Does 595 have a project ?",
+        "Does a project exist for 595 ?",
+        "Does class 595 include a project ?",
+        "For 595 , is there a project ?",
+        "If I take 595 , will I have to do a project ?",
+        "Is a project part of 595 ?",
+        "Is there a project in class 595 ?"
+    ],
+    "sentence": "Is there a project for 595 ?",
+    "sentence-with-vars": "Is there a project for number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.HAS_PROJECTS FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 595 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.HAS_PROJECTS FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "595",
+            "sql-value": "595"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

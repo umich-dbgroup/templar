@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what flights leave la guardia for san jose and arrive ten p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"',\n v0.arrival_time FROM flight v0, airport v1,\n airport_service v2, city v3 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'LGA')) AND (((v0.to_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'SAN JOSE'))) AND (v0.arrival_time =  2200)));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' LGA ' ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SAN JOSE ' ) ) AND FLIGHT.ARRIVAL_TIME = 2200 ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,37 @@
+{
+    "accuracy": [
+        "RUI - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "RUI - should don't teach indicates has_lab = 'N'? This SQL gives prof names who teach has_lab classes.",
+        "JKK - Duplicate, 56, 24, 43, 125",
+        "SRS - Lists instructors who teach courses with labs instead of without. Also does not take care of overlaps (where a professor teaches multiple courses.)"
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "SRS - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For classes with labs , who are the professors not teaching them ?",
+        "For classes with labs , which professors do n't teach them ?",
+        "Are there professors that do n't teach classes with labs ?",
+        "Are there any professors that do not teach classes with labs ?",
+        "The classes with labs are not taught by which professors ?",
+        "Regarding classes with labs , which professors do not teach them ?",
+        "If I want to take a class without labs , which professors should I choose ?",
+        "The lab-free classes are taught by which professors ?",
+        "Which professors do n't utilize labs in their courses ?",
+        "Are they certain professors who do not teach any classes with labs ?",
+        "Which professors are not teaching classes with labs ?"
+    ],
+    "sentence": "Which professors do n't teach classes with labs ?",
+    "sentence-with-vars": "Which professors do n't teach classes with labs ?",
+    "sql": [
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.HAS_LAB = \"Y\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.HAS_LAB = \"Y\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

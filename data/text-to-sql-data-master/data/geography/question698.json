@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states are in the united states ?", 
+ "sentence-with-vars": "how many states are in the united states ?", 
+ "sql": "select count ( state.state_name ) from state ;", 
+ "sql-with-vars": "select count ( state.state_name ) from state ;", 
+ "variables": []
+}

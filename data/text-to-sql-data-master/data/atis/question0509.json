@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me . the latest flight !to love field",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.departure_time, '\"'||v3.airport_code||'\"' FROM flight v0,\n airport v3 \nWHERE ((v0.departure_time = (\nSELECT MAX (v1.departure_time) FROM flight v1 \nWHERE (v1.to_airport IN (\nSELECT v2.airport_code FROM airport v2 \nWHERE (v2.airport_code = 'DAL'))))) AND ((v0.to_airport = ANY v3.airport_code) \nAND (v3.airport_code = 'DAL')));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.DEPARTURE_TIME = ( SELECT MAX ( FLIGHT.DEPARTURE_TIME ) FROM FLIGHT WHERE FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' DAL ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' DAL ' ) ) ) ;"
+    ],
+    "variables": []
+}

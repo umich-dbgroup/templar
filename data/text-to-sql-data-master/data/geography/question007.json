@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the combined area of all 50 states ?", 
+ "sentence-with-vars": "what is the combined area of all number0 states ?", 
+ "sql": "select sum ( state.area ) from state ;", 
+ "sql-with-vars": "select sum ( state.area ) from state ;", 
+ "variables": [
+  {
+   "name": "number0", 
+   "sentence-value": "50", 
+   "sql-value": ""
+  }
+ ]
+}

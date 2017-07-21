@@ -1,0 +1,89 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are AM classes available for the EECS 280 course ?",
+        "Are EECS 280 classes given in the morning ?",
+        "Are any morning classes available for EECS 280 ?",
+        "Are any of the EECS 280 classes before noon ?",
+        "Are morning classes conducted in EECS 280 ?",
+        "Are there EECS 280 morning classes ?",
+        "Are there any EECS 280 classes in the morning ?",
+        "Are there any morning EECS 280 classes ?",
+        "Are there any morning classes for EECS 280 ?",
+        "Are there any morning classes in EECS 280 ?",
+        "Are there any morning sessions for EECS 280 ?",
+        "Are there classes in the morning that are EECS 280 ?",
+        "Are there morning class offerings for EECS 280 ?",
+        "Are there morning classes for EECS 280 ?",
+        "Are there morning classes in EECS 280 ?",
+        "Are there morning classes of EECS 280 ?",
+        "Can I take the EECS 280 class in the AM ?",
+        "Do the morning classes include EECS 280 ?",
+        "Do we have morning classes for EECS 280 ?",
+        "Do you know if EECS 280 has morning classes ?",
+        "Does EECS 280 have classes in the morning ?",
+        "Does EECS 280 have classes in the mornings ?",
+        "Does EECS 280 have morning courses ?",
+        "Does EECS 280 meet in the morning ?",
+        "Does EECS 280 offer morning classes ?",
+        "Does the course EECS 280 have any morning sessions ?",
+        "For EECS 280 , are there morning classes ?",
+        "I 'm trying to find out if EECS 280 has morning classes ?",
+        "In the morning , are any of the classes EECS 280 ?",
+        "Is EECS 280 available as a morning class ?",
+        "Is EECS 280 having morning classes ?",
+        "Is EECS 280 offered in the morning ?",
+        "Is EECS 280 scheduled for morning classes ?",
+        "Is EECS 280 taught in the morning ?",
+        "Is EECS 280 included in the morning class list ?",
+        "Is a morning class available for EECS 280 ?",
+        "Is there a morning class for EECS 280 ?",
+        "Is there an EECS 280 class in the morning ?",
+        "Of all the EECS 280 classes , are there any before noon ?",
+        "Of all the EECS 280 classes which ones are in the morning .",
+        "Of the classes in the morning , are there any EECS 280 ?",
+        "What are the morning times for the EECS 280 course ?",
+        "What morning classes does EECS 280 have ?",
+        "When does EECS 280 meet in the mornings ?",
+        "Which morning classes are for EECS 280 ?",
+        "Which morning classes does EECS 280 have ?",
+        "Any morning classes for EECS 280 ?"
+    ],
+    "sentence": "Does EECS 281 have morning classes ?",
+    "sentence-with-vars": "Does department0 number0 have morning classes ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME < \"12 : 00 : 00\" AND COURSE_OFFERINGalias0.START_TIME >= \"08 : 00 : 00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME < \"12:00:00\" AND COURSE_OFFERINGalias0.START_TIME >= \"08:00:00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "",
+            "sql-value": "WN"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

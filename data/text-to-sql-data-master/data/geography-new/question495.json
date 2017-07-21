@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the most populous city ?", 
+ "sentence-with-vars": "what is the most populous city ?", 
+ "sql": "select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population = ( select max ( city.population ) from city ) ;", 
+ "variables": []
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is the chattahoochee river ?", 
+ "sentence-with-vars": "where is the river0 ?", 
+ "sql": "select river.traverse from river where river.river_name = ' chattahoochee ' ;", 
+ "sql-with-vars": "select river.traverse from river where river.river_name = ' river0 ' ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "chattahoochee river", 
+   "sql-value": "chattahoochee"
+  }
+ ]
+}

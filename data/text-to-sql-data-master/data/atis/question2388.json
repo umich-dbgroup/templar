@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "please list all flights from new york to miami any [uh] . any type of class",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"',\n '\"'||v2.city_name||'\"', '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', '\"'||v5.flight_id||'\"',\n '\"'||v6.fare_id||'\"', '\"'||v7.fare_basis_code||'\"',\n '\"'||v8.booking_class||'\"' FROM flight v0, airport_service v1,\n city v2, airport_service v3, city v4, flight_fare v5, fare v6,\n fare_basis v7, class_of_service v8 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'NEW YORK'))) AND (((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'MIAMI'))) AND ((v0.flight_id = ANY v5.flight_id) \nAND ((v5.fare_id = ANY v6.fare_id) AND ((v6.fare_basis_code = ANY v7.fare_basis_code) \nAND ((v7.booking_class = ANY v8.booking_class) \nAND NOT (v8.booking_class IS NULL)))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MIAMI ' ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_FARE . FLIGHT_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FARE_ID IN ( SELECT FARE . FARE_ID FROM FARE WHERE FARE . FARE_BASIS_CODE IN ( SELECT FARE_BASIS . FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS . BOOKING_CLASS IN ( SELECT CLASS_OF_SERVICE . BOOKING_CLASS FROM CLASS_OF_SERVICE WHERE NOT ( CLASS_OF_SERVICE.BOOKING_CLASS IS NULL ) ) ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

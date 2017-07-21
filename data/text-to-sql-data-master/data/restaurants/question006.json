@@ -1,0 +1,36 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "give me some good restaurants on bethel island rd in bethel island ?",
+          "give me a good restaurant on bethel island rd in bethel island ?",
+          "what is a good restaurant on bethel island rd in bethel island ?"
+     ],
+     "paraphrases-with-vars": [
+          "give me some good restaurants on VARstreet in VARcity ?",
+          "give me a good restaurant on VARstreet in VARcity ?",
+          "what is a good restaurant on VARstreet in VARcity ?"
+     ],
+     "sentence": "what are some good restaurants on bethel island rd in bethel island ?",
+     "sentence-with-vars": "what are some good restaurants on VARstreet in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and LOCATION.CITY_NAME='bethel island' and LOCATION.STREET_NAME='bethel island rd'"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and RESTAURANT.RATING>2.5 and LOCATION.CITY_NAME='VARcity' and LOCATION.STREET_NAME='VARstreet'"
+     ],
+     "variables": [
+          {
+               "name": "VARstreet",
+               "sentence-value": "bethel island rd",
+               "sql-value": "bethel island rd"
+          },
+          {
+               "name": "VARcity",
+               "sentence-value": "bethel island",
+               "sql-value": "bethel island"
+          }
+     ]
+}

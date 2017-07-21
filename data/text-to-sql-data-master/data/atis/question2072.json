@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show flights miami to chicago american airlines departing twelve noon or later",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', v0.departure_time FROM flight v0,\n airport_service v1, city v2, airport_service v3,\n city v4 \nWHERE ((v0.airline_code = 'AA') AND (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'MIAMI'))) AND (((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'CHICAGO'))) AND ((v0.departure_time =  1200) OR (v0.departure_time >  1200)))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' AA ' AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MIAMI ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' CHICAGO ' ) ) AND ( FLIGHT.DEPARTURE_TIME = 1200 OR FLIGHT.DEPARTURE_TIME > 1200 ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

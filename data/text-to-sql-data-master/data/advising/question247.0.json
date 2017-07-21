@@ -1,0 +1,56 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 1",
+        "RUI - 2"
+    ],
+    "info": [
+        "currently returns 0 rows; our database doesn't have info for 483 after WN2015"
+    ],
+    "paraphrases": [
+        "483 can be taken when ?",
+        "483 is available when ?",
+        "483 is offered when ?",
+        "483 offered when ?",
+        "Can i take 483 when ?",
+        "Do you know when 483 is offered ?",
+        "EECS 483 is offered when next time ?",
+        "EECS 483 offered when next ?",
+        "Next time when EECS 483 will be offered ?",
+        "When can I take 483 ?",
+        "When can I take EECS 483 ?",
+        "When is 483 available to take ?",
+        "When is 483 going to be offered again ?",
+        "When is 483 going to be offered next ?",
+        "When is 483 offered ?",
+        "When is EECS 483 being offered ?",
+        "When is the next time EECS 483 is offered ?",
+        "When is the next time EECS 483 will be offered ?",
+        "When will EECS 483 be offered again ?",
+        "When will EECS 483 be offered ?",
+        "When 's the next time EECS 483 will be offered ?"
+    ],
+    "sentence": "In which semester will 483 be offered next ?",
+    "sentence-with-vars": "In which semester will number0 be offered next ?",
+    "sql": [
+        "SELECT DISTINCT SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 483 AND SEMESTERalias0.SEMESTER > 2070 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.SEMESTER_ID DESC LIMIT 1 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER > 2070 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.SEMESTER_ID DESC LIMIT 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "483",
+            "sql-value": "483"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

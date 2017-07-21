@@ -1,0 +1,35 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Pyke to check for prerequisites"
+    ],
+    "paraphrases": [],
+    "sentence": "Can I take EECS 280/281 this spring?",
+    "sentence-with-vars": "Can I take department0 number0/number1 this semester0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "spring",
+            "sql-value": ""
+        }
+    ]
+}

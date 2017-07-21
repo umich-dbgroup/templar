@@ -1,0 +1,448 @@
+i *need* a friday flight from new:ark to tampa
+give me a flight from charlotte to baltimore on tuesday morning
+i need a sunday flight from , tampa to charlotte
+can i have a morning flight from baltimore to newark please
+give me the flights from , new york to las vegas , nonstop
+give me the flights from memphis to las vegas nonstop
+give me the fares , for round trip flights , from cleveland to miami , next wednesday
+give me the flights , and fares , for , a trip . to cleveland from miami , on wednesday
+give me the fares from miami to cleveland . next sunday
+give me the round trip flights from cleveland to miami , next wednesday
+give me the flights from phoenix to milwaukee
+give me: the flights from milwaukee to phoenix , on saturday or sunday , on american airlines
+give me the flights from phoenix: {til-/*till*/*to*} !to milwaukee on american airlines
+give me the flights from phoenix , to: milwaukee , on wednesday evening
+give me: the flights from phoenix , to: milwaukee , on wednesday , on american airlines
+give me the flights from los angeles to pittsburgh . on tuesday
+give me the flights from pittsburgh to los angeles thursday evening
+give me the cheapest round trip flights , from , indianapolis to orlando , around , december twenty fifth
+give me flights from , seattle to chicago , that have meals , on continental
+give me the flights from , chicago to seattle , saturday morning . that have meals
+give me the saturday morning flights on continental , tha:t have meals , from chicago to , *minneapolis*
+give me the saturday morning flights with meals [door_slam] , from , chicago , to , *minneapolis*
+give me the flights from , chicago to seattle , on continental , that have meals , early saturday morning
+give me the saturday morning flights from , chicago to saint paul on continental , that [door_slam/] have meals [/door_slam]
+give me the flights from chic- , seattle , to chicago , that have meals on continental , s:aturday morning
+give me the meal flights , departing , early saturday morning . from , chicago to seattle . nonstop
+give me , a combination , of continental flights , from , chicago to seattle , that have meals , early saturday morning
+what are the flights from la guardia to san jose on united
+[cross_talk] what are the flights from memphis to las vegas
+[um] what type of ground transportation is there at the las vegas airport
+what are the flights from ontario to memphis
+what are the flights from las vegas to ontario
+is there taxi service at the ontario airport
+what are the flights from phoenix arizona to saint paul minnesota on tuesday
+what are the flights on mondays that travel from charlotte north carolina to phoenix arizona
+what are the flights from saint louis to charlotte north carolina leaving on friday
+what are the flights on thursday leaving from saint paul minnesota to saint louis
+what are the flights from boston to orlando [um] that stop in new york
+what are the flights from [um] milwaukee to seattle
+what are the flights from tampa to milwaukee
+i need a flight leaving kansas city , to chicago , [tongue_click] leaving next wednesday and returning the following day
+i would like a flight that leaves on sunday from montreal quebec to san diego california
+i would like a flight on tuesday which leaves from san diego to indianapolis indiana and that leaves in the afternoon
+i would like a flight on friday morning from toronto to montreal
+i would like to leave thursday morning from indianapolis to toronto
+what flights go from long beach to saint louis
+i would like a flight from cincinnati to burbank on american
+what type of aircraft is used for the american flight leaving at <four> four nineteen p m
+i would like a morning flight from charlotte to newark
+[tongue_click] i'd like an !evening f:light from newark to los angeles
+i want a flight from los angeles to charlotte early in the morning
+i'd like a morning flight from newark to los angeles
+what are the american flights from newark to nashville
+{what're/what are} the flights from ontario to westchester that stop in chicago
+what are the flights between memphis and cincinnati on wednesday
+what are the flights between cincinnati and san jose california which leave after six p m
+what are the nonstop flights between houston and memphis
+what are the nonstop flights between san jose and houston texas
+what flights go from dallas to phoenix
+what flights go from phoenix to salt lake city
+what types of ground transportation are available in denver
+is ground transportation available in saint , louis
+what flights go from denver to saint louis on tuesday morning
+i need an early flight from milwaukee to denver
+i need to fly from saint louis to milwaukee on wednesday , afternoon
+flights from atlanta to seattle
+flights from san diego to seattle
+flights from washington to seattle
+list flights , from tampa , to cincinnati , after , three , p m
+list flights , before , nine a m , from cincinnati , to tampa
+list , flights , from . cincinnati , to tampa , before , noon
+list , airports , in , l a
+list l a
+list , airports , in l a
+list airports
+list flights , from la guardia , to burbank
+list , airports , in new york
+list , airports , in , l a
+list airports in new york
+list l a
+list . [talking/] the airports , in l a [/talking]
+list distance [door_slam] , from: airports , to downtown in new york
+list flights , from: new york , to l a
+list . coach , round trip airfare , from detroit , to saint petersburg
+list airfares , for , first class , round trip , from detroit to *saint* , petersburg
+list , seating capacities , of delta flights , from seattle , to salt lake city
+list , delta flights , from seattle , to salt lake city , with aircraft type
+list , airlines , that fly from seattle , to salt lake city
+list , delta flights , from seattle , to salt lake city
+list flights , from , l a , to orlando
+list flights from ontario , california , to orlando
+list flights , from , *ontario* , california . to orlando
+list , ground transportation . in , baltimore
+list flights , from baltimore , to . san francisco , on friday
+what ground transportation is there in baltimore
+list flights , from milwaukee , to san jose , on wednesday
+list flights , from , houston . to san jose
+list flights , from houston , to milwaukee
+list flights , from san jose , to dallas . on friday
+list flights , from dallas , to houston
+list flights . from , orlando , to tacoma , on saturday , of fare , basis , code , of q
+what class , is fare code , q
+list flights , and , fares , from tacoma , to orlando , round trip , leaving saturday , returning , next saturday
+list , type of aircraft , for all flights . from charlotte
+list flights , from charlotte , on saturday , afternoon
+list flights from phoenix to las vegas
+list flights , from chicago , to san diego
+list flights , from , chicago to kansas city in the morning
+list flights , from kansas city . to denver
+list flights , from denver , to phoenix
+list flights , from chicago to san diego
+list flights , from las vegas to san diego
+list flights , from . *minneapolis* , to pittsburgh . on friday
+list flights , from pittsburgh , to newark , on monday morning
+list flights , from indianapolis , to memphis , on monday [door_slam]
+list flights , from , indianapolis , to memphis , with fares , on , monday
+list flights , from . memphis , to miami , on wednesday
+list flights , [door/] from miami to indianapolis [/door] , on sunday
+i need a flight on american airlines from miami to chicago that arrives around five p m
+how about a flight , leaving [ah] tuesday night , from saint louis to burbank
+and a f:light from saint louis to burbank , that [tongue_click] lea:ves , tuesday afternoon
+how about a flight from milwaukee to saint louis that leaves monday night
+[lip_smack] i need a morning flight from [ah] burbank to milwaukee [ah] on next monday
+i need a flight from memphis to tacoma that goes through los angeles
+[lip_smack] [loud_breath] i'd like [ah] f- a flight from cincinnati to newark airport , [lip_smack] that arrives n- on saturday before six p m
+i need a flight from salt lake to newark airport that arrives on saturday before six p m
+show me one way flights from milwaukee to orlando after six p m on wednesday
+show me round trip flights from montreal to orlando
+show me round trips between montreal and orlando
+show me the cheapest one way flights from montreal to orlando
+show me the flights from indianapolis to memphis
+show me round trip flights from burbank to seattle
+show me nonstop flights from montreal to orlando
+show me the cheapest one way flights from orlando to montreal
+show me round trip flights from orlando to montreal
+show me the cheapest economy flights from miami to new york
+baltimore to kansas city economy
+ground transportation for las vegas
+ground transportation in las vegas
+what airline is h p
+kansas city to las vegas economy
+what airline is u s
+las vegas to baltimore economy
+which airline is u s
+las vegas to baltimore economy
+kansas city to las vegas economy
+which airline is u s
+which airline is u s
+which airline is u s
+what airline is h p
+saint petersburg to detroit
+columbus to chicago one way before ten a m
+from milwaukee to orlando one way . after five p m wednesday
+and from milwaukee to atlanta before ten a m daily
+what airline is y x
+i'd like to fly from miami to chicago on american airlines
+show me all the flights from burbank to milwaukee
+find me all the flights from milwaukee to saint louis
+is there one airline that flies from burbank to milwaukee milwaukee to saint louis and from saint louis to burbank
+like to book a flight from burbank to milwaukee
+find me all the round trip flights from burbank to milwaukee stopping in s- saint louis
+now show me all the flights from saint louis to burbank
+i would like to book a round trip flight from kansas city to chicago
+find me a flight that flies from memphis to tacoma
+i'd like to book a flight from cincinnati to new york city on united airlines for next saturday
+i want to book a flight from salt lake city to westchester county
+please find all the flights from cincinnati to any airport in the new york city area that arrive next saturday before six p m
+tell me all the airports in the new york city area
+tell me all the airports near westchester county
+i'd like to book two flights to westchester county
+find me a flight from cincinnati to any airport in the new york city area
+i need information on flights from toronto to san diego
+i need information on flights from toronto to san diego
+i want a flight from toronto to san diego
+i need information on flights between saint petersburg and charlotte
+i need the flight numbers of flights leaving from cleveland and arriving at dallas
+i need a ticket from nashville tennessee to seattle
+i need a ticket from nashville to seattle
+i need information on flights from indianapolis to seattle
+i need a flight from !memphis to: seattle
+i need flights departing from oakland and arriving {at/in} salt lake city
+i need a daily flight from saint louis to milwaukee
+i need flight information from milwaukee to tampa
+i need to rent a car at tampa
+show me the !morning flights from memphis to new york city
+what ground transportation is available from la guardia airport into new york city
+tell me about the ground transportation . from nashville airport
+what is c v g
+please list . ground transportation from e w r !into new york city
+please list the flights from memphis to new york city on a monday night
+give me the flights from new york city to nashville leaving after five p m on wednesday
+please list all flights from nashville to memphis on monday morning
+is there ground transportation from l g a into new york city
+please list the flights from nashville to memphis on monday morning
+is there ground transportation from the memphis airport into town . wh(en)- if i arrive at eight forty two in the morning
+please !list the ground transportation . from l g a !into new york city
+what is the seating capacity of the type of aircraft m eight zero
+what is the seating capacity . on the aircraft seven thirty three
+what is the seating capacity of the aircraft !m eight zero
+what [noise] is the seating capacity of an m eighty
+what [chair_squeak] is the seating capacity of the aircraft seventy two s
+what is the seating capacity of a seventy two s
+list all . flights leaving denver between eight p m and nine p m
+what are the nonstop flights from cincinnati to charlotte , leaving after noon and arriving . before seven p m
+tell me about the type of aircraft called an m eighty
+show me all of the daily flights arriving in denver between: . eight p m and nine p m
+what is seventy three s
+how many passengers can fly on a seven fifty seven
+how many people will a seven fifty seven hold
+what is the seating capacity of the !m eighty
+list the airlines with flights to or from denver
+list all of the !daily flights arriving in denver between eight and nine p m
+list all flights arriving in denver between eight and nine p m
+what is the capacity of the seventy three s
+what is the seating capacity of a seven fifty seven
+list all flights on all types of aircraft , arriving in denver between eight and nine p m
+tell me about the m eighty aircraft
+what is {the/@} seating capacity on the aircraft seventy three s
+list all flights . arriving in denver between eight and nine p m
+what airlines serve denver
+list all flights , arriving or leaving denver between eight and nine p m
+what is the seating capacity of the seven thirty three
+what airlines fly into denver
+list all of the daily flights arriving in denver from eight to nine p m
+what is the seating capacity on the aircraft m eight zero
+what is the seating capacity of the seven fifty seven
+tell me about the !m eighty aircraft
+list last wednesday flight from oakland to salt lake city
+get last flight from oakland t- to salt lake city on wednesday
+get first flight from oakland to salt lake city on thursday
+get last flight from oakland to salt lake city on wednesday or !first flight from oakland to salt lake city on thursday
+list flights from milwaukee to detroit
+get flights from milwaukee to d t w
+get flights from toronto to milwaukee
+get flights from detroit to toronto
+get flight from toronto to san diego stopping at d t w
+get flights between saint petersburg and charlotte
+get saturday fares from washington to boston
+get fares from washington to montreal
+get saturday fares from washington to *montreal*
+list saturday flights from washington to boston
+get fares from washington to boston
+get saturday fares from washington to toronto
+get the saturday fare from washington to toronto
+list saturday flights from boston to washington
+which airlines fly between toronto and san diego
+list california airports
+list airports
+list airports in arizona nevada and california please
+list california airports
+list flights from las vegas to phoenix
+list the arizona airport
+list california nevada arizona airports
+what is t . p . a
+please list afternoon flights between saint petersburg and charlotte
+what type of aircraft are flying from cleveland to dallas before noon
+what are the flights from cleveland to dallas
+please list only the flights from cleveland to dallas that leave before noon
+list wednesday night flights from oakland to salt lake city [beep]
+list flights from oakland to salt lake city before six a m thursday morning
+I'd like a one way ticket from milwaukee to orlando either wednesday evening or thursday morning
+show me flights from milwaukee to orlando
+what are restrictions a p slash fifty seven
+what does fare code f mean
+what does fare code h mean
+[ah] what does fare code y mean
+round trip flights from orlando to montreal please
+what airline is d l
+please show me first class flights from indianapolis to memphis one way leaving before ten a m [sniff]
+now show me all round trip flights from burbank to seattle . that arrive before seven p m in seattle
+c- show me all flights from orlando to montreal please
+show me all delta airlines flights from montreal to orlando
+which airline is k w
+what does fare code b h mean
+what does fare code !b h mean
+please list all flights from new york to miami any [uh] . any type of class
+show me a return flight from miami to j f k please
+<{okay/@}> <what> <does> <fare> c- [blows_on_microphone] what does fare code b h mean
+what does fare code b h mean
+what does fare code b h mean
+flight numbers from chicago to seattle
+[noise] flight numbers from chicago to seattle on continental
+flight numbers from seattle to chicago , on continental
+saturday flight , on american airlines from milwaukee to phoenix
+flight numbers on american airlines from phoenix to milwaukee
+is there a fare , from pittsburgh to cleveland , under two hundred dollars
+[uh] , how much is {the/a} coach flight from pittsburgh to atlanta
+flight number from dallas to houston
+flight number from h- houston to dallas
+cheapest one *way* fare from indianapolis to orlando on , *december* twenty seventh
+cheapest round trip fare , from or- [ah] indianapolis to orlando , on *december:* twenty fifth
+list the flights from indianapolis to memphis that leave before noon
+list the cheapest fare from charlotte to las vegas
+list the alaska airlines flights a- departing from burbank
+how many flights does alaska airlines have to burbank
+list the alaska airline flights from burbank to anywhere
+list all flights departing from seattle
+list the alaska airlines flights arriving in burbank
+list all alaska airlines flights
+which airline is a s
+list the alaska airline flights from burbank
+i need *information* on flights from washington to boston that leave on a saturday
+i need the fares on flights from washington {toro-/toronto} to toronto on a saturday
+i need the flights from *washington* to montreal on a saturday
+i want to go from boston to washington on a saturday
+i need a flight from c- cleveland to dallas that leaves before noon . {@/let's} see if {it's/that's} too much information
+i would like information on flights leaving from washington d c to denver
+could i have flight information on flights from pittsburgh to phoenix please
+could i have flight information on flights from s- salt lake city to phoenix please
+i would like flight information from phoenix to denver
+please list the flights from cincinnati to burbank on american airlines
+please list the flights from los angeles to charlotte
+please list the flights from newark to los angeles
+please list the flights from charlotte to newark
+please list all the flights from kansas city to chicago on june sixteenth
+please give me the flights from kansas city to chicago on june sixteenth
+please list all the flights from chicago to kansas city on june seventeenth
+please give me the flights from ch- chicago to kansas city on june seventeenth
+i need flight numbers for those flights departing o- on thursday before eight a m from oakland going to salt lake city
+I need a flight from oakland . to salt lake city . on wednesday . departing after six p m
+i need flight and fare information [ah] for thursday [ah] departing prior to nine a m from oakland going to salt lake city
+i need flight numbers and airlines for flights departing from oakland to salt lake city on thursday [ah] departing before eight a m
+i need flight and fare information . departing from oakland to salt lake city on thursday before eight a m
+i [<microphone_noise] need flight information for flights departing from cleveland to milwaukee on wednesday after five p m
+i need flight information for a flight departing from indianapolis to cleveland departing tuesday at noon
+i need flight information for flights departing from cleveland <going> <back> <to> m- going back to milwaukee wednesday after five p m
+i need flight information [ah] for a flight departing from cleveland to milwaukee wednesday after six p m
+i need a flight from milwaukee to indianapolis leaving <monday> <a> <m> monday before nine a m
+i need flight information for flights departing from cleveland to milwaukee on wednesday after five p m
+i need a flight departing from milwaukee to indianapolis leaving monday before eight a m
+is there ground transportation available at the indianapolis airport
+i need a flight from salt lake city to phoenix [ah] departing wednesday after five p m
+is there ground transportation available at the salt lake city airport
+i need flight and airline information for a flight from denver to salt lake city on monday <after> departing after five p m
+is there ground transportation available at the denver airport
+i need a flight from denver to salt lake city [um] on monday
+is there ground . transportation available at the phoenix airport
+pittsburgh to los angeles , thursday evening
+los angeles to pittsburgh , {afternoon/after noon} , on monday
+los angeles to pittsburgh , {afternoon/after noon} , tuesday
+new york city to las vegas a:nd memphis to las vegas , on sunday
+new york to las vegas sunday afternoon
+new york city , to las vegas , !and , memphis to las vegas , on sunday
+memphis to las vegas sunday afternoon
+new york to las vegas on sunday afternoon
+[uh] phoenix <till> , to milwaukee on sunday
+milwaukee to phoenix on saturday
+phoenix to milwaukee on wednesday
+a flight from baltimore to san francisco , arriving between five and eight p m
+houston to dallas before midnight
+dallas to houston after twelve oh one a m
+cheapest fare from , indianapolis to orlando on the , twenty seventh of december
+cheapest fare round trip from indianapolis to orlando on december twenty seventh
+indianapolis to orlando: december: twenty seventh
+charlotte to baltimore on tuesday
+tampa to charlotte sunday morning
+newark to tampa on friday
+baltimore to newark , wednesday morning
+chicago to las vegas saturday morning
+chicago to seattle , saturday morning
+miami to cleveland , sunday: afternoon [noise]
+cleveland , to miami , on wednesday arriving before four p m
+what does fare code q o mean
+which flights go from new york to miami and back
+what {does/is} the abbreviation u s: stand for
+show me flights from milwaukee to orlando one way
+i'd like to fly from . miami to chicago on . {airli-/airline/airlines} on american airlines , arriving around five p m
+i'd like to travel from burbank to milwaukee
+i'd like a round trip flight from kansas city !to !chicago , on wednesday , may twenty sixth , arriving at seven p m
+i'd like to travel from kansas city to chicago next wednesday
+yes i'd like to find a flight from memphis to tacoma stopping in los angeles
+can you find me another flight from cincinnati to new york on saturday before six p m
+can you list all of the delta flights from salt lake city to new york next saturday arriving before six p m
+can you find me a flight from salt lake city to new york city , next saturday bef(ore)- !arriving before six p m
+show me all round trip flights from miami to new york nonstop
+show me first class flights from new york to miami round trip
+show me all round trip flights from new york to miami nonstop
+show me first class flights from new york to miami round trip
+show me one way flights from indianapolis to memphis before ten a m on any day
+show me nonstop flights from saint petersburg to toronto
+what does fare code h mean
+show me the nonstop flights from toronto to saint petersburg
+what airline is !a !s
+what airline is a s as in sam
+what airline is a s
+what airline is a s
+what does fare code f mean
+show me round trip flights from burbank to tacoma
+show me the nonstop flights and fares from toronto to saint petersburg
+show me nonstop flights from toronto to saint petersburg
+what does the restriction a p fifty eight mean
+what airline is h p
+show me weekday flights from milwaukee to orlando one way
+show me weekday flights from milwaukee to orlando one way
+show me all flights from san jose to phoenix
+show me ground transportation in fort worth
+show me all flights from san jose to phoenix
+show me flights from phoenix to fort worth
+show me flights from fort worth to san jose
+show me ground transportation in phoenix
+what airline is h p
+find american flight from *newark* to nashville , around six thirty p m
+find flight from phoenix to detroit on monday
+find flight from detroit to san diego on tuesday
+find flight from san diego to phoenix on monday a m
+please find a flight round trip from los angeles to tacoma washington with a stopover in san francisco not exceeding the price of three hundred dollars for june tenth nineteen ninety three
+are there any flights on june tenth from burbank to tacoma
+[loud_breath] please find a flight from ontario to westchester that makes a stop in chicago on may seventeenth one way with dinner
+find flight from memphis to cincinnati on sunday
+find flight from houston to memphis on friday
+find flight from cincinnati to san jose on monday
+find flight from san jose to houston on wednesday
+tell me the flights that leave philadelphia and go to dallas
+please list all the flights from dallas to . san francisco
+i would like a connecting flight from dallas , to: . san francisco , leaving after four o'clock
+tell me again the morning flights on american airlines from philadelphia to dallas [loud_breath]
+what is a d nine s
+what type of plane is a d nine s
+what is a d nine s
+how many northwest flights leave saint paul [loud_breath]
+what cities does northwest fly out of [loud_breath]
+what cities does northwest fly to
+how many flights does northwest have leaving dulles
+how many northwest flights leave washington d c
+list the cities from which northwest flies [loud_breath]
+[noise] show me the cost of a first class ticket from detroit to las vegas and back
+what is the earliest arriving flight from boston to washington d c
+what is the earliest arriving flight from houston to orlando
+what is the earliest arriving flight between boston and washington d c
+show me the flights between houston and orlando
+what's the earliest arriving flight between boston and washington d c
+show me the flights from houston to orlando
+[noise] what is the earliest arriving flight from houston to orlando
+show me the flights between houston *and* orlando
+show me the first class and coach flights between j f k and orlando
+show me the first class and coach flights from kennedy airport to miami
+show delta airlines from boston to salt lake
+show delta airlines flights from boston to salt lake
+are meals ever served on tower air
+show me the first class and coach flights from j f k to miami
+what is the lowest fare from b w i to salt lake city
+what is the least expensive fare from boston to salt lake city
+what [noise] are the fares for flights between boston and washington d c
+show delta airlines flights from boston to salt lake city
+what are the lowest fares from washington d c to salt lake city
+show [<noise] delta airlines flights from . j f k to miami
+show me the airports serviced by tower air
+are snacks served on tower air

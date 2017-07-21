@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of the state that has the longest river ?", 
+ "sentence-with-vars": "what is the capital of the state that has the longest river ?", 
+ "sql": "select state.capital from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) ;", 
+ "sql-with-vars": "select state.capital from state where state.state_name in ( select river.traverse from river where river.length = ( select max ( river.length ) from river ) ) ;", 
+ "variables": []
+}

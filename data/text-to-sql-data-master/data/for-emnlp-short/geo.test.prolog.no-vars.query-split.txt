@@ -1,0 +1,219 @@
+what is the highest point of the usa ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the highest point in the country ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the highest point in the usa ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the highest point in the us ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+
+how many cities named austin are there in the usa ? ||| answer ( A , count ( B , ( city ( B ) , const ( B , cityid ( austin , _ ) ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+
+what is the most populated state bordering oklahoma ? ||| answer ( A , largest ( B , ( population ( A , B ) , state ( A ) , next_to ( A , C ) , const ( C , stateid ( oklahoma ) ) ) ) )
+
+which is the smallest state ? ||| answer ( A , smallest ( A , state ( A ) ) )
+what state has the smallest area ? ||| answer ( A , smallest ( B , ( state ( A ) , area ( A , B ) ) ) )
+what is the smallest state in the usa ? ||| answer ( A , smallest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the state with the smallest area ? ||| answer ( A , smallest ( B , ( state ( A ) , area ( A , B ) ) ) )
+
+how many states are next to major rivers ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , major ( C ) , river ( C ) ) , A ) )
+
+what rivers flow through the state with the largest population ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+what is the population of the state with the largest area ? ||| answer ( A , ( population ( B , A ) , largest ( C , ( state ( B ) , area ( B , C ) ) ) ) )
+what is the population of the largest state ? ||| answer ( A , ( population ( B , A ) , largest ( B , state ( B ) ) ) )
+
+what is the capital of the state with the longest river ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , longest ( C , ( state ( B ) , loc ( C , B ) , river ( C ) ) ) ) )
+
+what is the area of maine ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( maine ) ) ) )
+what is the area of texas ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( texas ) ) ) )
+what is the area of the texas state ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( texas ) ) ) )
+how large is alaska ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( alaska ) ) ) )
+what is the area of alaska ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( alaska ) ) ) )
+how large is texas ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) )
+what is the area of south carolina ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( ' south carolina ' ) ) ) )
+what is the area of idaho ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( idaho ) ) ) )
+what is the area of wisconsin ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( wisconsin ) ) ) )
+what is the area of florida ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( florida ) ) ) )
+how big is new mexico ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( ' new mexico ' ) ) ) )
+how big is minnesota ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( minnesota ) ) ) )
+how big is north dakota ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( ' north dakota ' ) ) ) )
+how big is alaska ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( alaska ) ) ) )
+how big is massachusetts ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( massachusetts ) ) ) )
+what is the area of california ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( california ) ) ) )
+what is the size of texas ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) )
+what is the size of florida ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( florida ) ) ) )
+what is the size of california ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( california ) ) ) )
+how big is texas ? ||| answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) )
+what is the area of new mexico ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( ' new mexico ' ) ) ) )
+what is the area of ohio ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( ohio ) ) ) )
+what is the area of maryland in square kilometers ? ||| answer ( A , ( area ( B , A ) , const ( B , stateid ( maryland ) ) ) )
+
+how many states border the state with the largest population ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , largest ( D , ( state ( C ) , population ( C , D ) ) ) ) , A ) )
+
+what is the largest city in smallest state through which the mississippi runs ? ||| answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) ) ) ) )
+
+what rivers flow through states that border the state with the largest population ? ||| answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , largest ( D , ( state ( C ) , population ( C , D ) ) ) ) )
+
+what is the capital of the state with the highest point ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , highest ( C , ( state ( B ) , loc ( C , B ) , place ( C ) ) ) ) )
+what is the capital of the state with the highest elevation ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , highest ( C , place ( C ) ) ) )
+
+what state borders the state with the smallest population ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , population ( B , C ) ) ) ) )
+
+what is the population of the capital of the largest state ? ||| answer ( A , ( population ( B , A ) , capital ( B ) , loc ( B , C ) , largest ( C , state ( C ) ) ) )
+
+name all the lakes of us . ||| answer ( A , ( lake ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) )
+
+how many rivers do not traverse the state with the capital albany ? ||| answer ( A , count ( B , ( river ( B ) , \ + ( traverse ( B , C ) , state ( C ) , loc ( D , C ) , capital ( D ) , const ( D , cityid ( albany , _ ) ) ) ) , A ) )
+
+what are the population densities of each us state ? ||| answer ( A , ( density ( B , A ) , state ( B ) ) )
+
+what is the area of the smallest state ? ||| answer ( A , ( area ( B , A ) , smallest ( B , state ( B ) ) ) )
+
+what is the highest point in the state with the smallest population ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , smallest ( C , ( state ( B ) , population ( B , C ) ) ) ) ) )
+
+what is the highest point of the state with the largest area ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) )
+
+where is mount whitney located ? ||| answer ( A , ( loc ( B , A ) , const ( B , placeid ( ' mount whitney ' ) ) ) )
+where is mount whitney ? ||| answer ( A , ( loc ( B , A ) , const ( B , placeid ( ' mount whitney ' ) ) ) )
+which state is mount mckinley in ? ||| answer ( A , ( state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) , loc ( B , A ) ) )
+in what state is mount mckinley ? ||| answer ( A , ( loc ( B , A ) , state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) ) )
+in what state is mount mckinley ? ||| answer ( A , ( loc ( B , A ) , state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) ) )
+
+what is the capital of maine ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( maine ) ) ) )
+what is the capital of georgia ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( georgia ) ) ) )
+what is the capital of new hampshire ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new hampshire ' ) ) ) )
+what is the capital of hawaii ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( hawaii ) ) ) )
+what is the capital of iowa ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( iowa ) ) ) )
+what is the capital of illinois ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( illinois ) ) ) )
+what is the capital of utah ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( utah ) ) ) )
+what is the capital of north dakota ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' north dakota ' ) ) ) )
+what is the capital of vermont ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( vermont ) ) ) )
+what is the capital of washington ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( washington ) ) ) )
+what are the capital city in texas ? ||| answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+can you tell me the capital of texas ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+what is the capital of the alabama state ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( alabama ) ) , state ( B ) ) )
+what is the capital of indiana ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( indiana ) ) ) )
+what is the capital of new york ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new york ' ) ) ) )
+what is the capital of colorado ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( colorado ) ) ) )
+what is the capital of the state texas ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( texas ) ) ) )
+what is the capital of ohio ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ohio ) ) ) )
+what is the capital of california ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) )
+what is the capital of texas ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+what is the capital of new jersey ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new jersey ' ) ) ) )
+what is the capital of michigan ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( michigan ) ) ) )
+what is the capital of maryland ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( maryland ) ) ) )
+what is the capital of massachusetts ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( massachusetts ) ) ) )
+what is the capital of the florida state ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( florida ) ) , state ( B ) ) )
+
+what is the highest point in the state with the most rivers ? ||| answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , most ( B , C , ( state ( B ) , traverse ( C , B ) , river ( C ) ) ) ) ) )
+
+what are the capital cities of the states which border texas ? ||| answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) )
+what are the capitals of states that border missouri ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( missouri ) ) ) )
+which capitals are in states that border texas ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) )
+what are the capitals of states that border texas ? ||| answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) )
+
+how many rivers are in the state with the highest point ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , state ( C ) , loc ( D , C ) , highest ( D , place ( D ) ) ) , A ) )
+
+what states border states that the mississippi runs through ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) )
+what states border states that the ohio runs through ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( ohio ) ) , traverse ( C , B ) ) )
+what states border states which the mississippi runs through ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) )
+
+give me the lakes in california ? ||| answer ( A , ( lake ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) )
+
+how many states are there in the united states ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+how many states are there ? ||| answer ( A , count ( B , state ( B ) , A ) )
+how many states does usa have ? ||| answer ( A , count ( B , ( state ( B ) , const ( C , countryid ( usa ) ) , loc ( B , C ) ) , A ) )
+how many states are there in the usa ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+how many states are in the united states ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+how many states are there in the usa ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+how many states are in the usa ? ||| answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) )
+
+what state contains the highest point in the us ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) ) ) )
+which state has the highest point ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) )
+what is the state that contains the highest point ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) )
+what state has the highest elevation ? ||| answer ( A , highest ( B , ( state ( A ) , loc ( B , A ) , place ( B ) ) ) )
+what state has highest elevation ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) )
+which state has the highest elevation ? ||| answer ( A , highest ( B , ( state ( A ) , loc ( B , A ) , place ( B ) ) ) )
+in which state does the highest point in usa exist ? ||| answer ( A , ( loc ( B , A ) , state ( A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) ) ) )
+
+what is the name of the state with the lowest point ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) )
+what is the state with the lowest point ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) )
+which state has the lowest elevation ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) )
+
+what states border the state with the smallest area ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , area ( B , C ) ) ) ) )
+which states border the state with the smallest area ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , area ( B , C ) ) ) ) )
+
+what are the cities in california ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) )
+give me the cities in virginia ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( virginia ) ) ) )
+give me the cities which are in texas ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+give me the cities in texas ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+give me the cities in california ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) )
+what cities in california ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) )
+what cities are located in pennsylvania ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( pennsylvania ) ) ) )
+tell me what cities are in texas ? ||| answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) )
+
+which states have points higher than the highest point in colorado ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , place ( B ) , higher ( B , C ) , highest ( C , ( place ( C ) , loc ( C , D ) , const ( D , stateid ( colorado ) ) ) ) ) )
+
+what is the height of the highest mountain in texas ? ||| answer ( A , ( elevation ( B , A ) , highest ( B , ( mountain ( B ) , loc ( B , C ) , const ( C , stateid ( texas ) ) ) ) ) )
+
+what is the population density in the state with capital austin ? ||| answer ( A , ( density ( B , A ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( austin , _ ) ) ) )
+
+which states does the longest river run through ? ||| answer ( A , ( state ( A ) , longest ( B , river ( B ) ) , traverse ( B , A ) ) )
+which state has the longest river ? ||| answer ( A , longest ( B , ( state ( A ) , loc ( B , A ) , river ( B ) ) ) )
+what are the states through which the longest river runs ? ||| answer ( A , ( state ( A ) , longest ( B , ( river ( B ) , traverse ( B , A ) ) ) ) )
+
+what is the highest point in each state whose lowest point is sea level ? ||| answer ( A , ( highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) ) ) , lowest ( C , ( loc ( C , B ) , place ( C ) ) ) , elevation ( C , 0 ) ) )
+
+what is the shortest river in iowa ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( iowa ) ) ) ) )
+what is the shortest river in texas ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) )
+what is the shortest river in nebraska ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( nebraska ) ) ) ) )
+what is the shortest river in alaska ? ||| answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( alaska ) ) ) ) )
+
+where is massachusetts ? ||| answer ( A , ( loc ( B , A ) , const ( B , stateid ( massachusetts ) ) ) )
+where is new hampshire ? ||| answer ( A , ( loc ( B , A ) , const ( B , stateid ( ' new hampshire ' ) ) ) )
+
+what states does the missouri run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , traverse ( B , A ) ) )
+what are the states that the potomac run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( potomac ) ) , traverse ( B , A ) ) )
+what states does the ohio river go through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( ohio ) ) , river ( B ) , traverse ( B , A ) ) )
+what states does the delaware river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( delaware ) ) , river ( B ) , traverse ( B , A ) ) )
+what states does the ohio river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( ohio ) ) , river ( B ) , traverse ( B , A ) ) )
+which states does the mississippi run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) )
+which states does colorado river flow through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( colorado ) ) , river ( B ) , traverse ( B , A ) ) )
+which states does the missouri river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) )
+which states does the missouri run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) )
+which states does the mississippi river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , river ( B ) , traverse ( B , A ) ) )
+what states does the missouri river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) )
+what states does the mississippi run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) )
+what states does the colorado river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( colorado ) ) , river ( B ) , traverse ( B , A ) ) )
+which state has the red river ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , riverid ( red ) ) , river ( B ) ) )
+through which states does the mississippi flow ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) )
+through which states does the mississippi run ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) )
+what states have rivers named colorado ? ||| answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , riverid ( colorado ) ) ) )
+where is the chattahoochee river ? ||| answer ( A , ( loc ( B , A ) , const ( B , riverid ( chattahoochee ) ) , river ( B ) ) )
+which states does the chattahoochee river run through ? ||| answer ( A , ( state ( A ) , const ( B , riverid ( chattahoochee ) ) , river ( B ) , traverse ( B , A ) ) )
+
+what is the highest mountain in us ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the highest mountain in the us ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+what is the tallest mountain in us ? ||| answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) )
+
+what are the states ? ||| answer ( A , state ( A ) )
+give me all the states of usa ? ||| answer ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) )
+list the states ? ||| answer ( A , state ( A ) )
+
+how many rivers in washington ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( washington ) ) ) , A ) )
+how many rivers run through texas ? ||| answer ( A , count ( B , ( river ( B ) , traverse ( B , C ) , const ( C , stateid ( texas ) ) ) , A ) )
+how many rivers are there in idaho ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( idaho ) ) ) , A ) )
+how many rivers are found in colorado ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( colorado ) ) ) , A ) )
+how many rivers are in new york ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( ' new york ' ) ) ) , A ) )
+how many rivers in iowa ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( iowa ) ) ) , A ) )
+how many rivers are in missouri ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( missouri ) ) ) , A ) )
+how many rivers are in texas ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( texas ) ) ) , A ) )
+how many rivers are in colorado ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( colorado ) ) ) , A ) )
+give me the number of rivers in california ? ||| answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( california ) ) ) , A ) )
+how many rivers does colorado have ? ||| answer ( A , count ( B , ( river ( B ) , const ( C , stateid ( colorado ) ) , loc ( B , C ) ) , A ) )
+
+what states border texas and have a major river ? ||| answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( texas ) ) , loc ( C , A ) , major ( C ) , river ( C ) ) )
+
+how many states border the state whose capital is boston ? ||| answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , state ( C ) , loc ( D , C ) , capital ( D ) , const ( D , cityid ( boston , _ ) ) ) , A ) )
+
+what is the area of the states ? ||| answer ( A , ( area ( B , A ) , state ( B ) ) )
+
+what is the population density of the largest state ? ||| answer ( A , ( density ( B , A ) , largest ( B , state ( B ) ) ) )
+

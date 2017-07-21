@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "DRK - 0"
+    ],
+    "comments": [
+        "JKK - Missing reference to 280"
+    ],
+    "helpfulness": [
+        "JKK - 0",
+        "DRK - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Class 280 has been taught by Prof. DeOrio how many times ?",
+        "Course 280 has been taught by Professor DeOrio how many times ?",
+        "For 280 , how many times has Professor DeOrio taught ?",
+        "For 280 , how many times has Prof. DeOrio taught it ?",
+        "Has 280 been taught by Prof. DeOrio many times ?",
+        "Has Prof. DeOrio taught 280 many times ?",
+        "How many classes has Prof. DeOrio taken for 280 ?",
+        "How many semesters has Prof. DeOrio taught 280 ?",
+        "How many times has class 280 been taught by Prof. DeOrio ?",
+        "How many times must Prof. DeOrio have taught 280 ?",
+        "Prof. DeOrio has taught 280 how many times ?",
+        "What is the number of times that Prof. DeOrio has taught 280 ?",
+        "What is the exact number of times that Professor DeOrio has taught course 280 ?",
+        "What number of times has Prof. DeOrio taught 280 ?"
+    ],
+    "sentence": "How many times has Prof. DeOrio taught 280 ?",
+    "sentence-with-vars": "How many times has instructor0 taught number0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER = 280 AND INSTRUCTORalias0.NAME LIKE \"%deorio%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. DeOrio",
+            "sql-value": "deorio"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many residents live in texas ?", 
+ "sentence-with-vars": "how many residents live in state0 ?", 
+ "sql": "select state.population from state where state.state_name = ' texas ' ;", 
+ "sql-with-vars": "select state.population from state where state.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  }
+ ]
+}

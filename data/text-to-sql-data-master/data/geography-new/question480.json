@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of the state with the largest population density ?", 
+ "sentence-with-vars": "what is the capital of the state with the largest population density ?", 
+ "sql": "select distinct state.capital from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "sql-with-vars": "select distinct state.capital from state where state.density = ( select max ( state.density ) from state ) ;", 
+ "variables": []
+}

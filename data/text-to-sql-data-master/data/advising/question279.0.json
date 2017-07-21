@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "After Math 214 what courses can I take ?",
+        "Are there any courses that I can take that Math 214 is a pre-requisite for ?",
+        "For which classes is Math 214 a prerequisite ?",
+        "If I take Math 214 , what classes will I be able to take ?",
+        "Once I take Math 214 , what classes will I be able to take ?",
+        "What are the additional classes that I can take after finishing Math 214 ?",
+        "What classes am I eligible for after completing Math 214 ?",
+        "What courses are available for me to participate in once I finish Math 214 ?",
+        "What courses open up after taking Math 214 ?",
+        "Which classes will I be able to take once I complete Math 214 ?",
+        "Which courses are available after taking Math 214 ?"
+    ],
+    "sentence": "What classes will I be able to take once I take Math 214 ?",
+    "sentence-with-vars": "What classes will I be able to take once I take department0 number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 ON COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID INNER JOIN COURSE AS COURSEalias1 ON COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID WHERE COURSEalias1.DEPARTMENT = \"MATH\" AND COURSEalias1.NUMBER = 214 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME FROM COURSE AS COURSEalias0 INNER JOIN COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 ON COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID INNER JOIN COURSE AS COURSEalias1 ON COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID WHERE COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "214",
+            "sql-value": "214"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "Math",
+            "sql-value": "MATH"
+        }
+    ]
+}

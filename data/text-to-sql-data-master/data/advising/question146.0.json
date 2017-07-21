@@ -1,0 +1,51 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 0"
+    ],
+    "comments": [
+        "DRK - The question asks about EECS 280 and the query has EECS 281"
+    ],
+    "helpfulness": [
+        "LZ - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "After 12 P.M. , is there a section of EECS 280 ?",
+        "Are any EECS 280 sections after 12 P.M. ?",
+        "Are any EECS 280 sections offered after 12 P.M. ?",
+        "Are there sections of EECS 280 that are offered after 12 P.M. ?",
+        "Can I go to a section of EECS 280 after noon ?",
+        "Does EECS 280 have any sections after 12 P.M. ?",
+        "Does EECS 280 offer a section after 12 P.M. ?",
+        "Is it possible to go to a section of EECS 280 after 12 ?",
+        "Is there a section of EECS 280 after noon ?",
+        "Is there a section of EECS 280 that is after 12 P.M. ?",
+        "Is there a section of EECS 280 that occurs after 12 P.M. ?",
+        "Is there a section of EECS 280 that takes place after 12 P.M. ?",
+        "Is there an EECS 280 section in the afternoon ?",
+        "What section of EECS 280 is offered after 12 P.M. ?",
+        "What sections does EECS 280 offer after 12 P.M .",
+        "after 12 P.M. is there an EECS 280 section ?"
+    ],
+    "sentence": "Is there a section of EECS 280 after 12 P.M. ?",
+    "sentence-with-vars": "Is there a section of department0 number0 after 12 P.M. ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME >= \"12 : 00 : 00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.END_TIME , COURSE_OFFERINGalias0.START_TIME , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME >= \"12:00:00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

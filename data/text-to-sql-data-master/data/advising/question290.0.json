@@ -1,0 +1,41 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "CFD - Add % around %X%"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are Fridays when Professor Smith 's classes always meet ?",
+        "Are Prof. Smith 's classes always on Friday ?",
+        "Are fridays the norm for prof smith 's classes ?",
+        "Are prof smith 's classes always on fridays ?",
+        "Do all of Prof. Smith 's classes meet on Friday ?",
+        "Do classes for Prof. Smith always meet on Friday ?",
+        "Do the classes for Prof. Smith always meet on Friday ?",
+        "For Professor Smith 's classes , do they always meet on Friday ?",
+        "Is Friday the day that Professor Smith 's classes always meet ?",
+        "Is it Friday when Prof. Smith 's classes always meet ?",
+        "Is it on Friday when Prof. Smith 's classes always meet ?"
+    ],
+    "sentence": "Do Prof. Smith 's classes always meet on Friday ?",
+    "sentence-with-vars": "Do instructor0 's classes always meet on Friday ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND INSTRUCTORalias0.NAME LIKE \"%smith%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.FRIDAY FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        }
+    ]
+}

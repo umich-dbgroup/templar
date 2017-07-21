@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - Not returning \"Yes\", though.",
+        "JKK - Should be this? - select count(*) from PROGRAM_COURSE pc, COURSE c, PROGRAM p where pc.program_id=p.program_id and p.name=\"CS-LSA\" and category='ULCS' and c.course_id=pc.course_id and c.department='EECS' and c.number=381;"
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can EECS 381 be used for ULCS ?",
+        "Can I take EECS 381 for ULCS ?",
+        "Do I count EECS 381 for ULCS ?",
+        "Does EECS 381 work for ULCS ?",
+        "EECS 381 counts for ULCS ?",
+        "EECS 381 counts for a ULCS ?",
+        "For ULCS does EECS 381 count ?",
+        "For ULCS , does EECS 381 count ?",
+        "For a ULCS does EECS 381 count ?",
+        "Is EECS 381 accepted as ULCS ?",
+        "Is EECS 381 applicable for ULCS ?",
+        "Is EECS 381 counted towards ULCS ?",
+        "Will EECS 381 count towards the ULCS ?",
+        "Would EECS 381 count towards ULCS ?",
+        "Would EECS 381 fit the ULCS requirements ?",
+        "Would EECS 381 qualify for ULCS ?"
+    ],
+    "sentence": "Does EECS 381 count for ULCS ?",
+    "sentence-with-vars": "Does department0 number0 counts for ULCS ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 381 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "381",
+            "sql-value": "381"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what state bordering nevada has the largest population ?", 
+ "sentence-with-vars": "what state bordering state0 has the largest population ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' nevada ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' nevada ' ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.population = ( select max ( state.population ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "nevada", 
+   "sql-value": "nevada"
+  }
+ ]
+}

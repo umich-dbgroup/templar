@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people live in the united states ?", 
+ "sentence-with-vars": "how many people live in the united states ?", 
+ "sql": "select sum ( state.population ) from state ;", 
+ "sql-with-vars": "select sum ( state.population ) from state ;", 
+ "variables": []
+}

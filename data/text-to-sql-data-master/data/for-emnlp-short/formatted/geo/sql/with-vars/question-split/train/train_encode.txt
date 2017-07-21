@@ -1,0 +1,471 @@
+what is the highest point in the us ?
+what is the length of the river that traverses the most states ?
+how large is the largest city in state0 ?
+what is the capital of state0 ?
+what is the capital of the largest state ?
+how many states have a city called city0 ?
+what is the highest point of the state with the largest area ?
+what states border state0 ?
+what is the highest point in the united states ?
+how high is the highest point of state0 ?
+how many states border state0 ?
+what state has highest elevation ?
+how many rivers are in state0 ?
+what river runs through state0 ?
+how many states border at least one other state ?
+what is the population of city0 ?
+which states does the river0 run through ?
+what states does the river0 run through ?
+of the states washed by the river0 which has the lowest point ?
+how high is the highest point of state0 ?
+how many rivers are there in state0 ?
+how many people live in state0 ?
+how many rivers are there in us ?
+what rivers run through state0 ?
+what is the population of the state with the largest area ?
+what are the major cities in state0 ?
+how many people are in the state of state0 ?
+what cities are located in state0 ?
+what is the lowest point in the state of state0 ?
+what state has the largest population density ?
+what is the population of state0 ?
+what states border states that border states that border state0 ?
+what are the cities of the state with the lowest point ?
+what is the population of city0 ?
+what are the states ?
+what is the biggest city in the us?
+what can you tell me about the population of state0 ?
+what states border state0 ?
+which states border state0 and state1 ?
+what is the largest state in the us ?
+what is the population of the capital of the largest state through which the river0 runs ?
+how long is the shortest river in the usa ?
+what is the state that contains the highest point ?
+how many people stay in state0 ?
+what is the longest river that passes the states that border the state that borders the most states ?
+give me the largest state ?
+how high is the highest point in the largest state ?
+what is the lowest point in state0 ?
+how many states border the river0 ?
+how big is the city of city0 ?
+where is city0 ?
+how many people live in state0 ?
+how many cities named city0 are there in the usa ?
+what is the state with the largest population density ?
+where is city0 ?
+what is the capital of the state with the highest point ?
+what is the most populous city in state0 ?
+which states border state0 ?
+give me the cities in state0 ?
+what is the smallest state that borders state0 ?
+can you tell me the capital of state0 ?
+give me the cities in state0 ?
+what is the tallest mountain in us ?
+what is the area of state0 ?
+what is the smallest city in the largest state ?
+which states border state0 ?
+what is the largest city of state0 ?
+what is the highest point in state0 ?
+give me the cities in state0 ?
+what is the highest point in the state with capital city0 ?
+what rivers are in state0 ?
+what is the longest river in the united states ?
+how many rivers in state0 are longer than the river0 ?
+which state border state0 ?
+what states border state0 ?
+what is the area of state0 ?
+what are the capital cities of the states which border state0 ?
+how many people live in state0 ?
+in which state does the highest point in usa exist ?
+how many major cities are there in us ?
+what is the area of state0 ?
+what are the states next to the river0 ?
+city0 population ?
+citizens in city0 ?
+what rivers flow through the largest state ?
+where is city0 ?
+what rivers flow through the state with the largest population ?
+how many cities are there in the us ?
+what is the largest city in state0 ?
+how many states have major rivers ?
+what states does the shortest river run through ?
+how many people live in city0 ?
+what is the size of state0 ?
+what is the largest city ?
+which rivers are in state0 ?
+what river flows through state0 ?
+what is the capital of state0 ?
+what states have a city named city0 ?
+what is the highest elevation in state0 ?
+which state has the largest city ?
+how many states border state0 ?
+what is the population of state0 ?
+what are the major cities in the states through which the major river in state0 runs ?
+how high are the highest points of all the states ?
+what states capital is city0 ?
+what are the major cities in state0 ?
+what are the names of the major cities in state0 ?
+what is the longest river in the state with the highest point ?
+what is the highest mountain in state0 ?
+what rivers are in state0 ?
+what is the largest city in states that border state0 ?
+how many states does the river0 flow through ?
+which state has the greatest density ?
+what rivers flow through states that state0 borders ?
+how many rivers do not traverse the state with the capital city0 ?
+what are the capitals of the states that border states bordering state0 ?
+what state is the biggest ?
+how many states are next to major rivers ?
+where is city0 ?
+what cities in state0 have the highest number of citizens ?
+what rivers flow through states that border the state with the largest population ?
+what is the population density of the state with the smallest population ?
+what is the lowest point of the state with the largest area ?
+what are the major cities in state0 ?
+how many cities does the usa have ?
+what is the highest point in state0 ?
+what is the elevation of the highest point in the usa ?
+how many people live in city0 ?
+what is the capital of the largest state in usa ?
+what state has the capital city0 ?
+what is the capital of state0 ?
+name all the rivers in state0 .
+what is the area of state0 ?
+how many cities does state0 have ?
+how many major cities are there ?
+what is the state with the lowest population density ?
+where is city0 ?
+what is the population density of the state with the smallest area ?
+what states does the river0 run through ?
+in which state is city0 ?
+what is the population of state0 ?
+where is city0 ?
+what river flows through state0 ?
+what is the highest point in state0 ?
+how many states are in the united states ?
+what states border state0 ?
+what is the largest city in state0 ?
+what is the highest point in the state with the most rivers ?
+what major rivers run through state0 ?
+how many rivers are there in us ?
+what rivers do not run through state0 ?
+what are the capitals of states that border state0 ?
+what state has the most people ?
+what is the total area of the usa ?
+what states border state0 ?
+how many states in the us does the shortest river run through ?
+what is the population of the largest state ?
+what is the lowest point in state0 ?
+where is city0 ?
+what is the number of neighboring states for state0 ?
+how many people are there in state0 ?
+what is the longest river in the state with the highest point ?
+what is the area of state0 ?
+how long is the river0 in miles ?
+what are the rivers in the state of state0 ?
+what is the size of state0 ?
+what is the smallest city in state0 ?
+what state contains the highest point in the us ?
+how many states are there in the united states ?
+how many states border state0 ?
+what state is city0 the capital of ?
+what state has the greatest population density ?
+how big is state0 ?
+what are the states through which the longest river runs ?
+what is the smallest city in state0 ?
+what state is city0 located in ?
+what are the biggest rivers in state0 ?
+which rivers flow through state0 ?
+how many states does the river0 run through ?
+what state has the highest population ?
+what is the highest point in state0 ?
+what is the population of city0 ?
+what is the biggest state in the usa ?
+what mountains are in state0 ?
+what states border states which the river0 runs through ?
+how big is state0 ?
+what is the population density of the smallest state ?
+how many rivers run through state0 ?
+what is the length of the river that runs through the most number of states ?
+how many major cities are in state0 ?
+which state is city0 in ?
+how big is state0 ?
+what is the river that cross over state0 ?
+what states have cities named city0 ?
+what are the highest points of states surrounding state0 ?
+what is the biggest city in state0 ?
+what state has the largest city ?
+what is the longest river ?
+which states does the river0 run through ?
+what is the capital of the state with the lowest point ?
+what states does the river0 go through ?
+what is the smallest city in state0 ?
+what is the height of the highest point in the usa ?
+how high is high_point0 ?
+how many people live in state0 ?
+how many states does state0 border ?
+what is the highest point in each state whose lowest point is sea level ?
+what rivers run through the states that border the state with the capital city0 ?
+what is the capital of state0 ?
+how many cities are there in usa ?
+what is the population of city0 ?
+what are the populations of all the major cities in state0 ?
+what is the lowest elevation in state0 ?
+what is the population of city0 state_abrev0 ?
+how many rivers in state0 are longer than the river0 ?
+what is the lowest point of state0 ?
+what is the biggest river in state0 ?
+what is the length of the longest river in the usa ?
+which state is traversed by the most rivers ?
+what is the shortest river in the united states ?
+in what state is mountain0 ?
+how big is state0 ?
+give me all the states of usa ?
+what state is city0 the capital of ?
+what is the shortest river ?
+what is the shortest river in the us ?
+how many cities are there in the us ?
+how many people live in the state with the largest population density ?
+what is the lowest point in the usa ?
+what is the population density of the smallest state ?
+what is the longest river in the smallest state in the usa ?
+what are the states that border the state with the greatest population ?
+how long is the river0 ?
+what cities in state0 have the highest populations ?
+what state has the city with the largest population ?
+how many people live in city0 state0 ?
+what state has the city with the most population ?
+what is the longest river flowing through state0 ?
+what is the longest river in state0 ?
+how many people live in city0 ?
+what is the highest point in state0 ?
+what is the name of the state with the lowest point ?
+where is mountain0 ?
+what states border state0 ?
+what are the capital city in state0 ?
+which capitals are in states that border state0 ?
+how high is the highest point of state0 ?
+where is city0 ?
+what states border state0 ?
+what is the population of the capital of the smallest state ?
+through which states does the river0 flow ?
+how many people live in state0 ?
+how long is the river0 ?
+how many people live in state0 ?
+what state borders the state with the smallest population ?
+which states border state0 ?
+what is the capital of state0 ?
+what is the area of the largest state ?
+what is the population of city0 state0 ?
+what is the biggest city in usa ?
+what state is city0 in ?
+which state is the city city0 located in ?
+what is the population of state0 ?
+what is the biggest city in state0 ?
+what is the longest river that runs through a state that borders state0 ?
+what is the average population per square km in state0 ?
+what are the populations of the states through which the river0 runs ?
+how many rivers are there in the us ?
+which states does the river0 run through ?
+what states border state0 ?
+what is the capital of state0 ?
+what is the capital of state0 ?
+what are the populations of states which border state0 ?
+what is the area of the states ?
+what is the state with the lowest point ?
+what is the population of the largest state that borders state0 ?
+what are the major cities in state0 ?
+what is the shortest river in the usa ?
+what states have rivers named river0 ?
+what river runs through state0 ?
+what is the population density in the state with capital  ?
+what is largest capital ?
+what states border states that border state0 ?
+what is the area of all the states combined ?
+what are the major rivers in the us ?
+how many people live in city0 state0 ?
+what city has the largest population ?
+what cities in state0 have highest populations ?
+what is the biggest city in state0 ?
+what state has the largest population ?
+how many major rivers cross state0 ?
+what state has the smallest population ?
+how many states border the state that borders the most states ?
+what state is city0 in ?
+how many people live in state0 ?
+what is the biggest state ?
+what states in the united states have a city of city0 ?
+what rivers are in state0 ?
+what is the smallest city in state0 ?
+what are the major cities in state0 ?
+how many states does state0 border ?
+what rivers run through state0 ?
+what is the smallest state that borders state0 ?
+how many people live in state0 ?
+what is the population of state0 ?
+what is the population of city0 ?
+what is the highest mountain in state0 ?
+give me the longest river that runs through a state in the us ?
+what is the height of the highest mountain in state0 ?
+what is the biggest city in the smallest state ?
+how long is the river0 ?
+what is the population of city0 ?
+what is the lowest point in state0 ?
+what state has the highest elevation ?
+what is the largest city in state0 by population ?
+what is the highest point in the state with the capital city0 ?
+what is the total length of all the rivers in the usa ?
+name the 50 capitals in the usa .
+what is the city with the smallest population ?
+what city has the least population ?
+where is the highest point in state0 ?
+what is the largest city in a state that borders state0 ?
+how many rivers are in state0 ?
+what is the capital of the state that has the longest river ?
+what is the size of state0 ?
+what states neighbor state0 ?
+how long is river0 ?
+what are major rivers in state0 ?
+how many rivers in state0 ?
+how many people live in city0 ?
+what is the area of the state with the largest population density ?
+what is the major cities in state0 ?
+what are the populations of states through which the river0 runs ?
+how many cities are in state0 ?
+how many states have cities named city0 ?
+what is the population of city0 state0 ?
+what is the largest state ?
+what is the population density of state0 ?
+what is the capital of the state0 state ?
+list the states ?
+what is the capital city of the largest state in the us ?
+what is the density of state0 ?
+how many rivers in state0 ?
+what are the capitals of the states that border state0 ?
+which state has the least population density ?
+which states does not border state0 ?
+what is the longest river in state0 ?
+what is the population density of the smallest state ?
+how many people are there in state0 ?
+what are the major cities in state0 ?
+what is the lowest point in state0 ?
+what is the biggest state in continental us ?
+what is the shortest river in state0 ?
+what is the biggest city in the usa?
+states bordering state0 ?
+what is the shortest river in state0 ?
+which state has the river0 ?
+where is city0 ?
+what states border states that the river0 runs through ?
+what state0 city has the largest population ?
+which states does the river0 run through ?
+what is the state with the largest density in usa ?
+what is the elevation of low_point0 ?
+could you tell me what is the highest point in the state of state0 ?
+what is the biggest city in state0 ?
+how many big cities are in state0 ?
+how many inhabitants does city0 have ?
+show major cities in state0 ?
+what is the longest river in america ?
+what is the area of state0 in square kilometers ?
+how many people live in city0 ?
+what is the highest point in state0 ?
+in what state is mountain0 ?
+how many states have a city named city0 ?
+what is the area of the state with the capital city0 ?
+what is the largest state bordering state0 ?
+how many people live in state0 ?
+which states border state0 ?
+what is the population of city0 state0 ?
+what is the largest city in state0 ?
+what is the capital of the state with the highest elevation ?
+which state has the most people ?
+which state borders state0 ?
+how many states have cities or towns named city0 ?
+how many states border the state whose capital is city0 ?
+give me the cities which are in state0 ?
+how many states does the river0 run through ?
+what is the combined population of all number0 states ?
+how many people live in city0 ?
+what is the smallest state in the usa ?
+what is the area of the smallest state ?
+how many rivers are in state0 ?
+name the rivers in state0 .
+what is the highest point in the country ?
+what are the major rivers in state0 ?
+what is the most populated capital in the usa ?
+which state has the longest river ?
+what is the shortest river in state0 ?
+what cities in state0 ?
+where is city0 ?
+what is the largest state that the river0 runs through ?
+what is the lowest point in state0 ?
+how many rivers are in state0 ?
+what is the largest state capital in population ?
+what is the area of state0 ?
+what is the average population per square km in the us ?
+which states have points higher than the highest point in state0 ?
+what is the longest river in state0 ?
+what state has the smallest population density ?
+how many rivers are found in state0 ?
+what state has the shortest river ?
+what state has the sparsest population density ?
+what is the longest river in state0 ?
+how many square kilometers in the us ?
+name all the lakes of us .
+what are the major cities of state0 ?
+name the states which have no surrounding states .
+what are the major cities in state0 ?
+what are the capitals of the states that border state0 ?
+what is the highest point in the state with the smallest population ?
+what is the biggest city in state0 ?
+population of city0 ?
+what is the population of state0 ?
+how many people live in city0 ?
+what is the longest river in the us ?
+which states adjoin state0 ?
+what is the largest state that borders state0 ?
+what are the rivers of state0 ?
+what is the density of state0 ?
+what is the population density of state0 ?
+how many rivers are in the state with the highest point ?
+what is the largest state that borders the state with the highest population ?
+what is the capital of state0 ?
+what capital is the largest in the us ?
+how many rivers are in the state with the largest population ?
+which states border state0 ?
+state the state with the largest area ?
+what is the highest point in state0 ?
+what are the major cities in the smallest state in the us ?
+which states border state0 ?
+what are the major cities in state0 ?
+what are the major cities in state0 ?
+how many major cities are there in state0 ?
+what is the total population of the states that border state0 ?
+what is the major cities in state0 ?
+what is the capital of the state that borders the most states ?
+what is the most populous city in state0 ?
+what is the population of the capital of the largest state ?
+how many major cities are in states bordering state0 ?
+how many rivers run through the states bordering state0 ?
+what is the population of city0 state0 ?
+how big is state0 ?
+how many states border state0 and border state1 ?
+name the longest river in us .
+what is the shortest river in state0 ?
+which states border state0 ?
+what is the state with the lowest population ?
+what state has the least population density ?
+how many rivers are called river0 ?
+what is the population of state0 ?
+what state has the city city0 ?
+how many major cities are in state0 ?
+which is the smallest state bordering state0 ?
+what is the largest state in usa ?
+what rivers do not run through state0 ?
+how many citizens live in state0 ?
+what is the population of state0 ?
+what are the populations of the states through which the river0 river runs ?
+what is the population of state0 ?
+which states border state0 ?
+which states border state0 ?

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me the first class and coach flights from j f k to miami",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airport_code||'\"', '\"'||v2.airport_code||'\"',\n '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"', '\"'||v4.flight_id||'\"',\n '\"'||v5.fare_id||'\"', '\"'||v5.fare_basis_code||'\"' FROM flight v0,\n airport v1, airport_service v2,\n city v3, flight_fare v4, fare v5 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'JFK')) AND (((v0.to_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'MIAMI'))) AND ((v0.flight_id = ANY v4.flight_id) \nAND ((v4.fare_id = ANY v5.fare_id) \nAND (((v5.fare_basis_code IN (\nSELECT v6.fare_basis_code FROM fare_basis v6 \nWHERE (v6.class_type = 'FIRST'))) AND ( 1 =  1)) OR ((v5.fare_basis_code IN (\nSELECT v7.fare_basis_code FROM fare_basis v7 \nWHERE (v7.class_type = 'COACH'))) AND ( 1 =  1)))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' JFK ' ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MIAMI ' ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_FARE . FLIGHT_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FARE_ID IN ( SELECT FARE . FARE_ID FROM FARE WHERE ( ( FARE.FARE_BASIS_CODE IN ( SELECT FARE_BASIS.FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS.CLASS_TYPE = ' FIRST ' ) AND 1 = 1 ) OR ( FARE.FARE_BASIS_CODE IN ( SELECT FARE_BASIS.FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS.CLASS_TYPE = ' COACH ' ) AND 1 = 1 ) ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

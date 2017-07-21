@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "482 meets in the fall when ?",
+        "Do you know when 482 meets in the fall ?",
+        "Does 482 meet in the fall , if so when ?",
+        "For 482 , when does it meet in the fall ?",
+        "In the fall when does 482 meet ?",
+        "In the fall , when does 482 meet ?",
+        "What is the class time for course 482 during fall term ?",
+        "What time is course 482 held for fall semester ?",
+        "What 's the schedule for 482 in the fall ?",
+        "When in the fall does 482 meet ?",
+        "When , in the fall , does 482 meet ?"
+    ],
+    "sentence": "When does 482 meet in the fall ?",
+    "sentence-with-vars": "When does number0 meet in the semester0 ?",
+    "sql": [
+        "SELECT DISTINCT END_TIME , FRIDAY , MONDAY , START_TIME , SUNDAY , THURSDAY , TUESDAY , WEDNESDAY FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 482 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT END_TIME , FRIDAY , MONDAY , START_TIME , SUNDAY , THURSDAY , TUESDAY , WEDNESDAY FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "fall",
+            "sql-value": "FA"
+        }
+    ]
+}

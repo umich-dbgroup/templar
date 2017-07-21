@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states border the state that borders the most states ?", 
+ "sentence-with-vars": "how many states border the state that borders the most states ?", 
+ "sql": "select max ( tmp.states ) from ( select count ( distinct border_info.border ) as states , state_name from border_info group by state_name ) as tmp ;", 
+ "sql-with-vars": "select max ( tmp.states ) from ( select count ( distinct border_info.border ) as states , state_name from border_info group by state_name ) as tmp ;", 
+ "variables": []
+}

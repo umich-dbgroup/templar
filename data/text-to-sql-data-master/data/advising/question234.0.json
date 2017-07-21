@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there morning upper-level electives available ?",
+        "Are upper level electives offered before noon ?",
+        "Before noon , what all upper level electives are being offered ?",
+        "Before noon , what upper level electives are available ?",
+        "Before noon , what upper level electives are offered ?",
+        "Before noon , which upper-level electives are offered ?",
+        "Can you tell me of any upper level elective classes offered before noon ?",
+        "For before noon classes , what upper level electives are offered ?",
+        "For elective classes , which ones offered before noon are considered upper level ?",
+        "For the upper level electives , what classes are offered before noon ?",
+        "What are all the upper level electives that are being offered before noon ?",
+        "What are the options for upper level electives offered before noon ?",
+        "What is the earliest times upper-level electives are offered ?",
+        "What upper level elective options are there before noon ?",
+        "What upper-level electives can I take before noon ?",
+        "Which upper level electives are offered before noon ?"
+    ],
+    "sentence": "What upper level electives are offered before noon ?",
+    "sentence-with-vars": "What upper level electives are offered before noon ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.END_TIME < \"12 : 00 : 00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.END_TIME < \"12:00:00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

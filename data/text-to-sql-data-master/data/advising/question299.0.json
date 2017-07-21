@@ -1,0 +1,35 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "CFD - Do we even have courses offered on Saturday and Sunday?",
+        "LZ - Should have no information about the actual course name"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "In which hours will operating systems be offered ?",
+        "Operating systems will be offered at what times ?",
+        "Regarding operating systems , what times will it be offered ?",
+        "The times that operating systems will be offered are what ?",
+        "What is the schedule for the operating systems class to be offered ?",
+        "What times will operating systems be offered at ?",
+        "When can I take operating systems ?",
+        "When is operating systems being offered ?",
+        "When will operating systems be offered ?",
+        "When will they be offering operating systems ?"
+    ],
+    "sentence": "At what times will operating systems be offered ?",
+    "sentence-with-vars": "At what times will operating systems be offered ?",
+    "sql": [
+        "SELECT DISTINCT END_TIME , FRIDAY , MONDAY , SATURDAY , START_TIME , SUNDAY , THURSDAY , TUESDAY , WEDNESDAY FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Introduction to Operating Systems\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT END_TIME , FRIDAY , MONDAY , SATURDAY , START_TIME , SUNDAY , THURSDAY , TUESDAY , WEDNESDAY FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Introduction to Operating Systems\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

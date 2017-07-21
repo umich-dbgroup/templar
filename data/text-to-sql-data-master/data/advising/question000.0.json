@@ -1,0 +1,96 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "info": [
+        "Again, requires some reasoning: we need to get the requirements, and check if any of them excludes undergrads"
+    ],
+    "paraphrases": [
+        "595 can be taken by undergrads : true or false ?",
+        "595 is taken by undergrade ?",
+        "595 is taken by undergrads ?",
+        "Are undergrads able to take 595 ?",
+        "Are undergrads allowed to take 595 ?",
+        "Are undergrads eligible to take 595 ?",
+        "Are undergrads included in those who can take 595 ?",
+        "Are undergrads taking 595 ?",
+        "Are undergraduates able to take 595 ?",
+        "As an undergrad , can I take 595 ?",
+        "Can 595 be taken by undergrads ?",
+        "Can I take 595 as an undergrad ?",
+        "Can an undergrad take 595 ?",
+        "Can underclassmen take 595 ?",
+        "Can undergrad students take 595 ?",
+        "Can undergrads do 595 ?",
+        "Can undergrads enroll in the course 595 ?",
+        "Can undergrads sign up for 595 ?",
+        "Can undergrads take class 595 ?",
+        "Can undergrads take course 595 ?",
+        "Can undergrads take the 595 course ?",
+        "Can undergrads take the class 595 ?",
+        "Can undergrads take the course 595 ?",
+        "Can undergrads to 595 ?",
+        "Can undergraduates do 595 ?",
+        "Can undergraduates enroll in 595 ?",
+        "Can undergraduates enroll in course 595 ?",
+        "Can undergraduates like me enroll in 595 ?",
+        "Can undergraduates take 595 ?",
+        "Can undergraduates take the 595 class ?",
+        "Can you be an undergrad and take 595 ?",
+        "Do undergrads take 595 ?",
+        "If I am an undergrad , could I take 595 ?",
+        "If I am just an undergrad , can I take 595 ?",
+        "Is 595 a class that undergrads can take ?",
+        "Is 595 able to be taken by undergrads ?",
+        "Is 595 allowed for undergrads ?",
+        "Is 595 available for undergrads to take ?",
+        "Is 595 available for undergrads ?",
+        "Is 595 available for undergraduates ?",
+        "Is 595 available to undergrads ?",
+        "Is 595 for undergrads too ?",
+        "Is 595 for undergrads ?",
+        "Is 595 for undergraduates ?",
+        "Is 595 offered to undergrads ?",
+        "Is 595 open to be taken by undergrads ?",
+        "Is 595 open to undergrads ?",
+        "Is 595 open to undergraduates ?",
+        "Is 595 something undergrads can take ?",
+        "Is 595 taken by undergrads ?",
+        "Is Course 595 available to undergraduates ?",
+        "Is course 595 available to undergrads ?",
+        "Is it possible for undergrads to take 595",
+        "Is it possible for undergrads to take 595 ?",
+        "Is it true ? Undergrads taking 595 ?",
+        "Undergrads take 595 ?",
+        "Undergrads taking 595 - is that okay ?",
+        "Will undergrads be able to take 595 ?",
+        "Will undergrads be okay to take 595 ?",
+        "is 595 available to undergrads",
+        "is it possible for undergrads to take 595 ?"
+    ],
+    "sentence": "Can undergrads take 595 ?",
+    "sentence-with-vars": "Can undergrads take number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.ADVISORY_REQUIREMENT , COURSEalias0.ENFORCED_REQUIREMENT , COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 595 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.ADVISORY_REQUIREMENT , COURSEalias0.ENFORCED_REQUIREMENT , COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "595",
+            "sql-value": "595"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

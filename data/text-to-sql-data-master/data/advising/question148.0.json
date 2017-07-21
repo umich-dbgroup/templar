@@ -1,0 +1,52 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "SRS - This query brings up information, but that doesn't directly answer the question."
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "SRS - 1"
+    ],
+    "info": [
+        "Pyke needed to check if it is a core course and hence mandatory"
+    ],
+    "paraphrases": [
+        "Do I have to take EECS 376 in order to graduate ?",
+        "Do I need EECS 376 to graduate",
+        "Do I need to take EECS 376 in order to graduate ?",
+        "For my graduation is EECS 376 essential ?",
+        "How important is it to take EECS 376 in order to graduate ?",
+        "IS EECS 376 a required class for me to graduate ?",
+        "In order for me to graduate will I need to take EECS 376 ?",
+        "Is EECS 376 a required course for my major ?",
+        "Is EECS 376 needed for me to graduate ?",
+        "Is EECS definitely needed for my graduation ?",
+        "Is it essential that I have EECS 376 for my graduation ?",
+        "Is it mandatory for graduation for me to take EECS 376 ?",
+        "To complete my graduation is EECS 376 necessary ?",
+        "To graduate , do I need to take EECS 376 ?",
+        "Will I need EECS 376 to graduate ?"
+    ],
+    "sentence": "Is EECS 376 essential to my graduation ?",
+    "sentence-with-vars": "Is department0 number0 essential to my graduation ?",
+    "sql": [
+        "SELECT COUNT( COURSEalias0.NUMBER ) , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 376 AND PROGRAM_COURSEalias0.CATEGORY = \"Core\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( COURSEalias0.NUMBER ) , COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND PROGRAM_COURSEalias0.CATEGORY = \"Core\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "376",
+            "sql-value": "376"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

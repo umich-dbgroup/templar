@@ -1,0 +1,52 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "where is the best restaurant in bay area for american food ?",
+          "what is the best restaurant in bay area for american food ?",
+          "what is the best american restaurant in the bay area ?",
+          "where is the best american restaurant in the bay area ?",
+          "what is the best american in the bay area ?",
+          "give me the best restaurant in the bay area for american food ?",
+          "give me the best restaurant in bay area for american food ?",
+          "what is the best restaurant in the bay area for american food ?",
+          "where is the best american in the bay area ?",
+          "give me the best american in the bay area ?",
+          "give me the best american restaurant in the bay area ?"
+     ],
+     "paraphrases-with-vars": [
+          "where is the best restaurant in VARregion for VARfood food ?",
+          "what is the best restaurant in VARregion for VARfood food ?",
+          "what is the best VARfood restaurant in the VARregion ?",
+          "where is the best VARfood restaurant in the VARregion ?",
+          "what is the best VARfood in the VARregion ?",
+          "give me the best restaurant in the VARregion for VARfood food ?",
+          "give me the best restaurant in VARregion for VARfood food ?",
+          "what is the best restaurant in the VARregion for VARfood food ?",
+          "where is the best VARfood in the VARregion ?",
+          "give me the best VARfood in the VARregion ?",
+          "give me the best VARfood restaurant in the VARregion ?"
+     ],
+     "sentence": "where is the best restaurant in the bay area for american food ?",
+     "sentence-with-vars": "where is the best restaurant in the VARregion for VARfood food ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='american' and GEOGRAPHIC.REGION='bay area'and RESTAURANT.RATING=(select max(RESTAURANT.RATING) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='american' and GEOGRAPHIC.REGION='bay area') and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='VARfood' and GEOGRAPHIC.REGION='VARregion'and RESTAURANT.RATING=(select max(RESTAURANT.RATING) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='VARfood' and GEOGRAPHIC.REGION='VARregion') and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "american",
+               "sql-value": "american"
+          }
+     ]
+}

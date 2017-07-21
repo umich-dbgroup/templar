@@ -1,0 +1,6 @@
+{
+    "sentence": "What is the average difficulty of MDE classes ?",
+    "sql": [
+        "SELECT AVG ( PROGRAM_COURSEalias0.WORKLOAD ) FROM PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY LIKE \"MDE\" ;"
+    ]
+}

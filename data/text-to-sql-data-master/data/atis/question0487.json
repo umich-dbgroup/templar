@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "where does canadian airlines international fly to",
+    "sq2": "SELECT DISTINCT  '\"'||v1.to_airport||'\"', '\"'||v1.airline_code||'\"',\n '\"'||v1.flight_id||'\"' FROM airport v0, flight v1 \nWHERE ((v0.airport_code = ANY v1.to_airport) AND ((v1.airline_code = 'CP') \nAND ( 1 =  1)));",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT.AIRPORT_CODE FROM AIRPORT WHERE AIRPORT . AIRPORT_CODE IN ( SELECT FLIGHT . TO_AIRPORT FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' CP ' AND 1 = 1 ) ) ) ;"
+    ],
+    "variables": []
+}

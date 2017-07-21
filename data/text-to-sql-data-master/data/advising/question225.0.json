@@ -1,0 +1,62 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "JKK - Student specific"
+    ],
+    "helpfulness": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Am I able to sign up for a Summer 2016 section of EECS 370 ?",
+        "Can EECS 370 be taken by me in Summer 2016 ?",
+        "During Summer 2016 can I take EECS 370 ?",
+        "During the Summer 2016 will the EECS 370 class be available ?",
+        "EECS 370 , is it available for me to take in Summer 2016 ?",
+        "For Summer 2016 , will EECS 370 be available ?",
+        "For summer 2016 , can I take EECS 370 ?",
+        "In Summer 2016 can I take EECS 370 ?",
+        "In Summer 2016 is EECS 370 available for me to take ?",
+        "In Summer 2016 , is it possible for me to take EECS 370 ?",
+        "Is EECS 370 available as a summer class in 2016 ?",
+        "Is EECS 370 available in Summer 2016 ?",
+        "Is EECS 370 offered in Summer 2016 ?",
+        "Is it possible to take EECS 370 during the summer program ?",
+        "What is the possibility of being able to take EECS 370 in Summer of 2016 ?",
+        "Will the EECS 370 course be offered in Summer 2016 ?",
+        "Would it be possible to take EECS 370 this summer ?"
+    ],
+    "sentence": "Can I take EECS 370 in Summer 2016 ?",
+    "sentence-with-vars": "Can I take department0 number0 in semester0 year0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND SEMESTERalias0.SEMESTER = \"SU\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Summer",
+            "sql-value": "SU"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2016",
+            "sql-value": "2016"
+        }
+    ]
+}

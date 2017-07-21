@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 0"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "LZ - 1"
+    ],
+    "info": [
+        "We'd need to do a bit of reasoning; this query just gets the information we'd need to reason over"
+    ],
+    "paraphrases": [
+        "Are 492 and 445 over by 5:00 each day ?",
+        "Are 492 and 445 over by 5:00 every day . I need to leave for work by then .",
+        "As I need to keave for work at 5:00 everyday , can I take 492 and 445 ?",
+        "Can I leave at 5:00 P.M. every day if I take 492 and 445 ?",
+        "Can I take 492 and 445 as I need to leave for work at 5:00 everyday ?",
+        "If I need to leave for work at 5:00 every day , can I take 492 and 445 and still be able to do that ?",
+        "If I take 492 and 445 , can I leave for work at 5:00 every day ?",
+        "If I take 492 and 445 , will I be able to leave for work at 5:00 ?",
+        "If I take the 492 and 445 , can I leave for work at 5:00 ?",
+        "Is it possible to leave for work at 5:00 while taking 492 & 445 ?",
+        "What time will 492 and 445 be over ? I need to leave by 5:00 P.M. each day to get to work on time .",
+        "Will I be finished with my classes for the day by 5:00 P.M. if I take 492 and 445 ?",
+        "Will taking the 492 and 445 allow me to leave for work at 5 each day ?",
+        "if I take 492 and 445 , can I leave at 5 ?"
+    ],
+    "sentence": "I need to leave for work at 5:00 every day . If I take 492 and 445 , can I do that ?",
+    "sentence-with-vars": "I need to leave for work at 5:00 every day . If I take number0 and number1 , can I do that ?",
+    "sql": [
+        "SELECT DISTINCT COURSE_OFFERINGalias0.END_TIME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE ( COURSEalias0.NUMBER = 445 OR COURSEalias0.NUMBER = 492 ) AND COURSE_OFFERINGalias0.END_TIME < \"17 : 00 : 00\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSE_OFFERINGalias0.END_TIME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE ( COURSEalias0.NUMBER = number0 OR COURSEalias0.NUMBER = number1 ) AND COURSE_OFFERINGalias0.END_TIME < \"17:00:00\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": "492"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "445",
+            "sql-value": "445"
+        }
+    ]
+}

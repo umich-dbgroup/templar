@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the population of the largest state that borders texas ?", 
+ "sentence-with-vars": "what is the population of the largest state that borders state0 ?", 
+ "sql": "select state.population from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' texas ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' texas ' ) ) ;", 
+ "sql-with-vars": "select state.population from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  }
+ ]
+}

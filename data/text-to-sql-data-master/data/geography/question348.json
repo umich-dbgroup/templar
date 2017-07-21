@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states does the mississippi river run through ?", 
+ "sentence-with-vars": "how many states does the river0 run through ?", 
+ "sql": "select count ( river.traverse ) from river where river.river_name = ' mississippi ' ;", 
+ "sql-with-vars": "select count ( river.traverse ) from river where river.river_name = ' river0 ' ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi river", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

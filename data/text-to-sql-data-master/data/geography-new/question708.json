@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers are in the state that has the most rivers ?", 
+ "sentence-with-vars": "how many rivers are in the state that has the most rivers ?", 
+ "sql": "select max ( tmp.rivers ) from ( select count ( river.river_name ) as rivers , traverse from river group by traverse ) as tmp ;", 
+ "sql-with-vars": "select max ( tmp.rivers ) from ( select count ( river.river_name ) as rivers , traverse from river group by traverse ) as tmp ;", 
+ "variables": []
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of the state that borders the most states ?", 
+ "sentence-with-vars": "what is the capital of the state that borders the most states ?", 
+ "sql": "select state.capital from border_info , state where state.state_name = border_info.state_name group by ( border_info.state_name ) order by count ( distinct border_info.border ) desc limit 1 ;", 
+ "sql-with-vars": "select state.capital from border_info , state where state.state_name = border_info.state_name group by ( border_info.state_name ) order by count ( distinct border_info.border ) desc limit 1 ;", 
+ "variables": []
+}

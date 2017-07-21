@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what airport in new york , is closest to downtown",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"',\n '\"'||v2.city_name||'\"', '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', v3.miles_distant FROM airport v0,\n airport_service v1, city v2, airport_service v3,\n city v4 \nWHERE (((v0.airport_code = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'NEW YORK'))) \nAND ((v0.airport_code = ANY v3.airport_code) \nAND (((v3.city_code = ANY v4.city_code) AND (v4.city_name = 'NEW YORK')) \nAND (v3.miles_distant = (\nSELECT MIN (miles_distant) FROM airport_service v5 \nWHERE (v5.city_code IN (\nSELECT v6.city_code FROM city v6 \nWHERE (v6.city_name = 'NEW YORK'))))))));",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT.AIRPORT_CODE FROM AIRPORT WHERE ( AIRPORT . AIRPORT_CODE IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) AND AIRPORT . AIRPORT_CODE IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE ( AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) AND AIRPORT_SERVICE.MILES_DISTANT = ( SELECT MIN ( MILES_DISTANT ) FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' NEW YORK ' ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

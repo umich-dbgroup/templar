@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "give me the number of rivers in california ?", 
+ "sentence-with-vars": "give me the number of rivers in state0 ?", 
+ "sql": "select count ( river.river_name ) from river where river.traverse = ' california ' ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river where river.traverse = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "california", 
+   "sql-value": "california"
+  }
+ ]
+}

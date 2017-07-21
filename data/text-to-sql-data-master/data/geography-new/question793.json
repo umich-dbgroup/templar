@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the lowest point in usa ?", 
+ "sentence-with-vars": "what is the lowest point in usa ?", 
+ "sql": "select highlow.lowest_point from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "sql-with-vars": "select highlow.lowest_point from highlow where highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) ;", 
+ "variables": []
+}

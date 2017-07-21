@@ -1,0 +1,42 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you show me the requirements for a CS-LSA degree ?",
+        "Could I see the requirements for a CS-LSA degree ?",
+        "Show me CS-LSA degree reuirements .",
+        "Display requirements for a degree in CS-LSA .",
+        "Display the requirements to get a CS-LSA degree .",
+        "Display to me what is required for a CS-LSA degree .",
+        "Explain to me all the requirements of the CS-LSA degree .",
+        "For a CS-LSA degree , show me the requirements ?",
+        "I need to know the requirements for a CS-LSA degree .",
+        "I want to see the requirements for a CS-LSA degree .",
+        "Inform me of what 's needed for a CS-LSA degree .",
+        "Name the requirements for CS-LSA degree .",
+        "The CS-LSA degree has what requirements ?",
+        "To get a CS-LSA degree , what are the requirements ?",
+        "What are the requirements for a CS-LSA degree ?",
+        "What are the requirements for getting a CS-LSA degree ?",
+        "What are the requirements to get a CS-LSA degree ?",
+        "What is required for a CS-LSA degree ?",
+        "What requirements are there for a degree in CS-LSA ?",
+        "Which requirements do I need to meet for a CS-LSA degree ?"
+    ],
+    "sentence": "Show me the requirements for a CS-LSA degree .",
+    "sentence-with-vars": "Show me the requirements for a CS-LSA degree .",
+    "sql": [
+        "SELECT PROGRAM_REQUIREMENTalias0.ADDITIONAL_REQ , PROGRAM_REQUIREMENTalias0.CATEGORY , PROGRAM_REQUIREMENTalias0.MIN_CREDIT , PROGRAMalias0.NAME FROM PROGRAM AS PROGRAMalias0 , PROGRAM_REQUIREMENT AS PROGRAM_REQUIREMENTalias0 WHERE PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_REQUIREMENTalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT PROGRAM_REQUIREMENTalias0.ADDITIONAL_REQ , PROGRAM_REQUIREMENTalias0.CATEGORY , PROGRAM_REQUIREMENTalias0.MIN_CREDIT , PROGRAMalias0.NAME FROM PROGRAM AS PROGRAMalias0 , PROGRAM_REQUIREMENT AS PROGRAM_REQUIREMENTalias0 WHERE PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_REQUIREMENTalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

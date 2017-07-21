@@ -1,0 +1,69 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "LZ - Should mention which summer term"
+    ],
+    "helpfulness": [
+        "SRS - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are 400-level classes available in either the spring or summer terms ?",
+        "Are 400-level classes available in spring or summer term ?",
+        "Can 400-level classes be taken in spring or summer ?",
+        "Can the 400-level classes be taken in the spring or summer term ?",
+        "In the spring or summer term are there 400-level classes available to take ?",
+        "400-level classes , are they offered in the spring or summer term ?",
+        "Any 400 level classes held in spring or summer term ?",
+        "Are 400-level classes offered outside the fall semester ?",
+        "Are any 400-level classes being offered in the spring or summer term ?",
+        "Are there any 400-level classes other than winter or fall term ones ?",
+        "Are there any spring or summer classes available for the 400-level ?",
+        "Do any 400-level classes occur in the spring or summer term ?",
+        "Do you know if 400-level classes are being held in spring or summer term ?",
+        "Does the spring or summer term offer any 400-level classes ?",
+        "During the spring or summer terms , are any 400-level classes being offered ?",
+        "For the spring or summer term , are there any 400-level classes ?",
+        "How many 400-level classes are being offered in spring and summer term ?",
+        "How many 400-level classes are in the spring or summer term ?",
+        "In spring or summer term are there any 400-level classes ?",
+        "In the spring or summer term are there any 400-level classes ?",
+        "What 400-level classes do you have available for the spring or summer term ?",
+        "What 400-level courses are available in spring or summer terms ?",
+        "Which 400-level classes are being taught in spring and summer term ?",
+        "Which 400-level classes are there for spring or summer terms ?"
+    ],
+    "sentence": "Are there any 400-level classes in spring or summer term ?",
+    "sentence-with-vars": "Are there any number0 classes in semester0 or semester1 term ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( SEMESTERalias0.SEMESTER LIKE \"SP\" OR SEMESTERalias0.SEMESTER LIKE \"SU\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER >= 400 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( SEMESTERalias0.SEMESTER LIKE \"semester0\" OR SEMESTERalias0.SEMESTER LIKE \"semester1\" ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER >= number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "400-level",
+            "sql-value": "400"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "spring",
+            "sql-value": "SP"
+        },
+        {
+            "name": "semester1",
+            "sentence-value": "summer",
+            "sql-value": "SU"
+        }
+    ]
+}

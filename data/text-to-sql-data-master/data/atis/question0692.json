@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what flights stop in atlanta before noon",
+    "sq2": "SELECT DISTINCT  '\"'||v1.flight_id||'\"', '\"'||v2.airport_code||'\"',\n '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"', v1.arrival_time,\n v1.stop_number FROM flight v0, flight_stop v1, airport_service v2,\n city v3 \nWHERE ((v0.flight_id = ANY v1.flight_id) \nAND (((v1.stop_airport = ANY v2.airport_code) AND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'ATLANTA'))) \nAND (v1.arrival_time <  1200)));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE ( FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ATLANTA ' ) ) AND FLIGHT_STOP.ARRIVAL_TIME < 1200 ) ) ) ;"
+    ],
+    "variables": []
+}

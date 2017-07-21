@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what is s a",
+    "sq2": "SELECT DISTINCT  '\"'||v0.day_name||'\"', '\"'||v0.days_code||'\"' FROM days v0 \nWHERE (v0.days_code = 'SA');",
+    "sql": [
+        "( SELECT DISTINCT DAYS.DAY_NAME FROM DAYS WHERE DAYS.DAYS_CODE = ' SA ' ) ;"
+    ],
+    "variables": []
+}

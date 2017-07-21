@@ -1,0 +1,43 @@
+{
+    "accuracy": [
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "In what programs is it necessary to take PHYSICS 240 ?",
+        "In which programs is Physics 240 a requirement ?",
+        "PHYSICS 240 is a prerequisite for which programs ?",
+        "PHYSICS 240 is a requirement in which programs ?",
+        "PHYSICS 240 is compulsory in which programs ?",
+        "PHYSICS 240 is required by which programs ?",
+        "PHYSICS 240 is required for which programs ?",
+        "What are the programs for which PHYSICS 240 is a requirement ?",
+        "What are the programs that require PHYSICS 240 ?",
+        "Which degrees require PHYSICS 240 ?",
+        "Which programs have PHYSICS 240 as a prerequisite ?",
+        "Which programs require you to take PHYSICS 240 ?"
+    ],
+    "sentence": "Which programs require PHYSICS 240 ?",
+    "sentence-with-vars": "Which programs require department0 number0 ?",
+    "sql": [
+        "SELECT PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"PHYSICS\" AND COURSEalias0.NUMBER = 240 ;"
+    ],
+    "sql-with-vars": "SELECT PROGRAM_COURSEalias0.CATEGORY FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "240",
+            "sql-value": "240"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "PHYSICS",
+            "sql-value": "PHYSICS"
+        }
+    ]
+}

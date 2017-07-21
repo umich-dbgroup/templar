@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "where is denny's in the bay area ?",
+     "sentence-with-vars": "where is VARrest in the VARregion ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.NAME='denny's' and GEOGRAPHIC.REGION='bay area' and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from GEOGRAPHIC,RESTAURANT,LOCATION where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.NAME='VARrest' and GEOGRAPHIC.REGION='VARregion' and LOCATION.RESTAURANT_ID=RESTAURANT.ID"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          },
+          {
+               "name": "VARrest",
+               "sentence-value": "denny's",
+               "sql-value": "denny's"
+          }
+     ]
+}

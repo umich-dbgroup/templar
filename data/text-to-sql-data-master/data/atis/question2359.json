@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list california airports",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airport_code||'\"', '\"'||v1.state_code||'\"',\n '\"'||v1.state_name||'\"' FROM airport v0, state v1 \nWHERE ((v0.state_code = ANY v1.state_code) AND (v1.state_name = 'CALIFORNIA'));",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT.AIRPORT_CODE FROM AIRPORT WHERE AIRPORT . STATE_CODE IN ( SELECT STATE . STATE_CODE FROM STATE WHERE STATE.STATE_NAME = ' CALIFORNIA ' ) ) ;"
+    ],
+    "variables": []
+}

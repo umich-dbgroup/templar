@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are all classes available this summer ?",
+        "During the summer , what classes are available ?",
+        "For the summer semester , which classes are being offered ?",
+        "For this upcoming summer semester , what classes will be available ?",
+        "Of the classes , which are available this summer ?",
+        "This summer , what classes are available ?",
+        "This summer , which classes are available ?",
+        "What are the available classes this summer ?",
+        "What are the classes that are available this summer ?",
+        "What classes can I take this summer ?",
+        "What courses are offered this summer ?",
+        "What courses will be offered this summer ?",
+        "What summer classes are offered ?"
+    ],
+    "sentence": "Which classes are available this summer ?",
+    "sentence-with-vars": "Which classes are available this semester0 ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"SU\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "summer",
+            "sql-value": "SU"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "Do I need to know Java to take the databases class?",
+    "sentence-with-vars": "Do I need to know Java to take the topic0 class?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "topic0",
+            "sentence-value": "databases",
+            "sql-value": ""
+        }
+	]
+}

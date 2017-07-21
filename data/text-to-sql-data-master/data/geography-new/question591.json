@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states border the largest state ?", 
+ "sentence-with-vars": "how many states border the largest state ?", 
+ "sql": "select count ( border_info.border ) from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "sql-with-vars": "select count ( border_info.border ) from border_info where border_info.state_name = ( select state.state_name from state where state.area = ( select max ( state.area ) from state ) ) ;", 
+ "variables": []
+}

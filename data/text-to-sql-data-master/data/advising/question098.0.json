@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "I need to take a class this semester that will be a prerequisite for most other classes .",
+        "I need to take a class this semester thats a prerequisite for most of the other classes .",
+        "Is there a prerequisite for many other courses that I can take this semester ?",
+        "This semester , what class can I take that 's a prerequisite for most other classes ?",
+        "What classes this semester are a prerequisite to most other classes ?",
+        "What classes can I finish this semester that are a prerequisite for most other classes ?",
+        "What is a good foundation class I can take this semester that will qualify me for other classes ?",
+        "Which class is a prereq for lots of other classes and offered this semester ?",
+        "Which class this semester is a prerequisite for the majority of classes I could take later ?",
+        "Which course this semester meets the prerequisites for most other courses ?",
+        "Which prerequisite for most classes can I take this semester ?",
+        "Which prerequisite for most classes is offered this semester ?"
+    ],
+    "sentence": "What class can I take this semester that 's a prerequisite for most other classes ?",
+    "sentence-with-vars": "What class can I take this semester that 's a prerequisite for most other classes ?",
+    "sql": [
+        "SELECT * , COUNT( COURSE_PREREQUISITEalias0.PRE_COURSE_ID ) AS DERIVED_FIELDalias0 FROM COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 GROUP BY COURSE_PREREQUISITEalias0.PRE_COURSE_ID ORDER BY DERIVED_FIELDalias0 DESC ;"
+    ],
+    "sql-with-vars": "SELECT * , COUNT( COURSE_PREREQUISITEalias0.PRE_COURSE_ID ) AS DERIVED_FIELDalias0 FROM COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 GROUP BY COURSE_PREREQUISITEalias0.PRE_COURSE_ID ORDER BY DERIVED_FIELDalias0 DESC ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

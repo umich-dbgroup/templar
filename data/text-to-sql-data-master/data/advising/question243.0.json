@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any classes at the upper level that I can do without 281 ?",
+        "Are there upper level classes that do n't have 281 as a prerequisite ?",
+        "Are there upper-level classes for which 281 is not required ?",
+        "Do any of the upper level classes not require 281 ?",
+        "Do any upper level classes not require 281 ?",
+        "Do any upper-level classes not have 281 as a prerequisite ?",
+        "Do you offer any upper level classes that do not require 281 ?",
+        "Is 281 not a requirement for any of the upper level classes ?",
+        "Is 281 required in all upper level classes ?",
+        "Is there any class at the upper level , which does not require 281 ?",
+        "Upper level classes , do any not require 281 ?",
+        "What upper level classes do not require 281 ?",
+        "What upper level classes is 281 not mandatory for ?",
+        "Which upper level classes do n't have 281 as a prerequisite ?",
+        "Which upper level classes do n't require 281 ?",
+        "Would there be any upper level classes that do n't require 281 ?"
+    ],
+    "sentence": "Are there any upper level classes that do not require 281 ?",
+    "sentence-with-vars": "Are there any upper level classes that do not require number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias1.COURSE_ID NOT IN ( SELECT COURSE_PREREQUISITEalias0.PRE_COURSE_ID FROM COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ) AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 281 AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias1.COURSE_ID NOT IN ( SELECT COURSE_PREREQUISITEalias0.PRE_COURSE_ID FROM COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ) AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number0 AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

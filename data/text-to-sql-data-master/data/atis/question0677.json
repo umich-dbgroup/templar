@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "which flights on northwest and united airlines stop in denver before noon",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"', '\"'||v1.flight_id||'\"',\n '\"'||v2.airport_code||'\"', '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"',\n v1.arrival_time, v1.stop_number FROM flight v0,\n flight_stop v1, airport_service v2, city v3 \nWHERE ((((v0.airline_code = 'UA') \nAND ( 1 =  1)) OR ((v0.airline_code = 'NW') \nAND ( 1 =  1))) AND ((v0.flight_id = ANY v1.flight_id) \nAND (((v1.stop_airport = ANY v2.airport_code) AND ((v2.city_code = ANY v3.city_code) \nAND (v3.city_name = 'DENVER'))) \nAND (v1.arrival_time <  1200))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( ( FLIGHT.AIRLINE_CODE = ' UA ' AND 1 = 1 ) OR ( FLIGHT.AIRLINE_CODE = ' NW ' AND 1 = 1 ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE ( FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND FLIGHT_STOP.ARRIVAL_TIME < 1200 ) ) ) ) ;"
+    ],
+    "variables": []
+}

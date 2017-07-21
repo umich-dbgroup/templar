@@ -1,0 +1,37 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any classes that do n't have lab sessions ?",
+        "As far as labs go , are there any classes without them ?",
+        "Do any classes not have lab sessions ?",
+        "For classes , which ones do n't haver labs ?",
+        "If I do n't want to have a lab session , which classes should I take ?",
+        "Is there a list of classes that do n't have lab sessions ?",
+        "List classes without lab sessions .",
+        "Of these classes , which do n't have lab sessions ?",
+        "What classes do not have sessions in the lab ?",
+        "What classes have no lab sessions ?",
+        "What courses are not in the lab ?",
+        "Which classes do not have lab components ?",
+        "Which classes do not require a lab session ?",
+        "Which classes do n't have any labs ?",
+        "Which of the classes do n't have lab sessions ?"
+    ],
+    "sentence": "What classes do n't have lab sessions ?",
+    "sentence-with-vars": "What classes do n't have lab sessions ?",
+    "sql": [
+        "SELECT DEPARTMENT , NAME , NUMBER FROM COURSE AS COURSEalias0 WHERE HAS_LAB = \"N\" ;"
+    ],
+    "sql-with-vars": "SELECT DEPARTMENT , NAME , NUMBER FROM COURSE AS COURSEalias0 WHERE HAS_LAB = \"N\" ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "RUI - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "RUI - should it be has_lab = 'N'?",
+        "SRS - Shouldn't it search for >= 400, not just >400?"
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there some 400 level classes that do n't have labs ?",
+        "Can I get a list of classes without labs at the 400 level ?",
+        "Do any 400 level courses not have labs ?",
+        "I 'd like to take a 400 level course , but do n't want to do a lab , what are my options ?",
+        "If I do n't want to do a lab , which 400 level courses should I consider ?",
+        "If I take 400 level courses which are the ones that do n't have labs ?",
+        "In the 400 level courses which are the ones that do n't have labs ?",
+        "Of all the 400 level courses , which ones do not include labs ?",
+        "Out of all the 400 level courses , which of them do n't have labs ?",
+        "Please list courses without labs that are at the 400 level .",
+        "Please tell me all of the 400 level courses without labs .",
+        "Which are the courses in the 400 level which do n't have labs ?",
+        "Which classes at the 400 level do n't have labs ?",
+        "Which classes do n't have a lab at the 400 level ?",
+        "Which courses from the 400 level do not have labs ?",
+        "Which of the 400 level classes do not have a lab component ?",
+        "Which of the 400 level courses are n't courses with labs ?"
+    ],
+    "sentence": "Which 400 level courses do n't have labs ?",
+    "sentence-with-vars": "Which number0 level courses do n't have labs ?",
+    "sql": [
+        "SELECT COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_LAB = \"Y\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER > 400 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NAME FROM COURSE AS COURSEalias0 WHERE COURSEalias0.HAS_LAB = \"Y\" AND COURSEalias0.NUMBER < 500 AND COURSEalias0.NUMBER > number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "400",
+            "sql-value": "400"
+        }
+    ]
+}

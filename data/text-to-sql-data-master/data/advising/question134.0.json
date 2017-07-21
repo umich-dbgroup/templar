@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "SRS - Query could be more useful if info about the sections (time, for instance) was also provided."
+    ],
+    "helpfulness": [
+        "SRS - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For EECS 280 hom many sections are there ?",
+        "For EECS 280 how many sections are there ?",
+        "For EECS 280 , how many sections are included ?",
+        "How many EECS 280 sections are there ?",
+        "How many sections are there for course EECS 280 ?",
+        "How many sections does EECS 280 contain ?",
+        "How many sections does EECS 280 have ?",
+        "How many sections does EECS 280 include ?",
+        "How much sections are there for 280 EECS ?",
+        "How much sections are there for EECS 280 ?",
+        "In EECS 280 how many sections are there ?",
+        "What is the number of sections available for EECS 280 ?",
+        "What number of sections are there for EECS 280 ?"
+    ],
+    "sentence": "How many sections are there for EECS 280 ?",
+    "sentence-with-vars": "How many sections are there for department0 number0 ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.SECTION_NUMBER ) FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.SECTION_NUMBER ) FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

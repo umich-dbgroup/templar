@@ -1,0 +1,51 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there summers when EECS 370 has been offered ?",
+        "Can I take EECS 370 over the summer ?",
+        "During the summer season , has the EECS 370 ever been offered ?",
+        "During the summer , has EECS 370 ever been offered ?",
+        "EECS 370 , over the summer , has been offered ?",
+        "Has EECS 370 ever taken place over the summer time ?",
+        "Has there ever been an EECS 370 offering over the summer ?",
+        "Have there been any summers that EECS 370 has been offered ?",
+        "Is EECS 370 ever offered over the summer ?",
+        "Is EECS 370 offered over the summer ?",
+        "Over the summer , has EECS 370 been offered ?",
+        "Was EECS 370 ever offered in the summer ?",
+        "Was EECS 370 offered during any past summer semesters ?"
+    ],
+    "sentence": "Has EECS 370 ever been offered over the summer ?",
+    "sentence-with-vars": "Has department0 number0 ever been offered over the semester0 ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND SEMESTERalias0.SEMESTER IN ( \"SP\" , \"SU\" , \"SS\" ) AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER IN ( \"SP\" , \"semester0\" , \"SS\" ) AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "summer",
+            "sql-value": "SU"
+        }
+    ]
+}

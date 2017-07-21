@@ -1,0 +1,60 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Is the class ENGR 100 section 500 offered in the Winter 2016 semester ?",
+        "Can I take ENGR 100 section 500 in the winter 2016 semester ?",
+        "Is ENGR 100 section 500 offered this Winter 2016 semester ?",
+        "In the winter 2016 semester is ENGR 100 section 500 offered ?",
+        "In the Winter 2016 semester , will ENGR 100 section 500 be offered ?",
+        "Is ENGR 100 section 500 going to be offered in the Winter 2016 semester ?",
+        "Is ENGR 100 section 500 being offered in the Winter 2016 semester ?",
+        "Are they offering ENGR 100 section 500 in the Winter 2016 semester ?",
+        "Is ENGR 100 section 500 provided in the winter 2016 semester ?",
+        "Is ENGR 100 section 500 available in the Winter 2016 semester ?",
+        "Is ENGR 100 section 500 offered in the Winter 2016 semester ?",
+        "In the Winter 2016 semester is ENGR 100 section 500 offered ?"
+    ],
+    "sentence": "Is ENGR 100 section 500 offered in the Winter 2016 semester ?",
+    "sentence-with-vars": "Is department0 number0 section number1 offered in the semester0 year0 semester ?",
+    "sql": [
+        "SELECT * FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSE_OFFERINGalias0.SECTION_NUMBER = 500 AND COURSEalias0.DEPARTMENT = \"ENGR\" AND COURSEalias0.NUMBER = 100 AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT * FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSE_OFFERINGalias0.SECTION_NUMBER = number1 AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "100",
+            "sql-value": "100"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "500",
+            "sql-value": "500"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "ENGR",
+            "sql-value": "ENGR"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Winter",
+            "sql-value": "WN"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2016",
+            "sql-value": "2016"
+        }
+    ]
+}

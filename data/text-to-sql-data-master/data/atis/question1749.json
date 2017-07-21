@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how far is the airport in toronto , from downtown",
+    "sq2": "SELECT DISTINCT  v0.miles_distant, '\"'||v1.city_code||'\"', '\"'||v1.city_name||'\"',\n '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"' FROM airport_service v0,\n city v1, airport v2, airport_service v3, city v4 \nWHERE (((v0.city_code = ANY v1.city_code) \nAND (v1.city_name = 'TORONTO')) \nAND ((v0.airport_code = ANY v2.airport_code) AND ((v2.airport_code = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'TORONTO')))));",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT_SERVICE.MILES_DISTANT FROM AIRPORT_SERVICE WHERE ( AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TORONTO ' ) AND AIRPORT_SERVICE . AIRPORT_CODE IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT . AIRPORT_CODE IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TORONTO ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

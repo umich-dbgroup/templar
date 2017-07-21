@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of current semester. but SQL doesn't cover this."
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any upper-level electives next semester that do n't meet on Monday or Friday ?",
+        "For days besides Monday and Friday , what upper level electives are offered next semester ?",
+        "For next semester , what upper level electives are offered on days besides Monday and Friday ?",
+        "For next semester , what upper-level electives are offered that do n't meet on Monday or Friday ?",
+        "For the upper-level electives , are there any that do n't meet on Monday or Friday next semester ?",
+        "If I wanted to take upper-level electives next semester , which ones would I take to avoid classes on Monday or Friday ?",
+        "Next semester , what upper-level electives are offered that do n't meet on Monday or Friday ?",
+        "Next semester , what upper-level electives are offered , that do n't meet on Monday or Friday ?",
+        "What upper-level electives are offered on Tuesday , Wednesday , or Thursday next semester ?",
+        "What upper-level electives are offered , that do n't meet on Monday or Friday , next semester ?",
+        "What upper-level electives do n't meet on Monday or Friday and are offered next semester ?",
+        "What upper-level electives offered next semester are offered Tuesday through Thursday ?",
+        "When it comes to next semester , what upper-level electives are offered that do n't meet on Monday or Friday ?",
+        "Which upper-level elective courses offered in the coming semester are n't held Mondays or Fridays ?",
+        "Which upper-level elective classes for the upcoming semester term are n't scheduled for Monday or Friday ?"
+    ],
+    "sentence": "What upper-level electives are offered next semester that do n't meet on Monday or Friday ?",
+    "sentence-with-vars": "What upper-level electives are offered next semester that do n't meet on Monday or Friday ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSE_OFFERINGalias0.MONDAY = \"N\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.FRIDAY = \"N\" AND COURSE_OFFERINGalias0.MONDAY = \"N\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

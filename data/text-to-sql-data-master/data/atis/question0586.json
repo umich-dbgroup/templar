@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me all flights arriving at love field from other airports",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.airport_code||'\"' FROM flight v0, airport v1,\n airport v2 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ( 1 =  1)) AND ((v0.to_airport = ANY v2.airport_code) \nAND (v2.airport_code = 'DAL')));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE 1 = 1 ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' DAL ' ) ) ) ;"
+    ],
+    "variables": []
+}

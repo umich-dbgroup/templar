@@ -1,0 +1,57 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "DRK - 1"
+    ],
+    "comments": [
+        "RUI - Do we need to check time overlap?"
+    ],
+    "helpfulness": [
+        "RUI - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Am I able to take EECS 281 and EECS 370 in the same semester ?",
+        "Am I allowed to take EECS 281 and EECS 370 in the same semester ?",
+        "Are EECS 281 and EECS 370 able to be taken in the same semester ?",
+        "Are EECS 281 and EECS 370 available in the same semester ?",
+        "Are EECS 281 and EECS 370 availale at the same time ?",
+        "Are both these classes allowed to be taken in the same semester , EECS 281 and EECS 370 ?",
+        "Are students allowed to take EECS 281 and EECS 370 in the same semester ?",
+        "Can EECS 281 and EECS 370 be taken in same semester by me ?",
+        "Can EECS 281 and EECS 370 be taken in the same semester ?",
+        "Can EECS 281 and EECS 370 be taken together ?",
+        "Can I take both EECS 370 and EECS 281 at the same time ?",
+        "Can I take both these classes in the same semester , EECS 370 and EECS 281 ?",
+        "EECS 281 and EECS 370 , am I able to take them both in the same semester ?",
+        "Ine 1 semester , can I take EECS 281 and EECS 370 ?",
+        "Is it okay if EECS 281 and EECS 370 are taken in the same semester ?",
+        "Will I be able to take EECS 281 and EECS 370 during the same semester ?",
+        "Will I be allowed to take both EECS 281 and EECS 370 at once in a semester ?"
+    ],
+    "sentence": "Can I take EECS 281 and EECS 370 in the same semester ?",
+    "sentence-with-vars": "Can I take department0 number0 and department0 number1 in the same semester ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.SEMESTER ) FROM ( SELECT COUNT( * ) AS DERIVED_FIELDalias0 FROM COURSE AS COURSEalias2 , COURSE AS COURSEalias3 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE ( ( COURSEalias2.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias3.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID ) OR ( COURSEalias2.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias3.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ) ) AND COURSEalias2.DEPARTMENT = \"EECS\" AND COURSEalias2.NUMBER = 281 AND COURSEalias3.DEPARTMENT = \"EECS\" AND COURSEalias3.NUMBER = 370 ) AS DERIVED_FIELDalias1 , COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias1 WHERE COURSE_OFFERINGalias1.SEMESTER = COURSE_OFFERINGalias0.SEMESTER AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND COURSEalias1.COURSE_ID = COURSE_OFFERINGalias1.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 370 AND DERIVED_FIELDalias1.PREREQ_COUNT = 0 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.SEMESTER ) FROM ( SELECT COUNT( * ) AS DERIVED_FIELDalias0 FROM COURSE AS COURSEalias2 , COURSE AS COURSEalias3 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 WHERE ( ( COURSEalias2.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias3.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID ) OR ( COURSEalias2.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias3.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID ) ) AND COURSEalias2.DEPARTMENT = \"department0\" AND COURSEalias2.NUMBER = number0 AND COURSEalias3.DEPARTMENT = \"department0\" AND COURSEalias3.NUMBER = number1 ) AS DERIVED_FIELDalias1 , COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias1 WHERE COURSE_OFFERINGalias1.SEMESTER = COURSE_OFFERINGalias0.SEMESTER AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND COURSEalias1.COURSE_ID = COURSE_OFFERINGalias1.COURSE_ID AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number1 AND DERIVED_FIELDalias1.PREREQ_COUNT = 0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

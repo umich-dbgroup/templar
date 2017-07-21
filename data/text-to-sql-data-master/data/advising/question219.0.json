@@ -1,0 +1,102 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there multiple professors who teach EECS 370 in Fall 2016 ?",
+        "Can you tell me the number of professors that teach EECS 370 this Fall 2016 ?",
+        "Do you know how many professors are going to teach EECS 370 this Fall 2016 ?",
+        "Do you know how many teachers taught EECS 370 during the Fall of 2016 ?",
+        "Do you know the number of professors who teach EECS 370 in Fall 2016 ?",
+        "During the 2016 fall , how many professors teach EECS 370",
+        "During the fall of 2016 how many professors teach EECS 370 ?",
+        "EECS 370 courses will be taught by how many professors in fall 2016 ?",
+        "EECS 370 in Fall 2016 , how many professors teach these ?",
+        "EECS 370 is taught be how many professors in the fall of 2016 ?",
+        "EECS 370 is taught by how many professors during Fall 2016 ?",
+        "EECS 370 is taught by how many professors in Fall 2016 ?",
+        "EECS 370 will be taught by how many professors in 2016 fall ?",
+        "EECS 370 will have how many professors fall 2016 ?",
+        "EECS 370 is taught by how many professors in Fall 2016 ?",
+        "For EECS 370 , how many professors teach this fall 2016 ?",
+        "For Fall 2016 , how many professors teach EECS 370 ?",
+        "How many different people taught EECS 370 in the fall of 2016 ?",
+        "How many different professors teach EECS 370 in Fall 2016 ?",
+        "How many options are there for professors of EECS 370 in Fall 2016 ?",
+        "How many professors are employed to teach EECS 370 in fall 2016 ?",
+        "How many professors are teaching EECS 370 in Fall 2016",
+        "How many professors are teaching EECS 370 in Fall 2016 ?",
+        "How many professors in Fall 2016 are teaching EECS 370 ?",
+        "How many professors teach the EECS 370 course in the fall of 2016 ?",
+        "How many professors will be teaching EECS 370 in the fall of 2016 ?",
+        "How many professors will teach EECS 370 during the Fall Semester of 2016 ?",
+        "How many professors will teach EECS 370 during the Fall semester of 2016 ?",
+        "How many professors will teach EECS 370 in the fall of 2016 ?",
+        "How many total professors during the Fall 2016 semester teach EECS 370 ?",
+        "In 2016 Fall , EECS 370 will have how many professors teaching it ?",
+        "In Fall 2016 how many professors teach EECS 370 ?",
+        "In Fall 2016 what number of professors will teach EECS 370 ?",
+        "In Fall 2016 , how many EECS 370 professors are there ?",
+        "In Fall 2016 , how many professors are teaching EECS 370 ?",
+        "In Fall 2016 , how many professors taught EECS 370 ?",
+        "In Fall 2016 , how many professors teach EECS 370 ?",
+        "In Fall 2016 , how many professors teach EECS 370 ?",
+        "In Fall 2016 , how many professors will teach EECS 370 ?",
+        "In Fall of 2016 how many professors teach EECS 370 ?",
+        "In Fall of 2016 , how many professors taught EECS 370 ?",
+        "In fall 2016 how many professors teach EECS 370 .",
+        "In the Fall 2016 semester , EECS 370 is taught by how many professors ?",
+        "In the fall how many professors will teach EECS 370 ?",
+        "In the fall of 2016 , how many professors teach EECS 370 ?",
+        "The EECS 370 in Fall 2016 is taught by what number of professors ?",
+        "The Fall 2016 EECS 370 classes are taught by how many professors ?",
+        "The professors teaching EECS 370 in fall 2016 , how many are they ?",
+        "Was EECS 370 offered by more than 1 teacher during the fall of 2016 , if so how many ?",
+        "What is the number of instructors who taught EECS 370 during the Fall 2016 semester ?",
+        "What is the number of professors I could choose from for EECS 370 in Fall 2016 ?",
+        "What is the number of professors teaching EECS 370 in fall 2016 ?",
+        "What is the total number of professors for EECS 370 in fall 2016 ?",
+        "What number of professors teach EECS 370 in Fall 2016",
+        "What number of professors will be teaching EECS 370 in Fall 2016 ?",
+        "What 's the number of professors teaching EECS 370 in Fall 2016 ?",
+        "What 's the number of professors that teach EECS 370 in Fall 2016 ?",
+        "What 's the number of professors who teach EECS 370 in Fall 2016 ?",
+        "Who are the professors teaching EECS 370 in the Fall 2016 semester ?"
+    ],
+    "sentence": "How many professors teach EECS 370 in Fall 2016 ?",
+    "sentence-with-vars": "How many professors teach department0 number0 in semester0 year0 ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT INSTRUCTORalias0.NAME ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT INSTRUCTORalias0.NAME ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": "FA"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2016",
+            "sql-value": "2016"
+        }
+    ]
+}

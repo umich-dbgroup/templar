@@ -1,0 +1,33 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you tell me how many credits I have so far ?",
+        "Do I have any credits so far , if yes how many ?",
+        "How many credits do I have now ?",
+        "How many credits do I have total ?",
+        "How many credits do I have ?",
+        "How many credits have I earned at this point in time ?",
+        "How many credits have I got so far ?",
+        "How many credits so far do I have ?",
+        "I have how many credits so far ?",
+        "So far , how many credits do I have ?",
+        "What 's the total number of credits I have right now ?"
+    ],
+    "sentence": "How many credits do I have so far ?",
+    "sentence-with-vars": "How many credits do I have so far ?",
+    "sql": [
+        "SELECT STUDENTalias0.TOTAL_CREDIT FROM STUDENT AS STUDENTalias0 WHERE STUDENTalias0.STUDENT_ID = 1 ;"
+    ],
+    "sql-with-vars": "SELECT STUDENTalias0.TOTAL_CREDIT FROM STUDENT AS STUDENTalias0 WHERE STUDENTalias0.STUDENT_ID = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

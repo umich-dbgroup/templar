@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "CFD - Missing that it has to be an upper-level elective."
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "SRS - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "As upper level electives which courses count ?",
+        "For upper level electives which are the courses ?",
+        "For upper level electives , which courses count ?",
+        "Name the courses that count as upper level electives .",
+        "Name the courses that count for upper level electives .",
+        "Name the upper level electives courses .",
+        "To count as upper level elective , what courses can I take ?",
+        "What are the upper level elective courses ?",
+        "What courses count as upper level electives ?",
+        "What upper level elective courses are offered ?"
+    ],
+    "sentence": "Which courses count as upper level electives ?",
+    "sentence-with-vars": "Which courses count as upper level electives ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

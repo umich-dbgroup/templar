@@ -1,0 +1,51 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "CFD - %X%",
+        "CFD - Our database treats having a lab or not as a property of the course, not of the course offering. This question doesn't make sense in that context."
+    ],
+    "helpfulness": [
+        "CFD - 0",
+        "LZ - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "In EECS 280 is there a lab when Prof. Smith teaches it ?",
+        "Does EECS 280 have a lab when Prof. Smith teaches it ?",
+        "Does EECS 280 taught by Prof. Smith have a lab ?",
+        "Does Prof. Smith teach EECS 280 with a lab ?",
+        "Does Prof. Smith 's EECS 280 class have a lab ?",
+        "Is there a lab for EECS 280 if Prof. Smith teaches it ?",
+        "Is there a lab for the EECS 280 class taught by Prof. Smith ?",
+        "When 280 is being taught by Prof. Smith , does it have a lab ?",
+        "When Prof. Smith teaches EECS 280 , does it have a lab ?",
+        "When Prof. Smith teaches it , does EECS 280 have a lab ?"
+    ],
+    "sentence": "Does EECS 280 have a lab when Prof. Smith teaches it ?",
+    "sentence-with-vars": "Does department0 number0 have a lab when instructor0 teaches it ?",
+    "sql": [
+        "SELECT COURSEalias0.HAS_LAB FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND INSTRUCTORalias0.NAME LIKE \"%smith%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.HAS_LAB FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND INSTRUCTORalias0.NAME LIKE \"%instructor0%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        }
+    ]
+}

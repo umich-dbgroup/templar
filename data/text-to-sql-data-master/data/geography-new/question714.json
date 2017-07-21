@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many rivers in texas are longer than the red ?", 
+ "sentence-with-vars": "how many rivers in state0 are longer than the river0 ?", 
+ "sql": "select count ( river.river_name ) from river where river.traverse = ' texas ' and river.length > ( select distinct river.length from river where river.river_name = ' red ' ) ;", 
+ "sql-with-vars": "select count ( river.river_name ) from river where river.traverse = ' state0 ' and river.length > ( select distinct river.length from river where river.river_name = ' river0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "texas", 
+   "sql-value": "texas"
+  },
+  {
+	 "name": "river0",
+	 "sql-value": "red",
+	 "sentence-value": "red"
+   }
+ ]
+}

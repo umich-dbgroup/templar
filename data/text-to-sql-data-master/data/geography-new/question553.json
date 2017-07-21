@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "where are mountains ?", 
+ "sentence-with-vars": "where are mountains ?", 
+ "sql": "select mountain.state_name from mountain ;", 
+ "sql-with-vars": "select mountain.state_name from mountain ;", 
+ "variables": []
+}

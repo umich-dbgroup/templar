@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "i want a flight from toronto to san diego that stops in saint louis . are there flights",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"',\n '\"'||v2.city_name||'\"', '\"'||v3.airport_code||'\"', '\"'||v4.city_code||'\"',\n '\"'||v4.city_name||'\"', '\"'||v5.flight_id||'\"',\n '\"'||v6.airport_code||'\"', '\"'||v7.city_code||'\"',\n '\"'||v7.city_name||'\"', v5.stop_number FROM flight v0, airport_service v1,\n city v2, airport_service v3, city v4, flight_stop v5,\n airport_service v6, city v7 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'TORONTO'))) AND (((v0.to_airport = ANY v3.airport_code) \nAND ((v3.city_code = ANY v4.city_code) \nAND (v4.city_name = 'SAN DIEGO'))) AND ((v0.flight_id = ANY v5.flight_id) \nAND ((v5.stop_airport = ANY v6.airport_code) \nAND ((v6.city_code = ANY v7.city_code) AND (v7.city_name = 'ST. LOUIS'))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TORONTO ' ) ) AND ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' SAN DIEGO ' ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_STOP . FLIGHT_ID FROM FLIGHT_STOP WHERE FLIGHT_STOP . STOP_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ST. LOUIS ' ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all flights on all types of aircraft , arriving in denver between eight and nine p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"', v0.arrival_time,\n '\"'||v3.aircraft_code_sequence||'\"', '\"'||v4.aircraft_code||'\"' FROM flight v0,\n airport_service v1, city v2,\n equipment_sequence v3, aircraft v4 \nWHERE (((v0.to_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'DENVER'))) AND (((v0.arrival_time >=  2000) \nAND (v0.arrival_time <=  2100)) AND ((v0.aircraft_code_sequence = ANY v3.aircraft_code_sequence) \nAND ((v3.aircraft_code = ANY v4.aircraft_code) \nAND ( 1 =  1)))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND ( ( FLIGHT.ARRIVAL_TIME > = 2000 AND FLIGHT.ARRIVAL_TIME < = 2100 ) AND FLIGHT . AIRCRAFT_CODE_SEQUENCE IN ( SELECT EQUIPMENT_SEQUENCE . AIRCRAFT_CODE_SEQUENCE FROM EQUIPMENT_SEQUENCE WHERE EQUIPMENT_SEQUENCE . AIRCRAFT_CODE IN ( SELECT AIRCRAFT . AIRCRAFT_CODE FROM AIRCRAFT WHERE 1 = 1 ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

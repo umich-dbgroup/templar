@@ -1,0 +1,38 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "how many chinese restaurants are there in the bay area ?",
+          "how many places for chinese food are there in the bay area ?",
+          "how many chinese places are there in the bay area ?",
+          "how many places for chinese are there in the bay area ?"
+     ],
+     "paraphrases-with-vars": [
+          "how many VARfood restaurants are there in the VARregion ?",
+          "how many places for VARfood food are there in the VARregion ?",
+          "how many VARfood places are there in the VARregion ?",
+          "how many places for VARfood are there in the VARregion ?"
+     ],
+     "sentence": "how many chinese restaurants are there in the bay area ?",
+     "sentence-with-vars": "how many VARfood restaurants are there in the VARregion ?",
+     "sql": [
+          "select count(*) from RESTAURANT,GEOGRAPHIC where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.REGION='bay area' and RESTAURANT.FOOD_TYPE='chinese'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from RESTAURANT,GEOGRAPHIC where RESTAURANT.CITY_NAME=GEOGRAPHIC.CITY_NAME and GEOGRAPHIC.REGION='VARregion' and RESTAURANT.FOOD_TYPE='VARfood'"
+     ],
+     "variables": [
+          {
+               "name": "VARregion",
+               "sentence-value": "bay area",
+               "sql-value": "bay area"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "chinese",
+               "sql-value": "chinese"
+          }
+     ]
+}

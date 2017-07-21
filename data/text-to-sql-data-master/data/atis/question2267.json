@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what airline is y x",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_name||'\"', '\"'||v0.airline_code||'\"' FROM airline v0 \nWHERE (v0.airline_code = 'YX');",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_NAME FROM AIRLINE WHERE AIRLINE.AIRLINE_CODE = ' YX ' ) ;"
+    ],
+    "variables": []
+}

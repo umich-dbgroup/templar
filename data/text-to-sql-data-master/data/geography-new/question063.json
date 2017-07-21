@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what rivers run through the states that border the state with the capital atlanta ?", 
+ "sentence-with-vars": "what rivers run through the states that border the state with the capital city0 ?", 
+ "sql": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name in ( select state.state_name from state where state.capital = ' atlanta ' ) ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name in ( select state.state_name from state where state.capital = ' city0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "atlanta", 
+   "sql-value": "atlanta"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "display all fare codes",
+    "sq2": "SELECT DISTINCT  '\"'||v0.fare_basis_code||'\"' FROM fare_basis v0 \nWHERE ( 1 =  1);",
+    "sql": [
+        "( SELECT DISTINCT FARE_BASIS.FARE_BASIS_CODE FROM FARE_BASIS WHERE 1 = 1 ) ;"
+    ],
+    "variables": []
+}

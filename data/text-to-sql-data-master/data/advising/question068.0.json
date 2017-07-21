@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 1",
+        "LZ - 0"
+    ],
+    "info": [
+        "The trouble here is that the database doesn't actually contain useful information about special topic courses. We can say \"Here are the sections of 398, 498, and 598 that will be offered,\" but we can't actually say what any of them cover."
+    ],
+    "paraphrases": [
+        "Could you explain to me about the special topics classes for the next winter ?",
+        "During next winter , what will the special topics classes be ?",
+        "In next winter , what are all the special topics classes ?",
+        "In regards to special topics classes , which ones are available next winter ?",
+        "In the winter period , are there special topic classes available ?",
+        "Next winter , what are the special topics classes ?",
+        "Next winter , what special topics classes are being offered ?",
+        "Next winter , what special topics classes are there ?",
+        "Are there going to be special topics classes next winter ?",
+        "What are all the special topics classes next winter ?",
+        "What are next winter 's special topics classes ?",
+        "What are the names of the special topics classes next winter ?",
+        "What are the special topics classes available next winter ?",
+        "What are the special topics classes offered next winter ?",
+        "What are the special topics classes options for next winter ?",
+        "What type of winter special topic classes are there ?",
+        "What will the special topics classes be next winter ?"
+    ],
+    "sentence": "What special topics classes are there next winter ?",
+    "sentence-with-vars": "What special topics classes are there next winter ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , COURSEalias0.DESCRIPTION , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE ( COURSEalias0.NUMBER = 398 OR COURSEalias0.NUMBER = 498 OR COURSEalias0.NUMBER = 598 ) AND COURSEalias0.DEPARTMENT = \"EECS\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.SECTION_NUMBER , COURSEalias0.DESCRIPTION , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE ( COURSEalias0.NUMBER = 398 OR COURSEalias0.NUMBER = 498 OR COURSEalias0.NUMBER = 598 ) AND COURSEalias0.DEPARTMENT = \"department0\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

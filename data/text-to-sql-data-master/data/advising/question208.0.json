@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are any upper elective courses offered for CS ?",
+        "For CS , what are the upper elective courses offered ?",
+        "For CS , what upper electives courses are available ?",
+        "For CS , which upper elective course are offered ?",
+        "Name the upper elective courses that are offered for CS .",
+        "What are all of the upper elective courses available for CS students ?",
+        "What are the upper elective courses for CS ?",
+        "What are the upper elective courses offered for CS ?",
+        "Which are the upper elective courses offered for CS ?",
+        "Which upper elective classes are available for CS ?",
+        "Which upper elective courses can CS students take ?",
+        "what upper level electives are offered in the CS program ?"
+    ],
+    "sentence": "What upper elective courses are offered for CS ?",
+    "sentence-with-vars": "What upper elective courses are offered for CS ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

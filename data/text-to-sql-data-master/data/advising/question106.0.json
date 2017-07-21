@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "CFD - Should this also address advisory requirements, or only enforced?"
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there any artificial intelligence courses without prerequisites ?",
+        "Are there any artificial intelligence courses which have no prerequisites ?",
+        "Are there artificial intelligence courses that have no prerequisites ?",
+        "I need to know artificial intelligence courses with no prerequisites .",
+        "Name the artificial intelligence courses that require no pre-qualification ?",
+        "Of all the artificial intelligence courses , which ones have no prerequisites ?",
+        "Of all the courses on artificial intelligence , which have no prerequisites ?",
+        "Of the artificial intelligence courses which ones have no prerequisites ?",
+        "Tell me which AI courses do not have prerequisites .",
+        "What AI classes do n't require prerequisites ?",
+        "What AI courses do n't have any prerequisites ?",
+        "What artificial intelligence classes have no prerequisites ?",
+        "What artificial intelligence courses have no prerequisites ?",
+        "What courses on artificial intelligence have no prerequisites ?",
+        "Which artificial intelligence classes have no prerequisites ?",
+        "Which artificial intelligence courses are there with no prerequisites ?",
+        "Which artificial intelligence courses do n't have prerequisites ?"
+    ],
+    "sentence": "Which artificial intelligence courses have no prerequisites ?",
+    "sentence-with-vars": "Which topic0 courses have no prerequisites ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.ENFORCED_REQUIREMENT = \"N / A\" AND LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%artificial intelligence%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.ENFORCED_REQUIREMENT = \"N / A\" AND LOWER( COURSEalias0.DESCRIPTION ) LIKE \"%topic0%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "topic0",
+            "sentence-value": "artificial intelligence",
+            "sql-value": "artificial intelligence"
+        }
+    ]
+}

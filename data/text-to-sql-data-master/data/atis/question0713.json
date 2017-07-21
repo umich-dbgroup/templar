@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me all united airlines first class flights",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airline_code||'\"', '\"'||v1.flight_id||'\"',\n '\"'||v2.fare_id||'\"', '\"'||v3.fare_basis_code||'\"', '\"'||v3.class_type||'\"' FROM flight v0,\n flight_fare v1, fare v2,\n fare_basis v3 \nWHERE ((v0.airline_code = 'UA') AND ((v0.flight_id = ANY v1.flight_id) \nAND ((v1.fare_id = ANY v2.fare_id) \nAND (((v2.fare_basis_code = ANY v3.fare_basis_code) AND (v3.class_type = 'FIRST')) \nAND ( 1 =  1)))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' UA ' AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_FARE . FLIGHT_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FARE_ID IN ( SELECT FARE . FARE_ID FROM FARE WHERE ( FARE.FARE_BASIS_CODE IN ( SELECT FARE_BASIS.FARE_BASIS_CODE FROM FARE_BASIS WHERE FARE_BASIS.CLASS_TYPE = ' FIRST ' ) AND 1 = 1 ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

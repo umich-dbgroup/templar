@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states border at least one other state ?", 
+ "sentence-with-vars": "how many states border at least one other state ?", 
+ "sql": "select count ( distinct border_info.state_name ) from border_info ;", 
+ "sql-with-vars": "select count ( distinct border_info.state_name ) from border_info ;", 
+ "variables": []
+}

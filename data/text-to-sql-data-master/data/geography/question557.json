@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the height of mount mckinley ?", 
+ "sentence-with-vars": "what is the height of mountain0 ?", 
+ "sql": "select mountain.mountain_altitude from mountain where mountain.mountain_name = ' mckinley ' ;", 
+ "sql-with-vars": "select mountain.mountain_altitude from mountain where mountain.mountain_name = ' mountain0 ' ;", 
+ "variables": [
+  {
+   "name": "mountain0", 
+   "sentence-value": "mount mckinley", 
+   "sql-value": "mckinley"
+  }
+ ]
+}

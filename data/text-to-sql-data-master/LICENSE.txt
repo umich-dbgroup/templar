@@ -1,0 +1,5 @@
+TODO - Talk to IBM about how to release this data.
+
+Ideal option is probably some sort of Creative Commons
+
+Note - GeoQuery is not owned by us

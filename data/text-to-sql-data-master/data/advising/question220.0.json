@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "CFD - 0",
+        "DRK - 0"
+    ],
+    "comments": [
+        "JKK - second version doesn't specify semester."
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are any 3 -credit upper level classes offered in Spring 2016 ?",
+        "Are there any 3 -credit upper level classes in spring 2016 ?",
+        "Are there any 3 -credit upper level classes in Spring 2016 ?",
+        "For Spring 2016 , is there a 3 -credit upper level class ?",
+        "For Spring 2016 , is there an offering for a 3 -credit upper level class ?",
+        "I need a 3 -credit upper level class in Spring 2016 . Is there 1 ?",
+        "In Spring 2016 , is there a 3 -credit upper level class ?",
+        "In the Spring of 2016 , will there be a 3 -credit upper level class ?",
+        "Is a 3 -credit upper level class offered in Spring 2016 ?",
+        "Is there , in Spring 2016 , a 3 -credit upper level class ?",
+        "Of the 3 -credit upper classes , is there 1 in Spring 2016 ?",
+        "Spring 2016 , is there a 3 -credit upper level class ?",
+        "Will there be a 3 -credit upper level class for Spring 2016 ?",
+        "Will there be a 3 -credit upper level class in Spring 2016 ?"
+    ],
+    "sentence": "Is there a 3 -credit upper level class in Spring 2016 ?",
+    "sentence-with-vars": "Is there a 3 -credit upper level class in semester0 year0 ?",
+    "sql": [
+        "SELECT DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE COURSEalias0.CREDITS = 3 AND COURSEalias0.NUMBER > 299 AND SEMESTERalias0.SEMESTER = \"SP\" AND SEMESTERalias0.YEAR = 2016 ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE CATEGORY = \"ULCS\" AND CREDITS = 3 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE CATEGORY = \"ULCS\" AND CREDITS > 3 AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "Spring",
+            "sql-value": ""
+        },
+        {
+            "name": "year0",
+            "sentence-value": "2016",
+            "sql-value": ""
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are the exams always set by Prof. Smith for their classes ?",
+        "Are exams always set by Prof. Smith for their classes ?",
+        "Are there set exams for Prof. Smith 's classes ?",
+        "For Prof. Smith 's classes , is there always an exam ?",
+        "For exams , does Prof. Smith always set 1 ?",
+        "For their classes , does Professor Smith set an exam ?",
+        "For their classes , does Prof. Smith always set exams ?",
+        "Is it true , Prof. Smith always sets exams for their classes ?",
+        "When it comes to setting exams for their classes , does Prof. Smith always do that ?",
+        "Will Prof. Smith always be setting exams for their classes ?"
+    ],
+    "sentence": "Does Prof. Smith always set exams for their classes ?",
+    "sentence-with-vars": "Does instructor0 always set exams for their classes ?",
+    "sql": [
+        "SELECT COURSEalias0.HAS_EXAMS FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE INSTRUCTORalias0.NAME LIKE \"%smith%\" ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.HAS_EXAMS FROM COURSE AS COURSEalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN INSTRUCTOR AS INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID WHERE INSTRUCTORalias0.NAME LIKE \"%instructor0%\" ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Prof. Smith",
+            "sql-value": "smith"
+        }
+    ]
+}

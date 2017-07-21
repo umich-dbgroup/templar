@@ -1,0 +1,50 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Among the courses 482 and 485 , which 1 is more difficult ?",
+        "Between 482 and 485 , which course is harder ?",
+        "Between 482 and 485 , which course is more difficult ?",
+        "Given 482 and 485 , which course is harder ?",
+        "Is course 482 or 485 harder ?",
+        "Is course 482 or 485 more difficult ?",
+        "Is course 482 or course 485 harder ?",
+        "Which class is tougher among 482 and 485 ?",
+        "Which course among 482 and 485 is harder ?",
+        "Which course do you think is more difficult , course 482 or course 485 ?",
+        "Which course has a higher workload - 482 or 485 ?",
+        "Which course is tougher 482 or 485 ?"
+    ],
+    "sentence": "Which course is harder between 482 and 485 ?",
+    "sentence-with-vars": "Which course is harder between number0 and number1 ?",
+    "sql": [
+        "SELECT COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE ( COURSEalias0.NUMBER = 482 OR COURSEalias0.NUMBER = 485 ) AND COURSEalias0.DEPARTMENT = \"eecs\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ORDER BY PROGRAM_COURSEalias0.WORKLOAD DESC LIMIT 1 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NUMBER , PROGRAM_COURSEalias0.WORKLOAD FROM COURSE AS COURSEalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE ( COURSEalias0.NUMBER = number0 OR COURSEalias0.NUMBER = number1 ) AND COURSEalias0.DEPARTMENT = \"department0\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID ORDER BY PROGRAM_COURSEalias0.WORKLOAD DESC LIMIT 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "485",
+            "sql-value": "485"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

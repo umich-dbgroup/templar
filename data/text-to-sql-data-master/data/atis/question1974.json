@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "i'd like to fly out of chicago for less than a hundred fifty dollars round trip",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"',\n '\"'||v2.city_name||'\"', '\"'||v3.flight_id||'\"', '\"'||v4.fare_id||'\"',\n v4.round_trip_cost FROM flight v0, airport_service v1,\n city v2, flight_fare v3, fare v4 \nWHERE (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'CHICAGO'))) AND ((v0.flight_id = ANY v3.flight_id) \nAND ((v3.fare_id = ANY v4.fare_id) \nAND ((v4.round_trip_cost IS NOT NULL) AND (v4.round_trip_cost <  150)))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' CHICAGO ' ) ) AND FLIGHT . FLIGHT_ID IN ( SELECT FLIGHT_FARE . FLIGHT_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FARE_ID IN ( SELECT FARE . FARE_ID FROM FARE WHERE ( FARE.ROUND_TRIP_COST IS NOT NULL AND FARE.ROUND_TRIP_COST < 150 ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

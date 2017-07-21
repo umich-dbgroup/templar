@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what states does the shortest river run through ?", 
+ "sentence-with-vars": "what states does the shortest river run through ?", 
+ "sql": "select river.traverse from river where river.length = ( select min ( river.length ) from river ) ;", 
+ "sql-with-vars": "select river.traverse from river where river.length = ( select min ( river.length ) from river ) ;", 
+ "variables": []
+}

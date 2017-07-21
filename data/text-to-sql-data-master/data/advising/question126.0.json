@@ -1,0 +1,43 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "What is EECS 492 ?",
+        "EECS 492 name is ?",
+        "What is EECS 492 really called ?",
+        "What is the course name of EECS 492 ?",
+        "What is the actual name of EECS 492 ?",
+        "What is the title of EECS 492 ?",
+        "What is the name of the EECS 492 class ?",
+        "What is the course name for EECS 492 ?",
+        "What is the full name of course EECS 492 ?",
+        "What course name does EECS 492 have ?"
+    ],
+    "sentence": "What is the name of EECS 492 ?",
+    "sentence-with-vars": "What is the name of department0 number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 492 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NAME , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": "492"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

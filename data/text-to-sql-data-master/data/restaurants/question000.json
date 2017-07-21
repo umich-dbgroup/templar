@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "how many buttercup kitchen are there in san francisco ?",
+     "sentence-with-vars": "how many VARrest are there in VARcity ?",
+     "sql": [
+          "select count(*) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='san francisco' and RESTAURANT.NAME='buttercup kitchen'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='VARcity' and RESTAURANT.NAME='VARrest'"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "san francisco",
+               "sql-value": "san francisco"
+          },
+          {
+               "name": "VARrest",
+               "sentence-value": "buttercup kitchen",
+               "sql-value": "buttercup kitchen"
+          }
+     ]
+}

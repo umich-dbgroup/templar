@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the biggest city in oregon ?", 
+ "sentence-with-vars": "what is the biggest city in state0 ?", 
+ "sql": "select city.city_name from city where city.state_name = ' oregon ' and city.population = ( select max ( city.population ) from city where city.state_name = ' oregon ' ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name = ' state0 ' and city.population = ( select max ( city.population ) from city where city.state_name = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "oregon", 
+   "sql-value": "oregon"
+  }
+ ]
+}

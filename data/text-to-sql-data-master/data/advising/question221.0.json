@@ -1,0 +1,57 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "CFD - For helpfulness, maybe also provide c.name",
+        "CFD - Why is pc.program_id needed?"
+    ],
+    "helpfulness": [
+        "CFD - 1",
+        "LZ - 2"
+    ],
+    "info": [
+        "LZ - SQL added department EECS as of 1.19"
+    ],
+    "paraphrases": [
+        "As far as upper-level EECS classes are concerned , what classes are offered in the fall ?",
+        "During the Fall , what upper level EECS classes are offered ?",
+        "For the fall term , what upper-level EECS classes are offered ?",
+        "For the fall , what upper-level EECS classes are offered ?",
+        "Are there Fall upper-level EECS classes being offered ?",
+        "This Fall , what upper-level EECS classes will be offered ?",
+        "This fall , what are all the upper-level EECS classes that are being offered ?",
+        "What are all the upper-level EECS classes being offered in the fall ?",
+        "What are the upper-level EECS class options this Fall ?",
+        "What high-level EECS classes are being offered this Fall ?",
+        "What is the fall schedule for upper-level EECS offerings ?",
+        "What upper-level EECS classes will be offered this Fall ?",
+        "Which EECS upper-level classes are being offered this fall ?",
+        "Which fall classes are EECS upper level ?"
+    ],
+    "sentence": "What upper-level EECS classes are offering this Fall ?",
+    "sentence-with-vars": "What upper-level department0 classes are offering this semester0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": "FA"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

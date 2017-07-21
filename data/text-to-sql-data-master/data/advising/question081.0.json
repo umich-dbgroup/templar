@@ -1,0 +1,72 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "SRS - 2"
+    ],
+    "info": [
+        "Technically a yes-or-no question, but pragmatically, if the answer is no, this wants to know who else teaches it. By the way, this is a case where presuppositions help us! The question presupposes that Professor Stout teaches Algorithms. So if we're having trouble deciding which class \"Algorithms\" refers to, we could look for the name of the class that contains Algorithms and is taught by Stout."
+    ],
+    "paraphrases": [
+        "Are there any other professors teaching Algorithms besides Professor Stout ?",
+        "Are there any professors who teach Algorithms , other than Professor Stout ?",
+        "Aside from Professor Stout , does anyone else teach Algorithms ?",
+        "Besides Professor Stout , is there any other person teaching Algorithms ?",
+        "Do any people besides Professor Stout teach Algorithms ?",
+        "Do any professors besides Stout teach Algorithms ?",
+        "Does Algorithms have only 1 teacher , Professor Stout ?",
+        "Does any 1 else teach Algorithms other than Professor Stout ?",
+        "Does anyone teach Algorithms besides Professor Stout ?",
+        "Does anyone teach teach Algorithms aside from Professor Stout ?",
+        "Does only Professor Stout teach Algorithms ?",
+        "Does someone besides Professor Stout teach Algorithms ?",
+        "Is Algorithms only taught by Professor Stout ?",
+        "Is Algorithms only taught by 1 person , Professor Stout ?",
+        "Is Algorithms taught only by Professor Stout ?",
+        "Is Dr. Stout the only teacher of Algorithms ?",
+        "Is Professor Stout the only professor available for Algorithms ?",
+        "Is Professor Stout the only teacher of algorithms ?",
+        "Is Professor Stout the only teacher who teaches Algorithms ?",
+        "Is Stout the only Algorithms instructor ?",
+        "Is it true that Professor Stout is the only person who teaches Algorithms ?",
+        "Is the Algorithms class only taught by Professor Stout ?",
+        "Is the class on Algorithms only taught by Professor Stout ?",
+        "Is the only Algorithms professor Professor Stout ?",
+        "Is the only 1 that teaches Algorithms Professor Stout ?",
+        "Is the only person teaching Algorithms Professor Stout ?",
+        "Is the only person who teaches Algorithms Professor Stout ?",
+        "Is the only person who teaches Algorithms , Professor Stout ?",
+        "Is there another person besides Professor Stout that teaches Algorithms ?",
+        "Is there another teacher of Algorithms aside from Professor Stout ?",
+        "Is there any professor other than professor Stout who teaches Algorithms ?",
+        "Is there anyone else who teaches Algorithms besides Professor Stout ?",
+        "Is there anyone other than Professor Stout that teaches Algorithms ?",
+        "Professor Stout is the only person who teaches Algorithms , correct ?",
+        "The only person who teaches Algorithms , is it Professor Stout ?",
+        "is there any other person besides Professor Stout who teaches Algorithms ?"
+    ],
+    "sentence": "Is Professor Stout the only person who teaches Algorithms ?",
+    "sentence-with-vars": "Is instructor0 the only person who teaches topic0 ?",
+    "sql": [
+        "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NAME = \"Design and Analysis of Algorithms\" AND INSTRUCTORalias0.NAME NOT LIKE \"%stout%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM ( SELECT COURSE_OFFERINGalias1.COURSE_ID FROM COURSE AS COURSEalias1 , COURSE_OFFERING AS COURSE_OFFERINGalias1 , INSTRUCTOR AS INSTRUCTORalias1 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias1 WHERE COURSEalias1.COURSE_ID = COURSE_OFFERINGalias1.COURSE_ID AND COURSEalias1.NAME LIKE \"%algorithm%\" AND INSTRUCTORalias1.NAME LIKE \"%stout%\" AND OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID = INSTRUCTORalias1.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias1.OFFERING_ID = COURSE_OFFERINGalias1.OFFERING_ID ) AS DERIVED_TABLEalias0 , COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE DERIVED_TABLEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND DERIVED_TABLEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND INSTRUCTORalias0.NAME NOT LIKE \"%stout%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+        "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NAME IN ( SELECT COURSEalias1.NAME FROM COURSE AS COURSEalias1 , COURSE_OFFERING AS COURSE_OFFERINGalias1 , INSTRUCTOR AS INSTRUCTORalias1 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias1 WHERE COURSEalias1.COURSE_ID = COURSE_OFFERINGalias1.COURSE_ID AND COURSEalias1.NAME LIKE \"%algorithm%\" AND INSTRUCTORalias1.NAME LIKE \"%stout%\" AND OFFERING_INSTRUCTORalias1.INSTRUCTOR_ID = INSTRUCTORalias1.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias1.OFFERING_ID = COURSE_OFFERINGalias1.OFFERING_ID ) AND INSTRUCTORalias0.NAME NOT LIKE \"%stout%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.NAME = \"topic0\" AND INSTRUCTORalias0.NAME NOT LIKE \"%instructor0%\" AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "variables": [
+        {
+            "name": "instructor0",
+            "sentence-value": "Professor Stout",
+            "sql-value": "stout"
+        },
+        {
+            "name": "topic0",
+            "sentence-value": "Algorithms",
+            "sql-value": "Design and Analysis of Algorithms"
+        }
+    ]
+}

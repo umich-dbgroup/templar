@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you tell me the core classes ?",
+        "Core classes are ?",
+        "Name the core classes ?",
+        "Name the main classes .",
+        "Name the main classes ?",
+        "Name the main classses ?",
+        "Of all the classes , which are the core ones ?",
+        "Regarding core classes , which are they ?",
+        "The main classes are ?",
+        "What are the main classes ?",
+        "What are the names of the core classes ?",
+        "What core classes are there ?",
+        "Which all are the core classes ?",
+        "Which are the core classes ?",
+        "Which classes are core classes ?",
+        "Which classes are the core ones ?",
+        "Which ones are the core classes ?"
+    ],
+    "sentence": "What are the core classes ?",
+    "sentence-with-vars": "What are the core classes ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"Core\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE PROGRAM_COURSEalias0.CATEGORY = \"Core\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

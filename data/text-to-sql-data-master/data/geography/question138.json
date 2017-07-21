@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how long is the north platte river ?", 
+ "sentence-with-vars": "how long is the river0 ?", 
+ "sql": "select river.length from river where river.river_name = ' north platte ' ;", 
+ "sql-with-vars": "select river.length from river where river.river_name = ' river0 ' ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "north platte river", 
+   "sql-value": "north platte"
+  }
+ ]
+}

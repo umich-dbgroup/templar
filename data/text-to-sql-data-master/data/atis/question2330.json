@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what is {the/@} seating capacity on the aircraft seventy three s",
+    "sq2": "SELECT DISTINCT  v0.capacity, '\"'||v0.aircraft_code||'\"' FROM aircraft v0 \nWHERE (v0.aircraft_code = '73S');",
+    "sql": [
+        "( SELECT DISTINCT AIRCRAFT.CAPACITY FROM AIRCRAFT WHERE AIRCRAFT.AIRCRAFT_CODE = ' 73S ' ) ;"
+    ],
+    "variables": []
+}

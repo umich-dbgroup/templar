@@ -1,0 +1,28 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "how many italian restaurants are in the yolo county ?",
+     "sentence-with-vars": "how many VARfood restaurants are in the VARcounty ?",
+     "sql": [
+          "select count(*) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='italian' and GEOGRAPHIC.COUNTY='yolo county'"
+     ],
+     "sql-with-vars": [
+          "select count(*) from GEOGRAPHIC,RESTAURANT where GEOGRAPHIC.CITY_NAME=RESTAURANT.CITY_NAME and RESTAURANT.FOOD_TYPE='VARfood' and GEOGRAPHIC.COUNTY='VARcounty'"
+     ],
+     "variables": [
+          {
+               "name": "VARcounty",
+               "sentence-value": "yolo county",
+               "sql-value": "yolo county"
+          },
+          {
+               "name": "VARfood",
+               "sentence-value": "italian",
+               "sql-value": "italian"
+          }
+     ]
+}

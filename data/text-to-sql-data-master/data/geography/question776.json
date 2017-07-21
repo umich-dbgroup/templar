@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest state that the rio grande runs through ?", 
+ "sentence-with-vars": "what is the largest state that the river0 runs through ?", 
+ "sql": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' rio grande ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' rio grande ' ) ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) and state.area = ( select max ( state.area ) from state where state.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "rio grande", 
+   "sql-value": "rio grande"
+  }
+ ]
+}

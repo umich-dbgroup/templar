@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the combined population of all 50 states ?", 
+ "sentence-with-vars": "what is the combined population of all number0 states ?", 
+ "sql": "select sum ( state.population ) from state ;", 
+ "sql-with-vars": "select sum ( state.population ) from state ;", 
+ "variables": [
+  {
+   "name": "number0", 
+   "sentence-value": "50", 
+   "sql-value": ""
+  }
+ ]
+}

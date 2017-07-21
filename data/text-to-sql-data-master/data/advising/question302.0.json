@@ -1,0 +1,49 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Do you know how many EECS classes are there going to be offered for next semester ?",
+        "During next semester , how many EECS classes are being offered ?",
+        "EECS will be offered how many courses next semester ?",
+        "For next semester , what is the number of EECS classes offered ?",
+        "For the next semester , how many EECS classes are offered ?",
+        "For the next semester , how many EECS classes will there be ?",
+        "How many EECS classes are being offered next semester ?",
+        "How many EECS classes will be available next semester ?",
+        "How many EECS classes will be offered in the coming semester ?",
+        "How many EECS classes will there be next semester ?",
+        "How many classes of EECS are offered for the next semester ?",
+        "How many classes will EECS be offering next semester ?",
+        "How many of next semester 's classes will be EECS ?",
+        "I need to know how many EECS classes are being offered next semester .",
+        "In next semster , the number of EECS classes offered is ?",
+        "Next semester will have how many EECS classes ?",
+        "Next semester , how many EECS classes are being offered ?",
+        "Next semester , how many EECS classes will be offered ?",
+        "Next semester , how many EECS will there be ?",
+        "Next summer , are there a number of EECS being offered ?",
+        "What 's the number of EECS classes being offered next semester ?"
+    ],
+    "sentence": "How many EECS classes are being offered next semester ?",
+    "sentence-with-vars": "How many department0 classes are being offered next semester ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSE_OFFERINGalias0.COURSE_ID ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

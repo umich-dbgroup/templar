@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the cities in states through which the mississippi runs ?", 
+ "sentence-with-vars": "what are the cities in states through which the river0 runs ?", 
+ "sql": "select city.city_name from city where city.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.state_name in ( select river.traverse from river where river.river_name = ' river0 ' ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi", 
+   "sql-value": "mississippi"
+  }
+ ]
+}

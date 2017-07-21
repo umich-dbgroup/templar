@@ -1,0 +1,27 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not covered by the database"
+    ],
+    "paraphrases": [
+        "Can EECS 370 be repeated for credit?"
+    ],
+    "sentence": "Can EECS 370 be repeated for credits?",
+    "sentence-with-vars": "Can department0 number0 be repeated for credits?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

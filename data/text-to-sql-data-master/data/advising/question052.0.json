@@ -1,0 +1,90 @@
+{
+    "accuracy": [
+        "RUI - 1"
+    ],
+    "comments": [
+        "JKK - Alternative SQL - SELECT C.NUMBER, PC.WORKLOAD FROM COURSE AS C INNER JOIN PROGRAM_COURSE AS PC ON C.COURSE_ID=PC.COURSE_ID WHERE C.DEPARTMENT='EECS' AND (C.NUMBER=484 OR C.NUMBER=485) ORDER BY PC.WORKLOAD ASC",
+        "JKK - Another alternative: select c.number, c.name, pc2.workload from course c inner join program_course pc2 on c.course_id=pc2.course_id where c.department=' eecs ' and (c.number=388 or c.number=493) and pc2.workload = (select min(pc.workload) from program_course pc inner join course c on c.course_id=pc.course_id where c.department=' eecs ' and (c.number=388 or c.number=493))"
+    ],
+    "helpfulness": [
+        "RUI - 1"
+    ],
+    "info": [
+        "This turns out to be a trick question, as the two have the same workload, according to the database."
+    ],
+    "paraphrases": [
+        "Between EECS 484 and 485 , which 1 is easier to get through ?",
+        "Between EECS 484 and EECS 485 , which is easier ?",
+        "Between EECS 484 and EECS 485 , which would be easier ?",
+        "Between EECS 484 and EECS 485 ; which is the easiest ?",
+        "Between EECS 484 and EECS 485 what is easier ?",
+        "Between EECS 484 and EECS 485 which is easier than the other ?",
+        "Between EECS 484 and EECS 485 , which is easier ?",
+        "Comparing EECS 484 and EECS 485 , which is easier . ?",
+        "Do you find EECS 484 or EECS 485 easier ?",
+        "EECS 484 and EECS 485 , which 1 is easier ?",
+        "If you compared EECS 484 and EECS 485 , which would you consider to be least difficult ?",
+        "Is EECS 484 easier , or EECS 485 ?",
+        "Is EECS 484 or EECS 485 easier ?",
+        "Is either EECS 484 or EECS 485 easier ?",
+        "Looking at EECS 484 and EECS 485 , which is the easier course ?",
+        "Of EECS 484 and EECS 485 which is less difficult ?",
+        "Of EECS 484 and EECS 485 , which is easier ?",
+        "Of the classes EECS 484 and EECS 485 , which is easier .",
+        "Of the following [ classes ] , EECS 484 and EECS 485 , which is easiest ?",
+        "Of the 2 classes , which is easier , EECS 484 or EECS 485 ?",
+        "Of the 2 , which is easier ? EECS 484 and EECS 485",
+        "Of these 2 , which is less difficult : EECS 484 or EECS 485 ?",
+        "Out of EECS 484 and EECS 485 , which is easier ?",
+        "Out of EECS 484 and EECS 485 , which 1 is more effortless ?",
+        "What class do you think would be the easiest , EECS 485 or EECS 484 ?",
+        "What class is easier , EECS 484 or EECS 485 ?",
+        "What is easier out of EECS 484 and EECS 485 ?",
+        "What is easiest EECS 484 or EECS 485",
+        "What is the easier option ? EECS 484 or EECS 485 ?",
+        "What 's easier out of the 2 ? EECS 484 or EECS 485 ?",
+        "Which class is easier out of EECS 484 and EECS 485 ?",
+        "Which class is easier , EECS 484 or EECS 485 ?",
+        "Which class is easier : EECS 484 or EECS 485 ?",
+        "Which course is easier : EECS 484 or EECS 485 ?",
+        "Which course is less difficult , EECS 484 or EECS 485 ?",
+        "Which is easier EECS 484 or EECS 485 ?",
+        "Which is easier between EECS 484 and EECS 485 ?",
+        "Which is easier , EECS 484 or EECS 485 ?",
+        "Which is easier ? EECS 484 or EECS 485 ?",
+        "Which is easiest out of EECS 484 and EECS 485 ?",
+        "Which is less demanding out of EECS 484 and EECS 485 ?",
+        "Which is less difficult , EECS 484 , or EECS 485 ?",
+        "Which is less difficult , EECS 379 or EECS 485 ?",
+        "Which of the 2 are easier , EECS 484 , or EECS 485 ?",
+        "Which 1 is easier EECS 484 or EECS 485 ?",
+        "Which 1 is easier , EECS 484 or EECS 485 ?",
+        "Which 1 is easiest , EECS 484 or EECS 485 ?",
+        "Which 1 of the following classes is easier : EECS 484 or EECS 485 ?",
+        "Would taking EECS 484 be easier or would taking EECS 485 be easier ?",
+        "what class is easier if the choice is between EECS 484 and EECS 485 ?"
+    ],
+    "sentence": "Which is easier , 484 or 485 ?",
+    "sentence-with-vars": "Which is easier , number0 or number1 ?",
+    "sql": [
+        "SELECT COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE ( COURSEalias0.NUMBER = 484 OR COURSEalias0.NUMBER = 485 ) AND PROGRAM_COURSEalias0.WORKLOAD = ( SELECT MIN( PROGRAM_COURSEalias1.WORKLOAD ) FROM PROGRAM_COURSE AS PROGRAM_COURSEalias1 INNER JOIN COURSE AS COURSEalias1 ON PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID WHERE ( COURSEalias1.NUMBER = 484 OR COURSEalias1.NUMBER = 485 ) AND COURSEalias1.DEPARTMENT = \"EECS\" ) ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID WHERE ( COURSEalias0.NUMBER = number0 OR COURSEalias0.NUMBER = number1 ) AND PROGRAM_COURSEalias0.WORKLOAD = ( SELECT MIN( PROGRAM_COURSEalias1.WORKLOAD ) FROM PROGRAM_COURSE AS PROGRAM_COURSEalias1 INNER JOIN COURSE AS COURSEalias1 ON PROGRAM_COURSEalias1.COURSE_ID = COURSEalias1.COURSE_ID WHERE ( COURSEalias1.NUMBER = number0 OR COURSEalias1.NUMBER = number1 ) AND COURSEalias1.DEPARTMENT = \"department0\" ) ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "484",
+            "sql-value": "484"
+        },
+        {
+            "name": "number1",
+            "sentence-value": "485",
+            "sql-value": "485"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "what are some good restaurants in alameda ?",
+          "what is a good restaurant in alameda ?",
+          "give me some good restaurants in alameda ?"
+     ],
+     "paraphrases-with-vars": [
+          "what are some good restaurants in VARcity ?",
+          "what is a good restaurant in VARcity ?",
+          "give me some good restaurants in VARcity ?"
+     ],
+     "sentence": "give me a good restaurant in alameda ?",
+     "sentence-with-vars": "give me a good restaurant in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='alameda' and RESTAURANT.RATING>2.5"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from LOCATION,RESTAURANT where LOCATION.RESTAURANT_ID=RESTAURANT.ID and LOCATION.CITY_NAME='VARcity' and RESTAURANT.RATING>2.5"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "alameda",
+               "sql-value": "alameda"
+          }
+     ]
+}

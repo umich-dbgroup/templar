@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the biggest american city in a state with a river ?", 
+ "sentence-with-vars": "what is the biggest american city in a state with a river ?", 
+ "sql": "select distinct city.city_name from city , river where city.state_name = river.traverse and city.population = ( select max ( city.population ) from city , river where city.state_name = river.traverse ) ;", 
+ "sql-with-vars": "select distinct city.city_name from city , river where city.state_name = river.traverse and city.population = ( select max ( city.population ) from city , river where city.state_name = river.traverse ) ;", 
+ "variables": []
+}

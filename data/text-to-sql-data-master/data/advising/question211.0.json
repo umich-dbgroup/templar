@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "LZ - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "LZ - 1",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For EECS 492 , how many of the prerequisites have I met ?",
+        "How far have I met the prerequisites for EECS 492 ?",
+        "How many of the EECS 492 prerequisites have I met ?",
+        "How many of the prerequisites have I met for EECS 492 ?",
+        "How many of the prerequisites for EECS 492 have I met ?",
+        "Of the prerequisites for EECS 492 , how many have I met ?",
+        "What number of prerequisites for EECS 492 have I met ?",
+        "What is the number of prerequisites for EECS 492 that I have completed ?",
+        "What number of EECS 492 prerequisites have I fulfilled ?",
+        "What number of the prerequisites for EECS 492 have I met ?",
+        "With regard to the prerequisites for EECS 492 , how many have I completed ?"
+    ],
+    "sentence": "How many of the prerequisites for EECS 492 have I met ?",
+    "sentence-with-vars": "How many of the prerequisites for department0 number0 have I met ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSEalias0.NUMBER ) FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"EECS\" AND COURSEalias1.NUMBER = 492 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.STUDENT_ID = 1 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSEalias0.NUMBER ) FROM COURSE AS COURSEalias0 , COURSE AS COURSEalias1 , COURSE_PREREQUISITE AS COURSE_PREREQUISITEalias0 , STUDENT_RECORD AS STUDENT_RECORDalias0 WHERE COURSEalias0.COURSE_ID = COURSE_PREREQUISITEalias0.PRE_COURSE_ID AND COURSEalias1.COURSE_ID = COURSE_PREREQUISITEalias0.COURSE_ID AND COURSEalias1.DEPARTMENT = \"department0\" AND COURSEalias1.NUMBER = number0 AND STUDENT_RECORDalias0.COURSE_ID = COURSEalias0.COURSE_ID AND STUDENT_RECORDalias0.STUDENT_ID = 1 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "492",
+            "sql-value": "492"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

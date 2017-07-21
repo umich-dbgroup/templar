@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the largest state that borders the state with the lowest point in the usa ?", 
+ "sentence-with-vars": "what is the largest state that borders the state with the lowest point in the usa ?", 
+ "sql": "select border_info.state_name from state , border_info , highlow where ( state.state_name = border_info.border ) and ( border_info.border = highlow.state_name ) and highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) order by state.area desc limit 1 ;", 
+ "sql-with-vars": "select border_info.state_name from state , border_info , highlow where ( state.state_name = border_info.border ) and ( border_info.border = highlow.state_name ) and highlow.lowest_elevation = ( select min ( highlow.lowest_elevation ) from highlow ) order by state.area desc limit 1 ;", 
+ "variables": []
+}

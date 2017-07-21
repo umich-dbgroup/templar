@@ -1,0 +1,44 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there many lecture sections offered for EECS 482 next semester ?",
+        "EECS 482 has how many lecture sections next semester ?",
+        "For EECS 482 , how many lecture sections are offered next semester ?",
+        "For the next semester , how many lecture sections are offered for EECS 482 ?",
+        "How many lecture sections are available for EECS 482 next semester ?",
+        "Next semester , are there a lot of lecture sections being offered for EECS 482 ?",
+        "Next semester , how many lecture sections are offered for EECS 482 ?",
+        "Next semester , how many lecture sections of EECS 482 are offered ?",
+        "What number of EECS 482 lecture sections are offered next semester ?",
+        "What number of lecture sections will there be next semester for EECS 482 ?",
+        "Will EECS 482 have more than 1 lecture section next semester , and if so , how many ?"
+    ],
+    "sentence": "How many lecture sections are offered for EECS 482 next semester ?",
+    "sentence-with-vars": "How many lecture sections are offered for department0 number0 next semester ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 482 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

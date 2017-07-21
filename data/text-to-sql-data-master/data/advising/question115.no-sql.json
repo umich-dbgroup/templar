@@ -1,0 +1,40 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB / requires reasoning"
+    ],
+    "paraphrases": [],
+    "sentence": "I am thinking of taking EECS 203, EECS 281, EECS 484 and EECS 545 this semester. Do you think the workload will be manageable?",
+    "sentence-with-vars": "I am thinking of taking department0 number0, department0 number1, department0 number2 and department0 number3 this semester. Do you think the workload will be manageable?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": ""
+        },
+        {
+            "name": "number1",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "number2",
+            "sentence-value": "484",
+            "sql-value": ""
+        },
+        {
+            "name": "number3",
+            "sentence-value": "545",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

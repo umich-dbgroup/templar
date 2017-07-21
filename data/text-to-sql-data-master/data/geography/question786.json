@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the longest river in the state with the highest point ?", 
+ "sentence-with-vars": "what is the longest river in the state with the highest point ?", 
+ "sql": "select river.river_name from river where river.traverse in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select highlow.state_name from highlow where highlow.highest_elevation = ( select max ( highlow.highest_elevation ) from highlow ) ) ) ;", 
+ "variables": []
+}

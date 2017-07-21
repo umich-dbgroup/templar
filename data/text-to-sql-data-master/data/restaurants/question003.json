@@ -1,0 +1,23 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [],
+     "paraphrases-with-vars": [],
+     "sentence": "where is jamerican cuisine ?",
+     "sentence-with-vars": "where is VARrest ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.NAME='jamerican cuisine' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where RESTAURANT.NAME='VARrest' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "variables": [
+          {
+               "name": "VARrest",
+               "sentence-value": "jamerican cuisine",
+               "sql-value": "jamerican cuisine"
+          }
+     ]
+}

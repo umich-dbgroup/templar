@@ -1,0 +1,33 @@
+{
+     "accuracy": [],
+     "comments": [],
+     "helpfulness": [],
+     "info": [],
+     "paraphrases": [
+          "give me a restaurant in alameda ?",
+          "where can we find some restaurants in alameda ?",
+          "where is a restaurant in alameda ?",
+          "give me some restaurants in alameda ?"
+     ],
+     "paraphrases-with-vars": [
+          "give me a restaurant in VARcity ?",
+          "where can we find some restaurants in VARcity ?",
+          "where is a restaurant in VARcity ?",
+          "give me some restaurants in VARcity ?"
+     ],
+     "sentence": "where can we find a restaurant in alameda ?",
+     "sentence-with-vars": "where can we find a restaurant in VARcity ?",
+     "sql": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where LOCATION.CITY_NAME='alameda' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "sql-with-vars": [
+          "select RESTAURANT.NAME,LOCATION.HOUSE_NUMBER from RESTAURANT,LOCATION where LOCATION.CITY_NAME='VARcity' and RESTAURANT.ID=LOCATION.RESTAURANT_ID"
+     ],
+     "variables": [
+          {
+               "name": "VARcity",
+               "sentence-value": "alameda",
+               "sql-value": "alameda"
+          }
+     ]
+}

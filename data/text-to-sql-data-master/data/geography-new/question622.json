@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the longest river in the states that border nebraska ?", 
+ "sentence-with-vars": "what is the longest river in the states that border state0 ?", 
+ "sql": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' nebraska ' ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' nebraska ' ) ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) and river.length = ( select max ( river.length ) from river where river.traverse in ( select border_info.border from border_info where border_info.state_name = ' state0 ' ) ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "nebraska", 
+   "sql-value": "nebraska"
+  }
+ ]
+}

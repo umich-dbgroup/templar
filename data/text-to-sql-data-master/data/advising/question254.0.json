@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "JKK - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can I take EECS 281 any semester ?",
+        "Do you always offer EECS 281 every semester ?",
+        "Do you offer EECS 281 every semester ?",
+        "EECS 281 is offered every semester , correct ?",
+        "Every semester , will EECS 281 be offered ?",
+        "For every semester is EECS 281 offered ?",
+        "For every semester , is EECS 281 offered ?",
+        "In every semester , can you take EECS 281 ?",
+        "Is EECS 281 always offered ?",
+        "Is EECS 281 available to take every semester ?",
+        "Is EECS 281 taught each semester ?",
+        "Will EECS 281 be advertised every semester ? .",
+        "Will EECS 281 be offered every semester ?",
+        "Will I be able to take EECS 281 any semester ?"
+    ],
+    "sentence": "Is EECS 281 offered every semester ?",
+    "sentence-with-vars": "Is department0 number0 offered every semester ?",
+    "sql": [
+        "SELECT DISTINCT SEMESTERalias0.SEMESTER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT SEMESTERalias0.SEMESTER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": "281"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

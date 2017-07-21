@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the capital of the largest state in usa ?", 
+ "sentence-with-vars": "what is the capital of the largest state in usa ?", 
+ "sql": "select state.capital from state where state.area = ( select max ( state.area ) from state ) ;", 
+ "sql-with-vars": "select state.capital from state where state.area = ( select max ( state.area ) from state ) ;", 
+ "variables": []
+}

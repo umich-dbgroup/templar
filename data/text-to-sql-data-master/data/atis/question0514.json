@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me . the airlines that use love field",
+    "sq2": "SELECT DISTINCT  '\"'||v1.airline_code||'\"', '\"'||v2.airport_code||'\"',\n '\"'||v1.flight_id||'\"' FROM airline v0, flight v1,\n airport v2 \nWHERE ((v0.airline_code = ANY v1.airline_code) \nAND ((v1.to_airport = ANY v2.airport_code) AND (v2.airport_code = 'DAL')));",
+    "sql": [
+        "( SELECT DISTINCT AIRLINE.AIRLINE_CODE FROM AIRLINE WHERE AIRLINE . AIRLINE_CODE IN ( SELECT FLIGHT . AIRLINE_CODE FROM FLIGHT WHERE FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' DAL ' ) ) ) ;"
+    ],
+    "variables": []
+}

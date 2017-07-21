@@ -1,0 +1,171 @@
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , count ( B , ( city ( B ) , const ( B , cityid ( austin , _ ) ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , largest ( B , ( population ( A , B ) , state ( A ) , next_to ( A , C ) , const ( C , stateid ( oklahoma ) ) ) ) ) ) .
+answer ( A , smallest ( A , state ( A ) ) ) ) .
+answer ( A , smallest ( B , ( state ( A ) , area ( A , B ) ) ) ) ) .
+answer ( A , smallest ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , smallest ( B , ( state ( A ) , area ( A , B ) ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , major ( C ) , river ( C ) ) , A ) ) ) .
+answer ( A , ( river ( A ) , traverse ( A , B ) , largest ( C , ( state ( B ) , population ( B , C ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , largest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , largest ( B , state ( B ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , longest ( C , ( state ( B ) , loc ( C , B ) , river ( C ) ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( maine ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( alaska ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( alaska ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( ' south carolina ' ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( idaho ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( wisconsin ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( florida ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( ' new mexico ' ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( minnesota ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( ' north dakota ' ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( alaska ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( massachusetts ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( florida ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( size ( B , A ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( ' new mexico ' ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( ohio ) ) ) ) ) .
+answer ( A , ( area ( B , A ) , const ( B , stateid ( maryland ) ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , largest ( D , ( state ( C ) , population ( C , D ) ) ) ) , A ) ) ) .
+answer ( A , largest ( A , ( city ( A ) , loc ( A , B ) , smallest ( B , ( state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) ) ) ) ) ) .
+answer ( A , ( river ( A ) , traverse ( A , B ) , state ( B ) , next_to ( B , C ) , largest ( D , ( state ( C ) , population ( C , D ) ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , highest ( C , ( state ( B ) , loc ( C , B ) , place ( C ) ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , loc ( C , B ) , highest ( C , place ( C ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , population ( B , C ) ) ) ) ) ) .
+answer ( A , ( population ( B , A ) , capital ( B ) , loc ( B , C ) , largest ( C , state ( C ) ) ) ) ) .
+answer ( A , ( lake ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) .
+answer ( A , count ( B , ( river ( B ) , \ + ( traverse ( B , C ) , state ( C ) , loc ( D , C ) , capital ( D ) , const ( D , cityid ( albany , _ ) ) ) ) , A ) ) ) .
+answer ( A , ( density ( B , A ) , state ( B ) ) ) ) .
+answer ( A , ( area ( B , A ) , smallest ( B , state ( B ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , smallest ( C , ( state ( B ) , population ( B , C ) ) ) ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , largest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , placeid ( ' mount whitney ' ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , placeid ( ' mount whitney ' ) ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) , loc ( B , A ) ) ) ) .
+answer ( A , ( loc ( B , A ) , state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , state ( A ) , const ( B , placeid ( ' mount mckinley ' ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( maine ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( georgia ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new hampshire ' ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( hawaii ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( iowa ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( illinois ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( utah ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' north dakota ' ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( vermont ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( washington ) ) ) ) ) .
+answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( alabama ) ) , state ( B ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( indiana ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new york ' ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( colorado ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ohio ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( ' new jersey ' ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( michigan ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( maryland ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( massachusetts ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , const ( B , stateid ( florida ) ) , state ( B ) ) ) ) .
+answer ( A , highest ( A , ( place ( A ) , loc ( A , B ) , most ( B , C , ( state ( B ) , traverse ( C , B ) , river ( C ) ) ) ) ) ) ) .
+answer ( A , ( capital ( A ) , city ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( missouri ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) ) ) .
+answer ( A , ( capital ( A ) , loc ( A , B ) , state ( B ) , next_to ( B , C ) , const ( C , stateid ( texas ) ) ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , state ( C ) , loc ( D , C ) , highest ( D , place ( D ) ) ) , A ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( ohio ) ) , traverse ( C , B ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , state ( B ) , const ( C , riverid ( mississippi ) ) , traverse ( C , B ) ) ) ) .
+answer ( A , ( lake ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , count ( B , state ( B ) , A ) ) ) .
+answer ( A , count ( B , ( state ( B ) , const ( C , countryid ( usa ) ) , loc ( B , C ) ) , A ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( state ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) , A ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) ) ) .
+answer ( A , highest ( B , ( state ( A ) , loc ( B , A ) , place ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , highest ( B , place ( B ) ) ) ) ) .
+answer ( A , highest ( B , ( state ( A ) , loc ( B , A ) , place ( B ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , state ( A ) , highest ( B , ( place ( B ) , loc ( B , C ) , const ( C , countryid ( usa ) ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , lowest ( B , place ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , smallest ( C , ( state ( B ) , area ( B , C ) ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( virginia ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( california ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( pennsylvania ) ) ) ) ) .
+answer ( A , ( city ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , place ( B ) , higher ( B , C ) , highest ( C , ( place ( C ) , loc ( C , D ) , const ( D , stateid ( colorado ) ) ) ) ) ) ) .
+answer ( A , ( elevation ( B , A ) , highest ( B , ( mountain ( B ) , loc ( B , C ) , const ( C , stateid ( texas ) ) ) ) ) ) ) .
+answer ( A , ( density ( B , A ) , state ( B ) , loc ( C , B ) , capital ( C ) , const ( C , cityid ( austin , _ ) ) ) ) ) .
+answer ( A , ( state ( A ) , longest ( B , river ( B ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , longest ( B , ( state ( A ) , loc ( B , A ) , river ( B ) ) ) ) ) .
+answer ( A , ( state ( A ) , longest ( B , ( river ( B ) , traverse ( B , A ) ) ) ) ) ) .
+answer ( A , ( highest ( A , ( place ( A ) , loc ( A , B ) , state ( B ) ) ) , lowest ( C , ( loc ( C , B ) , place ( C ) ) ) , elevation ( C , 0 ) ) ) ) .
+answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( iowa ) ) ) ) ) ) .
+answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( texas ) ) ) ) ) ) .
+answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( nebraska ) ) ) ) ) ) .
+answer ( A , shortest ( A , ( river ( A ) , loc ( A , B ) , const ( B , stateid ( alaska ) ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , stateid ( massachusetts ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , stateid ( ' new hamsphire ' ) ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( potomac ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( ohio ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( delaware ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( ohio ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( colorado ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( missouri ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( colorado ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , riverid ( red ) ) , river ( B ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( mississippi ) ) , traverse ( B , A ) ) ) ) .
+answer ( A , ( state ( A ) , loc ( B , A ) , const ( B , riverid ( colorado ) ) ) ) ) .
+answer ( A , ( loc ( B , A ) , const ( B , riverid ( chattahoochee ) ) , river ( B ) ) ) ) .
+answer ( A , ( state ( A ) , const ( B , riverid ( chattahoochee ) ) , river ( B ) , traverse ( B , A ) ) ) ) .
+answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , highest ( A , ( mountain ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) ) .
+answer ( A , state ( A ) ) ) .
+answer ( A , ( state ( A ) , loc ( A , B ) , const ( B , countryid ( usa ) ) ) ) ) .
+answer ( A , state ( A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( washington ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , traverse ( B , C ) , const ( C , stateid ( texas ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( idaho ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( colorado ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( ' new york ' ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( iowa ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( missouri ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( texas ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( colorado ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , loc ( B , C ) , const ( C , stateid ( california ) ) ) , A ) ) ) .
+answer ( A , count ( B , ( river ( B ) , const ( C , stateid ( colorado ) ) , loc ( B , C ) ) , A ) ) ) .
+answer ( A , ( state ( A ) , next_to ( A , B ) , const ( B , stateid ( texas ) ) , loc ( C , A ) , major ( C ) , river ( C ) ) ) ) .
+answer ( A , count ( B , ( state ( B ) , next_to ( B , C ) , state ( C ) , loc ( D , C ) , capital ( D ) , const ( D , cityid ( boston , _ ) ) ) , A ) ) ) .
+answer ( A , ( area ( B , A ) , state ( B ) ) ) ) .
+answer ( A , ( density ( B , A ) , largest ( B , state ( B ) ) ) ) ) .

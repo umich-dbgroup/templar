@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states have a city called rochester ?", 
+ "sentence-with-vars": "how many states have a city called city0 ?", 
+ "sql": "select count ( city.state_name ) from city where city.city_name = ' rochester ' ;", 
+ "sql-with-vars": "select count ( city.state_name ) from city where city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "rochester", 
+   "sql-value": "rochester"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the shortest river ?", 
+ "sentence-with-vars": "what is the shortest river ?", 
+ "sql": "select river.river_name from river where river.length = ( select min ( river.length ) from river ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.length = ( select min ( river.length ) from river ) ;", 
+ "variables": []
+}

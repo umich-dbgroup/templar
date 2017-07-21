@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "what are the major cities in states through which the mississippi runs ?", 
+ "sentence-with-vars": "what are the major cities in states through which the river0 runs ?", 
+ "sql": "select city.city_name from city where city.population > 150000 and city.state_name in ( select river.traverse from river where river.river_name = ' mississippi ' and river.length > 750 ) ;", 
+ "sql-with-vars": "select city.city_name from city where city.population > 150000 and city.state_name in ( select river.traverse from river where river.river_name = ' river0 ' and river.length > number0 ) ;", 
+ "variables": [
+  {
+   "name": "river0", 
+   "sentence-value": "mississippi", 
+   "sql-value": "mississippi"
+  },
+     {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "750"
+   }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "RUI - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "RUI - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "280 is how big ?",
+        "280 is how large ?",
+        "280 is what size ?",
+        "Exactly how big is 280 ?",
+        "How big is 280 ?",
+        "How big is course 280 ?",
+        "How big is the 280 class ?",
+        "How huge is 280 ?",
+        "How large do you think 280 is ?",
+        "How large is 280 ?",
+        "How large is course 280 ?",
+        "How large is the class 280 ?",
+        "How many people are in 280 ?",
+        "How many students in 280 ?",
+        "How small is 280 ?",
+        "Just how big do you think 280 is ?",
+        "That 280 exactly how big is it ?",
+        "The 280 class - how big is it ?",
+        "The 280 class , how big is it ?",
+        "What is 280 's size ?",
+        "What is the size of 280 ?",
+        "What is the size of the 280 class ?",
+        "What size is 280 ?",
+        "What size would 280 be ?",
+        "What 's the size of 280 ?",
+        "What 's the size of the 280 course ?"
+    ],
+    "sentence": "How big is 280 ?",
+    "sentence-with-vars": "How big is number0 ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , COURSEalias0.NUM_ENROLLED FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , COURSEalias0.NUM_ENROLLED FROM COURSE AS COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

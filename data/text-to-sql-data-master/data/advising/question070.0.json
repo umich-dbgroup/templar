@@ -1,0 +1,39 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For NLP , who is teaching next winter ?",
+        "For next winter 's NLP , who is the teacher ?",
+        "For the next winter session of NLP , who is teaching ?",
+        "I 'd like to know the names of those who will teach NLP next winter .",
+        "NLP is being taught next winter by whom ?",
+        "NLP next winter is being taught by who ?",
+        "Next winter , who is teaching NLP ?",
+        "Next winter , who should I expect to be teaching NLP ?",
+        "Next winter , who will be teaching NLP ?",
+        "Next winter , who will be the NLP instructor ?",
+        "Next winter , who 's teaching NLP ?",
+        "What professor will be teaching NLP next winter ?",
+        "What 's the NLP teacher 's name next winter ?",
+        "What 's the name of the NLP teacher next winter ?",
+        "Which teacher is teaching NLP next winter ?",
+        "Who will be the NLP instructor next winter ?",
+        "Who will next winter 's NLP be taught by ?"
+    ],
+    "sentence": "Who 's teaching NLP next winter ?",
+    "sentence-with-vars": "Who 's teaching NLP next winter ?",
+    "sql": [
+        "SELECT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Natural Language Processing\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ;"
+    ],
+    "sql-with-vars": "SELECT INSTRUCTORalias0.NAME FROM INSTRUCTOR AS INSTRUCTORalias0 INNER JOIN OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 ON OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Natural Language Processing\" AND SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

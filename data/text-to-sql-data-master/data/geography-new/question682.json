@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "where is the highest mountain of the united states ?", 
+ "sentence-with-vars": "where is the highest mountain of the united states ?", 
+ "sql": "select mountain.state_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;", 
+ "sql-with-vars": "select mountain.state_name from mountain where mountain.mountain_altitude = ( select max ( mountain.mountain_altitude ) from mountain ) ;", 
+ "variables": []
+}

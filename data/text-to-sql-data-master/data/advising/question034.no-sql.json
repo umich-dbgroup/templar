@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Not a DB question"
+    ],
+    "paraphrases": [],
+    "sentence": "Do the professors for 281 stay the same from one semester to the next?",
+    "sentence-with-vars": "Do the professors for number0 stay the same from one semester to the next?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Are there 2 or 3 lectures a week usually in 281 ?",
+        "Are there 2 or 3 lectures for 281 a week usually ?",
+        "Are there usually 2 or 3 lectures a week for 281 ?",
+        "Are there usually 2 or 3 lectures held for 281 per week ?",
+        "Are 2 or 3 lessons per week usually given for 281 ?",
+        "Does 281 usually provide 2 or 3 lectures a week ?",
+        "During the week does 281 usually have 2 or 3 lectures ?",
+        "Each week 281 usually has 2 or 3 lectures ?",
+        "How many lectures does 281 have in a week , 2 or 3 ?",
+        "In a week , are there usually 2 or 3 lectures for 281 ?",
+        "Is 281 having 2 or 3 lectures a week ?",
+        "Are there 2 or 3 lectures in 281 per week ?",
+        "Usually every week , are there 2 or 3 lectures for 281 ?",
+        "Usually , are there 2 or 3 lectures for 281 every week ?",
+        "Which 2 or 3 lectures a week usually are there in 281 ?"
+    ],
+    "sentence": "Does 281 usually have 2 or 3 lectures a week ?",
+    "sentence-with-vars": "Does number0 usually have 2 or 3 lectures a week ?",
+    "sql": [
+        "SELECT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.OFFERING_ID , COURSE_OFFERINGalias0.SATURDAY , COURSE_OFFERINGalias0.SUNDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 281 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTER_ID DESC LIMIT 10 ;"
+    ],
+    "sql-with-vars": "SELECT COURSE_OFFERINGalias0.FRIDAY , COURSE_OFFERINGalias0.MONDAY , COURSE_OFFERINGalias0.OFFERING_ID , COURSE_OFFERINGalias0.SATURDAY , COURSE_OFFERINGalias0.SUNDAY , COURSE_OFFERINGalias0.THURSDAY , COURSE_OFFERINGalias0.TUESDAY , COURSE_OFFERINGalias0.WEDNESDAY , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTER_ID DESC LIMIT 10 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "",
+            "sql-value": "EECS"
+        }
+    ]
+}

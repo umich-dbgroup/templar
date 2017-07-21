@@ -1,0 +1,83 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "LZ - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "LZ - 1"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Who teaches EECS 203 ?",
+        "By whom is EECS 203 taught ?",
+        "Can you identify who teaches EECS 203 ?",
+        "Can you tell me who the EECS 203 teacher is ?",
+        "Can you tell me who the teacher is for EECS 203 ?",
+        "Could you tell me which professor teaches EECS 203 ?",
+        "Do you know the teacher for EECS 203 ?",
+        "Do you know who the teacher is for EECS 203 ?",
+        "Do you know who the teacher of EECS 203 is ?",
+        "EECS 203 is taught by whom ?",
+        "EECS 203 has who as a teacher ?",
+        "EECS 203 is taught by which professor ?",
+        "EECS 203 is taught by who ?",
+        "EECS 203 is taught by whom ?",
+        "EECS 203 , who teaches it ?",
+        "For EECS 203 , who is teaching ?",
+        "For EECS 203 , who is the teacher ?",
+        "If I were to take EECS 203 , who would be the instructor ?",
+        "In EECS 203 , would you happen to know who teaches ?",
+        "Name the professor or teacher teaching EECS 203 ?",
+        "Of all the teachers , which 1 teaches EECS 203 ?",
+        "Of the EECS classes , who teaches 203 ?",
+        "The EECS 203 teacher , who is it ?",
+        "The teacher for EECS 203 is who ?",
+        "The teacher for EECS 203 is whom ?",
+        "What is the instructors name that teaches EECS 203 ?",
+        "What is the name of the EECS 203 class teacher ?",
+        "What is the name of the instructor for EECS 203 ?",
+        "What is the teacher 's name for EECS 203 ?",
+        "What professor teaches EECS 203 ?",
+        "What teacher teaches EECS 203 ?",
+        "Which instructor teaches EECS 203 ?",
+        "Which person is the teacher of EECS 203 ?",
+        "Which professor teaches EECS 203 ?",
+        "Which teacher gives the class EECS 203 ?",
+        "Who instructs EECS 203 ?",
+        "Who is EECS 203 taught by ?",
+        "Who is scheduled to teach EECS 203 ?",
+        "Who is teaching EECS 203 ?",
+        "Who is the EECS 203 professor ?",
+        "Who is the EECS 203 teacher ?",
+        "Who is the instructor for EECS 203 ?",
+        "Who is the instructor for course EECS 203 ?",
+        "Who is the professor for EECS 203 ?",
+        "Who is the teacher for EECS 203 ?",
+        "Who is the teacher of EECS 203 ?",
+        "Who teaches EECS 203 ?",
+        "Who teaches the EECS 203 class ?",
+        "can you tell me the professor who is teaching EECS 203 ?",
+        "what professor is teaching EECS 203 ?",
+        "who lectures EECS 203 ?"
+    ],
+    "sentence": "Who has taught , is teaching , or will teach EECS 203 ?",
+    "sentence-with-vars": "Who has taught , is teaching , or will teach department0 number0 ?",
+    "sql": [
+        "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 203 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID ;",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "203",
+            "sql-value": "203"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

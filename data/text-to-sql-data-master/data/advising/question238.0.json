@@ -1,0 +1,48 @@
+{
+    "accuracy": [
+        "SRS - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "SRS - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can EECS 482 be a capstone class ?",
+        "Can EECS 482 count as a capstone ?",
+        "Can I take EECS 482 as a capstone ?",
+        "Can I take EECS 482 for a capstone ?",
+        "Can my capstone class be EECS 482 ?",
+        "Could I take EECS 482 for a capstone ?",
+        "Could I take class EECS 482 as a capstone ?",
+        "For a capstone , can you take EECS 482 ?",
+        "Is EECS 482 a capstone ?",
+        "Is EECS 482 an option for a capstone ?",
+        "Is EECS 482 available as a capstone ?",
+        "Is EECS 482 good as a capstone ?",
+        "Is EECS 482 listed as a capstone ?",
+        "Is 1 of the capstone classes that I can take EECS 482 ?",
+        "Would it be possible to take EECS 482 as a capstone ?"
+    ],
+    "sentence": "Can EECS 482 be taken as a capstone ?",
+    "sentence-with-vars": "Can department0 number0 be taken as a capstone ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 482 AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 WHERE COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND PROGRAM_COURSEalias0.CATEGORY = \"MDE\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "482",
+            "sql-value": "482"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

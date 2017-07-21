@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "not covered by our DB"
+    ],
+    "paraphrases": [],
+    "sentence": "What programming language is commonly used in courses in artificial intelligence?",
+    "sentence-with-vars": "What programming language is commonly used in courses in topic0?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "topic0",
+            "sentence-value": "artificial intelligence",
+            "sql-value": "artificial intelligence"
+        }
+	]
+}

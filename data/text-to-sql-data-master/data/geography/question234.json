@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the longest river in florida ?", 
+ "sentence-with-vars": "what is the longest river in state0 ?", 
+ "sql": "select river.river_name from river where river.traverse = ' florida ' and river.length = ( select max ( river.length ) from river where river.traverse = ' florida ' ) ;", 
+ "sql-with-vars": "select river.river_name from river where river.traverse = ' state0 ' and river.length = ( select max ( river.length ) from river where river.traverse = ' state0 ' ) ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "florida", 
+   "sql-value": "florida"
+  }
+ ]
+}

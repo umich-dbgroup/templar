@@ -1,0 +1,54 @@
+{
+    "accuracy": [
+        "JKK - 0",
+        "SRS - 0"
+    ],
+    "comments": [
+        "JKK - relative timing",
+        "JKK - does not appear to capture the upper-level aspect",
+        "SRS - Doesn't check if the courses are upper-level.",
+        "SRS - Assumes 'this fall' is FA 2016."
+    ],
+    "helpfulness": [
+        "JKK - 0",
+        "SRS - 0"
+    ],
+    "info": [],
+    "paraphrases": [
+        "Can you tell me the number of upper-level EECS classes that will be offered for 3 credits this Fall ?",
+        "How many upper-level three-credit classes in EECS will there be this fall ?",
+        "How many upper-level three-credit courses will there be in this fall for EECS",
+        "In the Fall semester , how many upper level EECS class offerings will be 3 -credit classes ?",
+        "This Fall , how many upper-level three-credit EECS classes are being offered ?",
+        "This Fall , how many upper-level three-credit EECS classes are offered ?",
+        "This fall , how many upper-level three-credit EECS classes are being offered ?",
+        "Upper-level three-credit EECS classes , how many are offerd this Fall ?",
+        "What is the number of upper-level three-credit EECS classes that are offered this fall ?",
+        "What is the class count for upper-level three-credit EECS classes in the Fall course catalog ?",
+        "What number of three-credit upper-level EECS classes are being offered this Fall ?"
+    ],
+    "sentence": "How many upper-level three-credit EECS classes are offered this Fall ?",
+    "sentence-with-vars": "How many upper-level three-credit department0 classes are offered this semester0 ?",
+    "sql": [
+        "SELECT COUNT( DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS - LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( DISTINCT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM AS PROGRAMalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAMalias0.NAME = \"CS-LSA\" AND PROGRAMalias0.PROGRAM_ID = PROGRAM_COURSEalias0.PROGRAM_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = year0 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        },
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": "FA"
+        },
+        {
+            "name": "year0",
+            "sentence-value": "",
+            "sql-value": "2016"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "in next semester which upper level CS classes are offered ?",
+        "Next semester , what are the available upper level CS classes ?",
+        "what are the upper level CS classes provided in next semester ?",
+        "What is the upper level CS course list for next semester ?",
+        "Which upper level CS courses are offered this following semester ?",
+        "What upper level CS classes are offered next semester ?",
+        "Which upper level CS classes are offered this upcoming semester ?",
+        "What upper level CS classes are available next semester ?",
+        "What are the upper level CS classes that are available next semester ?",
+        "Next semester , what upper level CS classes will there be ?",
+        "Which upper level CS courses are offered next semester ?",
+        "Are there any upper level CS classes offered next semester , which are they ?"
+    ],
+    "sentence": "Which upper level CS classes are offered next semester ?",
+    "sentence-with-vars": "Which upper level CS classes are offered next semester ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 INNER JOIN PROGRAM_COURSE AS PROGRAM_COURSEalias0 ON PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID INNER JOIN SEMESTER AS SEMESTERalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER WHERE PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

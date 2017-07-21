@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what states in the united states have a city of springfield ?", 
+ "sentence-with-vars": "what states in the united states have a city of city0 ?", 
+ "sql": "select city.state_name from city , state where city.state_name = state.state_name and city.city_name = ' springfield ' ;", 
+ "sql-with-vars": "select city.state_name from city , state where city.state_name = state.state_name and city.city_name = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "springfield", 
+   "sql-value": "springfield"
+  }
+ ]
+}

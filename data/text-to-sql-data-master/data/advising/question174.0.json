@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "DRK - 1"
+    ],
+    "comments": [],
+    "helpfulness": [
+        "CFD - 2",
+        "DRK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "During the next 6 semesters which classes will be offered ?",
+        "In the next 6 semesters name the classes that are offered ?",
+        "In the next 6 semesters what are the classes offered ?",
+        "In the next 6 semesters , what classes will be offered ?",
+        "In the next 6 semesters , what courses will be offered ?",
+        "Name the classes offered in the next 6 semesters .",
+        "Name the classes that will be offered in the next 6 semesters .",
+        "Name the classes that will be offered over the next 6 semester .",
+        "Of the classes offered , which will be available during the next 6 semesters ?",
+        "Over the course of the next 6 semesters , what classes will be available ?",
+        "Over the next 6 semesters , what classes will be offered ?",
+        "Show me the next 6 semesters of classes .",
+        "The next 6 semesters , what classes will be offered ?",
+        "What are the courses that will be offered for the upcoming 6 semesters ?",
+        "What courses will be available during the upcoming 6 semeters ?",
+        "What classes will be offered in the next 6 semesters ?",
+        "Which classes are going to be offered over the ensuing 6 semesters ?",
+        "Which classes are offered in the next 6 semesters ?",
+        "Which classes will the next 6 semesters have ?",
+        "Which courses will be offered during the next 6 semesters ?",
+        "Which courses are offered in the next 6 semesters ?",
+        "Which courses will be held in the next 6 semesters ?"
+    ],
+    "sentence": "What classes will be offered in the next 6 semesters ?",
+    "sentence-with-vars": "What classes will be offered in the next 6 semesters ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ) OR ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2017 ) OR ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2018 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2018 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2019 ) ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR , SEMESTERalias0.SEMESTER ;",
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.SEMESTER IN ( 2110 , 2120 , 2160 , 2170 , 2210 , 2220 ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR , SEMESTERalias0.SEMESTER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER , SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , SEMESTER AS SEMESTERalias0 WHERE ( ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2016 ) OR ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2017 ) OR ( SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.YEAR = 2018 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2017 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2018 ) OR ( SEMESTERalias0.SEMESTER = \"WN\" AND SEMESTERalias0.YEAR = 2019 ) ) AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER ORDER BY SEMESTERalias0.YEAR , SEMESTERalias0.SEMESTER ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

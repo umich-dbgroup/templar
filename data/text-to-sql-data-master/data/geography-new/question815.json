@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "which states border no other states ?", 
+ "sentence-with-vars": "which states border no other states ?", 
+ "sql": "select state.state_name from state where state.state_name not in ( select border_info.state_name from border_info ) ;", 
+ "sql-with-vars": "select state.state_name from state where state.state_name not in ( select border_info.state_name from border_info ) ;", 
+ "variables": [
+  {
+   "name": "", 
+   "sentence-value": "", 
+   "sql-value": ""
+  }
+ ]
+}

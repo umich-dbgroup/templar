@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "what is the area of the state with the capital albany ?", 
+ "sentence-with-vars": "what is the area of the state with the capital city0 ?", 
+ "sql": "select state.area from state where state.capital = ' albany ' ;", 
+ "sql-with-vars": "select state.area from state where state.capital = ' city0 ' ;", 
+ "variables": [
+  {
+   "name": "city0", 
+   "sentence-value": "albany", 
+   "sql-value": "albany"
+  }
+ ]
+}

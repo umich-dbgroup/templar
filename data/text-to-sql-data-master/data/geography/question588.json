@@ -1,0 +1,8 @@
+{
+ "paraphrases": [], 
+ "sentence": "what states border the most populous state ?", 
+ "sentence-with-vars": "what states border the most populous state ?", 
+ "sql": "select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;", 
+ "sql-with-vars": "select border_info.border from border_info where border_info.state_name = ( select state.state_name from state where state.population = ( select max ( state.population ) from state ) ) ;", 
+ "variables": []
+}

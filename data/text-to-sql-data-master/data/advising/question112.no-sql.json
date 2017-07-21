@@ -1,0 +1,25 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Covered, but requires some string operation."
+    ],
+    "paraphrases": [],
+    "sentence": "What is the duration of the EECS 281 lectures?",
+    "sentence-with-vars": "What is the duration of the department0 number0 lectures?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "281",
+            "sql-value": ""
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+    ]
+}

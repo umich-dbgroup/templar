@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "i would like a flight from orlando to kansas city and then to minneapolis",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.from_airport||'\"',\n '\"'||v0.to_airport||'\"' FROM flight v0 \nWHERE (((v0.from_airport IN (\nSELECT v1.airport_code FROM airport_service v1 \nWHERE (v1.city_code IN (\nSELECT v2.city_code FROM city v2 \nWHERE (v2.city_name = 'ORLANDO'))))) AND (v0.to_airport IN (\nSELECT v3.airport_code FROM airport_service v3 \nWHERE (v3.city_code IN (\nSELECT v4.city_code FROM city v4 \nWHERE (v4.city_name = 'KANSAS CITY')))))) OR ((v0.from_airport IN (\nSELECT v5.airport_code FROM airport_service v5 \nWHERE (v5.city_code IN (\nSELECT v6.city_code FROM city v6 \nWHERE (v6.city_name = 'KANSAS CITY'))))) \nAND (v0.to_airport IN (\nSELECT v7.airport_code FROM airport_service v7 \nWHERE (v7.city_code IN (\nSELECT v8.city_code FROM city v8 \nWHERE (v8.city_name = 'MINNEAPOLIS')))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' ORLANDO ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' KANSAS CITY ' ) ) ) OR ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' KANSAS CITY ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MINNEAPOLIS ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

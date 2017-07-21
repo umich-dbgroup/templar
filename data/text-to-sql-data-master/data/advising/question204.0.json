@@ -1,0 +1,45 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of current year.",
+        "JKK - A case of relative time",
+        "JKK - 'group by' vs. 'distinct' ?"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "For CS majors , name the classes that are available this summer .",
+        "For a CS major , this summer what classes are there that count ?",
+        "For a CS major , what classes are available this summer that would count towards that ?",
+        "For the upcoming summer term , what classes will be taught that are required for the CS major ?",
+        "If someone wanted to take classes this summer , what is available for a CS major ?",
+        "In summer , name the classes that are available that count towards CS major .",
+        "Name the classes available this summer that would count toward a CS major .",
+        "Name the classes that are available this summer that would count toward a CS major .",
+        "Of the classes offered this summer , which count towards the CS major ?",
+        "What are the summer classes that are available to count for CS majors ?",
+        "What classes that count towards the CS major will be available this summer ?",
+        "What courses are being taught in the summer that will go towards my CS major ?",
+        "What options do CS majors have for classes this summer ?"
+    ],
+    "sentence": "What classes are available this summer that would count towards a CS major ?",
+    "sentence-with-vars": "What classes are available this semester0 that would count towards a CS major ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"SU\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "summer",
+            "sql-value": "SU"
+        }
+    ]
+}

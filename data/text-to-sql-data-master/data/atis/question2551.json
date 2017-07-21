@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "are meals ever served on tower air",
+    "sq2": "SELECT DISTINCT  v0.meal_number, '\"'||v0.compartment||'\"', '\"'||v1.meal_code||'\"',\n '\"'||v1.airline_code||'\"', '\"'||v1.flight_id||'\"' FROM food_service v0,\n flight v1 \nWHERE ((v0.meal_code = ANY v1.meal_code) \nAND ((v1.airline_code = 'FF') AND ( 1 =  1)));",
+    "sql": [
+        "( SELECT DISTINCT FOOD_SERVICE.MEAL_CODE , FOOD_SERVICE.MEAL_NUMBER , FOOD_SERVICE.COMPARTMENT FROM FOOD_SERVICE WHERE FOOD_SERVICE . MEAL_CODE IN ( SELECT FLIGHT . MEAL_CODE FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' FF ' AND 1 = 1 ) ) ) ;"
+    ],
+    "variables": []
+}

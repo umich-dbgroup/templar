@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show [<noise] delta airlines flights from . j f k to miami",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v0.airline_code||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.airport_code||'\"',\n '\"'||v3.city_code||'\"', '\"'||v3.city_name||'\"' FROM flight v0,\n airport v1, airport_service v2, city v3 \nWHERE ((v0.airline_code = 'DL') \nAND (((v0.from_airport = ANY v1.airport_code) \nAND (v1.airport_code = 'JFK')) AND ((v0.to_airport = ANY v2.airport_code) \nAND ((v2.city_code = ANY v3.city_code) AND (v3.city_name = 'MIAMI')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' DL ' AND ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT . AIRPORT_CODE FROM AIRPORT WHERE AIRPORT.AIRPORT_CODE = ' JFK ' ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MIAMI ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

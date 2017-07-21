@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "where is general mitchell international located",
+    "sq2": "SELECT DISTINCT  '\"'||v0.airport_location||'\"', '\"'||v0.airport_name||'\"',\n '\"'||v0.airport_code||'\"' FROM airport v0 \nWHERE (v0.airport_name = 'GENERAL MITCHELL INTERNATIONAL');",
+    "sql": [
+        "( SELECT DISTINCT AIRPORT.AIRPORT_LOCATION FROM AIRPORT WHERE AIRPORT.AIRPORT_NAME = ' GENERAL MITCHELL INTERNATIONAL ' ) ;"
+    ],
+    "variables": []
+}

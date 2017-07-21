@@ -1,0 +1,19 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many people live in spokane washington ?", 
+ "sentence-with-vars": "how many people live in city0 state0 ?", 
+ "sql": "select city.population from city where city.city_name = ' spokane ' and city.state_name = ' washington ' ;", 
+ "sql-with-vars": "select city.population from city where city.city_name = ' city0 ' and city.state_name = ' state0 ' ;", 
+ "variables": [
+  {
+   "name": "state0", 
+   "sentence-value": "washington", 
+   "sql-value": "washington"
+  }, 
+  {
+   "name": "city0", 
+   "sentence-value": "spokane", 
+   "sql-value": "spokane"
+  }
+ ]
+}

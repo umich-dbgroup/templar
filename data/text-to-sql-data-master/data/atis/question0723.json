@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "what classes of service does t w a have",
+    "sq2": "SELECT DISTINCT  '\"'||v1.booking_class||'\"', '\"'||v2.fare_basis_code||'\"',\n '\"'||v3.fare_id||'\"', '\"'||v4.flight_id||'\"',\n '\"'||v4.airline_code||'\"' FROM class_of_service v0, fare_basis v1,\n fare v2, flight_fare v3, flight v4 \nWHERE ((v0.booking_class = ANY v1.booking_class) \nAND ((v1.fare_basis_code = ANY v2.fare_basis_code) \nAND ((v2.fare_id = ANY v3.fare_id) AND ((v3.flight_id = ANY v4.flight_id) \nAND ((v4.airline_code = 'TW') \nAND ( 1 =  1))))));",
+    "sql": [
+        "( SELECT DISTINCT CLASS_OF_SERVICE.BOOKING_CLASS FROM CLASS_OF_SERVICE WHERE CLASS_OF_SERVICE . BOOKING_CLASS IN ( SELECT FARE_BASIS . BOOKING_CLASS FROM FARE_BASIS WHERE FARE_BASIS . FARE_BASIS_CODE IN ( SELECT FARE . FARE_BASIS_CODE FROM FARE WHERE FARE . FARE_ID IN ( SELECT FLIGHT_FARE . FARE_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FLIGHT_ID IN ( SELECT FLIGHT . FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.AIRLINE_CODE = ' TW ' AND 1 = 1 ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

@@ -1,0 +1,55 @@
+{
+    "accuracy": [
+        "JKK - 1",
+        "LZ - 1"
+    ],
+    "comments": [
+        "JKK - I would interpret this as either who has taught it most frequently, or provide the list of people who have taught it and how many times.",
+        "CFD - How about the top 5 people who have taught it and the number of times they've done so?",
+        "JKK - That's reasonable."
+    ],
+    "helpfulness": [
+        "JKK - 2",
+        "LZ - 1"
+    ],
+    "info": [
+        "Ambiguity in how to interpret 'usually'"
+    ],
+    "paraphrases": [
+        "Which instructors usually teach EECS 280 ?",
+        "Who is the usual teacher of EECS 280 ?",
+        "For class EECS 280 , who is the usual teacher ?",
+        "What is the instructor 's name who usually teaches EECS 280 ?",
+        "Who should I expect to be the EECS 280 instructor ?",
+        "EECS 280 is usually taught by which teacher ?",
+        "Who is EECS 280 usually taught by ?",
+        "What professor usually teaches EECS 280 ?",
+        "For EECS 280 , who usually teaches the class ?",
+        "What are the names of those who usually teach EECS 280 ?",
+        "Typically who is the EECS 280 teacher ?",
+        "Who is the usual teacher for EECS 280 ?",
+        "EECS 280 is ordinarily taught by who ?",
+        "Who teaches EECS 280 ?",
+        "EECS 280 is usually taught by who ?",
+        "Who is usually the teacher for EECS 280 ?"
+    ],
+    "sentence": "Who usually teaches EECS 280 ?",
+    "sentence-with-vars": "Who usually teaches department0 number0 ?",
+    "sql": [
+        "SELECT COUNT( INSTRUCTORalias0.NAME ) AS DERIVED_FIELDalias0 , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 280 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID GROUP BY INSTRUCTORalias0.NAME ORDER BY DERIVED_FIELDalias0 DESC LIMIT 5 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( INSTRUCTORalias0.NAME ) AS DERIVED_FIELDalias0 , INSTRUCTORalias0.NAME FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , INSTRUCTOR AS INSTRUCTORalias0 , OFFERING_INSTRUCTOR AS OFFERING_INSTRUCTORalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND OFFERING_INSTRUCTORalias0.INSTRUCTOR_ID = INSTRUCTORalias0.INSTRUCTOR_ID AND OFFERING_INSTRUCTORalias0.OFFERING_ID = COURSE_OFFERINGalias0.OFFERING_ID GROUP BY INSTRUCTORalias0.NAME ORDER BY DERIVED_FIELDalias0 DESC LIMIT 5 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "280",
+            "sql-value": "280"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

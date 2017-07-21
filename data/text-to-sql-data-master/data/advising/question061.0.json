@@ -1,0 +1,36 @@
+{
+    "accuracy": [
+        "CFD - 1"
+    ],
+    "comments": [
+        "CFD - Do we even have courses offered on Saturday and Sunday?",
+        "LZ - Should have no information about the actual course name",
+        "JKK - Missing variable for OS"
+    ],
+    "helpfulness": [
+        "CFD - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "At what point will operating systems be offered ?",
+        "The operating systems course will be offered when ?",
+        "What is the upcoming availability for operating systems ?",
+        "When is operating systems going to be offered next ?",
+        "When is the next offering of operating systems ?",
+        "When is the next time the operating systems will be offered ?",
+        "When will I have the opportunity to take operating systems again ?",
+        "When will operating systems be offered again ?",
+        "When will operating systems next be offered ?",
+        "When will the class `` operating systems '' be offered ?",
+        "When will the next `` operating systems '' class take place ?",
+        "When will the next operating systems class be offered ?"
+    ],
+    "sentence": "When will operating systems be offered next ?",
+    "sentence-with-vars": "When will operating systems be offered next ?",
+    "sql": [
+        "SELECT DISTINCT SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Introduction to Operating Systems\" AND SEMESTERalias0.SEMESTER > 2070 ;"
+    ],
+    "sql-with-vars": "SELECT DISTINCT SEMESTERalias0.SEMESTER , SEMESTERalias0.YEAR FROM SEMESTER AS SEMESTERalias0 INNER JOIN COURSE_OFFERING AS COURSE_OFFERINGalias0 ON SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER INNER JOIN COURSE AS COURSEalias0 ON COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID WHERE COURSEalias0.NAME LIKE \"Introduction to Operating Systems\" AND SEMESTERalias0.SEMESTER > 2070 ;",
+    "unchecked-paraphrases": [],
+    "variables": []
+}

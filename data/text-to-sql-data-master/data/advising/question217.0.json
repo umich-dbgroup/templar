@@ -1,0 +1,47 @@
+{
+    "accuracy": [
+        "CFD - 1",
+        "JKK - 1"
+    ],
+    "comments": [
+        "JKK - Unsure, does the course offering table have an appropriate field that makes this clearer?"
+    ],
+    "helpfulness": [
+        "CFD - 2",
+        "JKK - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "EECS 370 contains how many sections ?",
+        "EECS 370 has how many sections ?",
+        "For EECS 370 , how many section are there ?",
+        "For EECS 370 , how many sections are there ?",
+        "For EECS 370 , what is the number of sections available ?",
+        "How many sections does EECS 370 have ?",
+        "How many sections does EECS 370 include ?",
+        "How many sections make up EECS 370 ?",
+        "Of EECS 370 , how many sections are there ?",
+        "What is the quantity of EECS 370 sections ?",
+        "What is total number of EECS 370 sections ?",
+        "What number of sections of EECS 370 are there ?"
+    ],
+    "sentence": "How many sections of EECS 370 are there ?",
+    "sentence-with-vars": "How many sections of department0 number0 are there ?",
+    "sql": [
+        "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"EECS\" AND COURSEalias0.NUMBER = 370 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 ;"
+    ],
+    "sql-with-vars": "SELECT COUNT( * ) FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 WHERE COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND COURSEalias0.DEPARTMENT = \"department0\" AND COURSEalias0.NUMBER = number0 AND SEMESTERalias0.SEMESTER AS SEMESTERalias0 = 2070 ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "number0",
+            "sentence-value": "370",
+            "sql-value": "370"
+        },
+        {
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": "EECS"
+        }
+    ]
+}

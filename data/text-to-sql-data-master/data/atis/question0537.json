@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "how many fares are there one way from tacoma to montreal",
+    "sq2": "SELECT  COUNT(*), '\"'||v0.round_trip_required||'\"' FROM fare v0 \nWHERE ((v0.round_trip_required = 'NO') AND (v0.fare_id IN (\nSELECT v1.fare_id FROM flight_fare v1 \nWHERE (v1.flight_id IN (\nSELECT v2.flight_id FROM flight v2 \nWHERE ((v2.from_airport IN (\nSELECT v3.airport_code FROM airport_service v3 \nWHERE (v3.city_code IN (\nSELECT v4.city_code FROM city v4 \nWHERE (v4.city_name = 'TACOMA'))))) \nAND (v2.to_airport IN (\nSELECT v5.airport_code FROM airport_service v5 \nWHERE (v5.city_code IN (\nSELECT v6.city_code FROM city v6 \nWHERE (v6.city_name = 'MONTREAL'))))))))))) GROUP BY v0.round_trip_required;",
+    "sql": [
+        "SELECT COUNT ( * ) FROM FARE WHERE ( FARE.ROUND_TRIP_REQUIRED = ' NO ' AND FARE . FARE_ID IN ( SELECT FLIGHT_FARE . FARE_ID FROM FLIGHT_FARE WHERE FLIGHT_FARE . FLIGHT_ID IN ( SELECT FLIGHT . FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' TACOMA ' ) ) AND FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' MONTREAL ' ) ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

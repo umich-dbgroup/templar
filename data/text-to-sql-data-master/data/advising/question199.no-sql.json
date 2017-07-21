@@ -1,0 +1,20 @@
+{
+    "accuracy": [],
+    "comments": [],
+    "helpfulness": [],
+    "info": [
+        "Completed but doable"
+    ],
+    "paraphrases": [],
+    "sentence": "Do I fulfill the requirements of declaring EECS major?",
+    "sentence-with-vars": "Do I fulfill the requirements of declaring department0 major?",
+    "sql": [],
+    "sql-with-vars": "",
+    "variables": [
+		{
+            "name": "department0",
+            "sentence-value": "EECS",
+            "sql-value": ""
+        }
+	]
+}

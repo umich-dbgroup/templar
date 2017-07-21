@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all direct u s air flights out of fort worth",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', v0.connections, '\"'||v0.airline_code||'\"',\n '\"'||v1.airport_code||'\"', '\"'||v2.city_code||'\"',\n '\"'||v2.city_name||'\"' FROM flight v0, airport_service v1,\n city v2 \nWHERE ((v0.connections =  0) AND ((v0.airline_code = 'US') \nAND ((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'FORT WORTH')))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT.CONNECTIONS = 0 AND ( FLIGHT.AIRLINE_CODE = ' US ' AND FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' FORT WORTH ' ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

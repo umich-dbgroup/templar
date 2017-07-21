@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "list all flights , arriving or leaving denver between eight and nine p m",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"', v0.arrival_time,\n v0.departure_time FROM flight v0, airport_service v1,\n city v2 \nWHERE ((((v0.to_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'DENVER'))) \nAND ((v0.arrival_time >=  2000) AND (v0.arrival_time <=  2100))) OR (((v0.from_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) AND (v2.city_name = 'DENVER'))) \nAND ((v0.departure_time >=  2000) AND (v0.departure_time <=  2100))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND ( FLIGHT.ARRIVAL_TIME > = 2000 AND FLIGHT.ARRIVAL_TIME < = 2100 ) ) OR ( FLIGHT . FROM_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' DENVER ' ) ) AND ( FLIGHT.DEPARTURE_TIME > = 2000 AND FLIGHT.DEPARTURE_TIME < = 2100 ) ) ) ) ;"
+    ],
+    "variables": []
+}

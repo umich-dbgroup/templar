@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how many states are next to major rivers ?", 
+ "sentence-with-vars": "how many states are next to major rivers ?", 
+ "sql": "select count ( distinct river.traverse ) from river where river.length > 750 ;", 
+ "sql-with-vars": "select count ( distinct river.traverse ) from river where river.length > number0 ;", 
+ "variables": [
+ {
+     "name": "number0",
+   	"sentence-value": "",
+     "sql-value": "750"
+   }
+ ]
+}

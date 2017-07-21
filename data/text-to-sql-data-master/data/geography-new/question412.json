@@ -1,0 +1,14 @@
+{
+ "paraphrases": [], 
+ "sentence": "how high is guadalupe peak ?", 
+ "sentence-with-vars": "how high is high_point0 ?", 
+ "sql": "select highlow.highest_elevation from highlow where highlow.highest_point = ' guadalupe peak ' ;", 
+ "sql-with-vars": "select highlow.highest_elevation from highlow where highlow.highest_point = ' high_point0 ' ;", 
+ "variables": [
+  {
+   "name": "high_point0", 
+   "sentence-value": "guadalupe peak", 
+   "sql-value": "guadalupe peak"
+  }
+ ]
+}

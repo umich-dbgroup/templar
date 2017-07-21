@@ -1,0 +1,9 @@
+{
+    "paraphrases": [],
+    "sentence": "show me all the flights arriving in charlotte around five p m next monday please",
+    "sq2": "SELECT DISTINCT  '\"'||v0.flight_id||'\"', '\"'||v1.airport_code||'\"',\n '\"'||v2.city_code||'\"', '\"'||v2.city_name||'\"', v0.arrival_time,\n '\"'||v3.days_code||'\"', '\"'||v4.day_name||'\"', v4.year,\n v4.month_number, v4.day_number FROM flight v0, airport_service v1,\n city v2, days v3, date_day v4 \nWHERE (((v0.to_airport = ANY v1.airport_code) \nAND ((v1.city_code = ANY v2.city_code) \nAND (v2.city_name = 'CHARLOTTE'))) AND (((v0.arrival_time >=  1630) \nAND (v0.arrival_time <=  1730)) AND ((v0.flight_days = ANY v3.days_code) \nAND ((v3.day_name = ANY v4.day_name) \nAND (((v4.year =  1993) AND (v4.month_number =  5)) \nAND (v4.day_number =  24))))));",
+    "sql": [
+        "( SELECT DISTINCT FLIGHT.FLIGHT_ID FROM FLIGHT WHERE ( FLIGHT . TO_AIRPORT IN ( SELECT AIRPORT_SERVICE . AIRPORT_CODE FROM AIRPORT_SERVICE WHERE AIRPORT_SERVICE . CITY_CODE IN ( SELECT CITY . CITY_CODE FROM CITY WHERE CITY.CITY_NAME = ' CHARLOTTE ' ) ) AND ( ( FLIGHT.ARRIVAL_TIME > = 1630 AND FLIGHT.ARRIVAL_TIME < = 1730 ) AND FLIGHT . FLIGHT_DAYS IN ( SELECT DAYS . DAYS_CODE FROM DAYS WHERE DAYS.DAY_NAME IN ( SELECT DATE_DAY.DAY_NAME FROM DATE_DAY WHERE DATE_DAY.YEAR = 1993 AND DATE_DAY.MONTH_NUMBER = 5 AND DATE_DAY.DAY_NUMBER = 24 ) ) ) ) ) ;"
+    ],
+    "variables": []
+}

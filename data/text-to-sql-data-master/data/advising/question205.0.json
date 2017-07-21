@@ -1,0 +1,46 @@
+{
+    "accuracy": [
+        "RUI - 1",
+        "SRS - 1"
+    ],
+    "comments": [
+        "RUI - This is based on the assumption of current semester.",
+        "SRS - Assumes 'next Fall' is FA 2016"
+    ],
+    "helpfulness": [
+        "RUI - 2",
+        "SRS - 2"
+    ],
+    "info": [],
+    "paraphrases": [
+        "After 10 A.M. , what are the upper level electives that are available next fall ?",
+        "After 10:00 A.M. next Fall what upper level electives are available ?",
+        "After 10:00 A.M. , what upper level electives are available next Fall ?",
+        "For next Fall , after 10:00 A.M. , what upper level electives will be available ?",
+        "In next fall after 10 A.M. , which upper level electives are available ?",
+        "Name the upper level electives that are available next fall after 10 A.M..",
+        "Name the upper level electives that are offered next fall after 10 A.M..",
+        "Next Fall what upper level electives will be availabe after 10:00 A.M. ?",
+        "Next Fall which upper level electives will be up for taking any time after 10:00 A.M. ?",
+        "Next fall after 10:00 A.M. what upper level electives are available ?",
+        "Next fall , what upper level electives are available after 10 A.M. ?",
+        "Next fall , what upper level electives are available after 10:00 A.M. ?",
+        "Regarding the upper level electives for next Fall , which ones will be offered after 10:00 in the morning ?",
+        "Regarding upper level electives for next Fall after 10:00 A.M. , which ones will be available ?",
+        "Which upper level electives are available after 10 in the morning , next fall ?"
+    ],
+    "sentence": "What upper level electives are available next Fall after 10:00 A.M. ?",
+    "sentence-with-vars": "What upper level electives are available next semester0 after 10:00 A.M. ?",
+    "sql": [
+        "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME > \"10 : 00 : 00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"FA\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;"
+    ],
+    "sql-with-vars": "SELECT COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER FROM COURSE AS COURSEalias0 , COURSE_OFFERING AS COURSE_OFFERINGalias0 , PROGRAM_COURSE AS PROGRAM_COURSEalias0 , SEMESTER AS SEMESTERalias0 WHERE COURSE_OFFERINGalias0.START_TIME > \"10:00:00\" AND COURSEalias0.COURSE_ID = COURSE_OFFERINGalias0.COURSE_ID AND PROGRAM_COURSEalias0.CATEGORY = \"ULCS\" AND PROGRAM_COURSEalias0.COURSE_ID = COURSEalias0.COURSE_ID AND SEMESTERalias0.SEMESTER = \"semester0\" AND SEMESTERalias0.SEMESTER_ID = COURSE_OFFERINGalias0.SEMESTER AND SEMESTERalias0.YEAR = 2016 GROUP BY COURSEalias0.DEPARTMENT , COURSEalias0.NUMBER ;",
+    "unchecked-paraphrases": [],
+    "variables": [
+        {
+            "name": "semester0",
+            "sentence-value": "Fall",
+            "sql-value": "FA"
+        }
+    ]
+}
