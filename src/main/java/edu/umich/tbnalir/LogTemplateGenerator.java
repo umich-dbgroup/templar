@@ -266,11 +266,12 @@ public class LogTemplateGenerator extends TemplateGenerator {
         List<String> sqls = tg.readQueryLogParsed(filename);
         List<Statement> stmts = tg.parseStatements(sqls);
 
-        // TODO: For testing, perform cross-validation:
-        // tg.performCrossValidation(stmts, FilenameUtils.getBaseName(filename));
+        // For testing, perform cross-validation:
+        tg.performCrossValidation(stmts, FilenameUtils.getBaseName(filename));
 
         // Generate
+        /*
         String basename = FilenameUtils.getBaseName(filename);
-        tg.generateAndSave(stmts, basename);
+        tg.generateAndSave(stmts, basename);*/
     }
 }
