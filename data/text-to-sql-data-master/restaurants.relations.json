@@ -1,0 +1,68 @@
+{
+    "restaurant": {
+        "name": "restaurant",
+        "type": "relation",
+        "attributes": {
+            "restaurant_id": {
+                "name": "restaurant_id",
+                "type": "int"
+            },
+            "name": {
+                "name": "name",
+                "type": "varchar"
+            },
+            "food_type": {
+                "name": "food_type",
+                "type": "varchar"
+            },
+            "city_name": {
+                "name": "city_name",
+                "type": "varchar"
+            },
+            "rating": {
+                "name": "rating",
+                "type": "decimal"
+            }
+        }
+    },
+    "location": {
+        "name": "location",
+        "type": "relation",
+        "attributes": {
+            "restaurant_id": {
+                "name": "restaurant_id",
+                "type": "int"
+            },
+            "house_number": {
+                "name": "house_number",
+                "type": "int"
+            },
+            "street_name": {
+                "name": "street_name",
+                "type": "varchar"
+            },
+            "city_name": {
+                "name": "city_name",
+                "type": "varchar"
+            }
+        }
+    },
+    "geographic": {
+        "name": "geographic",
+        "type": "relation",
+        "attributes": {
+            "city_name": {
+                "name": "city_name",
+                "type": "int"
+            },
+            "county": {
+                "name": "county",
+                "type": "varchar"
+            },
+            "region": {
+                "name": "region",
+                "type": "varchar"
+            }
+        }
+    }
+}

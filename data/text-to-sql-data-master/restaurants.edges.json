@@ -1,0 +1,20 @@
+[
+    {
+        "foreignAttribute": "city_name",
+        "foreignRelation": "restaurant",
+        "primaryAttribute": "city_name",
+        "primaryRelation": "geographic"
+    },
+    {
+        "foreignAttribute": "restaurant_id",
+        "foreignRelation": "location",
+        "primaryAttribute": "restaurant_id",
+        "primaryRelation": "restaurant"
+    },
+    {
+        "foreignAttribute": "city_name",
+        "foreignRelation": "location",
+        "primaryAttribute": "city_name",
+        "primaryRelation": "geographic"
+    }
+]
