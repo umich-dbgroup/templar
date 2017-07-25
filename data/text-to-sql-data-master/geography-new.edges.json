@@ -1,0 +1,50 @@
+[
+    {
+        "foreignAttribute": "capital",
+        "foreignRelation": "state",
+        "primaryAttribute": "city_name",
+        "primaryRelation": "city"
+    },
+    {
+        "foreignAttribute": "state_name",
+        "foreignRelation": "city",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "traverse",
+        "foreignRelation": "river",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "state_name",
+        "foreignRelation": "border_info",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "border",
+        "foreignRelation": "border_info",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "state_name",
+        "foreignRelation": "highlow",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "state_name",
+        "foreignRelation": "mountain",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    },
+    {
+        "foreignAttribute": "state_name",
+        "foreignRelation": "lake",
+        "primaryAttribute": "state_name",
+        "primaryRelation": "state"
+    }
+]

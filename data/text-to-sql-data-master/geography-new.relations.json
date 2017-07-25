@@ -1,0 +1,136 @@
+{
+    "state": {
+        "name": "state",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "capital": {
+                "name": "capital",
+                "type": "varchar"
+            },
+            "population": {
+                "name": "population",
+                "type": "int"
+            },
+            "area": {
+                "name": "area",
+                "type": "int"
+            },
+            "density": {
+                "name": "density",
+                "type": "int"
+            }
+        }
+    },
+    "city": {
+        "name": "city",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "city_name": {
+                "name": "city_name",
+                "type": "varchar"
+            },
+            "population": {
+                "name": "population",
+                "type": "int"
+            }
+        }
+    },
+    "river": {
+        "name": "river",
+        "type": "relation",
+        "attributes": {
+            "river_name": {
+                "name": "river_name",
+                "type": "varchar"
+            },
+            "length": {
+                "name": "length",
+                "type": "int"
+            },
+            "traverse": {
+                "name": "traverse",
+                "type": "varchar"
+            }
+        }
+    },
+    "border_info": {
+        "name": "border_info",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "border": {
+                "name": "border",
+                "type": "varchar"
+            }
+        }
+    },
+    "highlow": {
+        "name": "highlow",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "highest_point": {
+                "name": "highest_point",
+                "type": "varchar"
+            },
+            "highest_elevation": {
+                "name": "highest_elevation",
+                "type": "int"
+            },
+            "lowest_point": {
+                "name": "lowest_point",
+                "type": "varchar"
+            },
+            "lowest_elevation": {
+                "name": "lowest_elevation",
+                "type": "int"
+            }
+        }
+    },
+    "mountain": {
+        "name": "mountain",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "mountain_name": {
+                "name": "mountain_name",
+                "type": "varchar"
+            },
+            "mountain_altitude": {
+                "name": "mountain_altitude",
+                "type": "int"
+            }
+        }
+    },
+    "lake": {
+        "name": "lake",
+        "type": "relation",
+        "attributes": {
+            "state_name": {
+                "name": "state_name",
+                "type": "varchar"
+            },
+            "lake_name": {
+                "name": "lake_name",
+                "type": "varchar"
+            }
+        }
+    }
+}
