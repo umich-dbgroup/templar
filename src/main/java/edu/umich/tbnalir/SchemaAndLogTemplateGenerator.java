@@ -156,106 +156,142 @@ public class SchemaAndLogTemplateGenerator {
         return templates;
     }
 
-    public static void main(String[] args) {
-        if (args.length < 8) {
-            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <template-file-name> <error-file-name>");
-            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7" +
-                    " data/sdss/final/bestdr7_0.05.parsed 0 pred_proj 50p random" +
-                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.tmpl" +
-                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
+    public static void performCrossValidation(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates) {
+        // Split into n partitions for cross validation
+        int cvSplits = 4;
+        int partitionSize = stmts.size() / cvSplits;
+        int remainder = stmts.size() % cvSplits;
+
+        // Shuffle partitions so cross-validation is randomized
+        Collections.shuffle(stmts);
+
+        List<List<Statement>> cvPartitions = new ArrayList<>();
+        int curIndex = 0;
+        for (int i = 0; i < cvSplits; i++) {
+            int fromIndex = curIndex;
+            int toIndex = fromIndex + partitionSize;
+            if (remainder > i) {
+                toIndex += 1;
+            }
+            cvPartitions.add(stmts.subList(fromIndex, toIndex));
+            curIndex = toIndex;
+        }
+
+        // Cross-validate for each set
+        Log.info("Performing " + cvSplits + "-fold cross-validation...");
+
+        Log.info("===== Legend =====");
+        Log.info("1 <Abs. Constants> / 2 <Abs. Constants/Comparison Ops> / 3 <Abs. Full Predicates>");
+        Log.info("a <Don't Abs. Projections> / b <Abs. Projections>");
+
+        for (int i = 0; i < cvPartitions.size(); i++) {
+            List<Statement> templateGenSet = new ArrayList<>();
+            for (int j = 0; j < cvPartitions.size(); j++) {
+                if (j != i) {
+                    templateGenSet.addAll(cvPartitions.get(j));
+                }
+            }
+            List<Statement> coverageTestSet = cvPartitions.get(i);
+
+            // Only print out files for templates for first fold
+            Set<String> constTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantTemplate, null);
+            constTmpl.addAll(templates);
+            List<String> constTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantTemplate);
+            float constCoverage = (float) ltg.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
+
+            Set<String> constProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantProjectionTemplate,
+                    null);
+            constProjTmpl.addAll(templates);
+            List<String> constProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantProjectionTemplate);
+            float constProjCoverage = (float) ltg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
+
+            Set<String> compTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonTemplate, null);
+            compTmpl.addAll(templates);
+            List<String> compTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonTemplate);
+            float compCoverage = (float) ltg.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
+
+            Set<String> compProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonProjectionTemplate, null);
+            compProjTmpl.addAll(templates);
+            List<String> compProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonProjectionTemplate);
+            float compProjCoverage = (float) ltg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
+
+            Set<String> predTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateTemplate, null);
+            predTmpl.addAll(templates);
+            List<String> predTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateTemplate);
+            float predCoverage = (float) ltg.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
+
+            Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate, null);
+            predProjTmpl.addAll(templates);
+            List<String> predProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateProjectionTemplate);
+            float predProjCoverage = (float) ltg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
+
+            Log.info("--- Fold " + i + " ---");
+            Log.info("Template Gen. Set Size: " + templateGenSet.size());
+            Log.info("Coverage Test Set Size: " + coverageTestSet.size());
+            Log.info("           \t1a\t1b\t2a\t2b\t3a\t3b");
+            Log.info("Coverage %:\t"
+                    + String.format("%.1f", constCoverage) + "%\t"
+                    + String.format("%.1f", constProjCoverage) + "%\t"
+                    + String.format("%.1f", compCoverage) + "%\t"
+                    + String.format("%.1f", compProjCoverage) + "%\t"
+                    + String.format("%.1f", predCoverage) + "%\t"
+                    + String.format("%.1f", predProjCoverage) + "%\t");
+            Log.info("Tmpl. Count:\t"
+                    + constTmpl.size() + "\t"
+                    + constProjTmpl.size() + "\t"
+                    + compTmpl.size() + "\t"
+                    + compProjTmpl.size() + "\t"
+                    + predTmpl.size() + "\t"
+                    + predProjTmpl.size() + "\t\n");
+        }
+    }
+
+    public static void performFixedTestSet(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates,
+                             Float logPercent, Integer numLogQueries, boolean randomizeLogOrder,
+                                           String templateFileName, String errorFileName) {
+        if (randomizeLogOrder) Collections.shuffle(stmts);    // Randomize order
+
+        // Separate generation segment of log from test segment of log
+        List<Statement> generationQueryLog = null;
+        if (logPercent != null) {
+            double generationSize = Math.floor(logPercent * stmts.size());
+            generationQueryLog = stmts.subList(0, (int) generationSize);
+        } else if (numLogQueries != null) {
+            generationQueryLog = stmts.subList(0, numLogQueries);
+        } else {
+            Log.error("Need to specify either log % number or number of queries to use from log.");
             System.exit(1);
         }
 
-        String prefix = args[0];
-        String relationsFile = prefix + ".relations.json";
-        String edgesFile = prefix + ".edges.json";
-
-        String queryLogFilename = args[1];
-
-        Integer joinLevel = Integer.valueOf(args[2]);
-        String[] logTemplateLevels = args[3].split(",");
-
-        Float logPercent = null;
-        Integer numLogQueries = null;
-        if (args[4].contains("p")) {
-            logPercent = (float) Integer.valueOf(args[4].replaceAll("p", "")) / 100;
-        } else {
-            numLogQueries = Integer.valueOf(args[4]);
-        }
-
-        String randomArg = args[5];
-        boolean randomizeLogOrder = randomArg.equals("random");
-
-        String templateFileName = args[6];
-        String errorFileName = args[7];
-
+        // Fix test query log as last 50% no matter what
+        double halfLog = Math.floor(0.5 * stmts.size());
+        List<Statement> testQueryLog = stmts.subList((int) halfLog, stmts.size() - 1);
 
         Log.info("==============================");
-        Log.info("Creating templates from schema...");
-        SchemaTemplateGenerator stg = new SchemaTemplateGenerator(relationsFile, edgesFile, joinLevel);
-        Set<String> templates = stg.generate();
+        Log.info("Creating templates from log...");
+        templates.addAll(ltg.generate(generationQueryLog));
         Log.info("==============================\n");
 
-        try {
-            LogTemplateGenerator ltg = new LogTemplateGenerator(logTemplateLevels);
-
-            Log.info("==============================");
-            Log.info("Loading log into memory...");
-            List<String> queryLogSql = ltg.readQueryLogParsed(queryLogFilename);
-            Log.info("Parsing statements...");
-            List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
-            Log.info("==============================\n");
-
-            if (randomizeLogOrder) Collections.shuffle(queryLogStmts);    // Randomize order
-
-            // Used for testing generateSubsetExpansionJoinsAll
             /*
-            List<String> queryLogSql = new ArrayList<>();
-            queryLogSql.add("SELECT str(p.ra, 13, 8) AS ra, str(p.dec, 13, 8) AS dec, p.dered_r, ISNULL(str(s.z, 6, 4), -9999) AS z, ISNULL(str(pz1.z, 6, 4), -9999) AS pzz1, ISNULL(str(pz2.photozcc2, 6, 4), -9999) AS pzz2 FROM BESTDR7..Galaxy AS p LEFT OUTER JOIN SpecObj AS s ON s.bestObjID = p.objID LEFT OUTER JOIN Photoz AS pz1 ON pz1.ObjID = p.objID LEFT OUTER JOIN Photoz2 AS pz2 ON pz2.ObjID = p.objID LEFT OUTER JOIN runqa");
-            List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
-            Set<String> tmpl = generateSubsetExpansionJoinsAll(queryLogStmts, stg);
-            for (String t : tmpl) {
-                System.out.println(t);
-            }*/
-
-            // Separate generation segment of log from test segment of log
-            List<Statement> generationQueryLog = null;
-            if (logPercent != null) {
-                double generationSize = Math.floor(logPercent * queryLogStmts.size());
-                generationQueryLog = queryLogStmts.subList(0, (int) generationSize);
-            } else if (numLogQueries != null) {
-                generationQueryLog = queryLogStmts.subList(0, numLogQueries);
-            } else {
-                Log.error("Need to specify either log % number or number of queries to use from log.");
-                System.exit(1);
-            }
-
-            // Fix test query log as last 50% no matter what
-            double halfLog = Math.floor(0.5 * queryLogStmts.size());
-            List<Statement> testQueryLog = queryLogStmts.subList((int) halfLog, queryLogStmts.size() - 1);
-
-            Log.info("==============================");
-            Log.info("Creating templates from log...");
-            templates.addAll(ltg.generate(generationQueryLog));
-            Log.info("==============================\n");
-
             Log.info("==============================");
             Log.info("Creating subset expansion join templates from logs...");
             templates.addAll(generateSubsetExpansionJoinsAll(generationQueryLog, stg));
             Log.info("==============================\n");
+            */
 
-            Log.info("==============================");
-            Log.info("Measuring coverage...");
-            int covered = 0;
-            for (Statement stmt : testQueryLog) {
-                if (isCovered(ltg, stmt, templates)) covered++;
-            }
+        Log.info("==============================");
+        Log.info("Measuring coverage...");
+        int covered = 0;
+        for (Statement stmt : testQueryLog) {
+            if (isCovered(ltg, stmt, templates)) covered++;
+        }
 
-            float coverage = (float) covered / testQueryLog.size() * 100;
-            Log.info("Number of templates: " + templates.size());
-            Log.info(String.format("Coverage: %d / %d (%.1f)", covered, testQueryLog.size(), coverage) + "%");
-            Log.info("==============================\n");
+        float coverage = (float) covered / testQueryLog.size() * 100;
+        Log.info("Number of templates: " + templates.size());
+        Log.info(String.format("Coverage: %d / %d (%.1f)", covered, testQueryLog.size(), coverage) + "%");
+        Log.info("==============================\n");
 
+        try {
             PrintWriter templateWriter = new PrintWriter(templateFileName, "UTF-8");
 
             List<String> templateList = new ArrayList<>(templates);
@@ -280,6 +316,79 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("Templates generated were printed to <" + templateFileName + ">.");
             Log.info("Templates not covered were printed to <" + errorFileName + ">.");
             Log.info("==============================");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 8 && !args[3].equals("cv")) {
+            System.err.println("Usage: <schema-prefix> <query-log-parsed> <join-level> <log-template-levels> <% of log used (50p)|number of queries> <random|temporal> <template-file-name> <error-file-name>");
+            System.err.println("Example: SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7" +
+                    " data/sdss/final/bestdr7_0.05.parsed 0 pred_proj 50p random" +
+                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.tmpl" +
+                    " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
+            System.err.println("--- OR ---");
+            System.err.println("Usage (for cross-validation): <schema-prefix> <query-log-parsed> <join-level> cv");
+            System.exit(1);
+        }
+
+        String prefix = args[0];
+        String relationsFile = prefix + ".relations.json";
+        String edgesFile = prefix + ".edges.json";
+
+        String queryLogFilename = args[1];
+
+        Integer joinLevel = Integer.valueOf(args[2]);
+
+        String[] logTemplateLevels;
+        Float logPercent = null;
+        Integer numLogQueries = null;
+        Boolean randomizeLogOrder = false;
+        String templateFileName = null;
+        String errorFileName = null;
+
+        if (!args[3].equals("cv")) {
+            logTemplateLevels = args[3].split(",");
+
+            if (args[4].contains("p")) {
+                logPercent = (float) Integer.valueOf(args[4].replaceAll("p", "")) / 100;
+            } else {
+                numLogQueries = Integer.valueOf(args[4]);
+            }
+
+            String randomArg = args[5];
+            randomizeLogOrder = randomArg.equals("random");
+
+            templateFileName = args[6];
+            errorFileName = args[7];
+        } else {
+            logTemplateLevels = "const,const_proj,comp,comp_proj,pred,pred_proj".split(",");
+        }
+
+
+        Log.info("==============================");
+        Log.info("Creating templates from schema...");
+        SchemaTemplateGenerator stg = new SchemaTemplateGenerator(relationsFile, edgesFile, joinLevel);
+        Set<String> templates = stg.generate();
+        Log.info("==============================\n");
+
+        try {
+            LogTemplateGenerator ltg = new LogTemplateGenerator(logTemplateLevels);
+
+            Log.info("==============================");
+            Log.info("Loading log into memory...");
+            List<String> queryLogSql = ltg.readQueryLogParsed(queryLogFilename);
+            Log.info("Parsing statements...");
+            List<Statement> queryLogStmts = ltg.parseStatements(queryLogSql);
+            Log.info("==============================\n");
+
+            if (args[3].equals("cv")) {
+                performCrossValidation(ltg, queryLogStmts, templates);
+            } else {
+                performFixedTestSet(ltg, queryLogStmts, templates, logPercent, numLogQueries,
+                        randomizeLogOrder, templateFileName, errorFileName);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
