@@ -7,6 +7,7 @@ import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -156,7 +157,8 @@ public class SchemaAndLogTemplateGenerator {
         return templates;
     }
 
-    public static void performCrossValidation(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates) {
+    public static void performCrossValidation(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates,
+                                              String basename) {
         // Split into n partitions for cross validation
         int cvSplits = 4;
         int partitionSize = stmts.size() / cvSplits;
@@ -193,34 +195,50 @@ public class SchemaAndLogTemplateGenerator {
             }
             List<Statement> coverageTestSet = cvPartitions.get(i);
 
+            String constFileName = null;
+            String constProjFileName = null;
+            String compFileName = null;
+            String compProjFileName = null;
+            String predFileName = null;
+            String predProjFileName = null;
+            if (i == 0) {
+                constFileName = basename + "_const.csv";
+                constProjFileName = basename + "_const_proj.csv";
+                compFileName = basename + "_comp.csv";
+                compProjFileName = basename + "_comp_proj.csv";
+                predFileName = basename + "_pred.csv";
+                predProjFileName = basename + "_pred_proj.csv";
+            }
             // Only print out files for templates for first fold
-            Set<String> constTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantTemplate, null);
+            Set<String> constTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantTemplate, constFileName);
             constTmpl.addAll(templates);
             List<String> constTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantTemplate);
             float constCoverage = (float) ltg.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
 
             Set<String> constProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantProjectionTemplate,
-                    null);
+                    constProjFileName);
             constProjTmpl.addAll(templates);
             List<String> constProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantProjectionTemplate);
             float constProjCoverage = (float) ltg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> compTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonTemplate, null);
+            Set<String> compTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonTemplate, compFileName);
             compTmpl.addAll(templates);
             List<String> compTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonTemplate);
             float compCoverage = (float) ltg.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
 
-            Set<String> compProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonProjectionTemplate, null);
+            Set<String> compProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonProjectionTemplate,
+                    compProjFileName);
             compProjTmpl.addAll(templates);
             List<String> compProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonProjectionTemplate);
             float compProjCoverage = (float) ltg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> predTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateTemplate, null);
+            Set<String> predTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateTemplate, predFileName);
             predTmpl.addAll(templates);
             List<String> predTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateTemplate);
             float predCoverage = (float) ltg.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
 
-            Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate, null);
+            Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate,
+                    predProjFileName);
             predProjTmpl.addAll(templates);
             List<String> predProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) ltg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
@@ -384,7 +402,7 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("==============================\n");
 
             if (args[3].equals("cv")) {
-                performCrossValidation(ltg, queryLogStmts, templates);
+                performCrossValidation(ltg, queryLogStmts, templates, FilenameUtils.getBaseName(prefix));
             } else {
                 performFixedTestSet(ltg, queryLogStmts, templates, logPercent, numLogQueries,
                         randomizeLogOrder, templateFileName, errorFileName);
