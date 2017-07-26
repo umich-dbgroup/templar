@@ -3,6 +3,7 @@ package edu.umich.tbnalir.sql;
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.relational.*;
+import net.sf.jsqlparser.statement.select.SubSelect;
 
 
 /**
@@ -25,6 +26,11 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
                 || expr instanceof TimeValue || expr instanceof DateTimeLiteralExpression
                 || expr instanceof SignedExpression || expr instanceof Function) {
             sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
+        } else if (expr instanceof SubSelect) {
+            SubSelect subSelect = (SubSelect) expr;
+            ComparisonRemovalExprDeParser subParser = new ComparisonRemovalExprDeParser();
+            subSelect.accept((ExpressionVisitor) subParser);
+            sb.append(subParser.getBuffer());
         } else {
             sb.append(expr.toString());
         }
