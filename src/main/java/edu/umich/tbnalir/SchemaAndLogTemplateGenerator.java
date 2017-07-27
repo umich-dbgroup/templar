@@ -235,7 +235,7 @@ public class SchemaAndLogTemplateGenerator {
 
             Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate,
                     predProjFileName);
-            predProjTmpl.addAll(templates); // Add schema templates only for this level (since they are pred_proj by nature)
+            // predProjTmpl.addAll(templates); // Add schema templates only for this level (since they are pred_proj by nature)
             List<String> predProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) ltg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
