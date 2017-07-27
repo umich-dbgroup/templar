@@ -41,27 +41,27 @@
 00:00  INFO: Template Gen. Set Size: 15
 00:00  INFO: Coverage Test Set Size: 6
 00:00  INFO:            	1a	1b	2a	2b	3a	3b
-00:00  INFO: Coverage %:	0.0%	16.7%	0.0%	16.7%	100.0%	100.0%	
-00:00  INFO: Tmpl. Count:	111	110	111	110	100	97	
+00:00  INFO: Coverage %:	0.0%	0.0%	0.0%	0.0%	100.0%	100.0%	
+00:00  INFO: Tmpl. Count:	15	14	15	14	4	97	
 
 00:00  INFO: --- Fold 1 ---
 00:00  INFO: Template Gen. Set Size: 16
 00:00  INFO: Coverage Test Set Size: 5
 00:00  INFO:            	1a	1b	2a	2b	3a	3b
-00:00  INFO: Coverage %:	0.0%	40.0%	0.0%	40.0%	100.0%	100.0%	
-00:00  INFO: Tmpl. Count:	112	112	112	112	100	97	
+00:00  INFO: Coverage %:	0.0%	0.0%	0.0%	0.0%	100.0%	100.0%	
+00:00  INFO: Tmpl. Count:	16	14	16	14	4	97	
 
 00:00  INFO: --- Fold 2 ---
 00:00  INFO: Template Gen. Set Size: 16
 00:00  INFO: Coverage Test Set Size: 5
 00:00  INFO:            	1a	1b	2a	2b	3a	3b
-00:00  INFO: Coverage %:	0.0%	20.0%	0.0%	20.0%	100.0%	100.0%	
-00:00  INFO: Tmpl. Count:	112	111	112	111	100	97	
+00:00  INFO: Coverage %:	0.0%	0.0%	0.0%	0.0%	100.0%	100.0%	
+00:00  INFO: Tmpl. Count:	16	14	16	14	4	97	
 
 00:00  INFO: --- Fold 3 ---
 00:00  INFO: Template Gen. Set Size: 16
 00:00  INFO: Coverage Test Set Size: 5
 00:00  INFO:            	1a	1b	2a	2b	3a	3b
 00:00  INFO: Coverage %:	0.0%	0.0%	0.0%	0.0%	100.0%	100.0%	
-00:00  INFO: Tmpl. Count:	112	110	112	110	100	97	
+00:00  INFO: Tmpl. Count:	16	15	16	15	4	97	
 
