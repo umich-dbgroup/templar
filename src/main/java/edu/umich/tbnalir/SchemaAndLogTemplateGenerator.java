@@ -165,6 +165,7 @@ public class SchemaAndLogTemplateGenerator {
         int remainder = stmts.size() % cvSplits;
 
         // Shuffle partitions so cross-validation is randomized
+        Collections.sort(stmts, (o1, o2) -> o1.toString().compareTo(o2.toString()));
         Collections.shuffle(stmts, new Random(randomSeed));
 
         List<List<Statement>> cvPartitions = new ArrayList<>();
