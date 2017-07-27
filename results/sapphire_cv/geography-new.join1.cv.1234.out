@@ -1,0 +1,67 @@
+00:00  INFO: ==============================
+00:00  INFO: Creating templates from schema...
+00:00  INFO: ==============================
+00:00  INFO: Reading relations info...
+00:00  INFO: Read 7 relations/views/functions.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Reading edges info...
+00:00  INFO: Read 8 FK-PK relationships.
+00:00  INFO: Read 8 PK-FK relationships.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Generating templates using schema for join level: 1
+00:00  INFO: Done generating 208 templates.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Loading log into memory...
+00:00  INFO: Parsing statements...
+00:00  INFO: ===== Parsing Results =====
+00:00  INFO: Total Queries: 853
+00:00  INFO: Correctly Parsed: 852/853
+
+00:00  INFO: ==============================
+
+00:00  INFO: Performing 4-fold cross-validation...
+00:00  INFO: ===== Legend =====
+00:00  INFO: 1 <Abs. Constants> / 2 <Abs. Constants/Comparison Ops> / 3 <Abs. Full Predicates>
+00:00  INFO: a <Don't Abs. Projections> / b <Abs. Projections>
+00:00  INFO: Saving geography-new_const.csv...
+00:01  INFO: Saving geography-new_const_proj.csv...
+00:01  INFO: Saving geography-new_comp.csv...
+00:01  INFO: Saving geography-new_comp_proj.csv...
+00:01  INFO: Saving geography-new_pred.csv...
+00:01  INFO: Saving geography-new_pred_proj.csv...
+00:01  INFO: --- Fold 0 ---
+00:01  INFO: Template Gen. Set Size: 639
+00:01  INFO: Coverage Test Set Size: 213
+00:01  INFO:            	1a	1b	2a	2b	3a	3b
+00:01  INFO: Coverage %:	82.2%	88.3%	84.0%	89.2%	93.9%	98.1%	
+00:01  INFO: Tmpl. Count:	397	311	372	302	286	218	
+
+00:01  INFO: --- Fold 1 ---
+00:01  INFO: Template Gen. Set Size: 639
+00:01  INFO: Coverage Test Set Size: 213
+00:01  INFO:            	1a	1b	2a	2b	3a	3b
+00:01  INFO: Coverage %:	84.5%	92.0%	88.7%	94.4%	94.8%	99.1%	
+00:01  INFO: Tmpl. Count:	400	318	378	311	287	220	
+
+00:01  INFO: --- Fold 2 ---
+00:01  INFO: Template Gen. Set Size: 639
+00:01  INFO: Coverage Test Set Size: 213
+00:01  INFO:            	1a	1b	2a	2b	3a	3b
+00:01  INFO: Coverage %:	76.5%	86.4%	82.2%	87.3%	93.0%	99.1%	
+00:01  INFO: Tmpl. Count:	388	309	368	300	284	220	
+
+00:01  INFO: --- Fold 3 ---
+00:01  INFO: Template Gen. Set Size: 639
+00:01  INFO: Coverage Test Set Size: 213
+00:01  INFO:            	1a	1b	2a	2b	3a	3b
+00:01  INFO: Coverage %:	83.6%	92.5%	85.9%	93.4%	94.4%	98.6%	
+00:01  INFO: Tmpl. Count:	399	319	375	310	286	219	
+
