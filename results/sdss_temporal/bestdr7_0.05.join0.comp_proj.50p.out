@@ -1,0 +1,82 @@
+00:00  INFO: ==============================
+00:00  INFO: Creating templates from schema...
+00:00  INFO: ==============================
+00:00  INFO: Reading relations info...
+00:00  INFO: Read 370 relations/views/functions.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Reading edges info...
+00:00 ERROR: Could not find attribute <filegroupname> in relation <filegroupmap>
+00:00 ERROR: Could not find attribute <name> in relation <indexmap>
+00:00 ERROR: Could not find attribute <objid> in relation <match>
+00:00 ERROR: Could not find attribute <objid> in relation <match>
+00:00 ERROR: Could not find attribute <regionid> in relation <region2box>
+00:00  INFO: Read 4558 FK-PK relationships.
+00:00  INFO: Read 4558 PK-FK relationships.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Generating templates using schema for join level: 0
+00:00  INFO: Done generating 5920 templates.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Loading log into memory...
+00:04  INFO: Parsing statements...
+net.sf.jsqlparser.parser.TokenMgrError: Lexical error at line 1, column 140.  Encountered: <EOF> after : ""
+	at net.sf.jsqlparser.parser.CCJSqlParserTokenManager.getNextToken(CCJSqlParserTokenManager.java:3087)
+	at net.sf.jsqlparser.parser.CCJSqlParser.jj_ntk_f(CCJSqlParser.java:16297)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectItem(CCJSqlParser.java:2882)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectItemsList(CCJSqlParser.java:2818)
+	at net.sf.jsqlparser.parser.CCJSqlParser.PlainSelect(CCJSqlParser.java:2431)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SetOperationList(CCJSqlParser.java:2579)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectBody(CCJSqlParser.java:2336)
+	at net.sf.jsqlparser.parser.CCJSqlParser.Select(CCJSqlParser.java:2328)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SingleStatement(CCJSqlParser.java:129)
+	at net.sf.jsqlparser.parser.CCJSqlParser.Statement(CCJSqlParser.java:80)
+	at net.sf.jsqlparser.parser.CCJSqlParserUtil.parse(CCJSqlParserUtil.java:54)
+	at edu.umich.tbnalir.LogTemplateGenerator.lambda$getParserRunnable$0(LogTemplateGenerator.java:144)
+	at edu.umich.tbnalir.LogTemplateGenerator$$Lambda$2/60830820.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+net.sf.jsqlparser.parser.TokenMgrError: Lexical error at line 1, column 140.  Encountered: <EOF> after : ""
+	at net.sf.jsqlparser.parser.CCJSqlParserTokenManager.getNextToken(CCJSqlParserTokenManager.java:3087)
+	at net.sf.jsqlparser.parser.CCJSqlParser.jj_ntk_f(CCJSqlParser.java:16297)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectItem(CCJSqlParser.java:2882)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectItemsList(CCJSqlParser.java:2818)
+	at net.sf.jsqlparser.parser.CCJSqlParser.PlainSelect(CCJSqlParser.java:2431)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SetOperationList(CCJSqlParser.java:2579)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SelectBody(CCJSqlParser.java:2336)
+	at net.sf.jsqlparser.parser.CCJSqlParser.Select(CCJSqlParser.java:2328)
+	at net.sf.jsqlparser.parser.CCJSqlParser.SingleStatement(CCJSqlParser.java:129)
+	at net.sf.jsqlparser.parser.CCJSqlParser.Statement(CCJSqlParser.java:80)
+	at net.sf.jsqlparser.parser.CCJSqlParserUtil.parse(CCJSqlParserUtil.java:54)
+	at edu.umich.tbnalir.LogTemplateGenerator.lambda$getParserRunnable$0(LogTemplateGenerator.java:144)
+	at edu.umich.tbnalir.LogTemplateGenerator$$Lambda$2/60830820.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+07:40  INFO: ===== Parsing Results =====
+07:40  INFO: Total Queries: 1688976
+07:40  INFO: Correctly Parsed: 1688972/1688976
+
+07:41  INFO: ==============================
+
+07:41  INFO: ==============================
+07:41  INFO: Creating templates from log...
+07:54  INFO: ==============================
+
+07:54  INFO: ==============================
+07:54  INFO: Measuring coverage...
+08:10  INFO: Number of templates: 9339
+08:10  INFO: Coverage: 553800 / 844485 (65.6)%
+08:10  INFO: ==============================
+

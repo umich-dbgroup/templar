@@ -1,0 +1,981 @@
+135516	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias left join photoz as #photoz_alias left join photoz2 as #photoz2_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+7885	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, photoz as #photoz_alias where #predicate 
+3449	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias where #predicate 
+2986	select #projection from (select #projection from fgetnearbyobjeq(#num,#num,#num), field as #field_alias, photoobjall as #photoobjall_alias where #predicate ) q left join specobjall as #specobjall_alias, neighbors as #neighbors_alias where #predicate  group by q.objid, q.ra, q.dec, q.distance, q.run, q.rerun, q.camcol, q.field, q.obj, q.colc_u, q.colcerr_u, q.rowc_u, q.rowcerr_u, q.colc_g, q.colcerr_g, q.rowc_g, q.rowcerr_g, q.colc_r, q.colcerr_r, q.rowc_r, q.rowcerr_r, q.colc_i, q.colcerr_i, q.rowc_i, q.rowcerr_i, q.colc_z, q.colcerr_z, q.rowc_z, q.rowcerr_z, q.psfmag_u, q.psfmag_g, q.psfmag_r, q.psfmag_i, q.psfmag_z, q.aa_u, q.aa_g, q.aa_r, q.aa_i, q.aa_z, q.kk_u, q.kk_g, q.kk_r, q.kk_i, q.kk_z, q.airmass_u, q.airmass_g, q.airmass_r, q.airmass_i, q.airmass_z, q.extinction_u, q.extinction_g, q.extinction_r, q.extinction_i, q.extinction_z, q.mrrcc_u, q.mrrcc_g, q.mrrcc_r, q.mrrcc_i, q.mrrcc_z order by #order
+1355	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias left join photoz as #photoz_alias left join photoz2 as #photoz2_alias where #predicate 
+1149	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, propermotions as #propermotions_alias order by #order
+770	select #projection from _upload as #_upload_alias, photoprimary as #photoprimary_alias where #predicate 
+744	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias left join specobjall as #specobjall_alias, photoobjall as #photoobjall_alias left join photoz as #photoz_alias, photoobjall as #photoobjall_alias left join maskedobject as #maskedobject_alias where #predicate 
+440	select #projection from star as #star_alias left join specobj as #specobj_alias where #predicate 
+372	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoz as #photoz_alias where #predicate 
+344	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, photoz2 as #photoz2_alias where #predicate 
+339	select #projection from field as #field_alias, galaxy as #galaxy_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, segment as #segment_alias where #predicate 
+299	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+282	select #projection from photoobjall as #photoobjall_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num), photoz as #photoz_alias where #predicate 
+269	select #projection from fgetnearbyobjeq(#num,#num,#num), specphotoall as #specphotoall_alias where #predicate 
+192	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate 
+170	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, specphotoall as #specphotoall_alias where #predicate 
+163	select top #top #projection from specobjall as #specobjall_alias, specphotoall as #specphotoall_alias, sppparams as #sppparams_alias where #predicate  order by #order
+147	select #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, specobjall as #specobjall_alias where #predicate  order by #order
+125	select #projection from field as #field_alias, galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate  order by #order
+120	select #projection from field as #field_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+114	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias where #predicate  order by #order
+89	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specobjall as #specobjall_alias where #predicate 
+64	select top #top #projection from field as #field_alias, galaxy as #galaxy_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, segment as #segment_alias where #predicate 
+54	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, specobj as #specobj_alias where #predicate 
+54	select top #top #projection from specobjall as #specobjall_alias, specphoto as #specphoto_alias, sppparams as #sppparams_alias where #predicate  order by #order
+41	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, specobj as #specobj_alias where #predicate 
+39	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate 
+39	select #projection from fgetnearbyobjalleq(#num,#num,#num), specphoto as #specphoto_alias where #predicate 
+38	select #projection from _upload as #_upload_alias, specphotoall as #specphotoall_alias where #predicate 
+36	select #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+30	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoobjall as #photoobjall_alias, photoz as #photoz_alias where #predicate 
+28	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoz2 as #photoz2_alias where #predicate 
+28	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoobjall as #photoobjall_alias where #predicate 
+28	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoz as #photoz_alias where #predicate  order by #order
+27	select #projection from (select *, row_number() over (order by ra asc) as row from specphotoall where type = 3 and modelmag_u >= 0 and modelmag_g >= 0 and modelmag_r >= 0 and modelmag_i >= 0 and modelmag_z >= 0) as photometry where #predicate 
+26	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoz2 as #photoz2_alias where #predicate  order by #order
+26	select #projection from specline as #specline_alias, speclineindex as #speclineindex_alias, specphoto as #specphoto_alias where #predicate 
+20	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias where #predicate  group by p.ra, p.dec, p.objid
+19	select #projection from fgetnearbyobjeq(#num,#num,#num), specobj as #specobj_alias where #predicate 
+18	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), specobj as #specobj_alias, star as #star_alias where #predicate 
+17	select #projection from specobjall as #specobjall_alias left join platex as #platex_alias where #predicate 
+17	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, photoobjall as #photoobjall_alias where #predicate  order by #order
+16	select #projection from photoobj as #photoobj_alias, platex as #platex_alias, specobj as #specobj_alias where #predicate 
+15	select #projection from fgetnearbyframeeq(#num,#num,#num,#num), field as #field_alias where #predicate  group by run
+14	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, speclineindex as #speclineindex_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias
+14	select #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate 
+14	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+14	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+13	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias order by #order
+12	select #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias, fgetobjfromrect(#num,#num,#num,#num) where #predicate 
+11	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+11	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+10	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+10	select top #top #projection from photoobj as #photoobj_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+10	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoz as #photoz_alias where #predicate  order by #order
+9	select #projection from photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+9	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, star as #star_alias where #predicate 
+9	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+9	select top #top #projection from galaxy as #galaxy_alias left join specobjall as #specobjall_alias where #predicate  order by #order
+8	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specobjall as #specobjall_alias where #predicate  order by #order
+8	select #projection from specobjall as #specobjall_alias left join photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias where #predicate 
+8	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+8	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias where #predicate 
+8	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+8	select top #top #projection from photoobj as #photoobj_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+8	select top #top #projection where #predicate 
+7	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num)
+7	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetobjfromrect(#num,#num,#num,#num) where #predicate 
+7	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias left join photoz as #photoz_alias order by #order
+7	select #projection from fgetnearbyobjeq(#num,#num,#num), specobj as #specobj_alias
+7	select #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+7	select #projection from _upload as #_upload_alias, field as #field_alias, photoobjall as #photoobjall_alias, specobjall as #specobjall_alias
+7	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+7	select top #top #projection from galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+7	select #projection from fgetobjfromrect(#num,#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate 
+7	select #projection from photoprimary as #photoprimary_alias, photoz as #photoz_alias left join specobj as #specobj_alias where #predicate 
+7	select top #top #projection from photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+7	select top #top #projection from photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+6	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+6	select #projection from photoobj as #photoobj_alias, photoz as #photoz_alias left join specobj as #specobj_alias where #predicate 
+6	select #projection from specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+6	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, star as #star_alias order by #order
+6	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, phototag as #phototag_alias where #predicate  order by #order
+6	select #projection from photoobjall as #photoobjall_alias left join specobjall as #specobjall_alias left join first as #first_alias left join photoz as #photoz_alias where #predicate 
+6	select #projection from specline as #specline_alias, specline as #specline_alias, speclineindex as #speclineindex_alias, specphoto as #specphoto_alias where #predicate 
+6	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+6	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, specobjall as #specobjall_alias where #predicate  order by #order
+6	select #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias, specobjall as #specobjall_alias
+6	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate 
+5	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+5	select top #top #projection from photoobjall as #photoobjall_alias left join specobjall as #specobjall_alias left join first as #first_alias left join photoz as #photoz_alias where #predicate 
+5	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+5	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias where #predicate  order by #order
+5	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+5	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+5	select #projection from platex as #platex_alias, specobj as #specobj_alias, star as #star_alias where #predicate 
+5	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, xcredshift as #xcredshift_alias where #predicate 
+5	select #projection from specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+5	select #projection from first as #first_alias, specobj as #specobj_alias where #predicate 
+5	select top #top #projection from photoobj as #photoobj_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+5	select #projection where #predicate 
+5	select #projection from (select *, row_number() over (order by ra asc) as row from specphotoall where type = 3 and modelmag_u >= 0 and modelmag_g >= 0 and modelmag_r >= 0 and modelmag_i >= 0 and modelmag_z >= 0 and petromag_r < 17.77) as photometry where #predicate 
+5	select top #top #projection from galaxy as #galaxy_alias left join specobjall as #specobjall_alias, photoz as #photoz_alias where #predicate 
+4	select top #top #projection from sqlstatementlog as #sqlstatementlog_alias where #predicate 
+4	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, sppparams as #sppparams_alias where #predicate  order by #order
+4	select #projection from (select max(l.ew) as mew, min(l.ew) as minew, l.specobjid from speclineall l, specobj s where s.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+4	select #projection from galaxy as #galaxy_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+4	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, propermotions as #propermotions_alias where #predicate  order by #order
+4	select top #top #projection from photoobjall as #photoobjall_alias, photoz as #photoz_alias, specobjall as #specobjall_alias where #predicate 
+4	select #projection from _upload as #_upload_alias, phototag as #phototag_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias
+4	select distinct #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+4	select top #top #projection from specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+4	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, specphoto as #specphoto_alias where #predicate  order by #order
+4	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num)
+4	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, phototag as #phototag_alias where #predicate  order by #order
+4	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias where #predicate 
+4	select top #top #projection from runqa as #runqa_alias, specobj as #specobj_alias, star as #star_alias where #predicate 
+4	select #projection from specobj as #specobj_alias left join phototag as #phototag_alias where #predicate 
+4	select top #top #projection from field as #field_alias, field as #field_alias, match as #match_alias, phototag as #phototag_alias, phototag as #phototag_alias, specobj as #specobj_alias where #predicate  order by #order
+4	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, specobj as #specobj_alias where #predicate  order by #order
+4	select top #top #projection from star as #star_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+4	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias left join specobj as #specobj_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias where #predicate 
+4	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobj as #specobj_alias where #predicate  order by #order
+3	select top #top #projection from photoobj as #photoobj_alias, platex as #platex_alias, specobj as #specobj_alias where #predicate 
+3	select top #top #projection from specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+3	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+3	select #projection from galaxy as #galaxy_alias left join photoobj as #photoobj_alias left join first as #first_alias where #predicate 
+3	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, speclineindex as #speclineindex_alias, specobjall as #specobjall_alias where #predicate  order by #order
+3	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specobj as #specobj_alias, specobjall as #specobjall_alias where #predicate  order by #order
+3	select #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias where #predicate 
+3	select #projection from platex as #platex_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate  group by x.plate, x.mjd, x.programname order by #order
+3	select #projection from neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, photoprimary as #photoprimary_alias, specobj as #specobj_alias, specobj as #specobj_alias where #predicate  order by #order
+3	select top #top #projection from galaxy as #galaxy_alias, galaxytag as #galaxytag_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from specobj as #specobj_alias where #predicate  group by specclass
+3	select #projection from (select max(abs(l.ew)) as maxew, max((abs(l.ew) / l.ewerr)) as alphamax, l.specobjid as id from speclineall l, specobjall s where s.specobjid = l.specobjid and l.ew <> -9999 and l.ewerr <> 0 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate 
+3	select #projection from galaxy as #galaxy_alias, speclineall as #speclineall_alias where #predicate 
+3	select top #top #projection from match as #match_alias, photoobj as #photoobj_alias, photoobj as #photoobj_alias where #predicate 
+3	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias left join specobj as #specobj_alias left join specline as #specline_alias left join specline as #specline_alias where #predicate  order by #order
+3	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate 
+3	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 and i.ew <> -9999 group by l.specobjid) ll, speclineindex as #speclineindex_alias, specobjall as #specobjall_alias where #predicate  order by #order
+3	select #projection from _x as #_x_alias, _upload as #_upload_alias, galaxy as #galaxy_alias left join specobj as #specobj_alias where #predicate  order by #order
+3	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from photoprimary as #photoprimary_alias group by type
+3	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num), runqa as #runqa_alias where #predicate 
+3	select #projection from dr5quasarcatalog as #dr5quasarcatalog_alias, field as #field_alias where #predicate 
+3	select #projection from specobjid as #specobjid_alias where #predicate 
+3	select #projection from galaxy as #galaxy_alias, neighbors as #neighbors_alias, specclass as #specclass_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from photoprimary as #photoprimary_alias left join photoz as #photoz_alias where #predicate 
+3	select distinct #projection from fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias
+3	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+3	select #projection from galaxy as #galaxy_alias left join photoobj as #photoobj_alias where #predicate 
+3	select top #top #projection from _upload as #_upload_alias, photoprimary as #photoprimary_alias where #predicate 
+2	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias where #predicate 
+2	select #projection from specobj as #specobj_alias group by n.tile
+2	select #projection from photoobjall as #photoobjall_alias, specobj as #specobj_alias, specobjall as #specobjall_alias where #predicate 
+2	select top #top #projection from phototag as #phototag_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate  order by #order
+2	select top #top #projection from first as #first_alias, photoobj as #photoobj_alias, specobj as #specobj_alias, specobjall as #specobjall_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias where #predicate  order by #order
+2	select top #top #projection from neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, photoprimary as #photoprimary_alias where #predicate 
+2	select #projection from specobj as #specobj_alias, sppparams as #sppparams_alias, star as #star_alias where #predicate 
+2	select #projection from specobj as #specobj_alias where #predicate  group by (round(z*#num,#num) / #num) order by #order
+2	select #projection from (select max(l.ew) as maxew, min(l.ew) as minew, l.specobjid from speclineall l, specobjall s where s.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+2	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias left join specobjall as #specobjall_alias where #predicate  order by #order
+2	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias left join specobj as #specobj_alias left join photoz as #photoz_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias left join specobj as #specobj_alias order by #order
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from galaxy as #galaxy_alias, platex as #platex_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from fgetnearbyobjalleq(c_ra,#num,#num), photoobjall as #photoobjall_alias where #predicate 
+2	select #projection from galax as #galax_alias where #predicate 
+2	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, photoz as #photoz_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoz2 as #photoz2_alias order by #order
+2	select top #top #projection from photoobjall as #photoobjall_alias, speclineall as #speclineall_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from photoobj as #photoobj_alias, specclass as #specclass_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, photoz as #photoz_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, speclineindex as #speclineindex_alias, specobj as #specobj_alias order by #order
+2	select #projection from galaxy as #galaxy_alias, photoobj as #photoobj_alias, platex as #platex_alias, specobj as #specobj_alias, xcredshift as #xcredshift_alias where #predicate 
+2	select distinct #projection from (select top 10 g.bestobjid as objid from specobj as g join neighbors as n on g.bestobjid = n.objid join photoprimary as l on l.objid = n.neighborobjid join specobj as ls on ls.bestobjid = l.objid where g.bestobjid < l.objid and g.z > 0.1 and n.distance < 0.08 and n.type = 3) c, phototag as #phototag_alias where #predicate 
+2	select #projection from fgetnearbyframeeq(#num,#num,#num,#num), field as #field_alias group by run
+2	select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, phototag as #phototag_alias, propermotions as #propermotions_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, photoz as #photoz_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num) left join specobjall as #specobjall_alias, photoprimary as #photoprimary_alias, photoz as #photoz_alias where #predicate  order by #order
+2	select #projection from specobj as #specobj_alias where #predicate  group by ra
+2	select #projection from fgetnearbyobjalleq(sdss024921-#num,#num,#num), startag as #startag_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias where #predicate  order by #order
+2	select #projection from photobj as #photobj_alias where #predicate 
+2	select top #top #projection from neighbors as #neighbors_alias, photoobj as #photoobj_alias, specphoto as #specphoto_alias where #predicate 
+2	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias where #predicate  order by #order
+2	select #projection from qsospec as #qsospec_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from stars as #stars_alias where #predicate 
+2	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate 
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias
+2	select #projection from (select max(abs(ll.ew)) as maxew, ss.specobjid as id from speclineall ll, specobj ss where ll.ew <> -9999 and ss.specobjid = ll.specobjid group by ss.specobjid) aaa, propermotions as #propermotions_alias, specobj as #specobj_alias, specphotoall as #specphotoall_alias, sppparams as #sppparams_alias where #predicate 
+2	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, runqa as #runqa_alias, fgetobjfromrect(#num,#num,#num,#num) where #predicate 
+2	select #projection from photoprimary as #photoprimary_alias where #predicate  limit 10
+2	select top #top #projection from specobj as #specobj_alias left join phototag as #phototag_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select top #top #projection from dr5quasarcatalog as #dr5quasarcatalog_alias, first as #first_alias
+2	select #projection from neighbors as #neighbors_alias, specphoto as #specphoto_alias, specphoto as #specphoto_alias where #predicate 
+2	select #projection from fgetnearbyobjeq(#num,#num,#num) left join specobj as #specobj_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias, galaxy as #galaxy_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias where #predicate 
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from fgetnearbyframeeq((select ra from photoobjall where objid = (select top 1 bestobjid from qsocatalog)),(select dec from photoobjall where objid = (select top 1 bestobjid from qsocatalog)),#num,#num), field as #field_alias where #predicate 
+2	select top #top #projection from photoobjall as #photoobjall_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from elredshift as #elredshift_alias, galaxy as #galaxy_alias, photoz as #photoz_alias where #predicate 
+2	select #projection from galaxy as #galaxy_alias, photoz as #photoz_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select #projection from propermotions as #propermotions_alias, specphotoall as #specphotoall_alias, sppparams as #sppparams_alias where #predicate 
+2	select #projection from specphoto as #specphoto_alias where #predicate  group by round(z,#num) order by #order
+2	select #projection from fgetobjfromrect(#num,#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias where #predicate 
+2	select top #top #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias where #predicate 
+2	select top #top #projection from galaxy as #galaxy_alias, speclineall as #speclineall_alias, speclineindex as #speclineindex_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from chunk as #chunk_alias, field as #field_alias, galaxy as #galaxy_alias, segment as #segment_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from field as #field_alias, galaxy as #galaxy_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetobjfromrect(#num,#num,#num,#num)
+2	select #projection from (select max(l.ew) as mew, l.specobjid from speclineall l, specobj s where s.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and (abs(l.height - l.continuum) < 2) group by l.specobjid) ll where #predicate 
+2	select #projection from specobj as #specobj_alias where #predicate  group by floor(z/#num) order by #order
+2	select top #top #projection from field as #field_alias where #predicate  group by run order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias order by #order
+2	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select #projection from galaxy as #galaxy_alias left join photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate 
+2	select top #top #projection from photoall as #photoall_alias where #predicate 
+2	select #projection from dr5quasarcatalog as #dr5quasarcatalog_alias, platex as #platex_alias, specobjall as #specobjall_alias, specobjall as #specobjall_alias where #predicate  order by #order
+2	select #projection from specobj as #specobj_alias where #predicate  group by round(s.z,#num) order by #order
+2	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias where #predicate 
+2	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+2	select #projection from fgetobjfromrect(#num,#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias
+2	select top #top #projection from photoobjall as #photoobjall_alias, photoz as #photoz_alias, specphoto as #specphoto_alias where #predicate 
+2	select #projection from star as #star_alias left join specobjall as #specobjall_alias where #predicate 
+2	select top #top #projection from field as #field_alias, field as #field_alias, match as #match_alias, phototag as #phototag_alias, phototag as #phototag_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias
+2	select top #top #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specphoto as #specphoto_alias where #predicate  order by #order
+2	select top #top #projection from (select max(l.ew) as maxew, min(l.ew) as minew, l.specobjid, max(l.ewerr / abs(l.ew)) as ratio, min(i.ew) as minind, max(i.ew) as maxind, max(i.ewerr / abs(i.ew)) as indratio from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and i.specobjid = s.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ewerr <> 0 and l.ew <> 0 and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+2	select top #top #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, xcredshift as #xcredshift_alias where #predicate 
+2	select #projection from specobj as #specobj_alias where #predicate  group by round(ra,#num), round(dec,#num)
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, photoobj as #photoobj_alias where #predicate  order by #order
+2	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias where #predicate 
+2	select top #top #projection from speclineall as #speclineall_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+2	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate  order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias where #predicate  order by #order
+2	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoprimary as #photoprimary_alias, specobjall as #specobjall_alias order by #order
+2	select top #top #projection from galaxy as #galaxy_alias, platex as #platex_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias where #predicate 
+2	select #projection from galaxies as #galaxies_alias where #predicate 
+2	select top #top #projection from galaxy as #galaxy_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, sppparams as #sppparams_alias where #predicate 
+2	select top #top #projection from photobj as #photobj_alias where #predicate 
+2	select #projection from field as #field_alias, galaxy as #galaxy_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+2	select #projection from (select max(abs(ll.ew)) as maxew, ss.specobjid as id from speclineall ll, specobj ss where ll.ew <> -9999 and ss.specobjid = ll.specobjid group by ss.specobjid) aaa, specobj as #specobj_alias, sppparams as #sppparams_alias where #predicate 
+2	select top #top #projection from photoobj as #photoobj_alias, spec as #spec_alias where #predicate 
+2	select #projection from (select max(l.ew) as maxew, min(l.ew) as minew, l.specobjid, max(l.ewerr / abs(l.ew)) as ratio, min(i.ew) as minind, max(i.ew) as maxind, max(i.ewerr / abs(i.ew)) as indratio from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and i.specobjid = s.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ewerr <> 0 and l.ew <> 0 and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+2	select #projection from _upload as #_upload_alias where #predicate 
+2	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), specobj as #specobj_alias, star as #star_alias
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, elredshift as #elredshift_alias, phototag as #phototag_alias where #predicate  order by #order
+2	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, specphoto as #specphoto_alias, sppparams as #sppparams_alias where #predicate 
+2	select #projection from fgetnearbyobjalleq(#num,#num,#num), specobjall as #specobjall_alias where #predicate 
+2	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num), runqa as #runqa_alias where #predicate 
+2	select #projection from specphotoall as #specphotoall_alias left join specobj as #specobj_alias where #predicate  group by floor(p.z*#num) / #num order by #order
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, star as #star_alias where #predicate  order by #order
+2	select top #top #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, sppparams as #sppparams_alias where #predicate 
+2	select #projection from (select max(l.ew) as maxew, s.specobjid as id from specline l, specobj s where l.ew <> -9999 and l.specobjid = s.specobjid group by s.specobjid) aaa, specobj as #specobj_alias where #predicate 
+2	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoprofile as #photoprofile_alias, phototag as #phototag_alias where #predicate  order by #order
+1	select #projection from galaxy as #galaxy_alias, phototag as #phototag_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-15.606662 -15.605511 -15.57825 ..., -14.287031 -14.255604 -14.304462],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias left join photoobj as #photoobj_alias where #predicate 
+1	select top #top #projection from field as #field_alias, galaxy as #galaxy_alias, segment as #segment_alias where #predicate 
+1	select #projection from fgetnearbyobjalleq(#num,#num,r), phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 37.225008 37.294199 37.155306 ..., 36.1507645 36.1198405 36.11277 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-6.1306785 -6.1247065 -6.153207 ..., -4.86693 -4.8790875 -4.9746205],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from mpa_sdssid as #mpa_sdssid_alias, photoobj as #photoobj_alias
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, photoobj as #photoobj_alias left join specobj as #specobj_alias left join specphoto as #specphoto_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 13.6376815 13.534114 13.5765725 ..., 14.04375 13.970675 14.077708 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from field as #field_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.828204 -9.7313375 -9.756845 ..., -8.4232365 -8.4800655 -8.4387955],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, speclineindex as #speclineindex_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 47.0774135 47.1320935 47.101843 ..., 45.9013885 46.0067405 46.0068 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from tsobj as #tsobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.8775835 1.866641 1.745881 ..., 2.716736 2.7146235 2.6654925],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select top #top #projection from speclineall as #speclineall_alias, specobj as #specobj_alias, specphotoall as #specphotoall_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, galspecindx as #galspecindx_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 29.6489555 29.533615 29.576254 ..., 29.391903 29.4730475 29.34731 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 25.4781865 25.53376 25.427016 ..., 24.82886 24.83899 24.8165235],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 1000 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join specobj as l on l.bestobjid = n.neighborobjid where g.objid < l.bestobjid and l1.lineid = 6565 and l1.ew > 200 and n.distance < 0.25 and g.g < 18.) c, phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 78.9639055 78.9678575 78.9043505 ..., 78.086498 78.178734 78.168312 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 67.85928 67.782387 67.836178 ..., 66.3724405 66.341408 66.42416 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 100 g.bestobjid as objid from qsocatalog as g join specline as l1 on g.specobjid = l1.specobjid join neighbors as n on g.bestobjid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.bestobjid < l.objid and l1.lineid = 2799 and l1.ew > 30) c, phototag as #phototag_alias where #predicate 
+1	select #projection from specobj as #specobj_alias group by s.specclass
+1	select #projection from fgetnearbyobjeq([ 6.4025835 6.462883 6.4984895 ..., 5.9108025 5.89616 5.9153065],[-4.4766805 -4.553835 -4.5334985 ..., -3.1370545 -3.158788 -3.127829 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate  order by #order
+1	select top #top #projection from galaxy as #galaxy_alias, segment as #segment_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias left join photoobjall as #photoobjall_alias left join specobjall as #specobjall_alias left join first as #first_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, specobj as #specobj_alias, specphoto as #specphoto_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.549012 -7.6128835 -7.617329 ..., -6.2498895 -6.150798 -6.2594885],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 33.094347 33.0459575 33.168331 ..., 32.3267375 32.375209 32.337991 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), specphotoall as #specphotoall_alias where #predicate 
+1	select distinct #projection from (select top 10 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 3935 and l1.ew < -15 and l1.ew > -9999 and (g.flags & 2 = 0) and n.distance < 10.0 / 60 and (g.u - g.r) < 2.0 and (g.g - g.r) < 1.2 and g.objid not in (587725470664229144, 587732048942989508)) b, phototag as #phototag_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, propermotions as #propermotions_alias, usno as #usno_alias order by #order
+1	select distinct #projection from galspecline as #galspecline_alias, photoobj as #photoobj_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 4.549379 4.4933215 4.5130425 ..., 2.961912 2.9134505 2.859143 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select top 100 * from ((select s.*, p.z as zphot from photoz as p join specobjall as s on s.bestobjid = p.objid where s.specclass = 2 and p.z between 0.15 and 0.25)) as gz where gz.zphot < 0.5) as gnew order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-26.889761 -26.874627 -26.87856 ..., -25.63652 -25.60639 -25.675416],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias
+1	select #projection from fgetnearbyobjeq(#num,[-16.651736 -16.66734 -16.6843385 ..., -15.3308975 -15.324994 -15.308121 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from first as #first_alias, galspecextra as #galspecextra_alias, galspecindx as #galspecindx_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from _x as #_x_alias, _upload as #_upload_alias, photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate  order by #order
+1	select top #top #projection from galaxy as #galaxy_alias, specobj as #specobj_alias, spsslines as #spsslines_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, phototag as #phototag_alias where #predicate 
+1	select #projection from speclineall as #speclineall_alias, specobjall as #specobjall_alias group by l.specobjid order by #order
+1	select #projection from _upload as #_upload_alias left join _x as #_x_alias left join phototag as #phototag_alias left join rosat as #rosat_alias order by #order
+1	select distinct #projection from (select top 10 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid where s.z > 0.024 and l1.lineid = 3727 and l1.ew > 97) c, phototag as #phototag_alias where #predicate 
+1	select #projection from stars as #stars_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, ubercal as #ubercal_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias, specobj as #specobj_alias
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specphoto as #specphoto_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-20.3944085 -20.3863565 -20.4396 ..., -19.061223 -19.106493 -19.124523 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.441996 0.5537225 0.530908 ..., 1.085842 1.1643725 1.0897385],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from sppparams as #sppparams_alias left join phototag as #phototag_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), runqa as #runqa_alias, star as #star_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias where #predicate 
+1	select top #top #projection from field as #field_alias, match as #match_alias, photoobjall as #photoobjall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, phototag as #phototag_alias, segment as #segment_alias where #predicate  order by #order
+1	select top #top #projection from eclass as #eclass_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.1870865 -7.1821715 -7.166316 ..., -5.7249865 -5.742702 -5.704464 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 100 g.bestobjid as objid from qsocatalog as g join specline as l1 on g.specobjid = l1.specobjid join neighbors as n on g.bestobjid = n.objid where l1.lineid = 2799 and l1.ew > 30) c, phototag as #phototag_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq([ 7.818043 7.6718195 7.7747495 ..., 6.383459 6.5119675 6.488743 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-19.9254615 -19.9854165 -19.913365 ..., -18.5325525 -18.545083 -18.543618 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select row_number() over (order by s.plate desc) as rownumber, p.objid, p.ra, p.dec, p.u, p.g, p.r, p.i, p.z as pz, p.run, p.rerun, p.camcol, p.field, s.specobjid, s.specclass, s.z, s.plate, s.mjd, s.fiberid from photoobj as p join specobj as s on s.bestobjid = p.objid where s.specclass = 3) as dfgh where #predicate 
+1	select top #top #projection from weblog as #weblog_alias where #predicate 
+1	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 26.9267115 26.816618 26.9137565 ..., 26.6822835 26.664367 26.622201 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 34.3445375 34.377119 34.2621995 ..., 33.161996 33.1851185 33.20574 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from field as #field_alias, photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-21.5918555 -21.4774145 -21.547708 ..., -20.1760315 -20.17314 -20.134351 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 4.817939 4.9490215 4.8696755 ..., 6.1332225 6.139591 6.11686 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, phototag as #phototag_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq([ 42.9392025 43.004324 43.0909475 ..., 41.9583165 42.068095 42.077375 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.606628 -7.7183495 -7.637379 ..., -8.1088205 -8.1041755 -8.1103435],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-5.602858 -5.578114 -5.6549165 ..., -4.7663615 -4.798038 -4.740719 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobjall as #photoobjall_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-17.2728815 -17.3381815 -17.3831415 ..., -15.8590885 -15.868628 -15.87 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.3746655 0.405297 0.40335 ..., 1.861757 1.926574 1.9080925],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, photoz as #photoz_alias, rosat as #rosat_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, star as #star_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-25.4151675 -25.449373 -25.3613185 ..., -23.9469745 -23.929694 -23.935706 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from (select max(ll.ew) as maxew, ss.specobjid as id from specline ll, specobj ss where ll.ew <> -9999 and ss.specobjid = ll.specobjid group by ss.specobjid) aaa, specobj as #specobj_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by p.run, p.camcol order by #order
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias left join photoz as #photoz_alias left join photoz2 as #photoz2_alias left join specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-1.1258095 -1.0542245 -1.159831 ..., 0.239576 0.2010485 0.291238 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.386054 -9.3254765 -9.400517 ..., -8.036633 -8.0033685 -8.0336275],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  group by specobjid order by #order
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from photoz as #photoz_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, spplines as #spplines_alias, sppparams as #sppparams_alias
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-25.8807305 -25.8639565 -25.8481045 ..., -24.814826 -24.784618 -24.755884 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, photoz as #photoz_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-4.176808 -4.2166765 -4.2639265 ..., -2.7685805 -2.8118475 -2.773679 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoall as #photoall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, phototag as #phototag_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 3.1388605 3.1465385 3.1619975 ..., 4.1996305 4.3206615 4.2712275],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate  order by #order
+1	select top #top #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 66.9742355 67.025753 66.9710005 ..., 65.8141555 65.711502 65.835079 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.987382 -4.916228 -4.9853035 ..., -3.487265 -3.5017555 -3.461827 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq([ 45.515884 45.562711 45.615768 ..., 45.3976325 45.460129 45.293347 ],[-28.7301635 -28.7216815 -28.666021 ..., -27.2820645 -27.162193 -27.220601 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias, propermotions as #propermotions_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 65.9401625 65.830101 65.813877 ..., 64.632793 64.578041 64.505117 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate  order by #order
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from segment as #segment_alias group by run order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-16.008403 -16.0677615 -16.0146915 ..., -14.6928445 -14.686728 -14.704004 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 46.810791 46.8365785 46.8985405 ..., 45.535698 45.537302 45.538086 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.9585 -2.9514825 -2.9426965 ..., -1.5060065 -1.4234535 -1.4215335],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from photoobj_p as #photoobj_p_alias, specobj_s as #specobj_s_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, _x as #_x_alias, phototag as #phototag_alias, phototag as #phototag_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq([ 39.366143 39.5230605 39.329582 ..., 39.602425 39.684432 39.586526 ],[-6.026967 -6.090131 -6.0782655 ..., -4.619145 -4.5574165 -4.6096085],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias where #predicate  order by #order
+1	select #projection from galaxy as #galaxy_alias left join photoz as #photoz_alias left join specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.01517 -8.9055955 -8.9184965 ..., -7.7613165 -7.8464225 -7.8597815],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from sml152 as #sml152_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 10.5499815 10.496908 10.5337635 ..., 10.1128295 10.136248 10.064488 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias, specobj as #specobj_alias where #predicate  group by round(t1.z,#num)
+1	select #projection from fgetnearbyobjeq(#num,[-4.2501105 -4.1783745 -4.1542925 ..., -2.987467 -3.0838495 -2.9962875],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 3.1639855 3.1824285 3.228256 ..., 4.332434 4.3091895 4.3736915],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 26.32872 26.3047425 26.3932225 ..., 25.9129855 25.858812 25.917483 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from field as #field_alias, photoobjall as #photoobjall_alias, segment as #segment_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias left join photoz as #photoz_alias, fgetobjfromrect(#num,#num,#num,#num) where #predicate 
+1	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from photoprimary as #photoprimary_alias group by type
+1	select #projection from (select max(abs(l.height) / l.continuum) as maxdepth, l.specobjid as id from speclineall l, specobjall s where s.specobjid = l.specobjid and l.height <> -9999 and l.continuum <> -9999 and l.continuum <> 0 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 0.23282 0.235337 0.337488 ..., 1.254718 1.1934085 1.207096 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select t.objid from specphoto t join neighbors as n on t.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where t.run in (4670, 4674, 5080, 5087, 5112, 5115) and t.objid < l.objid and n.distance < 0.08 and n.type = 3 and t.modelmag_r between 13.5 and 17.7 and ((t.flags & 0x10000000) != 0) and ((t.flags & 0x8100000c00a0) = 0) and (((t.flags & 0x400000000000) = 0) or (t.psfmagerr_g <= 0.2)) and (((t.flags & 0x100000000000) = 0) or (t.flags & 0x1000) = 0) and (t.primtarget & 0x00000040) > 0 and (t.primtarget & 0x00000020) = 0 and t.zconf > 0.35 and t.z > 0.004 and t.modelmag_r - 5 * log10(4.27e+08 * t.z) between -23.5 and -15.5) c, phototag as #phototag_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, ubercal as #ubercal_alias where #predicate  order by #order
+1	select #projection from galaxy as #galaxy_alias, galaxy as #galaxy_alias, neighbors as #neighbors_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 7.647279 7.6089475 7.439445 ..., 7.138085 6.927952 6.988618 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 26.3251485 26.2070575 26.3189475 ..., 25.8129515 25.801427 25.673727 ],[-7.513942 -7.5394565 -7.435305 ..., -6.023634 -6.118906 -6.1294825],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.226201 -9.1982145 -9.2776415 ..., -8.384588 -8.3951365 -8.3838015],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-18.172208 -18.068862 -18.101014 ..., -17.283211 -17.261286 -17.329541],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from ask as #ask_alias, specphotoall as #specphotoall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-5.8978205 -5.8424275 -5.8393115 ..., -4.745677 -4.7718215 -4.761083 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.71562 1.753574 1.747091 ..., 2.9213875 2.8425115 2.9526215],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, rosat as #rosat_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 1.6601125 1.6741485 1.7268235 ..., 2.850465 2.8697725 2.9402455],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.06545 -4.1409965 -4.13648 ..., -2.7398765 -2.7688865 -2.803302 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoobjall as #photoobjall_alias, photoz as #photoz_alias, specobjall as #specobjall_alias
+1	select #projection from stars as #stars_alias where #predicate  order by #order
+1	select #projection from field as #field_alias where #predicate  group by run
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias where #predicate 
+1	select top #top #projection from speclines as #speclines_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.9646545 -2.9754035 -2.9392705 ..., -1.523491 -1.520379 -1.555491 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-28.7574185 -28.73067 -28.680125 ..., -27.3965395 -27.397955 -27.345066 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 3.8561065 3.80119 3.705155 ..., 3.205221 3.2043085 3.1195635],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, neighbors as #neighbors_alias, specclass as #specclass_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from first as #first_alias, galspecextra as #galspecextra_alias, indx as #indx_alias, photoobj as #photoobj_alias, specline as #specline_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-8.00031 -7.962719 -8.0696965 ..., -6.678553 -6.656472 -6.6620755],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-14.736641 -14.818532 -14.71066 ..., -13.3908705 -13.403162 -13.374194 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by p.run, p.camcol, p.field order by #order
+1	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 and i.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate 
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-22.509636 -22.536065 -22.5073145 ..., -21.1659545 -21.299917 -21.136831 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select row_number() over (order by s.plate desc) as rownumber, p.objid, p.ra, p.dec, p.u, p.g, p.r, p.i, p.z as pz, p.run, p.rerun, p.camcol, p.field, s.specobjid, s.specclass, s.z, s.plate, s.mjd, s.fiberid from photoobj as p join specobj as s on s.bestobjid = p.objid where s.specclass = 1) as asdfg where #predicate 
+1	select top #top #projection from neighbors as #neighbors_alias, photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias, star as #star_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, photoobjall as #photoobjall_alias where #predicate  group by x.up_id, f.mjd_r
+1	select #projection from (select max(l.ew) as maxew, l.specobjid from speclineall l, specobj s where s.specobjid = l.specobjid and l.ew <> -9999 and zstatus = 1 group by l.specobjid) ll where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 7.8533355 7.852715 7.784946 ..., 8.6552145 8.661843 8.6843875],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 100 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 4306 and l1.ew < -5 and l1.ew > -9999 and (g.flags & 2 = 0) and n.distance < 10.0 / 60 and (g.u - g.r) > 1.8 and g.objid not in (587725470664229144, 587732048942989508)) b, phototag as #phototag_alias where #predicate 
+1	select #projection from ffootprinteq(#num,#num,nan)
+1	select top #top #projection from bss20000 as #bss20000_alias, patnfn3 as #patnfn3_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-5.3304745 -5.306976 -5.269742 ..., -4.054366 -4.02307 -4.045265 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specobj as #specobj_alias order by #order
+1	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobj s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from galaxies as #galaxies_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.459331 -4.492356 -4.41682 ..., -3.07542 -3.1676095 -3.1807575],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 9.449863 9.47721 9.4783115 ..., 10.6635915 10.699701 10.675477 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, phototag as #phototag_alias where #predicate 
+1	select #projection from speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate  group by l.specobjid order by #order limit 10
+1	select #projection from fgetnearbyobjeq(#num,[ 18.8532315 18.9743565 18.9458075 ..., 19.387737 19.39993 19.520746 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 40.02114 40.01209 40.049769 ..., 38.9254985 38.909785 38.861794 ],[-2.665263 -2.673708 -2.807865 ..., -1.745044 -1.815937 -1.855547],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.514344 1.570879 1.502773 ..., 2.99105 2.9890465 2.9709425],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-14.9902345 -14.9515145 -14.981887 ..., -14.142652 -14.14578 -14.174267 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by round((petrorad_g+petrorad_r+petrorad_i+petrorad_z)/#num,#num) having n > #num
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-4.575726 -4.7024855 -4.558939 ..., -3.378257 -3.295438 -3.3439115],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-12.6324645 -12.672776 -12.671082 ..., -11.7554055 -11.758906 -11.721101 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fields as #fields_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.230423 1.168834 1.2283615 ..., 2.574374 2.524247 2.587327 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoprimary as #photoprimary_alias left join propermotions as #propermotions_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.36624 -9.3574545 -9.365054 ..., -8.078602 -8.0450255 -8.0214685],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from sml109 as #sml109_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+1	select #projection from ods_person as #ods_person_alias left join ods_address as #ods_address_alias left join address as #address_alias, ods_mailing_documents as #ods_mailing_documents_alias, ods_application_influences as #ods_application_influences_alias, ods_applications as #ods_applications_alias, ods_institutions_attend as #ods_institutions_attend_alias where #predicate 
+1	select #projection from fgetnearbyframeeq((select ra from photoobjall where objid = 587722951695205292),(select dec from photoobjall where objid = 587722951695205292),#num,#num), field as #field_alias where #predicate 
+1	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, specobj as #specobj_alias order by #order
+1	select top #top #projection from galspecline as #galspecline_alias, photoobjall as #photoobjall_alias, photoz as #photoz_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from _x as #_x_alias, photoobj as #photoobj_alias, specobjall as #specobjall_alias, upload as #upload_alias order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, filed as #filed_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-10.736036 -10.7206025 -10.7333085 ..., -9.3532755 -9.4053625 -9.38105 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, photoz as #photoz_alias left join specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-28.3582095 -28.394947 -28.487851 ..., -26.972885 -26.967746 -26.917967 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-1.324433 -1.4220975 -1.3279975 ..., -0.054542 0.0082505 -0.0605005],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias, speczstatus as #speczstatus_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq([ 14.0725065 14.0573535 14.050044 ..., 14.3810455 14.398915 14.400492 ],[ 6.0055545 5.9948325 6.031898 ..., 7.3222275 7.3209355 7.2863185],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, propermotions as #propermotions_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, phototag as #phototag_alias, photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from (select max(l.ew) as mew, sp.specobjid from speclineall l, specphotoall sp where sp.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and (abs(l.height - l.continuum) < 2) group by sp.specobjid) ll where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 24.838617 24.898875 24.8895625 ..., 24.266446 24.245698 24.157953 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from elredshift as #elredshift_alias, xcredshift as #xcredshift_alias where #predicate  group by xc.specobjid having max(height) < #num and max(xc.zconf) < #num
+1	select #projection from fgetnearbyobjeq(#num,[-3.6884445 -3.6631195 -3.742578 ..., -4.1895365 -4.243355 -4.119418 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, speclineindex as #speclineindex_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 63.657072 63.610395 63.68873 ..., 62.5663585 62.564941 62.447565 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 54.9380495 54.8934995 54.960028 ..., 53.429871 53.4942955 53.51833 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.836159 -2.814018 -2.8431775 ..., -1.506416 -1.496566 -1.521674 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 23.1243455 23.140109 23.2342775 ..., 23.59426 23.748847 23.589953 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.0584275 -7.0507045 -7.0457595 ..., -5.71052 -5.7164785 -5.7499775],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specline as #specline_alias where #predicate  group by round(z,#num) order by #order
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate  union select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-13.7151815 -13.765367 -13.730393 ..., -12.62637 -12.489737 -12.48004 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from speclineall as #speclineall_alias, specobj as #specobj_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 67.339554 67.3625565 67.339905 ..., 65.983597 65.929863 65.886574 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from tail as #tail_alias where #predicate 
+1	select top #top #projection from galaxyzoo1_dr_table7 as #galaxyzoo1_dr_table7_alias
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate 
+1	select #projection from eszneigh110308 as #eszneigh110308_alias, photoobj as #photoobj_alias where #predicate 
+1	select #projection from student as #student_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 51.28702 51.2254355 51.288311 ..., 49.858446 49.836798 49.876871 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias left join specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyframeeq(#num,#num,#num,#num), field as #field_alias where #predicate  group by f.run
+1	select top #top #projection from photoobj as #photoobj_alias, photoprofile as #photoprofile_alias, profiledefs as #profiledefs_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 32.3730955 32.5192905 32.4807005 ..., 32.011134 32.057374 32.043615 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-12.134825 -12.1958915 -12.120365 ..., -10.803491 -10.685763 -10.692298 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 500 g.bestobjid as objid from qsocatalog as g join specline as l1 on g.specobjid = l1.specobjid where l1.lineid = 2799 and l1.ew > 250 and l1.z between 0.36 and 0.43) c, phototag as #phototag_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  group by specobjid
+1	select #projection from fgetnearbyobjeq([ 32.667746 32.6243065 32.565462 ..., 33.4553625 33.626722 33.449986 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  union select #projection from specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-5.9368245 -6.062217 -6.0253435 ..., -4.5756135 -4.6910105 -4.69124 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetobjectseq(#num,#num) where #predicate 
+1	select #projection from frame as #frame_alias where #predicate  group by run, rerun order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-27.5780565 -27.6283485 -27.666075 ..., -26.1894 -26.1590865 -26.15333 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from platex as #platex_alias, specobjall as #specobjall_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select top #top #projection from neighbors as #neighbors_alias, photoobj as #photoobj_alias, star as #star_alias where #predicate 
+1	select #projection from field as #field_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by f.field
+1	select #projection from fgetnearbyobjeq([ 3.8561065 3.80119 3.705155 ..., 3.3074705 3.285349 3.3052815],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias left join photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+1	select #projection from fgetnearestframeeq((select ra from photoobjall where objid = 587722951695205292),(select dec from photoobjall where objid = 587722951695205292),#num), field as #field_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, _x as #_x_alias, _upload as #_upload_alias order by #order
+1	select #projection from field as #field_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from galaxy as #galaxy_alias, galaxy as #galaxy_alias, neighbors as #neighbors_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.411893 -4.402217 -4.351985 ..., -2.9179085 -2.925157 -2.9525495],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from dr5quasarcatalog as #dr5quasarcatalog_alias, field as #field_alias where #predicate  group by q.specobjid
+1	select top #top #projection from stars as #stars_alias
+1	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, speclinesnames as #speclinesnames_alias, specobj as #specobj_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-29.835828 -29.8259145 -29.767998 ..., -28.2224755 -28.293797 -28.439189 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.844505 1.797753 1.7489255 ..., 2.721474 2.681282 2.693058 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 30.1854025 30.3160645 30.31038 ..., 29.978976 29.968871 29.820693 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from (select specobjid, lineid, (2.99e5 * 2.354 * sigma / wave) as vel from specline where (category = 2 and lineid in (1215, 1400, 1549, 1909, 2799, 4863, 6565) and nsigma > 3 and chisq / nu < 20 and ew > 0 and abs(ew - height * sigma * 1.065 * 2.354 / continuum) / ew < 0.25) group by specobjid, lineid, sigma, wave) as sl, platex as #platex_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-5.4905355 -5.5493065 -5.4997935 ..., -4.340229 -4.3699155 -4.347812 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from ids_megazlrg as #ids_megazlrg_alias, phototag as #phototag_alias, photoz2 as #photoz2_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-8.5167295 -8.575918 -8.532887 ..., -7.0787155 -7.1034715 -7.071621 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias where #predicate  group by floor(#num*(petromag_r-extinction_r)) / #num + #num order by #order
+1	select #projection from fgetnearbyobjeq([ 95.9920465 96.0140335 95.96582 ..., 94.490536 94.506067 94.438141 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoz as #photoz_alias order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num), star as #star_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 6.0747295 6.053715 6.123811 ..., 6.870951 6.92737 6.924918 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(ra,dec,radius), galaxy as #galaxy_alias where #predicate  order by #order
+1	select top #top #projection from neighbors as #neighbors_alias, specphoto as #specphoto_alias, specphoto as #specphoto_alias where #predicate 
+1	select top #top #projection from (select specobjid, lineid, max(2.99e5 * 2.354 * sigma / wave) as vel from specline where (category = 2 and lineid in (4863) and nsigma > 3 and chisq / nu < 20 and ew > 0 and abs(ew - height * sigma * 1.065 * 2.354 / continuum) / ew < 0.25) group by specobjid, lineid) as smax, specline as #specline_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-13.1163115 -13.153212 -13.0896455 ..., -11.6657635 -11.651811 -11.676279 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 6.0200245 5.9839685 5.9548065 ..., 7.2633215 7.2832375 7.295021 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, specobjall as #specobjall_alias
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias, fgetobjfromrect(#num,#num,#num,#num) where #predicate 
+1	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), specobj as #specobj_alias, star as #star_alias
+1	select #projection from _upload as #_upload_alias, phototag as #phototag_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from (select specobjid from dbo.fgetnearbyspecobjeq(180, 30, 5)) as s
+1	select #projection from fgetnearbyobjeq(#num,[ 83.8625105 83.836521 83.798397 ..., 82.903107 82.871048 82.908062 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-5.7136395 -5.6778865 -5.6879465 ..., -4.8762095 -4.881406 -4.762673 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-17.1415175 -17.0647145 -17.040498 ..., -15.7802225 -15.774145 -15.793001 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 6.628381 6.557402 6.5276515 ..., 6.776696 6.856729 6.6943945],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, platex as #platex_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate 
+1	select top #top #projection from p as #p_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-13.5080735 -13.490317 -13.4875695 ..., -12.0926855 -12.103161 -12.014083 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specclass as #specclass_alias, specobj as #specobj_alias group by specclass
+1	select #projection from fgetnearbyobjeq(#num,[ 28.9887915 28.94448 28.990931 ..., 29.443064 29.403518 29.419059 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.841959 -4.8516595 -4.7637535 ..., -3.396896 -3.399535 -3.4134075],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from user as #user_alias
+1	select top #top #projection from specobj as #specobj_alias, star as #star_alias, usno as #usno_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 51.5961435 51.6400185 51.681589 ..., 50.6121655 50.564741 50.590702 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,nan,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from galaxyzoo1_dr_table2 as #galaxyzoo1_dr_table2_alias
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), field as #field_alias, galaxy as #galaxy_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, segment as #segment_alias where #predicate 
+1	select #projection from propermotions as #propermotions_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, runqa as #runqa_alias where #predicate 
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+1	select top #top #projection from galaxiy as #galaxiy_alias, specobj as #specobj_alias where #predicate 
+1	select distinct #projection from (select t.objid from specphoto t join neighbors as n on t.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where t.run between 5080 and 5115 and t.objid < l.objid and n.distance < 0.08 and n.type = 3 and t.modelmag_r between 13.5 and 17.7 and ((t.flags & 0x10000000) != 0) and ((t.flags & 0x8100000c00a0) = 0) and (((t.flags & 0x400000000000) = 0) or (t.psfmagerr_g <= 0.2)) and (((t.flags & 0x100000000000) = 0) or (t.flags & 0x1000) = 0) and (t.primtarget & 0x00000040) > 0 and (t.primtarget & 0x00000020) = 0 and t.zconf > 0.35 and t.z > 0.004 and t.modelmag_r - 5 * log10(4.27e+08 * t.z) between -23.5 and -15.5) c, phototag as #phototag_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate  order by #order
+1	select top #top #projection from galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-24.999862 -25.0244265 -25.0352405 ..., -23.655126 -23.55343 -23.631014 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select max(abs(l.height) / l.continuum) as p, max(abs(l.ew)) as maxew, l.specobjid as id from speclineall l, specobjall s where s.specobjid = l.specobjid and l.continuum <> 0 and l.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.038746 0.0381885 0.081379 ..., 1.494909 1.507395 1.456206 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select max(l.sn) as maxsn, min(l.sn) as minsn, l.speclineindexid from speclineindex l where l.sn <> -9999 group by l.speclineindexid) ll where #predicate 
+1	select #projection from speclineindex as #speclineindex_alias, specobj as #specobj_alias where #predicate  group by specobj.objid
+1	select #projection from fgetnearbyobjeq(#num,[ 51.248598 51.242815 51.209204 ..., 50.041912 50.00844 50.0464175],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-1.3218515 -1.363543 -1.388627 ..., 0.074851 0.072371 0.080954 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from categoria as #categoria_alias, produto as #produto_alias where #predicate 
+1	select top #top #projection from xcredshift as #xcredshift_alias where #predicate  group by specobjid
+1	select #projection from fgetnearbyobjeq(#num,[-1.276486 -1.333792 -1.2606625 ..., 0.115332 0.0781005 0.0671135],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from sml146 as #sml146_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+1	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 18.15641 18.0241175 18.037592 ..., 18.3007595 18.188155 18.202696 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobjall as #specobjall_alias, specphoto as #specphoto_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 3.783307 3.7532285 3.776476 ..., 3.8909685 3.9454 3.916103 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specobjall as #specobjall_alias, spplines as #spplines_alias, sppparams as #sppparams_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoprimary as #photoprimary_alias, photoz2 as #photoz2_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, photoprofile as #photoprofile_alias, profiledefs as #profiledefs_alias where #predicate 
+1	select #projection from (select floor(0.5 + z * 50.) / 50 as redshift, count(*) as num from specphoto where modelmag_u - modelmag_g > 2 and z between 0.001 and 0.5 group by floor(0.5 + z * 50.) / 50) as red, (select floor(0.5 + z * 50.) / 50 as redshift, count(*) as num from specphoto where z between 0.001 and 0.5 group by floor(0.5 + z * 50.) / 50) as b order by #order
+1	select #projection from _upload as #_upload_alias left join _x as #_x_alias left join phototag as #phototag_alias left join specobjall as #specobjall_alias order by #order
+1	select top #top #projection from star as #star_alias left join specobj as #specobj_alias
+1	select top #top #projection from neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, photoprimary as #photoprimary_alias, specobj as #specobj_alias
+1	select #projection from first as #first_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 3.8561065 3.80119 3.705155 ..., 3.205221 3.2043085 3.1195635],[-2.944977 -2.9390355 -3.0024765 ..., -1.608187 -1.594933 -1.6330515],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select max(l.ew) as mew, min(l.ew) as minew, l.specobjid, max(l.lineid) as line from speclineall l, specobj s where s.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 7.453961 7.540413 7.5323755 ..., 8.6497895 8.6309125 8.6909555],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from photoobjall as #photoobjall_alias, photoz as #photoz_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from photoobjall as #photoobjall_alias, spplines as #spplines_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 3.1080625 3.111805 3.1804135 ..., 4.335995 4.332362 4.3209015],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate  group by rand
+1	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-8.544458 -8.618083 -8.633237 ..., -7.248143 -7.1950055 -7.3118225],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-15.0551135 -15.1055235 -15.1089405 ..., -13.729813 -13.780577 -13.768381 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.054122 0.040487 0.036493 ..., 1.5052425 1.468386 1.502227 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 27.5245905 27.6291 27.5583375 ..., 27.0383515 27.093248 27.061694 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from field as #field_alias, photoobj as #photoobj_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from speclineindex as #speclineindex_alias, specobj as #specobj_alias where #predicate  group by specobj.bestobjid
+1	select #projection from fgetnearbyobjeq(#num,[-3.0957275 -3.15528 -3.1787515 ..., -2.215894 -2.26331 -2.1738445],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobjall as #specobjall_alias where #predicate  group by specclass
+1	select #projection from fgetnearbyobjeq(#num,[ 3.1239695 3.1732955 3.1525325 ..., 4.5193765 4.490533 4.429175 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 41.054125 41.0867445 40.9979575 ..., 39.55872 39.569775 39.573803 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 28.910039 29.0534565 29.0743135 ..., 28.5087035 28.435593 28.574461 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  group by left(z,#num)
+1	select top #top #projection from photoobj as #photoobj_alias, platex as #platex_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 36.552494 36.573013 36.5342865 ..., 37.1915225 37.094791 37.144638 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 28.3684475 28.463107 28.3614005 ..., 28.2002775 28.215663 28.161876 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, photoprimary as #photoprimary_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num), photoobj as #photoobj_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, rosat as #rosat_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-5.9015515 -5.9832365 -5.946777 ..., -4.610451 -4.606245 -4.6236155],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, phototag as #phototag_alias where #predicate  order by #order
+1	select top #top #projection from specphoto as #specphoto_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-11.9113655 -11.9770155 -11.9032375 ..., -10.5570895 -10.557837 -10.500107 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from tab as #tab_alias
+1	select #projection from spobjall as #spobjall_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-26.898593 -26.8319235 -26.9174225 ..., -25.789633 -25.791481 -25.838333 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 5.0660645 4.9652215 5.091906 ..., 5.233052 5.3175155 5.273065 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 5.299429 5.284323 5.281881 ..., 6.3345375 6.2013235 6.2184655],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from sml130 as #sml130_alias, specphotoall as #specphotoall_alias where #predicate  order by #order
+1	select #projection from specobj as #specobj_alias where #predicate  group by ""mid-z"" order by #order
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), runqa as #runqa_alias, star as #star_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, xcredshift as #xcredshift_alias where #predicate 
+1	select #projection from rosat as #rosat_alias, specline as #specline_alias, specphotoall as #specphotoall_alias where #predicate 
+1	select top #top #projection from photobjall as #photobjall_alias
+1	select #projection from fgetnearbyobjeq([ 6.553372 6.661302 6.670385 ..., 5.155151 5.1431085 5.133936 ],[ 13.424322 13.344295 13.47728 ..., 13.6472915 13.5693 13.557311 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoz as #photoz_alias, fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias left join specobjall as #specobjall_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias left join specobj as #specobj_alias left join photoobjall as #photoobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 12.03761 12.067006 12.1227905 ..., 12.2962965 12.179131 12.221182 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 3.1667885 3.1240485 3.18171 ..., 4.296636 4.2968065 4.179673 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias
+1	select #projection from objid as #objid_alias, photoobj as #photoobj_alias
+1	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias left join photoz as #photoz_alias left join photoz2 as #photoz2_alias
+1	select #projection from chunk as #chunk_alias, field as #field_alias, photoobj as #photoobj_alias, segment as #segment_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 78.979126 78.9506835 79.02615 ..., 78.054512 78.041191 78.046627 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 11.5961795 11.6525455 11.637706 ..., 12.7586885 12.725269 12.796718 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from field as #field_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 30.5964285 30.6681775 30.5380715 ..., 29.577217 29.655232 29.59403 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by round((petrorad_g+petrorad_r+petrorad_i+petrorad_z)/#num,#num) having count(#num) > (select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate ) order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-11.924431 -11.925194 -11.9493175 ..., -10.80201 -10.801257 -10.776792 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.263263 0.276897 0.180195 ..., 1.391141 1.418488 1.4077495],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 61.7077595 61.7198235 61.696369 ..., 60.337984 60.4084435 60.32052 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-7.673938 -7.6684475 -7.586445 ..., -6.612241 -6.617345 -6.7356705],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetobjeq(#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fregionscontainingpointeq(#num,#num,#str,#str,#num)
+1	select top #top #projection from fgetnearbyobjeq(#num,#num), galaxy as #galaxy_alias where #predicate 
+1	select #projection from speclinea as #speclinea_alias, specphoto as #specphoto_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num), runqa as #runqa_alias where #predicate 
+1	select #projection from (select max(abs(l.ew)) as maxew, max(abs(l.nsigma)) as maxnsigma, l.specobjid as id from speclineall l, specobjall s where s.specobjid = l.specobjid and l.ew <> -9999 and l.nsigma <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-4.417597 -4.426911 -4.3669985 ..., -2.9246315 -2.8862085 -2.935413 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 59.428711 59.3632125 59.471199 ..., 58.353468 58.368099 58.384573 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.526043 1.522754 1.5076865 ..., 2.894077 2.9099185 2.884092 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.9767485 -9.888448 -9.999757 ..., -8.6060215 -8.637983 -8.611213 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, phototag as #phototag_alias, photoz as #photoz_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias
+1	select #projection from fgetnearbyobjeq(#num,[-23.0993565 -23.0828855 -23.132673 ..., -21.624088 -21.611517 -21.63379 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select top 100 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 3935 and l1.ew < -15 and l1.ew > -9999 and (g.flags & 2 = 0) and n.distance < 10.0 / 60 and g.objid not in (587725470664229144, 587732048942989508)) b, phototag as #phototag_alias where #predicate 
+1	select #projection from (select max(abs(l.ew / l.ewerr)) as sn, l.specobjid from speclineall l, specobj s where s.specobjid = l.specobjid and l.ew != -9999 and l.ewerr > 0 group by l.specobjid) ll where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-14.6225085 -14.561962 -14.630489 ..., -13.2411355 -13.225532 -13.217498 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobjall as #photoobjall_alias group by n.fieldid
+1	select #projection from fgetnearbyobjeq(#num,[ 69.113674 69.2549095 69.2412225 ..., 68.925232 68.867283 68.92165 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, sppparams as #sppparams_alias group by sp.specobjid
+1	select #projection from specobj as #specobj_alias where #predicate  group by dec
+1	select #projection from fgetnearbyobjeq(#num,[ 69.774509 69.8487965 69.789257 ..., 68.4078635 68.353992 68.379871 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from quasar as #quasar_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 6.4939375 6.482878 6.5000745 ..., 6.048036 6.0105 6.0518705],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 49.7337205 49.7894705 49.774845 ..., 48.2953965 48.331745 48.282179 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-20.917471 -20.8244555 -20.874278 ..., -19.5329535 -19.549557 -19.484998 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 2.850148 2.84963 2.882664 ..., 3.54596 3.5357195 3.5239125],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-15.2589265 -15.3619365 -15.2246705 ..., -13.9001065 -13.97759 -14.064335 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 100 g.bestobjid as objid from qsocatalog as g join specobj as s on s.bestobjid = g.bestobjid join neighbors as n on g.bestobjid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.bestobjid < l.objid and s.z > 0.09 and n.distance < 0.1) c, phototag as #phototag_alias where #predicate 
+1	select #projection from ""table_name"" as #""table_name""_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 1.6761935 1.693711 1.614342 ..., 2.7446625 2.797457 2.740858 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+1	select #projection from fgetnearbyobjeq([ 7.53202 7.483031 7.544066 ..., 7.241727 7.412919 7.2466515],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, runqa as #runqa_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, specline as #specline_alias, specobjall as #specobjall_alias, specphoto as #specphoto_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias
+1	select #projection from fgetnearbyobjeq(#num,[-4.146006 -4.138544 -4.1699995 ..., -3.2711355 -3.262968 -3.2921455],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galspecline as #galspecline_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias
+1	select top #top #projection from star as #star_alias left join specobj as #specobj_alias, fgetnearbyobjeq(nan,nan,#num) where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 4.8311945 4.7864285 4.841785 ..., 5.8960245 5.8924365 5.877215 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 13.424322 13.344295 13.47728 ..., 13.6472915 13.5693 13.557311 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), galaxy as #galaxy_alias where #predicate 
+1	select distinct #projection from (select top 3000 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 3730 and l1.ew > 10 and g.g < 18. and s.z between 0.03 and 0.1 and n.type = 3 and n.distance < 0.3) c, phototag as #phototag_alias where #predicate 
+1	select top #top #projection from phototag as #phototag_alias, specobj as #specobj_alias, targetinfo as #targetinfo_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-20.8793265 -20.8171815 -20.8617435 ..., -19.3587435 -19.380036 -19.336518 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 55.791996 55.80282 55.7403105 ..., 54.4777795 54.42383 54.4738595],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fregionscontainingpointeq(#num,#num,""tile"",#num)
+1	select #projection from fgetnearbyobjeq(#num,[-2.6223875 -2.726932 -2.747826 ..., -1.750898 -1.8095875 -1.7240505],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.0867395 0.0485645 0.0583665 ..., 1.5356595 1.4945075 1.504985 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.3607595 0.36054 0.388264 ..., 1.246014 1.163287 1.281236 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobjall as #photoobjall_alias, photoz as #photoz_alias, photoz2 as #photoz2_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join specobjall as #specobjall_alias
+1	select top #top #projection from (select distinct objid1, matchhead from match) as m, photoobj as #photoobj_alias where #predicate 
+1	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-6.026967 -6.090131 -6.0782655 ..., -4.619145 -4.5574165 -4.6096085],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetobjfromrect(file,file,file,file), field as #field_alias, photoprimary as #photoprimary_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from (select objid1, objid2, -1 / 60. as distance from match union all select objid1, objid2, distance from match) as m, field as #field_alias, photoobj as #photoobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.7858135 -2.7450165 -2.8038295 ..., -1.3042825 -1.246652 -1.307064 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, sppparams as #sppparams_alias group by specobjid having count(sp.specobjid) = #num
+1	select #projection from platex as #platex_alias, propermotions as #propermotions_alias, specphotoall as #specphotoall_alias, sppparams as #sppparams_alias where #predicate 
+1	select top #top #projection from specline as #specline_alias, speclineindex as #speclineindex_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from first as #first_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 3.5573375 3.6316675 3.593328 ..., 3.217137 3.26145 3.218505 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.3451435 -7.4584765 -7.4385595 ..., -6.1078755 -6.1068705 -6.295808 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, galaxy as #galaxy_alias left join specobj as #specobj_alias left join rosat as #rosat_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-7.639871 -7.5454015 -7.6125055 ..., -6.223179 -6.195467 -6.326756 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-8.338145 -8.3730205 -8.407665 ..., -7.495934 -7.472137 -7.5332545],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from galaxy as #galaxy_alias, neighbors as #neighbors_alias, photoprimary as #photoprimary_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 83.578163 83.5499495 83.589279 ..., 82.175415 82.17799 82.233894 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specclass as #specclass_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, photoz as #photoz_alias, rosat as #rosat_alias, specobj as #specobj_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 4.598886 4.734216 4.5837215 ..., 5.5054625 5.4435155 5.5102045],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclineall as #speclineall_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, photoz as #photoz_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, phototag as #phototag_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-9.700065 -9.7975345 -9.7443575 ..., -8.6147455 -8.6492905 -8.623306 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 18.580352 18.5570095 18.4796735 ..., 19.2168885 19.216776 19.351384 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, speclineindex as #speclineindex_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias where #predicate 
+1	select #projection from (select max(l.ew) as maxew, l.specobjid from speclineall l, specobj s where s.specobjid = l.specobjid and l.ew <> -9999 and zstatus = 1 and sn_0 > 10 group by l.specobjid) ll where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-27.5269605 -27.542612 -27.549203 ..., -26.3345365 -26.321409 -26.328926 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 15.29645 15.2791745 15.1276555 ..., 15.6676965 15.648206 15.703153 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, fgetnearbyobjeq(#num,#num,#num) where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, phototag as #phototag_alias, photoz2 as #photoz2_alias, specobjall as #specobjall_alias order by #order
+1	select top #top #projection from photoprimary as #photoprimary_alias where #predicate  union all select top #top #projection from photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, speclineall as #speclineall_alias, speclinenames as #speclinenames_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-3.540574 -3.646099 -3.5092925 ..., -2.464609 -2.3603665 -2.4521125],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-7.7162035 -7.7274585 -7.744199 ..., -6.290549 -6.277984 -6.279219 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobj as #specobj_alias, star as #star_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-20.7047195 -20.6560565 -20.6931145 ..., -19.2938435 -19.311746 -19.3306 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 500 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 5008 and l1.ew > 280 and g.g < 18. and s.z > 0.04 and n.type = 3 and n.distance < 0.36) c, phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-21.294509 -21.242303 -21.251877 ..., -19.8887375 -19.8621435 -19.84134 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.303749 -2.268767 -2.3235675 ..., -1.3481945 -1.371587 -1.4518045],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoprimary as #photoprimary_alias left join specobjall as #specobjall_alias, photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-26.2015505 -26.2357 -26.1732505 ..., -24.731555 -24.726758 -24.740312 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-2.8707465 -2.832432 -2.961472 ..., -1.519411 -1.500092 -1.5117675],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from obj as #obj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-8.524651 -8.601159 -8.548961 ..., -7.444599 -7.3505575 -7.3516005],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 12.2056795 12.2706145 12.251871 ..., 10.8560865 10.9667215 10.87041 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select t.objid from specphoto t join neighbors as n on t.objid = n.objid join photoz as l on l.objid = n.neighborobjid where t.objid = 588015508205863023) c, phototag as #phototag_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 8.7447455 8.635966 8.7373895 ..., 9.847722 9.8163175 9.90235 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 4.867333 5.023852 5.033183 ..., 3.5660835 3.65897 3.618333 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from ((select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate ) as myqsr left join specline as #specline_alias) left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias where #predicate  order by #order
+1	select #projection from spp as #spp_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, rosat as #rosat_alias, specobj as #specobj_alias order by #order
+1	select #projection from user_table as #user_table_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 7.3203215 7.354275 7.3582055 ..., 8.5176145 8.479093 8.517293 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 44.4086015 44.4708175 44.506929 ..., 45.375448 45.490818 45.385621 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoprimary as #photoprimary_alias where #predicate  order by #order
+1	select #projection from star as #star_alias left join specobj as #specobj_alias, fgetobjfromrect(#num,#num,#num,#num)
+1	select #projection from fgetnearbyobjeq(#num,[-9.839527 -9.819264 -9.8534445 ..., -8.819737 -8.849849 -8.8126155],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by p.run, p.camcol, p.field
+1	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, field as #field_alias, star as #star_alias where #predicate  order by #order
+1	select #projection from (select max(abs(ll.ew)) as maxew, ss.specobjid as id from speclineall ll, specobj ss where ll.ew <> -9999 and ss.specobjid = ll.specobjid group by ss.specobjid) aaa, photoobj as #photoobj_alias, specobj as #specobj_alias, specphoto as #specphoto_alias, sppparams as #sppparams_alias, usno as #usno_alias where #predicate 
+1	select #projection from first as #first_alias, galspecextra as #galspecextra_alias, galspecindx as #galspecindx_alias, galspecline as #galspecline_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 5.194803 5.1343405 5.0988405 ..., 5.825416 5.8808235 5.9036265],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 33.4695875 33.449099 33.3749005 ..., 34.789956 34.884313 34.811443 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 2.444488 2.335138 2.305626 ..., 3.275256 3.2533365 3.334937 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.5430095 -4.508263 -4.524347 ..., -3.0407235 -3.111349 -3.0630355],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from object as #object_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, speclineindex as #speclineindex_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, speclinenames as #speclinenames_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  group by specobjid, dec having min(dec) = dec
+1	select #projection from fgetnearbyobjeq(#num,[-10.1905985 -10.232993 -10.26527 ..., -9.2551435 -9.271205 -9.266417 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias where #predicate  order by #order
+1	select #projection from specoobj as #specoobj_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 77.599922 77.636814 77.605324 ..., 76.219845 76.355263 76.315632],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias where #predicate  order by #order
+1	select top #top #projection from specobj as #specobj_alias, sppparams as #sppparams_alias, star as #star_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 9.2069395 9.184118 9.178554 ..., 7.5514885 7.520368 7.5193635],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobjall as #photoobjall_alias, platex as #platex_alias, specobjall as #specobjall_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 66.7439655 66.8029175 66.773621 ..., 66.588448 66.584923 66.601696 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-15.7530825 -15.7242475 -15.765078 ..., -14.2649825 -14.316649 -14.253911 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetobjfromrect(#num,#num,#num,#num), photoprimary as #photoprimary_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 30.0213835 30.0261125 30.074481 ..., 30.181734 30.14668 30.1542695],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz2 as #photoz2_alias where #predicate  order by #order
+1	select #projection from specob as #specob_alias where #predicate 
+1	select #projection from field as #field_alias, fieldprofile as #fieldprofile_alias, profiledefs as #profiledefs_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photag as #photag_alias, photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, usno as #usno_alias order by #order
+1	select #projection from (select max(abs(l.ew)) as maxew, max(abs(i.ew)) as maxiew, l.specobjid as id from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and l.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.430752 -4.4093615 -4.3607465 ..., -3.090642 -3.0040065 -3.083451 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from tardr7 as #tardr7_alias where #predicate 
+1	select #projection from (select row_number() over (order by s.plate desc) as rownumber, p.objid, p.ra, p.dec, p.u, p.g, p.r, p.i, p.z as pz, p.run, p.rerun, p.camcol, p.field, s.specobjid, s.specclass, s.z, s.plate, s.mjd, s.fiberid from photoobj as p join specobj as s on s.bestobjid = p.objid where s.specclass = 4) as dfgh where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 50.877155 50.8947485 50.864172 ..., 49.723686 49.69038 49.6367185],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from id as #id_alias, photoobjall as #photoobjall_alias where #predicate 
+1	select #projection from fregionscontainingpointeq(#num,#num,#str,#num), fregionscontainingpointeq(#num,#num,#str,#num)
+1	select #projection from fgetnearbyobjeq(#num,[-6.672404 -6.6940815 -6.7252775 ..., -5.3738745 -5.388978 -5.415545 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select max(l.ew) as mew, min(l.ew) as minew, l.specobjid, min(s.sci_sn) as sn from speclineall l, specobj s where s.specobjid = l.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 group by l.specobjid) ll where #predicate 
+1	select #projection from fgetobjfromrect(#num,#num,#num,#num), propermotions as #propermotions_alias, star as #star_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-13.6638075 -13.706655 -13.7745985 ..., -12.4091035 -12.369847 -12.347306 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 16.929352 16.9247845 16.824365 ..., 17.176307 17.202193 17.115551 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, specline as #specline_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select distinct #projection from fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 7.3096955 7.415594 7.333989 ..., 8.7338165 8.8021075 8.701357 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-15.8275305 -15.8688805 -15.807196 ..., -14.483752 -14.456196 -14.432917 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  limit 5
+1	select #projection from _upload as #_upload_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias where #predicate  group by p.run, p.rerun
+1	select #projection from fgetnearbyobjeq(#num,[ 26.508189 26.413061 26.376198 ..., 25.763606 25.670884 25.710472],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from tabs as #tabs_alias
+1	select #projection from fgetnearbyobjalleq(ra,dec,#num), specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 68.76012 68.7615775 68.7592045 ..., 67.4041175 67.472435 67.475189 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), photoobj as #photoobj_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-24.943205 -24.8654865 -24.911849 ..., -23.5298695 -23.512295 -23.529322 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-23.904071 -23.906143 -23.829437 ..., -22.55939 -22.528144 -22.56149 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specobj as #specobj_alias, spplines as #spplines_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from (select *, row_number() over (order by ra asc) as row from specphotoall where type = 3 and modelmag_u >= 0 and modelmag_g >= 0 and modelmag_r >= 0 and modelmag_i >= 0 and modelmag_z >= 0) where #predicate 
+1	select #projection from speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate  group by l.specobjid
+1	select #projection from fgetnearbyobjeq(#num,[-28.7957045 -28.838337 -28.7523145 ..., -27.371084 -27.373083 -27.398935 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearestspecobjeq(undefined,undefined,#num), specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, specline as #specline_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-8.6877805 -8.6779845 -8.6946445 ..., -7.493315 -7.482508 -7.3798945],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from ffootprinteq(ra,dec,#num), fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, specphotoall as #specphotoall_alias where #predicate 
+1	select top #top #projection from spptargets as #spptargets_alias
+1	select #projection from fgetnearbyobjeq(#num,[ 4.6690105 4.5459395 4.595949 ..., 5.7818295 5.7121845 5.7162375],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from spec0bj as #spec0bj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 48.859009 48.8415205 48.827816 ..., 48.163649 48.173403 48.178095 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, speclineall as #speclineall_alias, specobjall as #specobjall_alias
+1	select #projection from fgetnearbyobjeq(#num,[-4.3036335 -4.2807785 -4.343442 ..., -2.9339985 -2.8546595 -2.8450515],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specobjid as #specobjid_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.598257 1.534002 1.549942 ..., 2.981439 2.9257555 2.920375 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from fgetobjfromrect(#num,#num,#num,#num), runqa as #runqa_alias, star as #star_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias left join specobj as #specobj_alias, spplines as #spplines_alias, sppparams as #sppparams_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 58.7708495 58.7602595 58.779106 ..., 57.307997 57.355957 57.302616 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from bestdr7 as #bestdr7_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by s.z order by #order
+1	select #projection from _upload as #_upload_alias, speclineindex as #speclineindex_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from frame as #frame_alias, galaxy as #galaxy_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from targetobjid as #targetobjid_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 40.6865195 40.751833 40.7136325 ..., 39.804613 39.816435 39.667986 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias where #predicate  group by field, type order by #order
+1	select top #top #projection from galaxy as #galaxy_alias, photoz2 as #photoz2_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from specobj as #specobj_alias, zconf as #zconf_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 31.8083115 31.8094035 31.833917 ..., 31.902697 31.942798 31.851867 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 9.394081 9.478176 9.4483005 ..., 8.8704825 8.7393115 8.8918685],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, propermotions as #propermotions_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from runqa as #runqa_alias, specobj as #specobj_alias, star as #star_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 0.6555235 0.7325605 0.757842 ..., 0.89455 0.8032045 0.803582 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 27.493464 27.445011 27.5201815 ..., 30.499199 30.671236 30.656156 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from elredshift as #elredshift_alias, galaxy as #galaxy_alias, photoz as #photoz_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 28.2147475 28.2666845 28.291831 ..., 28.709465 28.674328 28.642812 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobjall as #photoobjall_alias, propermotions as #propermotions_alias, usno as #usno_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from _upload as #_upload_alias, phototag as #phototag_alias, specobjall as #specobjall_alias order by #order
+1	select top #top #projection from platex as #platex_alias, platex as #platex_alias, specobjall as #specobjall_alias, specobjall as #specobjall_alias where #predicate  group by first.plate, other.plate, otherplate.programname order by #order
+1	select top #top #projection from field as #field_alias, photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 14.0576685 14.096282 14.16004 ..., 12.8740565 12.899254 12.89596 ],[ 8.9077835 8.911723 8.927172 ..., 9.702578 9.7803965 9.715564 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from elredshift as #elredshift_alias, galaxy as #galaxy_alias, photoobjall as #photoobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 4.955177 4.867333 4.9228135 ..., 3.5660835 3.65897 3.618333 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 29.4470695 29.5200365 29.4034845 ..., 30.564372 30.396646 30.529232 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias
+1	select #projection from fgetnearbyobjeq(#num,[-25.9016515 -25.8687105 -25.7884045 ..., -24.922776 -25.043932 -25.073393 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join specobj as #specobj_alias where #predicate 
+1	select #projection from fgetobjfromrect(#num,#num,#num,#num), photoprimary as #photoprimary_alias left join specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from specclass as #specclass_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 45.5372865 45.5041175 45.467718 ..., 44.288759 44.322725 44.330467 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 6.8649745 6.8558115 6.8902375 ..., 6.174943 6.22321 6.134599 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from star as #star_alias left join specobj as #specobj_alias, _x as #_x_alias, _upload as #_upload_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-6.3170065 -6.3382375 -6.32833 ..., -5.018199 -4.9849055 -4.9405005],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-9.8694535 -9.8983985 -9.851266 ..., -8.469544 -8.529101 -8.435368 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetobjfromrect(#num,#num,#num,#num), runqa as #runqa_alias, star as #star_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 14.38142 14.5515795 14.492114 ..., 14.7384025 14.749734 14.789268 ],[ 41.054125 41.0867445 40.9979575 ..., 39.55872 39.569775 39.573803 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select new.objid, new.distance from (select top 2 g.objid, gn.distance, gn.objid as gnid from galaxy as g join dbo.fgetnearbyobjeq(185., -0.5, 1) as gn on g.objid = gn.objid where (g.flags & dbo.fphotoflags('saturated')) = 0) as new) as n order by #order
+1	select #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from dr5quasarcatalog as #dr5quasarcatalog_alias group by ceiling(m_i) order by #order
+1	select #projection from fgetnearbyobjeq(#num,[ 51.4643325 51.5565375 51.5318795 ..., 51.4164125 51.381285 51.299536 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 7.8683825 7.9174835 7.90583 ..., 9.03386 9.02939 9.0288115],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias where #predicate  group by (round(z*#num,#num) / #num)
+1	select top #top #projection from galaxy as #galaxy_alias, galaxy as #galaxy_alias, neighbors as #neighbors_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, speclineall as #speclineall_alias, specphoto as #specphoto_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, plate as #plate_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias, photoobj as #photoobj_alias, photoz as #photoz_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from (select top 1 new.objid, new.distance from (select top 2 gn.objid, gn.distance from dbo.fgetnearbyobjeq(256.15041, 62.734821, 1) as gn where gn.type = 3) as new order by -new.objid) as n
+1	select top #top #projection from (select max(l.ew) as maxew, min(l.ew) as minew, max(l.ewerr / abs(l.ew)) as ratio, max(i.ew) as maxindex, min(i.ew) as minindex, max(i.ewerr / abs(i.ew)) as ratioindex, l.specobjid from speclineall l, specobjall s, speclineindex i where s.specobjid = l.specobjid and s.specobjid = i.specobjid and (specclass = 0 or specclass = 3 or specclass = 4) and l.ew <> -9999 and i.ew <> -9999 and l.ew <> 0 and i.ew <> 0 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from photoobj as #photoobj_alias, qsoconcordanceall as #qsoconcordanceall_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias left join photoz as #photoz_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from photoobj as #photoobj_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select top #top #projection from specobjall as #specobjall_alias, specphotoall as #specphotoall_alias, sppparams as #sppparams_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 38.7923085 38.669073 38.7836035 ..., 37.4692535 37.61211 37.536657 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from (select max(l.ew) as maxew, s.specobjid as id from specline l, specobjall s where l.ew <> -9999 and l.specobjid = s.specobjid group by s.specobjid) aaa, speclineindex as #speclineindex_alias, specobjall as #specobjall_alias where #predicate 
+1	select top #top #projection from (select objid, distance from neighbors where objid = 587734840668782942 and distance > 0.01) p group by objid
+1	select #projection from _upload as #_upload_alias, photoobj as #photoobj_alias, specobj as #specobj_alias, spnearestobjeq(u.ra,u.dec,#num) where #predicate 
+1	select #projection from (select specobjid, max(abs(ew / ewerr)) sn from speclineall where ew != -9999 and ewerr != -9999 and ewerr != 0 group by specobjid) l, _upload as #_upload_alias, _x as #_x_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 1.5554425 1.5521135 1.631727 ..., 2.979844 3.0601 3.008166 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from specobj as #specobj_alias where #predicate  union select top #top #projection from specobj as #specobj_alias where #predicate  union select top #top #projection from specobj as #specobj_alias where #predicate  union select top #top #projection from specobj as #specobj_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, phototag as #phototag_alias, z as #z_alias, zerr as #zerr_alias left join photoz as #photoz_alias where #predicate  order by #order
+1	select top #top #projection from fgetnearbyobjeq(nan,#num,#num), galaxy as #galaxy_alias, runqa as #runqa_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-24.4592095 -24.4697615 -24.4904995 ..., -23.015477 -22.9787985 -23.03781 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from photoobjall as #photoobjall_alias, propermotions as #propermotions_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, propermotions as #propermotions_alias, specphotoall as #specphotoall_alias, specphotoall as #specphotoall_alias
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobj as #photoobj_alias, photoz as #photoz_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from speclineall as #speclineall_alias, specobj as #specobj_alias where #predicate  group by l.specobjid order by #order
+1	select #projection from fgetnearbyobjeq([ 14.1895915 14.1970315 14.1647365 ..., 14.618419 14.5510545 14.59375 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select distinct #projection from (select top 1000 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 6565 and l1.ew > 300 and g.g < 18. and n.distance < 0.37 and n.type = 3) c, phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 62.2529505 62.2395785 62.3124505 ..., 60.896391 60.924925 60.833891 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from _upload as #_upload_alias, _x as #_x_alias, galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate  order by #order
+1	select #projection from photoobj as #photoobj_alias, propermotions as #propermotions_alias, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from specobj(#num,#num,#num) where #predicate 
+1	select distinct #projection from fgetnearbyframeeq(#num,#num,#num,#num), photoobjall as #photoobjall_alias
+1	select top #top #projection from fgetnearbyobjeq(#num,#num,#num), photoobjall as #photoobjall_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from _x as #_x_alias, _upload as #_upload_alias, photoobj as #photoobj_alias left join specobj as #specobj_alias left join specphotoall as #specphotoall_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join specline as #specline_alias left join photoz as #photoz_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq(#num,#num,#num), specobj as #specobj_alias, star as #star_alias where #predicate 
+1	select top #top #projection from specclass as #specclass_alias, specline as #specline_alias, speclinenames as #speclinenames_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from (select max(abs(l.ew)) as maxew, l.specobjid as id from speclineall l, specobjall s where s.specobjid = l.specobjid and l.ew <> -9999 group by l.specobjid) ll, specobjall as #specobjall_alias where #predicate  order by #order
+1	select #projection from fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), fgetnearestobjalleq(#num,#num,#num), photoobj as #photoobj_alias where #predicate 
+1	select #projection from galaxy as #galaxy_alias, runqa as #runqa_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-19.8971605 -19.9705775 -19.893121 ..., -18.5255865 -18.47481 -18.507152 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 78.829918 78.8316995 78.857384 ..., 77.3446275 77.365738 77.406708 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photo as #photo_alias where #predicate 
+1	select top #top #projection from fgetnearbyobjeq(#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoall as #photoall_alias, specobjall as #specobjall_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-12.1955435 -12.147788 -12.119595 ..., -10.7582845 -10.830845 -10.857787 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-28.8378855 -28.8965845 -28.896258 ..., -27.553641 -27.508008 -27.490152 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[-4.5128395 -4.456922 -4.5451035 ..., -3.859577 -3.827013 -3.934364 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from photoobj as #photoobj_alias, specobj as #specobj_alias where #predicate  group by round((petrorad_g+petrorad_r+petrorad_i+petrorad_z)/#num,#num) order by #order
+1	select top #top #projection from galaxy as #galaxy_alias left join specobj as #specobj_alias, _x as #_x_alias, _upload as #_upload_alias where #predicate  order by #order
+1	select #projection from fgetnearbyobjeq([ 3.549399 3.4924875 3.4821425 ..., 3.6910405 3.624771 3.6222795],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specobj as #specobj_alias, star as #star_alias, usno as #usno_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, photoprofile as #photoprofile_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyobjeq(#num,[-6.9988095 -7.039794 -6.9583325 ..., -5.819279 -5.699016 -5.768794 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from specclass as #specclass_alias, specobj as #specobj_alias where #predicate  group by specclass.name
+1	select #projection from _upload as #_upload_alias order by #order
+1	select distinct #projection from (select top 1000 g.objid from galaxy as g join specobj as s on g.objid = s.bestobjid join specline as l1 on s.specobjid = l1.specobjid join neighbors as n on g.objid = n.objid join photoprimary as l on l.objid = n.neighborobjid where g.objid < l.objid and l1.lineid = 6565 and l1.ew > 200 and (g.flags & 2 = 0) and n.distance < 10.0 / 60 and g.objid not in (587725470664229144, 587725491600883722, 587725473882570857, 587725472808894573, 587725470134304981, 587725469593829517, 587725469061414993, 587725075532546123, 587725075530317872, 587725041169858675, 587724242306138118, 587724241772675258, 587724241771233538, 587724232109064281, 587725816421154916, 587722983371440263, 587726031728345220, 587725775607037974, 587725552819634248, 587725550138097819, 587725817493585971, 587724649791881276, 587724649256714436, 587726031696756796, 587725817498239047, 587725816959795251, 587724197746180186, 587726032804905165, 587725577497936101, 587726033324933274, 587725551745630331, 587725818574798961, 587725981229121679, 587726014005379170, 587726014551621896, 587726016150765604, 587726033323491364, 587726033330700463, 587726033866195012, 587725818567786525, 587725992499675214, 587725994649256150, 587726033871437837, 587726015076433951, 587726033878778027, 587727177932603525, 587726032768008204, 587727178460364834, 587725551744450605, 587726102557622431, 587727223025303678, 587725980153020469, 587726033876353066, 587727180087296279, 587727178463379512, 587727178988388359, 587727214421672219, 587726878885085331, 587727179527356587, 587727223561388133, 587727180070125590, 587727882282926092, 587727180620824713, 587728669875962249, 587727214418198892, 587727178469343307, 587728880340762665, 587728880870228005, 587727178997432420, 587729158433341460, 587727876380754061, 587729386076373081, 587728931876569141, 587727214422589465, 587729157892014136, 587728920059052161, 587728931340550411, 587729232523231569, 587728309105590306, 587728309631975445, 587728931884630137, 587728947976929338, 587729409688731848, 587727223554769082, 587728309105393699, 587729777982243104, 587729388223529068, 587729407545901289, 587730773883682952, 587729157907021888, 587729652355170847, 587729159505641515, 587729773682884901, 587729781202027088, 587728676855021715, 587731186735054883, 587729409689190618, 587728880879009975, 587730774950608959, 587730774952116541, 587731500793331861, 587731513157746757, 587731185125883927, 587731500256788683, 587730775488004132, 587731522273280023, 587732135921778739, 587731679041290347, 587731186723651687, 587731870702174216, 587729408083755102, 587730773888860441, 587731891113754749, 587732053784002658, 587732054314647758, 587732482753102044, 587729227686543384, 587732483288858696, 587732483814522923, 587732483831169044, 587732049487790084, 587732482209874062, 587732136995192863, 587732136993554574, 587735043079077986, 588007005802135580, 588009367474274476, 587731172234231820, 588007003645542441, 588009372833284128, 587732484341956784, 588007004726624429, 587730847966494768, 588010358003401052, 587733410454044794, 588010359622140041, 587732471457841443, 588010359067705540, 588010359069999207, 588013383276822649, 587732157929226363, 588013383812579366, 587732769976090739, 587732772666409036, 587734622168023084, 587733080280203402, 587733081349226539, 588015509282029721, 588010878226137100, 587733412590714924, 588848899915120658, 588010879297585271, 588013384341913605, 588010879307481144, 588010880366215178, 588015509273378878, 588011123041960011, 587733399710007405, 588015510344630388, 588011218608980003, 588848899897950347, 587733604263854219, 587725039554789469, 587725775068004523, 587725591457104038, 587725490524913882, 587725075528941632, 587725074992070899, 587725041165664394, 587725040627941476, 587725490524323991, 587725473345568773, 587725471204442246, 587725469592715391, 587725040099852300, 587725039022768267, 587724649800859674, 587722982284722381, 587726032770498617, 587725816405098641, 587725818031308892, 587725552288530592, 587725552268607615, 587725980687859744, 587725981225910463, 587726014534254625, 587724649803022514, 587724649801515155, 587724233182216248, 587722984440201330, 587722983911915773, 587726032800252022, 587726015619727519, 587726031706456145, 587725469054861376, 587725993035825217, 587726032260562999, 587726032266330286, 587726032769908817, 587722983904051292, 587726032778362918, 587725980153806942, 587726015086657566, 587726033325064317, 587722983907721231, 587727178474586223, 587726033302978869, 587726033317789755, 587726033320280213, 587726016681410623, 587726101485650110, 587727180083298420, 587726877262807172, 587727180605161533, 587726877267394711, 587728676858626195, 587727867255521608, 587727180599853146, 587726879412126106, 587726879416254717, 587727178464624784, 587727225152733191, 587728309095956655, 587727226765508634, 587727179001692215, 587727180067504159, 587728881416339672, 587728906636296367, 587728308024246358, 587728881416274166, 587728918986031255, 587727220868775970, 587727220869628063, 587729228223545370, 587728679002701888, 587727179537842237, 587726877801250828, 587729387677024352, 587728949047394462, 587729776369991770, 587728931870343248, 587729778521342037, 587731185650761852, 587729229297090663, 587729386066018475, 587729387689476252, 587728931336487046, 587729154670067823, 587729157897650230, 587729158963789999, 587731185133355186, 587731513685966896, 587731681196638221, 587728932419338340, 587729778524029269, 587731511537041427, 587729970180456813, 587728950124347532, 587731498651680820, 587730817903165446, 587729228220203056, 587728679543505030, 587731869089595612, 587732135383924815, 587732482758606865, 587731186193465464, 587727226227523734, 587731887341896018, 587731186734203087, 587731513152700576, 587731521211793426, 587732135386087456, 587731521747550323, 587732483806199877, 587732483835035755, 587731887349170257, 587732576700399635, 587732048942989508)) b, phototag as #phototag_alias where #predicate 
+1	select #projection from fgetnearbyobjeq([ 40.13521 40.1052845 40.1618315 ..., 38.6103815 38.6532875 38.50745 ],#num,#num), photoprimary as #photoprimary_alias where #predicate 
+1	select #projection from _upload as #_upload_alias, _x as #_x_alias left join phototag as #phototag_alias, specobjall as #specobjall_alias order by #order
+1	select #projection from fgetnearbyspecobjeq(#num,#num,#num), photoobj as #photoobj_alias where #predicate 
+1	select top #top #projection from (select specobjid, lineid, max(2.99e5 * 2.354 * sigma / wave) as maxvel from specline where (category = 2 and lineid in (3427, 3727) and nsigma > 3 and chisq / nu < 20 and ew > 0 and abs(ew - height * sigma * 1.065 * 2.354 / continuum) / ew < 0.25) group by specobjid, lineid) as smax, (select specobjid, tempno, max(shift) as shi from xcredshift group by specobjid, tempno) as xc, specline as #specline_alias, specobj as #specobj_alias where #predicate 
+1	select #projection from fgetnearbyobjeq(#num,[ 3.2170035 3.223193 3.302137 ..., 4.116838 4.1156855 4.055386 ],#num), photoprimary as #photoprimary_alias where #predicate 
+1	select top #top #projection from (select specobjid from speclineall group by specobjid) ll
+1	select #projection from star as #star_alias limit 100

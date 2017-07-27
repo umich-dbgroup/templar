@@ -1,0 +1,71 @@
+==> bestdr7_0.05.join0.comp.10000.out <==
+08:10  INFO: ==============================
+08:10  INFO: Creating templates from log...
+08:10  INFO: ==============================
+
+08:10  INFO: ==============================
+08:10  INFO: Measuring coverage...
+08:37  INFO: Number of templates: 6310
+08:37  INFO: Coverage: 395527 / 844485 (46.8)%
+08:37  INFO: ==============================
+
+
+==> bestdr7_0.05.join0.comp_proj.10000.out <==
+07:41  INFO: ==============================
+07:41  INFO: Creating templates from log...
+07:41  INFO: ==============================
+
+07:41  INFO: ==============================
+07:41  INFO: Measuring coverage...
+07:57  INFO: Number of templates: 6228
+07:57  INFO: Coverage: 399980 / 844485 (47.4)%
+07:57  INFO: ==============================
+
+
+==> bestdr7_0.05.join0.const.10000.out <==
+	at net.sf.jsqlparser.parser.CCJSqlParser.SingleStatement(CCJSqlParser.java:129)
+	at net.sf.jsqlparser.parser.CCJSqlParser.Statement(CCJSqlParser.java:80)
+	at net.sf.jsqlparser.parser.CCJSqlParserUtil.parse(CCJSqlParserUtil.java:54)
+	at edu.umich.tbnalir.LogTemplateGenerator.lambda$getParserRunnable$0(LogTemplateGenerator.java:144)
+	at edu.umich.tbnalir.LogTemplateGenerator$$Lambda$2/60830820.run(Unknown Source)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+==> bestdr7_0.05.join0.const_proj.10000.out <==
+08:32  INFO: ==============================
+08:32  INFO: Creating templates from log...
+08:32  INFO: ==============================
+
+08:32  INFO: ==============================
+08:32  INFO: Measuring coverage...
+08:47  INFO: Number of templates: 6231
+08:47  INFO: Coverage: 399979 / 844485 (47.4)%
+08:47  INFO: ==============================
+
+
+==> bestdr7_0.05.join0.pred.10000.out <==
+07:43  INFO: ==============================
+07:43  INFO: Creating templates from log...
+07:44  INFO: ==============================
+
+07:44  INFO: ==============================
+07:44  INFO: Measuring coverage...
+08:02  INFO: Number of templates: 6267
+08:02  INFO: Coverage: 396445 / 844485 (46.9)%
+08:02  INFO: ==============================
+
+
+==> bestdr7_0.05.join0.pred_proj.10000.out <==
+08:19  INFO: ==============================
+08:19  INFO: Creating templates from log...
+08:19  INFO: ==============================
+
+08:19  INFO: ==============================
+08:19  INFO: Measuring coverage...
+08:28  INFO: Number of templates: 6052
+08:28  INFO: Coverage: 417607 / 844485 (49.5)%
+08:28  INFO: ==============================
+
