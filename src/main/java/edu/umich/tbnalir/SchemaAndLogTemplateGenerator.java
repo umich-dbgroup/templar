@@ -158,7 +158,7 @@ public class SchemaAndLogTemplateGenerator {
     }
 
     public static void performCrossValidation(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates,
-                                              String basename, Integer randomSeed, boolean useSchemaTemplates) {
+                                              String basename, Integer randomSeed, String useSchemaTemplates) {
         // Split into n partitions for cross validation
         int cvSplits = 4;
         int partitionSize = stmts.size() / cvSplits;
@@ -235,8 +235,10 @@ public class SchemaAndLogTemplateGenerator {
 
             Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate,
                     predProjFileName);
-            if (useSchemaTemplates) {
+            if (useSchemaTemplates.equals("true")) {
                 predProjTmpl.addAll(templates); // Add schema templates only for this level (since they are pred_proj by nature)
+            } else if (useSchemaTemplates.equals("only")) {
+                predProjTmpl = templates; // Use only schema templates if that option is specified
             }
             List<String> predProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) ltg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
@@ -364,7 +366,7 @@ public class SchemaAndLogTemplateGenerator {
         String templateFileName = null;
         String errorFileName = null;
         Integer randomSeed = null;
-        Boolean useSchemaTemplates = null;
+        String useSchemaTemplates = null;
 
         if (!args[3].equals("cv")) {
             logTemplateLevels = args[3].split(",");
@@ -383,7 +385,7 @@ public class SchemaAndLogTemplateGenerator {
         } else {
             logTemplateLevels = "const,const_proj,comp,comp_proj,pred,pred_proj".split(",");
             randomSeed = Integer.valueOf(args[4]);
-            useSchemaTemplates = Boolean.valueOf(args[5]);
+            useSchemaTemplates = args[5];
         }
 
 

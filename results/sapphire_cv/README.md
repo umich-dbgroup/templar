@@ -17,7 +17,7 @@ Program arguments:
 * `join_level` - number of joins to create templates for by default, with 0 being 1 table templates, 1 being 2 table templates, and so on. (only really used if `use_schema_templates` below is true)
 * `cv` - the literal string `cv`, just used to indicate that we're running a cross-validation test
 * `random_seed` - an integer to seed the randomizer for shuffling the SQL query log
-* `use_schema_templates` - whether to use schema templates or not, will only apply to `pred_proj` templates
+* `use_schema_templates` - whether to use schema templates or not, will only apply to `pred_proj` templates. Can use `true` option for using schemas, or `only` option for using only the schema with no log information
 
 ## Results
 
