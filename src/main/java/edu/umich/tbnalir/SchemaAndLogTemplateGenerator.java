@@ -158,14 +158,14 @@ public class SchemaAndLogTemplateGenerator {
     }
 
     public static void performCrossValidation(LogTemplateGenerator ltg, List<Statement> stmts, Set<String> templates,
-                                              String basename) {
+                                              String basename, Integer randomSeed) {
         // Split into n partitions for cross validation
         int cvSplits = 4;
         int partitionSize = stmts.size() / cvSplits;
         int remainder = stmts.size() % cvSplits;
 
         // Shuffle partitions so cross-validation is randomized
-        Collections.shuffle(stmts);
+        Collections.shuffle(stmts, new Random(randomSeed));
 
         List<List<Statement>> cvPartitions = new ArrayList<>();
         int curIndex = 0;
@@ -347,7 +347,7 @@ public class SchemaAndLogTemplateGenerator {
                     " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.tmpl" +
                     " results/sdss_randomized/bestdr7_0.05.join0.pred_proj.50p.err");
             System.err.println("--- OR ---");
-            System.err.println("Usage (for cross-validation): <schema-prefix> <query-log-parsed> <join-level> cv");
+            System.err.println("Usage (for cross-validation): <schema-prefix> <query-log-parsed> <join-level> cv <random-seed>");
             System.exit(1);
         }
 
@@ -365,6 +365,7 @@ public class SchemaAndLogTemplateGenerator {
         Boolean randomizeLogOrder = false;
         String templateFileName = null;
         String errorFileName = null;
+        Integer randomSeed = null;
 
         if (!args[3].equals("cv")) {
             logTemplateLevels = args[3].split(",");
@@ -382,6 +383,7 @@ public class SchemaAndLogTemplateGenerator {
             errorFileName = args[7];
         } else {
             logTemplateLevels = "const,const_proj,comp,comp_proj,pred,pred_proj".split(",");
+            randomSeed = Integer.valueOf(args[4]);
         }
 
 
@@ -402,7 +404,7 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("==============================\n");
 
             if (args[3].equals("cv")) {
-                performCrossValidation(ltg, queryLogStmts, templates, FilenameUtils.getBaseName(prefix));
+                performCrossValidation(ltg, queryLogStmts, templates, FilenameUtils.getBaseName(prefix), randomSeed);
             } else {
                 performFixedTestSet(ltg, queryLogStmts, templates, logPercent, numLogQueries,
                         randomizeLogOrder, templateFileName, errorFileName);
