@@ -212,35 +212,30 @@ public class SchemaAndLogTemplateGenerator {
             }
             // Only print out files for templates for first fold
             Set<String> constTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantTemplate, constFileName);
-            constTmpl.addAll(templates);
             List<String> constTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantTemplate);
             float constCoverage = (float) ltg.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
 
             Set<String> constProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noConstantProjectionTemplate,
                     constProjFileName);
-            constProjTmpl.addAll(templates);
             List<String> constProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noConstantProjectionTemplate);
             float constProjCoverage = (float) ltg.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
 
             Set<String> compTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonTemplate, compFileName);
-            compTmpl.addAll(templates);
             List<String> compTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonTemplate);
             float compCoverage = (float) ltg.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
 
             Set<String> compProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noComparisonProjectionTemplate,
                     compProjFileName);
-            compProjTmpl.addAll(templates);
             List<String> compProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noComparisonProjectionTemplate);
             float compProjCoverage = (float) ltg.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
 
             Set<String> predTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateTemplate, predFileName);
-            predTmpl.addAll(templates);
             List<String> predTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateTemplate);
             float predCoverage = (float) ltg.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
 
             Set<String> predProjTmpl = ltg.generateTemplates(templateGenSet, ltg::noPredicateProjectionTemplate,
                     predProjFileName);
-            predProjTmpl.addAll(templates);
+            predProjTmpl.addAll(templates); // Add schema templates only for this level (since they are pred_proj by nature)
             List<String> predProjTest = ltg.generateTestTemplates(coverageTestSet, ltg::noPredicateProjectionTemplate);
             float predProjCoverage = (float) ltg.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
