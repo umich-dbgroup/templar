@@ -1,0 +1,261 @@
+{
+  "author": {
+    "name": "author",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "aid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "oid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "name": "homepage",
+        "type": "text"
+      }
+    ]
+  },
+  "conference": {
+    "name": "conference",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "cid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "homepage",
+        "type": "text"
+      }
+    ]
+  },
+  "domain": {
+    "name": "domain",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "did",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "name",
+        "type": "text"
+      }
+    ]
+  },
+  "domain_author": {
+    "name": "domain_author",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "aid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "did",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  },
+  "domain_conference": {
+    "name": "domain_conference",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "cid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "did",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  },
+  "domain_journal": {
+    "name": "domain_journal",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "jid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "did",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  },
+  "domain_keyword": {
+    "name": "domain_keyword",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "did",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "kid",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  },
+  "journal": {
+    "name": "journal",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "jid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "homepage",
+        "type": "text"
+      }
+    ]
+  },
+  "keyword": {
+    "name": "keyword",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "kid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "keyword",
+        "type": "text"
+      }
+    ]
+  },
+  "organization": {
+    "name": "organization",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "oid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "continent",
+        "type": "text"
+      },
+      {
+        "name": "homepage",
+        "type": "text"
+      }
+    ]
+  },
+  "publication": {
+    "name": "publication",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "pid",
+        "type": "int",
+        "pk": true
+      },
+      {
+        "importance": "primary",
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "abstract",
+        "type": "text"
+      },
+      {
+        "name": "year",
+        "type": "int"
+      },
+      {
+        "name": "cid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "jid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "reference_num",
+        "type": "int"
+      },
+      {
+        "name": "citation_num",
+        "type": "int"
+      }
+    ]
+  },
+  "publication_keyword": {
+    "name": "publication_keyword",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "pid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "kid",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  },
+  "writes": {
+    "name": "writes",
+    "type": "relation",
+    "attributes": [
+      {
+        "name": "aid",
+        "type": "int",
+        "fk": true
+      },
+      {
+        "name": "pid",
+        "type": "int",
+        "fk": true
+      }
+    ]
+  }
+}

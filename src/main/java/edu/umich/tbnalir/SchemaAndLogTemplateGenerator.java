@@ -67,7 +67,7 @@ public class SchemaAndLogTemplateGenerator {
     }
 
     // If we have a statement with multiple joins, then generate variants from each level of join
-    public static Set<String> generateSubsetExpansionJoins(Select select, SchemaTemplateGenerator stg) {
+    public static Set<String> generateSubsetExpansionJoins(Select select, SchemaDataTemplateGenerator stg) {
         Set<String> templates = new HashSet<>();
 
         SelectBody sb = select.getSelectBody();
@@ -147,7 +147,7 @@ public class SchemaAndLogTemplateGenerator {
         return templates;
     }
 
-    public static Set<String> generateSubsetExpansionJoinsAll(List<Statement> stmts, SchemaTemplateGenerator stg) {
+    public static Set<String> generateSubsetExpansionJoinsAll(List<Statement> stmts, SchemaDataTemplateGenerator stg) {
         Set<String> templates = new HashSet<>();
         for (Statement stmt : stmts) {
             if (stmt instanceof Select) {
@@ -413,7 +413,7 @@ public class SchemaAndLogTemplateGenerator {
 
         Log.info("==============================");
         Log.info("Creating templates from schema...");
-        SchemaTemplateGenerator stg = new SchemaTemplateGenerator(relationsFile, edgesFile, joinLevel);
+        SchemaDataTemplateGenerator stg = new SchemaDataTemplateGenerator(relationsFile, edgesFile, joinLevel);
         Set<String> templates = stg.generate();
         Log.info("==============================\n");
 
