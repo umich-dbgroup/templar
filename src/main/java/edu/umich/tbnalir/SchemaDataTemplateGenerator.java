@@ -2,6 +2,7 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.*;
+import edu.umich.tbnalir.sql.LiteralExpression;
 import edu.umich.tbnalir.template.TemplateRoot;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.schema.Table;
@@ -309,10 +310,33 @@ public class SchemaDataTemplateGenerator {
         templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
 
         // Rank attributes by entropy first (will be reused)
+        // TODO: exclude PK/FK?
         List<Attribute> attributes = r.rankAttributesByEntropy(this.db);
 
-        // TODO: for each hypothesized predicate template (guess projections)
-        // TODO: for each hypothesized comparison/projection template (guess attributes used)
+        // TODO: for each hypothesized predicate template (guess attributes in projections)
+        int maxProjectionSize = 3;
+        int numTopAttributesUsed = 3;
+
+        for (int i = 0; i < numTopAttributesUsed; i++) {
+            PlainSelect ps = (PlainSelect) tr.getSelect().getSelectBody();
+            List<SelectItem> selectItems = new ArrayList<>();
+
+            // Add the top attribute as the first level
+            Attribute topAttribute = attributes.get(i);
+            SelectExpressionItem item = new SelectExpressionItem();
+            item.setExpression(new LiteralExpression(topAttribute.getName()));
+            selectItems.add(item);
+            ps.setSelectItems(selectItems);
+
+            templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateTemplate));
+
+            // TODO: need to make recursive to add additional select items up to maxProjectionSize
+
+            ps.setSelectItems(null);
+        }
+
+
+        // TODO: for each hypothesized comparison/projection template (guess attributes used in predicates)
         // TODO: for each hypothesized comparison template (guess attributes and projections used)
         // TODO: for each hypothesized constant/projection template (guess attributes and operators)
         // TODO: for each hypothesized constant template (guess attributes, operators, and projections)
