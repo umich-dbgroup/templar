@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RDBMS
 {
@@ -33,7 +35,37 @@ public class RDBMS
 
 		schemaGraph = new SchemaGraph(database_name); 
 	}
-	
+
+	public Map<String, Integer> getAttrDistinctCount(Relation r, Attribute attr) {
+        Map<String, Integer> valToOccurrence = new HashMap<>();
+        try {
+            Statement statement = this.conn.createStatement();
+            ResultSet results = statement.executeQuery("SELECT " + attr.getName() + ", COUNT(*) "
+                    + "FROM " + r.getName() + " GROUP BY " + attr.getName());
+            while (results.next()) {
+                valToOccurrence.put(results.getString(1), results.getInt(2));
+            }
+
+            return valToOccurrence;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public int getRelationSize(Relation r) {
+        try {
+            Statement statement = this.conn.createStatement();
+            ResultSet result = statement.executeQuery("SELECT COUNT(*) FROM " + r.getName());
+            if (result.next()) {
+                return result.getInt(1);
+            } else {
+                throw new RuntimeException("Could not get relation size for " + r.getName());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
 	public ArrayList<ArrayList<String>> conductSQL(String query)
 	{
 		ArrayList<ArrayList<String>> finalResults = new ArrayList<ArrayList<String>>(); 

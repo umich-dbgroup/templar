@@ -2,7 +2,7 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.*;
-import edu.umich.tbnalir.template.TemplateFunctions;
+import edu.umich.tbnalir.template.TemplateRoot;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -66,7 +66,10 @@ public class SchemaDataTemplateGenerator {
         return join;
     }
 
-    public void addPKFKJoinTemplates(Set<String> templates, Relation rel, Select select, PlainSelect ps) {
+    public void addPKFKJoinTemplates(Set<String> templates, Relation rel, TemplateRoot tr) {
+        Select select = tr.getSelect();
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
         for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
             Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
 
@@ -82,7 +85,7 @@ public class SchemaDataTemplateGenerator {
                         }
                         joins.add(join);
 
-                        templates.addAll(TemplateFunctions.generateTemplateVariants(TemplateFunctions::noPredicateProjectionTemplate, select));
+                        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
 
                         // Remove last join to reset to original state
                         joins.remove(joins.size() - 1);
@@ -92,9 +95,11 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public void addFKPKJoinTemplatesRecursive(Set<String> templates, Relation rel, Select select,
-                                              PlainSelect ps, int joinLevelsLeft) {
+    public void addFKPKJoinTemplatesRecursive(Set<String> templates, Relation rel, TemplateRoot tr, int joinLevelsLeft) {
         if (joinLevelsLeft == 0) return;
+
+        Select select = tr.getSelect();
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
 
         for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
             Set<Attribute> pks = fkpkEdges.get(attrEntry.getValue());
@@ -110,7 +115,7 @@ public class SchemaDataTemplateGenerator {
                         }
                         joins.add(firstJoin);
 
-                        templates.addAll(TemplateFunctions.generateTemplateVariants(TemplateFunctions::noPredicateProjectionTemplate, select));
+                        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
 
                         // Next level joins
                         if (joinLevelsLeft > 1) {
@@ -122,10 +127,10 @@ public class SchemaDataTemplateGenerator {
                             }
 
                             // PK from the second table (FK -> PK <- FK)
-                            this.addPKFKJoinTemplates(templates, nextJoinRelation, select, ps);
+                            this.addPKFKJoinTemplates(templates, nextJoinRelation, tr);
 
                             // FK from the second table (FK -> PK/FK -> PK)
-                            this.addFKPKJoinTemplatesRecursive(templates, nextJoinRelation, select, ps, joinLevelsLeft - 1);
+                            this.addFKPKJoinTemplatesRecursive(templates, nextJoinRelation, tr, joinLevelsLeft - 1);
                         }
 
                         // Remove the last join to reset state
@@ -154,6 +159,13 @@ public class SchemaDataTemplateGenerator {
                     String attrType = (String) attrInfo.get("type");
                     Attribute attr = new Attribute(attrName, attrType);
                     attributeMap.put(attrName, attr);
+
+                    if (attrInfo.get("fk") != null) {
+                        attr.setFk((Boolean) attrInfo.get("fk"));
+                    }
+                    if (attrInfo.get("pk") != null) {
+                        attr.setPk((Boolean) attrInfo.get("pk"));
+                    }
                 }
 
 
@@ -292,15 +304,22 @@ public class SchemaDataTemplateGenerator {
             select = SelectUtils.buildSelectFromTable(table);
         }
 
-        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        TemplateRoot tr = new TemplateRoot(select);
 
-        // TODO: Generate predicate/projection templates - move this to Template static fn?
-        templates.addAll(TemplateFunctions.generateTemplateVariants(TemplateFunctions::noPredicateProjectionTemplate, select));
+        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
 
-        // TODO: Use data distribution (cardinality of attributes, perhaps?) to hypothesize projections, predicates (attributes, ops, constants)
+        // Rank attributes by entropy first (will be reused)
+        List<Attribute> attributes = r.rankAttributesByEntropy(this.db);
+
+        // TODO: for each hypothesized predicate template (guess projections)
+        // TODO: for each hypothesized comparison/projection template (guess attributes used)
+        // TODO: for each hypothesized comparison template (guess attributes and projections used)
+        // TODO: for each hypothesized constant/projection template (guess attributes and operators)
+        // TODO: for each hypothesized constant template (guess attributes, operators, and projections)
+        // TODO: for each hypothesized full query template (guess attributes, operators, constants, and projections)
 
         // Handle joins
-        this.addFKPKJoinTemplatesRecursive(templates, r, select, ps, this.joinLevel);
+        this.addFKPKJoinTemplatesRecursive(templates, r, tr, this.joinLevel);
 
         return templates;
     }

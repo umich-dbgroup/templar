@@ -113,4 +113,15 @@ public class Utils {
     public static boolean isStrangeJoin(Join join) {
         return join.isLeft() || join.isRight() || join.isCross() || join.isSemi();
     }
+
+    // Calculates information entropy
+    // https://en.wikipedia.org/wiki/Entropy_(information_theory)
+    public static double entropy(List<Double> eventProbs) {
+        double entropy = 0;
+        for (Double prob : eventProbs) {
+            entropy -= prob * Math.log(prob) / Math.log(2);
+        }
+        return entropy;
+    }
+
 }
