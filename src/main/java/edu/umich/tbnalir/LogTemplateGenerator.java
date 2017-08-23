@@ -1,7 +1,6 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
-import edu.umich.tbnalir.template.TemplateFunctions;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class LogTemplateGenerator extends TemplateFunctions {
+public class LogTemplateGenerator {
     List<String> levels;
 
     public LogTemplateGenerator(String[] levels) {
