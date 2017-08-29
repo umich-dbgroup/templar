@@ -259,11 +259,6 @@ public class FullQueryDeParser extends SelectDeParser {
 
         if (plainSelect.getOrderByElements() != null) {
             this.getBuffer().append(" ORDER BY " + Constants.ORDER);
-
-            /*
-            new OrderByDeParser(this.getExpressionVisitor(), this.getBuffer()).
-                    deParse(plainSelect.isOracleSiblings(), plainSelect.getOrderByElements());
-            */
         }
 
         if (plainSelect.getLimit() != null) {
