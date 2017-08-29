@@ -1,8 +1,10 @@
 package edu.umich.tbnalir.template;
 
+import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.*;
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.statement.select.*;
+import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 
 import java.util.*;
 import java.util.function.Function;
@@ -11,6 +13,8 @@ import java.util.function.Function;
  * Created by cjbaik on 8/22/17.
  */
 public class TemplateRoot {
+    public static Map<String, Relation> relations;
+
     private Select select; // JSQL object associated with this template
 
     public TemplateRoot(Select select) {
@@ -25,73 +29,83 @@ public class TemplateRoot {
      * FUNCTIONS FOR CREATING TEMPLATES FROM A "Select"
      */
 
-    public static String noConstantTemplate(Select select) {
+    public static Template noConstantTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(constantRemover, buffer, false);
+        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(constantRemover, buffer, relations, false);
         constantRemover.setSelectVisitor(deParser);
         constantRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST);
     }
 
-    public static String noConstantProjectionTemplate(Select select) {
+    public static Template noConstantProjectionTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(constantRemover, buffer, false);
+        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(constantRemover, buffer, relations, false);
         constantRemover.setSelectVisitor(deParser);
         constantRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_PROJ);
     }
 
-    public static String noComparisonTemplate(Select select) {
+    public static Template noComparisonTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(comparisonRemover, buffer, false);
+        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(comparisonRemover, buffer, relations, false);
         comparisonRemover.setSelectVisitor(deParser);
         comparisonRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_OP);
     }
 
-    public static String noComparisonProjectionTemplate(Select select) {
+    public static Template noComparisonProjectionTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer, false);
+        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer, relations, false);
         comparisonRemover.setSelectVisitor(deParser);
         comparisonRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_OP_PROJ);
     }
 
-    public static String noPredicateTemplate(Select select) {
+    public static Template noPredicateTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(predicateRemover, buffer, true);
+        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(predicateRemover, buffer, relations, true);
         predicateRemover.setSelectVisitor(deParser);
         predicateRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_PRED);
     }
 
-    public static String noPredicateProjectionTemplate(Select select) {
+    public static Template noPredicateProjectionTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
-        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer, true);
+        ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer, relations, true);
         predicateRemover.setSelectVisitor(deParser);
         predicateRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
-        return buffer.toString().toLowerCase().intern();
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_PRED_PROJ);
+    }
+
+    public static Template fullQueryTemplate(Select select) {
+        StringBuilder buffer = new StringBuilder();
+        FullQueryExprDeParser exprDeParser = new FullQueryExprDeParser();
+        FullQueryDeParser deParser = new FullQueryDeParser(exprDeParser, buffer, relations);
+        exprDeParser.setSelectVisitor(deParser);
+        exprDeParser.setBuffer(buffer);
+        select.getSelectBody().accept(deParser);
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.FULL_QUERY);
     }
 
     /*
-    public static Set<String> generateTemplates(List<Statement> stmts, Function<Statement, String> templateFn,
+    public static Set<Template> generateTemplates(List<Select> stmts, Function<Select, Template> templateFn,
                                                 String outFileName) {
-        Set<String> templates = new HashSet<>();
-        Map<String, Integer> templateCounts = new HashMap<>();
-        for (Statement stmt : stmts) {
-            String tmpl = templateFn.apply(stmt);
+        Set<Template> templates = new HashSet<>();
+        Map<Template, Integer> templateCounts = new HashMap<>();
+        for (Select stmt : stmts) {
+            Template tmpl = templateFn.apply(stmt);
             if (tmpl != null) {
                 templates.add(tmpl);
 
@@ -110,8 +124,8 @@ public class TemplateRoot {
             Log.info("Saving " + outFileName + "...");
             try {
                 PrintWriter writer = new PrintWriter(outFileName, "UTF-8");
-                Map<String, Integer> sortedPredProjCounts = Utils.sortByValueDesc(templateCounts);
-                for (Map.Entry<String, Integer> e : sortedPredProjCounts.entrySet()) {
+                Map<Template, Integer> sortedPredProjCounts = Utils.sortByValueDesc(templateCounts);
+                for (Map.Entry<Template, Integer> e : sortedPredProjCounts.entrySet()) {
                     writer.println(e.getValue() + "\t" + e.getKey());
                 }
                 writer.close();
@@ -120,11 +134,11 @@ public class TemplateRoot {
             }
         }
         return templates;
-    }
+    }*/
 
-    public static List<String> generateTestTemplates(List<Statement> stmts, Function<Statement, String> templateFn) {
+    public static List<String> generateTestTemplates(List<Select> stmts, Function<Select, String> templateFn) {
         List<String> templates = new ArrayList<>();
-        for (Statement stmt : stmts) {
+        for (Select stmt : stmts) {
             templates.add(templateFn.apply(stmt));
         }
         return templates;
@@ -138,10 +152,10 @@ public class TemplateRoot {
             }
         }
         return covered;
-    }*/
+    }
 
-    public Set<String> generateTemplates(Function<Select, String> templateFn) {
-        Set<String> templates = new HashSet<>();
+    public Set<Template> generateTemplates(Function<Select, Template> templateFn) {
+        Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
 
@@ -149,7 +163,7 @@ public class TemplateRoot {
         // -- commented out currently: bit X: distinct --
         // bit 0: order
         // bit 1: where
-        // bit 2: top
+        // -- commented out currently: bit X: top/limit --
 
         int numVariants = 3;
         double iterLimit = Math.pow(2, numVariants);
@@ -175,15 +189,16 @@ public class TemplateRoot {
                 ps.setWhere(new LiteralExpression(Constants.PRED));
             }
 
+            /*
             int topBit = (i >> 2) & 1;
             if (topBit == 1) {
                 // Add variant for top for where condition
                 Top top = new Top();
                 top.setExpression(new LiteralExpression(Constants.TOP));
                 ps.setTop(top);
-            }
+            }*/
 
-            String template = templateFn.apply(this.select);
+            Template template = templateFn.apply(this.select);
             templates.add(template);
 
             // Reset everything

@@ -2,260 +2,278 @@
   "author": {
     "name": "author",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "aid": {
         "name": "aid",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 20.602421592255116
       },
-      {
+      "name": {
         "importance": "primary",
         "name": "name",
-        "type": "text"
+        "type": "text",
+        "entropy": 20.53828608641235
       },
-      {
+      "oid": {
         "name": "oid",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 7.389998229540798
       },
-      {
+      "homepage": {
         "name": "homepage",
-        "type": "text"
+        "type": "text",
+        "entropy": 3.277865790262335
       }
-    ]
+    } 
   },
   "conference": {
     "name": "conference",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "cid": {
         "name": "cid",
         "type": "int",
         "pk": true
       },
-      {
+      "name": {
         "importance": "primary",
         "name": "name",
         "type": "text"
       },
-      {
+      "homepage": {
         "name": "homepage",
         "type": "text"
       }
-    ]
+    }
   },
   "domain": {
     "name": "domain",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "did": {
         "name": "did",
         "type": "int",
         "pk": true
       },
-      {
+      "name": {
         "importance": "primary",
         "name": "name",
         "type": "text"
       }
-    ]
+    }
   },
   "domain_author": {
     "name": "domain_author",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "aid": {
         "name": "aid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 19.81011291593325
       },
-      {
+      "did": {
         "name": "did",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.285484816491709
       }
-    ]
+    }
   },
   "domain_conference": {
     "name": "domain_conference",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "cid": {
         "name": "cid",
         "type": "int",
         "fk": true
       },
-      {
+      "did": {
         "name": "did",
         "type": "int",
         "fk": true
       }
-    ]
+    }
   },
   "domain_journal": {
     "name": "domain_journal",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "jid": {
         "name": "jid",
         "type": "int",
         "fk": true
       },
-      {
+      "did": {
         "name": "did",
         "type": "int",
         "fk": true
       }
-    ]
+    }
   },
   "domain_keyword": {
     "name": "domain_keyword",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "did": {
         "name": "did",
         "type": "int",
         "fk": true
       },
-      {
+      "kid": {
         "name": "kid",
         "type": "int",
         "fk": true
       }
-    ]
+    }
   },
   "journal": {
     "name": "journal",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "jid": {
         "name": "jid",
         "type": "int",
         "pk": true
       },
-      {
+      "name": {
         "importance": "primary",
         "name": "name",
         "type": "text"
       },
-      {
+      "homepage": {
         "name": "homepage",
         "type": "text"
       }
-    ]
+    }
   },
   "keyword": {
     "name": "keyword",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "kid": {
         "name": "kid",
         "type": "int",
         "pk": true
       },
-      {
+      "keyword": {
         "importance": "primary",
         "name": "keyword",
         "type": "text"
       }
-    ]
+    }
   },
   "organization": {
     "name": "organization",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "oid": {
         "name": "oid",
         "type": "int",
         "pk": true
       },
-      {
+      "name": {
         "importance": "primary",
         "name": "name",
         "type": "text"
       },
-      {
+      "continent": {
         "name": "continent",
         "type": "text"
       },
-      {
+      "homepage": {
         "name": "homepage",
         "type": "text"
       }
-    ]
+    }
   },
   "publication": {
     "name": "publication",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "pid": {
         "name": "pid",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 21.756686617873825
       },
-      {
+      "title": {
         "importance": "primary",
         "name": "title",
-        "type": "text"
+        "type": "text",
+        "entropy": 9999.0
       },
-      {
+      "abstract": {
         "name": "abstract",
-        "type": "text"
+        "type": "text",
+        "entropy": 9998.0
       },
-      {
+      "year": {
         "name": "year",
-        "type": "int"
+        "type": "int",
+        "entropy": 5.023196815093345
       },
-      {
+      "cid": {
         "name": "cid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 5.037593686379942
       },
-      {
+      "jid": {
         "name": "jid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.551230571125084
       },
-      {
+      "reference_num": {
         "name": "reference_num",
-        "type": "int"
+        "type": "int",
+        "entropy": 4.245215762181276
       },
-      {
+      "citation_num": {
         "name": "citation_num",
-        "type": "int"
+        "type": "int",
+        "entropy": 3.5763609443375914
       }
-    ]
+    }
   },
   "publication_keyword": {
     "name": "publication_keyword",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "pid": {
         "name": "pid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 21.16513067587757
       },
-      {
+      "kid": {
         "name": "kid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 12.809959190541985
       }
-    ]
+    }
   },
   "writes": {
     "name": "writes",
     "type": "relation",
-    "attributes": [
-      {
+    "attributes": {
+      "aid": {
         "name": "aid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 18.923322341557654
       },
-      {
+      "pid": {
         "name": "pid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 21.49709415295385
       }
-    ]
+    }
   }
 }

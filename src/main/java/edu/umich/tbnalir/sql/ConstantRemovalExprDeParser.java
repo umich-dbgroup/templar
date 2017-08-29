@@ -7,7 +7,7 @@ import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 /**
  * Created by cjbaik on 6/20/17.
  */
-public class ConstantRemovalExprDeParser extends ExpressionDeParser {
+public class ConstantRemovalExprDeParser extends FullQueryExprDeParser {
     public static String removeConstantsFromExpr(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof DoubleValue) {

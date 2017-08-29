@@ -19,6 +19,7 @@ import java.util.*;
 public class SchemaAndLogTemplateGenerator {
     static Map<String, Integer> errorTemplates = new HashMap<>();
 
+    /*
     public static boolean isCovered(LogTemplateGenerator ltg, Statement testStatement, Set<String> templates) {
         List<String> levels = new ArrayList<>(ltg.getLevels());
 
@@ -319,6 +320,7 @@ public class SchemaAndLogTemplateGenerator {
             Log.info("==============================\n");
             */
 
+    /*
         Log.info("==============================");
         Log.info("Measuring coverage...");
         int covered = 0;
@@ -437,4 +439,5 @@ public class SchemaAndLogTemplateGenerator {
             e.printStackTrace();
         }
     }
+    */
 }

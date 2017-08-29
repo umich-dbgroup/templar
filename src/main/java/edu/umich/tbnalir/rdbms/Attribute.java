@@ -1,5 +1,7 @@
 package edu.umich.tbnalir.rdbms;
 
+import net.sf.jsqlparser.schema.Column;
+
 /**
  * Created by cjbaik on 6/30/17.
  */
@@ -13,12 +15,16 @@ public class Attribute {
 
     Double entropy; // information entropy of this attribute
 
+    Column column; // get JSqlParser column object
+
     public Attribute(String name, String type) {
         this.name = name;
         this.type = type;
 
         this.fk = false;
         this.pk = false;
+
+        this.column = null;
     }
 
     public String getName() {
@@ -67,6 +73,17 @@ public class Attribute {
 
     public void setEntropy(Double entropy) {
         this.entropy = entropy;
+    }
+
+    public Column getColumn() {
+        if (this.column == null) {
+            this.column = new Column(this.relation.getTable(), this.name);
+        }
+        return column;
+    }
+
+    public void setColumn(Column column) {
+        this.column = column;
     }
 
     @Override

@@ -2,10 +2,13 @@ package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.*;
-import edu.umich.tbnalir.sql.LiteralExpression;
+import edu.umich.tbnalir.template.Template;
 import edu.umich.tbnalir.template.TemplateRoot;
 import edu.umich.tbnalir.util.Utils;
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.SelectUtils;
 import org.json.simple.JSONArray;
@@ -31,6 +34,8 @@ public class SchemaDataTemplateGenerator {
     public SchemaDataTemplateGenerator(String relationsFile, String edgesFile, int joinLevel, RDBMS db) {
         this.joinLevel = joinLevel;
         this.relations = new HashMap<>();
+        TemplateRoot.relations = this.relations; // Kind of a hack, but want to store globally for TemplateRoot fns
+
         this.fkpkEdges = new HashMap<>();
         this.pkfkEdges = new HashMap<>();
         this.db = db;
@@ -67,7 +72,7 @@ public class SchemaDataTemplateGenerator {
         return join;
     }
 
-    public void addPKFKJoinTemplates(Set<String> templates, Relation rel, TemplateRoot tr) {
+    public void addPKFKJoinTemplates(Set<Template> templates, Relation rel, TemplateRoot tr) {
         Select select = tr.getSelect();
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
@@ -96,7 +101,7 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public void addFKPKJoinTemplatesRecursive(Set<String> templates, Relation rel, TemplateRoot tr, int joinLevelsLeft) {
+    public void addFKPKJoinTemplatesRecursive(Set<Template> templates, Relation rel, TemplateRoot tr, int joinLevelsLeft) {
         if (joinLevelsLeft == 0) return;
 
         Select select = tr.getSelect();
@@ -166,6 +171,10 @@ public class SchemaDataTemplateGenerator {
                     }
                     if (attrInfo.get("pk") != null) {
                         attr.setPk((Boolean) attrInfo.get("pk"));
+                    }
+
+                    if (attrInfo.get("entropy") != null) {
+                        attr.setEntropy((Double) attrInfo.get("entropy"));
                     }
                 }
 
@@ -290,8 +299,8 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public Set<String> getTemplatesForRelation(Relation r) {
-        Set<String> templates = new HashSet<>();
+    public Set<Template> getTemplatesForRelation(Relation r) {
+        Set<Template> templates = new HashSet<>();
 
         Select select;
         if (r instanceof Function) {
@@ -301,40 +310,55 @@ public class SchemaDataTemplateGenerator {
             ps.setFromItem(tFn);
             select.setSelectBody(ps);
         } else {
-            Table table = new Table(r.toString());
-            select = SelectUtils.buildSelectFromTable(table);
+            select = SelectUtils.buildSelectFromTable(r.getTable());
         }
 
         TemplateRoot tr = new TemplateRoot(select);
 
         templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
 
+        // TODO: what to do in case that r is instanceof Function?
+
         // Rank attributes by entropy first (will be reused)
-        // TODO: exclude PK/FK?
         List<Attribute> attributes = r.rankAttributesByEntropy(this.db);
 
-        // TODO: for each hypothesized predicate template (guess attributes in projections)
-        int maxProjectionSize = 3;
-        int numTopAttributesUsed = 3;
+        // TODO: exclude PK/FK from ranked attributes?
 
-        for (int i = 0; i < numTopAttributesUsed; i++) {
-            PlainSelect ps = (PlainSelect) tr.getSelect().getSelectBody();
+        // hypothesize predicate templates (guess attributes in projections)
+        // naive: get power set of all attributes
+        Set<Set<Attribute>> projections = Utils.powerSet(attributes);
+
+        // Log statement, can remove if needed
+        System.out.print("Projections for " + r.getName() + " (" + projections.size() + " sets): ");
+        for (Set<Attribute> set : projections) {
+            if (set.size() == 0) continue;
+
+            StringJoiner sj = new StringJoiner(",");
+            for (Attribute attr : set) {
+                sj.add(attr.getName());
+            }
+            System.out.print("[" + sj.toString() + "], ");
+        }
+        System.out.println();
+
+        PlainSelect ps = (PlainSelect) tr.getSelect().getSelectBody();
+
+        for (Set<Attribute> attrSet : projections) {
+            if (attrSet.size() == 0) continue;
+
             List<SelectItem> selectItems = new ArrayList<>();
 
-            // Add the top attribute as the first level
-            Attribute topAttribute = attributes.get(i);
-            SelectExpressionItem item = new SelectExpressionItem();
-            item.setExpression(new LiteralExpression(topAttribute.getName()));
-            selectItems.add(item);
+            for (Attribute attr : attrSet) {
+                SelectExpressionItem item = new SelectExpressionItem();
+                item.setExpression(attr.getColumn());
+                selectItems.add(item);
+            }
+
             ps.setSelectItems(selectItems);
-
             templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateTemplate));
-
-            // TODO: need to make recursive to add additional select items up to maxProjectionSize
-
-            ps.setSelectItems(null);
         }
 
+        ps.setSelectItems(null); // reset select object
 
         // TODO: for each hypothesized comparison/projection template (guess attributes used in predicates)
         // TODO: for each hypothesized comparison template (guess attributes and projections used)
@@ -343,13 +367,13 @@ public class SchemaDataTemplateGenerator {
         // TODO: for each hypothesized full query template (guess attributes, operators, constants, and projections)
 
         // Handle joins
-        this.addFKPKJoinTemplatesRecursive(templates, r, tr, this.joinLevel);
+        // this.addFKPKJoinTemplatesRecursive(templates, r, tr, this.joinLevel);
 
         return templates;
     }
 
-    public Set<String> generate() {
-        Set<String> templates = new HashSet<>();
+    public Set<Template> generate() {
+        Set<Template> templates = new HashSet<>();
 
         Log.info("==============================");
         Log.info("Generating templates using schema for join level: " + this.joinLevel);
@@ -366,7 +390,7 @@ public class SchemaDataTemplateGenerator {
     public static void main(String[] args) {
         if (args.length < 1) {
             System.err.println("Usage: <schema-prefix> <join-level> <db-name>");
-            System.err.println("Example: SchemaDataTemplateGenerator data/mas/schema/mas 0 mas");
+            System.err.println("Example: SchemaDataTemplateGenerator data/mas/mas 0 mas");
             System.exit(1);
         }
 
@@ -385,7 +409,7 @@ public class SchemaDataTemplateGenerator {
         }
 
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(relationsFile, edgesFile, joinLevel, db);
-        Set<String> templates = tg.generate();
+        Set<Template> templates = tg.generate();
 
         /*
         String errorFileName = "template_errors.out";
@@ -444,12 +468,33 @@ public class SchemaDataTemplateGenerator {
         }
         */
 
+        // Test coverage for random string
+        // String test = "SELECT journal.homepage FROM journal WHERE journal.name = 'PVLDB'";
+        // String test = "SELECT j.homepage FROM journal j WHERE j.name = 'PVLDB'";
+        // String test = "SELECT j.homepage FROM journal AS j WHERE j.name = 'PVLDB'";
+        // String test = "SELECT homepage FROM journal AS j WHERE journal.name = 'PVLDB'";
+        /*
+        try {
+            Statement stmt = CCJSqlParserUtil.parse(test);
+            System.out.println(TemplateRoot.fullQueryTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noConstantTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noConstantProjectionTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noComparisonTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noComparisonProjectionTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noPredicateTemplate((Select) stmt));
+            System.out.println(TemplateRoot.noPredicateProjectionTemplate((Select) stmt));
+        } catch (JSQLParserException e) {
+            if (Log.DEBUG) e.printStackTrace();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }*/
+
         String templateOutFile = "templates.out";
         Log.info("==============================");
         Log.info("Printing all templates generated to <" + templateOutFile + ">.");
         try {
             PrintWriter tmplWriter = new PrintWriter(templateOutFile, "UTF-8");
-            for (String tmpl : templates) {
+            for (Template tmpl : templates) {
                 tmplWriter.println(tmpl);
             }
             tmplWriter.close();

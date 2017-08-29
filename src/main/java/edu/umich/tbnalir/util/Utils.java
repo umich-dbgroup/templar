@@ -1,11 +1,14 @@
 package edu.umich.tbnalir.util;
 
+import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
+import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.sql.LiteralExpression;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
+import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.FromItem;
 import net.sf.jsqlparser.statement.select.Join;
@@ -95,16 +98,8 @@ public class Utils {
         return sb.toString().toLowerCase();
     }
 
-    public static String tableToString(Table table) {
-        // Whether alias specified or not, replace with a consistent alias name for every instance
-        String result = table.getName() + " AS #" + table.getName() + "_alias";
-        return result.toLowerCase();
-    }
-
     public static String fromItemToString(FromItem fromItem) {
-        if (fromItem instanceof Table) {
-            return Utils.tableToString((Table) fromItem);
-        } else if (fromItem instanceof TableFunction) {
+        if (fromItem instanceof TableFunction) {
             return Utils.tableFunctionToString((TableFunction) fromItem);
         }
         return fromItem.toString().toLowerCase();
@@ -122,6 +117,50 @@ public class Utils {
             entropy -= prob * Math.log(prob) / Math.log(2);
         }
         return entropy;
+    }
+
+    // From: https://stackoverflow.com/a/14818944/1165779
+    public static<T> Set<Set<T>> powerSet(List<T> list) {
+        Set<Set<T>> powerSet = new HashSet<Set<T>>();
+
+        int n = list.size();
+
+        for( long i = 0; i < (1 << n); i++) {
+            Set<T> element = new HashSet<T>();
+            for( int j = 0; j < n; j++ )
+                if( (i >> j) % 2 == 1 ) element.add(list.get(j));
+            powerSet.add(element);
+        }
+
+        return powerSet;
+    }
+
+    public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, Relation> relations, Column col) {
+        String tableName = col.getTable().getName();
+
+        if (col.getTable().getName() == null || relations.get(tableName) == null) {
+            // Find table name
+            for (Map.Entry<String, Table> e : queryTables.entrySet()) {
+                // Find the relation
+                Relation r = relations.get(e.getKey());
+                if (r == null) {
+                    throw new RuntimeException("Table name in query: <" + e.getKey() + "> not found in schema.");
+                }
+
+                for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
+                    if (attrEntry.getKey().equals(col.getColumnName())) {
+                        tableName = r.getName();
+                        break;
+                    }
+                }
+
+                if (tableName != null) break;
+            }
+        } else {
+            tableName = col.getTable().getName();
+        }
+
+        return queryTables.get(tableName);
     }
 
 }

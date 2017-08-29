@@ -1,0 +1,1344 @@
+select publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select domain_keyword_a.kid from domain_keyword as domain_keyword_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_keyword_a.pid from publication_keyword as publication_keyword_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select #projection from domain as domain_a where #predicate order by #order
+select publication_a.abstract from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select domain_a.name from domain as domain_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select domain_author_a.did from domain_author as domain_author_a
+select conference_a.homepage, conference_a.name from conference as conference_a where #predicate order by #order
+select keyword_a.keyword from keyword as keyword_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select writes_a.aid, writes_a.pid from writes as writes_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select keyword_a.keyword from keyword as keyword_a where #predicate
+select domain_journal_a.did, domain_journal_a.jid from domain_journal as domain_journal_a order by #order
+select publication_a.pid from publication as publication_a order by #order
+select domain_keyword_a.kid from domain_keyword as domain_keyword_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select domain_a.did from domain as domain_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select organization_a.name from organization as organization_a order by #order
+select author_a.aid, author_a.name, author_a.oid from author as author_a
+select #projection from organization as organization_a order by #order
+select publication_a.cid, publication_a.jid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select domain_author_a.aid from domain_author as domain_author_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_keyword_a.kid from publication_keyword as publication_keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a
+select author_a.aid, author_a.oid from author as author_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a order by #order
+select writes_a.pid from writes as writes_a order by #order
+select publication_a.jid from publication as publication_a
+select conference_a.cid from conference as conference_a order by #order
+select publication_a.cid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select domain_journal_a.did from domain_journal as domain_journal_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_keyword_a.pid from publication_keyword as publication_keyword_a order by #order
+select domain_journal_a.jid from domain_journal as domain_journal_a where #predicate
+select author_a.homepage, author_a.oid from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select domain_journal_a.jid from domain_journal as domain_journal_a
+select publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select keyword_a.keyword, keyword_a.kid from keyword as keyword_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select #projection from conference as conference_a order by #order
+select organization_a.continent, organization_a.name, organization_a.oid from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.name, author_a.oid from author as author_a where #predicate
+select publication_a.reference_num from publication as publication_a
+select publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select #projection from keyword as keyword_a
+select domain_keyword_a.did, domain_keyword_a.kid from domain_keyword as domain_keyword_a
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.continent from organization as organization_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a
+select publication_keyword_a.kid from publication_keyword as publication_keyword_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.name from author as author_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select domain_journal_a.did from domain_journal as domain_journal_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.homepage, author_a.name from author as author_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a
+select publication_a.abstract from publication as publication_a
+select domain_keyword_a.did from domain_keyword as domain_keyword_a where #predicate
+select #projection from domain as domain_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select author_a.aid from author as author_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate
+select author_a.aid, author_a.homepage, author_a.name from author as author_a order by #order
+select conference_a.cid from conference as conference_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select domain_conference_a.cid from domain_conference as domain_conference_a
+select publication_a.abstract, publication_a.citation_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select conference_a.cid, conference_a.homepage, conference_a.name from conference as conference_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select writes_a.aid from writes as writes_a order by #order
+select publication_keyword_a.pid from publication_keyword as publication_keyword_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select domain_author_a.aid from domain_author as domain_author_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select #projection from domain_keyword as domain_keyword_a where #predicate
+select journal_a.homepage from journal as journal_a where #predicate
+select publication_a.abstract, publication_a.title from publication as publication_a where #predicate
+select #projection from domain_conference as domain_conference_a order by #order
+select publication_a.abstract, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.pid, publication_a.year from publication as publication_a order by #order
+select author_a.aid, author_a.homepage, author_a.oid from author as author_a where #predicate
+select publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select conference_a.name from conference as conference_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select conference_a.homepage, conference_a.name from conference as conference_a
+select journal_a.jid, journal_a.name from journal as journal_a where #predicate
+select organization_a.homepage, organization_a.name from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select journal_a.jid from journal as journal_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select author_a.homepage from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num from publication as publication_a order by #order
+select #projection from conference as conference_a where #predicate order by #order
+select publication_a.cid, publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.pid from publication as publication_a
+select publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select #projection from conference as conference_a where #predicate
+select organization_a.continent, organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a
+select organization_a.continent, organization_a.name from organization as organization_a order by #order
+select conference_a.cid, conference_a.homepage from conference as conference_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.aid from author as author_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select #projection from author as author_a order by #order
+select domain_a.did, domain_a.name from domain as domain_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select #projection from writes as writes_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select domain_author_a.did from domain_author as domain_author_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select #projection from domain_conference as domain_conference_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a
+select keyword_a.keyword, keyword_a.kid from keyword as keyword_a order by #order
+select author_a.aid, author_a.oid from author as author_a where #predicate
+select publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a
+select domain_author_a.did from domain_author as domain_author_a order by #order
+select publication_a.cid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_keyword_a.kid, publication_keyword_a.pid from publication_keyword as publication_keyword_a
+select publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select domain_a.did from domain as domain_a
+select publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select domain_keyword_a.did, domain_keyword_a.kid from domain_keyword as domain_keyword_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select #projection from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select conference_a.cid, conference_a.name from conference as conference_a where #predicate order by #order
+select domain_conference_a.cid, domain_conference_a.did from domain_conference as domain_conference_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid from publication as publication_a order by #order
+select domain_journal_a.did from domain_journal as domain_journal_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select conference_a.cid from conference as conference_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.homepage from author as author_a where #predicate
+select publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select domain_journal_a.jid from domain_journal as domain_journal_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select conference_a.homepage from conference as conference_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a
+select journal_a.homepage, journal_a.jid from journal as journal_a order by #order
+select #projection from keyword as keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select domain_a.did from domain as domain_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.title, publication_a.year from publication as publication_a
+select writes_a.aid from writes as writes_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select journal_a.jid from journal as journal_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select author_a.oid from author as author_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.pid, publication_a.reference_num from publication as publication_a
+select domain_author_a.aid from domain_author as domain_author_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select organization_a.homepage, organization_a.oid from organization as organization_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select domain_journal_a.did, domain_journal_a.jid from domain_journal as domain_journal_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a
+select domain_a.name from domain as domain_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.jid from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select author_a.aid, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select writes_a.aid from writes as writes_a where #predicate
+select publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select #projection from domain_keyword as domain_keyword_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select #projection from writes as writes_a order by #order
+select domain_author_a.aid, domain_author_a.did from domain_author as domain_author_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num from publication as publication_a
+select domain_keyword_a.did from domain_keyword as domain_keyword_a
+select publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.oid from organization as organization_a
+select organization_a.oid from organization as organization_a
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select organization_a.name, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.reference_num from publication as publication_a where #predicate
+select conference_a.homepage from conference as conference_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid from publication as publication_a
+select #projection from author as author_a where #predicate
+select conference_a.cid, conference_a.homepage from conference as conference_a order by #order
+select publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select #projection from domain_journal as domain_journal_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select author_a.aid, author_a.homepage, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select journal_a.jid, journal_a.name from journal as journal_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select #projection from journal as journal_a where #predicate order by #order
+select author_a.homepage from author as author_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select domain_a.name from domain as domain_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a
+select #projection from keyword as keyword_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.name from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a
+select writes_a.aid, writes_a.pid from writes as writes_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.title from publication as publication_a where #predicate
+select domain_conference_a.cid from domain_conference as domain_conference_a order by #order
+select #projection from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select #projection from publication_keyword as publication_keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select author_a.aid, author_a.homepage, author_a.oid from author as author_a order by #order
+select keyword_a.kid from keyword as keyword_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select author_a.name, author_a.oid from author as author_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a
+select publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select author_a.homepage from author as author_a where #predicate order by #order
+select publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select #projection from keyword as keyword_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a order by #order
+select organization_a.continent, organization_a.homepage from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select organization_a.continent, organization_a.oid from organization as organization_a where #predicate
+select journal_a.homepage, journal_a.jid, journal_a.name from journal as journal_a where #predicate order by #order
+select author_a.aid, author_a.homepage, author_a.name from author as author_a where #predicate
+select #projection from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select organization_a.homepage, organization_a.name from organization as organization_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select author_a.aid, author_a.oid from author as author_a
+select publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a
+select domain_keyword_a.did, domain_keyword_a.kid from domain_keyword as domain_keyword_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.oid from organization as organization_a where #predicate order by #order
+select author_a.oid from author as author_a
+select domain_author_a.aid, domain_author_a.did from domain_author as domain_author_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.title from publication as publication_a order by #order
+select author_a.name from author as author_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select author_a.homepage, author_a.name from author as author_a
+select author_a.name, author_a.oid from author as author_a
+select publication_keyword_a.kid from publication_keyword as publication_keyword_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a order by #order
+select domain_author_a.aid, domain_author_a.did from domain_author as domain_author_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select journal_a.jid from journal as journal_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid from publication as publication_a where #predicate
+select domain_a.did, domain_a.name from domain as domain_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select #projection from author as author_a where #predicate order by #order
+select publication_a.reference_num from publication as publication_a where #predicate order by #order
+select journal_a.jid, journal_a.name from journal as journal_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select #projection from publication_keyword as publication_keyword_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.homepage, organization_a.oid from organization as organization_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name from organization as organization_a order by #order
+select organization_a.continent, organization_a.homepage from organization as organization_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.pid from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a
+select journal_a.homepage, journal_a.jid, journal_a.name from journal as journal_a order by #order
+select publication_a.cid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select keyword_a.keyword from keyword as keyword_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a
+select #projection from domain_journal as domain_journal_a
+select publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.title from publication as publication_a order by #order
+select publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a
+select #projection from conference as conference_a
+select journal_a.homepage, journal_a.jid from journal as journal_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select organization_a.homepage, organization_a.name from organization as organization_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select #projection from domain_author as domain_author_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.homepage, author_a.oid from author as author_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select keyword_a.keyword, keyword_a.kid from keyword as keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a
+select journal_a.jid, journal_a.name from journal as journal_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select journal_a.homepage, journal_a.jid, journal_a.name from journal as journal_a
+select conference_a.cid from conference as conference_a where #predicate
+select organization_a.homepage, organization_a.oid from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.homepage, author_a.name, author_a.oid from author as author_a order by #order
+select #projection from journal as journal_a
+select publication_a.cid, publication_a.citation_num from publication as publication_a
+select #projection from domain_journal as domain_journal_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select organization_a.name from organization as organization_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.title from publication as publication_a where #predicate order by #order
+select conference_a.name from conference as conference_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid from publication as publication_a order by #order
+select publication_a.cid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select #projection from domain_conference as domain_conference_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select keyword_a.kid from keyword as keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select journal_a.homepage, journal_a.jid from journal as journal_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select keyword_a.kid from keyword as keyword_a order by #order
+select writes_a.aid, writes_a.pid from writes as writes_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.name from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select domain_journal_a.did, domain_journal_a.jid from domain_journal as domain_journal_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select author_a.name, author_a.oid from author as author_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.reference_num from publication as publication_a order by #order
+select author_a.aid, author_a.name from author as author_a where #predicate
+select publication_a.citation_num, publication_a.pid from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num from publication as publication_a
+select publication_keyword_a.kid, publication_keyword_a.pid from publication_keyword as publication_keyword_a order by #order
+select author_a.homepage, author_a.name from author as author_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select conference_a.cid, conference_a.homepage, conference_a.name from conference as conference_a where #predicate
+select publication_a.cid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.name from organization as organization_a
+select publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select journal_a.homepage, journal_a.name from journal as journal_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid from publication as publication_a
+select author_a.name, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select #projection from domain_keyword as domain_keyword_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.reference_num from publication as publication_a order by #order
+select author_a.oid from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select author_a.aid, author_a.homepage, author_a.name, author_a.oid from author as author_a where #predicate
+select domain_keyword_a.did, domain_keyword_a.kid from domain_keyword as domain_keyword_a where #predicate order by #order
+select organization_a.homepage, organization_a.oid from organization as organization_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select domain_conference_a.did from domain_conference as domain_conference_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select author_a.aid, author_a.homepage from author as author_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select domain_journal_a.did, domain_journal_a.jid from domain_journal as domain_journal_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select author_a.homepage, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid from publication as publication_a
+select publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select author_a.aid from author as author_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.jid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select conference_a.homepage, conference_a.name from conference as conference_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select organization_a.oid from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select domain_author_a.aid from domain_author as domain_author_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select domain_author_a.did from domain_author as domain_author_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select organization_a.name, organization_a.oid from organization as organization_a where #predicate
+select publication_a.cid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.name, organization_a.oid from organization as organization_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select organization_a.continent from organization as organization_a where #predicate
+select organization_a.name from organization as organization_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.year from publication as publication_a where #predicate order by #order
+select conference_a.name from conference as conference_a
+select organization_a.continent, organization_a.homepage, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.reference_num from publication as publication_a
+select domain_journal_a.jid from domain_journal as domain_journal_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate
+select journal_a.homepage from journal as journal_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select organization_a.continent from organization as organization_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select #projection from domain as domain_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select domain_a.did from domain as domain_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select domain_a.name from domain as domain_a where #predicate
+select organization_a.homepage, organization_a.name from organization as organization_a where #predicate
+select journal_a.jid from journal as journal_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select journal_a.homepage, journal_a.jid from journal as journal_a where #predicate
+select publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select #projection from domain_author as domain_author_a order by #order
+select author_a.aid, author_a.homepage from author as author_a where #predicate order by #order
+select publication_a.cid, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid from publication as publication_a order by #order
+select #projection from domain as domain_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select domain_conference_a.did from domain_conference as domain_conference_a where #predicate
+select publication_a.citation_num, publication_a.reference_num from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select journal_a.homepage, journal_a.jid, journal_a.name from journal as journal_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select #projection from organization as organization_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select #projection from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select domain_keyword_a.kid from domain_keyword as domain_keyword_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a
+select conference_a.cid, conference_a.homepage from conference as conference_a
+select publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select writes_a.pid from writes as writes_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select author_a.homepage, author_a.name, author_a.oid from author as author_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select organization_a.continent, organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.cid, publication_a.jid from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid from publication as publication_a where #predicate
+select #projection from publication_keyword as publication_keyword_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select domain_keyword_a.did from domain_keyword as domain_keyword_a where #predicate order by #order
+select organization_a.homepage from organization as organization_a
+select journal_a.homepage from journal as journal_a order by #order
+select publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a
+select author_a.homepage, author_a.oid from author as author_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid from publication as publication_a
+select conference_a.cid, conference_a.homepage from conference as conference_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid from publication as publication_a
+select organization_a.continent, organization_a.homepage, organization_a.oid from organization as organization_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.homepage, author_a.name, author_a.oid from author as author_a
+select publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select domain_journal_a.did from domain_journal as domain_journal_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select conference_a.cid, conference_a.name from conference as conference_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate order by #order
+select journal_a.homepage, journal_a.name from journal as journal_a
+select publication_a.abstract, publication_a.jid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.name, organization_a.oid from organization as organization_a
+select publication_a.abstract, publication_a.title, publication_a.year from publication as publication_a
+select #projection from writes as writes_a where #predicate
+select author_a.oid from author as author_a where #predicate
+select publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select #projection from organization as organization_a where #predicate order by #order
+select publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num from publication as publication_a where #predicate
+select publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select #projection from domain_conference as domain_conference_a
+select #projection from journal as journal_a order by #order
+select keyword_a.keyword from keyword as keyword_a where #predicate order by #order
+select organization_a.continent, organization_a.homepage from organization as organization_a order by #order
+select organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select organization_a.name from organization as organization_a where #predicate order by #order
+select publication_a.citation_num from publication as publication_a order by #order
+select journal_a.homepage, journal_a.name from journal as journal_a order by #order
+select #projection from journal as journal_a where #predicate
+select publication_a.jid, publication_a.reference_num from publication as publication_a
+select writes_a.pid from writes as writes_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num from publication as publication_a
+select publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select domain_a.did, domain_a.name from domain as domain_a where #predicate order by #order
+select author_a.aid, author_a.homepage, author_a.name, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select author_a.aid, author_a.homepage, author_a.name, author_a.oid from author as author_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a
+select author_a.aid, author_a.name from author as author_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select #projection from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select keyword_a.kid from keyword as keyword_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select author_a.homepage, author_a.name, author_a.oid from author as author_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num from publication as publication_a
+select publication_a.title from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select domain_author_a.aid, domain_author_a.did from domain_author as domain_author_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num from publication as publication_a where #predicate
+select #projection from writes as writes_a where #predicate order by #order
+select publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a
+select domain_a.did, domain_a.name from domain as domain_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select writes_a.pid from writes as writes_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a
+select conference_a.cid, conference_a.homepage, conference_a.name from conference as conference_a order by #order
+select organization_a.continent, organization_a.homepage, organization_a.name from organization as organization_a
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate
+select organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select organization_a.homepage from organization as organization_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select author_a.aid, author_a.homepage, author_a.oid from author as author_a
+select publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select domain_conference_a.cid, domain_conference_a.did from domain_conference as domain_conference_a where #predicate
+select publication_keyword_a.pid from publication_keyword as publication_keyword_a
+select publication_keyword_a.kid, publication_keyword_a.pid from publication_keyword as publication_keyword_a where #predicate
+select organization_a.continent, organization_a.homepage, organization_a.oid from organization as organization_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.title from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.name from organization as organization_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.pid from publication as publication_a where #predicate
+select organization_a.homepage from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select organization_a.continent, organization_a.homepage from organization as organization_a where #predicate
+select publication_a.cid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.continent, organization_a.oid from organization as organization_a order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.citation_num, publication_a.title from publication as publication_a
+select #projection from domain_journal as domain_journal_a order by #order
+select publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid from publication as publication_a order by #order
+select publication_a.title, publication_a.year from publication as publication_a where #predicate
+select author_a.aid, author_a.homepage, author_a.name from author as author_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.year from publication as publication_a where #predicate
+select domain_conference_a.cid, domain_conference_a.did from domain_conference as domain_conference_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select writes_a.aid, writes_a.pid from writes as writes_a
+select publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select organization_a.homepage, organization_a.name, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate order by #order
+select domain_conference_a.did from domain_conference as domain_conference_a
+select author_a.name from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate
+select organization_a.continent, organization_a.name, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select journal_a.name from journal as journal_a
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.pid from publication as publication_a where #predicate
+select publication_a.jid, publication_a.pid from publication as publication_a where #predicate
+select author_a.name from author as author_a where #predicate order by #order
+select organization_a.continent from organization as organization_a
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.year from publication as publication_a
+select domain_conference_a.cid, domain_conference_a.did from domain_conference as domain_conference_a where #predicate order by #order
+select publication_a.abstract, publication_a.title from publication as publication_a
+select #projection from domain_keyword as domain_keyword_a
+select publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select author_a.homepage from author as author_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select author_a.aid from author as author_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select #projection from publication_keyword as publication_keyword_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select domain_conference_a.cid from domain_conference as domain_conference_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select author_a.aid, author_a.name, author_a.oid from author as author_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select journal_a.name from journal as journal_a where #predicate order by #order
+select journal_a.name from journal as journal_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select conference_a.homepage from conference as conference_a where #predicate
+select publication_a.abstract, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.reference_num, publication_a.year from publication as publication_a
+select journal_a.homepage from journal as journal_a where #predicate order by #order
+select journal_a.name from journal as journal_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a
+select conference_a.homepage, conference_a.name from conference as conference_a where #predicate
+select publication_a.abstract, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select author_a.homepage, author_a.name from author as author_a order by #order
+select publication_a.abstract, publication_a.cid from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select #projection from domain_author as domain_author_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select author_a.aid, author_a.name from author as author_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select domain_conference_a.did from domain_conference as domain_conference_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.name, organization_a.oid from organization as organization_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select domain_keyword_a.kid from domain_keyword as domain_keyword_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.pid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a order by #order
+select conference_a.homepage from conference as conference_a where #predicate order by #order
+select publication_a.jid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.cid from publication as publication_a
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.jid, publication_a.title from publication as publication_a order by #order
+select conference_a.cid, conference_a.homepage, conference_a.name from conference as conference_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.cid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select keyword_a.keyword, keyword_a.kid from keyword as keyword_a
+select author_a.aid, author_a.name, author_a.oid from author as author_a where #predicate order by #order
+select author_a.homepage, author_a.name, author_a.oid from author as author_a where #predicate order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select conference_a.cid, conference_a.name from conference as conference_a
+select publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select conference_a.name from conference as conference_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.year from publication as publication_a
+select publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate order by #order
+select organization_a.oid from organization as organization_a order by #order
+select publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select conference_a.cid, conference_a.name from conference as conference_a where #predicate
+select publication_a.abstract, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.pid, publication_a.title from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select #projection from author as author_a
+select publication_a.abstract, publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select author_a.aid, author_a.homepage from author as author_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.citation_num, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.citation_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.year from publication as publication_a
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select #projection from domain_author as domain_author_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select author_a.homepage, author_a.name from author as author_a where #predicate
+select organization_a.homepage from organization as organization_a order by #order
+select publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.year from publication as publication_a order by #order
+select organization_a.continent, organization_a.name, organization_a.oid from organization as organization_a order by #order
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.reference_num from publication as publication_a order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a where #predicate order by #order
+select journal_a.homepage, journal_a.name from journal as journal_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate
+select publication_a.pid, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.year from publication as publication_a where #predicate
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.title from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid from publication as publication_a where #predicate
+select publication_keyword_a.kid, publication_keyword_a.pid from publication_keyword as publication_keyword_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.jid, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.title, publication_a.year from publication as publication_a where #predicate
+select domain_keyword_a.did from domain_keyword as domain_keyword_a order by #order
+select publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.cid, publication_a.jid, publication_a.title from publication as publication_a
+select publication_a.abstract, publication_a.pid, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_a.jid, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.cid, publication_a.citation_num, publication_a.reference_num from publication as publication_a
+select publication_a.jid, publication_a.title, publication_a.year from publication as publication_a order by #order
+select publication_a.abstract, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.jid, publication_a.pid, publication_a.year from publication as publication_a order by #order
+select publication_a.cid, publication_a.pid, publication_a.reference_num from publication as publication_a
+select publication_a.abstract, publication_a.citation_num, publication_a.jid, publication_a.reference_num, publication_a.title, publication_a.year from publication as publication_a order by #order
+select writes_a.aid from writes as writes_a
+select publication_a.citation_num, publication_a.jid, publication_a.pid from publication as publication_a order by #order
+select domain_conference_a.cid from domain_conference as domain_conference_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num, publication_a.year from publication as publication_a where #predicate order by #order
+select publication_keyword_a.kid from publication_keyword as publication_keyword_a
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.pid, publication_a.reference_num from publication as publication_a
+select organization_a.homepage, organization_a.oid from organization as organization_a where #predicate order by #order
+select publication_a.citation_num, publication_a.jid from publication as publication_a where #predicate
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.reference_num, publication_a.title from publication as publication_a where #predicate order by #order
+select publication_a.abstract, publication_a.cid, publication_a.citation_num, publication_a.jid, publication_a.pid, publication_a.reference_num from publication as publication_a where #predicate

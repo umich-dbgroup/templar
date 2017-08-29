@@ -1,9 +1,11 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
+import edu.umich.tbnalir.template.TemplateRoot;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
+import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -32,7 +34,8 @@ public class LogTemplateGenerator {
         return levels;
     }
 
-    public void performCrossValidation(List<Statement> stmts, String basename) {
+    public void performCrossValidation(List<Select> stmts, String basename) {
+        /*
         // Split into n partitions for cross validation
         int cvSplits = 4;
         int partitionSize = stmts.size() / cvSplits;
@@ -41,7 +44,7 @@ public class LogTemplateGenerator {
         // Shuffle partitions so cross-validation is randomized
         Collections.shuffle(stmts);
 
-        List<List<Statement>> cvPartitions = new ArrayList<>();
+        List<List<Select>> cvPartitions = new ArrayList<>();
         int curIndex = 0;
         for (int i = 0; i < cvSplits; i++) {
             int fromIndex = curIndex;
@@ -61,13 +64,13 @@ public class LogTemplateGenerator {
         Log.info("a <Don't Abs. Projections> / b <Abs. Projections>");
 
         for (int i = 0; i < cvPartitions.size(); i++) {
-            List<Statement> templateGenSet = new ArrayList<>();
+            List<Select> templateGenSet = new ArrayList<>();
             for (int j = 0; j < cvPartitions.size(); j++) {
                 if (j != i) {
                     templateGenSet.addAll(cvPartitions.get(j));
                 }
             }
-            List<Statement> coverageTestSet = cvPartitions.get(i);
+            List<Select> coverageTestSet = cvPartitions.get(i);
 
             // Only print out files for templates for first fold
             String constFileName = null;
@@ -84,30 +87,30 @@ public class LogTemplateGenerator {
                 predFileName = basename + "_pred.csv";
                 predProjFileName = basename + "_pred_proj.csv";
             }
-            Set<String> constTmpl = this.generateTemplates(templateGenSet, this::noConstantTemplate, constFileName);
-            List<String> constTest = this.generateTestTemplates(coverageTestSet, this::noConstantTemplate);
-            float constCoverage = (float) this.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
+            Set<String> constTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noConstantTemplate, constFileName);
+            List<String> constTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noConstantTemplate);
+            float constCoverage = (float) TemplateRoot.testCoverage(constTmpl, constTest) / coverageTestSet.size() * 100;
 
-            Set<String> constProjTmpl = this.generateTemplates(templateGenSet, this::noConstantProjectionTemplate,
+            Set<String> constProjTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noConstantProjectionTemplate,
                     constProjFileName);
-            List<String> constProjTest = this.generateTestTemplates(coverageTestSet, this::noConstantProjectionTemplate);
-            float constProjCoverage = (float) this.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
+            List<String> constProjTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noConstantProjectionTemplate);
+            float constProjCoverage = (float) TemplateRoot.testCoverage(constProjTmpl, constProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> compTmpl = this.generateTemplates(templateGenSet, this::noComparisonTemplate, compFileName);
-            List<String> compTest = this.generateTestTemplates(coverageTestSet, this::noComparisonTemplate);
-            float compCoverage = (float) this.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
+            Set<String> compTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noComparisonTemplate, compFileName);
+            List<String> compTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noComparisonTemplate);
+            float compCoverage = (float) TemplateRoot.testCoverage(compTmpl, compTest) / coverageTestSet.size() * 100;
 
-            Set<String> compProjTmpl = this.generateTemplates(templateGenSet, this::noComparisonProjectionTemplate, compProjFileName);
-            List<String> compProjTest = this.generateTestTemplates(coverageTestSet, this::noComparisonProjectionTemplate);
-            float compProjCoverage = (float) this.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
+            Set<String> compProjTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noComparisonProjectionTemplate, compProjFileName);
+            List<String> compProjTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noComparisonProjectionTemplate);
+            float compProjCoverage = (float) TemplateRoot.testCoverage(compProjTmpl, compProjTest) / coverageTestSet.size() * 100;
 
-            Set<String> predTmpl = this.generateTemplates(templateGenSet, this::noPredicateTemplate, predFileName);
-            List<String> predTest = this.generateTestTemplates(coverageTestSet, this::noPredicateTemplate);
-            float predCoverage = (float) this.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
+            Set<String> predTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noPredicateTemplate, predFileName);
+            List<String> predTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noPredicateTemplate);
+            float predCoverage = (float) TemplateRoot.testCoverage(predTmpl, predTest) / coverageTestSet.size() * 100;
 
-            Set<String> predProjTmpl = this.generateTemplates(templateGenSet, this::noPredicateProjectionTemplate, predProjFileName);
-            List<String> predProjTest = this.generateTestTemplates(coverageTestSet, this::noPredicateProjectionTemplate);
-            float predProjCoverage = (float) this.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
+            Set<String> predProjTmpl = TemplateRoot.generateTemplates(templateGenSet, TemplateRoot::noPredicateProjectionTemplate, predProjFileName);
+            List<String> predProjTest = TemplateRoot.generateTestTemplates(coverageTestSet, TemplateRoot::noPredicateProjectionTemplate);
+            float predProjCoverage = (float) TemplateRoot.testCoverage(predProjTmpl, predProjTest) / coverageTestSet.size() * 100;
 
             Log.info("--- Fold " + i + " ---");
             Log.info("Template Gen. Set Size: " + templateGenSet.size());
@@ -127,10 +130,10 @@ public class LogTemplateGenerator {
                     + compProjTmpl.size() + "\t"
                     + predTmpl.size() + "\t"
                     + predProjTmpl.size() + "\t\n");
-        }
+        }*/
     }
 
-    private Runnable getParserRunnable(ConcurrentLinkedQueue<Statement> stmts, String sql) {
+    private Runnable getParserRunnable(ConcurrentLinkedQueue<Select> stmts, String sql) {
         // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
         char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
         for (char token : tokensToReplace) {
@@ -149,14 +152,14 @@ public class LogTemplateGenerator {
                 t.printStackTrace();
                 return;
             }
-            if (stmt == null) return; // Case that it's not a select statement
-            stmts.add(stmt);
+            if (stmt == null || !(stmt instanceof Select)) return; // Case that it's not a select statement
+            stmts.add((Select) stmt);
         };
     }
 
-    public List<Statement> parseStatements(List<String> sqls) {
+    public List<Select> parseStatements(List<String> sqls) {
         ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        ConcurrentLinkedQueue<Statement> stmts = new ConcurrentLinkedQueue<>();
+        ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
         for (String sql : sqls) {
             pool.submit(this.getParserRunnable(stmts, sql));
         }
@@ -182,62 +185,64 @@ public class LogTemplateGenerator {
         return new ArrayList<>(stmts);
     }
 
-    public void generateAndSave(List<Statement> stmts, String outBasename) {
+    public void generateAndSave(List<Select> stmts, String outBasename) {
+        /*
         for (String level : this.levels) {
             String outfileName = outBasename + "_" + level + ".csv";
             switch (level) {
                 case "const":
-                    this.generateTemplates(stmts, this::noConstantTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noConstantTemplate, outfileName);
                     break;
                 case "const_proj":
-                    this.generateTemplates(stmts, this::noConstantProjectionTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noConstantProjectionTemplate, outfileName);
                     break;
                 case "comp":
-                    this.generateTemplates(stmts, this::noComparisonTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noComparisonTemplate, outfileName);
                     break;
                 case "comp_proj":
-                    this.generateTemplates(stmts, this::noComparisonProjectionTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noComparisonProjectionTemplate, outfileName);
                     break;
                 case "pred":
-                    this.generateTemplates(stmts, this::noPredicateTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noPredicateTemplate, outfileName);
                     break;
                 case "pred_proj":
-                    this.generateTemplates(stmts, this::noPredicateProjectionTemplate, outfileName);
+                    TemplateRoot.generateTemplates(stmts, TemplateRoot::noPredicateProjectionTemplate, outfileName);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid level specified: <" + level + ">.");
             }
-        }
+        }*/
     }
 
-    public Set<String> generate(List<Statement> stmts) {
+        /*
+    public Set<String> generate(List<Select> stmts) {
         Set<String> templates = null;
         for (String level : this.levels) {
             switch (level) {
                 case "const":
-                    templates = this.generateTemplates(stmts, this::noConstantTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noConstantTemplate, null);
                     break;
                 case "const_proj":
-                    templates = this.generateTemplates(stmts, this::noConstantProjectionTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noConstantProjectionTemplate, null);
                     break;
                 case "comp":
-                    templates = this.generateTemplates(stmts, this::noComparisonTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noComparisonTemplate, null);
                     break;
                 case "comp_proj":
-                    templates = this.generateTemplates(stmts, this::noComparisonProjectionTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noComparisonProjectionTemplate, null);
                     break;
                 case "pred":
-                    templates = this.generateTemplates(stmts, this::noPredicateTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noPredicateTemplate, null);
                     break;
                 case "pred_proj":
-                    templates = this.generateTemplates(stmts, this::noPredicateProjectionTemplate, null);
+                    templates = TemplateRoot.generateTemplates(stmts, TemplateRoot::noPredicateProjectionTemplate, null);
                     break;
                 default:
                     throw new IllegalArgumentException("Invalid level specified: <" + level + ">.");
             }
         }
         return templates;
-    }
+    }*/
 
     public List<String> readQueryLogParsed(String filename) {
         try {
@@ -264,7 +269,7 @@ public class LogTemplateGenerator {
         LogTemplateGenerator tg = new LogTemplateGenerator(levels);
 
         List<String> sqls = tg.readQueryLogParsed(filename);
-        List<Statement> stmts = tg.parseStatements(sqls);
+        List<Select> stmts = tg.parseStatements(sqls);
 
         // For testing, perform cross-validation:
         tg.performCrossValidation(stmts, FilenameUtils.getBaseName(filename));
