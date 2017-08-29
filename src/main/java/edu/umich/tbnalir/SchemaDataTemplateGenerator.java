@@ -328,19 +328,6 @@ public class SchemaDataTemplateGenerator {
         // naive: get power set of all attributes
         Set<Set<Attribute>> projections = Utils.powerSet(attributes);
 
-        // Log statement, can remove if needed
-        System.out.print("Projections for " + r.getName() + " (" + projections.size() + " sets): ");
-        for (Set<Attribute> set : projections) {
-            if (set.size() == 0) continue;
-
-            StringJoiner sj = new StringJoiner(",");
-            for (Attribute attr : set) {
-                sj.add(attr.getName());
-            }
-            System.out.print("[" + sj.toString() + "], ");
-        }
-        System.out.println();
-
         PlainSelect ps = (PlainSelect) tr.getSelect().getSelectBody();
 
         for (Set<Attribute> attrSet : projections) {
