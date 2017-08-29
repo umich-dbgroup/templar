@@ -8,6 +8,16 @@ import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
  * Created by cjbaik on 6/20/17.
  */
 public class ConstantRemovalExprDeParser extends FullQueryExprDeParser {
+    @Override
+    protected FullQueryExprDeParser subParser() {
+        ConstantRemovalExprDeParser clone = new ConstantRemovalExprDeParser();
+        clone.setTables(this.tables);
+        clone.setRelations(this.relations);
+        clone.setAliases(this.aliases);
+        clone.setAliasMap(this.oldAliasToTableName);
+        return clone;
+    }
+
     public static String removeConstantsFromExpr(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof DoubleValue) {

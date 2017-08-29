@@ -6,6 +6,7 @@ import edu.umich.tbnalir.rdbms.FunctionParameter;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.sql.LiteralExpression;
+import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Column;
@@ -135,10 +136,19 @@ public class Utils {
         return powerSet;
     }
 
-    public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, Relation> relations, Column col) {
+    public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, Relation> relations,
+                                           Map<String, String> oldAliasToTableName, Column col) {
         String tableName = col.getTable().getName();
 
-        if (col.getTable().getName() == null || relations.get(tableName) == null) {
+        if (tableName == null || relations.get(tableName) == null) {
+            // if old to table name exists, use it
+            if (oldAliasToTableName != null) {
+                String newTableName = oldAliasToTableName.get(tableName);
+                if (newTableName != null) {
+                    return queryTables.get(newTableName);
+                }
+            }
+
             // Find table name
             for (Map.Entry<String, Table> e : queryTables.entrySet()) {
                 // Find the relation
@@ -149,12 +159,9 @@ public class Utils {
 
                 for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
                     if (attrEntry.getKey().equals(col.getColumnName())) {
-                        tableName = r.getName();
-                        break;
+                        return queryTables.get(r.getName());
                     }
                 }
-
-                if (tableName != null) break;
             }
         } else {
             tableName = col.getTable().getName();

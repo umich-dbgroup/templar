@@ -3,6 +3,7 @@ package edu.umich.tbnalir.sql;
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.relational.*;
+import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.statement.select.SubSelect;
 
 
@@ -10,6 +11,16 @@ import net.sf.jsqlparser.statement.select.SubSelect;
  * Created by cjbaik on 6/20/17.
  */
 public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
+    @Override
+    protected FullQueryExprDeParser subParser() {
+        ComparisonRemovalExprDeParser clone = new ComparisonRemovalExprDeParser();
+        clone.setTables(this.tables);
+        clone.setRelations(this.relations);
+        clone.setAliases(this.aliases);
+        clone.setAliasMap(this.oldAliasToTableName);
+        return clone;
+    }
+
     public static String removeComparisonOperator(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof BinaryExpression) {
@@ -39,7 +50,19 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
 
     @Override
     public void visit(EqualsTo equalsTo) {
-        this.getBuffer().append(removeComparisonOperator(equalsTo));
+        // If it is two column equivalences (likely to be join predicate)
+        if (equalsTo.getLeftExpression() instanceof Column
+                && equalsTo.getRightExpression() instanceof Column) {
+            FullQueryExprDeParser leftParser = this.subParser();
+            equalsTo.getLeftExpression().accept(leftParser);
+            FullQueryExprDeParser rightParser = this.subParser();
+            equalsTo.getLeftExpression().accept(rightParser);
+            this.getBuffer().append(leftParser.getBuffer());
+            this.getBuffer().append(" = ");
+            this.getBuffer().append(rightParser.getBuffer());
+        } else {
+            this.getBuffer().append(removeComparisonOperator(equalsTo));
+        }
     }
 
     @Override

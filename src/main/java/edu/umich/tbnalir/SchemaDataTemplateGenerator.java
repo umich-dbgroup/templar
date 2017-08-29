@@ -460,7 +460,10 @@ public class SchemaDataTemplateGenerator {
         // String test = "SELECT j.homepage FROM journal j WHERE j.name = 'PVLDB'";
         // String test = "SELECT j.homepage FROM journal AS j WHERE j.name = 'PVLDB'";
         // String test = "SELECT homepage FROM journal AS j WHERE journal.name = 'PVLDB'";
-        /*
+        // String test = "SELECT a.name FROM author a, publication p, journal j, writes w WHERE j.name = 'PVLDB' AND a.aid = w.aid AND w.pid = p.pid AND p.jid = j.jid";
+        // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
+        // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
+        String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB' AND (j.name = 'THIS' OR j.name = 'OTHER')";
         try {
             Statement stmt = CCJSqlParserUtil.parse(test);
             System.out.println(TemplateRoot.fullQueryTemplate((Select) stmt));
@@ -474,7 +477,7 @@ public class SchemaDataTemplateGenerator {
             if (Log.DEBUG) e.printStackTrace();
         } catch (Throwable t) {
             t.printStackTrace();
-        }*/
+        }
 
         String templateOutFile = "templates.out";
         Log.info("==============================");

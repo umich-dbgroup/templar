@@ -7,6 +7,7 @@ import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
 import net.sf.jsqlparser.expression.OracleHint;
+import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -23,16 +24,25 @@ public class FullQueryDeParser extends SelectDeParser {
 
     Map<String, Table> tables;
     Map<String, List<Alias>> aliases; // Table names to aliases
-    Map<Alias, Alias> oldToNewAlias;
+    Map<String, String> oldAliasToTableName;
 
-    public FullQueryDeParser(ExpressionVisitor expressionVisitor, StringBuilder buffer, Map<String, Relation> relations) {
+    List<Expression> joinPredicates;
+
+    boolean removeWhere; // If true, we replace the WHERE clause with "#PRED"
+
+    public FullQueryDeParser(ExpressionVisitor expressionVisitor,
+                             StringBuilder buffer, Map<String, Relation> relations, boolean removeWhere) {
         super(expressionVisitor, buffer);
 
         this.relations = relations;
 
         this.tables = new HashMap<>();
         this.aliases = new HashMap<>();
-        this.oldToNewAlias = new HashMap<>();
+        this.oldAliasToTableName = new HashMap<>();
+
+        this.joinPredicates = new ArrayList<>();
+
+        this.removeWhere = removeWhere;
 
         // Point expression visitor to same objects if needed
         if (expressionVisitor instanceof FullQueryExprDeParser) {
@@ -40,7 +50,28 @@ public class FullQueryDeParser extends SelectDeParser {
             exprDeParser.setTables(this.tables);
             exprDeParser.setRelations(this.relations);
             exprDeParser.setAliases(this.aliases);
+            exprDeParser.setAliasMap(this.oldAliasToTableName);
         }
+    }
+
+    public void setTables(Map<String, Table> tables) {
+        this.tables = tables;
+    }
+
+    public void setAliases(Map<String, List<Alias>> aliases) {
+        this.aliases = aliases;
+    }
+
+    public void setOldAliasToTableName(Map<String, String> oldAliasToTableName) {
+        this.oldAliasToTableName = oldAliasToTableName;
+    }
+
+    protected FullQueryDeParser subParser(ExpressionVisitor expressionVisitor, StringBuilder buffer) {
+        FullQueryDeParser clone = new FullQueryDeParser(expressionVisitor, buffer, this.relations, this.removeWhere);
+        clone.setTables(this.tables);
+        clone.setAliases(this.aliases);
+        clone.setOldAliasToTableName(this.oldAliasToTableName);
+        return clone;
     }
 
     public void alphabetizeAndDeparseJoins(FromItem fromItem, List<Join> joins) {
@@ -54,6 +85,10 @@ public class FullQueryDeParser extends SelectDeParser {
 
         if (joins != null) {
             for (Join join : joins) {
+                if (join.getOnExpression() != null) {
+                    this.joinPredicates.add(join.getOnExpression());
+                }
+
                 if (Utils.isStrangeJoin(join)) {
                     strangeJoins = true;
                     break;
@@ -87,7 +122,6 @@ public class FullQueryDeParser extends SelectDeParser {
             join.setSimple(true);
         }
 
-
         if (join.isSimple()) {
             this.getBuffer().append(", ");
         } else {
@@ -119,12 +153,6 @@ public class FullQueryDeParser extends SelectDeParser {
 
         FromItem fromItem = join.getRightItem();
         fromItem.accept(this);
-
-        /* hide ON expressions
-        if (join.getOnExpression() != null) {
-            this.getBuffer().append(" ON ");
-            join.getOnExpression().accept(this.getExpressionVisitor());
-        }*/
 
         if (join.getUsingColumns() != null) {
             this.getBuffer().append(" USING (");
@@ -159,7 +187,7 @@ public class FullQueryDeParser extends SelectDeParser {
             table.setAlias(newAlias);
 
             if (oldAlias != null) {
-                this.oldToNewAlias.put(oldAlias, newAlias);
+                this.oldAliasToTableName.put(oldAlias.getName(), table.getName());
             }
         }
     }
@@ -231,7 +259,18 @@ public class FullQueryDeParser extends SelectDeParser {
         if (plainSelect.getWhere() != null) {
             this.getBuffer().append(" WHERE ");
 
-            plainSelect.getWhere().accept(this.getExpressionVisitor());
+            if (this.removeWhere) {
+                this.getBuffer().append(Constants.PRED);
+            } else {
+                // Add and consume join predicates from ON expressions
+                Expression expr = plainSelect.getWhere();
+                while (!this.joinPredicates.isEmpty()) {
+                    Expression pred = this.joinPredicates.remove(0);
+                    expr = new AndExpression(expr, pred);
+                }
+
+                expr.accept(this.getExpressionVisitor());
+            }
         }
     }
 
@@ -289,9 +328,15 @@ public class FullQueryDeParser extends SelectDeParser {
         List<String> projections = new ArrayList<>();
 
         for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext(); ) {
+            StringBuilder buffer = new StringBuilder();
+            FullQueryExprDeParser exprDeParser = new FullQueryExprDeParser();
+            FullQueryDeParser subParser = this.subParser(exprDeParser, buffer);
+            exprDeParser.setBuffer(buffer);
+            exprDeParser.setSelectVisitor(subParser);
+
             SelectItem selectItem = iter.next();
-            // selectItem.accept(this);
-            projections.add(selectItem.toString());
+            selectItem.accept(subParser);
+            projections.add(buffer.toString());
             /*
             if (iter.hasNext()) {
                 this.getBuffer().append(", ");
@@ -307,7 +352,7 @@ public class FullQueryDeParser extends SelectDeParser {
         Expression expr = selectExpressionItem.getExpression();
         if (expr instanceof Column) {
             Column col = (Column) expr;
-            Table table = Utils.findTableForColumn(this.tables, this.relations, col);
+            Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTableName, col);
 
             if (table == null) throw new RuntimeException("Could not find table for column: " + col.getColumnName());
 

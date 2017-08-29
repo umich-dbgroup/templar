@@ -32,7 +32,7 @@ public class TemplateRoot {
     public static Template noConstantTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser constantRemover = new ConstantRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(constantRemover, buffer, relations, false);
+        FullQueryDeParser deParser = new FullQueryDeParser(constantRemover, buffer, relations, false);
         constantRemover.setSelectVisitor(deParser);
         constantRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
@@ -52,7 +52,7 @@ public class TemplateRoot {
     public static Template noComparisonTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ComparisonRemovalExprDeParser comparisonRemover = new ComparisonRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(comparisonRemover, buffer, relations, false);
+        FullQueryDeParser deParser = new FullQueryDeParser(comparisonRemover, buffer, relations, false);
         comparisonRemover.setSelectVisitor(deParser);
         comparisonRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
@@ -72,7 +72,7 @@ public class TemplateRoot {
     public static Template noPredicateTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
-        SelectConstantRemovalDeParser deParser = new SelectConstantRemovalDeParser(predicateRemover, buffer, relations, true);
+        FullQueryDeParser deParser = new FullQueryDeParser(predicateRemover, buffer, relations, true);
         predicateRemover.setSelectVisitor(deParser);
         predicateRemover.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
@@ -92,7 +92,7 @@ public class TemplateRoot {
     public static Template fullQueryTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         FullQueryExprDeParser exprDeParser = new FullQueryExprDeParser();
-        FullQueryDeParser deParser = new FullQueryDeParser(exprDeParser, buffer, relations);
+        FullQueryDeParser deParser = new FullQueryDeParser(exprDeParser, buffer, relations, false);
         exprDeParser.setSelectVisitor(deParser);
         exprDeParser.setBuffer(buffer);
         select.getSelectBody().accept(deParser);
