@@ -6,6 +6,18 @@
     "primaryRelation": "organization"
   },
   {
+    "foreignAttribute": "citing",
+    "primaryAttribute": "pid",
+    "foreignRelation": "cite",
+    "primaryRelation": "publication"
+  },
+  {
+    "foreignAttribute": "cited",
+    "primaryAttribute": "pid",
+    "foreignRelation": "cite",
+    "primaryRelation": "publication"
+  },
+  {
     "foreignAttribute": "cid",
     "primaryAttribute": "cid",
     "foreignRelation": "publication",
@@ -64,6 +76,18 @@
     "primaryAttribute": "kid",
     "foreignRelation": "domain_keyword",
     "primaryRelation": "keyword"
+  },
+  {
+    "foreignAttribute": "did",
+    "primaryAttribute": "did",
+    "foreignRelation": "domain_publication",
+    "primaryRelation": "domain"
+  },
+  {
+    "foreignAttribute": "pid",
+    "primaryAttribute": "pid",
+    "foreignRelation": "domain_publication",
+    "primaryRelation": "publication"
   },
   {
     "foreignAttribute": "pid",

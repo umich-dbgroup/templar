@@ -28,6 +28,22 @@
       }
     } 
   },
+  "cite": {
+    "name": "cite",
+    "type": "relation",
+    "attributes": {
+      "citing": {
+        "name": "citing",
+        "type": "int",
+        "fk": true
+      },
+      "cited": {
+        "name": "cited",
+        "type": "int",
+        "fk": true
+      }
+    }
+  },
   "conference": {
     "name": "conference",
     "type": "relation",
@@ -125,6 +141,22 @@
       },
       "kid": {
         "name": "kid",
+        "type": "int",
+        "fk": true
+      }
+    }
+  },
+  "domain_publication": {
+    "name": "domain_publication",
+    "type": "relation",
+    "attributes": {
+      "did": {
+        "name": "did",
+        "type": "int",
+        "fk": true
+      },
+      "pid": {
+        "name": "pid",
         "type": "int",
         "fk": true
       }
