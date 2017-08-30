@@ -360,7 +360,7 @@ public class FullQueryDeParser extends SelectDeParser {
 
             List<Alias> tableAliases = this.aliases.get(table.getName());
             if (tableAliases.size() > 1) {
-                throw new RuntimeException("WARNING: More than 1 alias for table! Which to select?");
+                throw new RuntimeException("More than 1 alias for table! Which to select?");
             }
             table.setAlias(tableAliases.get(0));
             col.setTable(table);

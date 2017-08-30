@@ -74,6 +74,7 @@ public class SchemaDataTemplateGenerator {
         return join;
     }
 
+    /*
     public void addPKFKJoinTemplates(Set<Template> templates, Relation rel, TemplateRoot tr) {
         Select select = tr.getSelect();
         PlainSelect ps = (PlainSelect) select.getSelectBody();
@@ -147,7 +148,7 @@ public class SchemaDataTemplateGenerator {
                 }
             }
         }
-    }
+    }*/
 
     public void loadRelationsFromFile(String relationsFileName) {
         JSONParser parser = new JSONParser();
@@ -357,6 +358,9 @@ public class SchemaDataTemplateGenerator {
                 Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
                 if (fks != null) {
                     for (Attribute otherFk : fks) {
+                        // Assumes we don't have join tables that reference the same table twice
+                        if (relations.contains(otherFk.getRelation())) continue;
+
                         Join join = Utils.addJoin(select, attr, otherFk);
                         relations.add(otherFk.getRelation());
 
@@ -371,6 +375,9 @@ public class SchemaDataTemplateGenerator {
                 Set<Attribute> pks = this.fkpkEdges.get(attrEntry.getValue());
                 if (pks != null) {
                     for (Attribute otherPk : pks) {
+                        // Assumes we don't have join tables that reference the same table twice
+                        if (relations.contains(otherPk.getRelation())) continue;
+
                         Join join = Utils.addJoin(select, attr, otherPk);
                         relations.add(otherPk.getRelation());
 
@@ -386,7 +393,6 @@ public class SchemaDataTemplateGenerator {
 
         for (Relation r : relations) {
             // Rank attributes by entropy first
-            // TODO: exclude PK/FK from ranked attributes?
             r.rankAttributesByEntropy(this.db);
         }
 
@@ -411,9 +417,6 @@ public class SchemaDataTemplateGenerator {
         templates.addAll(tr.generateNoConstantTemplates(projections, predicateAttributes));
 
         // TODO: for each hypothesized full query template (guess attributes, operators, constants, and projections)
-
-        // Handle joins
-        // this.addFKPKJoinTemplatesRecursive(templates, r, tr, this.joinLevel);
 
         return templates;
     }
