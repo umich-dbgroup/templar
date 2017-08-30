@@ -18,6 +18,10 @@ public class Template {
         this.type = type;
     }
 
+    public TemplateType getType() {
+        return type;
+    }
+
     public boolean covers(String string) {
         try {
             Statement stmt = CCJSqlParserUtil.parse(string);

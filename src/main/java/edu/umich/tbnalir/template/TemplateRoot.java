@@ -1,11 +1,18 @@
 package edu.umich.tbnalir.template;
 
+import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.*;
 import edu.umich.tbnalir.util.Constants;
+import edu.umich.tbnalir.util.Utils;
+import net.sf.jsqlparser.expression.BinaryExpression;
+import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
+import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.statement.select.*;
 import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 
+import java.lang.reflect.Constructor;
 import java.util.*;
 import java.util.function.Function;
 
@@ -99,6 +106,218 @@ public class TemplateRoot {
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.FULL_QUERY);
     }
 
+    public Set<Template> generateNoPredicateProjectionTemplates() {
+        // By default, have a WHERE clause that's empty
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+        ps.setWhere(new LiteralExpression(Constants.PRED));
+
+        return this.generateTemplates(TemplateRoot::noPredicateProjectionTemplate);
+    }
+
+    public Set<Template> generateNoPredicateTemplates(Set<Set<Attribute>> projections) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+
+        // By default, have a WHERE clause that's empty
+        ps.setWhere(new LiteralExpression(Constants.PRED));
+
+        for (Set<Attribute> attrSet : projections) {
+            if (attrSet.size() == 0) continue;
+
+            List<SelectItem> selectItems = new ArrayList<>();
+
+            for (Attribute attr : attrSet) {
+                SelectExpressionItem item = new SelectExpressionItem();
+                item.setExpression(attr.getColumn());
+                selectItems.add(item);
+            }
+
+            ps.setSelectItems(selectItems);
+            results.addAll(this.generateTemplates(TemplateRoot::noPredicateTemplate));
+        }
+
+        ps.setSelectItems(null); // reset select object
+        return results;
+    }
+
+    public Set<Template> generateNoComparisonProjectionTemplates(Set<Set<Attribute>> predicateAttributes) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+
+        Expression oldWhere = ps.getWhere();
+        for (Set<Attribute> predAttrSet : predicateAttributes) {
+            if (predAttrSet.size() == 0) continue;
+
+            Expression predicate = null;
+
+            for (Attribute predAttr : predAttrSet) {
+                // type of binary expression doesn't matter because comparison is obscured
+                predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+            }
+
+            ps.setWhere(predicate);
+
+            results.addAll(this.generateTemplates(TemplateRoot::noComparisonProjectionTemplate));
+        }
+
+        ps.setWhere(oldWhere); // reset WHERE predicate
+        return results;
+    }
+
+    public Set<Template> generateNoComparisonTemplates(Set<Set<Attribute>> projections,
+                                                                 Set<Set<Attribute>> predicateAttributes) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+
+        for (Set<Attribute> attrSet : projections) {
+            if (attrSet.size() == 0) continue;
+
+            List<SelectItem> selectItems = new ArrayList<>();
+
+            for (Attribute attr : attrSet) {
+                SelectExpressionItem item = new SelectExpressionItem();
+                item.setExpression(attr.getColumn());
+                selectItems.add(item);
+            }
+
+            ps.setSelectItems(selectItems);
+
+            Expression oldWhere = ps.getWhere();
+            for (Set<Attribute> predAttrSet : predicateAttributes) {
+                if (predAttrSet.size() == 0) continue;
+
+                Expression predicate = null;
+
+                for (Attribute predAttr : predAttrSet) {
+                    predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+                }
+
+                ps.setWhere(predicate);
+
+                results.addAll(this.generateTemplates(TemplateRoot::noComparisonTemplate));
+            }
+
+            ps.setWhere(oldWhere); // reset WHERE predicate
+        }
+
+        ps.setSelectItems(null); // reset select clause
+        return results;
+    }
+
+    public Expression generateComparisonPredicateExpr(Expression startingPred, Class binaryExprClass, Attribute attr) {
+        try {
+            Constructor<?> ctor = binaryExprClass.getConstructor();
+            BinaryExpression binaryExpression = (BinaryExpression) ctor.newInstance();
+            binaryExpression.setLeftExpression(attr.getColumn());
+            binaryExpression.setRightExpression(new LiteralExpression(Utils.convertSQLTypetoConstant(attr.getType())));
+
+            if (startingPred == null) {
+                return binaryExpression;
+            } else {
+                return new AndExpression(startingPred, binaryExpression);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+
+    }
+
+    public Set<Template> generateComparisonPredicatesRecursive(Function<Select, Template> templateFn,
+                                                               Expression startingPred, List<Attribute> remainingAttr) {
+        Set<Template> results = new HashSet<>();
+        Attribute attr = remainingAttr.remove(0);
+
+        // Base case: generate templates
+        if (remainingAttr.isEmpty()) {
+            PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+            Expression originalWhere = ps.getWhere();
+            ps.setWhere(startingPred);
+            results.addAll(this.generateTemplates(templateFn));
+
+            ps.setWhere(originalWhere); // reset
+        } else {
+            // Every type of attribute should support an equality predicate
+            Expression predicate;
+            predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+            results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+            if (Utils.isSQLTypeNumeric(attr.getType())) {
+                // For foreign/primary keys, only support equality predicates
+                if (!attr.isFk() || !attr.isPk()) {
+                    predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
+                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+                    predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
+                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+                    predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
+                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+                    predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
+                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+                    // TODO: a more complex predicate could be "between" (> + <, >= + <=)
+                }
+            }
+        }
+
+        return results;
+    }
+
+    public Set<Template> generateNoConstantProjectionTemplates(Set<Set<Attribute>> predicateAttributes) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+
+        Expression oldWhere = ps.getWhere();
+        for (Set<Attribute> predAttrSet : predicateAttributes) {
+            if (predAttrSet.size() == 0) continue;
+
+            results.addAll(this.generateComparisonPredicatesRecursive(TemplateRoot::noConstantProjectionTemplate,
+                    null, new ArrayList<>(predAttrSet)));
+        }
+
+        ps.setWhere(oldWhere); // reset WHERE predicate
+        return results;
+    }
+
+    public Set<Template> generateNoConstantTemplates(Set<Set<Attribute>> projections,
+                                                     Set<Set<Attribute>> predicateAttributes) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+
+        for (Set<Attribute> attrSet : projections) {
+            if (attrSet.size() == 0) continue;
+
+            List<SelectItem> selectItems = new ArrayList<>();
+
+            for (Attribute attr : attrSet) {
+                SelectExpressionItem item = new SelectExpressionItem();
+                item.setExpression(attr.getColumn());
+                selectItems.add(item);
+            }
+
+            ps.setSelectItems(selectItems);
+
+            Expression oldWhere = ps.getWhere();
+            for (Set<Attribute> predAttrSet : predicateAttributes) {
+                if (predAttrSet.size() == 0) continue;
+
+                results.addAll(this.generateComparisonPredicatesRecursive(TemplateRoot::noConstantTemplate,
+                        null, new ArrayList<>(predAttrSet)));
+            }
+
+            ps.setWhere(oldWhere); // reset WHERE predicate
+        }
+
+        ps.setSelectItems(null); // reset select clause
+        return results;
+    }
+
     /*
     public static Set<Template> generateTemplates(List<Select> stmts, Function<Select, Template> templateFn,
                                                 String outFileName) {
@@ -158,14 +377,15 @@ public class TemplateRoot {
         Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
+        // Expression originalWhere = ps.getWhere();
 
         // Bitmap used to generate each variant, 0 indicates right-most bit.
         // -- commented out currently: bit X: distinct --
         // bit 0: order
-        // bit 1: where
+        // -- commented out currently: bit X: where --
         // -- commented out currently: bit X: top/limit --
 
-        int numVariants = 3;
+        int numVariants = 1;
         double iterLimit = Math.pow(2, numVariants);
         for (int i = 0; i < iterLimit; i++) {
             /*
@@ -184,10 +404,13 @@ public class TemplateRoot {
                 ps.setOrderByElements(orderList);
             }
 
-            int whereBit = (i >> 1) & 1;
-            if (whereBit == 1) {
-                ps.setWhere(new LiteralExpression(Constants.PRED));
-            }
+            /*
+            if (ps.getWhere() == null) {
+                int whereBit = (i >> 1) & 1;
+                if (whereBit == 1) {
+                    ps.setWhere(new LiteralExpression(Constants.PRED));
+                }
+            }*/
 
             /*
             int topBit = (i >> 2) & 1;
@@ -204,8 +427,8 @@ public class TemplateRoot {
             // Reset everything
             // ps.setDistinct(null);
             ps.setOrderByElements(null);
-            ps.setWhere(null);
-            ps.setTop(null);
+            // ps.setWhere(originalWhere);
+            // ps.setTop(null);
         }
 
         return templates;

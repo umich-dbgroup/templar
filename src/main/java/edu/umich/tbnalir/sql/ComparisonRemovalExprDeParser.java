@@ -56,7 +56,7 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
             FullQueryExprDeParser leftParser = this.subParser();
             equalsTo.getLeftExpression().accept(leftParser);
             FullQueryExprDeParser rightParser = this.subParser();
-            equalsTo.getLeftExpression().accept(rightParser);
+            equalsTo.getRightExpression().accept(rightParser);
             this.getBuffer().append(leftParser.getBuffer());
             this.getBuffer().append(" = ");
             this.getBuffer().append(rightParser.getBuffer());

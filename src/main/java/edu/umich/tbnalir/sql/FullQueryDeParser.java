@@ -327,20 +327,22 @@ public class FullQueryDeParser extends SelectDeParser {
     public void alphabetizeAndDeparseProjection(PlainSelect plainSelect) {
         List<String> projections = new ArrayList<>();
 
-        for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext(); ) {
-            StringBuilder buffer = new StringBuilder();
-            FullQueryExprDeParser exprDeParser = new FullQueryExprDeParser();
-            FullQueryDeParser subParser = this.subParser(exprDeParser, buffer);
-            exprDeParser.setBuffer(buffer);
-            exprDeParser.setSelectVisitor(subParser);
+        if (plainSelect.getSelectItems() != null) {
+            for (Iterator<SelectItem> iter = plainSelect.getSelectItems().iterator(); iter.hasNext(); ) {
+                StringBuilder buffer = new StringBuilder();
+                FullQueryExprDeParser exprDeParser = new FullQueryExprDeParser();
+                FullQueryDeParser subParser = this.subParser(exprDeParser, buffer);
+                exprDeParser.setBuffer(buffer);
+                exprDeParser.setSelectVisitor(subParser);
 
-            SelectItem selectItem = iter.next();
-            selectItem.accept(subParser);
-            projections.add(buffer.toString());
-            /*
-            if (iter.hasNext()) {
-                this.getBuffer().append(", ");
-            }*/
+                SelectItem selectItem = iter.next();
+                selectItem.accept(subParser);
+                projections.add(buffer.toString());
+                /*
+                if (iter.hasNext()) {
+                    this.getBuffer().append(", ");
+                }*/
+            }
         }
 
         Collections.sort(projections);

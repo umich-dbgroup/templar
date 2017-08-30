@@ -5,12 +5,8 @@ import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.template.Template;
 import edu.umich.tbnalir.template.TemplateRoot;
 import edu.umich.tbnalir.util.Utils;
-import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Table;
-import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
-import net.sf.jsqlparser.util.SelectUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -31,6 +28,9 @@ public class SchemaDataTemplateGenerator {
     Map<Attribute, Set<Attribute>> fkpkEdges;
     Map<Attribute, Set<Attribute>> pkfkEdges;
 
+    // keeps track of relation lists already generated so we can skip them. in form: <relation1Name><relation2Name>...
+    Set<String> relationListsAlreadyGenerated;
+
     public SchemaDataTemplateGenerator(String relationsFile, String edgesFile, int joinLevel, RDBMS db) {
         this.joinLevel = joinLevel;
         this.relations = new HashMap<>();
@@ -42,6 +42,8 @@ public class SchemaDataTemplateGenerator {
 
         this.loadRelationsFromFile(relationsFile);
         this.loadEdgesFromFile(edgesFile);
+
+        this.relationListsAlreadyGenerated = new HashSet<>();
     }
 
     public Map<String, Relation> getRelations() {
@@ -299,58 +301,115 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public Set<Template> getTemplatesForRelation(Relation r) {
-        Set<Template> templates = new HashSet<>();
+    public Set<Set<Attribute>> guessProjections(List<Relation> relations, Integer maxSize) {
+        List<Attribute> attributes = new ArrayList<>();
 
-        Select select;
-        if (r instanceof Function) {
-            TableFunction tFn = Utils.convertFunctionToTableFunction((Function) r);
-            select = new Select();
-            PlainSelect ps = new PlainSelect();
-            ps.setFromItem(tFn);
-            select.setSelectBody(ps);
-        } else {
-            select = SelectUtils.buildSelectFromTable(r.getTable());
+        for (Relation r : relations) {
+            // Assume we don't want any primary/foreign keys
+            r.getRankedAttributes().stream().filter(attr -> !attr.isFk() && !attr.isPk()).forEach(attributes::add);
+        }
+
+        // Select up to max size only to do power sets (from all relations combined, using entropy)
+        if (maxSize != null) {
+            attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
+            attributes = attributes.subList(0, Math.min(attributes.size(), maxSize));
+        }
+
+        return Utils.powerSet(attributes);
+    }
+
+    public Set<Set<Attribute>> guessPredicateAttributes(List<Relation> relations, Integer maxSize) {
+        List<Attribute> attributes = new ArrayList<>();
+
+        for (Relation r : relations) {
+            // Assume we don't want any primary/foreign keys
+            r.getRankedAttributes().stream().filter(attr -> !attr.isFk() && !attr.isPk()).forEach(attributes::add);
+        }
+
+        // Select up to max size only to do power sets (from all relations combined, using entropy)
+        if (maxSize != null) {
+            attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
+            attributes = attributes.subList(0, Math.min(attributes.size(), maxSize));
+        }
+
+        return Utils.powerSet(attributes);
+    }
+
+    public Set<Template> getTemplatesForRelationsRecursive(Select select, List<Relation> relations, int joinLevelsLeft) {
+        // Check that we haven't already generated this relation list
+        StringBuilder relationsListNameBuf = new StringBuilder();
+        relations.stream().map(Relation::getName).sorted().forEach(relationsListNameBuf::append);
+        String relationsListName = relationsListNameBuf.toString();
+        if (this.relationListsAlreadyGenerated.contains(relationsListName)) {
+            return new HashSet<>();
+        }
+        this.relationListsAlreadyGenerated.add(relationsListName);
+
+        Set<Template> templates = new HashSet<>();
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
+        if (joinLevelsLeft > 0) {
+            // Find FK -> PK joins and PK -> FK joins
+            Relation lastRel = relations.get(relations.size() - 1);
+
+            for (Map.Entry<String, Attribute> attrEntry : lastRel.getAttributes().entrySet()) {
+                Attribute attr = attrEntry.getValue();
+                Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
+                if (fks != null) {
+                    for (Attribute otherFk : fks) {
+                        Join join = Utils.addJoin(select, attr, otherFk);
+                        relations.add(otherFk.getRelation());
+
+                        templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, joinLevelsLeft - 1));
+
+                        // Reset Select to original state after recursion
+                        ps.getJoins().remove(join);
+                        relations.remove(otherFk.getRelation());
+                    }
+                }
+
+                Set<Attribute> pks = this.fkpkEdges.get(attrEntry.getValue());
+                if (pks != null) {
+                    for (Attribute otherPk : pks) {
+                        Join join = Utils.addJoin(select, attr, otherPk);
+                        relations.add(otherPk.getRelation());
+
+                        templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, joinLevelsLeft - 1));
+
+                        // Reset Select to original state after recursion
+                        ps.getJoins().remove(join);
+                        relations.remove(otherPk.getRelation());
+                    }
+                }
+            }
+        }
+
+        for (Relation r : relations) {
+            // Rank attributes by entropy first
+            // TODO: exclude PK/FK from ranked attributes?
+            r.rankAttributesByEntropy(this.db);
         }
 
         TemplateRoot tr = new TemplateRoot(select);
 
-        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
+        /*
+         * Generate templates
+         */
 
-        // TODO: what to do in case that r is instanceof Function?
+        // Determines how max size of projections. If null, use all.
+        Integer maxProjectionSize = 2;
+        Integer maxPredicateSize = 3;
 
-        // Rank attributes by entropy first (will be reused)
-        List<Attribute> attributes = r.rankAttributesByEntropy(this.db);
+        Set<Set<Attribute>> projections = this.guessProjections(relations, maxProjectionSize);
+        Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, maxPredicateSize);
 
-        // TODO: exclude PK/FK from ranked attributes?
+        templates.addAll(tr.generateNoPredicateProjectionTemplates());
+        templates.addAll(tr.generateNoPredicateTemplates(projections));
+        templates.addAll(tr.generateNoComparisonProjectionTemplates(predicateAttributes));
+        templates.addAll(tr.generateNoComparisonTemplates(projections, predicateAttributes));
+        templates.addAll(tr.generateNoConstantProjectionTemplates(predicateAttributes));
+        templates.addAll(tr.generateNoConstantTemplates(projections, predicateAttributes));
 
-        // hypothesize predicate templates (guess attributes in projections)
-        // naive: get power set of all attributes
-        Set<Set<Attribute>> projections = Utils.powerSet(attributes);
-
-        PlainSelect ps = (PlainSelect) tr.getSelect().getSelectBody();
-
-        for (Set<Attribute> attrSet : projections) {
-            if (attrSet.size() == 0) continue;
-
-            List<SelectItem> selectItems = new ArrayList<>();
-
-            for (Attribute attr : attrSet) {
-                SelectExpressionItem item = new SelectExpressionItem();
-                item.setExpression(attr.getColumn());
-                selectItems.add(item);
-            }
-
-            ps.setSelectItems(selectItems);
-            templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateTemplate));
-        }
-
-        ps.setSelectItems(null); // reset select object
-
-        // TODO: for each hypothesized comparison/projection template (guess attributes used in predicates)
-        // TODO: for each hypothesized comparison template (guess attributes and projections used)
-        // TODO: for each hypothesized constant/projection template (guess attributes and operators)
-        // TODO: for each hypothesized constant template (guess attributes, operators, and projections)
         // TODO: for each hypothesized full query template (guess attributes, operators, constants, and projections)
 
         // Handle joins
@@ -366,10 +425,61 @@ public class SchemaDataTemplateGenerator {
         Log.info("Generating templates using schema for join level: " + this.joinLevel);
 
         for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
-            templates.addAll(this.getTemplatesForRelation(e.getValue()));
+            Relation r = e.getValue();
+            List<Relation> relations = new ArrayList<>();
+            relations.add(r);
+
+            Select select = new Select();
+            PlainSelect ps = new PlainSelect();
+            select.setSelectBody(ps);
+            ps.setFromItem(r.getFromItem());
+
+            templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, this.joinLevel));
         }
 
         Log.info("Done generating " + templates.size() + " templates.");
+
+        int fullQueryCount = 0;
+        int noPredProjCount = 0;
+        int noPredCount = 0;
+        int noCompProjCount = 0;
+        int noCompCount = 0;
+        int noConstProjCount = 0;
+        int noConstCount = 0;
+        for (Template template : templates) {
+            switch (template.getType()) {
+                case FULL_QUERY:
+                    fullQueryCount++;
+                    break;
+                case NO_PRED_PROJ:
+                    noPredProjCount++;
+                    break;
+                case NO_PRED:
+                    noPredCount++;
+                    break;
+                case NO_CONST_OP_PROJ:
+                    noCompProjCount++;
+                    break;
+                case NO_CONST_OP:
+                    noCompCount++;
+                    break;
+                case NO_CONST_PROJ:
+                    noConstProjCount++;
+                    break;
+                case NO_CONST:
+                    noConstCount++;
+                    break;
+            }
+        }
+
+        Log.info("Full Query Count: " + fullQueryCount);
+        Log.info("No Predicate/Projection: " + noPredProjCount);
+        Log.info("No Predicate: " + noPredCount);
+        Log.info("No Comparison/Projection: " + noCompProjCount);
+        Log.info("No Comparison: " + noCompCount);
+        Log.info("No Constants/Projection: " + noConstProjCount);
+        Log.info("No Constants: " + noConstCount);
+
         Log.info("==============================\n");
         return templates;
     }
@@ -463,7 +573,8 @@ public class SchemaDataTemplateGenerator {
         // String test = "SELECT a.name FROM author a, publication p, journal j, writes w WHERE j.name = 'PVLDB' AND a.aid = w.aid AND w.pid = p.pid AND p.jid = j.jid";
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
-        String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB' AND (j.name = 'THIS' OR j.name = 'OTHER')";
+        // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB' AND (j.name = 'THIS' OR j.name = 'OTHER')";
+        /*
         try {
             Statement stmt = CCJSqlParserUtil.parse(test);
             System.out.println(TemplateRoot.fullQueryTemplate((Select) stmt));
@@ -477,7 +588,7 @@ public class SchemaDataTemplateGenerator {
             if (Log.DEBUG) e.printStackTrace();
         } catch (Throwable t) {
             t.printStackTrace();
-        }
+        }*/
 
         String templateOutFile = "templates.out";
         Log.info("==============================");

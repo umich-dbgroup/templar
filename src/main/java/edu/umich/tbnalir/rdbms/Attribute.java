@@ -1,6 +1,7 @@
 package edu.umich.tbnalir.rdbms;
 
 import net.sf.jsqlparser.schema.Column;
+import net.sf.jsqlparser.schema.Table;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -51,7 +52,7 @@ public class Attribute {
         this.relation = relation;
     }
 
-    public Boolean getFk() {
+    public Boolean isFk() {
         return fk;
     }
 
@@ -59,7 +60,7 @@ public class Attribute {
         this.fk = fk;
     }
 
-    public Boolean getPk() {
+    public Boolean isPk() {
         return pk;
     }
 
@@ -77,7 +78,10 @@ public class Attribute {
 
     public Column getColumn() {
         if (this.column == null) {
-            this.column = new Column(this.relation.getTable(), this.name);
+            if (this.relation instanceof Function) {
+                return null;
+            }
+            this.column = new Column((Table) this.relation.getFromItem(), this.name);
         }
         return column;
     }

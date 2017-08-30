@@ -70,7 +70,7 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
             subParser.setBuffer(buffer);
 
             left.accept(subParser);
-            exprList.add(new OrderedPredicate(operator, subParser.getBuffer().toString()));
+            exprList.add(new OrderedPredicate(operator, buffer.toString()));
         }
 
         Expression right = expr.getRightExpression();
@@ -84,7 +84,7 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
             subParser.setBuffer(buffer);
 
             right.accept(subParser);
-            exprList.add(new OrderedPredicate(operator, subParser.getBuffer().toString()));
+            exprList.add(new OrderedPredicate(operator, buffer.toString()));
         }
     }
 

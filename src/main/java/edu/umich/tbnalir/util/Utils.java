@@ -8,12 +8,11 @@ import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.sql.LiteralExpression;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
-import net.sf.jsqlparser.statement.select.FromItem;
-import net.sf.jsqlparser.statement.select.Join;
-import net.sf.jsqlparser.statement.select.TableFunction;
+import net.sf.jsqlparser.statement.select.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -34,13 +33,21 @@ public class Utils {
                 ));
     }
 
-    public static String convertSQLTypetoConstant(String type) {
+    public static boolean isSQLTypeString(String type) {
         switch (type) {
             case "varchar":
             case "varbinary":
             case "binary":
             case "sysname":
-                return Constants.STR;
+            case "text":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public static boolean isSQLTypeNumeric(String type) {
+        switch (type) {
             case "real":
             case "float":
             case "int":
@@ -48,18 +55,36 @@ public class Utils {
             case "smallint":
             case "tinyint":
             case "bit":
-                return Constants.NUM;
-            case "datetime":
-                return Constants.DATETIME;
-            case "time":
-                return Constants.TIME;
-            case "timestamp":
-                return Constants.TIMESTAMP;
-            case "date":
-                return Constants.DATE;
+                return true;
             default:
-                throw new IllegalArgumentException("Did not recognize function parameter type: <" + type + ">");
+                return false;
         }
+    }
+
+    public static boolean isSQLTypeDate(String type) {
+        return type.equals("date");
+    }
+
+    public static boolean isSQLTypeDateTime(String type) {
+        return type.equals("datetime");
+    }
+
+    public static boolean isSQLTypeTime(String type) {
+        return type.equals("time");
+    }
+
+    public static boolean isSQLTypeTimestamp(String type) {
+        return type.equals("timestamp");
+    }
+
+    public static String convertSQLTypetoConstant(String type) {
+        if (Utils.isSQLTypeNumeric(type)) return Constants.NUM;
+        if (Utils.isSQLTypeString(type)) return Constants.STR;
+        if (Utils.isSQLTypeDateTime(type)) return Constants.DATETIME;
+        if (Utils.isSQLTypeDate(type)) return Constants.DATE;
+        if (Utils.isSQLTypeTime(type)) return Constants.TIME;
+        if (Utils.isSQLTypeTimestamp(type)) return Constants.TIMESTAMP;
+        throw new IllegalArgumentException("Did not recognize function parameter type: <" + type + ">");
     }
 
     public static TableFunction convertFunctionToTableFunction(Function fn) {
@@ -170,4 +195,24 @@ public class Utils {
         return queryTables.get(tableName);
     }
 
+    public static Join addJoin(Select select, Attribute existingRelationAttr, Attribute joinedRelationAttr) {
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+
+        List<Join> joins = ps.getJoins();
+        if (joins == null) {
+            joins = new ArrayList<>();
+            ps.setJoins(joins);
+        }
+        Join join = new Join();
+        join.setRightItem(joinedRelationAttr.getRelation().getFromItem());
+
+        EqualsTo equalsTo = new EqualsTo();
+        equalsTo.setLeftExpression(existingRelationAttr.getColumn());
+        equalsTo.setRightExpression(joinedRelationAttr.getColumn());
+        join.setOnExpression(equalsTo);
+
+        joins.add(join);
+
+        return join;
+    }
 }
