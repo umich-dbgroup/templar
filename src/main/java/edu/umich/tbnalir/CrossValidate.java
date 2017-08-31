@@ -52,8 +52,6 @@ public class CrossValidate {
                 covered++;
             } else {
                 if (writeToError) {
-                    Log.info("Was not covered: " + select);
-                    Log.info("Template: " + testTemplate);
                     this.errWriter.println(select);
                 }
             }
@@ -137,10 +135,10 @@ public class CrossValidate {
 
             Set<Template> logPredProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateProjectionTemplate);
             float logPredProjCoverage = this.calculateCoveragePercent(logPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
-            float schemaDataPredProjCoverage = this.calculateCoveragePercent(schemaDataNoPredProj, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, true);
+            float schemaDataPredProjCoverage = this.calculateCoveragePercent(schemaDataNoPredProj, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
             Set<Template> bothPredProjTmpl = new HashSet<>(logPredProjTmpl);
             bothPredProjTmpl.addAll(schemaDataNoPredProj);
-            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
+            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, true);
 
             Set<Template> logPredTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateTemplate);
             float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
