@@ -51,7 +51,7 @@ public class CrossValidate {
             if (generatedTemplates.contains(testTemplate)) {
                 covered++;
             } else {
-                this.errWriter.print(testTemplate);
+                this.errWriter.println(select);
             }
         }
 
@@ -242,7 +242,7 @@ public class CrossValidate {
             allTemplates.addAll(bothFullTmpl);
         }
 
-        allTemplates.stream().forEach(this.outWriter::print);
+        allTemplates.stream().forEach(this.outWriter::println);
     }
 
 
