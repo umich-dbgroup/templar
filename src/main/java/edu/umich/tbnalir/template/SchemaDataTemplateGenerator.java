@@ -301,9 +301,9 @@ public class SchemaDataTemplateGenerator {
 
         // Determines how max size of projections. If null, use all.
         Integer chooseTopProjection = 4;
-        Integer maxProjectionSize = 2;
+        Integer maxProjectionSize = 1;
         Integer chooseTopPredicate = 4;
-        Integer maxPredicateSize = 3;
+        Integer maxPredicateSize = 2;
 
         Set<Set<Attribute>> projections = this.guessProjections(relations, chooseTopProjection, maxProjectionSize);
         Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate, maxPredicateSize);
