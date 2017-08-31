@@ -146,7 +146,7 @@ public class Utils {
     }
 
     // From: https://stackoverflow.com/a/14818944/1165779
-    public static<T> Set<Set<T>> powerSet(List<T> list) {
+    public static<T> Set<Set<T>> powerSet(List<T> list, int maxSize) {
         Set<Set<T>> powerSet = new HashSet<Set<T>>();
 
         int n = list.size();
@@ -155,7 +155,7 @@ public class Utils {
             Set<T> element = new HashSet<T>();
             for( int j = 0; j < n; j++ )
                 if( (i >> j) % 2 == 1 ) element.add(list.get(j));
-            powerSet.add(element);
+            if (element.size() <= maxSize) powerSet.add(element);
         }
 
         return powerSet;

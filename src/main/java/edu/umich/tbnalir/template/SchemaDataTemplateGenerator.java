@@ -12,7 +12,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -201,7 +200,7 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public Set<Set<Attribute>> guessProjections(List<Relation> relations, Integer maxSize) {
+    public Set<Set<Attribute>> guessProjections(List<Relation> relations, Integer chooseTop, Integer maxSize) {
         List<Attribute> attributes = new ArrayList<>();
 
         for (Relation r : relations) {
@@ -212,13 +211,13 @@ public class SchemaDataTemplateGenerator {
         // Select up to max size only to do power sets (from all relations combined, using entropy)
         if (maxSize != null) {
             attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
-            attributes = attributes.subList(0, Math.min(attributes.size(), maxSize));
+            attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
         }
 
-        return Utils.powerSet(attributes);
+        return Utils.powerSet(attributes, maxSize);
     }
 
-    public Set<Set<Attribute>> guessPredicateAttributes(List<Relation> relations, Integer maxSize) {
+    public Set<Set<Attribute>> guessPredicateAttributes(List<Relation> relations, Integer chooseTop, Integer maxSize) {
         List<Attribute> attributes = new ArrayList<>();
 
         for (Relation r : relations) {
@@ -229,10 +228,10 @@ public class SchemaDataTemplateGenerator {
         // Select up to max size only to do power sets (from all relations combined, using entropy)
         if (maxSize != null) {
             attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
-            attributes = attributes.subList(0, Math.min(attributes.size(), maxSize));
+            attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
         }
 
-        return Utils.powerSet(attributes);
+        return Utils.powerSet(attributes, maxSize);
     }
 
     public Set<Template> getTemplatesForRelationsRecursive(Select select, List<Relation> relations, int joinLevelsLeft) {
@@ -301,11 +300,13 @@ public class SchemaDataTemplateGenerator {
          */
 
         // Determines how max size of projections. If null, use all.
+        Integer chooseTopProjection = 4;
         Integer maxProjectionSize = 2;
+        Integer chooseTopPredicate = 4;
         Integer maxPredicateSize = 3;
 
-        Set<Set<Attribute>> projections = this.guessProjections(relations, maxProjectionSize);
-        Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, maxPredicateSize);
+        Set<Set<Attribute>> projections = this.guessProjections(relations, chooseTopProjection, maxProjectionSize);
+        Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate, maxPredicateSize);
 
         templates.addAll(tr.generateNoPredicateProjectionTemplates());
         templates.addAll(tr.generateNoPredicateTemplates(projections));
