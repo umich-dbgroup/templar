@@ -111,7 +111,7 @@ public class TemplateRoot {
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
         ps.setWhere(new LiteralExpression(Constants.PRED));
 
-        return this.generateTemplates(TemplateRoot::noPredicateProjectionTemplate);
+        return this.generateTemplates(TemplateRoot::noPredicateProjectionTemplate, true);
     }
 
     public Set<Template> generateNoPredicateTemplates(Set<Set<Attribute>> projections) {
@@ -134,7 +134,7 @@ public class TemplateRoot {
             }
 
             ps.setSelectItems(selectItems);
-            results.addAll(this.generateTemplates(TemplateRoot::noPredicateTemplate));
+            results.addAll(this.generateTemplates(TemplateRoot::noPredicateTemplate, false));
         }
 
         ps.setSelectItems(null); // reset select object
@@ -155,11 +155,11 @@ public class TemplateRoot {
             for (Attribute predAttr : predAttrSet) {
                 // type of binary expression doesn't matter because comparison is obscured
                 predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+
+                ps.setWhere(predicate);
+
+                results.addAll(this.generateTemplates(TemplateRoot::noComparisonProjectionTemplate, false));
             }
-
-            ps.setWhere(predicate);
-
-            results.addAll(this.generateTemplates(TemplateRoot::noComparisonProjectionTemplate));
         }
 
         ps.setWhere(oldWhere); // reset WHERE predicate
@@ -193,11 +193,11 @@ public class TemplateRoot {
 
                 for (Attribute predAttr : predAttrSet) {
                     predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+
+                    ps.setWhere(predicate);
+
+                    results.addAll(this.generateTemplates(TemplateRoot::noComparisonTemplate, false));
                 }
-
-                ps.setWhere(predicate);
-
-                results.addAll(this.generateTemplates(TemplateRoot::noComparisonTemplate));
             }
 
             ps.setWhere(oldWhere); // reset WHERE predicate
@@ -228,39 +228,39 @@ public class TemplateRoot {
     public Set<Template> generateComparisonPredicatesRecursive(Function<Select, Template> templateFn,
                                                                Expression startingPred, List<Attribute> remainingAttr) {
         Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+        Expression originalWhere = ps.getWhere();
+        ps.setWhere(startingPred);
+        results.addAll(this.generateTemplates(templateFn, false));
+
+        ps.setWhere(originalWhere); // reset
+
+        if (remainingAttr.isEmpty()) return results;
+
         Attribute attr = remainingAttr.remove(0);
 
-        // Base case: generate templates
-        if (remainingAttr.isEmpty()) {
-            PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
-            Expression originalWhere = ps.getWhere();
-            ps.setWhere(startingPred);
-            results.addAll(this.generateTemplates(templateFn));
+        // Every type of attribute should support an equality predicate
+        Expression predicate;
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-            ps.setWhere(originalWhere); // reset
-        } else {
-            // Every type of attribute should support an equality predicate
-            Expression predicate;
-            predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
-            results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+        if (Utils.isSQLTypeNumeric(attr.getType())) {
+            // For foreign/primary keys, only support equality predicates
+            if (!attr.isFk() && !attr.isPk()) {
+                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-            if (Utils.isSQLTypeNumeric(attr.getType())) {
-                // For foreign/primary keys, only support equality predicates
-                if (!attr.isFk() || !attr.isPk()) {
-                    predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
-                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                    predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
-                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                    predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
-                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                    predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
-                    results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
-
-                    // TODO: a more complex predicate could be "between" (> + <, >= + <=)
-                }
+                // TODO: a more complex predicate could be "between" (> + <, >= + <=)
             }
         }
 
@@ -373,7 +373,7 @@ public class TemplateRoot {
         return covered;
     }
 
-    public Set<Template> generateTemplates(Function<Select, Template> templateFn) {
+    public Set<Template> generateTemplates(Function<Select, Template> templateFn, boolean generateBlankPredicate) {
         Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
@@ -405,7 +405,7 @@ public class TemplateRoot {
 
             int whereBit = (i >> 2) & 1;
             if (whereBit == 1) {
-                ps.setWhere(new LiteralExpression(Constants.PRED));
+                if (generateBlankPredicate) ps.setWhere(new LiteralExpression(Constants.PRED));
             } else {
                 // Only give an option of no WHERE clause in single table case
                 if (ps.getJoins() == null || ps.getJoins().isEmpty()) ps.setWhere(null);

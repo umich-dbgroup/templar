@@ -146,7 +146,7 @@ public class CrossValidate {
 
             Set<Template> logPredTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateTemplate);
             float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
-            float schemaDataPredCoverage = this.calculateCoveragePercent(schemaDataNoPred, coverageTestSet, TemplateRoot::noPredicateTemplate, true);
+            float schemaDataPredCoverage = this.calculateCoveragePercent(schemaDataNoPred, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
             Set<Template> bothPredTmpl = new HashSet<>(logPredTmpl);
             bothPredTmpl.addAll(schemaDataNoPred);
             float bothPredCoverage = this.calculateCoveragePercent(bothPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
@@ -156,7 +156,7 @@ public class CrossValidate {
             float schemaDataCompProjCoverage = this.calculateCoveragePercent(schemaDataNoCompProj, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
             Set<Template> bothCompProjTmpl = new HashSet<>(logCompProjTmpl);
             bothCompProjTmpl.addAll(schemaDataNoCompProj);
-            float bothCompProjCoverage = this.calculateCoveragePercent(bothCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
+            float bothCompProjCoverage = this.calculateCoveragePercent(bothCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, true);
 
             Set<Template> logCompTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonTemplate);
             float logCompCoverage = this.calculateCoveragePercent(logCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate, false);

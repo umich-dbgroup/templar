@@ -212,6 +212,8 @@ public class SchemaDataTemplateGenerator {
         if (maxSize != null) {
             attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
             attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
+        } else {
+            maxSize = attributes.size();
         }
 
         return Utils.powerSet(attributes, maxSize);
@@ -229,6 +231,8 @@ public class SchemaDataTemplateGenerator {
         if (maxSize != null) {
             attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
             attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
+        } else {
+            maxSize = attributes.size();
         }
 
         return Utils.powerSet(attributes, maxSize);
