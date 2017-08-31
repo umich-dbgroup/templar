@@ -167,9 +167,12 @@ public class Utils {
 
         if (tableName == null || relations.get(tableName) == null) {
             // if old to table name exists, use it
-            if (oldAliasToTable != null) {
-                Table table = oldAliasToTable.get(tableName);
-                if (table != null) return table;
+            Table table = oldAliasToTable.get(tableName);
+            if (table != null) return table;
+
+            if (col.getTable() != null && col.getTable().getAlias() != null) {
+                Table tableByAlias = oldAliasToTable.get(col.getTable().getAlias().getName());
+                if (tableByAlias != null) return tableByAlias;
             }
 
             // Find table name

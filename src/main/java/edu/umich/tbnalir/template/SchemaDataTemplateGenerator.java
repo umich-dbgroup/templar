@@ -3,7 +3,9 @@ package edu.umich.tbnalir.template;
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.util.Utils;
-import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
+import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -46,106 +48,6 @@ public class SchemaDataTemplateGenerator {
     public Map<String, Relation> getRelations() {
         return relations;
     }
-
-    public Map<Attribute, Set<Attribute>> getFkpkEdges() {
-        return fkpkEdges;
-    }
-
-    public Map<Attribute, Set<Attribute>> getPkfkEdges() {
-        return pkfkEdges;
-    }
-
-    public Join createSimpleJoinFromAttribute(Attribute attr) {
-        Join join = new Join();
-
-        if (attr.getRelation() instanceof Function) {
-            TableFunction tFn = Utils.convertFunctionToTableFunction((Function) attr.getRelation());
-            join.setRightItem(tFn);
-        } else {
-            join.setRightItem(new Table(attr.getRelation().toString()));
-        }
-
-        // For simple joins (i.e. of the form "table 1, table 2")
-        join.setSimple(true);
-
-        return join;
-    }
-
-    /*
-    public void addPKFKJoinTemplates(Set<Template> templates, Relation rel, TemplateRoot tr) {
-        Select select = tr.getSelect();
-        PlainSelect ps = (PlainSelect) select.getSelectBody();
-
-        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
-            Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
-
-            if (fks != null) {
-                for (Attribute fk : fks) {
-                    if (fk != null) {
-                        Join join = createSimpleJoinFromAttribute(fk);
-
-                        List<Join> joins = ps.getJoins();
-                        if (joins == null) {
-                            joins = new ArrayList<>();
-                            ps.setJoins(joins);
-                        }
-                        joins.add(join);
-
-                        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
-
-                        // Remove last join to reset to original state
-                        joins.remove(joins.size() - 1);
-                    }
-                }
-            }
-        }
-    }
-
-    public void addFKPKJoinTemplatesRecursive(Set<Template> templates, Relation rel, TemplateRoot tr, int joinLevelsLeft) {
-        if (joinLevelsLeft == 0) return;
-
-        Select select = tr.getSelect();
-        PlainSelect ps = (PlainSelect) select.getSelectBody();
-
-        for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
-            Set<Attribute> pks = fkpkEdges.get(attrEntry.getValue());
-            if (pks != null) {
-                for (Attribute pk : pks) {
-                    if (pk != null) {
-                        Join firstJoin = this.createSimpleJoinFromAttribute(pk);
-
-                        List<Join> joins = ps.getJoins();
-                        if (joins == null) {
-                            joins = new ArrayList<>();
-                            ps.setJoins(joins);
-                        }
-                        joins.add(firstJoin);
-
-                        templates.addAll(tr.generateTemplates(TemplateRoot::noPredicateProjectionTemplate));
-
-                        // Next level joins
-                        if (joinLevelsLeft > 1) {
-                            FromItem fromItem = firstJoin.getRightItem();
-
-                            Relation nextJoinRelation = this.relations.get(fromItem.toString());
-                            if (nextJoinRelation == null) {
-                                throw new RuntimeException("Could not find item <" + fromItem.toString() + ">.");
-                            }
-
-                            // PK from the second table (FK -> PK <- FK)
-                            this.addPKFKJoinTemplates(templates, nextJoinRelation, tr);
-
-                            // FK from the second table (FK -> PK/FK -> PK)
-                            this.addFKPKJoinTemplatesRecursive(templates, nextJoinRelation, tr, joinLevelsLeft - 1);
-                        }
-
-                        // Remove the last join to reset state
-                        joins.remove(joins.size() - 1);
-                    }
-                }
-            }
-        }
-    }*/
 
     public void loadRelationsFromFile(String relationsFileName) {
         JSONParser parser = new JSONParser();
@@ -347,42 +249,41 @@ public class SchemaDataTemplateGenerator {
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
         if (joinLevelsLeft > 0) {
-            // Find FK -> PK joins and PK -> FK joins
-            Relation lastRel = relations.get(relations.size() - 1);
+            for (Relation rel : relations) {
+                for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
+                    Attribute attr = attrEntry.getValue();
+                    Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
+                    if (fks != null) {
+                        for (Attribute otherFk : fks) {
+                            // Assumes we don't have join tables that reference the same table twice
+                            if (relations.contains(otherFk.getRelation())) continue;
 
-            for (Map.Entry<String, Attribute> attrEntry : lastRel.getAttributes().entrySet()) {
-                Attribute attr = attrEntry.getValue();
-                Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
-                if (fks != null) {
-                    for (Attribute otherFk : fks) {
-                        // Assumes we don't have join tables that reference the same table twice
-                        if (relations.contains(otherFk.getRelation())) continue;
+                            Join join = Utils.addJoin(select, attr, otherFk);
+                            List<Relation> newRelations = new ArrayList<>(relations);
+                            newRelations.add(otherFk.getRelation());
 
-                        Join join = Utils.addJoin(select, attr, otherFk);
-                        relations.add(otherFk.getRelation());
+                            templates.addAll(this.getTemplatesForRelationsRecursive(select, newRelations, joinLevelsLeft - 1));
 
-                        templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, joinLevelsLeft - 1));
-
-                        // Reset Select to original state after recursion
-                        ps.getJoins().remove(join);
-                        relations.remove(otherFk.getRelation());
+                            // Reset Select to original state after recursion
+                            ps.getJoins().remove(join);
+                        }
                     }
-                }
 
-                Set<Attribute> pks = this.fkpkEdges.get(attrEntry.getValue());
-                if (pks != null) {
-                    for (Attribute otherPk : pks) {
-                        // Assumes we don't have join tables that reference the same table twice
-                        if (relations.contains(otherPk.getRelation())) continue;
+                    Set<Attribute> pks = this.fkpkEdges.get(attrEntry.getValue());
+                    if (pks != null) {
+                        for (Attribute otherPk : pks) {
+                            // Assumes we don't have join tables that reference the same table twice
+                            if (relations.contains(otherPk.getRelation())) continue;
 
-                        Join join = Utils.addJoin(select, attr, otherPk);
-                        relations.add(otherPk.getRelation());
+                            Join join = Utils.addJoin(select, attr, otherPk);
+                            List<Relation> newRelations = new ArrayList<>(relations);
+                            newRelations.add(otherPk.getRelation());
 
-                        templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, joinLevelsLeft - 1));
+                            templates.addAll(this.getTemplatesForRelationsRecursive(select, newRelations, joinLevelsLeft - 1));
 
-                        // Reset Select to original state after recursion
-                        ps.getJoins().remove(join);
-                        relations.remove(otherPk.getRelation());
+                            // Reset Select to original state after recursion
+                            ps.getJoins().remove(join);
+                        }
                     }
                 }
             }
@@ -507,7 +408,7 @@ public class SchemaDataTemplateGenerator {
         }
 
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(relationsFile, edgesFile, joinLevel, db);
-        Set<Template> templates = tg.generate();
+        // Set<Template> templates = tg.generate();
 
         /*
         String errorFileName = "template_errors.out";
@@ -575,9 +476,11 @@ public class SchemaDataTemplateGenerator {
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB'";
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB' AND (j.name = 'THIS' OR j.name = 'OTHER')";
-        /*
+        String test = "SELECT p.title FROM publication p, writes w, author a, organization o WHERE p.pid = w.pid AND w.aid = a.aid AND a.oid = o.oid AND o.name = 'University of Michigan'";
+        // String test = "select publication_0.title from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and organization_0.name = 'university of michigan' and publication_0.pid = writes_0.pid";
         try {
             Statement stmt = CCJSqlParserUtil.parse(test);
+            System.out.println(stmt);
             System.out.println(TemplateRoot.fullQueryTemplate((Select) stmt));
             System.out.println(TemplateRoot.noConstantTemplate((Select) stmt));
             System.out.println(TemplateRoot.noConstantProjectionTemplate((Select) stmt));
@@ -585,12 +488,15 @@ public class SchemaDataTemplateGenerator {
             System.out.println(TemplateRoot.noComparisonProjectionTemplate((Select) stmt));
             System.out.println(TemplateRoot.noPredicateTemplate((Select) stmt));
             System.out.println(TemplateRoot.noPredicateProjectionTemplate((Select) stmt));
+
+            System.out.println(stmt);
         } catch (JSQLParserException e) {
             if (Log.DEBUG) e.printStackTrace();
         } catch (Throwable t) {
             t.printStackTrace();
-        }*/
+        }
 
+        /*
         String templateOutFile = "templates.out";
         Log.info("==============================");
         Log.info("Printing all templates generated to <" + templateOutFile + ">.");
@@ -603,6 +509,6 @@ public class SchemaDataTemplateGenerator {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.info("==============================");
+        Log.info("==============================");*/
     }
 }

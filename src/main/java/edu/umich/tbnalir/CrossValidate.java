@@ -43,7 +43,7 @@ public class CrossValidate {
     }
 
     public float calculateCoveragePercent(Collection<Template> generatedTemplates, Collection<Select> testStatements,
-                                   Function<Select, Template> templateFn) {
+                                   Function<Select, Template> templateFn, boolean writeToError) {
         float covered = 0;
 
         for (Select select : testStatements) {
@@ -51,7 +51,11 @@ public class CrossValidate {
             if (generatedTemplates.contains(testTemplate)) {
                 covered++;
             } else {
-                this.errWriter.println(select);
+                if (writeToError) {
+                    Log.info("Was not covered: " + select);
+                    Log.info("Template: " + testTemplate);
+                    this.errWriter.println(select);
+                }
             }
         }
 
@@ -132,53 +136,53 @@ public class CrossValidate {
             List<Select> coverageTestSet = cvPartitions.get(i);
 
             Set<Template> logPredProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateProjectionTemplate);
-            float logPredProjCoverage = this.calculateCoveragePercent(logPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate);
-            float schemaDataPredProjCoverage = this.calculateCoveragePercent(schemaDataNoPredProj, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate);
+            float logPredProjCoverage = this.calculateCoveragePercent(logPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
+            float schemaDataPredProjCoverage = this.calculateCoveragePercent(schemaDataNoPredProj, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, true);
             Set<Template> bothPredProjTmpl = new HashSet<>(logPredProjTmpl);
             bothPredProjTmpl.addAll(schemaDataNoPredProj);
-            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate);
+            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
 
             Set<Template> logPredTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateTemplate);
-            float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate);
-            float schemaDataPredCoverage = this.calculateCoveragePercent(schemaDataNoPred, coverageTestSet, TemplateRoot::noPredicateTemplate);
+            float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
+            float schemaDataPredCoverage = this.calculateCoveragePercent(schemaDataNoPred, coverageTestSet, TemplateRoot::noPredicateTemplate,false);
             Set<Template> bothPredTmpl = new HashSet<>(logPredTmpl);
             bothPredTmpl.addAll(schemaDataNoPred);
-            float bothPredCoverage = this.calculateCoveragePercent(bothPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate);
+            float bothPredCoverage = this.calculateCoveragePercent(bothPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
 
             Set<Template> logCompProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonProjectionTemplate);
-            float logCompProjCoverage = this.calculateCoveragePercent(logCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate);
-            float schemaDataCompProjCoverage = this.calculateCoveragePercent(schemaDataNoCompProj, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate);
+            float logCompProjCoverage = this.calculateCoveragePercent(logCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
+            float schemaDataCompProjCoverage = this.calculateCoveragePercent(schemaDataNoCompProj, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
             Set<Template> bothCompProjTmpl = new HashSet<>(logCompProjTmpl);
             bothCompProjTmpl.addAll(schemaDataNoCompProj);
-            float bothCompProjCoverage = this.calculateCoveragePercent(bothCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate);
+            float bothCompProjCoverage = this.calculateCoveragePercent(bothCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
 
             Set<Template> logCompTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonTemplate);
-            float logCompCoverage = this.calculateCoveragePercent(logCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate);
-            float schemaDataCompCoverage = this.calculateCoveragePercent(schemaDataNoComp, coverageTestSet, TemplateRoot::noComparisonTemplate);
+            float logCompCoverage = this.calculateCoveragePercent(logCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate, false);
+            float schemaDataCompCoverage = this.calculateCoveragePercent(schemaDataNoComp, coverageTestSet, TemplateRoot::noComparisonTemplate, false);
             Set<Template> bothCompTmpl = new HashSet<>(logCompTmpl);
             bothCompTmpl.addAll(schemaDataNoComp);
-            float bothCompCoverage = this.calculateCoveragePercent(bothCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate);
+            float bothCompCoverage = this.calculateCoveragePercent(bothCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate, false);
 
             Set<Template> logConstProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noConstantProjectionTemplate);
-            float logConstProjCoverage = this.calculateCoveragePercent(logConstProjTmpl, coverageTestSet, TemplateRoot::noConstantProjectionTemplate);
-            float schemaDataConstProjCoverage = this.calculateCoveragePercent(schemaDataNoConstProj, coverageTestSet, TemplateRoot::noConstantProjectionTemplate);
+            float logConstProjCoverage = this.calculateCoveragePercent(logConstProjTmpl, coverageTestSet, TemplateRoot::noConstantProjectionTemplate, false);
+            float schemaDataConstProjCoverage = this.calculateCoveragePercent(schemaDataNoConstProj, coverageTestSet, TemplateRoot::noConstantProjectionTemplate, false);
             Set<Template> bothConstProjTmpl = new HashSet<>(logConstProjTmpl);
             bothConstProjTmpl.addAll(schemaDataNoConstProj);
-            float bothConstProjCoverage = this.calculateCoveragePercent(bothConstProjTmpl, coverageTestSet, TemplateRoot::noConstantProjectionTemplate);
+            float bothConstProjCoverage = this.calculateCoveragePercent(bothConstProjTmpl, coverageTestSet, TemplateRoot::noConstantProjectionTemplate, false);
 
             Set<Template> logConstTmpl = logGen.generate(templateGenSet, TemplateRoot::noConstantTemplate);
-            float logConstCoverage = this.calculateCoveragePercent(logConstTmpl, coverageTestSet, TemplateRoot::noConstantTemplate);
-            float schemaDataConstCoverage = this.calculateCoveragePercent(schemaDataNoConst, coverageTestSet, TemplateRoot::noConstantTemplate);
+            float logConstCoverage = this.calculateCoveragePercent(logConstTmpl, coverageTestSet, TemplateRoot::noConstantTemplate, false);
+            float schemaDataConstCoverage = this.calculateCoveragePercent(schemaDataNoConst, coverageTestSet, TemplateRoot::noConstantTemplate, false);
             Set<Template> bothConstTmpl = new HashSet<>(logConstTmpl);
             bothConstTmpl.addAll(schemaDataNoConst);
-            float bothConstCoverage = this.calculateCoveragePercent(bothConstTmpl, coverageTestSet, TemplateRoot::noConstantTemplate);
+            float bothConstCoverage = this.calculateCoveragePercent(bothConstTmpl, coverageTestSet, TemplateRoot::noConstantTemplate, false);
 
             Set<Template> logFullTmpl = logGen.generate(templateGenSet, TemplateRoot::fullQueryTemplate);
-            float logFullCoverage = this.calculateCoveragePercent(logFullTmpl, coverageTestSet, TemplateRoot::fullQueryTemplate);
-            float schemaDataFullCoverage = this.calculateCoveragePercent(schemaDataFull, coverageTestSet, TemplateRoot::fullQueryTemplate);
+            float logFullCoverage = this.calculateCoveragePercent(logFullTmpl, coverageTestSet, TemplateRoot::fullQueryTemplate, false);
+            float schemaDataFullCoverage = this.calculateCoveragePercent(schemaDataFull, coverageTestSet, TemplateRoot::fullQueryTemplate, false);
             Set<Template> bothFullTmpl = new HashSet<>(logFullTmpl);
             bothFullTmpl.addAll(schemaDataFull);
-            float bothFullCoverage = this.calculateCoveragePercent(bothFullTmpl, coverageTestSet, TemplateRoot::fullQueryTemplate);
+            float bothFullCoverage = this.calculateCoveragePercent(bothFullTmpl, coverageTestSet, TemplateRoot::fullQueryTemplate, false);
 
             Log.info("--- Fold " + i + " ---");
             Log.info("Template Gen. Set Size: " + templateGenSet.size());

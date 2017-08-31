@@ -377,25 +377,24 @@ public class TemplateRoot {
         Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
-        // Expression originalWhere = ps.getWhere();
+        Expression originalWhere = ps.getWhere();
 
         // Bitmap used to generate each variant, 0 indicates right-most bit.
-        // -- commented out currently: bit X: distinct --
-        // bit 0: order
-        // -- commented out currently: bit X: where --
+        // bit 0: distinct
+        // bit 1: order
+        // bit 2: where
         // -- commented out currently: bit X: top/limit --
 
-        int numVariants = 1;
+        int numVariants = 3;
         double iterLimit = Math.pow(2, numVariants);
         for (int i = 0; i < iterLimit; i++) {
-            /*
             int distinctBit = i & 1;
             if (distinctBit == 1) {
                 Distinct distinct = new Distinct();
                 ps.setDistinct(distinct);
-            }*/
+            }
 
-            int orderBit = i & 1;
+            int orderBit = (i >> 1) & 1;
             if (orderBit == 1) {
                 OrderByElement order = new OrderByElement();
                 order.setExpression(new LiteralExpression(Constants.ORDER));
@@ -404,16 +403,16 @@ public class TemplateRoot {
                 ps.setOrderByElements(orderList);
             }
 
-            /*
-            if (ps.getWhere() == null) {
-                int whereBit = (i >> 1) & 1;
-                if (whereBit == 1) {
-                    ps.setWhere(new LiteralExpression(Constants.PRED));
-                }
-            }*/
+            int whereBit = (i >> 2) & 1;
+            if (whereBit == 1) {
+                ps.setWhere(new LiteralExpression(Constants.PRED));
+            } else {
+                // Only give an option of no WHERE clause in single table case
+                if (ps.getJoins() == null || ps.getJoins().isEmpty()) ps.setWhere(null);
+            }
 
             /*
-            int topBit = (i >> 2) & 1;
+            int topBit = (i >> 3) & 1;
             if (topBit == 1) {
                 // Add variant for top for where condition
                 Top top = new Top();
@@ -425,9 +424,9 @@ public class TemplateRoot {
             templates.add(template);
 
             // Reset everything
-            // ps.setDistinct(null);
+            ps.setDistinct(null);
             ps.setOrderByElements(null);
-            // ps.setWhere(originalWhere);
+            ps.setWhere(originalWhere);
             // ps.setTop(null);
         }
 
