@@ -57,7 +57,10 @@ public class CrossValidate {
             }
         }
 
-        if (writeResults) generatedTemplates.stream().sorted().forEach(this.outWriter::println);
+        if (writeResults) {
+            generatedTemplates.stream().sorted((a, b) -> a.toString().compareTo(b.toString()))
+                    .forEach(this.outWriter::println);
+        }
 
         return covered / testStatements.size() * 100;
     }
