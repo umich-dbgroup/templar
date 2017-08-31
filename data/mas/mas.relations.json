@@ -26,7 +26,7 @@
         "type": "text",
         "entropy": 3.277865790262335
       }
-    } 
+    }
   },
   "cite": {
     "name": "cite",
@@ -35,12 +35,14 @@
       "citing": {
         "name": "citing",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 20.307386399925612
       },
       "cited": {
         "name": "cited",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 19.75146760844212
       }
     }
   },
@@ -51,16 +53,19 @@
       "cid": {
         "name": "cid",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 11.83091127974237
       },
       "name": {
         "importance": "primary",
         "name": "name",
-        "type": "text"
+        "type": "text",
+        "entropy": 11.72699461077992
       },
       "homepage": {
         "name": "homepage",
-        "type": "text"
+        "type": "text",
+        "entropy": 10.04873686229901
       }
     }
   },
@@ -71,12 +76,14 @@
       "did": {
         "name": "did",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 4.643856189774723
       },
       "name": {
         "importance": "primary",
         "name": "name",
-        "type": "text"
+        "type": "text",
+        "entropy": 4.643856189774723
       }
     }
   },
@@ -105,12 +112,14 @@
       "cid": {
         "name": "cid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 11.362931169484153
       },
       "did": {
         "name": "did",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.163974187011842
       }
     }
   },
@@ -121,12 +130,14 @@
       "jid": {
         "name": "jid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 9.39820910273449
       },
       "did": {
         "name": "did",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.243038690700853
       }
     }
   },
@@ -137,12 +148,14 @@
       "did": {
         "name": "did",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 14.856013687498388
       },
       "kid": {
         "name": "kid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.169458837949257
       }
     }
   },
@@ -153,12 +166,14 @@
       "did": {
         "name": "did",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 4.2083531268937895
       },
       "pid": {
         "name": "pid",
         "type": "int",
-        "fk": true
+        "fk": true,
+        "entropy": 21.03568375975916
       }
     }
   },
@@ -236,12 +251,12 @@
         "importance": "primary",
         "name": "title",
         "type": "text",
-        "entropy": 9999.0
+        "entropy": 21.622353903865612
       },
       "abstract": {
         "name": "abstract",
         "type": "text",
-        "entropy": 9998.0
+        "entropy": 15.046957741170191
       },
       "year": {
         "name": "year",
