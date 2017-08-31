@@ -162,16 +162,14 @@ public class Utils {
     }
 
     public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, Relation> relations,
-                                           Map<String, String> oldAliasToTableName, Column col) {
+                                           Map<String, Table> oldAliasToTable, Column col) {
         String tableName = col.getTable().getName();
 
         if (tableName == null || relations.get(tableName) == null) {
             // if old to table name exists, use it
-            if (oldAliasToTableName != null) {
-                String newTableName = oldAliasToTableName.get(tableName);
-                if (newTableName != null) {
-                    return queryTables.get(newTableName);
-                }
+            if (oldAliasToTable != null) {
+                Table table = oldAliasToTable.get(tableName);
+                if (table != null) return table;
             }
 
             // Find table name

@@ -24,13 +24,13 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
 
     Map<String, Table> tables;
     Map<String, List<Alias>> aliases; // Table names to aliases
-    Map<String, String> oldAliasToTableName; // Old alias to table name
+    Map<String, Table> oldAliasToTable; // Old alias to table name
 
     public FullQueryExprDeParser() {
         this.tables = null;
         this.relations = null;
         this.aliases = null;
-        this.oldAliasToTableName = null;
+        this.oldAliasToTable = null;
     }
 
     public void setTables(Map<String, Table> tables) {
@@ -45,8 +45,8 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
         this.aliases = aliases;
     }
 
-    public void setAliasMap(Map<String, String> oldAliasToTableName) {
-        this.oldAliasToTableName = oldAliasToTableName;
+    public void setOldAliasToTable(Map<String, Table> oldAliasToTable) {
+        this.oldAliasToTable = oldAliasToTable;
     }
 
     protected FullQueryExprDeParser subParser() {
@@ -54,7 +54,7 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
         clone.setTables(this.tables);
         clone.setRelations(this.relations);
         clone.setAliases(this.aliases);
-        clone.setAliasMap(this.oldAliasToTableName);
+        clone.setOldAliasToTable(this.oldAliasToTable);
         return clone;
     }
 
@@ -154,15 +154,10 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(Column col) {
-        Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTableName, col);
+        Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTable, col);
 
         if (table == null) throw new RuntimeException("Could not find table for column: " + col.getColumnName());
 
-        List<Alias> tableAliases = this.aliases.get(table.getName());
-        if (tableAliases.size() > 1) {
-            throw new RuntimeException("WARNING: More than 1 alias for table! Which to select?");
-        }
-        table.setAlias(tableAliases.get(0));
         col.setTable(table);
 
         this.getBuffer().append(col.getName(true));

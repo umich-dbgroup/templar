@@ -24,7 +24,7 @@ public class FullQueryDeParser extends SelectDeParser {
 
     Map<String, Table> tables;
     Map<String, List<Alias>> aliases; // Table names to aliases
-    Map<String, String> oldAliasToTableName;
+    Map<String, Table> oldAliasToTable;
 
     List<Expression> joinPredicates;
 
@@ -38,7 +38,7 @@ public class FullQueryDeParser extends SelectDeParser {
 
         this.tables = new HashMap<>();
         this.aliases = new HashMap<>();
-        this.oldAliasToTableName = new HashMap<>();
+        this.oldAliasToTable = new HashMap<>();
 
         this.joinPredicates = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class FullQueryDeParser extends SelectDeParser {
             exprDeParser.setTables(this.tables);
             exprDeParser.setRelations(this.relations);
             exprDeParser.setAliases(this.aliases);
-            exprDeParser.setAliasMap(this.oldAliasToTableName);
+            exprDeParser.setOldAliasToTable(this.oldAliasToTable);
         }
     }
 
@@ -62,15 +62,15 @@ public class FullQueryDeParser extends SelectDeParser {
         this.aliases = aliases;
     }
 
-    public void setOldAliasToTableName(Map<String, String> oldAliasToTableName) {
-        this.oldAliasToTableName = oldAliasToTableName;
+    public void setOldAliasToTable(Map<String, Table> oldAliasToTable) {
+        this.oldAliasToTable = oldAliasToTable;
     }
 
     protected FullQueryDeParser subParser(ExpressionVisitor expressionVisitor, StringBuilder buffer) {
         FullQueryDeParser clone = new FullQueryDeParser(expressionVisitor, buffer, this.relations, this.removeWhere);
         clone.setTables(this.tables);
         clone.setAliases(this.aliases);
-        clone.setOldAliasToTableName(this.oldAliasToTableName);
+        clone.setOldAliasToTable(this.oldAliasToTable);
         return clone;
     }
 
@@ -174,20 +174,22 @@ public class FullQueryDeParser extends SelectDeParser {
 
             this.tables.put(table.getName(), table);
 
-            String aliasStr = table.getName().toLowerCase() + "_a";
-            Alias newAlias = new Alias(aliasStr);
+            String aliasStr = table.getName().toLowerCase() + "_";
 
             List<Alias> tableAliases = this.aliases.get(table.getName());
             if (tableAliases == null) {
                 tableAliases = new ArrayList<>();
                 this.aliases.put(table.getName(), tableAliases);
             }
+            aliasStr += String.valueOf(tableAliases.size());
+
+            Alias newAlias = new Alias(aliasStr);
             tableAliases.add(newAlias);
 
             table.setAlias(newAlias);
 
             if (oldAlias != null) {
-                this.oldAliasToTableName.put(oldAlias.getName(), table.getName());
+                this.oldAliasToTable.put(oldAlias.getName(), table);
             }
         }
     }
@@ -354,15 +356,10 @@ public class FullQueryDeParser extends SelectDeParser {
         Expression expr = selectExpressionItem.getExpression();
         if (expr instanceof Column) {
             Column col = (Column) expr;
-            Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTableName, col);
+            Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTable, col);
 
             if (table == null) throw new RuntimeException("Could not find table for column: " + col.getColumnName());
 
-            List<Alias> tableAliases = this.aliases.get(table.getName());
-            if (tableAliases.size() > 1) {
-                throw new RuntimeException("More than 1 alias for table! Which to select?");
-            }
-            table.setAlias(tableAliases.get(0));
             col.setTable(table);
 
             this.getBuffer().append(col.getName(true));

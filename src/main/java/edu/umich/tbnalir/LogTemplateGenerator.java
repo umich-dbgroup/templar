@@ -1,6 +1,7 @@
 package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
+import edu.umich.tbnalir.template.Template;
 import edu.umich.tbnalir.template.TemplateRoot;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
@@ -16,22 +17,18 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 6/20/17.
  */
 public class LogTemplateGenerator {
-    List<String> levels;
-
-    public LogTemplateGenerator(String[] levels) {
-        this.levels = new ArrayList<>();
-        for (String level : levels) {
-            this.levels.add(level);
-        }
+    public LogTemplateGenerator() {
     }
 
-    public List<String> getLevels() {
-        return levels;
+    public Set<Template> generate(List<Select> stmts, Function<Select, Template> templateFn) {
+        return stmts.stream().map(templateFn::apply).collect(Collectors.toSet());
     }
 
     public void performCrossValidation(List<Select> stmts, String basename) {
@@ -133,58 +130,6 @@ public class LogTemplateGenerator {
         }*/
     }
 
-    private Runnable getParserRunnable(ConcurrentLinkedQueue<Select> stmts, String sql) {
-        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
-        char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
-        for (char token : tokensToReplace) {
-            sql = sql.replace(token, '_');
-        }
-        final String finalSql = sql.toLowerCase();
-
-        return () -> {
-            Statement stmt;
-            try {
-                stmt = CCJSqlParserUtil.parse(finalSql);
-            } catch (JSQLParserException e) {
-                if (Log.DEBUG) e.printStackTrace();
-                return;
-            } catch (Throwable t) {
-                t.printStackTrace();
-                return;
-            }
-            if (stmt == null || !(stmt instanceof Select)) return; // Case that it's not a select statement
-            stmts.add((Select) stmt);
-        };
-    }
-
-    public List<Select> parseStatements(List<String> sqls) {
-        ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
-        for (String sql : sqls) {
-            pool.submit(this.getParserRunnable(stmts, sql));
-        }
-
-        pool.shutdown();
-
-        try {
-            if (!pool.awaitTermination(10, TimeUnit.MINUTES)) {
-                pool.shutdownNow();
-                if (!pool.awaitTermination(60, TimeUnit.SECONDS)) {
-                    Log.error("Pool did not terminate");
-                }
-            }
-        } catch (InterruptedException e) {
-            pool.shutdownNow();
-            Thread.currentThread().interrupt();
-        }
-
-        Log.info("===== Parsing Results =====");
-        Log.info("Total Queries: " + sqls.size());
-        Log.info("Correctly Parsed: " + stmts.size() + "/" + sqls.size() + "\n");
-
-        return new ArrayList<>(stmts);
-    }
-
     public void generateAndSave(List<Select> stmts, String outBasename) {
         /*
         for (String level : this.levels) {
@@ -266,8 +211,9 @@ public class LogTemplateGenerator {
             Log.DEBUG();
         }
 
-        LogTemplateGenerator tg = new LogTemplateGenerator(levels);
+        LogTemplateGenerator tg = new LogTemplateGenerator();
 
+        /*
         List<String> sqls = tg.readQueryLogParsed(filename);
         List<Select> stmts = tg.parseStatements(sqls);
 

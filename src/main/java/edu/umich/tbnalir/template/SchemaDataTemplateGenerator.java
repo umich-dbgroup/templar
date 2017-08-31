@@ -1,9 +1,7 @@
-package edu.umich.tbnalir;
+package edu.umich.tbnalir.template;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.*;
-import edu.umich.tbnalir.template.Template;
-import edu.umich.tbnalir.template.TemplateRoot;
 import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -14,7 +12,6 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -475,13 +472,14 @@ public class SchemaDataTemplateGenerator {
             }
         }
 
+        /*
         Log.info("Full Query Count: " + fullQueryCount);
         Log.info("No Predicate/Projection: " + noPredProjCount);
         Log.info("No Predicate: " + noPredCount);
         Log.info("No Comparison/Projection: " + noCompProjCount);
         Log.info("No Comparison: " + noCompCount);
         Log.info("No Constants/Projection: " + noConstProjCount);
-        Log.info("No Constants: " + noConstCount);
+        Log.info("No Constants: " + noConstCount);*/
 
         Log.info("==============================\n");
         return templates;

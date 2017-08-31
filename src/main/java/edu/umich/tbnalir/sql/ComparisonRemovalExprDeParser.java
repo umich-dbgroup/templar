@@ -17,7 +17,7 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
         clone.setTables(this.tables);
         clone.setRelations(this.relations);
         clone.setAliases(this.aliases);
-        clone.setAliasMap(this.oldAliasToTableName);
+        clone.setOldAliasToTable(this.oldAliasToTable);
         return clone;
     }
 
