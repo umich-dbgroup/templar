@@ -52,12 +52,12 @@ public class CrossValidate {
                 covered++;
             } else {
                 if (writeResults) {
-                    this.errWriter.println(select);
+                    this.errWriter.println(testTemplate);
                 }
             }
         }
 
-        generatedTemplates.stream().forEach(System.out::println);
+        if (writeResults) generatedTemplates.stream().forEach(this.outWriter::println);
 
         return covered / testStatements.size() * 100;
     }
@@ -139,7 +139,7 @@ public class CrossValidate {
             float schemaDataPredProjCoverage = this.calculateCoveragePercent(schemaDataNoPredProj, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
             Set<Template> bothPredProjTmpl = new HashSet<>(logPredProjTmpl);
             bothPredProjTmpl.addAll(schemaDataNoPredProj);
-            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, true);
+            float bothPredProjCoverage = this.calculateCoveragePercent(bothPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
 
             Set<Template> logPredTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateTemplate);
             float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
