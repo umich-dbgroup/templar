@@ -210,7 +210,7 @@ public class SchemaDataTemplateGenerator {
 
         // Select up to max size only to do power sets (from all relations combined, using entropy)
         if (maxSize != null) {
-            attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
+            attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
             attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
         }
 
@@ -227,7 +227,7 @@ public class SchemaDataTemplateGenerator {
 
         // Select up to max size only to do power sets (from all relations combined, using entropy)
         if (maxSize != null) {
-            attributes.sort((a, b) -> a.getEntropy().compareTo(b.getEntropy()));
+            attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
             attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
         }
 
