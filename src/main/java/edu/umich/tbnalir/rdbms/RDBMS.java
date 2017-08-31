@@ -1,6 +1,7 @@
 package edu.umich.tbnalir.rdbms;
 
 import edu.umich.tbnalir.dataStructure.ParseTreeNode;
+import edu.umich.tbnalir.util.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RDBMS
@@ -36,17 +38,24 @@ public class RDBMS
 		schemaGraph = new SchemaGraph(database_name); 
 	}
 
-	public Map<String, Integer> getAttrDistinctCount(Relation r, Attribute attr) {
-        Map<String, Integer> valToOccurrence = new HashMap<>();
+	public List<Integer> getDistinctAttrCounts(Relation r, Attribute attr) {
+        List<Integer> vals = new ArrayList<>();
         try {
             Statement statement = this.conn.createStatement();
-            ResultSet results = statement.executeQuery("SELECT " + attr.getName() + ", COUNT(*) "
-                    + "FROM " + r.getName() + " GROUP BY " + attr.getName());
+			ResultSet results;
+			if (Utils.isSQLTypeString(attr.getType())) {
+                // Accelerate for text types by grouping by hash
+                results = statement.executeQuery("SELECT COUNT(*) "
+                        + "FROM " + r.getName() + " GROUP BY md5(" + attr.getName() + ")");
+            } else {
+                results = statement.executeQuery("SELECT COUNT(*) "
+                        + "FROM " + r.getName() + " GROUP BY " + attr.getName());
+            }
             while (results.next()) {
-                valToOccurrence.put(results.getString(1), results.getInt(2));
+                vals.add(results.getInt(1));
             }
 
-            return valToOccurrence;
+            return vals;
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

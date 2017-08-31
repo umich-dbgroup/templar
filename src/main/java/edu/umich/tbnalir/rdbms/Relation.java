@@ -21,8 +21,6 @@ public class Relation {
     FromItem fromItem;
 
     List<Attribute> rankedAttributes; // attributes ranked by entropy
-    Set<Set<Attribute>> guessedProjections;
-    Set<Set<Attribute>> guessedPredicateAttributes;
 
     public Relation(String name, String type, Map<String, Attribute> attributes) {
         this.name = name;
@@ -55,11 +53,11 @@ public class Relation {
         int relationSize = db.getRelationSize(this);
         for (Attribute attr : this.attributes.values()) {
             if (attr.getEntropy() == null) {
-                Map<String, Integer> valToOccurrence = db.getAttrDistinctCount(this, attr);
+                List<Integer> distinctCounts = db.getDistinctAttrCounts(this, attr);
                 List<Double> probs = new ArrayList<>();
 
-                for (Map.Entry<String, Integer> e : valToOccurrence.entrySet()) {
-                    probs.add((double) e.getValue() / (double) relationSize);
+                for (Integer count : distinctCounts) {
+                    probs.add((double) count / (double) relationSize);
                 }
 
                 double entropy = Utils.entropy(probs);
