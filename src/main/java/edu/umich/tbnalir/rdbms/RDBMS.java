@@ -35,7 +35,8 @@ public class RDBMS
 		// cjbaik: don't want to load history from database until I find out why
 		// loadHistory(database_name);
 
-		schemaGraph = new SchemaGraph(database_name); 
+        // cjbaik: don't need to load SchemaGraph at the moment either.
+		// schemaGraph = new SchemaGraph(database_name);
 	}
 
 	public List<Integer> getDistinctAttrCounts(Relation r, Attribute attr) {
