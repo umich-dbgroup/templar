@@ -220,20 +220,24 @@
       "oid": {
         "name": "oid",
         "type": "int",
-        "pk": true
+        "pk": true,
+        "entropy": 13.464290473852255
       },
       "name": {
         "importance": "primary",
         "name": "name",
-        "type": "text"
+        "type": "text",
+        "entropy": 13.464290473852255
       },
       "continent": {
         "name": "continent",
-        "type": "text"
+        "type": "text",
+        "entropy": 2.2506953915991312
       },
       "homepage": {
         "name": "homepage",
-        "type": "text"
+        "type": "text",
+        "entropy": 13.463759594361898
       }
     }
   },
