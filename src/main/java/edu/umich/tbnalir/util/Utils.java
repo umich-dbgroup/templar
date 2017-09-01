@@ -161,39 +161,54 @@ public class Utils {
         return powerSet;
     }
 
-    public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, Relation> relations,
+    public static Table findTableForColumn(Map<String, Table> queryTables, Map<String, List<String>> aliases,
+                                           Map<String, Relation> relations, Map<Table, Table> oldToNewTables,
                                            Map<String, Table> oldAliasToTable, Column col) {
         String tableName = col.getTable().getName();
+        Alias tableAlias = col.getTable().getAlias();
 
-        if (tableName == null || relations.get(tableName) == null) {
-            // if old to table name exists, use it
-            Table table = oldAliasToTable.get(tableName);
-            if (table != null) return table;
-
-            if (col.getTable() != null && col.getTable().getAlias() != null) {
-                Table tableByAlias = oldAliasToTable.get(col.getTable().getAlias().getName());
-                if (tableByAlias != null) return tableByAlias;
-            }
-
-            // Find table name
-            for (Map.Entry<String, Table> e : queryTables.entrySet()) {
-                // Find the relation
-                Relation r = relations.get(e.getKey());
-                if (r == null) {
-                    throw new RuntimeException("Table name in query: <" + e.getKey() + "> not found in schema.");
-                }
-
-                for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
-                    if (attrEntry.getKey().equals(col.getColumnName())) {
-                        return queryTables.get(r.getName());
-                    }
-                }
-            }
-        } else {
-            tableName = col.getTable().getName();
+        // if there is reference to new table, return it
+        if (oldToNewTables != null && oldToNewTables.get(col.getTable()) != null) {
+            return oldToNewTables.get(col.getTable());
         }
 
-        return queryTables.get(tableName);
+        // if table is already set correctly and alias exists, use it
+        if (tableAlias != null) {
+            List<String> aliasList = aliases.get(tableName);
+            if (aliasList != null && aliasList.contains(tableAlias.getName())) {
+                return col.getTable();
+            }
+        }
+
+        // if old to table name exists, use it
+        Table table = oldAliasToTable.get(tableName);
+        if (table != null) return table;
+
+        if (col.getTable() != null && tableAlias != null) {
+            Table tableByAlias = oldAliasToTable.get(col.getTable().getAlias().getName());
+            if (tableByAlias != null) return tableByAlias;
+        }
+
+        // if table exists in list of query tables, return it
+        Table tableExists = queryTables.get(tableName);
+        if (tableExists != null) return tableExists;
+
+        // if it does not match either, find table name from column name
+        for (Map.Entry<String, Table> e : queryTables.entrySet()) {
+            // Find the relation
+            Relation r = relations.get(e.getKey());
+            if (r == null) {
+                throw new RuntimeException("Table name in query: <" + e.getKey() + "> not found in schema.");
+            }
+
+            for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
+                if (attrEntry.getKey().equals(col.getColumnName())) {
+                    return queryTables.get(r.getName());
+                }
+            }
+        }
+
+        return null;
     }
 
     public static Join addJoin(Select select, Attribute existingRelationAttr, Attribute joinedRelationAttr) {

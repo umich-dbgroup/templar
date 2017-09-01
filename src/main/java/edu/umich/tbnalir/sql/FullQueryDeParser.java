@@ -23,7 +23,8 @@ public class FullQueryDeParser extends SelectDeParser {
     Map<String, Relation> relations; // Relations registered globally
 
     Map<String, Table> tables;
-    Map<String, List<Alias>> aliases; // Table names to aliases
+    Map<Table, Table> oldToNewTables;
+    Map<String, List<String>> aliases; // Table names to aliases
     Map<String, Table> oldAliasToTable;
 
     List<Expression> joinPredicates;
@@ -37,6 +38,7 @@ public class FullQueryDeParser extends SelectDeParser {
         this.relations = relations;
 
         this.tables = new HashMap<>();
+        this.oldToNewTables = new HashMap<>();
         this.aliases = new HashMap<>();
         this.oldAliasToTable = new HashMap<>();
 
@@ -51,6 +53,7 @@ public class FullQueryDeParser extends SelectDeParser {
             exprDeParser.setRelations(this.relations);
             exprDeParser.setAliases(this.aliases);
             exprDeParser.setOldAliasToTable(this.oldAliasToTable);
+            exprDeParser.setOldToNewTables(this.oldToNewTables);
         }
     }
 
@@ -58,7 +61,11 @@ public class FullQueryDeParser extends SelectDeParser {
         this.tables = tables;
     }
 
-    public void setAliases(Map<String, List<Alias>> aliases) {
+    public void setOldToNewTables(Map<Table, Table> oldToNewTables) {
+        this.oldToNewTables = oldToNewTables;
+    }
+
+    public void setAliases(Map<String, List<String>> aliases) {
         this.aliases = aliases;
     }
 
@@ -71,6 +78,7 @@ public class FullQueryDeParser extends SelectDeParser {
         clone.setTables(this.tables);
         clone.setAliases(this.aliases);
         clone.setOldAliasToTable(this.oldAliasToTable);
+        clone.setOldToNewTables(this.oldToNewTables);
         return clone;
     }
 
@@ -167,48 +175,65 @@ public class FullQueryDeParser extends SelectDeParser {
         }
     }
 
-    protected void setTableAliasForFromItem(FromItem fromItem) {
+    protected FromItem setTableAliasForFromItem(FromItem fromItem) {
         if (fromItem instanceof Table) {
             Alias oldAlias = fromItem.getAlias();
             Table table = (Table) fromItem;
 
-            this.tables.put(table.getName(), table);
+            Table newTable;
+            if (this.oldToNewTables.get(table) == null) {
+                // Create a new table so that we can revert to the old one later with no repercussions
+                newTable = new Table(table.getName());
 
-            String aliasStr = table.getName().toLowerCase() + "_";
+                this.oldToNewTables.put(table, newTable);
+                this.tables.put(table.getName(), newTable);
+            } else {
+                newTable = this.oldToNewTables.get(table);
+            }
 
-            List<Alias> tableAliases = this.aliases.get(table.getName());
+            String aliasStr = newTable.getName().toLowerCase() + "_";
+
+            List<String> tableAliases = this.aliases.get(newTable.getName());
             if (tableAliases == null) {
                 tableAliases = new ArrayList<>();
-                this.aliases.put(table.getName(), tableAliases);
+                this.aliases.put(newTable.getName(), tableAliases);
             }
             aliasStr += String.valueOf(tableAliases.size());
 
             Alias newAlias = new Alias(aliasStr);
-            tableAliases.add(newAlias);
+            tableAliases.add(newAlias.getName());
 
-            table.setAlias(newAlias);
+            newTable.setAlias(newAlias);
 
             if (oldAlias != null) {
-                this.oldAliasToTable.put(oldAlias.getName(), table);
+                this.oldAliasToTable.put(oldAlias.getName(), newTable);
             }
+            return newTable;
         }
+        return fromItem;
     }
 
-    protected void setTableAliases(FromItem fromItem, List<Join> joins) {
+    protected void setTableAliases(PlainSelect ps) {
         // Do it for first FromItem
-        this.setTableAliasForFromItem(fromItem);
+        FromItem fromItem = this.setTableAliasForFromItem(ps.getFromItem());
+        ps.setFromItem(fromItem);
 
         // Do it for each FromItem in each Join
-        if (joins != null) {
-            for (Join join : joins) {
-                this.setTableAliasForFromItem(join.getRightItem());
+        List<Join> newJoins = new ArrayList<>();
+        if (ps.getJoins() != null) {
+            for (Join join : ps.getJoins()) {
+                FromItem joinItem = this.setTableAliasForFromItem(join.getRightItem());
+                Join newJoin = new Join();
+                newJoin.setRightItem(joinItem);
+                newJoins.add(newJoin);
             }
         }
+        ps.setJoins(newJoins);
 
     }
 
     public void deparseBeforeProjection(PlainSelect plainSelect) {
-        this.setTableAliases(plainSelect.getFromItem(), plainSelect.getJoins());
+        this.setTableAliases(plainSelect);
 
         if (plainSelect.isUseBrackets()) {
             this.getBuffer().append("(");
@@ -356,7 +381,7 @@ public class FullQueryDeParser extends SelectDeParser {
         Expression expr = selectExpressionItem.getExpression();
         if (expr instanceof Column) {
             Column col = (Column) expr;
-            Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTable, col);
+            Table table = Utils.findTableForColumn(this.tables, this.aliases, this.relations, this.oldToNewTables, this.oldAliasToTable, col);
 
             if (table == null) throw new RuntimeException("Could not find table for column: " + col.getColumnName());
 

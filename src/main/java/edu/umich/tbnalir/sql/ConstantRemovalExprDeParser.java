@@ -15,6 +15,7 @@ public class ConstantRemovalExprDeParser extends FullQueryExprDeParser {
         clone.setRelations(this.relations);
         clone.setAliases(this.aliases);
         clone.setOldAliasToTable(this.oldAliasToTable);
+        clone.setOldToNewTables(this.oldToNewTables);
         return clone;
     }
 

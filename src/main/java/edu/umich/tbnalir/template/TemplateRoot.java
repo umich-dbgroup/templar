@@ -32,6 +32,10 @@ public class TemplateRoot {
         return select;
     }
 
+    public static void resetAllRelations() {
+        relations.entrySet().stream().map(Map.Entry::getValue).forEach(Relation::resetFromItem);
+    }
+
     /*
      * FUNCTIONS FOR CREATING TEMPLATES FROM A "Select"
      */
@@ -42,7 +46,16 @@ public class TemplateRoot {
         FullQueryDeParser deParser = new FullQueryDeParser(constantRemover, buffer, relations, false);
         constantRemover.setSelectVisitor(deParser);
         constantRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST);
     }
 
@@ -52,7 +65,16 @@ public class TemplateRoot {
         ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(constantRemover, buffer, relations, false);
         constantRemover.setSelectVisitor(deParser);
         constantRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_PROJ);
     }
 
@@ -62,7 +84,16 @@ public class TemplateRoot {
         FullQueryDeParser deParser = new FullQueryDeParser(comparisonRemover, buffer, relations, false);
         comparisonRemover.setSelectVisitor(deParser);
         comparisonRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_OP);
     }
 
@@ -72,7 +103,16 @@ public class TemplateRoot {
         ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(comparisonRemover, buffer, relations, false);
         comparisonRemover.setSelectVisitor(deParser);
         comparisonRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_CONST_OP_PROJ);
     }
 
@@ -82,7 +122,16 @@ public class TemplateRoot {
         FullQueryDeParser deParser = new FullQueryDeParser(predicateRemover, buffer, relations, true);
         predicateRemover.setSelectVisitor(deParser);
         predicateRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_PRED);
     }
 
@@ -92,7 +141,16 @@ public class TemplateRoot {
         ProjectionRemovalDeParser deParser = new ProjectionRemovalDeParser(predicateRemover, buffer, relations, true);
         predicateRemover.setSelectVisitor(deParser);
         predicateRemover.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_PRED_PROJ);
     }
 
@@ -102,7 +160,16 @@ public class TemplateRoot {
         FullQueryDeParser deParser = new FullQueryDeParser(exprDeParser, buffer, relations, false);
         exprDeParser.setSelectVisitor(deParser);
         exprDeParser.setBuffer(buffer);
-        select.getSelectBody().accept(deParser);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.FULL_QUERY);
     }
 

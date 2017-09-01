@@ -112,6 +112,10 @@ public class Relation {
         this.attributes = attributes;
     }
 
+    public void resetFromItem() {
+        this.fromItem = null;
+    }
+
     public FromItem getFromItem() {
         if (this.fromItem == null) {
             if (this instanceof Function) {

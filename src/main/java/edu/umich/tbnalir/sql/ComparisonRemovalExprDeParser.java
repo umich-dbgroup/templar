@@ -18,10 +18,11 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
         clone.setRelations(this.relations);
         clone.setAliases(this.aliases);
         clone.setOldAliasToTable(this.oldAliasToTable);
+        clone.setOldToNewTables(this.oldToNewTables);
         return clone;
     }
 
-    public static String removeComparisonOperator(Expression expr) {
+    public String removeComparisonOperator(Expression expr) {
         StringBuilder sb = new StringBuilder();
         if (expr instanceof BinaryExpression) {
             BinaryExpression binary = (BinaryExpression) expr;
@@ -39,11 +40,13 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
             sb.append(ConstantRemovalExprDeParser.removeConstantsFromExpr(expr));
         } else if (expr instanceof SubSelect) {
             SubSelect subSelect = (SubSelect) expr;
-            ComparisonRemovalExprDeParser subParser = new ComparisonRemovalExprDeParser();
+            FullQueryExprDeParser subParser = this.subParser();
             subSelect.accept((ExpressionVisitor) subParser);
             sb.append(subParser.getBuffer());
         } else {
-            sb.append(expr.toString());
+            FullQueryExprDeParser subParser = this.subParser();
+            expr.accept(subParser);
+            sb.append(subParser.getBuffer());
         }
         return sb.toString();
     }
@@ -55,8 +58,17 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
                 && equalsTo.getRightExpression() instanceof Column) {
             FullQueryExprDeParser leftParser = this.subParser();
             equalsTo.getLeftExpression().accept(leftParser);
+            String left = leftParser.getBuffer().toString();
+
             FullQueryExprDeParser rightParser = this.subParser();
             equalsTo.getRightExpression().accept(rightParser);
+            String right = rightParser.getBuffer().toString();
+
+            if (left.equals(right)) {
+                // Throw an error if we detect that there's a faulty/redundant join predicate
+                throw new RuntimeException("Join predicate is: " + left + " = " + right);
+            }
+
             this.getBuffer().append(leftParser.getBuffer());
             this.getBuffer().append(" = ");
             this.getBuffer().append(rightParser.getBuffer());

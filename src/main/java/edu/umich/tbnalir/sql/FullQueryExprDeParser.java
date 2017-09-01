@@ -2,7 +2,6 @@ package edu.umich.tbnalir.sql;
 
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.util.Utils;
-import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.BinaryExpression;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
@@ -23,11 +22,13 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
     Map<String, Relation> relations; // Relations registered globally
 
     Map<String, Table> tables;
-    Map<String, List<Alias>> aliases; // Table names to aliases
+    Map<Table, Table> oldToNewTables;
+    Map<String, List<String>> aliases; // Table names to aliases
     Map<String, Table> oldAliasToTable; // Old alias to table name
 
     public FullQueryExprDeParser() {
         this.tables = null;
+        this.oldToNewTables = null;
         this.relations = null;
         this.aliases = null;
         this.oldAliasToTable = null;
@@ -37,11 +38,15 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
         this.tables = tables;
     }
 
+    public void setOldToNewTables(Map<Table, Table> oldToNewTables) {
+        this.oldToNewTables = oldToNewTables;
+    }
+
     public void setRelations(Map<String, Relation> relations) {
         this.relations = relations;
     }
 
-    public void setAliases(Map<String, List<Alias>> aliases) {
+    public void setAliases(Map<String, List<String>> aliases) {
         this.aliases = aliases;
     }
 
@@ -55,6 +60,7 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
         clone.setRelations(this.relations);
         clone.setAliases(this.aliases);
         clone.setOldAliasToTable(this.oldAliasToTable);
+        clone.setOldToNewTables(this.oldToNewTables);
         return clone;
     }
 
@@ -154,7 +160,7 @@ public class FullQueryExprDeParser extends ExpressionDeParser {
 
     @Override
     public void visit(Column col) {
-        Table table = Utils.findTableForColumn(this.tables, this.relations, this.oldAliasToTable, col);
+        Table table = Utils.findTableForColumn(this.tables, this.aliases, this.relations, this.oldToNewTables, this.oldAliasToTable, col);
 
         if (table == null) throw new RuntimeException("Could not find table for column: " + col.getColumnName());
 
