@@ -223,8 +223,10 @@ public class FullQueryDeParser extends SelectDeParser {
         if (ps.getJoins() != null) {
             for (Join join : ps.getJoins()) {
                 FromItem joinItem = this.setTableAliasForFromItem(join.getRightItem());
+
                 Join newJoin = new Join();
                 newJoin.setRightItem(joinItem);
+                newJoin.setOnExpression(join.getOnExpression());
                 newJoins.add(newJoin);
             }
         }
@@ -293,7 +295,11 @@ public class FullQueryDeParser extends SelectDeParser {
                 Expression expr = plainSelect.getWhere();
                 while (!this.joinPredicates.isEmpty()) {
                     Expression pred = this.joinPredicates.remove(0);
-                    expr = new AndExpression(expr, pred);
+                    if (expr == null) {
+                        expr = pred;
+                    } else {
+                        expr = new AndExpression(expr, pred);
+                    }
                 }
 
                 expr.accept(this.getExpressionVisitor());

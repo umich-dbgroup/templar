@@ -69,9 +69,15 @@ public class ComparisonRemovalExprDeParser extends ConstantRemovalExprDeParser {
                 throw new RuntimeException("Join predicate is: " + left + " = " + right);
             }
 
-            this.getBuffer().append(leftParser.getBuffer());
-            this.getBuffer().append(" = ");
-            this.getBuffer().append(rightParser.getBuffer());
+            if (left.compareTo(right) <= 0) {
+                this.getBuffer().append(left);
+                this.getBuffer().append(" = ");
+                this.getBuffer().append(right);
+            } else {
+                this.getBuffer().append(right);
+                this.getBuffer().append(" = ");
+                this.getBuffer().append(left);
+            }
         } else {
             this.getBuffer().append(removeComparisonOperator(equalsTo));
         }
