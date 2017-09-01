@@ -209,6 +209,11 @@ public class FullQueryDeParser extends SelectDeParser {
                 this.oldAliasToTable.put(oldAlias.getName(), newTable);
             }
             return newTable;
+        } else {
+            if (fromItem.getAlias() != null) {
+                // Handle tables aliased from nested SELECT
+                this.tables.put(fromItem.getAlias().getName(), new Table(fromItem.getAlias().getName()));
+            }
         }
         return fromItem;
     }

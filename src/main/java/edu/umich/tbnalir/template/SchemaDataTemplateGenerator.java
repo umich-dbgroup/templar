@@ -483,7 +483,8 @@ public class SchemaDataTemplateGenerator {
         // String test = "SELECT a.name FROM author AS a JOIN writes AS w ON a.aid = w.aid JOIN publication AS p ON w.pid = p.pid JOIN journal AS j ON p.jid = j.jid WHERE j.name = 'PVLDB' AND (j.name = 'THIS' OR j.name = 'OTHER')";
         // String test = "SELECT p.title FROM publication p, writes w, author a, organization o WHERE p.pid = w.pid AND w.aid = a.aid AND a.oid = o.oid AND o.name = 'University of Michigan'";
         // String test = "select publication_0.title from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and organization_0.name = 'university of michigan' and publication_0.pid = writes_0.pid";
-        String test = "SELECT homepage FROM author WHERE name = 'H. V. Jagadish'";
+        // String test = "SELECT homepage FROM author WHERE name = 'H. V. Jagadish'";
+        String test = "SELECT DISTINCT course_0.name, course_0.number FROM (SELECT max(program_coursealias1.workload) AS derived_fieldalias0 FROM program_course AS program_coursealias1) AS derived_tablealias0, course AS coursealias0, program_course AS program_coursealias0 WHERE program_coursealias0.course_id = coursealias0.course_id AND program_coursealias0.workload = derived_tablealias0.derived_fieldalias0";
         try {
             Statement stmt = CCJSqlParserUtil.parse(test);
             System.out.println(stmt);

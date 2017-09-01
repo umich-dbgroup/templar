@@ -197,13 +197,11 @@ public class Utils {
         for (Map.Entry<String, Table> e : queryTables.entrySet()) {
             // Find the relation
             Relation r = relations.get(e.getKey());
-            if (r == null) {
-                throw new RuntimeException("Table name in query: <" + e.getKey() + "> not found in schema.");
-            }
-
-            for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
-                if (attrEntry.getKey().equals(col.getColumnName())) {
-                    return queryTables.get(r.getName());
+            if (r != null) {
+                for (Map.Entry<String, Attribute> attrEntry : r.getAttributes().entrySet()) {
+                    if (attrEntry.getKey().equals(col.getColumnName())) {
+                        return queryTables.get(r.getName());
+                    }
                 }
             }
         }
