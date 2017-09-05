@@ -5,7 +5,8 @@
         "attributes": {
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "area": {
                 "name": "area",
@@ -19,11 +20,13 @@
         "attributes": {
             "instructor_id": {
                 "name": "instructor_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "student_id": {
                 "name": "student_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "score": {
                 "name": "score",
@@ -41,7 +44,8 @@
         "attributes": {
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "name": {
                 "name": "name",
@@ -119,15 +123,18 @@
         "attributes": {
             "offering_id": {
                 "name": "offering_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "semester": {
                 "name": "semester",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "section_number": {
                 "name": "section_number",
@@ -197,11 +204,13 @@
         "attributes": {
             "pre_course_id": {
                 "name": "pre_course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             }
         }
     },
@@ -211,7 +220,8 @@
         "attributes": {
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "clear_grading": {
                 "name": "clear_grading",
@@ -301,11 +311,13 @@
         "attributes": {
             "course_offering_id": {
                 "name": "course_offering_id",
-                "type": "int"
+                "type": "int",
+                "fk": true 
             },
             "student_id": {
                 "name": "student_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             }
         }
     },
@@ -315,7 +327,8 @@
         "attributes": {
             "instructor_id": {
                 "name": "instructor_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "name": {
                 "name": "name",
@@ -333,15 +346,18 @@
         "attributes": {
             "offering_instructor_id": {
                 "name": "offering_instructor_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "offering_id": {
                 "name": "offering_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "instructor_id": {
                 "name": "instructor_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             }
         }
     },
@@ -351,7 +367,8 @@
         "attributes": {
             "program_id": {
                 "name": "program_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "name": {
                 "name": "name",
@@ -373,11 +390,13 @@
         "attributes": {
             "program_id": {
                 "name": "program_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "workload": {
                 "name": "workload",
@@ -395,7 +414,8 @@
         "attributes": {
             "program_id": {
                 "name": "program_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "category": {
                 "name": "category",
@@ -417,7 +437,8 @@
         "attributes": {
             "semester_id": {
                 "name": "semester_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "semester": {
                 "name": "semester",
@@ -435,7 +456,8 @@
         "attributes": {
             "student_id": {
                 "name": "student_id",
-                "type": "int"
+                "type": "int",
+                "pk": true
             },
             "lastname": {
                 "name": "lastname",
@@ -493,15 +515,23 @@
         "attributes": {
             "student_id": {
                 "name": "student_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "course_id": {
                 "name": "course_id",
-                "type": "int"
+                "type": "int",
+                "fk": true
+            },
+            "offering_id": {
+                "name": "offering_id",
+                "type": "int",
+                "fk": true
             },
             "semester": {
                 "name": "semester",
-                "type": "int"
+                "type": "int",
+                "fk": true
             },
             "grade": {
                 "name": "grade",

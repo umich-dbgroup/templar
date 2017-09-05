@@ -131,4 +131,10 @@
         "primaryAttribute": "student_id",
         "primaryRelation": "student"
     },
+    {
+        "foreignAttribute": "offering_id",
+        "foreignRelation": "student_record",
+        "primaryAttribute": "offering_id",
+        "primaryRelation": "course_offering"
+    }
 ]
