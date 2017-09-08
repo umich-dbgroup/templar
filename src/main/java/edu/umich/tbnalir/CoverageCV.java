@@ -24,11 +24,11 @@ import java.util.function.Function;
 /**
  * Created by cjbaik on 8/31/17.
  */
-public class CrossValidate {
+public class CoverageCV {
     PrintWriter outWriter;
     PrintWriter errWriter;
 
-    public CrossValidate(String outFileName, String errFileName) {
+    public CoverageCV(String outFileName, String errFileName) {
         try {
             this.outWriter = new PrintWriter(new FileWriter(outFileName));
             this.errWriter = new PrintWriter(new FileWriter(errFileName));
@@ -71,6 +71,7 @@ public class CrossValidate {
         Set<Template> schemaDataTemplates = schemaDataGen.generate();
         List<Template> schemaDataNoPredProj = new ArrayList<>();
         List<Template> schemaDataNoPred = new ArrayList<>();
+        List<Template> schemaDataNoAttrConst = new ArrayList<>();
         List<Template> schemaDataNoCompProj = new ArrayList<>();
         List<Template> schemaDataNoComp = new ArrayList<>();
         List<Template> schemaDataNoConstProj = new ArrayList<>();
@@ -83,6 +84,9 @@ public class CrossValidate {
                     break;
                 case NO_PRED:
                     schemaDataNoPred.add(t);
+                    break;
+                case NO_ATTR_CONST:
+                    schemaDataNoAttrConst.add(t);
                     break;
                 case NO_CONST_OP_PROJ:
                     schemaDataNoCompProj.add(t);
@@ -126,7 +130,7 @@ public class CrossValidate {
         Log.info("Performing " + cvSplits + "-fold cross-validation...");
 
         Log.info("===== Legend =====");
-        Log.info("c <Abs. Constants> / cm <Abs. Constants/Comparison Ops> / pd <Abs. Full Predicates> / p <Abs. Projections>");
+        Log.info("c <Abs. Constants> / cm <Abs. Constants/Comparison Ops> / a <Abs. Attributes/Constants> / pd <Abs. Full Predicates> / p <Abs. Projections>");
 
         for (int i = 0; i < cvPartitions.size(); i++) {
             List<Select> templateGenSet = new ArrayList<>();
@@ -151,9 +155,16 @@ public class CrossValidate {
             bothPredTmpl.addAll(schemaDataNoPred);
             float bothPredCoverage = this.calculateCoveragePercent(bothPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
 
+            Set<Template> logAttrConstTmpl = logGen.generate(templateGenSet, TemplateRoot::noAttributeConstantTemplate);
+            float logAttrConstCoverage = this.calculateCoveragePercent(logAttrConstTmpl, coverageTestSet, TemplateRoot::noAttributeConstantTemplate, false);
+            float schemaDataAttrConstCoverage = this.calculateCoveragePercent(schemaDataNoAttrConst, coverageTestSet, TemplateRoot::noAttributeConstantTemplate, true);
+            Set<Template> bothAttrConstTmpl = new HashSet<>(logAttrConstTmpl);
+            bothAttrConstTmpl.addAll(schemaDataNoAttrConst);
+            float bothAttrConstCoverage = this.calculateCoveragePercent(bothAttrConstTmpl, coverageTestSet, TemplateRoot::noAttributeConstantTemplate, false);
+
             Set<Template> logCompProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonProjectionTemplate);
             float logCompProjCoverage = this.calculateCoveragePercent(logCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
-            float schemaDataCompProjCoverage = this.calculateCoveragePercent(schemaDataNoCompProj, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, true);
+            float schemaDataCompProjCoverage = this.calculateCoveragePercent(schemaDataNoCompProj, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
             Set<Template> bothCompProjTmpl = new HashSet<>(logCompProjTmpl);
             bothCompProjTmpl.addAll(schemaDataNoCompProj);
             float bothCompProjCoverage = this.calculateCoveragePercent(bothCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
@@ -189,12 +200,13 @@ public class CrossValidate {
             Log.info("--- Fold " + i + " ---");
             Log.info("Template Gen. Set Size: " + templateGenSet.size());
             Log.info("Coverage Test Set Size: " + coverageTestSet.size());
-            Log.info("           \tc\tc_p\tcm\tcm_p\tpd\tpd_p\tfull");
+            Log.info("           \tc\tc_p\tcm\tcm_p\ta\tpd\tpd_p\tfull");
             Log.info("Log Coverage %:\t"
                     + String.format("%.1f", logConstCoverage) + "%\t"
                     + String.format("%.1f", logConstProjCoverage) + "%\t"
                     + String.format("%.1f", logCompCoverage) + "%\t"
                     + String.format("%.1f", logCompProjCoverage) + "%\t"
+                    + String.format("%.1f", logAttrConstCoverage) + "%\t"
                     + String.format("%.1f", logPredCoverage) + "%\t"
                     + String.format("%.1f", logPredProjCoverage) + "%\t"
                     + String.format("%.1f", logFullCoverage) + "%\t");
@@ -203,6 +215,7 @@ public class CrossValidate {
                     + logConstProjTmpl.size() + "\t"
                     + logCompTmpl.size() + "\t"
                     + logCompProjTmpl.size() + "\t"
+                    + logAttrConstTmpl.size() + "\t"
                     + logPredTmpl.size() + "\t"
                     + logPredProjTmpl.size() + "\t"
                     + logFullTmpl.size() + "\t\n");
@@ -211,6 +224,7 @@ public class CrossValidate {
                     + String.format("%.1f", schemaDataConstProjCoverage) + "%\t"
                     + String.format("%.1f", schemaDataCompCoverage) + "%\t"
                     + String.format("%.1f", schemaDataCompProjCoverage) + "%\t"
+                    + String.format("%.1f", schemaDataAttrConstCoverage) + "%\t"
                     + String.format("%.1f", schemaDataPredCoverage) + "%\t"
                     + String.format("%.1f", schemaDataPredProjCoverage) + "%\t"
                     + String.format("%.1f", schemaDataFullCoverage) + "%\t");
@@ -219,6 +233,7 @@ public class CrossValidate {
                     + schemaDataNoConstProj.size() + "\t"
                     + schemaDataNoComp.size() + "\t"
                     + schemaDataNoCompProj.size() + "\t"
+                    + schemaDataNoAttrConst.size() + "\t"
                     + schemaDataNoPred.size() + "\t"
                     + schemaDataNoPredProj.size() + "\t"
                     + schemaDataFull.size() + "\t\n");
@@ -227,6 +242,7 @@ public class CrossValidate {
                     + String.format("%.1f", bothConstProjCoverage) + "%\t"
                     + String.format("%.1f", bothCompCoverage) + "%\t"
                     + String.format("%.1f", bothCompProjCoverage) + "%\t"
+                    + String.format("%.1f", bothAttrConstCoverage) + "%\t"
                     + String.format("%.1f", bothPredCoverage) + "%\t"
                     + String.format("%.1f", bothPredProjCoverage) + "%\t"
                     + String.format("%.1f", bothFullCoverage) + "%\t");
@@ -235,6 +251,7 @@ public class CrossValidate {
                     + bothConstProjTmpl.size() + "\t"
                     + bothCompTmpl.size() + "\t"
                     + bothCompProjTmpl.size() + "\t"
+                    + bothAttrConstTmpl.size() + "\t"
                     + bothPredTmpl.size() + "\t"
                     + bothPredProjTmpl.size() + "\t"
                     + bothFullTmpl.size() + "\t\n");
@@ -301,15 +318,13 @@ public class CrossValidate {
 
     public static void main(String[] args) {
         if (args.length < 5) {
-            System.err.println("Usage: CrossValidate <db-name> <schema-filename-prefix> <max-join-level> <query-log-filename> <random seed>");
-            System.err.println("Example: CrossValidate mas data/mas/mas 1 data/mas/easy_queries_sql.txt 1234");
+            System.err.println("Usage: CoverageCV <db-name> <schema-filename-prefix> <max-join-level> <query-log-filename> <random seed>");
+            System.err.println("Example: CoverageCV mas data/mas/mas 1 data/mas/easy_queries_sql.txt 1234");
             System.exit(1);
         }
 
         String dbName = args[0];
         String prefix = args[1];
-        String relationsFile = prefix + ".relations.json";
-        String edgesFile = prefix + ".edges.json";
 
         Integer joinLevel = Integer.valueOf(args[2]);
         String queryLogFilename = args[3];
@@ -317,16 +332,16 @@ public class CrossValidate {
 
         RDBMS db = null;
         try {
-            db = new RDBMS(dbName);
+            db = new RDBMS(dbName, prefix);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        SchemaDataTemplateGenerator schemaDataGen = new SchemaDataTemplateGenerator(relationsFile, edgesFile, joinLevel, db);
+        SchemaDataTemplateGenerator schemaDataGen = new SchemaDataTemplateGenerator(db, joinLevel);
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
         int cvSplits = 4;
-        CrossValidate cv = new CrossValidate("templates.out", "errors.out");
+        CoverageCV cv = new CoverageCV("templates.out", "errors.out");
         List<Select> stmts = cv.parseStatements(queryLogFilename);
         cv.performCrossValidation(schemaDataGen, logGen, stmts, randomSeed, cvSplits);
         cv.finish();
