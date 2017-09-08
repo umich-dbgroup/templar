@@ -1,0 +1,4 @@
+This package contains the databases and benchmarks we used to evaluate our system, SQLizer.
+
+Since we obtained the MAS database and benchmarks from the authors of the NaLIR system (Fei Li & H. V. Jagadish), we are waiting for their permission to release that part of the dataset.
+
