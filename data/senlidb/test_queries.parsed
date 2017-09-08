@@ -1,0 +1,286 @@
+SELECT TOP 50000 * FROM posts WHERE posts.ViewCount > 10000 ORDER BY posts.ViewCount DESC
+SELECT avg(DATEDIFF(ww, CreationDate, GETDATE())) FROM Users
+SELECT * FROM posts
+SELECT TOP 20 * FROM users WHERE DisplayName LIKE '%Marinov%'
+SELECT * FROM badges
+SELECT * FROM Comments WHERE Text = '*hibernate*'
+SELECT DisplayName FROM Users WHERE Id < 100000
+SELECT score, parentid FROM posts WHERE score IS NOT NULL
+SELECT OwnerUserId, Id FROM Posts WHERE PostTypeId = 2 ORDER BY OwnerUserId
+SELECT Id, Name FROM PostTypes WHERE Name = 'Answer'
+SELECT p.Id, p.Body FROM Posts p INNER JOIN PostTags pt ON p.Id = pt.PostId WHERE pt.TagId = 17 AND p.Id < 1000
+SELECT count(*) FROM (SELECT u.id FROM users u JOIN posts p ON p.owneruserid = u.id WHERE lower(u.location) LIKE '%russia%' AND tags LIKE '%sql%' GROUP BY u.id HAVING min(p.creationdate) >= '2016-01-01') x
+SELECT TOP 20 ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE LOWER(Location) LIKE '%bulgar%' ORDER BY Reputation DESC
+SELECT TOP (5) * FROM posts AS p JOIN users u ON u.id = p.owneruserid
+SELECT TOP 50000 * FROM posts WHERE posts.ViewCount > 1000000 ORDER BY posts.ViewCount
+SELECT TOP 10 postid, count(id) FROM PostLinks GROUP BY postid ORDER BY count(id) DESC
+SELECT DisplayName FROM Users
+SELECT * FROM Tags WHERE TagName = 'java'
+SELECT TOP 10000 Posts.id, Posts.body FROM posts WHERE posts.ViewCount > 10000
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE (LOWER(Location) LIKE '%cracow%' OR UPPER(Location) LIKE '%CRACOW%' OR Location LIKE '%Cracow%' OR LOWER(Location) LIKE '%krakow%' OR UPPER(Location) LIKE '%KRAKOW%' OR Location LIKE '%Krakow%') ORDER BY Reputation DESC
+SELECT datediff(day, LastAccessDate, getdate()), Id FROM Users
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE LOWER(Location) LIKE '%Malaysia%' OR UPPER(Location) LIKE '%Malaysia%' OR Location LIKE '%Malaysia%' AND Reputation >= 1000 ORDER BY Reputation DESC
+SELECT TOP 10 * FROM PostFeedback WHERE PostId = 54136791344
+SELECT PostTypeID FROM Posts WHERE Id > 1
+SELECT TOP 2 * FROM Posts WHERE Body LIKE '%sarcastic%'
+SELECT creationdate, getdate(), getdate() - creationdate FROM users WHERE id = 2173917
+SELECT age, views FROM users WHERE views > 100
+SELECT TOP 10 * FROM Posts ORDER BY ViewCount DESC
+SELECT Score AS Posts, ViewCount FROM Posts m
+SELECT Id, score FROM Posts
+SELECT ParentId AS [Post Link], count(id) FROM posts WHERE posttypeid = 2 AND len(body) <= 200 AND (body LIKE '%scrum%') GROUP BY parentid HAVING count(id) > 1 ORDER BY count(id) DESC
+SELECT TOP 100 * FROM users WHERE 1 = 1 AND reputation > 100 AND Location LIKE '%Colorado' AND displayname LIKE '%z%'
+SELECT DisplayName, a.Id, Location, Reputation, count(b.userid) AS BadgesCount FROM Users a, badges b WHERE a.id = b.userid AND Reputation >= 550000 GROUP BY DisplayName, a.Id, Location, Reputation ORDER BY reputation DESC
+SELECT DISTINCT TOP 1000 title, body FROM posts p INNER JOIN posttags pt ON pt.postid = p.id INNER JOIN tags t ON pt.tagid = t.id WHERE t.tagname IN ('php', 'javascript', 'jquery')
+SELECT TOP 100 * FROM Users
+SELECT DATEDIFF(week, p.CreationDate, getdate()) FROM posts p
+SELECT id, posttypeid, creationdate, score, owneruserid FROM posts WHERE creationdate >= '01/01/2015' AND creationdate <= '06/30/2015' AND posttypeid = 2 AND owneruserid IN (3010968, 187606, 187690, 189205)
+SELECT * FROM posts WHERE owneruserid = 2173917 AND PostTypeId = 2 AND creationdate > '2015-01-01'
+SELECT * FROM Posts WHERE Title LIKE '%Django%'
+SELECT TOP 50000 Posts.FavoriteCount, Tags.TagName, Tags.Count FROM Posts JOIN PostTags ON PostTags.PostId = Posts.Id JOIN Tags ON Tags.Id = PostTags.TagId WHERE Posts.Tags LIKE '%c_%'
+SELECT * FROM POSTS WHERE SCORE > 150 ORDER BY Score
+SELECT Id, AccountId, DisplayName, Reputation, WebsiteUrl, Location FROM Users WHERE Id IN (6628959, 6690644, 6678804, 6700305, 6700283, 6609213) ORDER BY reputation DESC
+SELECT * FROM PostFeedback
+SELECT Id AS [Post Link] FROM posts WHERE Body LIKE '%http://giphy.com/gifs/%/fullscreen%' AND CreationDate >= '1 jan 2015'
+SELECT TOP 100 Title FROM Posts WHERE Title LIKE 'Problem%' OR Title LIKE 'problem%' ORDER BY LEN(Title)
+SELECT TOP 50000000000 id, displayname FROM users ORDER BY NEWID()
+SELECT * FROM TAGS WHERE TagName = 'c'
+SELECT * FROM ReviewRejectionReasons
+SELECT * FROM Posts
+SELECT count(*) FROM posts WHERE id = 1
+SELECT Id, Score FROM Posts WHERE ID IN (4, 6)
+SELECT * FROM PostFeedback WHERE Id = 4109
+SELECT Count(*) FROM Users
+SELECT count(1) FROM posts WHERE Tags = 'python'
+SELECT * FROM Users
+SELECT count(id) FROM posts WHERE owneruserid IN (SELECT owneruserid FROM (SELECT owneruserid, count(posts.id) AS postNum FROM posts WHERE CreationDate > '2010-12-31' AND CreationDate < '2014-01-01' GROUP BY owneruserid) AS newt WHERE newt.postNum > 200) AND PostTypeId = 1 AND CreationDate > '2010-12-31' AND CreationDate < '2014-01-01'
+SELECT * FROM users WHERE displayName LIKE 'Wiktor St%'
+SELECT Id, TagName, Count FROM Tags WHERE Count > 1000 ORDER BY Count DESC
+SELECT count(*) FROM posts WHERE tags LIKE '%serverless%'
+SELECT * FROM Users WHERE LOWER(DisplayName) LIKE '%artur%'
+SELECT * FROM Users WHERE LOWER(Location) LIKE 'Canada' AND Reputation >= 1000 ORDER BY Reputation DESC
+SELECT * FROM Users WHERE Location LIKE '%Iran%' AND Reputation > 2700
+SELECT DISTINCT Id, Tags, CreationDate FROM Posts WHERE Tags LIKE '%image-processing%'
+SELECT TOP 100 OwnerDisplayName, CreationDate FROM [Posts] ORDER BY CreationDate ASC
+SELECT TOP 1 * FROM Posts WHERE PostTypeID = 2
+SELECT TOP 20 Posts.Id, Users.Reputation, Tags.Count, Posts.ViewCount FROM Posts INNER JOIN Users ON Users.Id = Posts.OwnerUserId INNER JOIN PostTags ON PostTags.PostId = Posts.ParentId INNER JOIN Tags ON Tags.Id = PostTags.PostId
+SELECT Count(*) AS QuestionCount FROM Posts p JOIN PostTags t ON p.Id = t.TagId WHERE t.TagId = 1589 AND p.PostTypeId = 1
+SELECT * FROM comments WHERE userid = 2762884 ORDER BY creationdate DESC
+SELECT id, EmailHash, AboutMe FROM Users
+SELECT TOP 10 * FROM users
+SELECT * FROM Votes v, Posts p WHERE p.OwnerUserId = 507 AND '27 Jan 2011' = Convert(Date, v.CreationDate) AND v.PostId = p.Id
+SELECT Title, Body FROM Posts WHERE Body LIKE '%CJam%' ORDER BY Score
+SELECT Id AS [Post Link], Body, Score FROM Posts WHERE Len(Body) > 200
+SELECT * FROM Posts AS p WHERE p.id = 184618
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE LOWER(Location) LIKE '%india%' AND Reputation >= 1530 ORDER BY Reputation DESC
+SELECT * FROM posts
+SELECT COUNT(*) FROM Users
+SELECT TOP 100 sum(Score) AS TotalScore, sum(Score) * 1000 / count(Id) AS AvgScore, OwnerUserId AS UserName, count(Id) AS NumPosts FROM Posts GROUP BY OwnerUserId ORDER BY sum(Score) DESC
+SELECT TOP 50 p1.Score, p1.Title, p1.Body, p2.Body FROM [Posts] p1 JOIN [Posts] p2 ON (p1.AcceptedAnswerId = p2.Id) WHERE p1.Title LIKE '%VHDL%' ORDER BY p1.Score ASC
+SELECT * FROM Users WHERE DisplayName = 'CodeJack'
+SELECT TOP 10 * FROM Posts WHERE owneruserid = 2357543
+SELECT count(*) FROM posts WHERE posts.ViewCount > 15000 AND posts.ViewCount < 20000
+SELECT DisplayName FROM Users LEFT JOIN Posts ON Users.Id = Posts.OwnerUserId
+SELECT CASE WHEN (Title NOT LIKE '%magento%') THEN ('Magento ' + Title) ELSE Title END AS Title FROM posts WHERE title != ''
+SELECT * FROM Posts WHERE Tags LIKE '%powerbi%'
+SELECT tagname, count(*) c FROM posts p JOIN posttags pt ON pt.postid = p.id JOIN tags t ON pt.tagid = t.id WHERE tags LIKE '<sql>' AND p.creationdate >= '2014-11-01' AND p.creationdate <= '2014-12-01' GROUP BY tagname ORDER BY c DESC
+SELECT Tags FROM Posts WHERE Tags = 'sockets'
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE (LOWER(Location) LIKE '%kuala lumpur%' OR UPPER(Location) LIKE '%KUALA LUMPUR%' OR Location LIKE '%Kuala Lumpur%' OR LOWER(Location) LIKE '%kl%' OR UPPER(Location) LIKE '%KL%') AND Reputation >= 500 ORDER BY Reputation DESC
+SELECT TOP 50 * FROM Posts
+SELECT count(*), owneruserid FROM posts WHERE score > 1000 GROUP BY owneruserid
+SELECT count(*) FROM Tags
+SELECT TOP 100 p.Title, p.Tags, v.BountyAmount, v.CreationDate FROM posts p INNER JOIN votes v ON p.id = v.postid
+SELECT * FROM users
+SELECT DISTINCT PostId, TagName FROM PostTags pt, tags t WHERE pt.TagId = t.ID AND PostId IN (SELECT TOP 50 PostId FROM PostTags pt INNER JOIN tags t ON pt.TagId = t.ID WHERE t.TagName IN ('r', 'python'))
+SELECT * FROM Tags WHERE TagName = 'isabelle'
+SELECT * FROM Users WHERE LOWER(Location) LIKE LOWER('%Yerevan%') AND DisplayName = 'Babl' ORDER BY Reputation DESC
+SELECT TOP 200 id AS [Post Link], body, FavoriteCount, score, creationdate, tags FROM Posts WHERE tags LIKE '%<android>%' ORDER BY FavoriteCount DESC
+SELECT DISTINCT (tags) FROM Posts ORDER BY tags
+SELECT Count(*) FROM Posts WHERE OwnerUserId = 3052665
+SELECT * FROM Posts WHERE Id < 1000
+SELECT TOP 100 id, score, viewcount, commentcount FROM posts WHERE posttypeid = 2
+SELECT * FROM posts WHERE posttypeid = 3
+SELECT count(*) FROM posts WHERE posts.ViewCount > 60000
+SELECT * FROM badges WHERE name LIKE ('A%')
+SELECT DISTINCT u.Id, Reputation, DisplayName, WebsiteUrl, AboutMe, Views FROM Users u INNER JOIN Comments c ON c.UserId = u.Id WHERE u.Location LIKE '%rancisco%' AND c.Text LIKE '%Node.js%'
+SELECT TOP 50 * FROM Posts WHERE Tags LIKE '%javascript%'
+SELECT COUNT(Location), Location FROM Users GROUP BY Location ORDER BY COUNT(Location) DESC
+SELECT id FROM votetypes
+SELECT * FROM votetypes WHERE id < 10
+SELECT TOP 10 Score * 1.0 / ViewCount AS Ratio, Title FROM Posts ORDER BY Score * 1.0 / ViewCount DESC
+SELECT * FROM posts WHERE score BETWEEN 10 AND 20
+SELECT TOP 10 CreationDate FROM Users ORDER BY CreationDate ASC
+SELECT TOP 20 * FROM Posts WHERE Tags LIKE '%<android>%' AND PostTypeId = 1 ORDER BY Score DESC
+SELECT id, tags FROM posts WHERE posttypeid = 1 AND Tags LIKE '%c_>%' AND id < 28922954
+SELECT DISTINCT u.Id, Reputation, DisplayName, WebsiteUrl, AboutMe, EmailHash, Views FROM Users u INNER JOIN Comments c ON c.UserId = u.Id WHERE u.Location LIKE '%israel%'
+SELECT Count(*) AS QuestionCount FROM Posts p JOIN PostTags t ON p.Id = t.TagId WHERE t.TagId = 1589 AND p.PostTypeId = 1
+SELECT count(*) FROM users WHERE (UpVotes > 10)
+SELECT Id FROM Posts WHERE tags = 'salt-stack'
+SELECT Age, Sum(UpVotes) FROM Users WHERE Age BETWEEN 30 AND 33 GROUP BY Age
+SELECT Id, Tags FROM Posts WHERE Posts.Tags NOT LIKE '%python%' AND Posts.OwnerUserId = 1663352
+SELECT sum(viewcount) FROM posts WHERE id IN (SELECT parentid FROM posts WHERE owneruserid = 2173917 AND PostTypeId = 2 AND creationdate > '2015-01-05' AND creationdate <= '2015-01-11')
+SELECT Reputation FROM Users GROUP BY Reputation ORDER BY Reputation
+SELECT * FROM Comments WHERE PostId IN (SELECT pt.PostId FROM PostTags pt WHERE TagId = 17)
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE (LOWER(Location) LIKE '%kiev%' OR UPPER(Location) LIKE '%KIEV%' OR Location LIKE '%Kiev%' OR LOWER(Location) LIKE '%kiev%' OR UPPER(Location) LIKE '%KIEV%' OR Location LIKE '%Kiev%') AND Reputation >= 1000 ORDER BY Reputation DESC
+SELECT TOP 100 * FROM Posts
+SELECT id, parentid FROM posts ORDER BY id ASC
+SELECT DisplayName, Id, Location, Reputation FROM Users ORDER BY reputation DESC
+SELECT Age, COUNT(Age) AS count_per_age FROM Users GROUP BY Age
+SELECT TOP 10 Id, Name FROM PostTypes
+SELECT * FROM comments WHERE text LIKE '%brazilianldsjag.com%'
+SELECT Score FROM Posts
+SELECT * FROM Users WHERE displayname LIKE '%Bhargav%'
+SELECT TOP 10 * FROM Votes
+SELECT COUNT(*) FROM Users
+SELECT Count(*) FROM Users WHERE CreationDate <= Convert(datetime, '2016-12-16')
+SELECT * FROM posts WHERE Title LIKE 'How%'
+SELECT Id AS [Post Link] FROM Posts WHERE Body LIKE 'Try this%'
+SELECT [PostId] AS [Post Link], s.Id AS [Suggested Edit Link] FROM SuggestedEdits s
+SELECT Title, Id, Score, ViewCount FROM Posts WHERE Title LIKE '%jest%'
+SELECT TOP 20 * FROM Votes WHERE UserId IS NOT NULL AND VoteTypeId NOT IN (5, 8)
+SELECT * FROM Users WHERE reputation > 10000
+SELECT count(*) FROM Posts WHERE AcceptedAnswerId IS NOT NULL
+SELECT us.* FROM Users us WHERE lower(location) LIKE '%hyderabad%' AND lower(AboutMe) LIKE '%java%' ORDER BY Reputation DESC
+SELECT TOP 11 * FROM users
+SELECT avg(score) FROM posts WHERE posttypeid = 2 AND owneruserid = 184706
+SELECT datediff(w, deletiondate, getdate()) AS [deletion], count(*) AS [delete count] FROM postswithdeleted WHERE deletiondate IS NOT NULL GROUP BY datediff(w, deletiondate, getdate()) ORDER BY 1
+SELECT text, postid AS [Post Link] FROM Comments, Posts WHERE comments.postid = posts.id AND comments.userid = posts.ownerUserId AND text LIKE '%I don%agree' ORDER BY comments.creationdate DESC
+SELECT name FROM badges
+SELECT count(*) FROM Posts GROUP BY OwnerUserId HAVING count(OwnerUserId) < 10
+SELECT Id, CreationDate, LastAccessDate, datediff(day, CreationDate, LastAccessDate) FROM Users
+SELECT TOP 1 displayname, count(*) FROM users GROUP BY displayname
+SELECT * FROM Users WHERE DisplayName = 'Alex A.'
+SELECT * FROM PostLinks
+SELECT TOP 10 ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation, Location, age FROM Users WHERE LOWER(Location) LIKE '%iran%' OR UPPER(Location) LIKE '%ir' ORDER BY Reputation DESC
+SELECT TOP 50 Title, Body FROM Posts ORDER BY CreationDate
+SELECT EmailHash FROM Users WHERE Id = 2899618
+SELECT SourceTagName, TargetTagName FROM TagSynonyms
+SELECT TOP 10 * FROM posts WHERE body LIKE '%CDC%'
+SELECT count(u.Id) AS "total users", sum(u.UpVotes) AS "total upvotes", sum(u.DownVotes) AS "total downvotes" FROM Users u
+SELECT * FROM votes
+SELECT TagId, Tags FROM Posts FULL JOIN PostTags ON Posts.Id = PostTags.PostId
+SELECT * FROM Users WHERE reputation > 200
+SELECT * FROM Posts WHERE (Tags LIKE '%compiler-errors%' OR Tags LIKE '%compiler-warnings%') AND Body LIKE '%explain%'
+SELECT count(*) FROM Posts WHERE Tags LIKE 'iot'
+SELECT TOP 10 DisplayName, Reputation FROM Users WHERE Reputation > 100000
+SELECT TOP (1000) * FROM Posts
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE LOWER(Location) LIKE '%turkey%' OR UPPER(Location) LIKE '%TURKEY%' OR Location LIKE '%Turkey%' AND Reputation >= 1000 ORDER BY Reputation DESC
+SELECT count(*) FROM posts WHERE body = 'test' AND id > 1
+SELECT * FROM sys.databases
+SELECT TOP 100 Id, DisplayName, Reputation, Location, Views, UpVotes, DownVotes, Age FROM Users WHERE Location LIKE '%Sofia%' OR Location LIKE '%Plovdiv%' OR Location LIKE '%Varna%' OR Location LIKE '%Bulgaria%' ORDER BY Reputation DESC
+SELECT count(*) FROM POSTS
+SELECT COUNT(*) FROM posts WHERE Tags LIKE '%<compiler-errors>%'
+SELECT pt.TagId, COUNT(*) AS total FROM PostTags pt INNER JOIN Tags t ON t.Id = pt.TagId GROUP BY pt.TagId ORDER BY total
+SELECT * FROM users WHERE Reputation = 2059
+SELECT Location FROM Users WHERE Location LIKE '%chennai%' GROUP BY Location
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation, Location FROM Users WHERE Location = 'Kerala' AND Reputation > 1000
+SELECT TOP 10 * FROM posts WHERE Id = 191316
+SELECT COUNT(DISTINCT (TagName)) FROM Tags
+SELECT AccountId, Age, Location FROM Users WHERE Age = 28 AND Location = 'Cracow'
+SELECT * FROM Tags t WHERE t.Count > 1000
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Reputation FROM Users WHERE LOWER(Location) LIKE '%jaipur%' AND Reputation >= 1000 ORDER BY Reputation DESC
+SELECT Text AS Inhalt FROM Comments WHERE Comments.Id = 1000
+SELECT COUNT(DISTINCT (Id)) FROM Tags
+SELECT DISTINCT owneruserid, ownerdisplayname FROM Posts WHERE owneruserid = 1
+SELECT * FROM Comments WHERE Text LIKE '% new File("resources/images/", image)%'
+SELECT * FROM posts WHERE posttypeid = 1 AND title LIKE '%female%'
+SELECT TOP (100) * FROM posts
+SELECT TOP (20) * FROM POSTS
+SELECT p.id AS postId, p.ownerdisplayname, pt.name AS postType, vt.name AS voteType FROM posts p JOIN posttypes pt ON pt.id = p.posttypeid JOIN votes v ON v.postid = p.id JOIN votetypes vt ON vt.id = v.votetypeid WHERE p.id = 14628012 OR p.parentid = 14628012
+SELECT TOP 100 * FROM posts WHERE owneruserid IN (5468160, 4934748)
+SELECT TOP 100 Tags, AVG(CommentCount) AS AvgCom FROM Posts GROUP BY Tags ORDER BY AvgCom DESC
+SELECT TOP 10000 Posts.id, Posts.body FROM posts WHERE posts.ViewCount > 10000
+SELECT TOP 10 Body FROM Posts WHERE Tags LIKE '%salt%' ORDER BY Score DESC
+SELECT Title, Score, ViewCount FROM Posts ORDER BY Score DESC, ViewCount ASC
+SELECT Posts.Title AS [Post link], ViewCount, tags FROM Posts WHERE Title LIKE '%Exception%' AND ViewCount > 40000 ORDER BY ViewCount DESC
+SELECT id, tagname FROM tags
+SELECT TOP 50000 * FROM posts WHERE posts.ViewCount < 10343 AND posts.ViewCount > 0 ORDER BY posts.ViewCount DESC
+SELECT CreationDate, ViewCount, Tags, FavoriteCount FROM Posts
+SELECT Id FROM Badges
+SELECT TOP 10000 Posts.id, Posts.body FROM posts WHERE posts.ViewCount > 10000
+SELECT AVG(Score) FROM Posts WHERE Id > 200 AND Id < 300
+SELECT CreationDate FROM Users WHERE Reputation < 101 ORDER BY CreationDate ASC
+SELECT TargetTagName FROM TagSynonyms WHERE TargetTagName LIKE '%java%'
+SELECT Date, Count(Id) FROM Badges WHERE Name = 'Constituent' GROUP BY (DatePart(Hour, Date) % 4), Date ORDER BY Date
+SELECT DisplayName, Id, Location, Reputation FROM Users ORDER BY Reputation DESC
+SELECT SUM(CommentCount) FROM Posts WHERE ClosedDate > '1.1.2013' AND LastActivityDate < '1.1.2014'
+SELECT score, count(score) FROM posts WHERE score > 10 AND score < 100 GROUP BY score ORDER BY score
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Users'
+SELECT * FROM [Users] WHERE DisplayName LIKE '%Undhad%'
+SELECT t.TagName, t.Count, e.Body Excerpt FROM Tags t LEFT JOIN Posts e ON t.ExcerptPostId = e.Id WHERE t.Count > 1000
+SELECT TOP 1 * FROM POSTS
+SELECT TOP 10000 Posts.id, Posts.body FROM posts WHERE posts.ViewCount > 10000
+SELECT * FROM Posts WHERE Tags = 'facebook-analytics'
+SELECT * FROM Comments WHERE PostId IN (SELECT Id FROM Posts WHERE YEAR(CreationDate) > 2014)
+SELECT * FROM Posts ORDER BY Posts.Id
+SELECT * FROM Posts
+SELECT id, reputation FROM users WHERE reputation > 100000
+SELECT * FROM Users WHERE Location LIKE '%atlanta%' ORDER BY Reputation DESC
+SELECT * FROM Users WHERE ISNUMERIC(DisplayName) = 1
+SELECT count(id) FROM users WHERE creationDate >= '2014-01-01' AND creationDate <= '2014-12-31'
+SELECT Body FROM Posts WHERE Body LIKE '%doi.org%'
+SELECT * FROM COMMENTS
+SELECT TOP 1 * FROM Tags WHERE count > 100 ORDER BY newid()
+SELECT TOP 10 * FROM Comments ORDER BY Score DESC
+SELECT * FROM CloseAsOffTopicReasonTypes
+SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], Id AS [User Link], Location, Reputation FROM Users WHERE Reputation > 100000 ORDER BY Reputation DESC
+WITH USER_BY_TAG AS (SELECT ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS [_], u.Id AS [User Link], u.Reputation, TagName, (SELECT CONCAT(Tagname, ' ')) Tagz FROM Tags t INNER JOIN PostTags pt ON pt.TagId = t.id INNER JOIN Posts p ON p.ParentId = pt.PostId INNER JOIN Votes v ON v.PostId = p.Id AND VoteTypeId = 2 INNER JOIN Users u ON u.Id = p.OwnerUserId WHERE LOWER(Location) LIKE '%moscow%' AND TagName IN ('c++', 'stl', 'boost', 'opengl') GROUP BY u.id, TagName, u.Reputation) SELECT * FROM USER_BY_TAG ORDER BY Reputation DESC
+SELECT Id, TagName FROM Tags
+SELECT * FROM Users WHERE AboutMe IS NOT NULL AND AboutMe != ''
+SELECT * FROM Posts WHERE Title LIKE '%Weka%' OR Body LIKE '%Weka%' AND Score > 1
+SELECT * FROM comments WHERE userid = 5752362 ORDER BY creationDate DESC
+SELECT Count(*) AS QuestionCount FROM Posts p JOIN PostTags t ON p.Id = t.TagId WHERE p.PostTypeId != 2
+SELECT TOP 50000 * FROM posts WHERE posts.ViewCount > 1000000 ORDER BY posts.ViewCount
+SELECT TOP (20) DisplayName FROM Users
+SELECT TOP 50 Id, Tags, Body, ViewCount, Score, CreationDate FROM Posts WHERE Tags IS NOT NULL AND Year(CreationDate) = 2008 AND Month(CreationDate) >= 7 AND Month(CreationDate) <= 12
+SELECT * FROM POSTS WHERE TAGS = 'awk' AND answercount > 10
+SELECT Id AS [Post Link], Body, Score FROM Posts WHERE Title LIKE '%get started%' AND ParentId IS NULL
+SELECT SUM(Parent.ViewCount) FROM POSTS AS Parent, POSTS AS P WHERE P.PostTypeId = 1 AND P.OwnerUserId = '22656' AND P.ParentId = Parent.Id
+SELECT CreationDate FROM Users WHERE Id = -1
+SELECT TOP 100 * FROM posts p WHERE 1 = 1 AND p.posttypeid = 2 AND p.owneruserid = 1980228 AND p.score > 0
+SELECT * FROM Posts WHERE Posts.Tags LIKE '%config%'
+SELECT * FROM Posts WHERE Posts.Tags LIKE '<sql>' AND Posts.AcceptedAnswerId IS NULL AND Posts.PostTypeId = 1 AND Posts.CreationDate BETWEEN '2013-01-01' AND '2013-12-31'
+SELECT * FROM Users ORDER BY LEN(DisplayName) DESC
+SELECT Users.DisplayName, Posts.Title FROM Users, Posts WHERE Posts.OwnerUserId = Users.Id AND Posts.ViewCount = (SELECT MAX(ViewCount) FROM Posts)
+SELECT id, body AS content, title, CreationDate, ClosedDate, Score, LastActivityDate, ViewCount AS no_of_views, tags FROM posts WHERE tags LIKE '%paypal%' AND AnswerCount = 0 ORDER BY id DESC
+SELECT * FROM comments
+SELECT Id, Score, Body FROM Posts WHERE ViewCount > 10
+SELECT Id, DisplayName, location, AccountID, WebsiteUrl FROM Users WHERE location IN (SELECT DISTINCT (location) FROM Users WHERE location LIKE '%switzer%')
+SELECT OwnerUserId, sum(score) FROM posts WHERE score > 1000 GROUP BY OwnerUserId
+SELECT * FROM Tags WHERE tagname LIKE '%sql%' ORDER BY tagname DESC
+SELECT id, postid, votetypeid, userid, creationdate, bountyamount FROM votes WHERE postid IN (21984272, 21948145) ORDER BY userid, creationdate, votetypeid
+SELECT Id AS [Post Link], Body, Score FROM Posts WHERE Tags LIKE '%stakeholder%'
+SELECT Score, CreationDate, Tags FROM Posts WHERE Score > 10 OR Tags LIKE 'linux'
+SELECT Id, Reputation, DisplayName FROM Users WHERE Reputation > 10000 ORDER BY Reputation
+SELECT TOP 25 Posts.Id AS [Post Link], Posts.OwnerUserId AS [User Link], Score FROM Posts WHERE Score < 0 AND PostTypeId = 2 ORDER BY Score ASC
+SELECT TagName, Count FROM Tags WHERE TagName = 'angularjs' OR TagName = 'reactjs'
+SELECT TOP 100 Id, DisplayName, UpVotes + DownVotes AS Votes, UpVotes, DownVotes FROM Users ORDER BY Votes DESC
+SELECT TOP 10 * FROM PostsWithDeleted WHERE DeletionDate IS NOT NULL AND OwnerUserId = 130164
+SELECT TOP 20 * FROM posts
+SELECT DisplayName, Reputation FROM Users WHERE Reputation = (SELECT Max(Reputation) FROM Users)
+SELECT * FROM Posts WHERE lower(tags) LIKE '%predix%' OR lower(title) LIKE '%predix%'
+SELECT Id, Reputation, DisplayName, Location FROM Users WHERE Location LIKE '%Pakistan%' OR Location LIKE '%pakistan%' ORDER BY Reputation DESC
+SELECT * FROM Posts WHERE Id = 4971636
+SELECT count(*) FROM posts WHERE title LIKE '%semarchy%'
+SELECT Posts.Id, Posts.Title, Posts.Tags FROM Posts WHERE Posts.Tags LIKE '%bigdata%'
+SELECT Id, TagName, Count FROM Tags
+SELECT Id, Reputation, Location FROM Users WHERE Views > 500
+SELECT TOP (10) * FROM users ORDER BY reputation DESC
+SELECT * FROM PostHistory ph WHERE (ph.PostHistoryTypeId = 4 OR ph.PostHistoryTypeId = 5) AND ph.PostId = 1
+SELECT DISTINCT u.Id, u.Location, Reputation, DisplayName, WebsiteUrl, AboutMe, Views FROM Users u INNER JOIN Comments c ON c.UserId = u.Id WHERE u.Location LIKE '%ndia%' AND u.WebsiteUrl LIKE '%linkedin%'
+SELECT * FROM PostTags
+SELECT CommentCount, ClosedDate FROM Posts WHERE ClosedDate > 2013 - 01 - 01
+SELECT Id, DisplayName FROM Users
+SELECT TOP 250 Id, PostTypeId, Title, Tags, Score, AnswerCount, FavoriteCount FROM Posts AS [Post Link] WHERE Title IS NOT NULL AND Tags = '<swift>'
+SELECT Score, Text, PostId AS [Post Link] FROM Comments WHERE UserId = 241153 ORDER BY Score DESC, Text ASC
+SELECT count(*), posts.ViewCount FROM posts GROUP BY posts.ViewCount HAVING count(*) > 1
+SELECT TOP 20 ViewCount, Tags, Tags.Id, Tags.TagName FROM Posts INNER JOIN PostTags ON PostTags.PostId = Posts.ParentId INNER JOIN Tags ON Tags.Id = PostTags.PostId WHERE ViewCount > 0
+SELECT TOP 30 * FROM posts WHERE OwnerUserId IN (SELECT TOP 100 ID FROM users WHERE Reputation = 1) AND PostTypeId = 2 ORDER BY CreationDate DESC
+SELECT TOP 1000 p.CreationDate, p.Body, p.Title, p.ClosedDate FROM Posts p WHERE p.Title IS NOT NULL ORDER BY p.CreationDate DESC
+SELECT pl.RelatedPostId FROM Posts p INNER JOIN PostLinks pl ON p.Id = pl.postId WHERE postId = 53734
+SELECT DisplayName FROM users WHERE DisplayName LIKE 'A'
+SELECT Body FROM Posts WHERE id = '2097152'
+SELECT u.Id AS UserID, count(*) AS Posts FROM Users u LEFT JOIN Posts p ON u.Id = p.OwnerUserId GROUP BY u.Id
+SELECT TOP 10 postid, creationdate, owneruserid, comment FROM suggestededits
+SELECT * FROM tags WHERE tagname = 'coldfusion'
+SELECT Title, Tags FROM Posts
