@@ -510,7 +510,6 @@
             "LinkTypeId": {
                 "name": "LinkTypeId",
                 "type": "int",
-                "fk": true,
                 "entropy": 0
             }
         }
