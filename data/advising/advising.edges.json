@@ -120,18 +120,6 @@
         "primaryRelation": "semester"
     },
     {
-        "foreignAttribute": "campus_job_id",
-        "foreignRelation": "ta",
-        "primaryAttribute": "job_id",
-        "primaryRelation": "jobs"
-    },
-    {
-        "foreignAttribute": "student_id",
-        "foreignRelation": "ta",
-        "primaryAttribute": "student_id",
-        "primaryRelation": "student"
-    },
-    {
         "foreignAttribute": "offering_id",
         "foreignRelation": "student_record",
         "primaryAttribute": "offering_id",
