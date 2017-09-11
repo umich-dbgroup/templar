@@ -1,0 +1,344 @@
+[
+    {
+        "foreignAttribute": "PostTypeId",
+        "foreignRelation": "Posts",
+        "primaryAttribute": "Id",
+        "primaryRelation": "PostTypes"
+    },
+    {
+        "foreignAttribute": "AcceptedAnswerId",
+        "foreignRelation": "Posts",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "ParentId",
+        "foreignRelation": "Posts",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "OwnerUserId",
+        "foreignRelation": "Posts",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "LastEditorUserId",
+        "foreignRelation": "Posts",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "Comments",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "UserId",
+        "foreignRelation": "Comments",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "UserId",
+        "foreignRelation": "Badges",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "CreationModeratorId",
+        "foreignRelation": "CloseAsOffTopicReasonTypes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "ApprovalModeratorId",
+        "foreignRelation": "CloseAsOffTopicReasonTypes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "DeactivationModeratorId",
+        "foreignRelation": "CloseAsOffTopicReasonTypes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "FlagTypeId",
+        "foreignRelation": "PendingFlags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "FlagTypes"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PendingFlags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "CloseReasonTypeId",
+        "foreignRelation": "PendingFlags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "CloseReasonTypes"
+    },
+    {
+        "foreignAttribute": "CloseAsOffTopicReasonTypeId",
+        "foreignRelation": "PendingFlags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "CloseAsOffTopicReasonTypes"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PostFeedback",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "VoteTypeId",
+        "foreignRelation": "PostFeedback",
+        "primaryAttribute": "Id",
+        "primaryRelation": "VoteTypes"
+    },
+    {
+        "foreignAttribute": "PostHistoryTypeId",
+        "foreignRelation": "PostHistory",
+        "primaryAttribute": "Id",
+        "primaryRelation": "PostHistoryTypes"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PostHistory",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "UserId",
+        "foreignRelation": "PostHistory",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PostLinks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "RelatedPostId",
+        "foreignRelation": "PostLinks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PostNotices",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "PostNoticeTypeId",
+        "foreignRelation": "PostNotices",
+        "primaryAttribute": "Id",
+        "primaryRelation": "PostNoticeTypes"
+    },
+    {
+        "foreignAttribute": "OwnerUserId",
+        "foreignRelation": "PostNotices",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "DeletionUserId",
+        "foreignRelation": "PostNotices",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "PostTypeId",
+        "foreignRelation": "PostsWithDeleted",
+        "primaryAttribute": "Id",
+        "primaryRelation": "PostTypes"
+    },
+    {
+        "foreignAttribute": "AcceptedAnswerId",
+        "foreignRelation": "PostsWithDeleted",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "ParentId",
+        "foreignRelation": "PostsWithDeleted",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "OwnerUserId",
+        "foreignRelation": "PostsWithDeleted",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "LastEditorUserId",
+        "foreignRelation": "PostsWithDeleted",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "PostTags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "TagId",
+        "foreignRelation": "PostTags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Tags"
+    },
+    {
+        "foreignAttribute": "PostTypeId",
+        "foreignRelation": "ReviewRejectionReasons",
+        "primaryAttribute": "Id",
+        "primaryRelation": "PostTypes"
+    },
+    {
+        "foreignAttribute": "ReviewTaskId",
+        "foreignRelation": "ReviewTaskResults",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewTasks"
+    },
+    {
+        "foreignAttribute": "ReviewTaskResultTypeId",
+        "foreignRelation": "ReviewTaskResults",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewTaskResultTypes"
+    },
+    {
+        "foreignAttribute": "RejectionReasonId",
+        "foreignRelation": "ReviewTaskResults",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewRejectionReasons"
+    },
+    {
+        "foreignAttribute": "ReviewTaskTypeId",
+        "foreignRelation": "ReviewTasks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewTaskTypes"
+    },
+    {
+        "foreignAttribute": "ReviewTaskStateId",
+        "foreignRelation": "ReviewTasks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewTaskStates"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "ReviewTasks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "SuggestedEditId",
+        "foreignRelation": "ReviewTasks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "SuggestedEdits"
+    },
+    {
+        "foreignAttribute": "CompletedByReviewTaskId",
+        "foreignRelation": "ReviewTasks",
+        "primaryAttribute": "Id",
+        "primaryRelation": "ReviewTaskResults"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "SuggestedEdits",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "OwnerUserId",
+        "foreignRelation": "SuggestedEdits",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "SuggestedEditId",
+        "foreignRelation": "SuggestedEditVotes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "SuggestedEdits"
+    },
+    {
+        "foreignAttribute": "UserId",
+        "foreignRelation": "SuggestedEditVotes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "VoteTypeId",
+        "foreignRelation": "SuggestedEditVotes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "VoteTypes"
+    },
+    {
+        "foreignAttribute": "TargetUserId",
+        "foreignRelation": "SuggestedEditVotes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "ExcerptPostId",
+        "foreignRelation": "Tags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "WikiPostId",
+        "foreignRelation": "Tags",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "SourceTagName",
+        "foreignRelation": "TagSynonyms",
+        "primaryAttribute": "TagName",
+        "primaryRelation": "Tags"
+    },
+    {
+        "foreignAttribute": "TargetTagName",
+        "foreignRelation": "TagSynonyms",
+        "primaryAttribute": "TagName",
+        "primaryRelation": "Tags"
+    },
+    {
+        "foreignAttribute": "OwnerUserId",
+        "foreignRelation": "TagSynonyms",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "ApprovedByUserId",
+        "foreignRelation": "TagSynonyms",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+    {
+        "foreignAttribute": "PostId",
+        "foreignRelation": "Votes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Posts"
+    },
+    {
+        "foreignAttribute": "VoteTypeId",
+        "foreignRelation": "Votes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "VoteTypes"
+    },
+    {
+        "foreignAttribute": "UserId",
+        "foreignRelation": "Votes",
+        "primaryAttribute": "Id",
+        "primaryRelation": "Users"
+    },
+]
