@@ -9,18 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class RDBMS
-{
+public class RDBMS {
 	public SchemaGraph schemaGraph; 
-	public Connection conn; 
+	public Connection conn;
 
-	public ArrayList<String> history = new ArrayList<String>(); 
+	public ArrayList<String> history = new ArrayList<String>();
 
-	public RDBMS(String database_name) throws Exception
+	public RDBMS(String database_name, String schemaGraphPrefix) throws Exception
 	{
 		String driver = "com.mysql.jdbc.Driver"; 
 		String db_url = "jdbc:mysql://127.0.0.1:3306/";
@@ -35,8 +32,7 @@ public class RDBMS
 		// cjbaik: don't want to load history from database until I find out why
 		// loadHistory(database_name);
 
-        // cjbaik: don't need to load SchemaGraph at the moment either.
-		// schemaGraph = new SchemaGraph(database_name);
+		schemaGraph = new SchemaGraph(schemaGraphPrefix);
 	}
 
 	public List<Integer> getDistinctAttrCounts(Relation r, Attribute attr) {
@@ -116,8 +112,9 @@ public class RDBMS
 	
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
-		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
-		
+//		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
+		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int");
+
 		for(int i = 0; i < attributes.size(); i++)
 		{
 			MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label); 
@@ -158,7 +155,8 @@ public class RDBMS
 
 	public boolean isNumExist(String operator, ParseTreeNode treeNode) throws Exception 
 	{
-		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("number"); 
+//		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("number");
+		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("int");
 		for(int i = 0; i < textAtts.size(); i++)
 		{
 			MappedSchemaElement textAtt = textAtts.get(i).isNumExist(treeNode.label, operator, conn); 

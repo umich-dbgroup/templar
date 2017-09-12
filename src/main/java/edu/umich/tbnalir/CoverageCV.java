@@ -5,64 +5,18 @@ import edu.umich.tbnalir.rdbms.RDBMS;
 import edu.umich.tbnalir.template.SchemaDataTemplateGenerator;
 import edu.umich.tbnalir.template.Template;
 import edu.umich.tbnalir.template.TemplateRoot;
-import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.statement.Statement;
+import edu.umich.tbnalir.util.CoverageHelper;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.statement.select.Select;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 /**
  * Created by cjbaik on 8/31/17.
  */
-public class CoverageCV {
-    PrintWriter outWriter;
-    PrintWriter errWriter;
-
+public class CoverageCV extends CoverageHelper {
     public CoverageCV(String outFileName, String errFileName) {
-        try {
-            this.outWriter = new PrintWriter(new FileWriter(outFileName));
-            this.errWriter = new PrintWriter(new FileWriter(errFileName));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void finish() {
-        this.outWriter.close();
-        this.errWriter.close();
-    }
-
-    public float calculateCoveragePercent(Collection<Template> generatedTemplates, Collection<Select> testStatements,
-                                   Function<Select, Template> templateFn, boolean writeResults) {
-        float covered = 0;
-
-        for (Select select : testStatements) {
-            Template testTemplate = templateFn.apply(select);
-            if (generatedTemplates.contains(testTemplate)) {
-                covered++;
-            } else {
-                if (writeResults) {
-                    this.errWriter.println(testTemplate);
-                }
-            }
-        }
-
-        if (writeResults) {
-            generatedTemplates.stream().sorted((a, b) -> a.toString().compareTo(b.toString()))
-                    .forEach(this.outWriter::println);
-        }
-
-        return covered / testStatements.size() * 100;
+        super(outFileName, errFileName);
     }
 
     public void performCrossValidation(SchemaDataTemplateGenerator schemaDataGen, LogTemplateGenerator logGen,
@@ -259,63 +213,6 @@ public class CoverageCV {
     }
 
 
-    private Runnable getParserRunnable(ConcurrentLinkedQueue<Select> stmts, String sql) {
-        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
-        char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
-        for (char token : tokensToReplace) {
-            sql = sql.replace(token, '_');
-        }
-        final String finalSql = sql.toLowerCase();
-
-        return () -> {
-            Statement stmt;
-            try {
-                stmt = CCJSqlParserUtil.parse(finalSql);
-            } catch (JSQLParserException e) {
-                if (Log.DEBUG) e.printStackTrace();
-                return;
-            } catch (Throwable t) {
-                t.printStackTrace();
-                return;
-            }
-            if (stmt == null || !(stmt instanceof Select)) return; // Case that it's not a select statement
-            stmts.add((Select) stmt);
-        };
-    }
-
-    public List<Select> parseStatements(String queryLogFilename) {
-        try {
-            List<String> sqls = Files.readAllLines(Paths.get(queryLogFilename));
-            ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-            ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
-            for (String sql : sqls) {
-                pool.submit(this.getParserRunnable(stmts, sql));
-            }
-
-            pool.shutdown();
-
-            try {
-                if (!pool.awaitTermination(10, TimeUnit.MINUTES)) {
-                    pool.shutdownNow();
-                    if (!pool.awaitTermination(60, TimeUnit.SECONDS)) {
-                        Log.error("Pool did not terminate");
-                    }
-                }
-            } catch (InterruptedException e) {
-                pool.shutdownNow();
-                Thread.currentThread().interrupt();
-            }
-
-            Log.info("===== Parsing Results =====");
-            Log.info("Total Queries: " + sqls.size());
-            Log.info("Correctly Parsed: " + stmts.size() + "/" + sqls.size() + "\n");
-
-            return new ArrayList<>(stmts);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static void main(String[] args) {
         if (args.length < 5) {
             System.err.println("Usage: CoverageCV <db-name> <schema-filename-prefix> <max-join-level> <query-log-filename> <random seed>");
@@ -342,7 +239,7 @@ public class CoverageCV {
 
         int cvSplits = 4;
         CoverageCV cv = new CoverageCV("templates.out", "errors.out");
-        List<Select> stmts = cv.parseStatements(queryLogFilename);
+        List<Select> stmts = Utils.parseStatements(queryLogFilename);
         cv.performCrossValidation(schemaDataGen, logGen, stmts, randomSeed, cvSplits);
         cv.finish();
     }

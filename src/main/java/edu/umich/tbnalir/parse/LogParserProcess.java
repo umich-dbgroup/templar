@@ -8,31 +8,115 @@ import net.sf.jsqlparser.statement.Statement;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * Created by cjbaik on 7/5/17.
  */
 public class LogParserProcess {
+    // State
+    public static int nextLineToRead = 0;
+    public static int lineNumber = 0;
+
+    // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
+    public static char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac', '\ufffd'};
+
+    // Statistics
+    public static int totalSQL = 0;
+    public static int lastUpdate = 0;
+
+    public static void parseSQL(String sql, PrintWriter linePtrWriter, PrintWriter sqlWriter) {
+        totalSQL++;
+        if (totalSQL >= (lastUpdate + 20000)) {
+            Log.info("Parsed " + totalSQL + " statements...");
+            lastUpdate = totalSQL;
+        }
+
+        for (char token : tokensToReplace) {
+            sql = sql.replace(token, '_');
+        }
+
+        // Replace all unicode
+//        sql = sql.replaceAll("\\p{C}", "_");
+//        sql = sql.replaceAll("\\p{Z}", "_");
+//        sql = sql.replaceAll("\\p{M}", "_");
+//        sql = sql.replaceAll("\\p{Po}", "_");
+
+        Statement stmt = null;
+        try {
+            stmt = CCJSqlParserUtil.parse(sql);
+        } catch (JSQLParserException e) {
+            if (Log.DEBUG) {
+                Log.debug("ORIGINAL: " + sql.replace("\n", " "));
+                e.printStackTrace();
+            }
+            return;
+        } catch (Throwable t) {
+            // Write line number of next line to lead into file
+            linePtrWriter.println(lineNumber + 1);
+            linePtrWriter.close();
+
+            sqlWriter.close();
+
+            t.printStackTrace();
+            System.exit(1);
+        }
+        if (stmt == null) return; // Case that it's not a select statement
+
+        sqlWriter.println(stmt.toString());
+
+        lineNumber++;
+    }
+
+    public static void parsePlain(String filename, PrintWriter linePtrWriter, PrintWriter sqlWriter) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String nextLine;
+
+            while ((nextLine = reader.readLine()) != null) {
+                if (lineNumber < nextLineToRead) {
+                    lineNumber++;
+                    continue;
+                }
+
+                LogParserProcess.parseSQL(nextLine, linePtrWriter, sqlWriter);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void parseCSV(String filename, PrintWriter linePtrWriter, PrintWriter sqlWriter) {
+        try {
+            CSVReader csvr = new CSVReader(new FileReader(filename));
+            String[] nextLine;
+
+            while ((nextLine = csvr.readNext()) != null) {
+                if (lineNumber < nextLineToRead) {
+                    lineNumber++;
+                    continue;
+                }
+
+                if (nextLine.length < 4) continue;
+
+                LogParserProcess.parseCSV(nextLine[3], linePtrWriter, sqlWriter);
+            }
+            csvr.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         String filename = args[0];
         String outBasename = FilenameUtils.getBaseName(filename);
-
-        // Statistics
-        int totalSQL = 0;
-        int lastUpdate = 0;
-
-        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
-        char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
+        Boolean parseCSV = Boolean.valueOf(args[1]);
 
         try {
             // Get next line to read, if exists
             File linePtrFile = new File(outBasename + ".nextline");
 
-            int nextLineToRead = 0;
             if (linePtrFile.exists()) {
                 nextLineToRead = Integer.valueOf(FileUtils.readFileToString(linePtrFile, "UTF-8").trim());
             }
@@ -43,54 +127,12 @@ public class LogParserProcess {
             PrintWriter sqlWriter = new PrintWriter(new FileOutputStream(outFile, true));
             PrintWriter linePtrWriter = new PrintWriter(linePtrFile, "UTF-8");
 
-            CSVReader csvr = new CSVReader(new FileReader(filename));
-            String[] nextLine;
-
-            int lineNumber = 0;
-            while ((nextLine = csvr.readNext()) != null) {
-                if (lineNumber < nextLineToRead) {
-                    lineNumber++;
-                    continue;
-                }
-
-                if (nextLine.length < 4) continue;
-
-                String sql = nextLine[3];
-
-                totalSQL++;
-                if (totalSQL >= (lastUpdate + 20000)) {
-                    Log.info("Parsed " + totalSQL + " statements...");
-                    lastUpdate = totalSQL;
-                }
-
-                for (char token : tokensToReplace) {
-                    sql = sql.replace(token, '_');
-                }
-
-                Log.debug("ORIGINAL: " + sql.replace("\n", " "));
-                Statement stmt = null;
-                try {
-                    stmt = CCJSqlParserUtil.parse(sql);
-                } catch (JSQLParserException e) {
-                    if (Log.DEBUG) e.printStackTrace();
-                    continue;
-                } catch (Throwable t) {
-                    // Write line number of next line to lead into file
-                    linePtrWriter.println(lineNumber + 1);
-                    linePtrWriter.close();
-
-                    sqlWriter.close();
-
-                    t.printStackTrace();
-                    System.exit(1);
-                }
-                if (stmt == null) continue; // Case that it's not a select statement
-
-                sqlWriter.println(stmt.toString());
-
-                lineNumber++;
+            if (parseCSV) {
+                LogParserProcess.parseCSV(filename, linePtrWriter, sqlWriter);
+            } else {
+                LogParserProcess.parsePlain(filename, linePtrWriter, sqlWriter);
             }
-            csvr.close();
+
             sqlWriter.close();
         } catch (Exception e) {
             e.printStackTrace();

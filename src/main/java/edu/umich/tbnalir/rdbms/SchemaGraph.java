@@ -1,20 +1,25 @@
 package edu.umich.tbnalir.rdbms;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
+import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.tools.BasicFunctions;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-public class SchemaGraph
-{
+public class SchemaGraph {
 	public static double KeyEdge = 0.99; 
 	public static double relEdge = 0.995; 
-	public static double AttEdge = 0.995; 
-		
+	public static double AttEdge = 0.995;
+
+	public Map<String, Relation> relations;
+	public Map<Attribute, Set<Attribute>> fkpkEdges;
+	public Map<Attribute, Set<Attribute>> pkfkEdges;
+
 	public ArrayList<SchemaElement> schemaElements = new ArrayList<SchemaElement>();
 	public double [][] weights;  
 	public double [][] shortestDistance; 
@@ -25,19 +30,262 @@ public class SchemaGraph
 		SchemaGraph graph = new SchemaGraph("dblp"); 
 		graph.printForCheck(); 
 	}
-	
-	public SchemaGraph(String databaseName) throws IOException, ParseException
+
+    public void loadRelationsFromFile(String relationsFileName) {
+        JSONParser parser = new JSONParser();
+        List<SchemaElement> schemaRelList = new ArrayList<>();
+
+        Log.info("==============================");
+        try {
+            Log.info("Reading relations info...");
+            JSONObject rels = (JSONObject) parser.parse(new FileReader(relationsFileName));
+            for (Object relNameObj : rels.keySet()) {
+                String relName = (String) relNameObj;
+
+                JSONObject relInfo = (JSONObject) rels.get(relNameObj);
+                JSONObject attrObj = (JSONObject) relInfo.get("attributes");
+
+                // START: stuff for Fei's code to work
+                SchemaElement relSchemaEl = new SchemaElement(schemaElements.size(), relName, (String) relInfo.get("type"));
+                this.schemaElements.add(relSchemaEl);
+                schemaRelList.add(relSchemaEl);
+                relSchemaEl.relation = relSchemaEl;  // circular reference, for some strange reason
+                // END: stuff for Fei's code to work
+
+                Map<String, Attribute> attributeMap = new HashMap<>();
+                for (Object attrNameObj : attrObj.keySet()) {
+                    JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
+                    String attrName = (String) attrInfo.get("name");
+                    String attrType = (String) attrInfo.get("type");
+                    Attribute attr = new Attribute(attrName, attrType);
+                    attributeMap.put(attrName, attr);
+
+                    if (attrInfo.get("fk") != null) {
+                        attr.setFk((Boolean) attrInfo.get("fk"));
+                    }
+                    if (attrInfo.get("pk") != null) {
+                        attr.setPk((Boolean) attrInfo.get("pk"));
+                    }
+
+                    if (attrInfo.get("entropy") != null) {
+                        attr.setEntropy((Double) attrInfo.get("entropy"));
+                    }
+
+                    // START: stuff for Fei's code to work
+                    SchemaElement attrSchemaEl = new SchemaElement(schemaElements.size(), attrName, attrType);
+                    attrSchemaEl.relation = relSchemaEl;
+                    relSchemaEl.attributes.add(attrSchemaEl);
+                    this.schemaElements.add(attrSchemaEl);
+
+                    if (attrInfo.get("importance") != null) {
+                        relSchemaEl.defaultAttribute = attrSchemaEl;
+                    }
+
+                    if (attr.isPk()) {
+                        relSchemaEl.pk = attrSchemaEl;
+                    }
+                    // END: stuff for Fei's code to work
+                }
+
+                // For functions, also add parameters
+                if (relInfo.containsKey("inputs")) {
+                    JSONObject inputObj = (JSONObject) relInfo.get("inputs");
+                    Map<Integer, FunctionParameter> inputs = new HashMap<>();
+                    for (Object inputNameObj : inputObj.keySet()) {
+                        JSONObject inputInfoObj = (JSONObject) inputObj.get(inputNameObj);
+                        String inputName = (String) inputInfoObj.get("name");
+                        String inputType = (String) inputInfoObj.get("type");
+                        Integer inputIndex = Integer.valueOf((String) inputInfoObj.get("index"));
+                        FunctionParameter param = new FunctionParameter(inputName, inputType, inputIndex);
+                        inputs.put(inputIndex, param);
+                    }
+
+                    Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
+                    this.relations.put(relName, fn);
+                } else {
+                    Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
+                    this.relations.put(relName, rel);
+
+                    if (relInfo.get("pk") != null) {
+                        rel.setJoinTable((Boolean) relInfo.get("join_table"));
+                    }
+                }
+            }
+
+            // START: stuff for Fei's code to work
+            this.weights = new double [this.schemaElements.size()][this.schemaElements.size()];
+            for(int i = 0; i < this.weights.length; i++)
+            {
+                for(int j = 0; j < this.weights.length; j++)
+                {
+                    this.weights[i][j] = 0;
+                }
+            }
+
+            for (SchemaElement schemaRel : schemaRelList) {
+                for(int j = 0; j < schemaRel.attributes.size(); j++)
+                {
+                    this.weights[schemaRel.elementID][schemaRel.attributes.get(j).elementID] = AttEdge;
+                }
+            }
+            // END: stuff for Fei's code to work
+
+            Log.info("Read " + this.relations.size() + " relations/views/functions.");
+            Log.info("==============================\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void loadEdgesFromFile(String edgesFileName) {
+
+        // TODO: below code not accounted for
+        // TODO: need to find and replace "relationship" (join tables) and "entity" (relations) in this file, find a replacement in schema somehow
+        /*
+        for(int i = 0; i < jsonEdges.size(); i++)
+        {
+            JSONObject jsonEdge = (JSONObject) jsonEdges.get(i);
+            String leftRelName = (String) jsonEdge.get("foreignRelation");
+            String leftAttName = (String) jsonEdge.get("foreignAttribute");
+            String rightRelName = (String) jsonEdge.get("primaryRelation");
+
+            int fk = this.searchAttribute(leftRelName, leftAttName);
+            int pk = this.searchRelation(rightRelName);
+
+            if(this.schemaElements.get(fk).relation.type.equals("relationship"))
+            {
+                weights[fk][pk] = relEdge;
+            }
+            else
+            {
+                weights[fk][pk] = KeyEdge;
+            }
+            schemaElements.get(pk).inElements.add(schemaElements.get(fk));
+        }*/
+
+        try {
+            JSONParser parser = new JSONParser();
+            Log.info("==============================");
+            Log.info("Reading edges info...");
+            JSONArray edgesArr = (JSONArray) parser.parse(new FileReader(edgesFileName));
+            for (Object edgeObj : edgesArr) {
+                JSONObject edge = (JSONObject) edgeObj;
+
+                String foreignRelationStr = (String) edge.get("foreignRelation");
+                if (foreignRelationStr == null) {
+                    Log.error("Foreign relation not included in edge definition.");
+                    continue;
+                }
+                Relation foreignRelation = relations.get(foreignRelationStr);
+                if (foreignRelation == null) {
+                    Log.error("Could not find relation <" + foreignRelationStr + "> in schema.");
+                    continue;
+                }
+                String foreignAttributeStr = (String) edge.get("foreignAttribute");
+                if (foreignAttributeStr == null) {
+                    Log.error("Foreign attribute not included in edge definition.");
+                    continue;
+                }
+                Attribute foreignAttribute = foreignRelation.getAttributes().get(foreignAttributeStr);
+                if (foreignAttribute == null) {
+                    Log.error("Could not find attribute <" + foreignAttributeStr +
+                            "> in relation <" + foreignRelation + ">");
+                    continue;
+                }
+
+                String primaryRelationStr = (String) edge.get("primaryRelation");
+                if (primaryRelationStr == null) {
+                    Log.error("Primary relation not included in edge definition.");
+                    continue;
+                }
+                Relation primaryRelation = relations.get(primaryRelationStr);
+                if (primaryRelation == null) {
+                    Log.error("Could not find relation <" + primaryRelationStr + "> in schema.");
+                    continue;
+                }
+                String primaryAttributeStr = (String) edge.get("primaryAttribute");
+                if (primaryAttributeStr == null) {
+                    Log.error("Primary attribute not included in edge definition.");
+                    continue;
+                }
+                Attribute primaryAttribute = primaryRelation.getAttributes().get(primaryAttributeStr);
+                if (primaryAttribute == null) {
+                    Log.error("Could not find attribute <" + primaryAttributeStr +
+                            "> in relation <" + primaryRelation + ">");
+                    continue;
+                }
+
+                Set<Attribute> pks = this.fkpkEdges.get(foreignAttribute);
+                if (pks == null) {
+                    pks = new HashSet<>();
+                    this.fkpkEdges.put(foreignAttribute, pks);
+                }
+                pks.add(primaryAttribute);
+
+                Set<Attribute> fks = this.pkfkEdges.get(primaryAttribute);
+                if (fks == null) {
+                    fks = new HashSet<>();
+                    this.pkfkEdges.put(primaryAttribute, fks);
+                }
+                fks.add(foreignAttribute);
+
+                // START: stuff for Fei's code to work
+                int fk = this.searchAttribute(foreignRelationStr, foreignAttributeStr);
+                int pk = this.searchRelation(primaryRelationStr);
+
+                // if(this.schemaElements.get(fk).relation.type.equals("relationship"))
+                if (foreignRelation.isJoinTable()) {
+                    weights[fk][pk] = relEdge;
+                } else {
+                    weights[fk][pk] = KeyEdge;
+                }
+                this.schemaElements.get(pk).inElements.add(this.schemaElements.get(fk));
+                // END: stuff for Fei's code to work
+            }
+
+            int fkpkLength = 0;
+            for (Map.Entry<Attribute, Set<Attribute>> e : this.fkpkEdges.entrySet()) {
+                fkpkLength += e.getValue().size();
+            }
+            Log.info("Read " + fkpkLength + " FK-PK relationships.");
+
+            int pkfkLength = 0;
+            for (Map.Entry<Attribute, Set<Attribute>> e : this.pkfkEdges.entrySet()) {
+                pkfkLength += e.getValue().size();
+            }
+            Log.info("Read " + pkfkLength + " PK-FK relationships.");
+            Log.info("==============================\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+	public SchemaGraph(String prefix) throws IOException, ParseException
 	{
+        String relationsFile = prefix + ".relations.json";
+        String edgesFile = prefix + ".edges.json";
+
+        this.relations = new HashMap<>();
+        this.fkpkEdges = new HashMap<>();
+        this.pkfkEdges = new HashMap<>();
+        this.loadRelationsFromFile(relationsFile);
+        this.loadEdgesFromFile(edgesFile);
+
+        shortestDistanceCompute();
+
+        /*
 		JSONParser parser = new JSONParser();
 		JSONArray jsonRelations = (JSONArray)parser.parse(BasicFunctions.readFile("/Users/cjbaik/dev/feis_stuff/NaLIRWeb/src/zfiles/" + databaseName + "Relations.json"));
 		
 		for(int i = 0; i < jsonRelations.size(); i++)
 		{
-			JSONObject jsonRelation = (JSONObject) jsonRelations.get(i); 
+			JSONObject jsonRelation = (JSONObject) jsonRelations.get(i);
 			SchemaElement relation = new SchemaElement(schemaElements.size(), (String)jsonRelation.get("name"), (String)jsonRelation.get("type")); 
 			schemaElements.add(relation); 
-			relation.relation = relation; 
-			
+			relation.relation = relation;
+
 			JSONArray jsonArray = (JSONArray) jsonRelation.get("attributes"); 
 			for(int j = 0; j < jsonArray.size(); j++)
 			{
@@ -58,49 +306,24 @@ public class SchemaGraph
 			}
 		}
 
-		weights = new double [schemaElements.size()][schemaElements.size()]; 
+		weights = new double [schemaElements.size()][schemaElements.size()];
 		for(int i = 0; i < weights.length; i++)
 		{
 			for(int j = 0; j < weights.length; j++)
 			{
-				weights[i][j] = 0; 
+				weights[i][j] = 0;
 			}
 		}
 
-		ArrayList<SchemaElement> relations = this.getElementsByType("relationship entity"); 
+		ArrayList<SchemaElement> relations = this.getElementsByType("relationship entity");
 		for(int i = 0; i < relations.size(); i++)
 		{
-			SchemaElement relation = relations.get(i); 
+			SchemaElement relation = relations.get(i);
 			for(int j = 0; j < relation.attributes.size(); j++)
 			{
-				weights[relation.elementID][relation.attributes.get(j).elementID] = AttEdge; 
+				weights[relation.elementID][relation.attributes.get(j).elementID] = AttEdge;
 			}
-		}
-				
-		JSONArray jsonEdges = (JSONArray)parser.parse(BasicFunctions.readFile("/Users/cjbaik/dev/feis_stuff/NaLIRWeb/src/zfiles/" + databaseName + "Edges.json")); 
-
-		for(int i = 0; i < jsonEdges.size(); i++)
-		{
-			JSONObject jsonEdge = (JSONObject) jsonEdges.get(i); 
-			String leftRelName = (String) jsonEdge.get("foreignRelation"); 
-			String leftAttName = (String) jsonEdge.get("foreignAttribute"); 
-			String rightRelName = (String) jsonEdge.get("primaryRelation"); 
-			
-			int fk = this.searchAttribute(leftRelName, leftAttName); 
-			int pk = this.searchRelation(rightRelName); 
-			
-			if(this.schemaElements.get(fk).relation.type.equals("relationship"))
-			{
-				weights[fk][pk] = relEdge; 
-			}
-			else
-			{
-				weights[fk][pk] = KeyEdge; 
-			}
-			schemaElements.get(pk).inElements.add(schemaElements.get(fk)); 
-		}
-		
-		shortestDistanceCompute(); 
+		}*/
 	}
 	
 	public void shortestDistanceCompute()
@@ -274,9 +497,11 @@ public class SchemaGraph
 	{
 		for(int i = 0; i < schemaElements.size(); i++)
 		{
-			if((schemaElements.get(i).type.equals("entity") || schemaElements.get(i).type.equals("relationship")) 
-				&& schemaElements.get(i).name.equals(relation_name))
-			{
+
+//			if((schemaElements.get(i).type.equals("entity") || schemaElements.get(i).type.equals("relationship"))
+//				&& schemaElements.get(i).name.equals(relation_name))
+			if (schemaElements.get(i).type.equals("relation")
+				&& schemaElements.get(i).name.equals(relation_name)) {
 				return i; 
 			}
 		}
@@ -288,9 +513,10 @@ public class SchemaGraph
 	{
 		for(int i = 0; i < schemaElements.size(); i++)
 		{
-			if((schemaElements.get(i).type.equals("entity") || schemaElements.get(i).type.equals("relationship")) 
-				&& schemaElements.get(i).name.equals(relation_name))
-			{
+//			if((schemaElements.get(i).type.equals("entity") || schemaElements.get(i).type.equals("relationship"))
+//				&& schemaElements.get(i).name.equals(relation_name))
+            if (schemaElements.get(i).type.equals("relation")
+                    && schemaElements.get(i).name.equals(relation_name)) {
 				for(int j = i+1; j < schemaElements.size(); j++)
 				{
 					if(schemaElements.get(j).name.equals(attribute_name))
@@ -309,8 +535,8 @@ public class SchemaGraph
 		ArrayList<SchemaElement> entities = this.schemaElements; 
 		for(int i = 0; i < entities.size(); i++)
 		{
-			if(entities.get(i).type.equals("entity") || entities.get(i).type.equals("relationship"))
-			{
+//			if(entities.get(i).type.equals("entity") || entities.get(i).type.equals("relationship"))
+			if(entities.get(i).type.equals("relation")) {
 				System.out.print(i + ": " + entities.get(i).relation.name + "." + entities.get(i).name + ": "); 
 				for(int j = 0; j < entities.get(i).attributes.size(); j++)
 				{

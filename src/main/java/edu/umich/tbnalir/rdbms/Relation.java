@@ -18,6 +18,8 @@ public class Relation {
     RelationType type;
     Map<String, Attribute> attributes;
 
+    boolean joinTable;  // true if it is a join table
+
     FromItem fromItem;
 
     List<Attribute> rankedAttributes; // attributes ranked by entropy
@@ -40,8 +42,17 @@ public class Relation {
             e.getValue().setRelation(this);
         }
 
+        this.joinTable = false;
         this.fromItem = null;
         this.rankedAttributes = null;
+    }
+
+    public boolean isJoinTable() {
+        return joinTable;
+    }
+
+    public void setJoinTable(boolean joinTable) {
+        this.joinTable = joinTable;
     }
 
     public List<Attribute> rankAttributesByEntropy(RDBMS db) {

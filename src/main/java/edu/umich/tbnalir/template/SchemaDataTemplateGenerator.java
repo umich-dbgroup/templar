@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.FileReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -29,17 +30,17 @@ public class SchemaDataTemplateGenerator {
     // keeps track of relation lists already generated so we can skip them. in form: <relation1Name><relation2Name>...
     Set<String> relationListsAlreadyGenerated;
 
-    public SchemaDataTemplateGenerator(String relationsFile, String edgesFile, int joinLevel, RDBMS db) {
+    public SchemaDataTemplateGenerator(RDBMS db, int joinLevel) {
         this.joinLevel = joinLevel;
-        this.relations = new HashMap<>();
+        this.relations = db.schemaGraph.relations;
         TemplateRoot.relations = this.relations; // Kind of a hack, but want to store globally for TemplateRoot fns
 
-        this.fkpkEdges = new HashMap<>();
-        this.pkfkEdges = new HashMap<>();
+        this.fkpkEdges = db.schemaGraph.fkpkEdges;
+        this.pkfkEdges = db.schemaGraph.pkfkEdges;
         this.db = db;
 
-        this.loadRelationsFromFile(relationsFile);
-        this.loadEdgesFromFile(edgesFile);
+        // this.loadRelationsFromFile(relationsFile);
+        // this.loadEdgesFromFile(edgesFile);
 
         this.relationListsAlreadyGenerated = new HashSet<>();
     }
@@ -200,7 +201,8 @@ public class SchemaDataTemplateGenerator {
         }
     }
 
-    public Set<Set<Attribute>> guessProjections(List<Relation> relations, Integer chooseTop, Integer maxSize) {
+
+    public Set<Set<Attribute>> topAttributesAllRelations(List<Relation> relations, Integer chooseTop, Integer maxSize) {
         List<Attribute> attributes = new ArrayList<>();
 
         for (Relation r : relations) {
@@ -208,34 +210,50 @@ public class SchemaDataTemplateGenerator {
             r.getRankedAttributes().stream().filter(attr -> !attr.isFk() && !attr.isPk()).forEach(attributes::add);
         }
 
-        // Select up to max size only to do power sets (from all relations combined, using entropy)
-        if (maxSize != null) {
+        // Select top few only to do power sets (from all relations combined, using entropy)
+        if (chooseTop != null) {
             attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
             attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
-        } else {
+        }
+
+        if (maxSize == null) {
             maxSize = attributes.size();
         }
 
         return Utils.powerSet(attributes, maxSize);
     }
 
-    public Set<Set<Attribute>> guessPredicateAttributes(List<Relation> relations, Integer chooseTop, Integer maxSize) {
+    public Set<Set<Attribute>> topAttributesEachRelation(List<Relation> relations, Integer chooseTop, Integer maxSize) {
         List<Attribute> attributes = new ArrayList<>();
 
         for (Relation r : relations) {
             // Assume we don't want any primary/foreign keys
-            r.getRankedAttributes().stream().filter(attr -> !attr.isFk() && !attr.isPk()).forEach(attributes::add);
+            List<Attribute> rankedAttr = r.getRankedAttributes().stream()
+                    .filter(attr -> !attr.isFk() && !attr.isPk())
+                    .collect(Collectors.toList());
+            if (chooseTop == null) {
+                rankedAttr.stream().forEach(attributes::add);
+            } else {
+                rankedAttr.subList(0, Math.min(rankedAttr.size(), chooseTop))
+                        .stream().forEach(attributes::add);
+            }
         }
 
-        // Select up to max size only to do power sets (from all relations combined, using entropy)
-        if (maxSize != null) {
-            attributes.sort((a, b) -> b.getEntropy().compareTo(a.getEntropy()));
-            attributes = attributes.subList(0, Math.min(attributes.size(), chooseTop));
-        } else {
+        if (maxSize == null){
             maxSize = attributes.size();
         }
 
         return Utils.powerSet(attributes, maxSize);
+    }
+
+    public Set<Set<Attribute>> guessProjections(List<Relation> relations, Integer chooseTop, Integer maxSize, boolean each) {
+        if (each) return this.topAttributesEachRelation(relations, chooseTop, maxSize);
+        else return this.topAttributesAllRelations(relations, chooseTop, maxSize);
+    }
+
+    public Set<Set<Attribute>> guessPredicateAttributes(List<Relation> relations, Integer chooseTop, Integer maxSize, boolean each) {
+        if (each) return this.topAttributesEachRelation(relations, chooseTop, maxSize);
+        else return this.topAttributesAllRelations(relations, chooseTop, maxSize);
     }
 
     public Set<Template> getTemplatesForRelationsRecursive(Select select, List<Relation> relations, int joinLevelsLeft) {
@@ -303,16 +321,24 @@ public class SchemaDataTemplateGenerator {
          * Generate templates
          */
 
-        // Determines how max size of projections. If null, use all.
+        // Determines max size of projections. If null, use all.
         Integer chooseTopProjection = 4;
         Integer maxProjectionSize = 1;
         Integer chooseTopPredicate = 4;
         Integer maxPredicateSize = 2;
 
-        Set<Set<Attribute>> projections = this.guessProjections(relations, chooseTopProjection, maxProjectionSize);
-        Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate, maxPredicateSize);
+        // If true, chooses top n from each relation
+        // If false, chooses top n from all relations
+        boolean chooseTopEachRelationProjection = false;
+        boolean chooseTopEachRelationPredicate = false;
+
+        Set<Set<Attribute>> projections = this.guessProjections(relations, chooseTopProjection,
+                maxProjectionSize, chooseTopEachRelationProjection);
+        Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate,
+                maxPredicateSize, chooseTopEachRelationPredicate);
 
         templates.addAll(tr.generateNoPredicateProjectionTemplates());
+        templates.addAll(tr.generateNoAttributeConstantTemplates(maxProjectionSize, maxPredicateSize));
         templates.addAll(tr.generateNoPredicateTemplates(projections));
         templates.addAll(tr.generateNoComparisonProjectionTemplates(predicateAttributes));
         templates.addAll(tr.generateNoComparisonTemplates(projections, predicateAttributes));
@@ -348,6 +374,7 @@ public class SchemaDataTemplateGenerator {
         int fullQueryCount = 0;
         int noPredProjCount = 0;
         int noPredCount = 0;
+        int noAttrConstCount = 0;
         int noCompProjCount = 0;
         int noCompCount = 0;
         int noConstProjCount = 0;
@@ -362,6 +389,9 @@ public class SchemaDataTemplateGenerator {
                     break;
                 case NO_PRED:
                     noPredCount++;
+                    break;
+                case NO_ATTR_CONST:
+                    noAttrConstCount++;
                     break;
                 case NO_CONST_OP_PROJ:
                     noCompProjCount++;
@@ -399,21 +429,21 @@ public class SchemaDataTemplateGenerator {
         }
 
         String prefix = args[0];
-        String relationsFile = prefix + ".relations.json";
-        String edgesFile = prefix + ".edges.json";
 
         Integer joinLevel = Integer.valueOf(args[1]);
         String dbName = args[2];
 
         RDBMS db = null;
         try {
-            db = new RDBMS(dbName);
+            db = new RDBMS(dbName, prefix);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(relationsFile, edgesFile, joinLevel, db);
-        // Set<Template> templates = tg.generate();
+        SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
+        Set<Template> templates = tg.generate();
+
+        templates.stream().map(Template::toStringDebug).forEach(System.out::println);
 
         /*
         String errorFileName = "template_errors.out";
@@ -484,7 +514,8 @@ public class SchemaDataTemplateGenerator {
         // String test = "SELECT p.title FROM publication p, writes w, author a, organization o WHERE p.pid = w.pid AND w.aid = a.aid AND a.oid = o.oid AND o.name = 'University of Michigan'";
         // String test = "select publication_0.title from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and organization_0.name = 'university of michigan' and publication_0.pid = writes_0.pid";
         // String test = "SELECT homepage FROM author WHERE name = 'H. V. Jagadish'";
-        String test = "SELECT DISTINCT course_0.name, course_0.number FROM (SELECT max(program_coursealias1.workload) AS derived_fieldalias0 FROM program_course AS program_coursealias1) AS derived_tablealias0, course AS coursealias0, program_course AS program_coursealias0 WHERE program_coursealias0.course_id = coursealias0.course_id AND program_coursealias0.workload = derived_tablealias0.derived_fieldalias0";
+        // String test = "SELECT DISTINCT course_0.name, course_0.number FROM (SELECT max(program_coursealias1.workload) AS derived_fieldalias0 FROM program_course AS program_coursealias1) AS derived_tablealias0, course AS coursealias0, program_course AS program_coursealias0 WHERE program_coursealias0.course_id = coursealias0.course_id AND program_coursealias0.workload = derived_tablealias0.derived_fieldalias0";
+        /*
         try {
             Statement stmt = CCJSqlParserUtil.parse(test);
             System.out.println(stmt);
@@ -501,7 +532,7 @@ public class SchemaDataTemplateGenerator {
             if (Log.DEBUG) e.printStackTrace();
         } catch (Throwable t) {
             t.printStackTrace();
-        }
+        }*/
 
         /*
         String templateOutFile = "templates.out";

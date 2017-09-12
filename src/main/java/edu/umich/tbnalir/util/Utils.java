@@ -1,20 +1,30 @@
 package edu.umich.tbnalir.util;
 
+import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Function;
 import edu.umich.tbnalir.rdbms.FunctionParameter;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.ConstantRemovalExprDeParser;
 import edu.umich.tbnalir.sql.LiteralExpression;
+import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
+import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
+import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -228,5 +238,62 @@ public class Utils {
         joins.add(join);
 
         return join;
+    }
+
+    public static Runnable getParserRunnable(ConcurrentLinkedQueue<Select> stmts, String sql) {
+        // Tokens to replace from JSqlParser TokenMgrError, so the whole process doesn't crash
+        char[] tokensToReplace = {'#', '\u0018', '\u00a0', '\u2018', '\u201d', '\u00ac'};
+        for (char token : tokensToReplace) {
+            sql = sql.replace(token, '_');
+        }
+        final String finalSql = sql.toLowerCase();
+
+        return () -> {
+            Statement stmt;
+            try {
+                stmt = CCJSqlParserUtil.parse(finalSql);
+            } catch (JSQLParserException e) {
+                if (Log.DEBUG) e.printStackTrace();
+                return;
+            } catch (Throwable t) {
+                t.printStackTrace();
+                return;
+            }
+            if (stmt == null || !(stmt instanceof Select)) return; // Case that it's not a select statement
+            stmts.add((Select) stmt);
+        };
+    }
+
+    public static List<Select> parseStatements(String queryLogFilename) {
+        try {
+            List<String> sqls = Files.readAllLines(Paths.get(queryLogFilename));
+            ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+            ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
+            for (String sql : sqls) {
+                pool.submit(Utils.getParserRunnable(stmts, sql));
+            }
+
+            pool.shutdown();
+
+            try {
+                if (!pool.awaitTermination(10, TimeUnit.MINUTES)) {
+                    pool.shutdownNow();
+                    if (!pool.awaitTermination(60, TimeUnit.SECONDS)) {
+                        Log.error("Pool did not terminate");
+                    }
+                }
+            } catch (InterruptedException e) {
+                pool.shutdownNow();
+                Thread.currentThread().interrupt();
+            }
+
+            Log.info("===== Parsing Results =====");
+            Log.info("Total Queries: " + sqls.size());
+            Log.info("Correctly Parsed: " + stmts.size() + "/" + sqls.size() + "\n");
+
+            return new ArrayList<>(stmts);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

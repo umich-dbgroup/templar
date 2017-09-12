@@ -1,24 +1,48 @@
 package edu.umich.tbnalir.dataStructure;
 
+import edu.umich.tbnalir.parse.DependencyInfo;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class ParseTree implements Serializable
 {
-	public ParseTreeNode root; 
-	public ArrayList<ParseTreeNode> allNodes = new ArrayList<ParseTreeNode>(); 
+	public ParseTreeNode root;
+    Map<Integer, ParseTreeNode> nodeIndexMap = new HashMap<>();
+	public ArrayList<ParseTreeNode> allNodes = new ArrayList<ParseTreeNode>();
 	public ArrayList<ParseTreeNode> deletedNodes = new ArrayList<ParseTreeNode>(); 
 
 	public ParseTree()
 	{
 		root = new ParseTreeNode(0, "ROOT", "ROOT", "ROOT", null); 
 		allNodes.add(root); 
-		root.tokenType = "ROOT"; 
+		root.tokenType = "ROOT";
 	}
 
-	public boolean buildNode(String [] input) // add a node when build a tree; 
+	public void addNodesRecursive(Map<Integer, List<DependencyInfo>> dependenciesMap,
+                                          ParseTreeNode parent, DependencyInfo nodeInfo) {
+        if (parent == null) {
+            parent = this.root;
+        }
+        ParseTreeNode node = new ParseTreeNode(nodeInfo.getDepWord().getIndex(), nodeInfo.getDepWord().getText(),
+                nodeInfo.getDepWord().getPos(), nodeInfo.getRelationship(), parent);
+        parent.children.add(node);
+
+        Integer nodeIndex = nodeInfo.getDepWord().getIndex();
+        this.nodeIndexMap.put(nodeIndex, node);
+        this.allNodes.add(node);
+
+        // Recursively add next nodes
+        List<DependencyInfo> childrenInfo = dependenciesMap.get(nodeIndex);
+        if (childrenInfo != null && !childrenInfo.isEmpty()) {
+            for (DependencyInfo childInfo : childrenInfo) {
+                this.addNodesRecursive(dependenciesMap, node, childInfo);
+            }
+        }
+    }
+
+	public boolean buildNode(String [] input) // add a node when build a tree;
 	{
 		ParseTreeNode node; 
 		
@@ -49,16 +73,20 @@ public class ParseTree implements Serializable
 		return false; 
 	}
 
+    public ParseTreeNode getNode(int index) {
+        return this.nodeIndexMap.get(index);
+    }
+
 	public ParseTreeNode searchNodeByOrder(int order)
 	{
 		for(int i = 0; i < this.allNodes.size(); i++)
 		{
 			if(this.allNodes.get(i).wordOrder == order)
 			{
-				return this.allNodes.get(i); 
+				return this.allNodes.get(i);
 			}
 		}
-		return null; 
+		return null;
 	}
 	
 	public ParseTreeNode searchNodeByID(int ID)
@@ -114,8 +142,8 @@ public class ParseTree implements Serializable
 			{
 				result += "    "; 
 			}
-			result += "(" + curNode.nodeID + ")"; 
-			result += curNode.label + "\n"; 
+			result += "(" + curNode.nodeID + ") ";
+			result += curNode.label + " " + curNode.tokenType + "\n";
 			
 			for(int i = 0; i < curNode.children.size(); i++)
 			{

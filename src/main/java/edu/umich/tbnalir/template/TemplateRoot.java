@@ -1,6 +1,7 @@
 package edu.umich.tbnalir.template;
 
 import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.rdbms.Projection;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.*;
 import edu.umich.tbnalir.util.Constants;
@@ -9,8 +10,9 @@ import net.sf.jsqlparser.expression.BinaryExpression;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
+import net.sf.jsqlparser.schema.Column;
+import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
-import net.sf.jsqlparser.util.deparser.ExpressionDeParser;
 
 import java.lang.reflect.Constructor;
 import java.util.*;
@@ -135,6 +137,25 @@ public class TemplateRoot {
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_PRED);
     }
 
+    public static Template noAttributeConstantTemplate(Select select) {
+        StringBuilder buffer = new StringBuilder();
+        AttributeRemovalExprDeParser attributeRemover = new AttributeRemovalExprDeParser();
+        AttributeRemovalDeParser deParser = new AttributeRemovalDeParser(attributeRemover, buffer, relations, false);
+        attributeRemover.setSelectVisitor(deParser);
+        attributeRemover.setBuffer(buffer);
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        FromItem oldFromItem = ps.getFromItem();
+        List<Join> joins = ps.getJoins();
+        ps.accept(deParser);
+        ps.setFromItem(oldFromItem);
+        ps.setJoins(joins);
+
+        resetAllRelations();
+
+        return new Template(buffer.toString().toLowerCase().intern(), TemplateType.NO_ATTR_CONST);
+    }
+
     public static Template noPredicateProjectionTemplate(Select select) {
         StringBuilder buffer = new StringBuilder();
         ConstantRemovalExprDeParser predicateRemover = new ConstantRemovalExprDeParser();
@@ -171,6 +192,34 @@ public class TemplateRoot {
         resetAllRelations();
 
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.FULL_QUERY);
+    }
+
+    public Set<Template> generateNoAttributeConstantTemplates(int maxProjectionSize, int maxPredicateSize) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+        List<SelectItem> oldSelectItems = ps.getSelectItems();
+        Expression oldWhere = ps.getWhere();
+
+        List<SelectItem> selectItems = new ArrayList<>();
+        ps.setSelectItems(selectItems);
+        for (int i = 0; i < maxProjectionSize; i++) {
+            Column col = new Column();
+            SelectExpressionItem exprItem = new SelectExpressionItem();
+            exprItem.setExpression(col);
+            selectItems.add(exprItem);
+
+            results.addAll(
+                    this.generateAttributelessComparisonPredicatesRecursive(TemplateRoot::noAttributeConstantTemplate,
+                            null, maxPredicateSize)
+            );
+        }
+
+        // Reset projection/predicate
+        ps.setSelectItems(oldSelectItems);
+        ps.setWhere(oldWhere);
+
+        return results;
     }
 
     public Set<Template> generateNoPredicateProjectionTemplates() {
@@ -220,8 +269,7 @@ public class TemplateRoot {
             Expression predicate = null;
 
             for (Attribute predAttr : predAttrSet) {
-                // type of binary expression doesn't matter because comparison is obscured
-                predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+                predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr);
 
                 ps.setWhere(predicate);
 
@@ -259,7 +307,7 @@ public class TemplateRoot {
                 Expression predicate = null;
 
                 for (Attribute predAttr : predAttrSet) {
-                    predicate = this.generateComparisonPredicateExpr(predicate, EqualsTo.class, predAttr);
+                    predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr);
 
                     ps.setWhere(predicate);
 
@@ -287,9 +335,51 @@ public class TemplateRoot {
                 return new AndExpression(startingPred, binaryExpression);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e.getMessage());
         }
 
+    }
+
+    public Set<Template> generateAttributelessComparisonPredicatesRecursive(Function<Select, Template> templateFn,
+                                                               Expression startingPred, int depthLevel) {
+        Set<Template> results = new HashSet<>();
+
+        PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
+        Expression originalWhere = ps.getWhere();
+        ps.setWhere(startingPred);
+        results.addAll(this.generateTemplates(templateFn, false));
+
+        ps.setWhere(originalWhere); // reset
+
+        if (depthLevel == 0) return results;
+
+        // generate only EqualsTo for text (perhaps include "LIKE")
+        Expression predicate;
+        Attribute attr = new Attribute("placeholder", "text");
+        attr.setColumn(new Column());
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        // generate various predicate types for nums
+        attr = new Attribute("placeholder", "int");
+        attr.setColumn(new Column());
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+
+        return results;
     }
 
     public Set<Template> generateComparisonPredicatesRecursive(Function<Select, Template> templateFn,
@@ -488,6 +578,70 @@ public class TemplateRoot {
             }*/
 
             Template template = templateFn.apply(this.select);
+
+            // Set relations on template
+            Set<Relation> templateRelations = new HashSet<>();
+
+            FromItem fromItem = ps.getFromItem();
+            if (fromItem instanceof Table) {
+                Relation rel = TemplateRoot.relations.get(((Table) fromItem).getName());
+                if (rel == null) throw new RuntimeException("Relation " + ((Table) fromItem).getName() + " not found!");
+
+                templateRelations.add(rel);
+            }
+
+            for (Join join : ps.getJoins()) {
+                FromItem joinFromItem = join.getRightItem();
+                if (joinFromItem instanceof Table) {
+                    Relation rel = TemplateRoot.relations.get(((Table) joinFromItem).getName());
+                    if (rel == null) throw new RuntimeException("Relation " + ((Table) joinFromItem).getName() + " not found!");
+
+                    templateRelations.add(rel);
+                }
+            }
+            template.setRelations(templateRelations);
+
+            // Set projections on template
+            if (ps.getSelectItems() != null) {
+                List<Projection> projections = new ArrayList<>();
+                for (SelectItem item : ps.getSelectItems()) {
+                    if (item instanceof SelectExpressionItem) {
+                        SelectExpressionItem exprItem = (SelectExpressionItem) item;
+                        if (exprItem.getExpression() instanceof Column) {
+                            Column col = (Column) exprItem.getExpression();
+
+                            if (col.getTable() == null) {
+                                projections.add(null);
+                                continue;
+                            }
+
+                            Relation rel = TemplateRoot.relations.get(col.getTable().getName());
+                            if (rel == null)
+                                throw new RuntimeException("Relation " + col.getTable().getName() + " not found!");
+
+                            Attribute attr = rel.getAttributes().get(col.getColumnName());
+                            if (attr == null)
+                                throw new RuntimeException("Attribute " + col.getColumnName() + " not found!");
+
+                            if (col.getTable().getAlias() == null || col.getTable().getAlias().getName() == null)
+                                throw new RuntimeException("Column alias for " + col + " not found!");
+
+                            Projection proj = new Projection(col.getTable().getAlias().getName(), attr);
+                            projections.add(proj);
+                        }
+                    }
+                }
+                template.setProjections(projections);
+            }
+
+            // Set predicates on template
+            Expression where = ps.getWhere();
+            if (where != null) {
+                PredicateUnroller predicateUnroller = new PredicateUnroller(TemplateRoot.relations);
+                where.accept(predicateUnroller);
+                template.setPredicates(predicateUnroller.getPredicates());
+            }
+
             templates.add(template);
 
             // Reset everything
