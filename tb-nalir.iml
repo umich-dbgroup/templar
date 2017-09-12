@@ -53,5 +53,32 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: stanford-parser-3.2.0-models">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.2.0-models.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: stanford-parser-3.2.0-sources">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.2.0-sources.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: stanford-parser">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/stanford-parser.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
