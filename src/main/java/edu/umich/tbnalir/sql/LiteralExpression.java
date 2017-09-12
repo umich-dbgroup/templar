@@ -1,5 +1,9 @@
 package edu.umich.tbnalir.sql;
 
+import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.rdbms.Relation;
+import edu.umich.tbnalir.template.TemplateRoot;
+import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
 import net.sf.jsqlparser.util.deparser.ExpressionDeParser;

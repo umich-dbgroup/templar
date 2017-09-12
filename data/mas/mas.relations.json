@@ -31,6 +31,7 @@
   "cite": {
     "name": "cite",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "citing": {
         "name": "citing",
@@ -90,6 +91,7 @@
   "domain_author": {
     "name": "domain_author",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "aid": {
         "name": "aid",
@@ -108,6 +110,7 @@
   "domain_conference": {
     "name": "domain_conference",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "cid": {
         "name": "cid",
@@ -126,6 +129,7 @@
   "domain_journal": {
     "name": "domain_journal",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "jid": {
         "name": "jid",
@@ -144,6 +148,7 @@
   "domain_keyword": {
     "name": "domain_keyword",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "did": {
         "name": "did",
@@ -162,6 +167,7 @@
   "domain_publication": {
     "name": "domain_publication",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "did": {
         "name": "did",
@@ -294,6 +300,7 @@
   "publication_keyword": {
     "name": "publication_keyword",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "pid": {
         "name": "pid",
@@ -312,6 +319,7 @@
   "writes": {
     "name": "writes",
     "type": "relation",
+    "join_table": true,
     "attributes": {
       "aid": {
         "name": "aid",
