@@ -534,7 +534,7 @@ public class TemplateRoot {
         Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
-        Expression originalWhere = ps.getWhere();
+        // Expression originalWhere = ps.getWhere();
 
         // Bitmap used to generate each variant, 0 indicates right-most bit.
         // bit 0: distinct
@@ -542,9 +542,10 @@ public class TemplateRoot {
         // bit 2: where
         // -- commented out currently: bit X: top/limit --
 
-        int numVariants = 3;
+        int numVariants = 0;
         double iterLimit = Math.pow(2, numVariants);
         for (int i = 0; i < iterLimit; i++) {
+            /*
             int distinctBit = i & 1;
             if (distinctBit == 1) {
                 Distinct distinct = new Distinct();
@@ -568,7 +569,6 @@ public class TemplateRoot {
                 if (ps.getJoins() == null || ps.getJoins().isEmpty()) ps.setWhere(null);
             }
 
-            /*
             int topBit = (i >> 3) & 1;
             if (topBit == 1) {
                 // Add variant for top for where condition
@@ -645,9 +645,9 @@ public class TemplateRoot {
             templates.add(template);
 
             // Reset everything
-            ps.setDistinct(null);
-            ps.setOrderByElements(null);
-            ps.setWhere(originalWhere);
+            // ps.setDistinct(null);
+            // ps.setOrderByElements(null);
+            // ps.setWhere(originalWhere);
             // ps.setTop(null);
         }
 
