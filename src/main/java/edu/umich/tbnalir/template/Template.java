@@ -110,13 +110,28 @@ public class Template {
                         if (bestAttrIndex == null) {
                             bestAttrIndex = i;
                             bestAttrIsNull = true;
-                            // TODO: Need to set aliases correctly here by retrieving it from relations list somehow...
-                            // bestAttrAlias = tmplProj.getAlias();
+
+                            if (transProj.getAlias() != null) {
+                                // TODO: if there's self join, probably need to create alias for tbl_1, tbl_2, etc.
+                                if (!transProj.getAlias().contains("_0")) {
+                                    bestAttrAlias = transProj.getAlias() + "_0";
+                                } else {
+                                    bestAttrAlias = transProj.getAlias();
+                                }
+                            } else {
+                                bestAttrAlias = transProj.getAttribute().getRelation().getName() + "_0";
+                            }
                         }
                     } else if (tmplProj.covers(transProj)) {
                         bestAttrIndex = i;
                         bestAttrIsNull = false;
-                        bestAttrAlias = null;
+
+                        // If template has a alias, use it!
+                        if (tmplProj.getAlias() != null) {
+                            bestAttrAlias = tmplProj.getAlias();
+                        } else {
+                            bestAttrAlias = transProj.getAttribute().getRelation().getName() + "_0";
+                        }
                         break;
                     }
                     i++;

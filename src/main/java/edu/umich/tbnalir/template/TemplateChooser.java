@@ -78,7 +78,9 @@ public class TemplateChooser {
                 List<Projection> newAccumProj = new ArrayList<>(accumProj);
                 List<Predicate> newAccumPred = new ArrayList<>(accumPred);
 
-                if (!newAccumProj.contains(attr)) newAccumProj.add(new Projection(null, attr));
+                String alias = rel.getName();
+                Projection proj = new Projection(alias, attr);
+                if (!newAccumProj.contains(proj)) newAccumProj.add(proj);
                 newAccumRel.add(rel);
 
                 result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
@@ -172,8 +174,8 @@ public class TemplateChooser {
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
-        String queryStr = "return me the publications written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005.";
-        // String queryStr = "return me the homepage of PVLDB.";
+        // String queryStr = "return me the publications written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005.";
+        String queryStr = "return me the homepage of PVLDB.";
         // String queryStr = "return the homepage of the journal which has name PVLDB";
         // String queryStr = "can undergrads take 595?";
         Log.info("QUERY: " + queryStr);
