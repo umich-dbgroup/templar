@@ -90,7 +90,6 @@ public class TemplateChooser {
                 Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
                 if (attr == null) throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
 
-                // TODO: Default to 0 for now, but we can always apply this based on the number of preds/projs already there
                 String alias = rel.getName() + "_0";
                 Projection proj = new Projection(alias, attr);
 
@@ -107,21 +106,29 @@ public class TemplateChooser {
                     // If you are creating a projection and there already exists a predicate with the same attribute,
                     // then create an additional path of eliminating this projection.
                     boolean selfJoinFlag = false;
+                    int aliasInt = 0;
                     for (Predicate pred : accumPred) {
                         if (pred.getAttr().equals(attr)) {
+                            if (!selfJoinFlag) {
+                                result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
+                                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                                        accumScore + 0.5, accumNodes + 1));
+                            }
                             selfJoinFlag = true;
-                            result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
-                                    new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                    accumScore + 0.5, accumNodes + 1));
-                            break;
+                            aliasInt++;
                         }
                     }
-                    if (selfJoinFlag) {
-                        // TODO: Default to 1 for now, but we could always add more!
-                        proj.setAlias(rel.getName() + "_1");
-                    }
 
-                    if (!newAccumProj.contains(proj)) newAccumProj.add(proj);
+                    // Increment aliasInt for every shared projection
+                    for (Projection curProj : accumProj) {
+                        if (curProj.getAttribute().equals(proj.getAttribute())) {
+                            aliasInt++;
+                        }
+                    }
+                    proj.setAlias(rel.getName() + "_" + aliasInt);
+
+                    //if (!newAccumProj.contains(proj)) newAccumProj.add(proj);
+                    newAccumProj.add(proj);
                     newAccumRel.add(rel);
 
                     // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
@@ -136,16 +143,14 @@ public class TemplateChooser {
                     // If you are creating a predicate and there already exists a projection with the same attribute,
                     // then create an additional path of eliminating this predicate.
 
-                    // TODO: Default to 0 for now
-                    String predAlias = rel.getName() + "_0";
+                    int aliasInt = 0;
 
                     if (accumProj.contains(proj)) {
                         result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
                                 new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
                                 accumScore + 0.5, accumNodes + 1));
 
-                        // TODO: Default to 1 for now, but we could always add more!
-                        predAlias = rel.getName() + "_1";
+                        aliasInt++;
                     }
 
                     // Try to find nearby node with operator token if number
@@ -195,6 +200,15 @@ public class TemplateChooser {
                     }
 
                     Predicate pred = new Predicate(attr, op, value);
+
+                    // Check previous predicates, if same attr exists, increment aliasInt
+                    for (Predicate curPred : accumPred) {
+                        if (curPred.getAttr().equals(pred.getAttr())) {
+                            aliasInt++;
+                        }
+                    }
+
+                    String predAlias = rel.getName() + "_" + aliasInt;
                     pred.setAlias(predAlias);
 
                     // Copy relevant structures so recursive operations don't interfere with it
@@ -233,20 +247,17 @@ public class TemplateChooser {
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
+        /*
         List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }
+        }*/
 
-        // List<String> queryStrs = new ArrayList<>();
-        // String queryStr = "return me the publications written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005.";
-        // String queryStr = "return me the homepage of PVLDB.";
-        // String queryStr = "return the homepage of the journal which has name PVLDB";
-        // String queryStr = "can undergrads take 595?";
-        // String queryStr = "return me the homepage of the VLDB conference.";
+        List<String> queryStrs = new ArrayList<>();
+        queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\"");
         // queryStrs.add("return me the papers on VLDB conference after 2000."); // query 26
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000."); // query 30
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // query 31
@@ -257,6 +268,7 @@ public class TemplateChooser {
         // queryStrs.add("return me the papers in VLDB conference containing keyword \"Information Retrieval\""); // query 45
         // queryStrs.add("return me the authors who have papers containing keyword \"Relational Database\""); // query 46
         // queryStrs.add("return me all the organizations."); // query 47
+        // queryStrs.add("return me all the organizations in the databases area located in \"North America\""); // query 50
         // queryStrs.add("return me all the papers in \"University of Michigan\""); // query 54
         // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // query 55
         // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
