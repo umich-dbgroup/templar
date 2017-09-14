@@ -29,13 +29,24 @@ public class SchemaElement implements Serializable
 		this.name = name; 
 		this.type = type; 
 	}
-	
+
+    public MappedSchemaElement isRelationSimilar(String tag) throws Exception {
+        if(this.equals(this.relation.defaultAttribute)) {
+            if (SimFunctions.ifSchemaSimilar(this.relation.name, tag)) {
+                MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
+                double relationSimilarity = SimFunctions.similarity(this.relation.name, tag);
+                mappedSchemaElement.similarity = 1 - (1 - relationSimilarity) * (1 - relationSimilarity);
+                return mappedSchemaElement;
+            }
+        }
+        return null;
+    }
+
 	public MappedSchemaElement isSchemaExist(String tag) throws Exception
 	{
 		if(this.equals(this.relation.defaultAttribute))
 		{
-			if(SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag))
-			{
+			if (SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this); 
 				mappedSchemaElement.similarity = SimFunctions.similarity(this.relation.name, tag); 
 				mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag)); 

@@ -71,6 +71,8 @@ public class Template {
     public InstantiatedTemplate instantiate(PossibleTranslation translation) {
         String result = this.templateString;
 
+        // TODO: add in score of similarity of query parse tree structure to template parse tree structure
+
         // CHECK RELATIONS COVERAGE
         int relationCount = this.relations.size();
         Set<Relation> testRelations = new HashSet<>(this.relations);
@@ -86,7 +88,12 @@ public class Template {
             // (1) in the case of a projection-hidden template
             StringJoiner sj = new StringJoiner(", ");
 
-            translation.getProjections().stream().map(Projection::toString).forEach(sj::add);
+            for (Projection transProj : translation.getProjections()) {
+                // If the relation isn't contained in the template, punt!
+                if (!this.templateString.contains(transProj.getAlias())) return null;
+
+                sj.add(transProj.toString());
+            }
 
             affinityAccum += Constants.SLOT_COVERS * translation.getProjections().size();
 
@@ -100,6 +107,9 @@ public class Template {
                     continue;
                 }
 
+                // If the relation isn't contained in the template, punt!
+                if (!this.templateString.contains(transProj.getAlias())) return null;
+
                 Integer bestAttrIndex = null;
                 boolean bestAttrIsNull = false;
                 String bestAttrAlias = null;
@@ -110,28 +120,11 @@ public class Template {
                         if (bestAttrIndex == null) {
                             bestAttrIndex = i;
                             bestAttrIsNull = true;
-
-                            if (transProj.getAlias() != null) {
-                                // TODO: if there's self join, probably need to create alias for tbl_1, tbl_2, etc.
-                                if (!transProj.getAlias().contains("_0")) {
-                                    bestAttrAlias = transProj.getAlias() + "_0";
-                                } else {
-                                    bestAttrAlias = transProj.getAlias();
-                                }
-                            } else {
-                                bestAttrAlias = transProj.getAttribute().getRelation().getName() + "_0";
-                            }
+                            // bestAttrAlias = transProj.getAlias();
                         }
                     } else if (tmplProj.covers(transProj)) {
                         bestAttrIndex = i;
                         bestAttrIsNull = false;
-
-                        // If template has a alias, use it!
-                        if (tmplProj.getAlias() != null) {
-                            bestAttrAlias = tmplProj.getAlias();
-                        } else {
-                            bestAttrAlias = transProj.getAttribute().getRelation().getName() + "_0";
-                        }
                         break;
                     }
                     i++;
@@ -142,7 +135,7 @@ public class Template {
                 } else {
                     projectionsList.remove(bestAttrIndex.intValue());
                     if (bestAttrIsNull) {
-                        transProj.setAlias(bestAttrAlias);
+                        //transProj.setAlias(bestAttrAlias);
                         result = result.replaceFirst(Constants.COLUMN, transProj.toString());
                         affinityAccum += Constants.SLOT_COVERS;
                     } else {
@@ -156,89 +149,118 @@ public class Template {
         List<Predicate> predicatesList = new ArrayList<>(this.predicates);
         if (predicatesList.size() < translation.getPredicates().size()) return null;
 
-        // TODO: add aliases to predicates and set them correctly as well
-        for (Predicate transPred : translation.getPredicates()) {
-            int mostDetailedMatchCount = 0;
-            Predicate mostDetailedMatch = null;
+        if (this.templateString.contains(Constants.PRED)) {
+            // (1) in the case of a predicate-hidden template
+            StringJoiner sj = new StringJoiner(", ");
 
-            Attribute transAttr = transPred.getAttr();
-            Operator transOp = transPred.getOp();
-            String transValue = transPred.getValue();
+            // Special case: no predicates
+            if (translation.getPredicates().isEmpty()) {
+                result = result.replace(" where " + Constants.PRED, "");
+            } else {
+                for (Predicate transPred : translation.getPredicates()) {
+                    // If the relation isn't contained in the template, punt!
+                    if (!this.templateString.contains(transPred.getAlias())) return null;
 
-            for (Predicate tmplPred : predicatesList) {
-                boolean attrNull = tmplPred.getAttr() == null;
-                boolean attrMatches = !attrNull && tmplPred.getAttr().equals(transAttr);
-                boolean attrCovered = attrNull || attrMatches;
+                    sj.add(transPred.toString());
+                }
 
-                boolean opNull = tmplPred.getOp() == null;
-                boolean opMatches = !opNull && tmplPred.getOp().equals(transOp);
-                boolean opCovered = opNull || opMatches;
+                affinityAccum += Constants.SLOT_COVERS * translation.getPredicates().size();
 
-                boolean valNull = tmplPred.getValue() == null;
-                boolean valMatches = !valNull && tmplPred.getValue().equals(transValue);
-                boolean valNum = tmplPred.getValue().equals(Constants.NUM) && StringUtils.isNumeric(transValue);
-                boolean valText = tmplPred.getValue().equals(Constants.STR) && !StringUtils.isNumeric(transValue);
-                boolean valCovered = valNull || valMatches || valNum || valText;
+                result = result.replace(Constants.PRED, sj.toString());
+            }
+        } else {
+            // (2) in the case of a predicate-visible template
+            for (Predicate transPred : translation.getPredicates()) {
+                // If the relation isn't contained in the template, punt!
+                if (!this.templateString.contains(transPred.getAlias())) return null;
 
-                int matchCount = 0;
-                if (attrCovered && opCovered && valCovered) {
-                    if (attrMatches) matchCount++;
-                    if (opMatches) matchCount++;
-                    if (valMatches) matchCount++;
+                int mostDetailedMatchCount = 0;
+                Predicate mostDetailedMatch = null;
 
-                    if (mostDetailedMatch == null || matchCount > mostDetailedMatchCount) {
-                        mostDetailedMatch = tmplPred;
-                        mostDetailedMatchCount = matchCount;
+                Attribute transAttr = transPred.getAttr();
+                Operator transOp = transPred.getOp();
+                String transValue = transPred.getValue();
 
-                        if (matchCount == 3) break;
+                for (Predicate tmplPred : predicatesList) {
+                    boolean attrNull = tmplPred.getAttr() == null;
+                    boolean attrMatches = !attrNull && tmplPred.getAttr().equals(transAttr);
+                    boolean attrCovered = attrNull || attrMatches;
+
+                    boolean opNull = tmplPred.getOp() == null;
+                    boolean opMatches = !opNull && tmplPred.getOp().equals(transOp);
+                    boolean opCovered = opNull || opMatches;
+
+                    boolean valNull = tmplPred.getValue() == null;
+                    boolean valMatches = !valNull && tmplPred.getValue().equals(transValue);
+                    boolean valNum = tmplPred.getValue().equals(Constants.NUM) && StringUtils.isNumeric(transValue);
+                    boolean valText = tmplPred.getValue().equals(Constants.STR) && !StringUtils.isNumeric(transValue);
+                    boolean valCovered = valNull || valMatches || valNum || valText;
+
+                    int matchCount = 0;
+                    if (attrCovered && opCovered && valCovered) {
+                        if (attrMatches) matchCount++;
+                        if (opMatches) matchCount++;
+                        if (valMatches) matchCount++;
+
+                        if (mostDetailedMatch == null || matchCount > mostDetailedMatchCount) {
+                            mostDetailedMatch = tmplPred;
+                            mostDetailedMatchCount = matchCount;
+
+                            if (matchCount == 3) break;
+                        }
                     }
                 }
-            }
 
-            if (mostDetailedMatch == null) {
-                affinityAccum += Constants.NO_MATCH;
-            } else {
-                predicatesList.remove(mostDetailedMatch);
-
-                // Fill in predicates
-                StringBuilder toReplace = new StringBuilder();
-                if (mostDetailedMatch.getAttr() == null) {
-                    toReplace.append(Constants.COLUMN);
+                if (mostDetailedMatch == null) {
+                    affinityAccum += Constants.NO_MATCH;
                 } else {
-                    toReplace.append(mostDetailedMatch.getAlias() + "." + mostDetailedMatch.getAttr().toString());
+                    predicatesList.remove(mostDetailedMatch);
+
+                    // Fill in predicates
+                    StringBuilder toReplace = new StringBuilder();
+                    if (mostDetailedMatch.getAttr() == null) {
+                        toReplace.append(Constants.COLUMN);
+                    } else {
+                        toReplace.append(mostDetailedMatch.getAlias());
+                        toReplace.append(".");
+                        toReplace.append(mostDetailedMatch.getAttr().toString());
+                    }
+                    toReplace.append(" ");
+
+                    if (mostDetailedMatch.getOp() == null) {
+                        toReplace.append(Constants.CMP);
+                    } else {
+                        toReplace.append(mostDetailedMatch.getOp().toString());
+                    }
+                    toReplace.append(" ");
+
+                    toReplace.append(mostDetailedMatch.getValue());
+
+                    Predicate resultPred = new Predicate(transPred.getAttr(), transPred.getOp(), transPred.getValue());
+                    resultPred.setAlias(transPred.getAlias());
+
+                    /*
+                    if (mostDetailedMatch.getAlias() != null) {
+                        resultPred.setAlias(mostDetailedMatch.getAlias());
+                    }*/
+
+                    result = result.replaceFirst(toReplace.toString(), resultPred.toString());
+
+                    affinityAccum += (double) mostDetailedMatchCount / 3.0;
                 }
-                toReplace.append(" ");
-
-                if (mostDetailedMatch.getOp() == null) {
-                    toReplace.append(Constants.CMP);
-                } else {
-                    toReplace.append(mostDetailedMatch.getOp().toString());
-                }
-                toReplace.append(" ");
-
-                toReplace.append(mostDetailedMatch.getValue());
-
-                Predicate resultPred = new Predicate(transPred.getAttr(), transPred.getOp(), transPred.getValue());
-
-                if (mostDetailedMatch.getAlias() != null) {
-                    resultPred.setAlias(mostDetailedMatch.getAlias());
-                }
-
-                result = result.replaceFirst(toReplace.toString(), resultPred.toString());
-
-                affinityAccum += (double) mostDetailedMatchCount / 3.0;
             }
         }
+
+        // If any slots remain after instantiation, punt!
+        if (result.contains("#")) return null;
 
         // TODO: calculate this later
         double templatePopularity = 1d;
 
         int complexityScore = this.projections.size() + this.relations.size() + this.predicates.size();
-        // TODO: deal with order by later
-        if (result.contains("order by")) complexityScore++;
 
         InstantiatedTemplate instTmpl = new InstantiatedTemplate(result);
-        instTmpl.setNlScore(translation.getTranslationScore());
+        instTmpl.setNlScore(translation.getTotalScore());
         instTmpl.setTemplatePopularity(templatePopularity);
         instTmpl.setNlTemplateAffinity(affinityAccum / complexityScore);
         return instTmpl;

@@ -32,9 +32,14 @@ public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Ser
 
 	public String printForCheck() 
 	{
-		String result = ""; 
-		result += schemaElement.relation.name + "." + schemaElement.name + "(" + (double)Math.round(this.similarity*100)/100 + ")" + ":"; 
-		
+		String result = "";
+
+		if (schemaElement.type.equals("relation")) {
+            result += schemaElement.relation.name + "(" + (double)Math.round(this.similarity*100)/100 + ")" + ":";
+        } else {
+            result += schemaElement.relation.name + "." + schemaElement.name + "(" + (double) Math.round(this.similarity * 100) / 100 + ")" + ":";
+        }
+
 		if(mappedValues.size() > 0 && choice >= 0)
 		{
 			for(int i = 0; i < mappedValues.size() && i < 3; i++)

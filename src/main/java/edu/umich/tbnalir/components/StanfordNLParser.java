@@ -22,7 +22,8 @@ public class StanfordNLParser
 	public static void parse(Query query, LexicalizedParser lexiParser)
 	{
 		StanfordParse(query, lexiParser); 
-		buildTree(query); 
+		buildTree(query);
+        findAdjectives(query);
 		fixConj(query); 
 	}
 	
@@ -121,7 +122,21 @@ public class StanfordNLParser
         	}
     	}
 	}
-	
+
+    public static void findAdjectives(Query query) {
+        // treeTableEntry is in format: depIndex, depValue, pos, govIndex, relationship;
+        for (int i = 0; i < query.treeTable.size(); i++) {
+            String[] treeTableEntry = query.treeTable.get(i);
+            String reln = treeTableEntry[4];
+            if (reln.equals("amod")) {
+                ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
+                ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
+                ParseTreeNode[] adjTableEntry = {depNode, govNode};
+                query.adjTable.add(adjTableEntry);
+            }
+        }
+    }
+
 	public static void fixConj(Query query)
 	{
 		if(query.conjTable.size() == 0)

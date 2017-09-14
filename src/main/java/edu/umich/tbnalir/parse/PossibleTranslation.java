@@ -54,7 +54,8 @@ public class PossibleTranslation {
     }
 
     public Double getSimplicityScore() {
-        return 1d / (relations.size() + projections.size() + predicates.size());
+        return 1.0;
+        // return 1d / relations.size();
     }
 
     public Double getTotalScore() {

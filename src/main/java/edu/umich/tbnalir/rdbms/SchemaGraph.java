@@ -83,6 +83,11 @@ public class SchemaGraph {
 
                     if (attr.isPk()) {
                         relSchemaEl.pk = attrSchemaEl;
+                        attrSchemaEl.type = "pk";
+                    }
+
+                    if (attr.isFk()) {
+                        attrSchemaEl.type = "fk";
                     }
                     // END: stuff for Fei's code to work
                 }

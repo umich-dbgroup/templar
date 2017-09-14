@@ -15,7 +15,7 @@ public class InstantiatedTemplate {
 
     public Double getTotalScore() {
         // TODO: set weights here
-        return getNlScore() + getTemplatePopularity() + getNlTemplateAffinity();
+        return Math.pow(getNlScore(), 2) + getTemplatePopularity() + getNlTemplateAffinity();
     }
 
     public Double getNlScore() {
@@ -42,6 +42,10 @@ public class InstantiatedTemplate {
         this.nlTemplateAffinity = nlTemplateAffinity;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -51,4 +55,5 @@ public class InstantiatedTemplate {
         sb.append(this.value);
         return sb.toString();
     }
+
 }

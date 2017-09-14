@@ -85,7 +85,12 @@ public class SimFunctions
 			}
 			
 			element.choice = 0; 
-			element.similarity = sims[0]; 
+			element.similarity = sims[0];
+
+			// Special case: we penalize if value text attribute is not a proper noun
+            if (element.schemaElement.type.equals("text") && !treeNode.pos.equals("NNP")) {
+                element.similarity *= 0.9;
+            }
 		}
 	}
 	

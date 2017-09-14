@@ -147,8 +147,8 @@ public class NodeMapper
 			ParseTreeNode treeNode = allNodes.get(i); 
 			if(treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) // schema+text
 			{
-				db.isSchemaExist(treeNode); 
-				db.isTextExist(treeNode);  
+				db.isSchemaExist(treeNode);
+				db.isTextExist(treeNode);
 				if(treeNode.mappedElements.size() == 0)
 				{
 					treeNode.tokenType = "NA"; 
@@ -165,10 +165,9 @@ public class NodeMapper
 				{
 					OT = treeNode.children.get(0).function; 
 				}
-				db.isNumExist(OT, treeNode); 
-				{
-					treeNode.tokenType = "VTNUM"; 
-				} 
+				db.isNumExist(OT, treeNode);
+
+                treeNode.tokenType = "VTNUM";
 			}
 		}	
 	}

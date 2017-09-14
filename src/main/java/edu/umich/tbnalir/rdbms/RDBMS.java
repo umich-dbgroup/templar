@@ -117,11 +117,18 @@ public class RDBMS {
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
-			MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label); 
+			MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label);
 			if(element != null)
 			{
 				treeNode.mappedElements.add(element); 
 			}
+
+            // Check for relations
+            MappedSchemaElement relEl = attributes.get(i).isRelationSimilar(treeNode.label);
+            if(relEl != null)
+            {
+                treeNode.mappedElements.add(relEl);
+            }
 		}
 		if(!treeNode.mappedElements.isEmpty())
 		{
@@ -141,8 +148,7 @@ public class RDBMS {
 			MappedSchemaElement textAtt = textAtts.get(i).isTextExist(treeNode.label, conn); 
 			if(textAtt != null)
 			{
-				
-				treeNode.mappedElements.add(textAtt); 
+				treeNode.mappedElements.add(textAtt);
 			}
 		}
 		
