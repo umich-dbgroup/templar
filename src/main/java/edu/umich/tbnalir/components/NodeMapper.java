@@ -168,6 +168,7 @@ public class NodeMapper
 				db.isNumExist(OT, treeNode);
 
                 treeNode.tokenType = "VTNUM";
+                treeNode.attachedOT = OT;
 			}
 		}	
 	}

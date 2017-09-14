@@ -154,38 +154,33 @@ public class TemplateChooser {
                     }
 
                     // Try to find nearby node with operator token if number
-                    // TODO: possible that we might just want to check node's parents instead...
+                    // TODO: possible that we might just want to check node's parents instead of using word order
                     if (curNode.tokenType.equals("VTNUM")) {
-                        int opDistanceLimit = 3;
-                        for (int i = curNode.wordOrder - 1; i >= curNode.wordOrder - opDistanceLimit; i--) {
-                            ParseTreeNode opNode = parseTree.searchNodeByOrder(i);
-                            if (opNode != null && opNode.tokenType.equals("OT")) {
-                                switch (opNode.function) {
-                                    case ">":
-                                        op = Operator.GT;
-                                        value = curNode.label;
-                                        break;
-                                    case ">=":
-                                        op = Operator.GTE;
-                                        value = curNode.label;
-                                        break;
-                                    case "<":
-                                        op = Operator.LT;
-                                        value = curNode.label;
-                                        break;
-                                    case "<=":
-                                        op = Operator.LTE;
-                                        value = curNode.label;
-                                        break;
-                                    case "!=":
-                                        op = Operator.NE;
-                                        value = curNode.label;
-                                        break;
-                                    case "=":
-                                        op = Operator.EQ;
-                                        break;
-                                }
-                                if (op != null) break;
+                        if (curNode.attachedOT != null) {
+                            switch (curNode.attachedOT) {
+                                case ">":
+                                    op = Operator.GT;
+                                    value = curNode.label;
+                                    break;
+                                case ">=":
+                                    op = Operator.GTE;
+                                    value = curNode.label;
+                                    break;
+                                case "<":
+                                    op = Operator.LT;
+                                    value = curNode.label;
+                                    break;
+                                case "<=":
+                                    op = Operator.LTE;
+                                    value = curNode.label;
+                                    break;
+                                case "!=":
+                                    op = Operator.NE;
+                                    value = curNode.label;
+                                    break;
+                                case "=":
+                                    op = Operator.EQ;
+                                    break;
                             }
                         }
                     }
@@ -257,7 +252,7 @@ public class TemplateChooser {
         }*/
 
         List<String> queryStrs = new ArrayList<>();
-        queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\"");
+        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\"");
         // queryStrs.add("return me the papers on VLDB conference after 2000."); // query 26
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000."); // query 30
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // query 31
@@ -271,7 +266,7 @@ public class TemplateChooser {
         // queryStrs.add("return me all the organizations in the databases area located in \"North America\""); // query 50
         // queryStrs.add("return me all the papers in \"University of Michigan\""); // query 54
         // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // query 55
-        // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
+        queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
         // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // query 59
 
         int i = 0;

@@ -15,7 +15,8 @@ public class ParseTreeNode implements Serializable
 	public String pos = "NA"; // part of speech; 
 	public String relationship = "NA"; // dependency relationship; 
 	public String tokenType = "NA"; // CMT, NT, VT and so forth; 
-	public String function = "NA"; // only exist in OT and FT; 
+	public String function = "NA"; // only exist in OT and FT;
+	public String attachedOT = null; // the attached OT function if it's a VT
 	public ParseTreeNode parent; 
 	public ArrayList<ParseTreeNode> children = new ArrayList<ParseTreeNode>(); 
 
