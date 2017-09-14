@@ -34,9 +34,9 @@ return me the homepage of the VLDB conference.
 return me the area of the VLDB conference.
 return me the authors who have papers in the VLDB conference.
 return me all the keywords.
-return me all the keywords in database area.
+return me all the keywords in the databases area.
 return me all the papers, which contain the keyword "Natural Language".
-return me the keywords of "Making database systems usable".
+return me the keywords of "Making the databases systems usable".
 return me the keywords related to "H. V. Jagadish".
 return me the keywords in VLDB conference.
 return me the keywords in PVLDB.
@@ -47,11 +47,11 @@ return me the papers in VLDB conference containing keyword "Information Retrieva
 return me the authors who have papers containing keyword "Relational Database".
 return me all the organizations.
 return me all the organizations in "North America".
-return me all the organizations in database area.
-return me all the organizations in database area located in "North America".
+return me all the organizations in the databases area.
+return me all the organizations in the databases area located in "North America".
 return me the homepage of "University of Michigan".
 return me all the researchers in "University of Michigan".
-return me all the researchers in database area in "University of Michigan".
+return me all the researchers in the databases area in "University of Michigan".
 return me all the papers in "University of Michigan".
 return me all the papers after 2000 in "University of Michigan".
 return me all the papers in VLDB conference in "University of Michigan".
