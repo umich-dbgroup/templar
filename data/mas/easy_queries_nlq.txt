@@ -5,7 +5,7 @@ return me the organization "H. V. Jagadish" is in.
 return me the homepage of "H. V. Jagadish".
 return me the conferences which have papers by "H. V. Jagadish".
 return me the journals, which have papers by "H. V. Jagadish".
-return me the domain where "H. V. Jagadish" is focus.
+return me the domain where "H. V. Jagadish" is focused.
 return me the papers written by "H. V. Jagadish" and "Divesh Srivastava".
 return me the papers written by "H. V. Jagadish" and "Yunyao Li" after 2005.
 return me the papers written by "H. V. Jagadish" and "Yunyao Li" on PVLDB.
