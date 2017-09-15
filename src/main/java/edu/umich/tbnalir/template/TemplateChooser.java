@@ -242,17 +242,16 @@ public class TemplateChooser {
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        /*
         List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }*/
+        }
 
-        List<String> queryStrs = new ArrayList<>();
-        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\"");
+        // List<String> queryStrs = new ArrayList<>();
+        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\""); // query 8
         // queryStrs.add("return me the papers on VLDB conference after 2000."); // query 26
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000."); // query 30
         // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // query 31
@@ -266,7 +265,7 @@ public class TemplateChooser {
         // queryStrs.add("return me all the organizations in the databases area located in \"North America\""); // query 50
         // queryStrs.add("return me all the papers in \"University of Michigan\""); // query 54
         // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // query 55
-        queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
+        // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
         // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // query 59
 
         int i = 0;
