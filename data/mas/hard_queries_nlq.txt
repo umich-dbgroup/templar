@@ -1,0 +1,60 @@
+return me the total citations of all the papers in PVLDB.
+return me the citations of each paper in PVLDB.
+return me the total citations of papers in PVLDB in 2005.
+return me the total citations of papers in PVLDB before 2005.
+return me the total citations of paper in PVLDB in each year.
+return me the number of papers published in PVLDB in each year.
+return me the papers written by "H. V. Jagadish" and "Divesh Srivastava" with more than 200 citations.
+return me the papers written by "H. V. Jagadish" and "Divesh Srivastava" with the most number of citations.
+return me the conferences, which have more than 10 papers by "H. V. Jagadish".
+return me the conference, which have the most number of papers by "H. V. Jagadish".
+return me the journals, which have more than 10 papers by "H. V. Jagadish".
+return me the journal, which have the most number of papers by "H. V. Jagadish".
+return me the paper with the most citations.
+return me the paper with more than 200 citations.
+return me the paper in database area with the most citations.
+return me the paper in database area with more than 200 citations.
+return me the paper in PVLDB with the most citations.
+return me the paper in PVLDB with more than 200 citations.
+return me the paper in VLDB conference with the most citations.
+return me the paper in VLDB conference with more than 200 citations.
+return me the paper by "H. V. Jagadish" with the most citations.
+return me the paper by "H. V. Jagadish" with more than 200 citations.
+return me the papers by "H. V. Jagadish" on PVLDB with more than 200 citations.
+return me the papers by "H. V. Jagadish" on VLDB conference with more than 200 citations.
+return me the paper after 2000 with the most citations.
+return me the paper after 2000 with more than 200 citations.
+return me the paper after 2000 in database area with the most citations.
+return me the paper after 2000 in database area with more than 200 citations.
+return me the paper after 2000 in PVLDB with the most citations.
+return me the paper after 2000 in PVLDB with more than 200 citations.
+return me the paper after 2000 in VLDB conference with the most citations.
+return me the paper after 2000 in VLDB conference with more than 200 citations.
+return me the total citations of all the papers in the VLDB conference.
+return me the citations of each paper in the VLDB conference.
+return me the total citations of papers in the VLDB conference in 2005.
+return me the total citations of papers in the VLDB conference before 2005.
+return me the total citations of papers in the VLDB conference in each year.
+return me the number of paper published in the VLDB conference in each year.
+return me the author who has the most number of papers containing keyword "Relational Database".
+return me the conference, which has the most number of papers containing keyword "Relational Database".
+return me the journal, which has the most number of papers containing keyword "Relational Database".
+return me the number of the authors who have more than 10 papers containing keyword "Relational Database".
+return me the number of the conferences, which have more than 60 papers containing keyword "Relational Database".
+return me the number of the journals, which have more than 60 papers containing keyword "Relational Database".
+return me the number of authors who have more than 10 papers containing keyword "Relational Database".
+return me the number of conferences, which have more than 60 papers containing keyword "Relational Database".
+return me the number of journals, which have more than 60 papers containing keyword "Relational Database".
+return me the number of keywords, which have been contained by more than 100 papers in VLDB conference.
+return me the number of keywords, which have been contained by more than 100 papers in PVLDB.
+return me the number of keywords, which have been contained by more than 10 papers of "H. V. Jagadish".
+return me the keyword, which have been contained by the most number of papers in VLDB conference.
+return me the keyword, which have been contained by the most number of papers in PVLDB.
+return me the keyword, which have been contained by the most number of papers by "H. V. Jagadish".
+return me the journal that has the most number of papers containing keyword "Relational Database".
+return me the conference that has the most number of papers containing keyword "Relational Database".
+return me the author who has the most number of papers containing keyword "Relational Database".
+return me the author in the "University of Michigan" whose papers have the most total citations.
+return me the author in the "University of Michigan" whose papers in database area have the most total citations.
+return me the author in the "University of Michigan" whose papers have more than 5000 total citations.
+return me the author in the "University of Michigan" in database area whose papers have more than 5000 total citations.

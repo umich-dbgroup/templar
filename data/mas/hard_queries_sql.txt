@@ -1,0 +1,60 @@
+SELECT DISTINCT sum(publication.citation_num) FROM publication, journal WHERE publication.title = "Papers" AND journal.name = "PVLDB" AND publication.jid = journal.jid
+SELECT DISTINCT publication.citation_num, journal.name FROM publication, journal WHERE journal.name = "PVLDB" AND publication.jid = journal.jid GROUP BY journal.name
+SELECT DISTINCT sum(publication.citation_num) FROM publication, journal WHERE publication.title = "Papers" AND journal.name = "PVLDB" AND publication.year = 2005 AND publication.jid = journal.jid
+SELECT DISTINCT sum(publication.citation_num) FROM publication, journal WHERE publication.title = "Papers" AND journal.name = "PVLDB" AND publication.year < 2005 AND publication.jid = journal.jid
+SELECT DISTINCT sum(publication.citation_num), publication.year FROM publication, journal WHERE journal.name = "PVLDB" AND publication.jid = journal.jid GROUP BY publication.year
+NOT FOUND
+NOT FOUND
+NOT FOUND
+SELECT DISTINCT conference.name FROM conference, publication, author, journal, organization, writes WHERE publication.title = "Papers" AND author.name = "M. Jagadish" AND journal.name = "Math. Comput." AND organization.homepage = "http://www.uv.cl/" AND publication.reference_num > 10 AND conference.cid = publication.cid AND conference.cid = publication.cid AND publication.pid = writes.pid AND writes.aid = author.aid AND conference.cid = publication.cid AND publication.jid = journal.jid AND conference.cid = publication.cid AND publication.pid = writes.pid AND writes.aid = author.aid AND author.oid = organization.oid AND conference.cid = publication.cid
+NOT FOUND
+SELECT DISTINCT journal.name FROM journal, publication, author, organization, writes WHERE publication.title = "Papers" AND author.name = "M. Jagadish" AND journal.name = "Math. Comput." AND organization.homepage = "http://www.uv.cl/" AND publication.reference_num > 10 AND journal.jid = publication.jid AND journal.jid = publication.jid AND publication.pid = writes.pid AND writes.aid = author.aid AND journal.jid = publication.jid AND publication.pid = writes.pid AND writes.aid = author.aid AND author.oid = organization.oid AND journal.jid = publication.jid
+NOT FOUND
+SELECT DISTINCT publication.title, max(publication.citation_num) FROM publication
+SELECT DISTINCT publication.title FROM publication WHERE publication.reference_num > 200
+SELECT DISTINCT journal.name, max(publication.citation_num) FROM journal, domain, domain_journal WHERE domain.name = "Databases" AND journal.jid = domain_journal.jid AND domain_journal.did = domain.did
+SELECT DISTINCT journal.name FROM journal, domain, publication, domain_journal WHERE domain.name = "Databases" AND journal.name = "Area" AND publication.reference_num > 200 AND journal.jid = domain_journal.jid AND domain_journal.did = domain.did AND journal.jid = publication.jid AND publication.jid = journal.jid
+SELECT DISTINCT journal.name, max(publication.citation_num) FROM journal WHERE journal.name = "PVLDB"
+SELECT DISTINCT journal.name FROM journal, publication WHERE journal.name = "PVLDB" AND publication.reference_num > 200 AND journal.jid = publication.jid
+NOT FOUND
+SELECT DISTINCT publication.title FROM publication, conference WHERE conference.name = "VLDB" AND publication.reference_num > 200 AND publication.cid = conference.cid
+NOT FOUND
+SELECT DISTINCT publication.title FROM publication, author, journal, organization, writes WHERE author.name = "M. Jagadish" AND journal.name = "Math. Comput." AND organization.homepage = "http://www.uv.cl/" AND publication.reference_num > 200 AND publication.pid = writes.pid AND writes.aid = author.aid AND publication.jid = journal.jid AND publication.pid = writes.pid AND writes.aid = author.aid AND author.oid = organization.oid
+NOT FOUND
+NOT FOUND
+SELECT DISTINCT publication.title, max(publication.citation_num) FROM publication WHERE publication.year > 2000
+SELECT DISTINCT publication.title FROM publication WHERE publication.year > 2000 AND publication.reference_num > 200
+NOT FOUND
+SELECT DISTINCT publication.title FROM publication, journal, domain, conference, domain_conference WHERE journal.name = "Area" AND domain.name = "Databases" AND publication.year > 2000 AND publication.reference_num > 200 AND publication.jid = journal.jid AND publication.cid = conference.cid AND conference.cid = domain_conference.cid AND domain_conference.did = domain.did
+NOT FOUND
+SELECT DISTINCT publication.title FROM publication, journal WHERE journal.name = "PVLDB" AND publication.year > 2000 AND publication.reference_num > 200 AND publication.jid = journal.jid
+NOT FOUND
+SELECT DISTINCT publication.title FROM publication, conference WHERE publication.year > 2000 AND conference.name = "VLDB" AND publication.reference_num > 200 AND publication.cid = conference.cid
+SELECT DISTINCT sum(publication.citation_num) FROM publication, conference WHERE publication.title = "Papers" AND conference.name = "VLDB" AND publication.cid = conference.cid
+SELECT DISTINCT publication.citation_num, publication.title FROM publication, conference WHERE conference.name = "VLDB" AND publication.cid = conference.cid GROUP BY publication.title
+SELECT DISTINCT sum(publication.citation_num) FROM publication, conference WHERE publication.title = "Papers" AND publication.year = 2005 AND conference.name = "VLDB" AND publication.cid = conference.cid
+SELECT DISTINCT sum(publication.citation_num) FROM publication, conference WHERE publication.title = "Papers" AND conference.name = "VLDB" AND publication.year < 2005 AND publication.cid = conference.cid
+SELECT DISTINCT sum(publication.citation_num), publication.year FROM publication, conference WHERE publication.title = "Papers" AND conference.name = "VLDB" AND publication.cid = conference.cid GROUP BY publication.year
+SELECT DISTINCT count(publication.title), publication.year FROM publication, conference WHERE conference.name = "VLDB" AND publication.cid = conference.cid GROUP BY publication.year
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+SELECT DISTINCT count(keyword.keyword), block_1.count FROM keyword, publication, publication_keyword, (SELECT count(conference.name) as count FROM conference, keyword, publication, publication_keyword WHERE conference.name = "VLDB" AND conference.cid = publication.cid AND publication.pid = publication_keyword.pid AND publication_keyword.kid = keyword.kid GROUP BY keyword.keyword) block_1 WHERE block_1.count > 100 AND publication.title = "Papers" AND keyword.kid = publication_keyword.kid AND publication_keyword.pid = publication.pid  block_1 root: number of; outer: block_0 SELECT count(conference.name) as count FROM conference, keyword, publication, publication_keyword WHERE conference.name = "VLDB" AND conference.cid = publication.cid AND publication.pid = publication_keyword.pid AND publication_keyword.kid = keyword.kid GROUP BY keyword.keyword
+SELECT DISTINCT count(keyword.keyword) FROM keyword, publication, journal, publication_keyword WHERE publication.title = "Papers" AND journal.name = "PVLDB" AND publication.reference_num > 100 AND keyword.kid = publication_keyword.kid AND publication_keyword.pid = publication.pid AND keyword.kid = publication_keyword.kid AND publication_keyword.pid = publication.pid AND publication.jid = journal.jid AND keyword.kid = publication_keyword.kid AND publication_keyword.pid = publication.pid
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
+NOT FOUND
