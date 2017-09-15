@@ -36,7 +36,7 @@ return me the authors who have papers in the VLDB conference.
 return me all the keywords.
 return me all the keywords in the databases area.
 return me all the papers, which contain the keyword "Natural Language".
-return me the keywords of "Making the databases systems usable".
+return me the keywords of "Making database systems usable".
 return me the keywords related to "H. V. Jagadish".
 return me the keywords in VLDB conference.
 return me the keywords in PVLDB.
