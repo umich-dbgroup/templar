@@ -128,7 +128,7 @@ public class StanfordNLParser
         for (int i = 0; i < query.treeTable.size(); i++) {
             String[] treeTableEntry = query.treeTable.get(i);
             String reln = treeTableEntry[4];
-            if (reln.equals("amod") || reln.equals("num")) {
+            if (reln.equals("amod") || reln.equals("num") || reln.equals("nn")) {
                 ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
                 ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
                 ParseTreeNode[] adjTableEntry = {depNode, govNode};

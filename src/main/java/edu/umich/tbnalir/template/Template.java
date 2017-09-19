@@ -92,6 +92,11 @@ public class Template {
                 if (!this.templateString.contains(transProj.getAlias())) return null;
 
                 sj.add(transProj.toString());
+
+                // if GROUP BY, add to string
+                if (transProj.isGroupBy()) {
+                    result = result + " group by " + transProj.toString();
+                }
             }
 
             affinityAccum += Constants.SLOT_COVERS * translation.getProjections().size();
@@ -109,9 +114,13 @@ public class Template {
                 // If the relation isn't contained in the template, punt!
                 if (!this.templateString.contains(transProj.getAlias())) return null;
 
+                // if GROUP BY, add to string
+                if (transProj.isGroupBy()) {
+                    result = result + " group by " + transProj.toString();
+                }
+
                 Integer bestAttrIndex = null;
                 boolean bestAttrIsNull = false;
-                String bestAttrAlias = null;
 
                 int i = 0;
                 for (Projection tmplProj : projectionsList) {
@@ -119,7 +128,6 @@ public class Template {
                         if (bestAttrIndex == null) {
                             bestAttrIndex = i;
                             bestAttrIsNull = true;
-                            // bestAttrAlias = transProj.getAlias();
                         }
                     } else if (tmplProj.covers(transProj)) {
                         bestAttrIndex = i;
@@ -134,7 +142,6 @@ public class Template {
                 } else {
                     projectionsList.remove(bestAttrIndex.intValue());
                     if (bestAttrIsNull) {
-                        //transProj.setAlias(bestAttrAlias);
                         result = result.replaceFirst(Constants.COLUMN, transProj.toString());
                         affinityAccum += Constants.SLOT_COVERS;
                     } else {

@@ -8,10 +8,22 @@ public class Projection {
     String alias;           // Alias for attribute, if there is one
     Attribute attribute;
 
+    boolean groupBy;        // If we want to GROUP BY this projection, set true
+
     public Projection(String alias, Attribute attribute, String function) {
         this.alias = alias;
         this.attribute = attribute;
         this.function = function;
+
+        this.groupBy = false;
+    }
+
+    public boolean isGroupBy() {
+        return groupBy;
+    }
+
+    public void setGroupBy(boolean groupBy) {
+        this.groupBy = groupBy;
     }
 
     public String getAlias() {
@@ -46,6 +58,14 @@ public class Projection {
         }
 
         return false;
+    }
+
+    public void applyAggregateFunction() {
+        if (this.attribute.type.equals("int")) {
+            this.function = "sum";
+        } else {
+            this.function = "count";
+        }
     }
 
     @Override

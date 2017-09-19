@@ -121,21 +121,40 @@ public class TemplateChooser {
                         }
                     }
 
+                    // If we have a quantifier, set GROUP BY
+                    if (curNode.QT != null && curNode.QT.equals("each")) {
+                        proj.setGroupBy(true);
+                    }
+
                     // Increment aliasInt for every shared projection
+                    boolean aggregateNewProj = false;
                     for (Projection curProj : accumProj) {
                         if (curProj.getAttribute().equals(proj.getAttribute())) {
                             aliasInt++;
                         }
+                        // If this projection is GROUP BY, aggregate other projections
+                        if (proj.isGroupBy()) {
+                            curProj.applyAggregateFunction();
+                        }
+
+                        // If other projection contains GROUP BY, set aggregate flag to aggregate this one
+                        if (curProj.isGroupBy()) {
+                            aggregateNewProj = true;
+                        }
                     }
                     proj.setAlias(rel.getName() + "_" + aliasInt);
+
+                    if (aggregateNewProj) proj.applyAggregateFunction();
 
                     //if (!newAccumProj.contains(proj)) newAccumProj.add(proj);
                     newAccumProj.add(proj);
                     newAccumRel.add(rel);
 
                     // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
+                    // but only if it's not a group by token
+                    boolean likelyProjection = curNode.parent.tokenType.equals("CMT") || curNode.QT != null;
                     double similarityAdded = schemaEl.similarity;
-                    if (!curNode.parent.tokenType.equals("CMT")) {
+                    if (!likelyProjection) {
                         similarityAdded *= 0.8;
                     }
 
@@ -231,7 +250,7 @@ public class TemplateChooser {
         String prefix = "data/mas/mas";
         int joinLevel = 5;
 
-        String nlqFile = "data/mas/mas_c2_nlq.txt";
+        String nlqFile = "data/mas/mas_c3_nlq.txt";
 
         RDBMS db;
         try {
@@ -257,22 +276,35 @@ public class TemplateChooser {
 
         List<String> queryStrs = new ArrayList<>();
         // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
-        queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C1.14
-        queryStrs.add("return me the authors who have papers in PVLDB after 2010."); // C2.01
-        queryStrs.add("return me the authors who have papers in VLDB conference before 2002."); // C2.03
+        // queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C1.14
+        // queryStrs.add("return me the authors who have papers in PVLDB after 2010."); // C2.01
+        // queryStrs.add("return me the authors who have papers in VLDB conference before 2002."); // C2.03
         // queryStrs.add("return me the authors who have papers in VLDB conference before 2002 after 1995"); // C2.04
         // queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
-        queryStrs.add("return me the papers after 2000"); // C2.17
-        queryStrs.add("return me the papers by \"H. V. Jagadish\" after 2000"); // C2.22
-        queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000"); // C2.23
-        queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000"); // C2.24
-        queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // C2.43
-        queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // C2.46
-        queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // C2.47
-        queryStrs.add("return me papers after 2000 in database area with more than 200 citations"); // C2.54
-        queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations"); // C2.55
-        queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations"); // C2.56
+        // queryStrs.add("return me the papers after 2000"); // C2.17
+        // queryStrs.add("return me the papers by \"H. V. Jagadish\" after 2000"); // C2.22
+        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000"); // C2.23
+        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000"); // C2.24
+        // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // C2.43
+        // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // C2.46
+        // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // C2.47
+        // queryStrs.add("return me papers after 2000 in database area with more than 200 citations"); // C2.54
+        // queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations"); // C2.55
+        // queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations"); // C2.56
         // queryStrs.add("return me papers in database area with more than 200 citations"); // C2.48
+        // 10, 15, 16, 17, 37, 41
+        // queryStrs.add("return me the number of papers written by \"H. V. Jagadish\" in each year."); // C3.02
+        // queryStrs.add("return me the number of citations of \"Making database systems usable\" in each year."); // C3.05
+        // queryStrs.add("return me the number of papers after 2000."); // Q3.10
+        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" after 2000."); // Q3.15
+        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" on PVLDB after 2000."); // Q3.16
+        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // Q3.17
+        // queryStrs.add("return me the number of papers after 2000 in \"University of Michigan\"."); // Q3.37
+        // queryStrs.add("return me the number of papers in VLDB after 2000 in \"University of Michigan\"."); // Q3.40
+        // queryStrs.add("return me the number of papers in PVLDB after 2000 in \"University of Michigan\"."); // Q3.41
+        // queryStrs.add("return me the number of papers published in PVLDB in each year."); // C3.54
+        // queryStrs.add("return me the number of papers published in the VLDB conference in each year."); // C3.59
+
 
         int i = 0;
         for (String queryStr : queryStrs) {
