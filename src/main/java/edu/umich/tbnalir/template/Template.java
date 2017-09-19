@@ -68,11 +68,6 @@ public class Template {
     }
 
     public InstantiatedTemplate instantiate(PossibleTranslation translation) {
-        if (this.templateString.startsWith("select publication_0.title from domain as domain_0, domain_publication as domain_publication_0, publication as publication_0 where")
-                && this.templateString.contains(Constants.PRED)) {
-            int x = 0;
-        }
-
         String result = this.templateString;
 
         // TODO: add in score of similarity of query parse tree structure to template parse tree structure
@@ -154,22 +149,58 @@ public class Template {
 
         if (this.templateString.contains(Constants.PRED)) {
             // (1) in the case of a predicate-hidden template
-            StringJoiner sj = new StringJoiner(" and ");
+            StringBuilder sb = new StringBuilder();
 
             // Special case: no predicates
             if (translation.getPredicates().isEmpty()) {
                 result = result.replace(" where " + Constants.PRED, "");
             } else {
+                Map<Attribute, String[]> usedAttributes = new HashMap<>();
                 for (Predicate transPred : translation.getPredicates()) {
                     // If the relation isn't contained in the template, punt!
                     if (!this.templateString.contains(transPred.getAlias())) return null;
 
-                    sj.add(transPred.toString());
+                    // In certain cases, use OR instead of AND because of how numeric predicates are combined
+                    boolean useOr = false;
+
+                    // Used attr contains: {OP, VAL}
+                    String[] usedAttr = usedAttributes.get(transPred.getAttr());
+                    if (usedAttr != null) {
+                        String usedOp = usedAttr[0];
+                        Double usedVal = Double.valueOf(usedAttr[1]);
+                        Double curVal = Double.valueOf(transPred.getValue());
+
+                        if (usedOp.equals(">") || usedOp.equals(">=")) {
+                            if (transPred.getOp().equals(Operator.LT)) {
+                                if (curVal < usedVal) {
+                                    useOr = true;
+                                }
+                            }
+                        } else if (usedOp.equals("<") || usedOp.equals("<=")){
+                            if (transPred.getOp().equals(Operator.GT)) {
+                                if (curVal > usedVal) {
+                                    useOr = true;
+                                }
+                            }
+                        }
+                    }
+
+                    if (sb.length() != 0) {
+                        if (useOr) {
+                            sb.append(" or ");
+                        } else {
+                            sb.append(" and ");
+                        }
+                    }
+
+                    String[] addToUsedAttr = {transPred.getOp().toString(), transPred.getValue()};
+                    usedAttributes.put(transPred.getAttr(), addToUsedAttr);
+                    sb.append(transPred.toString());
                 }
 
                 affinityAccum += Constants.SLOT_COVERS * translation.getPredicates().size();
 
-                result = result.replace(Constants.PRED, sj.toString());
+                result = result.replace(Constants.PRED, sb.toString());
             }
         } else {
             if (predicatesList.size() < translation.getPredicates().size()) return null;

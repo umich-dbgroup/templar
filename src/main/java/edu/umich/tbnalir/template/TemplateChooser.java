@@ -144,7 +144,6 @@ public class TemplateChooser {
                 } else {
                     // If you are creating a predicate and there already exists a projection with the same attribute,
                     // then create an additional path of eliminating this predicate.
-
                     int aliasInt = 0;
 
                     if (accumProj.contains(proj)) {
@@ -156,7 +155,6 @@ public class TemplateChooser {
                     }
 
                     // Try to find nearby node with operator token if number
-                    // TODO: possible that we might just want to check node's parents instead of using word order
                     if (curNode.tokenType.equals("VTNUM")) {
                         if (curNode.attachedOT != null) {
                             switch (curNode.attachedOT) {
@@ -199,9 +197,13 @@ public class TemplateChooser {
                     Predicate pred = new Predicate(attr, op, value);
 
                     // Check previous predicates, if same attr exists, increment aliasInt
-                    for (Predicate curPred : accumPred) {
-                        if (curPred.getAttr().equals(pred.getAttr())) {
-                            aliasInt++;
+                    boolean notNumberWithNonEquality = !(curNode.tokenType.equals("VTNUM") && curNode.attachedOT != null
+                            && !curNode.attachedOT.equals("="));
+                    if (notNumberWithNonEquality) {
+                        for (Predicate curPred : accumPred) {
+                            if (curPred.getAttr().equals(pred.getAttr())) {
+                                aliasInt++;
+                            }
                         }
                     }
 
@@ -255,9 +257,22 @@ public class TemplateChooser {
 
         List<String> queryStrs = new ArrayList<>();
         // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
-        // queryStrs.add("return me the authors who have papers in PVLDB 2010.");
-        queryStrs.add("return me the authors who have papers in VLDB conference before 2002 after 1995"); // C2.04
-        queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
+        queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C1.14
+        queryStrs.add("return me the authors who have papers in PVLDB after 2010."); // C2.01
+        queryStrs.add("return me the authors who have papers in VLDB conference before 2002."); // C2.03
+        // queryStrs.add("return me the authors who have papers in VLDB conference before 2002 after 1995"); // C2.04
+        // queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
+        queryStrs.add("return me the papers after 2000"); // C2.17
+        queryStrs.add("return me the papers by \"H. V. Jagadish\" after 2000"); // C2.22
+        queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000"); // C2.23
+        queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000"); // C2.24
+        queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // C2.43
+        queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // C2.46
+        queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // C2.47
+        queryStrs.add("return me papers after 2000 in database area with more than 200 citations"); // C2.54
+        queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations"); // C2.55
+        queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations"); // C2.56
+        // queryStrs.add("return me papers in database area with more than 200 citations"); // C2.48
 
         int i = 0;
         for (String queryStr : queryStrs) {

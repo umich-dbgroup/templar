@@ -9,6 +9,7 @@ import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.expression.BinaryExpression;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
+import net.sf.jsqlparser.expression.operators.conditional.OrExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
@@ -269,7 +270,7 @@ public class TemplateRoot {
             Expression predicate = null;
 
             for (Attribute predAttr : predAttrSet) {
-                predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr);
+                predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr, false);
 
                 ps.setWhere(predicate);
 
@@ -307,7 +308,7 @@ public class TemplateRoot {
                 Expression predicate = null;
 
                 for (Attribute predAttr : predAttrSet) {
-                    predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr);
+                    predicate = this.generateComparisonPredicateExpr(predicate, UnknownBinaryExpression.class, predAttr, false);
 
                     ps.setWhere(predicate);
 
@@ -322,7 +323,7 @@ public class TemplateRoot {
         return results;
     }
 
-    public Expression generateComparisonPredicateExpr(Expression startingPred, Class binaryExprClass, Attribute attr) {
+    public Expression generateComparisonPredicateExpr(Expression startingPred, Class binaryExprClass, Attribute attr, boolean useOr) {
         try {
             Constructor<?> ctor = binaryExprClass.getConstructor();
             BinaryExpression binaryExpression = (BinaryExpression) ctor.newInstance();
@@ -332,7 +333,11 @@ public class TemplateRoot {
             if (startingPred == null) {
                 return binaryExpression;
             } else {
-                return new AndExpression(startingPred, binaryExpression);
+                if (useOr) {
+                    return new OrExpression(startingPred, binaryExpression);
+                } else {
+                    return new AndExpression(startingPred, binaryExpression);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -358,25 +363,25 @@ public class TemplateRoot {
         Expression predicate;
         Attribute attr = new Attribute("placeholder", "text");
         attr.setColumn(new Column());
-        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
         // generate various predicate types for nums
         attr = new Attribute("placeholder", "int");
         attr.setColumn(new Column());
-        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
-        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
-        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
-        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
-        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr, false);
         results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
 
         return results;
@@ -399,25 +404,32 @@ public class TemplateRoot {
 
         // Every type of attribute should support an equality predicate
         Expression predicate;
-        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr);
+        predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
         results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
         if (Utils.isSQLTypeNumeric(attr.getType())) {
             // For foreign/primary keys, only support equality predicates
             if (!attr.isFk() && !attr.isPk()) {
-                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr);
+                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr, false);
                 results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr);
+                predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr, false);
                 results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr);
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
                 results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr);
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr, false);
                 results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
 
-                // TODO: a more complex predicate could be "between" (> + <, >= + <=)
+                // TODO: Could support >= and/or <= as well
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
+                predicate = this.generateComparisonPredicateExpr(predicate, GreaterThan.class, attr, true);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+
+                predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
+                predicate = this.generateComparisonPredicateExpr(predicate, GreaterThan.class, attr, false);
+                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
             }
         }
 
