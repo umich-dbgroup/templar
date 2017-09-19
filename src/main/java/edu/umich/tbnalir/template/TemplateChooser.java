@@ -229,7 +229,7 @@ public class TemplateChooser {
         String prefix = "data/mas/mas";
         int joinLevel = 5;
 
-        String nlqFile = "data/mas/mas_c3_nlq.txt";
+        String nlqFile = "data/mas/mas_c2_nlq.txt";
 
         RDBMS db;
         try {
@@ -244,28 +244,20 @@ public class TemplateChooser {
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
+        /*
         List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }
+        }*/
 
-        // List<String> queryStrs = new ArrayList<>();
+        List<String> queryStrs = new ArrayList<>();
         // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
         // queryStrs.add("return me the authors who have papers in PVLDB 2010.");
-        // queryStrs.add("return me papers in database area with more than 200 citations.");  // C2.51
-        // queryStrs.add("return me papers in PVLDB with more than 200 citations.");  // C2.52
-        // queryStrs.add("return me papers in VLDB conference with more than 200 citations.");  // C2.53
-        // queryStrs.add("return me papers by \"H. V. Jagadish\" with more than 200 citations.");  // C2.54
-        // queryStrs.add("return me papers by \"H. V. Jagadish\" on PVLDB with more than 200 citations.");  // C2.55
-        // queryStrs.add("return me papers by \"H. V. Jagadish\" on VLDB conference with more than 200 citations.");  // C2.56
-        // queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C2.57
-        // queryStrs.add("return me papers after 2000 in database area with more than 200 citations.");  // C2.58
-        // queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations.");  // C2.59
-        // queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations.");  // C2.60
-        // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // query 59
+        queryStrs.add("return me the authors who have papers in VLDB conference before 2002 after 1995"); // C2.04
+        queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
 
         int i = 0;
         for (String queryStr : queryStrs) {

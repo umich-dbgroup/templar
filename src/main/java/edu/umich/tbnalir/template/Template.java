@@ -68,6 +68,11 @@ public class Template {
     }
 
     public InstantiatedTemplate instantiate(PossibleTranslation translation) {
+        if (this.templateString.startsWith("select publication_0.title from domain as domain_0, domain_publication as domain_publication_0, publication as publication_0 where")
+                && this.templateString.contains(Constants.PRED)) {
+            int x = 0;
+        }
+
         String result = this.templateString;
 
         // TODO: add in score of similarity of query parse tree structure to template parse tree structure
@@ -146,11 +151,10 @@ public class Template {
 
         // CHECK PREDICATES COVERAGE
         List<Predicate> predicatesList = new ArrayList<>(this.predicates);
-        if (predicatesList.size() < translation.getPredicates().size()) return null;
 
         if (this.templateString.contains(Constants.PRED)) {
             // (1) in the case of a predicate-hidden template
-            StringJoiner sj = new StringJoiner(", ");
+            StringJoiner sj = new StringJoiner(" and ");
 
             // Special case: no predicates
             if (translation.getPredicates().isEmpty()) {
@@ -168,6 +172,8 @@ public class Template {
                 result = result.replace(Constants.PRED, sj.toString());
             }
         } else {
+            if (predicatesList.size() < translation.getPredicates().size()) return null;
+
             // (2) in the case of a predicate-visible template
             for (Predicate transPred : translation.getPredicates()) {
                 // If the relation isn't contained in the template, punt!

@@ -293,22 +293,24 @@ public class FullQueryDeParser extends SelectDeParser {
         if (plainSelect.getWhere() != null) {
             this.getBuffer().append(" WHERE ");
 
+            Expression expr;
             if (this.removeWhere) {
-                this.getBuffer().append(Constants.PRED);
+                expr = new LiteralExpression(Constants.PRED);
             } else {
-                // Add and consume join predicates from ON expressions
-                Expression expr = plainSelect.getWhere();
-                while (!this.joinPredicates.isEmpty()) {
-                    Expression pred = this.joinPredicates.remove(0);
-                    if (expr == null) {
-                        expr = pred;
-                    } else {
-                        expr = new AndExpression(expr, pred);
-                    }
-                }
-
-                expr.accept(this.getExpressionVisitor());
+                expr = plainSelect.getWhere();
             }
+
+            // Add and consume join predicates from ON expressions
+            while (!this.joinPredicates.isEmpty()) {
+                Expression pred = this.joinPredicates.remove(0);
+                if (expr == null) {
+                    expr = pred;
+                } else {
+                    expr = new AndExpression(expr, pred);
+                }
+            }
+
+            expr.accept(this.getExpressionVisitor());
         }
     }
 
