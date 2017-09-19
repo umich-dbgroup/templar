@@ -152,7 +152,7 @@ public class TemplateChooser {
 
                     // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
                     // but only if it's not a group by token
-                    boolean likelyProjection = curNode.parent.tokenType.equals("CMT") || curNode.QT != null;
+                    boolean likelyProjection = curNode.parent.tokenType.equals("CMT") || proj.isGroupBy();
                     double similarityAdded = schemaEl.similarity;
                     if (!likelyProjection) {
                         similarityAdded *= 0.8;
@@ -292,7 +292,6 @@ public class TemplateChooser {
         // queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations"); // C2.55
         // queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations"); // C2.56
         // queryStrs.add("return me papers in database area with more than 200 citations"); // C2.48
-        // 10, 15, 16, 17, 37, 41
         // queryStrs.add("return me the number of papers written by \"H. V. Jagadish\" in each year."); // C3.02
         // queryStrs.add("return me the number of citations of \"Making database systems usable\" in each year."); // C3.05
         // queryStrs.add("return me the number of papers after 2000."); // Q3.10
@@ -304,6 +303,16 @@ public class TemplateChooser {
         // queryStrs.add("return me the number of papers in PVLDB after 2000 in \"University of Michigan\"."); // Q3.41
         // queryStrs.add("return me the number of papers published in PVLDB in each year."); // C3.54
         // queryStrs.add("return me the number of papers published in the VLDB conference in each year."); // C3.59
+        queryStrs.add("return me the total citations of the papers containing keyword \"Natural Language\""); // C3.30
+        queryStrs.add("return me the total citations of the papers in \"University of Michigan\""); // C3.42
+        queryStrs.add("return me the total citations of all the papers in PVLDB."); // C3.50
+        queryStrs.add("return me the total citations of papers in PVLDB in 2005."); // C3.51
+        queryStrs.add("return me the total citations of papers in PVLDB before 2005."); // C3.52
+        queryStrs.add("return me the total citations of papers in PVLDB in each year."); // C3.53
+        queryStrs.add("return me the total citations of all the papers in the VLDB conference."); // C3.55
+        queryStrs.add("return me the total citations of papers in the VLDB conference in 2005."); // C3.56
+        queryStrs.add("return me the total citations of papers in the VLDB conference before 2005."); // C3.57
+        queryStrs.add("return me the total citations of papers in the VLDB conference in each year."); // C3.58
 
 
         int i = 0;
@@ -368,10 +377,23 @@ public class TemplateChooser {
                         node.parent = functionNode.parent;
                         functionNode.parent.children.remove(functionNode);
                     }
+
+                    // Do similar operation if function is child
+                    List<ParseTreeNode> funcToRemove = new ArrayList<>();
+                    List<ParseTreeNode> childrenToAdd = new ArrayList<>();
+                    for (ParseTreeNode child : node.children) {
+                        if (child.tokenType.equals("FT")) {
+                            node.attachedFT = child.function;
+                            childrenToAdd.addAll(child.children);
+                            funcToRemove.add(child);
+                        }
+                    }
+                    node.children.removeAll(funcToRemove);
+                    node.children.addAll(childrenToAdd);
                 }
 
                 // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
-                // or "num" (number modifier) relationship
+                // or "num" (number modifier) or "nn" (noun compound modifier) relationship
                 if (isValueToken) {
                     for (ParseTreeNode[] adjEntry : query.adjTable) {
                         ParseTreeNode relatedNode;

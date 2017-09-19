@@ -51,7 +51,7 @@ return me the number of papers published in the VLDB conference before 2000.
 return me the total citations of all the papers in PVLDB. 
 return me the total citations of papers in PVLDB in 2005. 
 return me the total citations of papers in PVLDB before 2005. 
-return me the total citations of paper in PVLDB in each year. 
+return me the total citations of papers in PVLDB in each year. 
 return me the number of papers published in PVLDB in each year. 
 return me the total citations of all the papers in the VLDB conference. 
 return me the total citations of papers in the VLDB conference in 2005. 
