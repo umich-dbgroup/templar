@@ -74,7 +74,8 @@ public class TemplateChooser {
         if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
             for (MappedSchemaElement schemaEl : curNode.mappedElements) {
                 Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
-                if (rel == null) throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
+                if (rel == null)
+                    throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
                 // If we're dealing with a relation, move ahead
                 if (schemaEl.schemaElement.type.equals("relation")) {
@@ -88,10 +89,11 @@ public class TemplateChooser {
                 }
 
                 Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
-                if (attr == null) throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
+                if (attr == null)
+                    throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
 
                 String alias = rel.getName() + "_0";
-                Projection proj = new Projection(alias, attr);
+                Projection proj = new Projection(alias, attr, curNode.attachedFT);
 
                 Operator op = null;
                 String value = null;
@@ -134,7 +136,7 @@ public class TemplateChooser {
                     // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
                     double similarityAdded = schemaEl.similarity;
                     if (!curNode.parent.tokenType.equals("CMT")) {
-                       similarityAdded *= 0.8;
+                        similarityAdded *= 0.8;
                     }
 
                     result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
@@ -227,7 +229,7 @@ public class TemplateChooser {
         String prefix = "data/mas/mas";
         int joinLevel = 5;
 
-        String nlqFile = "data/mas/easy_queries_nlq.txt";
+        String nlqFile = "data/mas/mas_c3_nlq.txt";
 
         RDBMS db;
         try {
@@ -251,21 +253,18 @@ public class TemplateChooser {
         }
 
         // List<String> queryStrs = new ArrayList<>();
-        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\""); // query 8
-        // queryStrs.add("return me the papers on VLDB conference after 2000."); // query 26
-        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000."); // query 30
-        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // query 31
-        // queryStrs.add("return me all the keywords."); // query 35
-        // queryStrs.add("return me the papers in PVLDB containing keyword \"Keyword search\""); // query 44
-        // queryStrs.add("return me all the organizations in \"North America\""); // query 48
-        // queryStrs.add("return me the keywords in the papers of \"University of Michigan\""); // query 42
-        // queryStrs.add("return me the papers in VLDB conference containing keyword \"Information Retrieval\""); // query 45
-        // queryStrs.add("return me the authors who have papers containing keyword \"Relational Database\""); // query 46
-        // queryStrs.add("return me all the organizations."); // query 47
-        // queryStrs.add("return me all the organizations in the databases area located in \"North America\""); // query 50
-        // queryStrs.add("return me all the papers in \"University of Michigan\""); // query 54
-        // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // query 55
-        // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // query 58
+        // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
+        // queryStrs.add("return me the authors who have papers in PVLDB 2010.");
+        // queryStrs.add("return me papers in database area with more than 200 citations.");  // C2.51
+        // queryStrs.add("return me papers in PVLDB with more than 200 citations.");  // C2.52
+        // queryStrs.add("return me papers in VLDB conference with more than 200 citations.");  // C2.53
+        // queryStrs.add("return me papers by \"H. V. Jagadish\" with more than 200 citations.");  // C2.54
+        // queryStrs.add("return me papers by \"H. V. Jagadish\" on PVLDB with more than 200 citations.");  // C2.55
+        // queryStrs.add("return me papers by \"H. V. Jagadish\" on VLDB conference with more than 200 citations.");  // C2.56
+        // queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C2.57
+        // queryStrs.add("return me papers after 2000 in database area with more than 200 citations.");  // C2.58
+        // queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations.");  // C2.59
+        // queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations.");  // C2.60
         // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // query 59
 
         int i = 0;
@@ -316,10 +315,24 @@ public class TemplateChooser {
                 boolean isNameToken = node.tokenType.equals("NT");
                 boolean isValueToken = node.tokenType.startsWith("VT");
 
-                if (isNameToken || isValueToken) mappedNodes.add(node);
+                if (isNameToken || isValueToken) {
+                    mappedNodes.add(node);
+
+                    // In the case that we have a function as a parent, add accordingly and "ignore" function
+                    if (node.parent.tokenType.equals("FT")) {
+                        node.attachedFT = node.parent.function;
+                        ParseTreeNode functionNode = node.parent;
+                        for (ParseTreeNode funcChild : functionNode.children) {
+                            funcChild.parent = node;
+                            node.children.add(funcChild);
+                        }
+                        node.parent = functionNode.parent;
+                        functionNode.parent.children.remove(functionNode);
+                    }
+                }
 
                 // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
-                // relationship somehow...
+                // or "num" (number modifier) relationship
                 if (isValueToken) {
                     for (ParseTreeNode[] adjEntry : query.adjTable) {
                         ParseTreeNode relatedNode;
@@ -343,8 +356,8 @@ public class TemplateChooser {
                                 MappedSchemaElement relatedMappedEl = relatedNode.mappedElements.get(k);
 
                                 if (nodeMappedEl.schemaElement.equals(relatedMappedEl.schemaElement)) {
-                                    // Somewhat arbitrarily combine their similarity
-                                    double combinedScore = nodeSimilarity + relatedMappedEl.similarity;
+                                    // Somewhat arbitrarily combine their similarity by averaging
+                                    double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
 
                                     if (combinedScore > maxSimilarity) {
                                         chosenMappedSchemaEl = nodeMappedEl;
@@ -354,11 +367,11 @@ public class TemplateChooser {
                                 }
                             }
                         }
-                        mappedNodesToRemove.add(relatedNode);
 
                         if (chosenMappedSchemaEl != null) {
                             chosenMappedSchemaEl.similarity = maxSimilarity;
                             node.choice = choice;
+                            mappedNodesToRemove.add(relatedNode);
                         }
                     }
                 }

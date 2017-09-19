@@ -47,20 +47,23 @@ public class SimFunctions
 			return; 
 		}
 		
-		String nodeLabel = treeNode.label; 
-		if(BasicFunctions.isNumeric(nodeLabel) && element.schemaElement.type.equals("number"))
+		String nodeLabel = treeNode.label;
+		if(BasicFunctions.isNumeric(nodeLabel) && element.schemaElement.type.equals("int"))
 		{
-			int sum = 0; 
-			for(int i = 0; i < element.mappedValues.size(); i++)
-			{
-				sum += Integer.parseInt(element.mappedValues.get(i));
-			}
-			
-			int size = Integer.parseInt(nodeLabel)*element.mappedValues.size(); 
-			element.similarity = 1-(double)Math.abs(sum-size)/(double)size; 
-		}
-		else
-		{
+            // Perform some difference calc if OT is "="
+            if (treeNode.attachedOT == null || treeNode.attachedOT.equals("=")) {
+                int sum = 0;
+                for (int i = 0; i < element.mappedValues.size(); i++) {
+                    sum += Integer.parseInt(element.mappedValues.get(i));
+                }
+
+                int size = Integer.parseInt(nodeLabel) * element.mappedValues.size();
+                element.similarity = 1 - (double) Math.abs(sum - size) / (double) size;
+            } else {
+                // Otherwise, we would have done the mapping in SchemaElement::isNumExist
+                element.similarity = 1;
+            }
+		} else {
 			double [] sims = new double[element.mappedValues.size()]; 
 			ArrayList<String> mappedValues = element.mappedValues; 
 			for(int i = 0; i < mappedValues.size(); i++)

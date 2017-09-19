@@ -16,7 +16,11 @@ public class ParseTreeNode implements Serializable
 	public String relationship = "NA"; // dependency relationship; 
 	public String tokenType = "NA"; // CMT, NT, VT and so forth; 
 	public String function = "NA"; // only exist in OT and FT;
+
+    // Added by cjbaik
 	public String attachedOT = null; // the attached OT function if it's a VT
+    public String attachedFT = null; // the attached FT function
+
 	public ParseTreeNode parent; 
 	public ArrayList<ParseTreeNode> children = new ArrayList<ParseTreeNode>(); 
 

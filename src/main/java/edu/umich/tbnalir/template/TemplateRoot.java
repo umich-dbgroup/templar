@@ -626,7 +626,7 @@ public class TemplateRoot {
                             if (col.getTable().getAlias() == null || col.getTable().getAlias().getName() == null)
                                 throw new RuntimeException("Column alias for " + col + " not found!");
 
-                            Projection proj = new Projection(col.getTable().getAlias().getName(), attr);
+                            Projection proj = new Projection(col.getTable().getAlias().getName(), attr, null);
                             projections.add(proj);
                         }
                     }

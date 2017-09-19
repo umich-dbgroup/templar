@@ -4,12 +4,14 @@ package edu.umich.tbnalir.rdbms;
  * Created by cjbaik on 9/12/17.
  */
 public class Projection {
+    String function;        // Function, if any
     String alias;           // Alias for attribute, if there is one
     Attribute attribute;
 
-    public Projection(String alias, Attribute attribute) {
+    public Projection(String alias, Attribute attribute, String function) {
         this.alias = alias;
         this.attribute = attribute;
+        this.function = function;
     }
 
     public String getAlias() {
@@ -28,6 +30,14 @@ public class Projection {
         this.attribute = attribute;
     }
 
+    public String getFunction() {
+        return function;
+    }
+
+    public void setFunction(String function) {
+        this.function = function;
+    }
+
     public boolean covers(Projection other) {
         if (this.equals(other)) return true;
 
@@ -41,11 +51,31 @@ public class Projection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
+        // TODO: explore this more, but are all COUNT functions going to be DISTINCT?
+        boolean isCount = this.function != null && this.function.equalsIgnoreCase("count");
+
+        boolean countingIntAttr = this.function != null && this.function.equalsIgnoreCase("count")
+                && this.attribute.getType().equals("int");
+
+        if (this.function != null && !countingIntAttr) {
+            sb.append(this.function);
+            sb.append("(");
+            if (isCount) {
+                sb.append("distinct(");
+            }
+        }
         if (this.alias != null) {
             sb.append(this.alias);
             sb.append(".");
         }
         sb.append(this.attribute.getName());
+        if (this.function != null && !countingIntAttr) {
+            sb.append(")");
+            if (isCount) {
+                sb.append(")");
+            }
+        }
         return sb.toString();
     }
 

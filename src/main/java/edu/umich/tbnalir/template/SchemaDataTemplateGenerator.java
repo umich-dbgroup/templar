@@ -324,7 +324,7 @@ public class SchemaDataTemplateGenerator {
         // Determines max size of projections. If null, use all.
         Integer chooseTopProjection = 4;
         Integer maxProjectionSize = 1;
-        Integer chooseTopPredicate = 4;
+        Integer chooseTopPredicate = 5;
         Integer maxPredicateSize = 3;
 
         // If true, chooses top n from each relation
