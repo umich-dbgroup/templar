@@ -1,7 +1,9 @@
 package edu.umich.tbnalir.sql;
 
+import edu.umich.tbnalir.parse.Predicate;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Relation;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.expression.BinaryExpression;
 import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.expression.operators.relational.*;
@@ -59,8 +61,14 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
                 }
             }
 
+            if (alias != null) {
+                attr = new Attribute(attr);
+                Relation newRel = new Relation(attr.getRelation());
+                attr.setRelation(newRel);
+                newRel.setAliasInt(Utils.getAliasIntFromAlias(alias));
+            }
+
             Predicate pred = new Predicate(attr, operator, value);
-            pred.setAlias(alias);
             this.predicates.add(pred);
         }
     }

@@ -92,7 +92,9 @@ public class NodeMapper
                 {
                 	curNode.tokenType = "VT"; 
                 }
-                else if(curNode.tokenType.equals("NA") && (curNode.pos.startsWith("NN") || curNode.pos.equals("CD"))) // if its POS is N
+                else if(curNode.tokenType.equals("NA") &&
+						(curNode.pos.startsWith("NN") || curNode.pos.equals("CD")
+                        || curNode.pos.startsWith("VB"))) // if its POS is
                 {
                     curNode.tokenType = "NTVT";
                 }
@@ -317,7 +319,7 @@ public class NodeMapper
 							maxPosition = i; 
 						}
 					}
-					child.choice = maxPosition; 
+					child.choice = maxPosition;
 				}
 				
 				if(child.mappedElements.isEmpty())

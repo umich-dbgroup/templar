@@ -18,7 +18,7 @@
       "oid": {
         "name": "oid",
         "type": "int",
-        "pk": true,
+        "fk": true,
         "entropy": 7.389998229540798
       },
       "homepage": {

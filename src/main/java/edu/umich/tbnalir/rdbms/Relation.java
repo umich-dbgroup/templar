@@ -2,13 +2,11 @@ package edu.umich.tbnalir.rdbms;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.util.Utils;
+import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.FromItem;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by cjbaik on 6/30/17.
@@ -17,6 +15,8 @@ public class Relation {
     String name;
     RelationType type;
     Map<String, Attribute> attributes;
+
+    Integer aliasInt; // aliasInt
 
     boolean joinTable;  // true if it is a join table
 
@@ -45,6 +45,38 @@ public class Relation {
         this.joinTable = false;
         this.fromItem = null;
         this.rankedAttributes = null;
+
+        this.aliasInt = 0;
+    }
+
+    public Relation(Relation other) {
+        this.name = other.name;
+        this.type = other.type;
+
+        this.attributes = new HashMap<>();
+        for (Map.Entry<String, Attribute> e : other.attributes.entrySet()) {
+            Attribute copyAttr = new Attribute(e.getValue());
+            copyAttr.setRelation(this);
+            this.attributes.put(e.getKey(), copyAttr);
+        }
+
+        this.joinTable = other.joinTable;
+        this.fromItem = null;
+
+        this.rankedAttributes = new ArrayList<>();
+        for (Attribute otherAttr : other.rankedAttributes) {
+            this.rankedAttributes.add(this.attributes.get(otherAttr.getName()));
+        }
+
+        this.aliasInt = 0;
+    }
+
+    public Integer getAliasInt() {
+        return aliasInt;
+    }
+
+    public void setAliasInt(Integer aliasInt) {
+        this.aliasInt = aliasInt;
     }
 
     public boolean isJoinTable() {
@@ -132,7 +164,9 @@ public class Relation {
             if (this instanceof Function) {
                 this.fromItem = Utils.convertFunctionToTableFunction((Function) this);
             } else {
+                Alias alias = new Alias(this.name + "_" + aliasInt);
                 this.fromItem = new Table(this.name);
+                this.fromItem.setAlias(alias);
             }
         }
 
@@ -140,7 +174,26 @@ public class Relation {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Relation relation = (Relation) o;
+
+        if (name != null ? !name.equals(relation.name) : relation.name != null) return false;
+        return !(aliasInt != null ? !aliasInt.equals(relation.aliasInt) : relation.aliasInt != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (aliasInt != null ? aliasInt.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
-        return this.getName();
+        return this.name + "_" + this.aliasInt;
     }
 }

@@ -17,6 +17,7 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.lang3.StringUtils;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -294,6 +295,17 @@ public class Utils {
             return new ArrayList<>(stmts);
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static Integer getAliasIntFromAlias(String alias) {
+        String[] splitList = alias.split("_");
+        String lastSplit = splitList[splitList.length - 1];
+
+        if (StringUtils.isNumeric(lastSplit)) {
+            return Integer.valueOf(lastSplit);
+        } else {
+            return null;
         }
     }
 }

@@ -13,7 +13,7 @@ public class SchemaElement implements Serializable
 {
 	public int elementID = 0; 
 	public String name = ""; // relation_name or attribute_name
-	public String type = ""; // entity, relationship, pk, fk, text, number; 
+	public String type = ""; // relation, pk, fk, text, number;
 
 	public SchemaElement relation; // for pk, fk, text, number; 
 	

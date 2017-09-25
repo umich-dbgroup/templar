@@ -1,29 +1,19 @@
 package edu.umich.tbnalir.template;
 
 import com.esotericsoftware.minlog.Log;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
-import edu.stanford.nlp.trees.*;
-import edu.umich.tbnalir.components.EntityResolution;
 import edu.umich.tbnalir.components.NodeMapper;
 import edu.umich.tbnalir.components.StanfordNLParser;
-import edu.umich.tbnalir.dataStructure.EntityPair;
 import edu.umich.tbnalir.dataStructure.ParseTree;
 import edu.umich.tbnalir.dataStructure.ParseTreeNode;
 import edu.umich.tbnalir.dataStructure.Query;
-import edu.umich.tbnalir.parse.DependencyInfo;
 import edu.umich.tbnalir.parse.PossibleTranslation;
-import edu.umich.tbnalir.parse.Word;
+import edu.umich.tbnalir.parse.Projection;
 import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.sql.Operator;
-import edu.umich.tbnalir.sql.Predicate;
+import edu.umich.tbnalir.parse.Predicate;
 import edu.umich.tbnalir.tools.PrintForCheck;
-import edu.umich.tbnalir.util.Constants;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.CharSet;
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -92,8 +82,7 @@ public class TemplateChooser {
                 if (attr == null)
                     throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
 
-                String alias = rel.getName() + "_0";
-                Projection proj = new Projection(alias, attr, curNode.attachedFT);
+                Projection proj = new Projection(attr, curNode.attachedFT);
 
                 Operator op = null;
                 String value = null;
@@ -106,11 +95,11 @@ public class TemplateChooser {
                     List<Predicate> newAccumPred = new ArrayList<>(accumPred);
 
                     // If you are creating a projection and there already exists a predicate with the same attribute,
-                    // then create an additional path of eliminating this projection.
+                    // then create an additional path without this projection.
                     boolean selfJoinFlag = false;
                     int aliasInt = 0;
                     for (Predicate pred : accumPred) {
-                        if (pred.getAttr().equals(attr)) {
+                        if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
                             if (!selfJoinFlag) {
                                 result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
                                         new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
@@ -129,7 +118,7 @@ public class TemplateChooser {
                     // Increment aliasInt for every shared projection
                     boolean aggregateNewProj = false;
                     for (Projection curProj : accumProj) {
-                        if (curProj.getAttribute().equals(proj.getAttribute())) {
+                        if (curProj.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
                             aliasInt++;
                         }
                         // If this projection is GROUP BY, aggregate other projections
@@ -142,7 +131,12 @@ public class TemplateChooser {
                             aggregateNewProj = true;
                         }
                     }
-                    proj.setAlias(rel.getName() + "_" + aliasInt);
+
+                    rel = new Relation(rel);
+                    rel.setAliasInt(aliasInt);
+                    Attribute newAttr = new Attribute(proj.getAttribute());
+                    newAttr.setRelation(rel);
+                    proj.setAttribute(newAttr);
 
                     if (aggregateNewProj) proj.applyAggregateFunction();
 
@@ -165,12 +159,14 @@ public class TemplateChooser {
                     // then create an additional path of eliminating this predicate.
                     int aliasInt = 0;
 
-                    if (accumProj.contains(proj)) {
-                        result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
-                                new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                accumScore + 0.5, accumNodes + 1));
+                    for (Projection p : accumProj) {
+                        if (p.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
+                            result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
+                                    new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                                    accumScore + 0.5, accumNodes + 1));
 
-                        aliasInt++;
+                            aliasInt++;
+                        }
                     }
 
                     // Try to find nearby node with operator token if number
@@ -220,14 +216,17 @@ public class TemplateChooser {
                             && !curNode.attachedOT.equals("="));
                     if (notNumberWithNonEquality) {
                         for (Predicate curPred : accumPred) {
-                            if (curPred.getAttr().equals(pred.getAttr())) {
+                            if (curPred.getAttribute().hasSameRelationNameAndNameAs(pred.getAttribute())) {
                                 aliasInt++;
                             }
                         }
                     }
 
-                    String predAlias = rel.getName() + "_" + aliasInt;
-                    pred.setAlias(predAlias);
+                    rel = new Relation(rel);
+                    rel.setAliasInt(aliasInt);
+                    Attribute newAttr = new Attribute(pred.getAttribute());
+                    newAttr.setRelation(rel);
+                    pred.setAttribute(newAttr);
 
                     // Copy relevant structures so recursive operations don't interfere with it
                     Set<Relation> newAccumRel = new HashSet<>(accumRel);
@@ -248,9 +247,9 @@ public class TemplateChooser {
     public static void main(String[] args) {
         String dbName = "mas";
         String prefix = "data/mas/mas";
-        int joinLevel = 5;
+        int joinLevel = 6;
 
-        String nlqFile = "data/mas/mas_c3_nlq.txt";
+        String nlqFile = "data/mas/mas_c4_nlq.txt";
 
         RDBMS db;
         try {
@@ -265,54 +264,17 @@ public class TemplateChooser {
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        /*
         List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }*/
+        }
 
-        List<String> queryStrs = new ArrayList<>();
+        // List<String> queryStrs = new ArrayList<>();
         // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
-        // queryStrs.add("return me papers after 2000 with more than 200 citations.");  // C1.14
-        // queryStrs.add("return me the authors who have papers in PVLDB after 2010."); // C2.01
-        // queryStrs.add("return me the authors who have papers in VLDB conference before 2002."); // C2.03
-        // queryStrs.add("return me the authors who have papers in VLDB conference before 2002 after 1995"); // C2.04
-        // queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
-        // queryStrs.add("return me the papers after 2000"); // C2.17
-        // queryStrs.add("return me the papers by \"H. V. Jagadish\" after 2000"); // C2.22
-        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on PVLDB after 2000"); // C2.23
-        // queryStrs.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000"); // C2.24
-        // queryStrs.add("return me all the papers after 2000 in \"University of Michigan\""); // C2.43
-        // queryStrs.add("return me all the papers in VLDB after 2000 in \"University of Michigan\""); // C2.46
-        // queryStrs.add("return me all the papers in PVLDB after 2000 in \"University of Michigan\""); // C2.47
-        // queryStrs.add("return me papers after 2000 in database area with more than 200 citations"); // C2.54
-        // queryStrs.add("return me papers after 2000 in PVLDB with more than 200 citations"); // C2.55
-        // queryStrs.add("return me papers after 2000 in VLDB conference with more than 200 citations"); // C2.56
-        // queryStrs.add("return me papers in database area with more than 200 citations"); // C2.48
-        // queryStrs.add("return me the number of papers written by \"H. V. Jagadish\" in each year."); // C3.02
-        // queryStrs.add("return me the number of citations of \"Making database systems usable\" in each year."); // C3.05
-        // queryStrs.add("return me the number of papers after 2000."); // Q3.10
-        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" after 2000."); // Q3.15
-        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" on PVLDB after 2000."); // Q3.16
-        // queryStrs.add("return me the number of papers by \"H. V. Jagadish\" on VLDB conference after 2000."); // Q3.17
-        // queryStrs.add("return me the number of papers after 2000 in \"University of Michigan\"."); // Q3.37
-        // queryStrs.add("return me the number of papers in VLDB after 2000 in \"University of Michigan\"."); // Q3.40
-        // queryStrs.add("return me the number of papers in PVLDB after 2000 in \"University of Michigan\"."); // Q3.41
-        // queryStrs.add("return me the number of papers published in PVLDB in each year."); // C3.54
-        // queryStrs.add("return me the number of papers published in the VLDB conference in each year."); // C3.59
-        queryStrs.add("return me the total citations of the papers containing keyword \"Natural Language\""); // C3.30
-        queryStrs.add("return me the total citations of the papers in \"University of Michigan\""); // C3.42
-        queryStrs.add("return me the total citations of all the papers in PVLDB."); // C3.50
-        queryStrs.add("return me the total citations of papers in PVLDB in 2005."); // C3.51
-        queryStrs.add("return me the total citations of papers in PVLDB before 2005."); // C3.52
-        queryStrs.add("return me the total citations of papers in PVLDB in each year."); // C3.53
-        queryStrs.add("return me the total citations of all the papers in the VLDB conference."); // C3.55
-        queryStrs.add("return me the total citations of papers in the VLDB conference in 2005."); // C3.56
-        queryStrs.add("return me the total citations of papers in the VLDB conference before 2005."); // C3.57
-        queryStrs.add("return me the total citations of papers in the VLDB conference in each year."); // C3.58
+        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava.\""); // C4.06
 
 
         int i = 0;
@@ -363,8 +325,18 @@ public class TemplateChooser {
                 boolean isNameToken = node.tokenType.equals("NT");
                 boolean isValueToken = node.tokenType.startsWith("VT");
 
+                // TODO: move all this logic to Fei's components
                 if (isNameToken || isValueToken) {
                     mappedNodes.add(node);
+
+                    // Check for related nodes that are auxiliary and delete
+                    for (ParseTreeNode[] auxEntry : query.auxTable) {
+                        ParseTreeNode relatedNode;
+                        // If governing node
+                        if (auxEntry[1].equals(node)) {
+                            mappedNodesToRemove.add(auxEntry[0]);
+                        }
+                    }
 
                     // In the case that we have a function as a parent, add accordingly and "ignore" function
                     if (node.parent.tokenType.equals("FT")) {
@@ -460,19 +432,22 @@ public class TemplateChooser {
 
             for (Template tmpl : templates) {
                 for (PossibleTranslation trans : topNTranslations) {
-                    InstantiatedTemplate inst = tmpl.instantiate(trans);
-                    if (inst == null) continue;
+                    Set<PossibleTranslation> perms = trans.getAliasPermutations();
+                    for (PossibleTranslation perm : perms) {
+                        InstantiatedTemplate inst = tmpl.instantiate(perm);
+                        if (inst == null) continue;
 
-                    Integer existingIndex = resultIndexMap.get(inst.getValue());
+                        Integer existingIndex = resultIndexMap.get(inst.getValue());
 
-                    if (existingIndex != null) {
-                        InstantiatedTemplate existingTmpl = results.get(existingIndex);
-                        if (inst.getTotalScore() > existingTmpl.getTotalScore()) {
-                            results.set(existingIndex, inst);
+                        if (existingIndex != null) {
+                            InstantiatedTemplate existingTmpl = results.get(existingIndex);
+                            if (inst.getTotalScore() > existingTmpl.getTotalScore()) {
+                                results.set(existingIndex, inst);
+                            }
+                        } else {
+                            resultIndexMap.put(inst.getValue(), results.size());
+                            results.add(inst);
                         }
-                    } else {
-                        resultIndexMap.put(inst.getValue(), results.size());
-                        results.add(inst);
                     }
                 }
             }

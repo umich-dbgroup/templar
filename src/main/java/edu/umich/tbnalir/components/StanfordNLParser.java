@@ -23,7 +23,7 @@ public class StanfordNLParser
 	{
 		StanfordParse(query, lexiParser); 
 		buildTree(query);
-        findAdjectives(query);
+        findAdjectivesAndAuxiliary(query);
 		fixConj(query); 
 	}
 	
@@ -123,7 +123,7 @@ public class StanfordNLParser
     	}
 	}
 
-    public static void findAdjectives(Query query) {
+    public static void findAdjectivesAndAuxiliary(Query query) {
         // treeTableEntry is in format: depIndex, depValue, pos, govIndex, relationship;
         for (int i = 0; i < query.treeTable.size(); i++) {
             String[] treeTableEntry = query.treeTable.get(i);
@@ -134,6 +134,12 @@ public class StanfordNLParser
                 ParseTreeNode[] adjTableEntry = {depNode, govNode};
                 query.adjTable.add(adjTableEntry);
             }
+			if (reln.equals("aux")) {
+				ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
+				ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
+				ParseTreeNode[] auxTableEntry = {depNode, govNode};
+				query.auxTable.add(auxTableEntry);
+			}
         }
     }
 

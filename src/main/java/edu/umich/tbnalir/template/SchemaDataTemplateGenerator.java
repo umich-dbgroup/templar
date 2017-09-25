@@ -27,8 +27,8 @@ public class SchemaDataTemplateGenerator {
     Map<Attribute, Set<Attribute>> fkpkEdges;
     Map<Attribute, Set<Attribute>> pkfkEdges;
 
-    // keeps track of relation lists already generated so we can skip them. in form: <relation1Name><relation2Name>...
-    Set<String> relationListsAlreadyGenerated;
+    // keeps track of join paths already generated so we don't have duplicates
+    Set<JoinPath> generatedJoinPaths;
 
     public SchemaDataTemplateGenerator(RDBMS db, int joinLevel) {
         this.joinLevel = joinLevel;
@@ -39,168 +39,12 @@ public class SchemaDataTemplateGenerator {
         this.pkfkEdges = db.schemaGraph.pkfkEdges;
         this.db = db;
 
-        // this.loadRelationsFromFile(relationsFile);
-        // this.loadEdgesFromFile(edgesFile);
-
-        this.relationListsAlreadyGenerated = new HashSet<>();
+        this.generatedJoinPaths = new HashSet<>();
     }
 
     public Map<String, Relation> getRelations() {
         return relations;
     }
-
-    public void loadRelationsFromFile(String relationsFileName) {
-        JSONParser parser = new JSONParser();
-
-        Log.info("==============================");
-        try {
-            Log.info("Reading relations info...");
-            JSONObject rels = (JSONObject) parser.parse(new FileReader(relationsFileName));
-            for (Object relNameObj : rels.keySet()) {
-                String relName = (String) relNameObj;
-                JSONObject relInfo = (JSONObject) rels.get(relNameObj);
-                JSONObject attrObj = (JSONObject) relInfo.get("attributes");
-                Map<String, Attribute> attributeMap = new HashMap<>();
-                for (Object attrNameObj : attrObj.keySet()) {
-                    JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
-                    String attrName = (String) attrInfo.get("name");
-                    String attrType = (String) attrInfo.get("type");
-                    Attribute attr = new Attribute(attrName, attrType);
-                    attributeMap.put(attrName, attr);
-
-                    if (attrInfo.get("fk") != null) {
-                        attr.setFk((Boolean) attrInfo.get("fk"));
-                    }
-                    if (attrInfo.get("pk") != null) {
-                        attr.setPk((Boolean) attrInfo.get("pk"));
-                    }
-
-                    if (attrInfo.get("entropy") != null) {
-                        attr.setEntropy((Double) attrInfo.get("entropy"));
-                    }
-                }
-
-
-                // For functions, also add parameters
-                if (relInfo.containsKey("inputs")) {
-                    JSONObject inputObj = (JSONObject) relInfo.get("inputs");
-                    Map<Integer, FunctionParameter> inputs = new HashMap<>();
-                    for (Object inputNameObj : inputObj.keySet()) {
-                        JSONObject inputInfoObj = (JSONObject) inputObj.get(inputNameObj);
-                        String inputName = (String) inputInfoObj.get("name");
-                        String inputType = (String) inputInfoObj.get("type");
-                        Integer inputIndex = Integer.valueOf((String) inputInfoObj.get("index"));
-                        FunctionParameter param = new FunctionParameter(inputName, inputType, inputIndex);
-                        inputs.put(inputIndex, param);
-                    }
-
-                    Function fn = new Function(relName, (String) relInfo.get("type"), attributeMap, inputs);
-                    this.relations.put(relName, fn);
-                } else {
-                    Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
-                    this.relations.put(relName, rel);
-                }
-
-            }
-            Log.info("Read " + this.relations.size() + " relations/views/functions.");
-            Log.info("==============================\n");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
-    public void loadEdgesFromFile(String edgesFileName) {
-        try {
-            JSONParser parser = new JSONParser();
-            Log.info("==============================");
-            Log.info("Reading edges info...");
-            JSONArray edgesArr = (JSONArray) parser.parse(new FileReader(edgesFileName));
-            for (Object edgeObj : edgesArr) {
-                JSONObject edge = (JSONObject) edgeObj;
-
-                String foreignRelationStr = (String) edge.get("foreignRelation");
-                if (foreignRelationStr == null) {
-                    Log.error("Foreign relation not included in edge definition.");
-                    continue;
-                }
-                Relation foreignRelation = relations.get(foreignRelationStr);
-                if (foreignRelation == null) {
-                    Log.error("Could not find relation <" + foreignRelationStr + "> in schema.");
-                    continue;
-                }
-                String foreignAttributeStr = (String) edge.get("foreignAttribute");
-                if (foreignAttributeStr == null) {
-                    Log.error("Foreign attribute not included in edge definition.");
-                    continue;
-                }
-                Attribute foreignAttribute = foreignRelation.getAttributes().get(foreignAttributeStr);
-                if (foreignAttribute == null) {
-                    Log.error("Could not find attribute <" + foreignAttributeStr +
-                            "> in relation <" + foreignRelation + ">");
-                    continue;
-                }
-
-                String primaryRelationStr = (String) edge.get("primaryRelation");
-                if (primaryRelationStr == null) {
-                    Log.error("Primary relation not included in edge definition.");
-                    continue;
-                }
-                Relation primaryRelation = relations.get(primaryRelationStr);
-                if (primaryRelation == null) {
-                    Log.error("Could not find relation <" + primaryRelationStr + "> in schema.");
-                    continue;
-                }
-                String primaryAttributeStr = (String) edge.get("primaryAttribute");
-                if (primaryAttributeStr == null) {
-                    Log.error("Primary attribute not included in edge definition.");
-                    continue;
-                }
-                Attribute primaryAttribute = primaryRelation.getAttributes().get(primaryAttributeStr);
-                if (primaryAttribute == null) {
-                    Log.error("Could not find attribute <" + primaryAttributeStr +
-                            "> in relation <" + primaryRelation + ">");
-                    continue;
-                }
-
-                    /*
-                    Log.info("FK: " + foreignRelation + "/" + foreignAttribute + "\t"
-                            + "PK: " + primaryRelation + "/" + primaryAttribute);
-                            */
-
-                Set<Attribute> pks = this.fkpkEdges.get(foreignAttribute);
-                if (pks == null) {
-                    pks = new HashSet<>();
-                    this.fkpkEdges.put(foreignAttribute, pks);
-                }
-                pks.add(primaryAttribute);
-
-                Set<Attribute> fks = this.pkfkEdges.get(primaryAttribute);
-                if (fks == null) {
-                    fks = new HashSet<>();
-                    this.pkfkEdges.put(primaryAttribute, fks);
-                }
-                fks.add(foreignAttribute);
-            }
-
-            int fkpkLength = 0;
-            for (Map.Entry<Attribute, Set<Attribute>> e : this.fkpkEdges.entrySet()) {
-                fkpkLength += e.getValue().size();
-            }
-            Log.info("Read " + fkpkLength + " FK-PK relationships.");
-
-            int pkfkLength = 0;
-            for (Map.Entry<Attribute, Set<Attribute>> e : this.pkfkEdges.entrySet()) {
-                pkfkLength += e.getValue().size();
-            }
-            Log.info("Read " + pkfkLength + " PK-FK relationships.");
-            Log.info("==============================\n");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
 
     public Set<Set<Attribute>> topAttributesAllRelations(List<Relation> relations, Integer chooseTop, Integer maxSize) {
         List<Attribute> attributes = new ArrayList<>();
@@ -256,15 +100,60 @@ public class SchemaDataTemplateGenerator {
         else return this.topAttributesAllRelations(relations, chooseTop, maxSize);
     }
 
-    public Set<Template> getTemplatesForRelationsRecursive(Select select, List<Relation> relations, int joinLevelsLeft) {
-        // Check that we haven't already generated this relation list
-        StringBuilder relationsListNameBuf = new StringBuilder();
-        relations.stream().map(Relation::getName).sorted().forEach(relationsListNameBuf::append);
-        String relationsListName = relationsListNameBuf.toString();
-        if (this.relationListsAlreadyGenerated.contains(relationsListName)) {
+    public Set<Template> exploreJoinPathForAttr(Attribute attr, Attribute otherAttr, Select select, List<Relation> relations,
+                                                   JoinPath joinPath, int joinLevelsLeft) {
+        int aliasInt = 0;
+        for (Relation curRel : relations) {
+            if (curRel.getName().equals(otherAttr.getRelation().getName())) {
+                aliasInt++;
+            }
+        }
+
+        if (aliasInt > 0) {
+            Attribute newOtherAttr = new Attribute(otherAttr);
+            Relation newRelation = new Relation(otherAttr.getRelation());
+            newRelation.setAliasInt(aliasInt);
+            newOtherAttr.setRelation(newRelation);
+            otherAttr = newOtherAttr;
+        }
+
+        // Don't go beyond 3 tables (for our computer's sake...)
+        if (aliasInt > 2) return new HashSet<>();
+
+        JoinPath newJoinPath = new JoinPath(joinPath);
+
+        JoinEdge edge = new JoinEdge(attr, otherAttr);
+
+        // If we couldn't add the new join edge, skip!
+        if (!newJoinPath.add(edge)) return new HashSet<>();
+
+        Join join = Utils.addJoin(select, attr, otherAttr);
+        List<Relation> newRelations = new ArrayList<>(relations);
+        newRelations.add(otherAttr.getRelation());
+
+        Set<Template> templates = this.getTemplatesForRelationsRecursive(select, newRelations, newJoinPath, joinLevelsLeft - 1);
+
+        // Reset Select to original state after recursion
+        ((PlainSelect) select.getSelectBody()).getJoins().remove(join);
+        return templates;
+    }
+
+    public Set<Template> getTemplatesForRelationsRecursive(Select select, List<Relation> relations,
+                                                           JoinPath joinPath, int joinLevelsLeft) {
+
+        // Pruning for optimization
+        int maxTerminals = 3;
+        if (joinPath.getTerminals().size() > maxTerminals) {
             return new HashSet<>();
         }
-        this.relationListsAlreadyGenerated.add(relationsListName);
+
+        // Check that we haven't already explored this join path
+        if (!joinPath.isEmpty()) {
+            if (this.generatedJoinPaths.contains(joinPath)) {
+                return new HashSet<>();
+            }
+            this.generatedJoinPaths.add(joinPath);
+        }
 
         Set<Template> templates = new HashSet<>();
         PlainSelect ps = (PlainSelect) select.getSelectBody();
@@ -273,53 +162,66 @@ public class SchemaDataTemplateGenerator {
             for (Relation rel : relations) {
                 for (Map.Entry<String, Attribute> attrEntry : rel.getAttributes().entrySet()) {
                     Attribute attr = attrEntry.getValue();
-                    Set<Attribute> fks = this.pkfkEdges.get(attrEntry.getValue());
-                    if (fks != null) {
-                        for (Attribute otherFk : fks) {
-                            // Assumes we don't have join tables that reference the same table twice
-                            if (relations.contains(otherFk.getRelation())) continue;
 
-                            Join join = Utils.addJoin(select, attr, otherFk);
-                            List<Relation> newRelations = new ArrayList<>(relations);
-                            newRelations.add(otherFk.getRelation());
+                    // If this is the PK, add self-joins
+                    if (attr.isPk()) {
+                        int aliasInt = 0;
+                        for (Relation curRel : relations) {
+                            if (curRel.getName().equals(rel.getName())) {
+                                aliasInt++;
+                            }
+                        }
+                        // Only do this self-join once
+                        if (aliasInt == 1) {
+                            Relation newRelation = new Relation(rel);
+                            newRelation.setAliasInt(aliasInt);
+                            Attribute newAttribute = new Attribute(attr);
+                            newAttribute.setRelation(newRelation);
 
-                            templates.addAll(this.getTemplatesForRelationsRecursive(select, newRelations, joinLevelsLeft - 1));
+                            JoinPath newJoinPath = new JoinPath(joinPath);
 
-                            // Reset Select to original state after recursion
-                            ps.getJoins().remove(join);
+                            if (newJoinPath.add(new JoinEdge(attr, newAttribute))) {
+                                Join join = Utils.addJoin(select, attr, newAttribute);
+                                List<Relation> newRelations = new ArrayList<>(relations);
+                                newRelations.add(newRelation);
+
+                                templates.addAll(this.getTemplatesForRelationsRecursive(select, newRelations, newJoinPath, joinLevelsLeft - 1));
+
+                                // Reset Select to original state after recursion
+                                ps.getJoins().remove(join);
+                            }
                         }
                     }
 
-                    Set<Attribute> pks = this.fkpkEdges.get(attrEntry.getValue());
+                    // HACK: Need this because we're creating new attributes on the fly that might not be found in the
+                    // original edges maps
+                    Attribute checkAttr = new Attribute(attr);
+                    checkAttr.setRelation(this.relations.get(attr.getRelation().getName()));
+
+                    Set<Attribute> fks = this.pkfkEdges.get(checkAttr);
+                    if (fks != null) {
+                        for (Attribute otherFk : fks) {
+                            templates.addAll(this.exploreJoinPathForAttr(attr, otherFk, select, relations, joinPath, joinLevelsLeft));
+                        }
+                    }
+
+                    Set<Attribute> pks = this.fkpkEdges.get(checkAttr);
                     if (pks != null) {
                         for (Attribute otherPk : pks) {
-                            // Assumes we don't have join tables that reference the same table twice
-                            if (relations.contains(otherPk.getRelation())) continue;
-
-                            Join join = Utils.addJoin(select, attr, otherPk);
-                            List<Relation> newRelations = new ArrayList<>(relations);
-                            newRelations.add(otherPk.getRelation());
-
-                            templates.addAll(this.getTemplatesForRelationsRecursive(select, newRelations, joinLevelsLeft - 1));
-
-                            // Reset Select to original state after recursion
-                            ps.getJoins().remove(join);
+                            templates.addAll(this.exploreJoinPathForAttr(attr, otherPk, select, relations, joinPath, joinLevelsLeft));
                         }
                     }
                 }
             }
         }
 
-        for (Relation r : relations) {
-            // Rank attributes by entropy first
-            r.rankAttributesByEntropy(this.db);
-        }
-
-        TemplateRoot tr = new TemplateRoot(select);
+        if (!joinPath.passesSelfJoinCheck()) return templates;
 
         /*
          * Generate templates
          */
+
+        TemplateRoot tr = new TemplateRoot(select);
 
         // Determines max size of projections. If null, use all.
         Integer chooseTopProjection = 4;
@@ -337,13 +239,13 @@ public class SchemaDataTemplateGenerator {
         Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate,
                 maxPredicateSize, chooseTopEachRelationPredicate);
 
-        templates.addAll(tr.generateNoPredicateProjectionTemplates());
-        templates.addAll(tr.generateNoAttributeConstantTemplates(maxProjectionSize, maxPredicateSize));
-        templates.addAll(tr.generateNoPredicateTemplates(projections));
-        templates.addAll(tr.generateNoComparisonProjectionTemplates(predicateAttributes));
-        templates.addAll(tr.generateNoComparisonTemplates(projections, predicateAttributes));
-        templates.addAll(tr.generateNoConstantProjectionTemplates(predicateAttributes));
-        templates.addAll(tr.generateNoConstantTemplates(projections, predicateAttributes));
+        templates.addAll(tr.generateNoPredicateProjectionTemplates(relations, joinPath));
+        // templates.addAll(tr.generateNoAttributeConstantTemplates(maxProjectionSize, maxPredicateSize, relations, joinPath));
+        // templates.addAll(tr.generateNoPredicateTemplates(projections, relations, joinPath));
+        // templates.addAll(tr.generateNoComparisonProjectionTemplates(predicateAttributes, relations, joinPath));
+        // templates.addAll(tr.generateNoComparisonTemplates(projections, predicateAttributes, relations, joinPath));
+        // templates.addAll(tr.generateNoConstantProjectionTemplates(predicateAttributes, relations, joinPath));
+        // templates.addAll(tr.generateNoConstantTemplates(projections, predicateAttributes, relations, joinPath));
 
         // TODO: for each hypothesized full query template (guess attributes, operators, constants, and projections)
 
@@ -357,6 +259,11 @@ public class SchemaDataTemplateGenerator {
         Log.info("Generating templates using schema for join level: " + this.joinLevel);
 
         for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
+            // Rank attributes by entropy first
+            e.getValue().rankAttributesByEntropy(this.db);
+        }
+
+        for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
             Relation r = e.getValue();
             List<Relation> relations = new ArrayList<>();
             relations.add(r);
@@ -366,7 +273,7 @@ public class SchemaDataTemplateGenerator {
             select.setSelectBody(ps);
             ps.setFromItem(r.getFromItem());
 
-            templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, this.joinLevel));
+            templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, new JoinPath(), this.joinLevel));
         }
 
         Log.info("Done generating " + templates.size() + " templates.");

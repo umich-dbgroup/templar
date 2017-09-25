@@ -1,8 +1,10 @@
 package edu.umich.tbnalir.sql;
 
+import edu.umich.tbnalir.parse.Predicate;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.util.Constants;
+import edu.umich.tbnalir.util.Utils;
 import net.sf.jsqlparser.expression.BinaryExpression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;
 import net.sf.jsqlparser.schema.Column;
@@ -52,12 +54,14 @@ public class UnknownBinaryExpression extends BinaryExpression {
             String relName = col.getTable().getName();
             Relation rel = unroller.getRelations().get(relName);
             if (rel == null) throw new RuntimeException("Could not find relation: " + relName);
+            rel = new Relation(rel);
+            Integer aliasInt = Utils.getAliasIntFromAlias(alias);
+            rel.setAliasInt(aliasInt);
 
             Attribute attrObj = rel.getAttributes().get(attrName);
             if (attrObj == null) throw new RuntimeException("Could not find attribute: " + attrName + " in relation: " + relName);
 
             Predicate pred = new Predicate(attrObj, null, value);
-            pred.setAlias(alias);
             unroller.getPredicates().add(pred);
         }
     }

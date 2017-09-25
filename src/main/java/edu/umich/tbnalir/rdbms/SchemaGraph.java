@@ -111,7 +111,7 @@ public class SchemaGraph {
                     Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
                     this.relations.put(relName, rel);
 
-                    if (relInfo.get("pk") != null) {
+                    if (relInfo.get("join_table") != null) {
                         rel.setJoinTable((Boolean) relInfo.get("join_table"));
                     }
                 }

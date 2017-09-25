@@ -28,6 +28,25 @@ public class Attribute {
         this.column = null;
     }
 
+    public Attribute(Attribute other) {
+        this.name = other.name;
+        this.type = other.type;
+
+        this.fk = other.fk;
+        this.pk = other.pk;
+
+        this.entropy = other.entropy;
+    }
+
+    public boolean hasSameRelationAs(Attribute other) {
+        return this.relation.equals(other.relation);
+    }
+
+    public boolean hasSameRelationNameAndNameAs(Attribute other) {
+        return this.relation.name.equals(other.relation.name) &&
+                this.name.equals(other.name);
+    }
+
     public String getName() {
         return name;
     }
@@ -92,7 +111,7 @@ public class Attribute {
 
     @Override
     public String toString() {
-        return this.name;
+        return this.relation.toString() + "." + this.name;
     }
 
     @Override

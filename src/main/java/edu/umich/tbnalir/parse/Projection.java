@@ -1,21 +1,29 @@
-package edu.umich.tbnalir.rdbms;
+package edu.umich.tbnalir.parse;
+
+import edu.umich.tbnalir.rdbms.Attribute;
 
 /**
  * Created by cjbaik on 9/12/17.
  */
-public class Projection {
+public class Projection extends QueryFragment {
     String function;        // Function, if any
-    String alias;           // Alias for attribute, if there is one
-    Attribute attribute;
 
     boolean groupBy;        // If we want to GROUP BY this projection, set true
 
-    public Projection(String alias, Attribute attribute, String function) {
-        this.alias = alias;
+    public Projection(Attribute attribute, String function) {
+        // this.alias = alias;
         this.attribute = attribute;
         this.function = function;
 
         this.groupBy = false;
+    }
+
+    public Projection(Projection other) {
+        this.attribute = new Attribute(other.attribute);
+        this.attribute.setRelation(other.attribute.getRelation());
+
+        this.function = other.function;
+        this.groupBy = other.groupBy;
     }
 
     public boolean isGroupBy() {
@@ -24,22 +32,6 @@ public class Projection {
 
     public void setGroupBy(boolean groupBy) {
         this.groupBy = groupBy;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public Attribute getAttribute() {
-        return attribute;
-    }
-
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
     }
 
     public String getFunction() {
@@ -53,7 +45,7 @@ public class Projection {
     public boolean covers(Projection other) {
         if (this.equals(other)) return true;
 
-        if (this.getAlias() == null && this.getAttribute().equals(other.getAttribute())) {
+        if (this.getAttribute().equals(other.getAttribute())) {
             return true;
         }
 
@@ -61,7 +53,7 @@ public class Projection {
     }
 
     public void applyAggregateFunction() {
-        if (this.attribute.type.equals("int")) {
+        if (this.attribute.getType().equals("int")) {
             this.function = "sum";
         } else {
             this.function = "count";
@@ -85,11 +77,7 @@ public class Projection {
                 sb.append("distinct(");
             }
         }
-        if (this.alias != null) {
-            sb.append(this.alias);
-            sb.append(".");
-        }
-        sb.append(this.attribute.getName());
+        sb.append(this.attribute.toString());
         if (this.function != null && !countingIntAttr) {
             sb.append(")");
             if (isCount) {
@@ -106,15 +94,17 @@ public class Projection {
 
         Projection that = (Projection) o;
 
-        if (alias != null ? !alias.equals(that.alias) : that.alias != null) return false;
+        if (groupBy != that.groupBy) return false;
+        if (function != null ? !function.equals(that.function) : that.function != null) return false;
         return !(attribute != null ? !attribute.equals(that.attribute) : that.attribute != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = alias != null ? alias.hashCode() : 0;
+        int result = function != null ? function.hashCode() : 0;
         result = 31 * result + (attribute != null ? attribute.hashCode() : 0);
+        result = 31 * result + (groupBy ? 1 : 0);
         return result;
     }
 }

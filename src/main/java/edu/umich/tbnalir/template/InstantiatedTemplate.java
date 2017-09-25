@@ -4,6 +4,7 @@ package edu.umich.tbnalir.template;
  * Created by cjbaik on 9/12/17.
  */
 public class InstantiatedTemplate {
+    Template template;
     String value;
     Double nlScore;
     Double templatePopularity;
@@ -16,6 +17,14 @@ public class InstantiatedTemplate {
     public Double getTotalScore() {
         // TODO: set weights here
         return Math.pow(getNlScore(), 2) + getTemplatePopularity() + getNlTemplateAffinity();
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 
     public Double getNlScore() {

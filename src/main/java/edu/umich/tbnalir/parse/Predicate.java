@@ -1,38 +1,28 @@
-package edu.umich.tbnalir.sql;
+package edu.umich.tbnalir.parse;
 
 import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.sql.Operator;
 import edu.umich.tbnalir.util.Constants;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by cjbaik on 9/11/17.
  */
-public class Predicate {
-    String alias; // If attribute relation has an alias.
-    Attribute attr;
+public class Predicate extends QueryFragment {
     Operator op;
     String value;
 
-    public Predicate(Attribute attr, Operator op, String value) {
-        this.attr = attr;
+    public Predicate(Attribute attribute, Operator op, String value) {
+        this.attribute = attribute;
         this.op = op;
         this.value = value;
     }
 
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public Attribute getAttr() {
-        return attr;
-    }
-
-    public void setAttr(Attribute attr) {
-        this.attr = attr;
+    public Predicate(Predicate other) {
+        this.attribute = new Attribute(other.attribute);
+        this.attribute.setRelation(other.attribute.getRelation());
+        this.op = other.op;
+        this.value = other.value;
     }
 
     public Operator getOp() {
@@ -55,14 +45,8 @@ public class Predicate {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        if (this.attr != null) {
-            if (this.alias != null) {
-                sb.append(this.alias);
-            } else {
-                sb.append(this.attr.getRelation().getName());
-            }
-            sb.append(".");
-            sb.append(this.attr.getName());
+        if (this.attribute != null) {
+            sb.append(this.attribute.toString());
         } else {
             sb.append(Constants.COLUMN);
         }
@@ -93,7 +77,7 @@ public class Predicate {
 
         Predicate predicate = (Predicate) o;
 
-        if (attr != null ? !attr.equals(predicate.attr) : predicate.attr != null) return false;
+        if (attribute != null ? !attribute.equals(predicate.attribute) : predicate.attribute != null) return false;
         if (op != predicate.op) return false;
         return !(value != null ? !value.equals(predicate.value) : predicate.value != null);
 
@@ -101,7 +85,7 @@ public class Predicate {
 
     @Override
     public int hashCode() {
-        int result = attr != null ? attr.hashCode() : 0;
+        int result = attribute != null ? attribute.hashCode() : 0;
         result = 31 * result + (op != null ? op.hashCode() : 0);
         result = 31 * result + (value != null ? value.hashCode() : 0);
         return result;

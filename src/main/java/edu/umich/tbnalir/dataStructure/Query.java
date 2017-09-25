@@ -15,8 +15,11 @@ public class Query
 	public ArrayList<String []> treeTable = new ArrayList<String []>(); // the dependency tree table: Position, Phrase, Tag, Parent, all strings; each phrase is an entry
     public ArrayList<String> conjTable = new ArrayList<String>(); // conjunction table: a^b
 
-    // Adjective table (houses amod relationships)
+    // Adjective table
 	public ArrayList<ParseTreeNode []> adjTable = new ArrayList<>();
+
+    // Auxiliary table
+	public ArrayList<ParseTreeNode []> auxTable = new ArrayList<>();
 
 	public ParseTree originalParseTree; 
 	public ParseTree parseTree;

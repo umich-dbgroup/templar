@@ -1,7 +1,9 @@
 package edu.umich.tbnalir.template;
 
+import edu.umich.tbnalir.parse.Predicate;
 import edu.umich.tbnalir.rdbms.Attribute;
-import edu.umich.tbnalir.rdbms.Projection;
+import edu.umich.tbnalir.rdbms.JoinPath;
+import edu.umich.tbnalir.parse.Projection;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.*;
 import edu.umich.tbnalir.util.Constants;
@@ -12,7 +14,6 @@ import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.conditional.OrExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
-import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
 import java.lang.reflect.Constructor;
@@ -195,7 +196,9 @@ public class TemplateRoot {
         return new Template(buffer.toString().toLowerCase().intern(), TemplateType.FULL_QUERY);
     }
 
-    public Set<Template> generateNoAttributeConstantTemplates(int maxProjectionSize, int maxPredicateSize) {
+    public Set<Template> generateNoAttributeConstantTemplates(int maxProjectionSize, int maxPredicateSize,
+                                                              List<Relation> relations,
+                                                              JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -211,8 +214,8 @@ public class TemplateRoot {
             selectItems.add(exprItem);
 
             results.addAll(
-                    this.generateAttributelessComparisonPredicatesRecursive(TemplateRoot::noAttributeConstantTemplate,
-                            null, maxPredicateSize)
+                    this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                            TemplateRoot::noAttributeConstantTemplate, null, maxPredicateSize)
             );
         }
 
@@ -223,15 +226,17 @@ public class TemplateRoot {
         return results;
     }
 
-    public Set<Template> generateNoPredicateProjectionTemplates() {
+    public Set<Template> generateNoPredicateProjectionTemplates(List<Relation> relations,
+                                                                JoinPath joinPath) {
         // By default, have a WHERE clause that's empty
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
         ps.setWhere(new LiteralExpression(Constants.PRED));
 
-        return this.generateTemplates(TemplateRoot::noPredicateProjectionTemplate, true);
+        return this.generateTemplates(TemplateRoot::noPredicateProjectionTemplate, relations, joinPath);
     }
 
-    public Set<Template> generateNoPredicateTemplates(Set<Set<Attribute>> projections) {
+    public Set<Template> generateNoPredicateTemplates(Set<Set<Attribute>> projections, List<Relation> relations,
+                                                      JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -251,14 +256,16 @@ public class TemplateRoot {
             }
 
             ps.setSelectItems(selectItems);
-            results.addAll(this.generateTemplates(TemplateRoot::noPredicateTemplate, false));
+            results.addAll(this.generateTemplates(TemplateRoot::noPredicateTemplate, relations, joinPath));
         }
 
         ps.setSelectItems(null); // reset select object
         return results;
     }
 
-    public Set<Template> generateNoComparisonProjectionTemplates(Set<Set<Attribute>> predicateAttributes) {
+    public Set<Template> generateNoComparisonProjectionTemplates(Set<Set<Attribute>> predicateAttributes,
+                                                                 List<Relation> relations,
+                                                                 JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -274,7 +281,7 @@ public class TemplateRoot {
 
                 ps.setWhere(predicate);
 
-                results.addAll(this.generateTemplates(TemplateRoot::noComparisonProjectionTemplate, false));
+                results.addAll(this.generateTemplates(TemplateRoot::noComparisonProjectionTemplate, relations, joinPath));
             }
         }
 
@@ -283,7 +290,9 @@ public class TemplateRoot {
     }
 
     public Set<Template> generateNoComparisonTemplates(Set<Set<Attribute>> projections,
-                                                                 Set<Set<Attribute>> predicateAttributes) {
+                                                       Set<Set<Attribute>> predicateAttributes,
+                                                       List<Relation> relations,
+                                                       JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -312,7 +321,7 @@ public class TemplateRoot {
 
                     ps.setWhere(predicate);
 
-                    results.addAll(this.generateTemplates(TemplateRoot::noComparisonTemplate, false));
+                    results.addAll(this.generateTemplates(TemplateRoot::noComparisonTemplate, relations, joinPath));
                 }
             }
 
@@ -346,14 +355,16 @@ public class TemplateRoot {
 
     }
 
-    public Set<Template> generateAttributelessComparisonPredicatesRecursive(Function<Select, Template> templateFn,
-                                                               Expression startingPred, int depthLevel) {
+    public Set<Template> generateAttributelessComparisonPredicatesRecursive(List<Relation> relations,
+                                                                            JoinPath joinPath,
+                                                                            Function<Select, Template> templateFn,
+                                                                            Expression startingPred, int depthLevel) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
         Expression originalWhere = ps.getWhere();
         ps.setWhere(startingPred);
-        results.addAll(this.generateTemplates(templateFn, false));
+        results.addAll(this.generateTemplates(templateFn, relations, joinPath));
 
         ps.setWhere(originalWhere); // reset
 
@@ -364,37 +375,45 @@ public class TemplateRoot {
         Attribute attr = new Attribute("placeholder", "text");
         attr.setColumn(new Column());
         predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         // generate various predicate types for nums
         attr = new Attribute("placeholder", "int");
         attr.setColumn(new Column());
         predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr, false);
-        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(templateFn, predicate, depthLevel - 1));
+        results.addAll(this.generateAttributelessComparisonPredicatesRecursive(relations, joinPath,
+                templateFn, predicate, depthLevel - 1));
 
         return results;
     }
 
-    public Set<Template> generateComparisonPredicatesRecursive(Function<Select, Template> templateFn,
+    public Set<Template> generateComparisonPredicatesRecursive(List<Relation> relations,
+                                                               JoinPath joinPath,
+                                                               Function<Select, Template> templateFn,
                                                                Expression startingPred, List<Attribute> remainingAttr) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
         Expression originalWhere = ps.getWhere();
         ps.setWhere(startingPred);
-        results.addAll(this.generateTemplates(templateFn, false));
+        results.addAll(this.generateTemplates(templateFn, relations, joinPath));
 
         ps.setWhere(originalWhere); // reset
 
@@ -405,38 +424,47 @@ public class TemplateRoot {
         // Every type of attribute should support an equality predicate
         Expression predicate;
         predicate = this.generateComparisonPredicateExpr(startingPred, EqualsTo.class, attr, false);
-        results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+        results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn,
+                predicate, new ArrayList<>(remainingAttr)));
 
         if (Utils.isSQLTypeNumeric(attr.getType())) {
             // For foreign/primary keys, only support equality predicates
             if (!attr.isFk() && !attr.isPk()) {
                 predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThan.class, attr, false);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
 
                 predicate = this.generateComparisonPredicateExpr(startingPred, GreaterThanEquals.class, attr, false);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
 
                 predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
 
                 predicate = this.generateComparisonPredicateExpr(startingPred, MinorThanEquals.class, attr, false);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
 
                 // TODO: Could support >= and/or <= as well
                 predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
                 predicate = this.generateComparisonPredicateExpr(predicate, GreaterThan.class, attr, true);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
 
                 predicate = this.generateComparisonPredicateExpr(startingPred, MinorThan.class, attr, false);
                 predicate = this.generateComparisonPredicateExpr(predicate, GreaterThan.class, attr, false);
-                results.addAll(this.generateComparisonPredicatesRecursive(templateFn, predicate, new ArrayList<>(remainingAttr)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath, templateFn, predicate,
+                        new ArrayList<>(remainingAttr)));
             }
         }
 
         return results;
     }
 
-    public Set<Template> generateNoConstantProjectionTemplates(Set<Set<Attribute>> predicateAttributes) {
+    public Set<Template> generateNoConstantProjectionTemplates(Set<Set<Attribute>> predicateAttributes,
+                                                               List<Relation> relations,
+                                                               JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -445,8 +473,8 @@ public class TemplateRoot {
         for (Set<Attribute> predAttrSet : predicateAttributes) {
             if (predAttrSet.size() == 0) continue;
 
-            results.addAll(this.generateComparisonPredicatesRecursive(TemplateRoot::noConstantProjectionTemplate,
-                    null, new ArrayList<>(predAttrSet)));
+            results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath,
+                    TemplateRoot::noConstantProjectionTemplate, null, new ArrayList<>(predAttrSet)));
         }
 
         ps.setWhere(oldWhere); // reset WHERE predicate
@@ -454,7 +482,9 @@ public class TemplateRoot {
     }
 
     public Set<Template> generateNoConstantTemplates(Set<Set<Attribute>> projections,
-                                                     Set<Set<Attribute>> predicateAttributes) {
+                                                     Set<Set<Attribute>> predicateAttributes,
+                                                     List<Relation> relations,
+                                                     JoinPath joinPath) {
         Set<Template> results = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.getSelect().getSelectBody();
@@ -476,8 +506,8 @@ public class TemplateRoot {
             for (Set<Attribute> predAttrSet : predicateAttributes) {
                 if (predAttrSet.size() == 0) continue;
 
-                results.addAll(this.generateComparisonPredicatesRecursive(TemplateRoot::noConstantTemplate,
-                        null, new ArrayList<>(predAttrSet)));
+                results.addAll(this.generateComparisonPredicatesRecursive(relations, joinPath,
+                        TemplateRoot::noConstantTemplate, null, new ArrayList<>(predAttrSet)));
             }
 
             ps.setWhere(oldWhere); // reset WHERE predicate
@@ -542,7 +572,8 @@ public class TemplateRoot {
         return covered;
     }
 
-    public Set<Template> generateTemplates(Function<Select, Template> templateFn, boolean generateBlankPredicate) {
+    public Set<Template> generateTemplates(Function<Select, Template> templateFn, List<Relation> relations,
+                                           JoinPath joinPath) {
         Set<Template> templates = new HashSet<>();
 
         PlainSelect ps = (PlainSelect) this.select.getSelectBody();
@@ -556,6 +587,8 @@ public class TemplateRoot {
 
         int numVariants = 0;
         double iterLimit = Math.pow(2, numVariants);
+
+        template_gen_loop:
         for (int i = 0; i < iterLimit; i++) {
             /*
             int distinctBit = i & 1;
@@ -591,8 +624,9 @@ public class TemplateRoot {
 
             Template template = templateFn.apply(this.select);
 
+            /*
             // Set relations on template
-            Set<Relation> templateRelations = new HashSet<>();
+            List<Relation> templateRelations = new ArrayList<>();
 
             FromItem fromItem = ps.getFromItem();
             if (fromItem instanceof Table) {
@@ -611,7 +645,9 @@ public class TemplateRoot {
                     templateRelations.add(rel);
                 }
             }
-            template.setRelations(templateRelations);
+            template.setRelations(templateRelations);*/
+            template.setRelations(relations);
+            template.setJoinPath(joinPath);
 
             // Set projections on template
             if (ps.getSelectItems() != null) {
@@ -630,6 +666,9 @@ public class TemplateRoot {
                             Relation rel = TemplateRoot.relations.get(col.getTable().getName());
                             if (rel == null)
                                 throw new RuntimeException("Relation " + col.getTable().getName() + " not found!");
+                            Integer aliasInt = Utils.getAliasIntFromAlias(col.getTable().getAlias().getName());
+                            rel = new Relation(rel);
+                            rel.setAliasInt(aliasInt);
 
                             Attribute attr = rel.getAttributes().get(col.getColumnName());
                             if (attr == null)
@@ -638,7 +677,7 @@ public class TemplateRoot {
                             if (col.getTable().getAlias() == null || col.getTable().getAlias().getName() == null)
                                 throw new RuntimeException("Column alias for " + col + " not found!");
 
-                            Projection proj = new Projection(col.getTable().getAlias().getName(), attr, null);
+                            Projection proj = new Projection(attr, null);
                             projections.add(proj);
                         }
                     }
@@ -651,7 +690,8 @@ public class TemplateRoot {
             if (where != null) {
                 PredicateUnroller predicateUnroller = new PredicateUnroller(TemplateRoot.relations);
                 where.accept(predicateUnroller);
-                template.setPredicates(predicateUnroller.getPredicates());
+                List<Predicate> preds = predicateUnroller.getPredicates();
+                template.setPredicates(preds);
             }
 
             templates.add(template);

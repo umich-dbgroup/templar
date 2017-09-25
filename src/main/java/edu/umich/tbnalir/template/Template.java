@@ -3,10 +3,11 @@ package edu.umich.tbnalir.template;
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.parse.PossibleTranslation;
 import edu.umich.tbnalir.rdbms.Attribute;
-import edu.umich.tbnalir.rdbms.Projection;
+import edu.umich.tbnalir.rdbms.JoinPath;
+import edu.umich.tbnalir.parse.Projection;
 import edu.umich.tbnalir.rdbms.Relation;
 import edu.umich.tbnalir.sql.Operator;
-import edu.umich.tbnalir.sql.Predicate;
+import edu.umich.tbnalir.parse.Predicate;
 import edu.umich.tbnalir.util.Constants;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
@@ -23,27 +24,30 @@ public class Template {
     String templateString;
     TemplateType type;
 
-    Set<Relation> relations;  // relations in this template
+    List<Relation> relations;  // relations in this template
     List<Projection> projections; // projection columns in this template
     List<Predicate> predicates;  // predicates in this template
+
+    JoinPath joinPath;
 
     public Template(String templateString, TemplateType type) {
         this.templateString = templateString;
         this.type = type;
-        this.relations = new HashSet<>();
+        this.relations = new ArrayList<>();
         this.projections = new ArrayList<>();
         this.predicates = new ArrayList<>();
+        this.joinPath = new JoinPath();
     }
 
     public TemplateType getType() {
         return type;
     }
 
-    public Set<Relation> getRelations() {
+    public List<Relation> getRelations() {
         return relations;
     }
 
-    public void setRelations(Set<Relation> relations) {
+    public void setRelations(List<Relation> relations) {
         this.relations = relations;
     }
 
@@ -63,12 +67,45 @@ public class Template {
         this.predicates = predicates;
     }
 
+    public JoinPath getJoinPath() {
+        return joinPath;
+    }
+
+    public void setJoinPath(JoinPath joinPath) {
+        this.joinPath = joinPath;
+    }
+
     public Double getSimplicityScore() {
         return 1d / (relations.size() + projections.size() + predicates.size());
     }
 
     public InstantiatedTemplate instantiate(PossibleTranslation translation) {
         String result = this.templateString;
+
+        if (this.templateString.contains("from author as author_0, author as author_1, cite as cite_0, publication as publication_0, publication as publication_1, writes as writes_0, writes as writes_1 where ")) {
+            int y = 0;
+        }
+
+        Relation a0 = new Relation("author", "relation", new HashMap<>());
+        Relation a1 = new Relation("author", "relation", new HashMap<>());
+        a1.setAliasInt(1);
+
+        Relation c0 = new Relation("cite", "relation", new HashMap<>());
+
+        Relation w0 = new Relation("writes", "relation", new HashMap<>());
+        Relation w1 = new Relation("writes", "relation", new HashMap<>());
+        w1.setAliasInt(1);
+
+        Relation p0 = new Relation("publication", "relation", new HashMap<>());
+        Relation p1 = new Relation("publication", "relation", new HashMap<>());
+        p1.setAliasInt(1);
+
+        // TODO: for debug
+        if (this.relations.contains(a0) && this.relations.contains(a1)
+                && this.relations.contains(c0) && this.relations.contains(p1)
+                && this.relations.contains(p0) && this.relations.size() == 7) {
+            int x = 0;
+        }
 
         // TODO: add in score of similarity of query parse tree structure to template parse tree structure
 
@@ -80,6 +117,58 @@ public class Template {
 
         if (relationCount != finalRelationCount) return null;
 
+        // RULE: For a non-empty join path, each relation on the terminal of a join path must have
+        // at least 1 projection or predicate corresponding to that relation.
+        if (!this.joinPath.isEmpty()) {
+            terminal_check:
+            for (Attribute terminalAttr : this.joinPath.getTerminals()) {
+                for (Projection proj : translation.getProjections()) {
+                    if (proj.getAttribute().hasSameRelationAs(terminalAttr)) {
+                        continue terminal_check;
+                    }
+                }
+
+                for (Predicate pred : translation.getPredicates()) {
+                    if (pred.getAttribute().hasSameRelationAs(terminalAttr)) {
+                        continue terminal_check;
+                    }
+                }
+
+                // If we got here, there was a relation of a terminal in the join path
+                // for which there was no proj/pred
+                return null;
+            }
+        }
+
+        // RULE: For any set of consecutive join edges, there must be >=1 projection/predicate/relation
+        // on each of the relations of the interior vertices of the consecutives.
+        consec_check:
+        for (JoinPath consecutive : this.joinPath.getConsecutives()) {
+            for (Attribute consecVertex : consecutive.getInteriorVertices()) {
+                for (Relation rel : translation.getRelations()) {
+                    if (rel.getName().equals(consecVertex.getRelation().getName())) {
+                        continue consec_check;
+                    }
+                }
+
+                for (Projection proj : translation.getProjections()) {
+                    if (proj.getAttribute().hasSameRelationAs(consecVertex)) {
+                        continue consec_check;
+                    }
+                }
+
+                for (Predicate pred : translation.getPredicates()) {
+                    if (pred.getAttribute().hasSameRelationAs(consecVertex)) {
+                        continue consec_check;
+                    }
+                }
+
+                // If we got here, we did not fulfill the rule.
+                return null;
+            }
+        }
+
+
         double affinityAccum = 0;
 
         // CHECK PROJECTIONS COVERAGE
@@ -89,7 +178,7 @@ public class Template {
 
             for (Projection transProj : translation.getProjections()) {
                 // If the relation isn't contained in the template, punt!
-                if (!this.templateString.contains(transProj.getAlias())) return null;
+                if (!this.templateString.contains(" " + transProj.getAttribute().getRelation().toString())) return null;
 
                 sj.add(transProj.toString());
 
@@ -112,7 +201,7 @@ public class Template {
                 }
 
                 // If the relation isn't contained in the template, punt!
-                if (!this.templateString.contains(transProj.getAlias())) return null;
+                if (!this.templateString.contains(" " + transProj.getAttribute().getRelation().toString())) return null;
 
                 // if GROUP BY, add to string
                 if (transProj.isGroupBy()) {
@@ -149,6 +238,9 @@ public class Template {
                     }
                 }
             }
+
+            // If we have projections that are unaccounted for, punt!
+            if (!projectionsList.isEmpty()) return null;
         }
 
         // CHECK PREDICATES COVERAGE
@@ -165,14 +257,15 @@ public class Template {
                 Map<Attribute, String[]> usedAttributes = new HashMap<>();
                 for (Predicate transPred : translation.getPredicates()) {
                     // If the relation isn't contained in the template, punt!
-                    if (!this.templateString.contains(transPred.getAlias())) return null;
+                    if (!this.templateString.contains(" " + transPred.getAttribute().getRelation().toString())) return null;
 
                     // In certain cases, use OR instead of AND because of how numeric predicates are combined
                     boolean useOr = false;
 
                     // Used attr contains: {OP, VAL}
-                    String[] usedAttr = usedAttributes.get(transPred.getAttr());
-                    if (usedAttr != null) {
+                    String[] usedAttr = usedAttributes.get(transPred.getAttribute());
+                    if (usedAttr != null && StringUtils.isNumeric(transPred.getValue())
+                            && StringUtils.isNumeric(usedAttr[1])) {
                         String usedOp = usedAttr[0];
                         Double usedVal = Double.valueOf(usedAttr[1]);
                         Double curVal = Double.valueOf(transPred.getValue());
@@ -201,7 +294,7 @@ public class Template {
                     }
 
                     String[] addToUsedAttr = {transPred.getOp().toString(), transPred.getValue()};
-                    usedAttributes.put(transPred.getAttr(), addToUsedAttr);
+                    usedAttributes.put(transPred.getAttribute(), addToUsedAttr);
                     sb.append(transPred.toString());
                 }
 
@@ -215,18 +308,18 @@ public class Template {
             // (2) in the case of a predicate-visible template
             for (Predicate transPred : translation.getPredicates()) {
                 // If the relation isn't contained in the template, punt!
-                if (!this.templateString.contains(transPred.getAlias())) return null;
+                if (!this.templateString.contains(" " + transPred.getAttribute().getRelation().toString())) return null;
 
                 int mostDetailedMatchCount = 0;
                 Predicate mostDetailedMatch = null;
 
-                Attribute transAttr = transPred.getAttr();
+                Attribute transAttr = transPred.getAttribute();
                 Operator transOp = transPred.getOp();
                 String transValue = transPred.getValue();
 
                 for (Predicate tmplPred : predicatesList) {
-                    boolean attrNull = tmplPred.getAttr() == null;
-                    boolean attrMatches = !attrNull && tmplPred.getAttr().equals(transAttr);
+                    boolean attrNull = tmplPred.getAttribute() == null;
+                    boolean attrMatches = !attrNull && tmplPred.getAttribute().equals(transAttr);
                     boolean attrCovered = attrNull || attrMatches;
 
                     boolean opNull = tmplPred.getOp() == null;
@@ -261,12 +354,10 @@ public class Template {
 
                     // Fill in predicates
                     StringBuilder toReplace = new StringBuilder();
-                    if (mostDetailedMatch.getAttr() == null) {
+                    if (mostDetailedMatch.getAttribute() == null) {
                         toReplace.append(Constants.COLUMN);
                     } else {
-                        toReplace.append(mostDetailedMatch.getAlias());
-                        toReplace.append(".");
-                        toReplace.append(mostDetailedMatch.getAttr().toString());
+                        toReplace.append(mostDetailedMatch.getAttribute().toString());
                     }
                     toReplace.append(" ");
 
@@ -279,8 +370,9 @@ public class Template {
 
                     toReplace.append(mostDetailedMatch.getValue());
 
-                    Predicate resultPred = new Predicate(transPred.getAttr(), transPred.getOp(), transPred.getValue());
-                    resultPred.setAlias(transPred.getAlias());
+                    Predicate resultPred = new Predicate(transPred.getAttribute(), transPred.getOp(), transPred.getValue());
+                    // In case the alias is different in the translation
+                    resultPred.getAttribute().setRelation(transPred.getAttribute().getRelation());
 
                     /*
                     if (mostDetailedMatch.getAlias() != null) {
@@ -306,6 +398,7 @@ public class Template {
         instTmpl.setNlScore(translation.getTotalScore());
         instTmpl.setTemplatePopularity(templatePopularity);
         instTmpl.setNlTemplateAffinity(affinityAccum / complexityScore);
+        instTmpl.setTemplate(this);
         return instTmpl;
     }
 

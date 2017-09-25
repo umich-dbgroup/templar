@@ -113,7 +113,7 @@ public class RDBMS {
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
 //		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
-		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int");
+		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int relation");
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
