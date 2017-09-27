@@ -140,10 +140,45 @@ public class Template {
             }
         }
 
-        // RULE: For any set of consecutive join edges, there must be >=1 projection/predicate/relation
-        // on each of the relations of the interior vertices of the consecutives.
+        // RULE: At least 1 relation of an interior vertex in a pseudo-self-join must have a projection/predicate
+        // associated with it.
+        // TODO: is this implemented correctly?
         consec_check:
         for (JoinPath consecutive : this.joinPath.getConsecutives()) {
+            boolean isPseudoSelfJoin = true;
+            Attribute lastAttr = null;
+            for (Attribute term : consecutive.getTerminals()) {
+                if (lastAttr == null) {
+                    lastAttr = term;
+                } else {
+                    if (!term.hasSameRelationNameAndNameAs(lastAttr)) {
+                        isPseudoSelfJoin = false;
+                        break;
+                    }
+                }
+            }
+            if (isPseudoSelfJoin) {
+                for (Attribute consecVertex : consecutive.getInteriorVertices()) {
+                    for (Projection proj : translation.getProjections()) {
+                        if (proj.getAttribute().hasSameRelationAs(consecVertex)) {
+                            continue consec_check;
+                        }
+                    }
+
+                    for (Predicate pred : translation.getPredicates()) {
+                        if (pred.getAttribute().hasSameRelationAs(consecVertex)) {
+                            continue consec_check;
+                        }
+                    }
+                }
+
+                // Failed rule.
+                return null;
+            }
+
+            /*
+            // RULE: For any set of consecutive join edges, there must be >=1 projection/predicate/relation reference
+            // on each of the relations of the interior vertices of the consecutives.
             for (Attribute consecVertex : consecutive.getInteriorVertices()) {
                 for (Relation rel : translation.getRelations()) {
                     if (rel.getName().equals(consecVertex.getRelation().getName())) {
@@ -165,7 +200,7 @@ public class Template {
 
                 // If we got here, we did not fulfill the rule.
                 return null;
-            }
+            }*/
         }
 
 

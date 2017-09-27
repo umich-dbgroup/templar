@@ -5,6 +5,7 @@ import org.apache.commons.collections.bag.HashBag;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 9/21/17.
@@ -64,7 +65,11 @@ public class JoinPath {
 
         this.relations = new HashSet<>(other.relations);
         this.selfJoins = new HashSet<>(other.selfJoins);
-        this.consecutives = new HashSet<>(other.consecutives);
+
+        this.consecutive = other.consecutive;
+
+        this.consecutives = new HashSet<>();
+        this.consecutives.addAll(other.consecutives.stream().map(JoinPath::new).collect(Collectors.toList()));
     }
 
     public boolean contains(JoinEdge edge) {
