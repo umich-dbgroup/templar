@@ -3,6 +3,7 @@ package edu.umich.tbnalir.template;
 import com.esotericsoftware.minlog.Log;
 import edu.umich.tbnalir.parse.PossibleTranslation;
 import edu.umich.tbnalir.rdbms.Attribute;
+import edu.umich.tbnalir.rdbms.JoinEdge;
 import edu.umich.tbnalir.rdbms.JoinPath;
 import edu.umich.tbnalir.parse.Projection;
 import edu.umich.tbnalir.rdbms.Relation;
@@ -102,8 +103,8 @@ public class Template {
 
         // TODO: for debug
         if (this.relations.contains(a0) && this.relations.contains(a1)
-                && this.relations.contains(c0) && this.relations.contains(p1)
-                && this.relations.contains(p0) && this.relations.size() == 7) {
+                && this.relations.contains(w0) && this.relations.contains(w1)
+                && this.relations.contains(p0) && this.relations.size() == 5 && translation.getTotalScore() > 2.211) {
             int x = 0;
         }
 
@@ -116,6 +117,34 @@ public class Template {
         int finalRelationCount = testRelations.size();
 
         if (relationCount != finalRelationCount) return null;
+
+        // RULE: Only one vertex of a self-join should have projection/predicates associated with its relation.
+        for (JoinEdge selfJoin : this.joinPath.getSelfJoins()) {
+            boolean firstVertexHasProjPred = false;
+            boolean secondVertexHasProjPred = false;
+
+            for (Projection proj : translation.getProjections()) {
+                if (selfJoin.getFirst().hasSameRelationAs(proj.getAttribute())) {
+                    firstVertexHasProjPred = true;
+                }
+                if (selfJoin.getSecond().hasSameRelationAs(proj.getAttribute())) {
+                    secondVertexHasProjPred = true;
+                }
+            }
+
+            for (Predicate pred : translation.getPredicates()) {
+                if (selfJoin.getFirst().hasSameRelationAs(pred.getAttribute())) {
+                    firstVertexHasProjPred = true;
+                }
+                if (selfJoin.getSecond().hasSameRelationAs(pred.getAttribute())) {
+                    secondVertexHasProjPred = true;
+                }
+            }
+
+            if (firstVertexHasProjPred && secondVertexHasProjPred) {
+                return null;
+            }
+        }
 
         // RULE: For a non-empty join path, each relation on the terminal of a join path must have
         // at least 1 projection or predicate corresponding to that relation.
@@ -142,7 +171,6 @@ public class Template {
 
         // RULE: At least 1 relation of an interior vertex in a pseudo-self-join must have a projection/predicate
         // associated with it.
-        // TODO: is this implemented correctly?
         consec_check:
         for (JoinPath consecutive : this.joinPath.getConsecutives()) {
             boolean isPseudoSelfJoin = true;
@@ -175,32 +203,6 @@ public class Template {
                 // Failed rule.
                 return null;
             }
-
-            /*
-            // RULE: For any set of consecutive join edges, there must be >=1 projection/predicate/relation reference
-            // on each of the relations of the interior vertices of the consecutives.
-            for (Attribute consecVertex : consecutive.getInteriorVertices()) {
-                for (Relation rel : translation.getRelations()) {
-                    if (rel.getName().equals(consecVertex.getRelation().getName())) {
-                        continue consec_check;
-                    }
-                }
-
-                for (Projection proj : translation.getProjections()) {
-                    if (proj.getAttribute().hasSameRelationAs(consecVertex)) {
-                        continue consec_check;
-                    }
-                }
-
-                for (Predicate pred : translation.getPredicates()) {
-                    if (pred.getAttribute().hasSameRelationAs(consecVertex)) {
-                        continue consec_check;
-                    }
-                }
-
-                // If we got here, we did not fulfill the rule.
-                return null;
-            }*/
         }
 
 

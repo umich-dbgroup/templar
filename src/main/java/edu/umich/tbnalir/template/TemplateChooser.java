@@ -1,7 +1,11 @@
 package edu.umich.tbnalir.template;
 
 import com.esotericsoftware.minlog.Log;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
+import edu.stanford.nlp.trees.*;
 import edu.umich.tbnalir.components.NodeMapper;
 import edu.umich.tbnalir.components.StanfordNLParser;
 import edu.umich.tbnalir.dataStructure.ParseTree;
@@ -67,8 +71,13 @@ public class TemplateChooser {
                 if (rel == null)
                     throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
-                // If we're dealing with a relation, move ahead
+                // If we're dealing with a relation, generate a version without it, and also move ahead
                 if (schemaEl.schemaElement.type.equals("relation")) {
+                    // TODO: arbitrary 0.8 added here - what to do?
+                    result.addAll(this.generatePossibleTranslationsRecursive(parseTree, new ArrayList<>(remainingNodes),
+                            new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                            accumScore + 0.8, accumNodes + 1));
+
                     Set<Relation> newAccumRel = new HashSet<>(accumRel);
                     newAccumRel.add(rel);
 
@@ -276,7 +285,6 @@ public class TemplateChooser {
         // queryStrs.add("return me papers with more than 200 citations.");  // C1.12
         // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava.\""); // C4.06
 
-
         int i = 0;
         for (String queryStr : queryStrs) {
             Log.info("================");
@@ -287,7 +295,6 @@ public class TemplateChooser {
             Log.info("Parsing query with NL parser...");
             StanfordNLParser.parse(query, lexiParser);
 
-            /*
             List<CoreLabel> rawWords = Sentence.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
             Tree parse = lexiParser.apply(rawWords);
             TreebankLanguagePack tlp = new PennTreebankLanguagePack();
@@ -301,7 +308,7 @@ public class TemplateChooser {
 
             for (TypedDependency dep : dependencyList) {
                 System.out.println(dep);
-            }*/
+            }
 
             Log.info("Mapping nodes to token types...");
             try {

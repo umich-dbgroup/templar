@@ -82,9 +82,9 @@ public class PossibleTranslation {
         Iterator<String> it = remaining.keySet().iterator();
 
         if (it.hasNext()) {
-            String nextRel = it.next();
-            List<QueryFragment> qfList = remaining.get(nextRel);
-            remaining.remove(nextRel);
+            String nextAttr = it.next();
+            List<QueryFragment> qfList = remaining.get(nextAttr);
+            remaining.remove(nextAttr);
 
             // Get permutations if more than 1 option
             if (qfList.size() > 1) {
@@ -148,24 +148,24 @@ public class PossibleTranslation {
 
         Set<PossibleTranslation> results = new HashSet<>();
 
-        Map<String, List<QueryFragment>> relationsToQueryFragments = new HashMap<>();
+        Map<String, List<QueryFragment>> attributesToQueryFragments = new HashMap<>();
 
         for (Projection proj : this.projections) {
-            String relName = proj.getAttribute().getRelation().getName();
-            List<QueryFragment> qfList = relationsToQueryFragments.get(relName);
+            String attrName = proj.getAttribute().toString();
+            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
             if (qfList == null) {
                 qfList = new ArrayList<>();
-                relationsToQueryFragments.put(relName, qfList);
+                attributesToQueryFragments.put(attrName, qfList);
             }
             qfList.add(proj);
         }
 
         for (Predicate pred : this.predicates) {
-            String relName = pred.getAttribute().getRelation().getName();
-            List<QueryFragment> qfList = relationsToQueryFragments.get(relName);
+            String attrName = pred.getAttribute().toString();
+            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
             if (qfList == null) {
                 qfList = new ArrayList<>();
-                relationsToQueryFragments.put(relName, qfList);
+                attributesToQueryFragments.put(attrName, qfList);
             }
             qfList.add(pred);
         }
@@ -174,7 +174,7 @@ public class PossibleTranslation {
         newPt.translationScore = this.translationScore;
         newPt.relations = new HashSet<>(this.relations);
 
-        results.addAll(this.getAliasPermutationsHelper(newPt, relationsToQueryFragments));
+        results.addAll(this.getAliasPermutationsHelper(newPt, attributesToQueryFragments));
 
         // Cache permutations
         this.permutations = results;

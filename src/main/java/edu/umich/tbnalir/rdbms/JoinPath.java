@@ -254,6 +254,10 @@ public class JoinPath {
         return true;
     }
 
+    public Set<JoinEdge> getSelfJoins() {
+        return this.selfJoins;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
