@@ -14,6 +14,7 @@ import edu.umich.tbnalir.parse.*;
 import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.sql.Operator;
 import edu.umich.tbnalir.tools.PrintForCheck;
+import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -293,11 +294,15 @@ public class TemplateChooser {
     }
 
     public static void main(String[] args) {
-        String dbName = "mas";
-        String prefix = "data/mas/mas";
-        int joinLevel = 6;
-
-        String nlqFile = "data/mas/mas_c4_nlq.txt";
+        if (args.length < 4) {
+            System.out.println("Usage: TemplateChooser <db> <schema-prefix> <join-level> <nlq-file>");
+            System.out.println("Example: TemplateChooser mas data/mas/mas 6 data/mas/mas_c1.txt");
+            System.exit(1);
+        }
+        String dbName = args[0];
+        String prefix = args[1];
+        int joinLevel = Integer.valueOf(args[2]);
+        String nlqFile = args[3];
 
         RDBMS db;
         try {
@@ -312,65 +317,16 @@ public class TemplateChooser {
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        /*List<String> queryStrs;
+        List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }*/
+        }
 
-        List<String> queryStrs = new ArrayList<>();
-        queryStrs.add("return me the number of authors who have cooperated with \"H. V. Jagadish\"."); // C4.01
-        queryStrs.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\""); // C4.02
-        queryStrs.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\""); // C4.03
-        // queryStrs.add("return me the authors who have cooperated with \"H. V. Jagadish\" after 2000."); // C4.04
-        // queryStrs.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava.\""); // C4.06
-        // queryStrs.add("return me the papers, written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005"); // C4.09
-        queryStrs.add("return me the authors who have cooperated with \"H. V. Jagadish\"."); // C4.10
-        // queryStrs.add("return me the authors who have more than 10 papers in the VLDB conference."); // C4.16
-        // queryStrs.add("return me the author who has the most number of papers in the VLDB conference."); // C4.17
-        // queryStrs.add("return me the conference which has the most number of papers by \"H. V. Jagadish\"."); // C4.21
-        // queryStrs.add("return me the journal which has the most number of papers by \"H. V. Jagadish\"."); // C4.23
-        // queryStrs.add("return me the paper in the Databases area with the most citations."); // C4.30
-        // queryStrs.add("return me the paper in PVLDB with the most citations."); // C4.31
-        // queryStrs.add("return me the paper in VLDB conference with the most citations."); // C4.32
-        // queryStrs.add("return me the paper by \"H. V. Jagadish\" with the most citations."); // C4.33
-        // queryStrs.add("return me the paper after 2000 with the most citations."); // C4.34
-        // queryStrs.add("return me the paper after 2000 in Databases area with the most citations."); // C4.35
-        // queryStrs.add("return me the paper after 2000 in PVLDB with the most citations."); // C4.36
-        // queryStrs.add("return me the paper after 2000 in VLDB conference with the most citations."); // C4.37
-        // queryStrs.add("return me the author who has the most number of papers containing keyword \"Relational Database\"."); // C4.38
-        // queryStrs.add("return me the conference, which has the most number of papers containing keyword \"Relational Database\"."); // C4.39
-        // queryStrs.add("return me the journal, which has the most number of papers containing keyword \"Relational Database\"."); // C4.40
-        // queryStrs.add("return me the number of the authors who have more than 10 papers containing keyword \"Relational Database\"."); // C4.41
-        // queryStrs.add("return me the number of the conferences, which have more than 60 papers containing keyword \"Relational Database\"."); // C4.42
-        // queryStrs.add("return me the number of the journals, which have more than 60 papers containing keyword \"Relational Database\"."); // C4.43
-        // queryStrs.add("return me the number of authors who have more than 10 papers containing keyword \"Relational Database\"."); // C4.44
-        // queryStrs.add("return me the number of keywords, which have been contained by more than 100 papers in VLDB conference."); // C4.47
-        // queryStrs.add("return me the number of keywords, which have been contained by more than 100 papers in PVLDB."); // C4.48
-        // queryStrs.add("return me the number of keywords, which have been contained by more than 10 papers of \"H. V. Jagadish\"."); // C4.49
-        // queryStrs.add("return me the number of keyword, which have been contained by the most number of papers in VLDB conference."); // C4.50
-        // queryStrs.add("return me the number of keyword, which have been contained by the most number of papers in PVLDB."); // C4.51
-        // queryStrs.add("return me the number of keyword, which have been contained by the most number of papers by \"H. V. Jagadish\"."); // C4.52
-        // queryStrs.add("return me the journal that has the most number of papers containing keyword \"Relational Database\"."); // C4.53
-        // queryStrs.add("return me the conference that has the most number of papers containing keyword \"Relational Database\"."); // C4.54
-        // queryStrs.add("return me the author who has the most number of papers containing keyword \"Relational Database\"."); // C4.55
-        // queryStrs.add("return me the author in the \"University of Michigan\" whose papers have the most total citations."); // C4.56
-        // queryStrs.add("return me the author in the \"University of Michigan\" whose papers in the Databases area have the most total citations."); // C4.57
-        // queryStrs.add("return me the author in the \"University of Michigan\" whose papers have more than 5000 total citations."); // C4.58
-        // queryStrs.add("return me the author in the \"University of Michigan\" in the Databases area whose papers have more than 5000 total citations."); // C4.59
-        // queryStrs.add("return me the paper with the most citations."); // C4.60
-
-
-        // queryStrs.add("return me the conferences, which have more than 10 papers by \"H. V. Jagadish\"."); // C4.20
-        // queryStrs.add("return me the journals, which have more than 10 papers by \"H. V. Jagadish\"."); // C4.22
-        // queryStrs.add("return me the authors who have more than 10 papers containing keyword \"Relational Database\"."); // C4.24
-        // queryStrs.add("return me the conferences, which have more than 60 papers containing keyword \"Relational Database\"."); // C4.25
-        // queryStrs.add("return me the journals, which have more than 60 papers containing keyword \"Relational Database\"."); // C4.26
-        // queryStrs.add("return me the keywords, which have been contained by more than 100 papers in VLDB conference."); // C4.27
-        // queryStrs.add("return me the keywords, which have been contained by more than 100 papers in PVLDB."); // C4.28
-        // queryStrs.add("return me the keywords, which have been contained by more than 10 papers of \"H. V. Jagadish\"."); // C4.29
+        // List<String> queryStrs = new ArrayList<>();
+        // queryStrs.add("return me the number of authors who have cooperated with \"H. V. Jagadish\"."); // C4.01
 
         int i = 0;
         for (String queryStr : queryStrs) {
@@ -382,6 +338,7 @@ public class TemplateChooser {
             Log.info("Parsing query with NL parser...");
             StanfordNLParser.parse(query, lexiParser);
 
+            /*
             List<CoreLabel> rawWords = Sentence.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
             Tree parse = lexiParser.apply(rawWords);
             TreebankLanguagePack tlp = new PennTreebankLanguagePack();
@@ -395,7 +352,7 @@ public class TemplateChooser {
 
             for (TypedDependency dep : dependencyList) {
                 System.out.println(dep);
-            }
+            }*/
 
             Log.info("Mapping nodes to token types...");
             try {
