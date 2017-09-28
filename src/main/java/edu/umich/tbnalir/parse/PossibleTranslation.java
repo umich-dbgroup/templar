@@ -2,6 +2,7 @@ package edu.umich.tbnalir.parse;
 
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.Relation;
+import edu.umich.tbnalir.sql.Operator;
 
 import java.util.*;
 
@@ -204,13 +205,15 @@ public class PossibleTranslation {
         }
 
         for (Predicate pred : this.predicates) {
-            String attrName = pred.getAttribute().toString();
-            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
-            if (qfList == null) {
-                qfList = new ArrayList<>();
-                attributesToQueryFragments.put(attrName, qfList);
+            if (pred.getOp().equals(Operator.EQ)) {
+                String attrName = pred.getAttribute().toString();
+                List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
+                if (qfList == null) {
+                    qfList = new ArrayList<>();
+                    attributesToQueryFragments.put(attrName, qfList);
+                }
+                qfList.add(pred);
             }
-            qfList.add(pred);
         }
 
         for (Having having : this.havings) {
