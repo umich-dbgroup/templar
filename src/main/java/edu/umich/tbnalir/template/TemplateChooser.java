@@ -317,7 +317,6 @@ public class TemplateChooser {
         Set<Template> templates = tg.generate();
 
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-
         List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
@@ -328,6 +327,8 @@ public class TemplateChooser {
 
         // List<String> queryStrs = new ArrayList<>();
         // queryStrs.add("return me the number of authors who have cooperated with \"H. V. Jagadish\"."); // C4.01
+        // queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
+
 
         int i = 0;
         for (String queryStr : queryStrs) {

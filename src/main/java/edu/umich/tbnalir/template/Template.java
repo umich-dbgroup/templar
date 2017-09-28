@@ -322,6 +322,10 @@ public class Template {
                 result = result.replace(" where " + Constants.PRED, "");
             } else {
                 Map<Attribute, String[]> usedAttributes = new HashMap<>();
+
+                translation.getPredicates().sort((a, b) -> a.toString().compareTo(b.toString()));
+
+                int prevUsedIndex = 0;
                 for (Predicate transPred : translation.getPredicates()) {
                     // If the relation isn't contained in the template, punt!
                     if (!this.templateString.contains(" " + transPred.getAttribute().getRelation().toString())) return null;
@@ -362,7 +366,14 @@ public class Template {
 
                     String[] addToUsedAttr = {transPred.getOp().toString(), transPred.getValue()};
                     usedAttributes.put(transPred.getAttribute(), addToUsedAttr);
+
+                    int curIndex = sb.length();
                     sb.append(transPred.toString());
+                    if (useOr) {
+                        sb.insert(prevUsedIndex, "(");
+                        sb.append(")");
+                    }
+                    prevUsedIndex = curIndex;
                 }
 
                 affinityAccum += Constants.SLOT_COVERS * translation.getPredicates().size();

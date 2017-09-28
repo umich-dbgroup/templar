@@ -205,15 +205,18 @@ public class PossibleTranslation {
         }
 
         for (Predicate pred : this.predicates) {
-            if (pred.getOp().equals(Operator.EQ)) {
-                String attrName = pred.getAttribute().toString();
-                List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
-                if (qfList == null) {
-                    qfList = new ArrayList<>();
-                    attributesToQueryFragments.put(attrName, qfList);
-                }
-                qfList.add(pred);
+            String attrName = pred.getAttribute().toString();
+            // If operator isn't =, then we give a separate bucket
+            if (!pred.getOp().equals(Operator.EQ)) {
+                attrName += pred.getOp().toString();
             }
+
+            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
+            if (qfList == null) {
+                qfList = new ArrayList<>();
+                attributesToQueryFragments.put(attrName, qfList);
+            }
+            qfList.add(pred);
         }
 
         for (Having having : this.havings) {
