@@ -1,0 +1,14 @@
+return me the homepage of PVLDB.
+return me the homepage of H. V. Jagadish.
+return me the abstract of "Making database systems usable";
+return me the year of "Making database systems usable"
+return me the papers after 2000;
+return me the homepage of the VLDB conference.
+return me all the keywords;
+return me all the organizations;
+return me all the organizations in North America;
+return me the homepage of University of Michigan;
+return me the number of references of "Making database systems usable";
+return me the number of citations of "Making database systems usable";
+return me the year of "Making database systems usable";
+return me the paper with more than 200 citations.
