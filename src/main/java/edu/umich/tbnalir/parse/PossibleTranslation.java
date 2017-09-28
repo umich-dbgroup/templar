@@ -12,6 +12,8 @@ public class PossibleTranslation {
     Set<Relation> relations;
     List<Projection> projections;
     List<Predicate> predicates;
+    List<Having> havings;
+    Superlative superlative;
 
     // Cache alias permutations
     Set<PossibleTranslation> permutations;
@@ -22,6 +24,8 @@ public class PossibleTranslation {
         this.relations = new HashSet<>();
         this.projections = new ArrayList<>();
         this.predicates = new ArrayList<>();
+        this.havings = new ArrayList<>();
+        this.superlative = null;
 
         this.permutations = null;
     }
@@ -30,6 +34,13 @@ public class PossibleTranslation {
         this.relations = new HashSet<>(other.relations);
         this.projections = new ArrayList<>(other.projections);
         this.predicates = new ArrayList<>(other.predicates);
+        this.havings = new ArrayList<>(other.havings);
+        if (other.superlative != null) {
+            this.superlative = new Superlative(other.superlative);
+        } else {
+            this.superlative = null;
+        }
+
         this.translationScore = other.translationScore;
 
         this.permutations = null;
@@ -57,6 +68,22 @@ public class PossibleTranslation {
 
     public void setPredicates(List<Predicate> predicates) {
         this.predicates = predicates;
+    }
+
+    public List<Having> getHavings() {
+        return havings;
+    }
+
+    public void setHavings(List<Having> havings) {
+        this.havings = havings;
+    }
+
+    public Superlative getSuperlative() {
+        return superlative;
+    }
+
+    public void setSuperlative(Superlative superlative) {
+        this.superlative = superlative;
     }
 
     public Double getTranslationScore() {
@@ -91,6 +118,8 @@ public class PossibleTranslation {
                 for (int i = 0; i < qfList.size(); i++) {
                     List<Projection> newProj = new ArrayList<>(pt.getProjections());
                     List<Predicate> newPred = new ArrayList<>(pt.getPredicates());
+                    List<Having> newHaving = new ArrayList<>(pt.getHavings());
+                    Superlative superlative = null;
                     for (int j = 0; j < qfList.size(); j++) {
                         int qfIndex = i + j;
                         while (qfIndex >= qfList.size()) {
@@ -107,16 +136,26 @@ public class PossibleTranslation {
                             Projection copyProj = new Projection((Projection) curQf);
                             copyProj.setAttribute(newAttr);
                             newProj.add(copyProj);
-                        } else {
+                        } else if (curQf instanceof Predicate) {
                             Predicate copyPred = new Predicate((Predicate) curQf);
                             copyPred.setAttribute(newAttr);
                             newPred.add(copyPred);
+                        } else if (curQf instanceof Having) {
+                            Having copyHaving = new Having((Having) curQf);
+                            copyHaving.setAttribute(newAttr);
+                            newHaving.add(copyHaving);
+                        } else {
+                            Superlative copySuperlative = new Superlative((Superlative) curQf);
+                            copySuperlative.setAttribute(newAttr);
+                            superlative = copySuperlative;
                         }
                     }
 
                     PossibleTranslation newPt = new PossibleTranslation(pt);
+                    newPt.setHavings(newHaving);
                     newPt.setPredicates(newPred);
                     newPt.setProjections(newProj);
+                    newPt.setSuperlative(superlative);
 
                     results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining)));
                 }
@@ -126,8 +165,12 @@ public class PossibleTranslation {
                 PossibleTranslation newPt = new PossibleTranslation(pt);
                 if (qf instanceof Projection) {
                     newPt.getProjections().add(new Projection((Projection) qf));
-                } else {
+                } else if (qf instanceof Predicate) {
                     newPt.getPredicates().add(new Predicate((Predicate) qf));
+                } else if (qf instanceof Having) {
+                    newPt.getHavings().add(new Having((Having) qf));
+                } else {
+                    newPt.setSuperlative((Superlative) qf);
                 }
                 // Otherwise, move on to next
                 results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining)));
@@ -168,6 +211,26 @@ public class PossibleTranslation {
                 attributesToQueryFragments.put(attrName, qfList);
             }
             qfList.add(pred);
+        }
+
+        for (Having having : this.havings) {
+            String attrName = having.getAttribute().toString();
+            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
+            if (qfList == null) {
+                qfList = new ArrayList<>();
+                attributesToQueryFragments.put(attrName, qfList);
+            }
+            qfList.add(having);
+        }
+
+        if (this.superlative != null) {
+            String attrName = this.superlative.getAttribute().toString();
+            List<QueryFragment> qfList = attributesToQueryFragments.get(attrName);
+            if (qfList == null) {
+                qfList = new ArrayList<>();
+                attributesToQueryFragments.put(attrName, qfList);
+            }
+            qfList.add(this.superlative);
         }
 
         PossibleTranslation newPt = new PossibleTranslation();
@@ -213,6 +276,16 @@ public class PossibleTranslation {
         StringJoiner predSj = new StringJoiner(",");
         this.predicates.stream().map(Predicate::toString).forEach(predSj::add);
         sb.append(predSj.toString());
+        sb.append("]; havings: [");
+
+        StringJoiner havingSj = new StringJoiner(",");
+        this.havings.stream().map(Having::toString).forEach(havingSj::add);
+        sb.append(havingSj.toString());
+        sb.append("]; superlative: [");
+
+        if (this.superlative != null) {
+            sb.append(this.superlative.toString());
+        }
         sb.append("]");
 
         return sb.toString();

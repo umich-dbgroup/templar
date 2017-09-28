@@ -134,7 +134,7 @@ public class StanfordNLParser
                 ParseTreeNode[] adjTableEntry = {depNode, govNode};
                 query.adjTable.add(adjTableEntry);
             }
-			if (reln.equals("aux")) {
+			if (reln.equals("aux") || reln.equals("rcmod")) {
 				ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
 				ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
 				ParseTreeNode[] auxTableEntry = {depNode, govNode};

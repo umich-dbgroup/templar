@@ -1,6 +1,7 @@
 package edu.umich.tbnalir.template;
 
 import com.esotericsoftware.minlog.Log;
+import edu.umich.tbnalir.parse.Having;
 import edu.umich.tbnalir.parse.PossibleTranslation;
 import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.rdbms.JoinEdge;
@@ -83,6 +84,7 @@ public class Template {
     public InstantiatedTemplate instantiate(PossibleTranslation translation) {
         String result = this.templateString;
 
+        /*
         if (this.templateString.contains("from author as author_0, author as author_1, cite as cite_0, publication as publication_0, publication as publication_1, writes as writes_0, writes as writes_1 where ")) {
             int y = 0;
         }
@@ -106,7 +108,7 @@ public class Template {
                 && this.relations.contains(w0) && this.relations.contains(w1)
                 && this.relations.contains(p0) && this.relations.size() == 5 && translation.getTotalScore() > 2.211) {
             int x = 0;
-        }
+        }*/
 
         // TODO: add in score of similarity of query parse tree structure to template parse tree structure
 
@@ -147,7 +149,7 @@ public class Template {
         }
 
         // RULE: For a non-empty join path, each relation on the terminal of a join path must have
-        // at least 1 projection or predicate corresponding to that relation.
+        // at least 1 projection, predicate, or having corresponding to that relation.
         if (!this.joinPath.isEmpty()) {
             terminal_check:
             for (Attribute terminalAttr : this.joinPath.getTerminals()) {
@@ -163,13 +165,19 @@ public class Template {
                     }
                 }
 
+                for (Having having : translation.getHavings()) {
+                    if (having.getAttribute().hasSameRelationAs(terminalAttr)) {
+                        continue terminal_check;
+                    }
+                }
+
                 // If we got here, there was a relation of a terminal in the join path
                 // for which there was no proj/pred
                 return null;
             }
         }
 
-        // RULE: At least 1 relation of an interior vertex in a pseudo-self-join must have a projection/predicate
+        // RULE: At least 1 relation of an interior vertex in a pseudo-self-join must have a projection/predicate/having
         // associated with it.
         consec_check:
         for (JoinPath consecutive : this.joinPath.getConsecutives()) {
@@ -198,6 +206,12 @@ public class Template {
                             continue consec_check;
                         }
                     }
+
+                    for (Having having : translation.getHavings()) {
+                        if (having.getAttribute().hasSameRelationAs(consecVertex)) {
+                            continue consec_check;
+                        }
+                    }
                 }
 
                 // Failed rule.
@@ -208,28 +222,44 @@ public class Template {
 
         double affinityAccum = 0;
 
-        // CHECK PROJECTIONS COVERAGE
+        boolean subquery = false;
+
+        // INSTANTIATE PROJECTION
         if (this.templateString.contains(Constants.PROJ)) {
             // (1) in the case of a projection-hidden template
             StringJoiner sj = new StringJoiner(", ");
+
+            StringJoiner groupBySj = new StringJoiner(", ");
 
             for (Projection transProj : translation.getProjections()) {
                 // If the relation isn't contained in the template, punt!
                 if (!this.templateString.contains(" " + transProj.getAttribute().getRelation().toString())) return null;
 
-                sj.add(transProj.toString());
+                // If there's a HAVING and a function on this, defer to a subquery.
+                if (translation.getHavings().size() > 0 && transProj.getFunction() != null) {
+                    result = "select " + transProj.getFunction() + "(*) from (" + result;
+                    subquery = true;
+                    sj.add(transProj.getAttribute().toString());
+                } else {
+                    sj.add(transProj.toString());
+                }
 
                 // if GROUP BY, add to string
-                if (transProj.isGroupBy()) {
-                    result = result + " group by " + transProj.toString();
+                if (transProj.isGroupBy() || translation.getHavings().size() > 0 ||
+                        (translation.getSuperlative() != null && translation.getSuperlative().getFunction() != null)) {
+                    groupBySj.add(transProj.getAttribute().toString());
                 }
             }
 
             affinityAccum += Constants.SLOT_COVERS * translation.getProjections().size();
 
             result = result.replace(Constants.PROJ, sj.toString());
+            if (!groupBySj.toString().isEmpty()) {
+                result = result + " group by " + groupBySj.toString();
+            }
         } else {
             // (2) in the case of a projection-containing template
+            /*
             List<Projection> projectionsList = new ArrayList<>(this.projections);
             for (Projection transProj : translation.getProjections()) {
                 if (projectionsList.contains(transProj)) {
@@ -277,7 +307,7 @@ public class Template {
             }
 
             // If we have projections that are unaccounted for, punt!
-            if (!projectionsList.isEmpty()) return null;
+            if (!projectionsList.isEmpty()) return null;*/
         }
 
         // CHECK PREDICATES COVERAGE
@@ -340,6 +370,7 @@ public class Template {
                 result = result.replace(Constants.PRED, sb.toString());
             }
         } else {
+            /*
             if (predicatesList.size() < translation.getPredicates().size()) return null;
 
             // (2) in the case of a predicate-visible template
@@ -414,13 +445,32 @@ public class Template {
                     /*
                     if (mostDetailedMatch.getAlias() != null) {
                         resultPred.setAlias(mostDetailedMatch.getAlias());
-                    }*/
+                    }
 
                     result = result.replaceFirst(toReplace.toString(), resultPred.toString());
 
                     affinityAccum += (double) mostDetailedMatchCount / 3.0;
                 }
-            }
+            }*/
+        }
+
+        StringJoiner havingSj = new StringJoiner(" and ");
+        for (Having having : translation.getHavings()) {
+            // If the relation isn't contained in the template, punt!
+            if (!this.templateString.contains(" " + having.getAttribute().getRelation().toString())) return null;
+
+            havingSj.add(having.toString());
+        }
+        if (!havingSj.toString().isEmpty()) {
+            result += " having " + havingSj.toString();
+        }
+
+        if (translation.getSuperlative() != null) {
+            result += " order by " + translation.getSuperlative().toString();
+        }
+
+        if (subquery) {
+            result += ") as subquery";
         }
 
         // If any slots remain after instantiation, punt!

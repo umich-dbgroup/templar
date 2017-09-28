@@ -20,6 +20,7 @@ public class ParseTreeNode implements Serializable
     // Added by cjbaik
 	public String attachedOT = null; // the attached OT function if it's a VT
     public String attachedFT = null; // the attached FT function
+    public String attachedSuperlative = null; // the attached superlative (min/max) if exists
 
 	public ParseTreeNode parent; 
 	public ArrayList<ParseTreeNode> children = new ArrayList<ParseTreeNode>(); 
