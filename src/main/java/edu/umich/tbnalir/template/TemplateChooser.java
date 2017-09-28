@@ -67,10 +67,11 @@ public class TemplateChooser {
         ParseTreeNode curNode = remainingNodes.remove(0);
 
         if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
-            for (MappedSchemaElement schemaEl : curNode.mappedElements) {
+            curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
+
+            for (MappedSchemaElement schemaEl : curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()))) {
                 // Min threshold to even try...
-                // TODO: could replace with the top few of mappedElements (make sure we pick the correct top few, may not be sorted)
-                if (schemaEl.similarity < 0.75) {
+                if (schemaEl.similarity < 0.5) {
                     continue;
                 }
 
