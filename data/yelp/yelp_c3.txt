@@ -1,0 +1,51 @@
+find the number of preschools in Madison
+find the number of restaurants rated more than 3.5
+find the total checkins in Moroccan restaurants in "Los Angeles"
+find the total checkins in Moroccan restaurants in "Los Angeles" on Fridays
+find the total checkins in Moroccan restaurants in "Los Angeles" per day
+find the total checkins in Italian delis in each state on Sundays
+How many reviews has Niloofar written in 2015
+what is the average rating given in Michelle reviews
+What is the number of checkins for "Cafe Zinho" on fridays
+how many users reviewed "Sushi Too" in Pittsburgh
+What is the number of pet groomers in Edinburgh
+How many pet groomers exist in Edinburgh
+What is the number of restaurants in Pittsburgh rated 4.5
+How many tips have been written in 2015
+What is the total likes on tips from Niloofar
+What is the total likes on tips about "Cafe Zinho"
+What is the total likes on tips from Niloofar about "Cafe Zinho"
+How many tips has Michelle written in 2014
+How many tips has Michelle written in April
+what is the number of restaurants in TX
+What is the number of dentists in "Los Angeles"?
+How many dentists in "Los Angeles" have a rating above 4?
+How many people reviewed the restaurant "Texas de Brazil" in Dallas TX?
+How many people reviewed "Bistro Di Napoli" in 2015?
+How many restaurants are there in the Hazelwood district of Dallas?
+How many Starbucks are there in Dallas TX?
+How many reviews does "Acacia Cafe" have?
+Find the average number of checkins in restaurant "Barrio Café" per day
+How many businesses are there in the "Stone Meadows" neighborhood in Madison?
+How many bars in Dallas have a rating above 3.5?
+What is the number of businesses user Michelle reviews per month?
+How many reviews has Adrienne written?
+How many reviews has Michelle written in March 2014?
+How many businesses has Michelle reviewed in 2010?
+How many businesses in San Diego has Christine reviewed in 2010?
+How many Target are there in "Los Angeles"?
+How many users have reviewed Irish pubs in Dallas?
+What is the average rating of reviews written in year 2014?
+How many people reviewed restaurant "Vintner Grill" in 2010?
+Find the number of reviews on businesses located in "South Summerlin" neighborhood
+How many escape games are there in Madison?
+Find the number of users called Michelle
+Return me the number of businesses that are restaurants.
+Return me the number of cities that has "Panda Express".
+Return me the number of tips that are written by Michelle.
+Return me the number of tips that are written by Michelle in 2010.
+Find the total checkins in "Brighton Heights" neighborhood
+Find the total checkins in Sundays
+Find the total number of reviews written in March
+Find the number of tips written in each month
+How many neighborhoods have a business with rating 5 in Madison?

@@ -1,0 +1,260 @@
+{
+  "business": {
+    "name": "business",
+    "type": "relation",
+    "attributes": {
+      "bid": {
+        "name": "bid",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "full_address": {
+        "name": "full_address",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "city": {
+        "name": "city",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "latitude": {
+        "name": "latitude",
+        "type": "double",
+        "entropy": 0.0
+      },
+      "longitude": {
+        "name": "longitude",
+        "type": "double",
+        "entropy": 0.0
+      },
+      "review_count": {
+        "name": "review_count",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "is_open": {
+        "name": "is_open",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "rating": {
+        "name": "rating",
+        "type": "double",
+        "entropy": 0.0
+      },
+      "state": {
+        "name": "state",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "category": {
+    "name": "category",
+    "type": "relation",
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "category_name": {
+        "importance": "primary",
+        "name": "category_name",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "checkin": {
+    "name": "checkin",
+    "type": "relation",
+    "attributes": {
+      "cid": {
+        "name": "cid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "count": {
+        "importance": "primary",
+        "name": "count",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "day": {
+        "name": "day",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "neighborhood": {
+    "name": "neighborhood",
+    "type": "relation",
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "neighborhood_name": {
+        "importance": "primary",
+        "name": "neighborhood_name",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "review": {
+    "name": "review",
+    "type": "relation",
+    "attributes": {
+      "rid": {
+        "name": "rid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "user_id": {
+        "name": "user_id",
+        "fk": true,
+        "type": "int",
+        "entropy": 0.0
+      },
+      "rating": {
+        "name": "rating",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "text": {
+        "importance": "primary",
+        "name": "text",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "year": {
+        "name": "year",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "month": {
+        "name": "month",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "tip": {
+    "name": "tip",
+    "type": "relation",
+    "attributes": {
+      "tip_id": {
+        "name": "tip_id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "business_id": {
+        "name": "business_id",
+        "type": "text",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "user_id": {
+        "name": "user_id",
+        "fk": true,
+        "type": "int",
+        "entropy": 0.0
+      },
+      "rating": {
+        "name": "rating",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "text": {
+        "importance": "primary",
+        "name": "text",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "likes": {
+        "name": "likes",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "year": {
+        "name": "year",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "month": {
+        "name": "month",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "user": {
+    "name": "user",
+    "type": "relation",
+    "attributes": {
+      "uid": {
+        "name": "uid",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "user_id": {
+        "name": "user_id",
+        "type": "text",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  }
+}

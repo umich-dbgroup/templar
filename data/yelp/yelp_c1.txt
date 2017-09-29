@@ -1,0 +1,8 @@
+List all the businesses with more than 4.5 stars
+List all businesses with rating 3.5
+List all user ids with name Michelle
+Find all states in which there is a Whataburger
+Find all cities in which there is a restaurant called "MGM Grand Buffet"
+Find the cities of businesses rated below 1.5
+Find all cities which has a "Taj Mahal".
+List all the reviews which rated a business less than 1

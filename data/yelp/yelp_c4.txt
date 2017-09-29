@@ -1,0 +1,20 @@
+Give me all the moroccan restaurants in TX
+List all the Italian restaurants in "Los Angeles"
+Which Thai restaurant has the most number of reviews
+which business has the most number of checkins
+find the user with the most number of reviews
+which neighborhood has the most number of businesses in Madison
+Which neighborhood in Madison has the Italian restaurant with the highest stars
+Find all Chinese restaurants in Dallas with at least 4 stars
+Find all Mexican restaurants in Dallas with a rating above 3.5
+Find all restaurants with valet service in Dallas TX
+Find all Italian restaurants in the Meadowood neighborhood of Madison
+Find all bars in "Los Angeles" with at least 30 reviews and average rating above 3 stars
+How many Egyptian restaurants are there in Edinburgh?
+Which Indian restaurant in Dallas has the highest rating?
+Find all restaurants that serve seafood in "Los Angeles"
+Which Indian restaurant in Dallas has the most number of reviews?
+Which Italian restaurant in Dallas has the highest rating?
+Find users whose average review rating is below 3
+Find the business with the most number of reviews in April
+Find the business which has the most number of categories

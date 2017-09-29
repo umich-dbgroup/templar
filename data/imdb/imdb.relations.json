@@ -1,0 +1,464 @@
+{
+  "actor": {
+    "name": "actor",
+    "type": "relation",
+    "attributes": {
+      "aid": {
+        "name": "aid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "gender": {
+        "name": "gender",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "nationality": {
+        "name": "nationality",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_city": {
+        "name": "birth_city",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_year": {
+        "name": "birth_year",
+        "type": "int",
+        "entropy": 0.0
+      }
+    }
+  },
+  "cast": {
+    "name": "cast",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "aid": {
+        "name": "aid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "role": {
+        "name": "role",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "classification": {
+    "name": "classification",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "gid": {
+        "name": "gid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  },
+  "company": {
+    "name": "company",
+    "type": "relation",
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "country_code": {
+        "name": "country_code",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "copyright": {
+    "name": "copyright",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "cid": {
+        "name": "cid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  },
+  "directed_by": {
+    "name": "directed_by",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "did": {
+        "name": "did",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  },
+  "director": {
+    "name": "director",
+    "type": "relation",
+    "attributes": {
+      "did": {
+        "name": "did",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "gender": {
+        "name": "gender",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "nationality": {
+        "name": "nationality",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_city": {
+        "name": "birth_city",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_year": {
+        "name": "birth_year",
+        "type": "int",
+        "entropy": 0.0
+      }
+    }
+  },
+  "genre": {
+    "name": "genre",
+    "type": "relation",
+    "attributes": {
+      "gid": {
+        "name": "gid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "genre": {
+        "importance": "primary",
+        "name": "genre",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "keyword": {
+    "name": "keyword",
+    "type": "relation",
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "keyword": {
+        "importance": "primary",
+        "name": "keyword",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "made_by": {
+    "name": "made_by",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "pid": {
+        "name": "pid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  },
+  "movie": {
+    "name": "movie",
+    "type": "relation",
+    "attributes": {
+      "mid": {
+        "name": "mid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "title": {
+        "importance": "primary",
+        "name": "title",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "release_year": {
+        "name": "release_year",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "title_aka": {
+        "name": "title_aka",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "budget": {
+        "name": "budget",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "producer": {
+    "name": "producer",
+    "type": "relation",
+    "attributes": {
+      "pid": {
+        "name": "pid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "gender": {
+        "name": "gender",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "nationality": {
+        "name": "nationality",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_city": {
+        "name": "birth_city",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_year": {
+        "name": "birth_year",
+        "type": "int",
+        "entropy": 0.0
+      }
+    }
+  },
+  "tags": {
+    "name": "tags",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "kid": {
+        "name": "kid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  },
+  "tv_series": {
+    "name": "tv_series",
+    "type": "relation",
+    "attributes": {
+      "sid": {
+        "name": "sid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "title": {
+        "importance": "primary",
+        "name": "title",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "num_of_seasons": {
+        "name": "num_of_seasons",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "num_of_episodes": {
+        "name": "num_of_episodes",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "title_aka": {
+        "name": "title_aka",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "budget": {
+        "name": "budget",
+        "type": "text",
+        "entropy": 0.0
+      }
+    }
+  },
+  "writer": {
+    "name": "writer",
+    "type": "relation",
+    "attributes": {
+      "wid": {
+        "name": "wid",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "name": {
+        "importance": "primary",
+        "name": "name",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "gender": {
+        "name": "gender",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "nationality": {
+        "name": "nationality",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_city": {
+        "name": "birth_city",
+        "type": "text",
+        "entropy": 0.0
+      },
+      "birth_year": {
+        "name": "birth_year",
+        "type": "int",
+        "entropy": 0.0
+      }
+    }
+  },
+  "written_by": {
+    "name": "written_by",
+    "type": "relation",
+    "join_table": true,
+    "attributes": {
+      "id": {
+        "name": "id",
+        "type": "int",
+        "pk": true,
+        "entropy": 0.0
+      },
+      "msid": {
+        "name": "msid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      },
+      "wid": {
+        "name": "wid",
+        "type": "int",
+        "fk": true,
+        "entropy": 0.0
+      }
+    }
+  }
+}

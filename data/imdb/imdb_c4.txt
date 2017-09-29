@@ -1,0 +1,17 @@
+Find all movies that star both "Angelina Jolie" and "Brad Pitt"
+Find all actors who acted in the same movie as "Tom Hanks"
+What movies have the same director as the movie "Revolutionary Road"?
+Find all movies featuring "Benedict Cumberbatch" and "Keira Knightley"
+Find all movies featuring both "Matt Damon" and "Ben Affleck"
+What is the maximum number of movies in which "Brad Pitt" act in a given year?
+Find the actor with most number of films
+Who acted in the most number of movies directed by "Jim Jarmusch"
+Find the movie which is classified in the most number of genres
+which movie has the most number of actors from China?
+Find the actors who played in the latest movie by "Quentin Tarantino"
+Find the name and budget of the latest movie by "Quentin Tarantino"
+Find all movies featuring "Jason Robards" and "Woody Strode"
+Who is directed the latest movie by "NBCUniversal"
+What is the latest movie by "Jim Jarmusch"
+Which producer has worked with the most number of directors?
+Find the latest movie which "Gabriele Ferzetti" acted in

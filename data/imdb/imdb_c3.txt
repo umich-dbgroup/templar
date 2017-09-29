@@ -1,0 +1,27 @@
+What is the number of movies in which "Jennifer Aniston" acted after 2010?
+What is the number of actors in the movie "Grumpier Old Men"?
+How many movies did "Alfred Hitchcock" direct?
+How many movies were produced in the year 2012?
+What is the number of movies directed by "Woody Allen" per year?
+What is the number of movies produced in 2013?
+How many movies did "Ronald Reagan" act in?
+How many actors were born in "Los Angeles" after 2000?
+How many movies did "Humphrey Bogart" act in before 1942?
+What is the number of movies that "Brad Pitt" acts in per year?
+What is the number of movies in which "Tom Cruise" acted?
+How many movies about Iraq war were produced in 2015?
+How many movies about Persians were released after 1990?
+How many movies did "Matt Damon" direct?
+How many movies did "Quentin Tarantino" direct after 2010?
+How many movies did "Quentin Tarantino" direct before 2010?
+How many movies did "Quentin Tarantino" direct before 2002 and after 2010?
+What is the number of movies featuring "Brad Pitt"?
+How many movies did "Steven Spielberg" direct?
+How many movies did Netflix produce?
+How many female actors were born in "New York City" after 1980?
+How many actors are in the movie "Saving Private Ryan"?
+How many movies did "Shahab Hosseini" act in
+find the number actors from Iran who played in "Jim Jarmusch" movies
+How many companies participated in producing "Camp X-Ray"
+How many actors from China have acted in "Rush Hour 3"
+Find the number of companies which worked with "Gabriele Ferzetti"
