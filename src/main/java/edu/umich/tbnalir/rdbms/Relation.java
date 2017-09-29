@@ -14,6 +14,7 @@ import java.util.*;
 public class Relation {
     String name;
     RelationType type;
+    Attribute primaryAttr;
     Map<String, Attribute> attributes;
 
     Integer aliasInt; // aliasInt
@@ -42,6 +43,8 @@ public class Relation {
             e.getValue().setRelation(this);
         }
 
+        this.primaryAttr = null;
+
         this.joinTable = false;
         this.fromItem = null;
         this.rankedAttributes = null;
@@ -59,6 +62,8 @@ public class Relation {
             copyAttr.setRelation(this);
             this.attributes.put(e.getKey(), copyAttr);
         }
+
+        this.primaryAttr = this.attributes.get(other.primaryAttr.getName());
 
         this.joinTable = other.joinTable;
         this.fromItem = null;
@@ -153,6 +158,14 @@ public class Relation {
 
     public void setAttributes(Map<String, Attribute> attributes) {
         this.attributes = attributes;
+    }
+
+    public Attribute getPrimaryAttr() {
+        return primaryAttr;
+    }
+
+    public void setPrimaryAttr(Attribute primaryAttr) {
+        this.primaryAttr = primaryAttr;
     }
 
     public void resetFromItem() {

@@ -14,7 +14,7 @@
   {
     "foreignAttribute": "business_id",
     "primaryAttribute": "business_id",
-    "foreignRelation": "checkin",
+    "foreignRelation": "neighborhood",
     "primaryRelation": "business"
   },
   {

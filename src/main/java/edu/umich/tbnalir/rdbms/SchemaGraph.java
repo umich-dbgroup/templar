@@ -53,6 +53,7 @@ public class SchemaGraph {
                 // END: stuff for Fei's code to work
 
                 Map<String, Attribute> attributeMap = new HashMap<>();
+                Attribute primaryAttr = null;
                 for (Object attrNameObj : attrObj.keySet()) {
                     JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
                     String attrName = (String) attrInfo.get("name");
@@ -79,6 +80,7 @@ public class SchemaGraph {
 
                     if (attrInfo.get("importance") != null) {
                         relSchemaEl.defaultAttribute = attrSchemaEl;
+                        primaryAttr = attr;
                     }
 
                     if (attr.isPk()) {
@@ -110,6 +112,8 @@ public class SchemaGraph {
                 } else {
                     Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
                     this.relations.put(relName, rel);
+
+                    rel.setPrimaryAttr(primaryAttr);
 
                     if (relInfo.get("join_table") != null) {
                         rel.setJoinTable((Boolean) relInfo.get("join_table"));
