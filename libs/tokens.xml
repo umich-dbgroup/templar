@@ -144,6 +144,14 @@ in the order of
 <operator>&lt;</operator>
 <example>Find all the books, where the price of each book is lower than 5.</example>
 </phrase>
+<phrase>below
+<operator>&lt;</operator>
+<example>Find all the books, where the price of each book is below 5.</example>
+</phrase>
+<phrase>above
+<operator>&gt;</operator>
+<example>Find all the books, where the price of each book is above 5.</example>
+</phrase>
 <phrase>at least
 <operator>&gt;=</operator>
 </phrase>
