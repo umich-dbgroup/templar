@@ -54,24 +54,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Gradle: stanford-parser-3.2.0-models">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.2.0-models.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="Gradle: stanford-parser-3.2.0-sources">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.2.0-sources.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="Gradle: stanford-parser">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/stanford-parser.jar!/" />
@@ -80,5 +62,129 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: stanford-parser-3.8.0-models">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.8.0-models.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: stanford-parser-3.8.0-sources">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/stanford-parser-3.8.0-sources.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Gradle: org.bytedeco:javacpp:1.3.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-api:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-buffer:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:jackson:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.16.16" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-context:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: net.ericaro:neoitertools:1.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.reflections:reflections:0.9.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.codehaus.woodstox:stax2-api:3.1.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-common:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.javassist:javassist:3.18.2-GA" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.findbugs:annotations:2.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.stephenc.findbugs:findbugs-annotations:1.3.9-1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-math3:3.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:deeplearning4j-core:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:nearestneighbor-core:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:deeplearning4j-modelimport:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:deeplearning4j-nn:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:20.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.datavec:datavec-api:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.datavec:datavec-data-image:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:deeplearning4j-ui-components:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.10" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5-platform:1.10.0-patch1-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-jackson:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.freemarker:freemarker:2.3.23" level="project" />
+    <orderEntry type="library" name="Gradle: com.clearspring.analytics:stream:2.7.0" level="project" />
+    <orderEntry type="library" name="Gradle: net.sf.opencsv:opencsv:2.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.jai-imageio:jai-imageio-core:1.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-jpeg:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-tiff:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-psd:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-bmp:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco:javacv:1.3.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv-platform:3.2.0-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica-platform:1.73-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:linux-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:linux-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:linux-ppc64le" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:macosx-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:windows-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:hdf5:1.10.0-patch1-1.3:windows-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-base64:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: it.unimi.dsi:fastutil:6.5.7" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-core:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.imageio:imageio-metadata:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.common:common-lang:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.common:common-io:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.twelvemonkeys.common:common-image:3.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:android-arm" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:android-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:linux-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:linux-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:linux-armhf" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:linux-ppc64le" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:macosx-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:windows-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:opencv:3.2.0-1.3:windows-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:ffmpeg:3.2.1-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:flycapture:2.9.3.43-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:libdc1394:2.2.4-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:libfreenect:0.5.3-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:libfreenect2:0.2.0-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:librealsense:1.9.6-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:videoinput:0.200-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:artoolkitplus:2.3.1-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:flandmark:1.07-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:android-arm" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:android-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:linux-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:linux-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:linux-armhf" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:linux-ppc64le" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:macosx-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:windows-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:leptonica:1.73-1.3:windows-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: commons-net:commons-net:3.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.commons:commons-compress:1.8.1" level="project" />
+    <orderEntry type="library" name="Gradle: joda-time:joda-time:2.9.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.deeplearning4j:deeplearning4j-nlp:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native-api:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native-platform:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas-platform:0.2.19-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:android-arm" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:android-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:linux-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:macosx-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:windows-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.nd4j:nd4j-native:0.9.1:linux-ppc64le" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:android-arm" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:android-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:linux-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:linux-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:linux-armhf" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:linux-ppc64le" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:macosx-x86_64" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:windows-x86" level="project" />
+    <orderEntry type="library" name="Gradle: org.bytedeco.javacpp-presets:openblas:0.2.19-1.3:windows-x86_64" level="project" />
   </component>
 </module>

@@ -8,6 +8,7 @@ public class InstantiatedTemplate {
     String value;
     Double nlScore;
     Double templatePopularity;
+    Double complexity;
     Double nlTemplateAffinity;
 
     public InstantiatedTemplate(String value) {
@@ -16,7 +17,9 @@ public class InstantiatedTemplate {
 
     public Double getTotalScore() {
         // TODO: set weights here
-        return Math.pow(getNlScore(), 2) + getTemplatePopularity() + getNlTemplateAffinity();
+        // return Math.pow(getNlScore(), 2) + getTemplatePopularity() + getNlTemplateAffinity();
+
+        return Math.pow(this.nlScore, 2) * this.complexity;
     }
 
     public Template getTemplate() {
@@ -29,6 +32,14 @@ public class InstantiatedTemplate {
 
     public Double getNlScore() {
         return nlScore;
+    }
+
+    public Double getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(Double complexity) {
+        this.complexity = complexity;
     }
 
     public void setNlScore(Double nlScore) {

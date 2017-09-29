@@ -2,6 +2,7 @@ package edu.umich.tbnalir.dataStructure;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.umich.tbnalir.rdbms.MappedSchemaElement;
 
@@ -19,16 +20,15 @@ public class ParseTreeNode implements Serializable
 
     // Added by cjbaik
 	public String attachedOT = null; // the attached OT function if it's a VT
-    public String attachedFT = null; // the attached FT function
     public String attachedSuperlative = null; // the attached superlative (min/max) if exists
 
 	public ParseTreeNode parent; 
-	public ArrayList<ParseTreeNode> children = new ArrayList<ParseTreeNode>(); 
+	public List<ParseTreeNode> children = new ArrayList<ParseTreeNode>();
 
 	public String QT = ""; 
 	public String prep = ""; 
 	public String leftRel = ""; 
-	public ArrayList<MappedSchemaElement> mappedElements = new ArrayList<MappedSchemaElement>(); 
+	public List<MappedSchemaElement> mappedElements = new ArrayList<MappedSchemaElement>();
 	public int choice = -1; 
 	public boolean isAdded = false; 
 	

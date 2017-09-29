@@ -139,7 +139,7 @@ public class JoinPath {
         // RULE: A pseudo-self-join cannot be the edge leading to a terminal vertex.
         for (JoinPath consec : this.consecutives) {
             for (Attribute term : consec.getTerminals()) {
-                if (this.terminals.contains(term)) {
+                if (this.terminals.contains(term) && term.isPk()) {
                     return false;
                 }
             }

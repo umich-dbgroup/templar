@@ -101,7 +101,7 @@ public class PossibleTranslation {
     }
 
     public Double getTotalScore() {
-        return this.getSimplicityScore() + this.translationScore;
+        return this.translationScore;
     }
 
     private Set<PossibleTranslation> getAliasPermutationsHelper(PossibleTranslation pt,

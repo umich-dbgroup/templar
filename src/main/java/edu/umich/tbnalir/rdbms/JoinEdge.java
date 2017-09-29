@@ -22,7 +22,7 @@ public class JoinEdge {
             this.second = first;
         }
 
-        this.selfJoin = first.hasSameRelationNameAndNameAs(second);
+        this.selfJoin = first.hasSameRelationNameAndNameAs(second) && first.isPk();
     }
 
     public boolean isSelfJoin() {

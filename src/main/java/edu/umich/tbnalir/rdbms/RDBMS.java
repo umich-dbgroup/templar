@@ -113,7 +113,7 @@ public class RDBMS {
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
 //		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
-		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int relation");
+		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int relation double pk");
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
@@ -145,11 +145,53 @@ public class RDBMS {
 		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("text"); 
 		for(int i = 0; i < textAtts.size(); i++)
 		{
-			MappedSchemaElement textAtt = textAtts.get(i).isTextExist(treeNode.label, conn); 
-			if(textAtt != null)
-			{
-				treeNode.mappedElements.add(textAtt);
-			}
+			MappedSchemaElement textAtt = textAtts.get(i).isTextExist(treeNode.label, conn);
+
+            if(textAtt != null)
+            {
+                treeNode.mappedElements.add(textAtt);
+            }
+
+            // Consider plurals as well, because we have a strict "%LIKE%" query
+            if (treeNode.label.endsWith("s")) {
+                MappedSchemaElement singularTextAtt = textAtts.get(i).isTextExist(treeNode.label.substring(0, treeNode.label.length() - 1), conn);
+                if (singularTextAtt != null) {
+                    boolean added = false;
+                    for (MappedSchemaElement curEl : treeNode.mappedElements) {
+                        SchemaElement curSchEl = curEl.schemaElement;
+                        if (curSchEl.relation.name.equals(singularTextAtt.schemaElement.relation.name) &&
+                                curSchEl.name.equals(singularTextAtt.schemaElement.name)) {
+                            // Update values if it already has them, if not, just add another value
+                            if (!curEl.mappedValues.isEmpty()) {
+                                curEl.mappedValues.addAll(singularTextAtt.mappedValues);
+                                added = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!added) treeNode.mappedElements.add(singularTextAtt);
+                }
+            } else {
+                // Or add an s if needed
+                MappedSchemaElement pluralTextAtt = textAtts.get(i).isTextExist(treeNode.label + "s", conn);
+                if (pluralTextAtt != null) {
+                    boolean added = false;
+                    for (MappedSchemaElement curEl : treeNode.mappedElements) {
+                        SchemaElement curSchEl = curEl.schemaElement;
+                        if (curSchEl.relation.name.equals(pluralTextAtt.schemaElement.relation.name) &&
+                                curSchEl.name.equals(pluralTextAtt.schemaElement.name)) {
+                            // Update values if it already has them, if not, just add another value
+                            if (!curEl.mappedValues.isEmpty()) {
+                                curEl.mappedValues.addAll(pluralTextAtt.mappedValues);
+                                added = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!added) treeNode.mappedElements.add(pluralTextAtt);
+                }
+            }
+
 		}
 		
 		if(!treeNode.mappedElements.isEmpty())
@@ -162,7 +204,7 @@ public class RDBMS {
 	public boolean isNumExist(String operator, ParseTreeNode treeNode) throws Exception 
 	{
 //		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("number");
-		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("int");
+		ArrayList<SchemaElement> textAtts = schemaGraph.getElementsByType("int double");
 		for(int i = 0; i < textAtts.size(); i++)
 		{
 			MappedSchemaElement textAtt = textAtts.get(i).isNumExist(treeNode.label, operator, conn); 

@@ -2,7 +2,7 @@ package edu.umich.tbnalir.template;
 
 import com.esotericsoftware.minlog.Log;
 import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.SentenceUtils;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.trees.*;
@@ -15,6 +15,8 @@ import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.sql.Operator;
 import edu.umich.tbnalir.tools.PrintForCheck;
 import org.apache.commons.io.FileUtils;
+import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
+import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -48,19 +50,29 @@ public class TemplateChooser {
 
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
-            // Invalid translation if projections are empty
+            // If projections are empty, generate from primary attributes of relations in translation
             if (accumProj.isEmpty()) {
-                return result;
-            }
+                for (Relation rel : accumRel) {
+                    if (rel.getPrimaryAttr() != null) {
+                        List<Projection> newAccumProj = new ArrayList<>(accumProj);
+                        newAccumProj.add(new Projection(rel.getPrimaryAttr(), null));
 
-            PossibleTranslation translation = new PossibleTranslation();
-            translation.setRelations(new HashSet<>(accumRel));
-            translation.setProjections(new ArrayList<>(accumProj));
-            translation.setPredicates(new ArrayList<>(accumPred));
-            translation.setHavings(new ArrayList<>(accumHaving));
-            translation.setSuperlative(superlative);
-            translation.setTranslationScore(accumScore / accumNodes);
-            result.add(translation);
+                        // TODO: Also arbitrary 0.8 added here!
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                new HashSet<>(accumRel), newAccumProj, new ArrayList<>(accumPred),
+                                new ArrayList<>(accumHaving), superlative, accumScore + 0.8, accumNodes + 1));
+                    }
+                }
+            } else {
+                PossibleTranslation translation = new PossibleTranslation();
+                translation.setRelations(new HashSet<>(accumRel));
+                translation.setProjections(new ArrayList<>(accumProj));
+                translation.setPredicates(new ArrayList<>(accumPred));
+                translation.setHavings(new ArrayList<>(accumHaving));
+                translation.setSuperlative(superlative);
+                translation.setTranslationScore(accumScore / accumNodes);
+                result.add(translation);
+            }
             return result;
         }
 
@@ -105,19 +117,19 @@ public class TemplateChooser {
                 List<Predicate> newAccumPred = new ArrayList<>(accumPred);
                 List<Having> newAccumHaving = new ArrayList<>(accumHaving);
 
-                // Treat as projection, if no mapped values
+                // Treat as projection, if no mapped values or if parent is CMT
                 if (schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1) {
                     // Treat as superlative if has both superlative and function
                     if (curNode.attachedSuperlative != null ||
-                            (curNode.attachedFT != null &&
-                                    (curNode.attachedFT.equals("max") || curNode.attachedFT.equals("min")))) {
+                            (schemaEl.attachedFT != null &&
+                                    (schemaEl.attachedFT.equals("max") || schemaEl.attachedFT.equals("min")))) {
                         String funcStr;
                         String superlativeStr;
                         if (curNode.attachedSuperlative != null) {
                             superlativeStr = curNode.attachedSuperlative;
-                            funcStr = curNode.attachedFT;
+                            funcStr = schemaEl.attachedFT;
                         } else {
-                            superlativeStr = curNode.attachedFT;
+                            superlativeStr = schemaEl.attachedFT;
                             funcStr = null;
                         }
                         boolean desc = superlativeStr.equals("max");
@@ -128,7 +140,7 @@ public class TemplateChooser {
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, newSuper,
                                 accumScore + schemaEl.similarity, accumNodes + 1));
                     } else {
-                        Projection proj = new Projection(attr, curNode.attachedFT);
+                        Projection proj = new Projection(attr, schemaEl.attachedFT);
 
                         // If you are creating a projection and there already exists a predicate with the same attribute,
                         // then create an additional path without this projection.
@@ -237,9 +249,18 @@ public class TemplateChooser {
                     }
 
                     // If there is an attached function, this is probably a HAVING, not a predicate.
-                    if (curNode.attachedFT != null) {
+                    if (schemaEl.attachedFT != null) {
                         // TODO: do we need aliasInt for having?
-                        Having having = new Having(attr, op, value, curNode.attachedFT);
+                        Having having = new Having(attr, op, value, schemaEl.attachedFT);
+
+                        // Should not do the same attribute for having as a projection
+                        boolean projExists = false;
+                        for (Projection proj : accumProj) {
+                            if (having.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
+                                projExists = true;
+                            }
+                        }
+                        if (projExists) continue;
 
                         if (!newAccumHaving.contains(having)) newAccumHaving.add(having);
                         newAccumRel.add(rel);
@@ -305,6 +326,11 @@ public class TemplateChooser {
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
 
+        File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
+        Word2Vec vec = WordVectorSerializer.readWord2VecModel(gModel);
+        vec.similarity("cat", "dog");
+        System.exit(1);
+
         RDBMS db;
         try {
             db = new RDBMS(dbName, prefix);
@@ -316,22 +342,30 @@ public class TemplateChooser {
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
+        // templates.stream().map(Template::toString).forEach(System.out::println);
+
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-        List<String> queryStrs;
+        /*List<String> queryStrs;
         try {
             queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }
+        }*/
 
-        // List<String> queryStrs = new ArrayList<>();
-        // queryStrs.add("return me the number of authors who have cooperated with \"H. V. Jagadish\"."); // C4.01
-        // queryStrs.add("return me the authors who have papers in VLDB conference before 1995 or after 2002"); // C2.05
-
+        List<String> queryStrs = new ArrayList<>();
+        queryStrs.add("find all cities which has a \"Taj Mahal\" restaurant");
+        queryStrs.add("find all the reviews for all pet groomers with more than 100 reviews");
+        queryStrs.add("find all pet groomers which have more than 100 reviews");
+        queryStrs.add("find all dance schools in \"Los Angeles\"");
+        queryStrs.add("find all pet hospices in Pittsburgh");
 
         int i = 0;
         for (String queryStr : queryStrs) {
+            // TODO: hack, to convert TX to Texas, probably don't need with something like word2vec
+            queryStr = queryStr.replace("TX", "Texas");
+            queryStr = queryStr.replace("PA", "Pennsylvania");
+
             Log.info("================");
             Log.info("QUERY " + i++ + ": " + queryStr);
             Log.info("================");
@@ -340,8 +374,7 @@ public class TemplateChooser {
             Log.info("Parsing query with NL parser...");
             StanfordNLParser.parse(query, lexiParser);
 
-            /*
-            List<CoreLabel> rawWords = Sentence.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
+            List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
             Tree parse = lexiParser.apply(rawWords);
             TreebankLanguagePack tlp = new PennTreebankLanguagePack();
             GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
@@ -354,7 +387,7 @@ public class TemplateChooser {
 
             for (TypedDependency dep : dependencyList) {
                 System.out.println(dep);
-            }*/
+            }
 
             Log.info("Mapping nodes to token types...");
             try {
@@ -398,7 +431,9 @@ public class TemplateChooser {
                     // In the case that we have a function as a parent, add accordingly and "ignore" function
                     if (node.parent.tokenType.equals("FT")) {
                         String superlative = null;
-                        node.attachedFT = node.parent.function;
+                        for (MappedSchemaElement mse : node.mappedElements) {
+                            mse.attachedFT = node.parent.function;
+                        }
                         ParseTreeNode functionNode = node.parent;
 
                         if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
@@ -429,7 +464,9 @@ public class TemplateChooser {
                                 if (child.function.equals("max") || child.function.equals("min")) {
                                     node.attachedSuperlative = child.function;
                                 } else {
-                                    node.attachedFT = child.function;
+                                    for (MappedSchemaElement mse : node.mappedElements) {
+                                        mse.attachedFT = child.function;
+                                    }
                                 }
                                 childrenToAdd.addAll(child.children);
                                 funcToRemove.add(child);
@@ -453,6 +490,9 @@ public class TemplateChooser {
                             continue;
                         }
 
+                        // Only do NTs for the remainder
+                        if (!relatedNode.tokenType.equals("NT")) continue;
+
                         MappedSchemaElement chosenMappedSchemaEl = null;
                         int choice = node.choice;
                         double nodeSimilarity = node.getChoiceMap().similarity;
@@ -469,19 +509,29 @@ public class TemplateChooser {
                             for (int k = 0; k < node.mappedElements.size(); k++) {
                                 MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
 
-                                if (nodeMappedEl.schemaElement.relation.equals(relatedMappedEl.schemaElement.relation)
-                                        && nodeMappedEl.schemaElement.name.equals(relatedMappedEl.schemaElement.name)) {
+                                boolean relationMatchesAndThisIsPrimary =
+                                        nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name)
+                                        && nodeMappedEl.schemaElement.relation.defaultAttribute.equals(nodeMappedEl.schemaElement);
+                                boolean relatedIsRelation = relatedMappedEl.schemaElement.type.equals("relation");
+                                boolean attributeMatchesIfBothAttributes = !relatedIsRelation &&
+                                        nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name) &&
+                                        nodeMappedEl.schemaElement.name.equals(relatedMappedEl.schemaElement.name);
+                                if (relationMatchesAndThisIsPrimary
+                                        || attributeMatchesIfBothAttributes) {
                                     matchedNodeEl = true;
 
                                     // Somewhat arbitrarily combine their similarity by averaging and giving a boost
-                                    double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
+                                    // double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
+
+                                    double combinedScore = Math.max(nodeSimilarity, relatedMappedEl.similarity);
+                                    nodeMappedEl.similarity = combinedScore;
 
                                     if (combinedScore > maxSimilarity) {
                                         chosenMappedSchemaEl = nodeMappedEl;
                                         maxSimilarity = combinedScore;
                                         choice = k;
                                         addNewForPrimaryAttribute = false;
-                                        attachedFT = relatedNode.attachedFT;
+                                        attachedFT = relatedMappedEl.attachedFT;
                                     }
                                 }
                             }
@@ -507,15 +557,14 @@ public class TemplateChooser {
 
                                 node.mappedElements.add(chosenMappedSchemaEl);
                                 node.choice = node.mappedElements.size() - 1;
-                                node.attachedFT = "count";
+                                chosenMappedSchemaEl.attachedFT = "count";
                             } else {
                                 chosenMappedSchemaEl.similarity = maxSimilarity;
                                 node.choice = choice;
-                                if (attachedFT != null && node.attachedFT == null) {
-                                    node.attachedFT = attachedFT;
+                                if (attachedFT != null && node.getChoiceMap().attachedFT == null) {
+                                    node.getChoiceMap().attachedFT = attachedFT;
                                 }
                             }
-
                             mappedNodesToRemove.add(relatedNode);
                         }
                     }
@@ -528,7 +577,7 @@ public class TemplateChooser {
 
             TemplateChooser tc = new TemplateChooser(db.schemaGraph.relations);
             List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes, null, null,
-                    null, null, null, 1, 0);
+                    null, null, null, 0, 0);
 
             int n = 10;
 

@@ -15,6 +15,7 @@ import edu.cmu.lti.ws4j.Relatedness;
 import edu.cmu.lti.ws4j.RelatednessCalculator;
 import edu.cmu.lti.ws4j.impl.WuPalmer;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemmatizer;
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class SimFunctions 
 {
@@ -46,23 +47,29 @@ public class SimFunctions
 		{
 			return; 
 		}
-		
+
 		String nodeLabel = treeNode.label;
-		if(BasicFunctions.isNumeric(nodeLabel) && element.schemaElement.type.equals("int"))
+
+		if(NumberUtils.isCreatable(nodeLabel) &&
+				(element.schemaElement.type.equals("int") || element.schemaElement.type.equals("double")))
 		{
-            int sum = 0;
+            double sum = 0;
             for (int i = 0; i < element.mappedValues.size(); i++) {
-                sum += Integer.parseInt(element.mappedValues.get(i));
+                sum += Double.parseDouble(element.mappedValues.get(i));
             }
 
-            int size = Integer.parseInt(nodeLabel) * element.mappedValues.size();
+            double size = Double.parseDouble(nodeLabel) * element.mappedValues.size();
 
-            double penalty = (double) Math.abs(sum - size) / (double) size;
+            double penalty = Math.abs(sum - size) / size;
             // Set a threshold for the penalty
             element.similarity = Math.max(1 - penalty, 0.5);
 		} else {
+            // Limit max element mapped values size here
+            int maxSize = Math.min(10, element.mappedValues.size());
+            element.mappedValues = element.mappedValues.subList(0, maxSize);
+
 			double [] sims = new double[element.mappedValues.size()]; 
-			ArrayList<String> mappedValues = element.mappedValues; 
+			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
 				sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i)); 
@@ -87,8 +94,8 @@ public class SimFunctions
 			element.choice = 0; 
 			element.similarity = sims[0];
 
-			// Special case: we penalize if value text attribute is not a proper noun
-            if (element.schemaElement.type.equals("text") && !treeNode.pos.equals("NNP")) {
+			// Special case: we penalize if value text attribute is not a proper noun or adjective
+            if (element.schemaElement.type.equals("text") && !(treeNode.pos.equals("NNP") || treeNode.pos.equals("JJ"))) {
                 element.similarity *= 0.9;
             }
 		}

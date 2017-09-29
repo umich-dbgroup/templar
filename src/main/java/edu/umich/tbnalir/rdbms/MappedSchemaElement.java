@@ -2,14 +2,18 @@ package edu.umich.tbnalir.rdbms;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Serializable
 {
 	public SchemaElement schemaElement; 
-	public double similarity = -1; 
-	
-	public ArrayList<String> mappedValues = new ArrayList<String>(); 
+	public double similarity = -1;
+
+    // Added by cjbaik
+    public String attachedFT = null; // the attached FT function
+
+	public List<String> mappedValues = new ArrayList<String>();
 	public int choice; 
 	
 	public MappedSchemaElement(SchemaElement schemaElement)

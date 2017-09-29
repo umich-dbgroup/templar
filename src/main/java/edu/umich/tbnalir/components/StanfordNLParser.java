@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.SentenceUtils;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
 import edu.stanford.nlp.trees.GrammaticalStructure;
 import edu.stanford.nlp.trees.GrammaticalStructureFactory;
@@ -29,8 +29,8 @@ public class StanfordNLParser
 	
 	public static void StanfordParse(Query query, LexicalizedParser lexiParser)
 	{
-		List<CoreLabel> rawWords = Sentence.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence; 
-    	Tree parse = lexiParser.apply(rawWords); 
+		List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
+    	Tree parse = lexiParser.apply(rawWords);
     	TreebankLanguagePack tlp = new PennTreebankLanguagePack();
     	GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
     	GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
@@ -128,7 +128,8 @@ public class StanfordNLParser
         for (int i = 0; i < query.treeTable.size(); i++) {
             String[] treeTableEntry = query.treeTable.get(i);
             String reln = treeTableEntry[4];
-            if (reln.equals("amod") || reln.equals("num") || reln.equals("nn")) {
+            if (reln.equals("amod") || reln.equals("num") || reln.equals("nn") || reln.equals("nummod")
+                    || reln.equals("compound")) {
                 ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
                 ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
                 ParseTreeNode[] adjTableEntry = {depNode, govNode};

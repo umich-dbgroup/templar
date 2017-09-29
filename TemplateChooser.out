@@ -1,0 +1,399 @@
+objc[86974]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10f59c4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x110e644e0). One of the two will be used. Which one is undefined.
+00:00  INFO: ==============================
+00:00  INFO: Reading relations info...
+00:00  INFO: Read 7 relations/views/functions.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Reading edges info...
+00:00  INFO: Read 7 FK-PK relationships.
+00:00  INFO: Read 7 PK-FK relationships.
+00:00  INFO: ==============================
+
+00:00  INFO: ==============================
+00:00  INFO: Generating templates using schema for join level: 6
+00:00  INFO: Calculating attribute entropy for checkin...
+00:00  INFO: Relation: checkin, Attribute: count, Entropy: 0.0
+00:00  INFO: Relation: checkin, Attribute: business_id, Entropy: 0.0
+00:00  INFO: Relation: checkin, Attribute: day, Entropy: 0.0
+00:00  INFO: Relation: checkin, Attribute: cid, Entropy: 0.0
+00:00  INFO: Calculating attribute entropy for business...
+00:00  INFO: Relation: business, Attribute: city, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: is_open, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: latitude, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: name, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: rating, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: review_count, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: full_address, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: state, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: bid, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: business_id, Entropy: 0.0
+00:00  INFO: Relation: business, Attribute: longitude, Entropy: 0.0
+00:00  INFO: Calculating attribute entropy for review...
+00:03  INFO: Relation: review, Attribute: month, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: user_id, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: year, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: rating, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: text, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: rid, Entropy: 0.0
+00:03  INFO: Relation: review, Attribute: business_id, Entropy: 0.0
+00:03  INFO: Calculating attribute entropy for tip...
+00:03  INFO: Relation: tip, Attribute: tip_id, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: month, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: user_id, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: year, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: text, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: business_id, Entropy: 0.0
+00:03  INFO: Relation: tip, Attribute: likes, Entropy: 0.0
+00:03  INFO: Calculating attribute entropy for neighborhood...
+00:03  INFO: Relation: neighborhood, Attribute: neighborhood_name, Entropy: 0.0
+00:03  INFO: Relation: neighborhood, Attribute: id, Entropy: 0.0
+00:03  INFO: Relation: neighborhood, Attribute: business_id, Entropy: 0.0
+00:03  INFO: Calculating attribute entropy for category...
+00:03  INFO: Relation: category, Attribute: category_name, Entropy: 0.0
+00:03  INFO: Relation: category, Attribute: id, Entropy: 0.0
+00:03  INFO: Relation: category, Attribute: business_id, Entropy: 0.0
+00:03  INFO: Calculating attribute entropy for user...
+00:03  INFO: Relation: user, Attribute: uid, Entropy: 0.0
+00:03  INFO: Relation: user, Attribute: user_id, Entropy: 0.0
+00:03  INFO: Relation: user, Attribute: name, Entropy: 0.0
+00:05  INFO: Done generating 2532 templates.
+00:05  INFO: ==============================
+
+00:06  INFO: ================
+00:06  INFO: QUERY 0: find all cities which has a "Taj Mahal" restaurant
+00:06  INFO: ================
+Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ... done [0.7 sec].
+00:06  INFO: Parsing query with NL parser...
+find, VB
+all, DT
+cities, NNS
+which, WDT
+has, VBZ
+a, DT
+Taj Mahal, NNP
+restaurant, NN
+root(ROOT-0, find-1)
+det(cities-3, all-2)
+dobj(find-1, cities-3)
+nsubj(has-5, which-4)
+acl:relcl(cities-3, has-5)
+det(restaurant-8, a-6)
+compound(restaurant-8, Taj Mahal-7)
+dobj(has-5, restaurant-8)
+00:07  INFO: Mapping nodes to token types...
+PARSE TREE:
+(1) ROOT ROOT
+    (2) find CMT
+        (3) cities NT
+            (7) restaurant VTTEXT
+                (9) Taj Mahal VTTEXT
+
+
+1. ROOT: ROOT; NA; ; (0) 
+2. find: CMT; NA; ; (0) 
+3. cities: NT; NA; all; (0) business.city(1.3):| business.state(1.23):| business.is_open(1.0):| neighborhood(1.0):| neighborhood.neighborhood_name(1.0):| 
+7. restaurant: VTTEXT; NA; ; (0) category.category_name(0.88):Restaurants; Restaurants; Restaurants; | review(0.85):| user(0.8):| user.name(0.76):Restaurant Server; Coming To A Restaura; | business.name(0.73):Mallorca Restaurant; Barcelona Restaurant; Thai Place Restauran; | 
+9. Taj Mahal: VTTEXT; NA; ; (0) business.name(1.0):Taj Mahal; Taj Mahal; Taj Mahal Inde; | user.name(0.82):Mahal; Mahal; Taj; | tip.text(0.71):Taj MaTeeter!; Taj Mahal and moody ; Shopping time w maha; | review.text(0.17):It's with a heavy he; Le buffet du midi es; Royal Taj is great I; | 
+
+00:16  INFO: ============
+00:16  INFO: TRANSLATIONS
+00:16  INFO: ============
+SCORE: 1.0591585276646678; rels: [business,category]; projs: [business_0.city]; preds: [category_0.category_name = "Restaurants",business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0495916076336405; rels: [business,review]; projs: [business_0.city]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0355883016251162; rels: [business,category]; projs: [business_0.state]; preds: [category_0.category_name = "Restaurants",business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0346496815634516; rels: [business,user]; projs: [business_0.city]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0338266362959618; rels: [business]; projs: [business_0.city]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0338266362959618; rels: [business]; projs: [business_0.city]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0260213815940888; rels: [business,review]; projs: [business_0.state]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0217184108564523; rels: [business,user]; projs: [business_0.city]; preds: [user_0.name = "Restaurant Server",business_0.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.012108943907613; rels: [business,business]; projs: [business_0.city]; preds: [business_0.name = "Mallorca Restaurant",business_1.name = "Taj Mahal"]; havings: []; superlative: []
+SCORE: 1.0110794555239; rels: [business,user]; projs: [business_0.state]; preds: [business_0.name = "Taj Mahal"]; havings: []; superlative: []
+
+00:16  INFO: ============
+00:16  INFO: FINAL RESULTS
+00:16  INFO: ============
+[1.110598618857539] select business_0.city from business as business_0, category as category_0 where business_0.name = "Taj Mahal" and category_0.category_name = "Restaurants" and business_0.business_id = category_0.business_id
+[1.068797513915023] select business_0.city from business as business_0 where business_0.name = "Taj Mahal"
+[1.0617186991581646] select business_0.state from business as business_0, category as category_0 where business_0.name = "Taj Mahal" and category_0.category_name = "Restaurants" and business_0.business_id = category_0.business_id
+[1.023134731712482] select business_0.city from business as business_0, review as review_0, user as user_0 where business_0.name = "Taj Mahal" and user_0.name = "Restaurant Server" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id
+[1.023134731712482] select business_0.city from business as business_0, tip as tip_0, user as user_0 where business_0.name = "Taj Mahal" and user_0.name = "Restaurant Server" and business_0.business_id = tip_0.business_id and tip_0.user_id = user_0.user_id
+[0.9939398638974373] select business_0.city from business as business_0, business as business_1, tip as tip_0, tip as tip_1 where business_0.name = "Mallorca Restaurant" and business_1.name = "Taj Mahal" and business_0.business_id = tip_0.business_id and business_1.business_id = tip_1.business_id and tip_0.tip_id = tip_1.tip_id
+[0.9939398638974373] select business_0.city from business as business_0, business as business_1, checkin as checkin_0, checkin as checkin_1 where business_0.name = "Mallorca Restaurant" and business_1.name = "Taj Mahal" and business_0.business_id = checkin_0.business_id and business_1.business_id = checkin_1.business_id and checkin_0.cid = checkin_1.cid
+[0.9939398638974373] select business_0.city from business as business_0, business as business_1, neighborhood as neighborhood_0, neighborhood as neighborhood_1 where business_0.name = "Mallorca Restaurant" and business_1.name = "Taj Mahal" and business_0.business_id = neighborhood_0.business_id and business_1.business_id = neighborhood_1.business_id and neighborhood_0.id = neighborhood_1.id
+[0.9939398638974373] select business_0.city from business as business_0, business as business_1, category as category_0, category as category_1 where business_0.name = "Mallorca Restaurant" and business_1.name = "Taj Mahal" and business_0.business_id = category_0.business_id and business_1.business_id = category_1.business_id and category_0.id = category_1.id
+[0.9939398638974373] select business_0.city from business as business_0, business as business_1, review as review_0, review as review_1 where business_0.name = "Mallorca Restaurant" and business_1.name = "Taj Mahal" and business_0.business_id = review_0.business_id and business_1.business_id = review_1.business_id and review_0.rid = review_1.rid
+
+00:16  INFO: ================
+00:16  INFO: QUERY 1: find all the reviews for all pet groomers with more than 100 reviews
+00:16  INFO: ================
+00:16  INFO: Parsing query with NL parser...
+find, VB
+all, PDT
+the, DT
+reviews, NNS
+for, IN
+all, DT
+pet, JJ
+groomers, NNS
+with, IN
+more, JJR
+than, IN
+100, CD
+reviews, NNS
+root(ROOT-0, find-1)
+det:predet(reviews-4, all-2)
+det(reviews-4, the-3)
+dobj(find-1, reviews-4)
+case(groomers-8, for-5)
+det(groomers-8, all-6)
+amod(groomers-8, pet-7)
+nmod(find-1, groomers-8)
+case(reviews-13, with-9)
+advmod(100-12, more-10)
+mwe(more-10, than-11)
+nummod(reviews-13, 100-12)
+nmod(groomers-8, reviews-13)
+00:17  INFO: Mapping nodes to token types...
+PARSE TREE:
+(11) ROOT ROOT
+    (12) find CMT
+        (13) reviews NT
+        (19) pet groomers VTTEXT
+        (20) reviews NT
+            (22) 100 VTNUM
+                (23) more than OT
+
+
+11. ROOT: ROOT; NA; ; (0) 
+12. find: CMT; NA; ; (0) 
+13. reviews: NT; NA; all; (0) review(1.1):| review.text(1.1):| business.review_count(1.08):| review(0.99):| tip.text(0.92):| 
+19. pet groomers: VTTEXT; NA; ; (0) business.name(1.0):Pet Groomers; | category.category_name(1.0):Pet Groomers; Pet Groomers; Pet Groomers; | user.name(0.55):Pet; Pet; SafeDoggy Pet Sittin; | tip.text(0.47):Between the Taekwond; Don't ever go to gro; If you forget your l; | review.text(0.16):Grooming Salon
+
+I've; I have been coming t; Our first try with d; | 
+20. reviews: NT; NA; ; (0) review(1.1):| review.text(1.1):I was referred to Fe; Wow, super surprised; ***EDIT 2/10***
+The ; | business.review_count(1.08):| review(0.99):| tip.text(0.92):| 
+22. 100: VTNUM; NA; ; (6) checkin.count(0.86):234; 112; 107; | business.review_count(1.08):385; 445; 164; | business.bid(0.75):20000; 20001; 20002; | review.year(0.5):2011; 2011; 2012; | tip.year(0.5):2011; 2012; 2012; | 
+23. more than: OT; >; ; (0) 
+
+00:23  INFO: ============
+00:23  INFO: TRANSLATIONS
+00:23  INFO: ============
+SCORE: 1.057347585936432; rels: [business,review]; projs: [review_0.text]; preds: [business_0.name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 1.057347585936432; rels: [business,category,review]; projs: [review_0.text]; preds: [category_0.category_name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 1.057347585936432; rels: [business,review]; projs: [business_0.review_count]; preds: [business_0.name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 1.057347585936432; rels: [business,category,review]; projs: [business_0.review_count]; preds: [category_0.category_name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 1.0511309992564914; rels: [business,business]; projs: [business_0.review_count]; preds: [business_0.name = "Pet Groomers",business_1.review_count > 100]; havings: []; superlative: []
+SCORE: 1.0511309992564914; rels: [business,business,category]; projs: [business_0.review_count]; preds: [category_0.category_name = "Pet Groomers",business_1.review_count > 100]; havings: []; superlative: []
+SCORE: 1.0061410606671608; rels: [tip,business,review]; projs: [tip_0.text]; preds: [business_0.name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 1.0061410606671608; rels: [tip,category,review]; projs: [tip_0.text]; preds: [category_0.category_name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 0.9999244739872201; rels: [tip,business]; projs: [tip_0.text]; preds: [business_0.name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 0.9999244739872201; rels: [tip,business,category]; projs: [tip_0.text]; preds: [category_0.category_name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+
+00:23  INFO: ============
+00:23  INFO: FINAL RESULTS
+00:23  INFO: ============
+[1.1068040783107445] select review_0.text from business as business_0, review as review_0 where business_0.name = "Pet Groomers" and business_0.review_count > 100 and business_0.business_id = review_0.business_id
+[1.1068040783107445] select business_0.review_count from business as business_0, review as review_0 where business_0.name = "Pet Groomers" and business_0.business_id = review_0.business_id group by business_0.review_count having count(distinct(review_0.text)) > 100
+[1.095736037527637] select review_0.text from business as business_0, category as category_0, review as review_0 where business_0.review_count > 100 and category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id and business_0.business_id = review_0.business_id
+[1.095736037527637] select business_0.review_count from business as business_0, category as category_0, review as review_0 where category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id and business_0.business_id = review_0.business_id group by business_0.review_count having count(distinct(review_0.text)) > 100
+[1.0847786771523606] select review_0.text from business as business_0, review as review_0, tip as tip_0, user as user_0 where business_0.name = "Pet Groomers" and business_0.review_count > 100 and business_0.business_id = tip_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_0.user_id
+[1.0847786771523606] select business_0.review_count from business as business_0, review as review_0, tip as tip_0, user as user_0 where business_0.name = "Pet Groomers" and business_0.business_id = tip_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_0.user_id group by business_0.review_count having count(distinct(review_0.text)) > 100
+[1.073930890380837] select review_0.text from business as business_0, business as business_1, category as category_0, review as review_0, tip as tip_0 where business_0.review_count > 100 and category_0.category_name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_0.business_id = tip_0.business_id and business_1.business_id = category_0.business_id and business_1.business_id = tip_0.business_id
+[1.073930890380837] select business_0.review_count from business as business_0, business as business_1, category as category_0, review as review_0, tip as tip_0 where category_0.category_name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_0.business_id = tip_0.business_id and business_1.business_id = category_0.business_id and business_1.business_id = tip_0.business_id group by business_0.review_count having count(distinct(review_0.text)) > 100
+[1.073930890380837] select review_0.text from business as business_0, business as business_1, category as category_0, neighborhood as neighborhood_0, review as review_0 where business_0.review_count > 100 and category_0.category_name = "Pet Groomers" and business_0.business_id = neighborhood_0.business_id and business_0.business_id = review_0.business_id and business_1.business_id = category_0.business_id and business_1.business_id = neighborhood_0.business_id
+[1.073930890380837] select business_0.review_count from business as business_0, business as business_1, category as category_0, neighborhood as neighborhood_0, review as review_0 where category_0.category_name = "Pet Groomers" and business_0.business_id = neighborhood_0.business_id and business_0.business_id = review_0.business_id and business_1.business_id = category_0.business_id and business_1.business_id = neighborhood_0.business_id group by business_0.review_count having count(distinct(review_0.text)) > 100
+
+00:23  INFO: ================
+00:23  INFO: QUERY 2: find all pet groomers which have more than 100 reviews
+00:23  INFO: ================
+00:23  INFO: Parsing query with NL parser...
+find, VB
+all, DT
+pet, JJ
+groomers, NNS
+which, WDT
+have, VBP
+more, JJR
+than, IN
+100, CD
+reviews, NNS
+root(ROOT-0, find-1)
+det(groomers-4, all-2)
+amod(groomers-4, pet-3)
+dobj(find-1, groomers-4)
+nsubj(have-6, which-5)
+acl:relcl(groomers-4, have-6)
+advmod(100-9, more-7)
+mwe(more-7, than-8)
+nummod(reviews-10, 100-9)
+dobj(have-6, reviews-10)
+00:23  INFO: Mapping nodes to token types...
+PARSE TREE:
+(26) ROOT ROOT
+    (27) find CMT
+        (30) pet groomers VTTEXT
+        (33) reviews NT
+            (34) 100 VTNUM
+                (35) more than OT
+
+
+26. ROOT: ROOT; NA; ; (0) 
+27. find: CMT; NA; ; (0) 
+30. pet groomers: VTTEXT; NA; ; (0) business.name(1.0):Pet Groomers; | category.category_name(1.0):Pet Groomers; Pet Groomers; Pet Groomers; | user.name(0.55):Pet; Pet; SafeDoggy Pet Sittin; | tip.text(0.47):Between the Taekwond; Don't ever go to gro; If you forget your l; | review.text(0.16):Grooming Salon
+
+I've; I have been coming t; Our first try with d; | 
+33. reviews: NT; NA; ; (0) review(1.1):| review.text(1.1):I was referred to Fe; Wow, super surprised; ***EDIT 2/10***
+The ; | business.review_count(1.08):| review(0.99):| tip.text(0.92):| 
+34. 100: VTNUM; NA; ; (6) checkin.count(0.86):234; 112; 107; | business.review_count(1.08):385; 445; 164; | business.bid(0.75):20000; 20001; 20002; | review.year(0.5):2011; 2011; 2012; | tip.year(0.5):2011; 2012; 2012; | 
+35. more than: OT; >; ; (0) 
+
+00:30  INFO: ============
+00:30  INFO: TRANSLATIONS
+00:30  INFO: ============
+SCORE: 0.9651154196415197; rels: [business,review]; projs: [business_0.name]; preds: [business_0.name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 0.9651154196415197; rels: [business,review]; projs: [review_0.text]; preds: [business_0.name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 0.9651154196415197; rels: [category,review]; projs: [category_0.category_name]; preds: [category_0.category_name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 0.9651154196415197; rels: [category,review]; projs: [review_0.text]; preds: [category_0.category_name = "Pet Groomers"]; havings: [count(distinct(review_0.text)) > 100]; superlative: []
+SCORE: 0.958898832961579; rels: [business]; projs: [business_0.name]; preds: [business_0.name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 0.958898832961579; rels: [business,category]; projs: [business_0.name]; preds: [category_0.category_name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 0.958898832961579; rels: [business,category]; projs: [category_0.category_name]; preds: [category_0.category_name = "Pet Groomers",business_0.review_count > 100]; havings: []; superlative: []
+SCORE: 0.8857142857142858; rels: [business,checkin]; projs: [business_0.name]; preds: [business_0.name = "Pet Groomers",checkin_0.count > 100]; havings: []; superlative: []
+SCORE: 0.8857142857142858; rels: [business,checkin]; projs: [checkin_0.count]; preds: [business_0.name = "Pet Groomers",checkin_0.count > 100]; havings: []; superlative: []
+SCORE: 0.8857142857142858; rels: [category,checkin]; projs: [category_0.category_name]; preds: [category_0.category_name = "Pet Groomers",checkin_0.count > 100]; havings: []; superlative: []
+
+00:30  INFO: ============
+00:30  INFO: FINAL RESULTS
+00:30  INFO: ============
+[0.912911962542553] select review_1.text from business as business_0, review as review_0, review as review_1 where business_0.name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id group by review_1.text having count(distinct(review_0.text)) > 100
+[0.912911962542553] select review_0.text from business as business_0, review as review_0, review as review_1 where business_0.name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id group by review_0.text having count(distinct(review_1.text)) > 100
+[0.9102921021365273] select business_0.name from business as business_0, category as category_0 where business_0.review_count > 100 and category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id
+[0.9037828429171276] select business_1.name from business as business_0, business as business_1, review as review_0, review as review_1 where business_0.name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_1.business_id = review_1.business_id and review_0.rid = review_1.rid group by business_1.name having count(distinct(review_0.text)) > 100
+[0.9037828429171276] select business_0.name from business as business_0, business as business_1, review as review_0, review as review_1 where business_1.name = "Pet Groomers" and business_0.business_id = review_0.business_id and business_1.business_id = review_1.business_id and review_0.rid = review_1.rid group by business_0.name having count(distinct(review_0.text)) > 100
+[0.9037828429171276] select review_1.text from business as business_0, business as business_1, review as review_0, review as review_1 where business_0.name = "Pet Groomers" and business_0.business_id = business_1.business_id and business_0.business_id = review_0.business_id and business_1.business_id = review_1.business_id group by review_1.text having count(distinct(review_0.text)) > 100
+[0.9037828429171276] select review_0.text from business as business_0, business as business_1, review as review_0, review as review_1 where business_0.name = "Pet Groomers" and business_0.business_id = business_1.business_id and business_0.business_id = review_0.business_id and business_1.business_id = review_1.business_id group by review_0.text having count(distinct(review_1.text)) > 100
+[0.9037828429171276] select review_0.text from business as business_0, category as category_0, review as review_0, review as review_1 where category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id group by review_0.text having count(distinct(review_1.text)) > 100
+[0.9037828429171276] select review_1.text from business as business_0, category as category_0, review as review_0, review as review_1 where category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id group by review_1.text having count(distinct(review_0.text)) > 100
+[0.9037828429171276] select category_1.category_name from business as business_0, category as category_0, category as category_1, review as review_0 where category_0.category_name = "Pet Groomers" and business_0.business_id = category_0.business_id and business_0.business_id = category_1.business_id and business_0.business_id = review_0.business_id group by category_1.category_name having count(distinct(review_0.text)) > 100
+
+00:30  INFO: ================
+00:30  INFO: QUERY 3: find all dance schools in "Los Angeles"
+00:30  INFO: ================
+00:30  INFO: Parsing query with NL parser...
+find, VB
+all, DT
+dance, NN
+schools, NNS
+in, IN
+Los Angeles, NNP
+root(ROOT-0, find-1)
+det(schools-4, all-2)
+compound(schools-4, dance-3)
+dobj(find-1, schools-4)
+case(Los Angeles-6, in-5)
+nmod(find-1, Los Angeles-6)
+00:30  INFO: Mapping nodes to token types...
+PARSE TREE:
+(38) ROOT ROOT
+    (39) find CMT
+        (40) schools NT
+            (42) dance NT
+        (43) Los Angeles VTTEXT
+
+
+38. ROOT: ROOT; NA; ; (0) 
+39. find: CMT; NA; ; (0) 
+40. schools: NT; NA; all; (0) business.full_address(0.92):| neighborhood(0.92):| review(0.91):| business.business_id(0.88):| tip.tip_id(0.88):| 
+42. dance: NT; NA; ; (0) business(1.33):| business.name(1.33):| review(0.97):| category(0.94):| neighborhood(0.91):| 
+43. Los Angeles: VTTEXT; NA; ; (0) business.city(1.0):Los Angeles; Los Angeles; | user.name(0.87):Angeles; Angeles; Angeles; | tip.text(0.85):Battle: Los Angeles; Downtown Los Angeles; That LivingSocial 2 ; | business.name(0.83):Taqueria Los Angeles; Taqueria Los Angeles; Los Angeles Dodgers-; | business.full_address(0.62):7000 N Las Vegas Blv; 7000 N Las Vegas Blv; | 
+
+00:32  INFO: ============
+00:32  INFO: TRANSLATIONS
+00:32  INFO: ============
+SCORE: 1.0854700854700854; rels: [business]; projs: [business_0.full_address]; preds: [business_0.city = "Los Angeles"]; havings: []; superlative: []
+SCORE: 1.0694444444444444; rels: [business]; projs: [business_0.business_id]; preds: [business_0.city = "Los Angeles"]; havings: []; superlative: []
+SCORE: 1.0694444444444444; rels: [tip,business]; projs: [tip_0.tip_id]; preds: [business_0.city = "Los Angeles"]; havings: []; superlative: []
+SCORE: 1.040811886731565; rels: [business,user]; projs: [business_0.full_address]; preds: [user_0.name = "Angeles"]; havings: []; superlative: []
+SCORE: 1.0338548370462577; rels: [business,tip]; projs: [business_0.full_address]; preds: [tip_0.text = "Battle: Los Angeles"]; havings: []; superlative: []
+SCORE: 1.0289550183158853; rels: [business]; projs: [business_0.full_address]; preds: [business_0.name = "Taqueria Los Angeles"]; havings: []; superlative: []
+SCORE: 1.0247862457059238; rels: [business,user]; projs: [business_0.business_id]; preds: [user_0.name = "Angeles"]; havings: []; superlative: []
+SCORE: 1.0247862457059238; rels: [tip,business,user]; projs: [tip_0.tip_id]; preds: [user_0.name = "Angeles"]; havings: []; superlative: []
+SCORE: 1.0178291960206165; rels: [business,tip]; projs: [business_0.business_id]; preds: [tip_0.text = "Battle: Los Angeles"]; havings: []; superlative: []
+SCORE: 1.0178291960206165; rels: [tip,business]; projs: [tip_0.tip_id]; preds: [tip_0.text = "Battle: Los Angeles"]; havings: []; superlative: []
+
+00:32  INFO: ============
+00:32  INFO: FINAL RESULTS
+00:32  INFO: ============
+[1.1782453064504346] select business_0.full_address from business as business_0 where business_0.city = "Los Angeles"
+[1.1437114197530864] select business_0.business_id from business as business_0 where business_0.city = "Los Angeles"
+[1.1322743055555555] select tip_0.tip_id from business as business_0, tip as tip_0 where business_0.city = "Los Angeles" and business_0.business_id = tip_0.business_id
+[1.109742046875] select tip_0.tip_id from business as business_0, review as review_0, tip as tip_0, user as user_0 where business_0.city = "Los Angeles" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_0.user_id
+[1.0876581801421874] select tip_0.tip_id from business as business_0, review as review_0, review as review_1, tip as tip_0, user as user_0, user as user_1 where business_0.city = "Los Angeles" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id and review_1.user_id = user_0.user_id and review_1.user_id = user_1.user_id and tip_0.user_id = user_1.user_id
+[1.0767815983407656] select tip_0.tip_id from business as business_0, review as review_0, review as review_1, tip as tip_0, user as user_0, user as user_1, user as user_2 where business_0.city = "Los Angeles" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id and review_1.user_id = user_1.user_id and review_1.user_id = user_2.user_id and tip_0.user_id = user_2.user_id and user_0.user_id = user_1.user_id
+[1.061731924828842] select business_0.full_address from business as business_0, review as review_0, user as user_0 where user_0.name = "Angeles" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id
+[1.061731924828842] select business_0.full_address from business as business_0, tip as tip_0, user as user_0 where user_0.name = "Angeles" and business_0.business_id = tip_0.business_id and tip_0.user_id = user_0.user_id
+[1.0587484297174439] select business_0.full_address from business as business_0 where business_0.name = "Taqueria Los Angeles"
+[1.0581672658431047] select business_0.full_address from business as business_0, tip as tip_0 where tip_0.text = "Battle: Los Angeles" and business_0.business_id = tip_0.business_id
+
+00:32  INFO: ================
+00:32  INFO: QUERY 4: find all pet hospices in Pittsburgh
+00:32  INFO: ================
+00:32  INFO: Parsing query with NL parser...
+find, VB
+all, DT
+pet, JJ
+hospices, NNS
+in, IN
+Pittsburgh, NNP
+root(ROOT-0, find-1)
+det(hospices-4, all-2)
+amod(hospices-4, pet-3)
+dobj(find-1, hospices-4)
+case(Pittsburgh-6, in-5)
+nmod(hospices-4, Pittsburgh-6)
+00:32  INFO: Mapping nodes to token types...
+PARSE TREE:
+(46) ROOT ROOT
+    (47) find CMT
+        (48) hospices NT
+            (50) pet VTTEXT
+            (51) Pittsburgh VTTEXT
+
+
+46. ROOT: ROOT; NA; ; (0) 
+47. find: CMT; NA; ; (0) 
+48. hospices: NT; NA; all; (0) review(0.91):| category.category_name(0.86):Hospice; Hospice; Hospice; | neighborhood(0.75):| checkin.count(0.73):| business.review_count(0.73):| 
+50. pet: VTTEXT; NA; ; (0) user.name(1.0):Pet; Pet; SafeDoggy Pet Sittin; | user(0.98):| business(0.93):| review(0.89):| user(0.84):| 
+51. Pittsburgh: VTTEXT; NA; ; (0) business.city(1.0):Pittsburgh; Pittsburgh; Pittsburgh; | user.name(0.87):Pittsburgh Diner; Pittsburgh Foodie; Pennies Pints Pittsb; | business.name(0.85):Pittsburgh Hilton; Pittsburgh Deli Comp; Pittsburgh Steak Com; | business.full_address(0.6):613 Penn Ave
+Downtow; 413 S Craig St
+Oakla; 5432 Walnut St
+Shady; | tip.text(0.53):The pierogie pizza i; I'm from Pittsburgh,; this place pittsburg; | 
+
+00:34  INFO: ============
+00:34  INFO: TRANSLATIONS
+00:34  INFO: ============
+SCORE: 0.9268431001890358; rels: [user,business,review]; projs: [user_0.name]; preds: [user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9268431001890358; rels: [user,business,review]; projs: [business_0.name]; preds: [user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9268431001890358; rels: [user,business,review]; projs: [review_0.text]; preds: [user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9161730076368677; rels: [user,business,category]; projs: [user_0.name]; preds: [category_0.category_name = "Hospice",user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9161730076368677; rels: [user,business,category]; projs: [business_0.name]; preds: [category_0.category_name = "Hospice",user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9161730076368677; rels: [user,business,category]; projs: [category_0.category_name]; preds: [category_0.category_name = "Hospice",user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9090909090909092; rels: [user,business,checkin]; projs: [checkin_0.count]; preds: [user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9090909090909092; rels: [business,user]; projs: [business_0.review_count]; preds: [user_0.name = "Pet",business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9024574669187145; rels: [business,review]; projs: [business_0.name]; preds: [business_0.city = "Pittsburgh"]; havings: []; superlative: []
+SCORE: 0.9024574669187145; rels: [business,neighborhood,review]; projs: [neighborhood_0.neighborhood_name]; preds: [business_0.city = "Pittsburgh"]; havings: []; superlative: []
+
+00:34  INFO: ============
+00:34  INFO: FINAL RESULTS
+00:34  INFO: ============
+[0.8419432735338994] select business_0.name from business as business_0, review as review_0, user as user_0 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id
+[0.8419432735338994] select review_0.text from business as business_0, review as review_0, user as user_0 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and review_0.user_id = user_0.user_id
+[0.8335238407985605] select review_0.text from business as business_0, review as review_0, tip as tip_0, user as user_0 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = tip_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_0.user_id
+[0.8335238407985605] select review_0.text from business as business_0, review as review_0, tip as tip_0, user as user_0 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and business_0.business_id = tip_0.business_id and tip_0.user_id = user_0.user_id
+[0.8251886023905748] select user_0.name from business as business_0, review as review_0, tip as tip_0, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_1.name = "Pet" and business_0.business_id = review_0.business_id and business_0.business_id = tip_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_1.user_id
+[0.8251886023905748] select user_1.name from business as business_0, review as review_0, tip as tip_0, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and business_0.business_id = tip_0.business_id and review_0.user_id = user_0.user_id and tip_0.user_id = user_1.user_id
+[0.8251886023905748] select user_0.name from business as business_0, review as review_0, review as review_1, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_1.name = "Pet" and business_0.business_id = review_0.business_id and review_0.rid = review_1.rid and review_0.user_id = user_0.user_id and review_1.user_id = user_1.user_id
+[0.8251886023905748] select user_1.name from business as business_0, review as review_0, review as review_1, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and review_0.rid = review_1.rid and review_0.user_id = user_0.user_id and review_1.user_id = user_1.user_id
+[0.8251886023905748] select user_0.name from business as business_0, review as review_0, review as review_1, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_1.name = "Pet" and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id and review_0.user_id = user_0.user_id and review_1.user_id = user_1.user_id
+[0.8251886023905748] select user_1.name from business as business_0, review as review_0, review as review_1, user as user_0, user as user_1 where business_0.city = "Pittsburgh" and user_0.name = "Pet" and business_0.business_id = review_0.business_id and business_0.business_id = review_1.business_id and review_0.user_id = user_0.user_id and review_1.user_id = user_1.user_id
+

@@ -4,6 +4,7 @@ import edu.umich.tbnalir.rdbms.Attribute;
 import edu.umich.tbnalir.sql.Operator;
 import edu.umich.tbnalir.util.Constants;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  * Created by cjbaik on 9/27/17.
@@ -81,7 +82,7 @@ public class Having extends QueryFragment {
         }
         sb.append(" ");
 
-        if (!StringUtils.isNumeric(this.value)) {
+        if (!NumberUtils.isCreatable(this.value)) {
             sb.append("\"");
             sb.append(this.value);
             sb.append("\"");

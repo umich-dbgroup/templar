@@ -2,6 +2,8 @@ package edu.umich.tbnalir.components;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import edu.umich.tbnalir.dataStructure.ParseTree;
 import edu.umich.tbnalir.dataStructure.ParseTreeNode;
@@ -10,6 +12,8 @@ import edu.umich.tbnalir.rdbms.MappedSchemaElement;
 import edu.umich.tbnalir.rdbms.RDBMS;
 import edu.umich.tbnalir.tools.BasicFunctions;
 import edu.umich.tbnalir.tools.SimFunctions;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -88,7 +92,7 @@ public class NodeMapper
                 {
                 	curNode.tokenType = "OBT";
                 }
-                else if(BasicFunctions.isNumeric(curNode.label))
+                else if(NumberUtils.isCreatable(curNode.label))
                 {
                 	curNode.tokenType = "VT"; 
                 }
@@ -150,21 +154,79 @@ public class NodeMapper
 			{
 				db.isSchemaExist(treeNode);
 				db.isTextExist(treeNode);
-				if(treeNode.mappedElements.size() == 0)
-				{
-					treeNode.tokenType = "NA"; 
-				}
-			}
-			else if(treeNode.tokenType.equals("VT")) // num
-			{
-				String OT = "="; 
+
+                if(treeNode.mappedElements.size() == 0)
+                {
+                    treeNode.tokenType = "NA";
+                    continue;
+                }
+
+                for (int j = 0; j < treeNode.mappedElements.size(); j++)
+                {
+                    MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
+                    SimFunctions.similarity(treeNode, mappedElement);
+                }
+                Collections.sort(treeNode.mappedElements);
+
+                // Added by cjbaik
+                // If this word is related as an adjective to another word, then try the multi-word expression as well.
+                String originalLabel = treeNode.label;
+                MappedSchemaElement origElement = treeNode.mappedElements.get(0);
+                List<MappedSchemaElement> origMappedElements = new ArrayList<>(treeNode.mappedElements);
+
+                for (ParseTreeNode[] adjEntry : query.adjTable) {
+                    ParseTreeNode relatedNode;
+                    if (adjEntry[0].equals(treeNode)) {
+                        relatedNode = adjEntry[1];
+                    } else if (adjEntry[1].equals(treeNode)) {
+                        relatedNode = adjEntry[0];
+                    } else {
+                        continue;
+                    }
+
+                    // Make sure the related node comes after the current word
+                    if (relatedNode.wordOrder <= treeNode.wordOrder) continue;
+
+                    treeNode.label = treeNode.label + " " + relatedNode.label;
+                    db.isSchemaExist(treeNode);
+                    db.isTextExist(treeNode);
+
+                    // Only check and re-sort the new mapped elements
+                    List<MappedSchemaElement> newMappedElements = new ArrayList<>();
+                    for (int j = origMappedElements.size() + 1; j < treeNode.mappedElements.size(); j++)
+                    {
+                        MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
+                        SimFunctions.similarity(treeNode, mappedElement);
+                        newMappedElements.add(mappedElement);
+                    }
+                    Collections.sort(newMappedElements);
+
+                    MappedSchemaElement newElement = newMappedElements.get(0);
+
+                    if (!newElement.equals(origElement) &&
+                            newElement.similarity >= origElement.similarity) {
+                        // Keep tree in multi-word form if new similarity is higher
+                        treeNode.mappedElements.removeAll(origMappedElements);
+                        parseTree.deleteNode(relatedNode);
+                        i--;
+                    } else {
+                        // Otherwise, revert to option where it's not multi-word elements
+                        treeNode.label = originalLabel;
+                        treeNode.mappedElements = origMappedElements;
+                    }
+                    break;
+                }
+			} else if(treeNode.tokenType.equals("VT")) { // num
+				String OT = "=";
 				if(treeNode.parent.tokenType.equals("OT"))
 				{
 					OT = treeNode.parent.function; 
-				}
-				else if(treeNode.children.size() == 1 && treeNode.children.get(0).tokenType.equals("OT"))
-				{
-					OT = treeNode.children.get(0).function; 
+				} else {
+                    for (ParseTreeNode child : treeNode.children) {
+                        if (child.tokenType.equals("OT")) {
+                            OT = child.function;
+                        }
+                    }
 				}
 				db.isNumExist(OT, treeNode);
 
@@ -195,7 +257,7 @@ public class NodeMapper
 
 	public static void individualRanking(Query query)
 	{
-		ArrayList<ParseTreeNode> treeNodes = query.parseTree.allNodes; 
+		ArrayList<ParseTreeNode> treeNodes = query.parseTree.allNodes;
 		for(int i = 0; i < treeNodes.size(); i++)
 		{
 			if(treeNodes.get(i).mappedElements.isEmpty())
@@ -204,7 +266,7 @@ public class NodeMapper
 			}
 			
 			ParseTreeNode treeNode = treeNodes.get(i); 
-			ArrayList<MappedSchemaElement> mappedList = treeNode.mappedElements;
+			List<MappedSchemaElement> mappedList = treeNode.mappedElements;
 			for(int j = 0; j < mappedList.size(); j++)
 			{
 				MappedSchemaElement mappedElement = mappedList.get(j); 
@@ -214,7 +276,7 @@ public class NodeMapper
 			Collections.sort(mappedList); 
 		}
 		
-		treeNodes = query.parseTree.allNodes; 
+		treeNodes = query.parseTree.allNodes;
 		for(int i = 0; i < treeNodes.size(); i++)
 		{
 			if(!treeNodes.get(i).tokenType.equals("NTVT"))
@@ -222,9 +284,9 @@ public class NodeMapper
 				continue; 
 			}
 
-			ArrayList<MappedSchemaElement> deleteList = new ArrayList<MappedSchemaElement>(); 
+			List<MappedSchemaElement> deleteList = new ArrayList<MappedSchemaElement>();
 			ParseTreeNode treeNode = treeNodes.get(i); 
-			ArrayList<MappedSchemaElement> mappedList = treeNode.mappedElements; 
+			List<MappedSchemaElement> mappedList = treeNode.mappedElements;
 			for(int j = 0; j < mappedList.size(); j++)
 			{
 				MappedSchemaElement NT = mappedList.get(j); 
@@ -304,7 +366,7 @@ public class NodeMapper
 				{
 					int maxPosition = 0; 
 					double maxScore = 0; 
-					ArrayList<MappedSchemaElement> mappedElements = child.mappedElements; 
+					List<MappedSchemaElement> mappedElements = child.mappedElements;
 					for(int i = 0; i < mappedElements.size(); i++)
 					{
 						MappedSchemaElement parentElement = parent.mappedElements.get(parent.choice); 

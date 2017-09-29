@@ -48,8 +48,8 @@ public class SchemaElement implements Serializable
 		{
 			if (SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this); 
-				mappedSchemaElement.similarity = SimFunctions.similarity(this.relation.name, tag); 
-				mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag)); 
+				mappedSchemaElement.similarity = Math.max(SimFunctions.similarity(this.relation.name, tag), SimFunctions.similarity(this.name, tag));
+				// mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag));
 				return mappedSchemaElement; 
 			}			
 		}
@@ -69,9 +69,9 @@ public class SchemaElement implements Serializable
         // System.out.println(numberSQL);
 		ResultSet number = statement.executeQuery(numberSQL); 
 		number.next(); 
-		int size = number.getInt(1); 
-		
-		String SQL = ""; 
+		int size = number.getInt(1);
+
+		String SQL = "";
 		if(size < 2000)
 		{
 			SQL = "SELECT " + this.name + " FROM " + this.relation.name; 
@@ -104,14 +104,24 @@ public class SchemaElement implements Serializable
 	{
 		Statement statement = conn.createStatement(); 
 		String query = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + operator + " " + number + " LIMIT 0, 5"; 
-		
+
+        // System.out.println(query);
 		ResultSet result = statement.executeQuery(query); 
 		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);  
 		while(result.next())
 		{
-			int mapNum = result.getInt(1); 
-			String mapNumber = "" + mapNum;  
-			mappedSchemaElement.mappedValues.add(mapNumber); 
+			Double mapNum = result.getDouble(1);
+
+            String mapNumber;
+
+            // If is int, present as such
+            if (mapNum == Math.floor(mapNum)) {
+                mapNumber = "" + mapNum.intValue();
+            } else {
+                mapNumber = "" + mapNum;
+            }
+
+			mappedSchemaElement.mappedValues.add(mapNumber);
 		}
 		if(!mappedSchemaElement.mappedValues.isEmpty())
 		{

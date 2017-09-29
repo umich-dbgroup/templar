@@ -16,6 +16,7 @@ import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.*;
 
@@ -335,8 +336,8 @@ public class Template {
 
                     // Used attr contains: {OP, VAL}
                     String[] usedAttr = usedAttributes.get(transPred.getAttribute());
-                    if (usedAttr != null && StringUtils.isNumeric(transPred.getValue())
-                            && StringUtils.isNumeric(usedAttr[1])) {
+                    if (usedAttr != null && NumberUtils.isCreatable(transPred.getValue())
+                            && NumberUtils.isCreatable(usedAttr[1])) {
                         String usedOp = usedAttr[0];
                         Double usedVal = Double.valueOf(usedAttr[1]);
                         Double curVal = Double.valueOf(transPred.getValue());
@@ -488,14 +489,15 @@ public class Template {
         if (result.contains("#")) return null;
 
         // TODO: calculate this later
-        double templatePopularity = 1d;
+        // double templatePopularity = 1d;
 
-        int complexityScore = this.projections.size() + this.relations.size() + this.predicates.size();
+        double complexityScore = Math.pow(0.99, this.relations.size() - 1);
 
         InstantiatedTemplate instTmpl = new InstantiatedTemplate(result);
         instTmpl.setNlScore(translation.getTotalScore());
-        instTmpl.setTemplatePopularity(templatePopularity);
-        instTmpl.setNlTemplateAffinity(affinityAccum / complexityScore);
+        // instTmpl.setTemplatePopularity(templatePopularity);
+        // instTmpl.setNlTemplateAffinity(affinityAccum);
+        instTmpl.setComplexity(complexityScore);
         instTmpl.setTemplate(this);
         return instTmpl;
     }
