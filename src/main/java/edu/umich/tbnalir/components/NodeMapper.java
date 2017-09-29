@@ -309,8 +309,8 @@ public class NodeMapper
 					{
 						MappedSchemaElement parentElement = parent.mappedElements.get(parent.choice); 
 						MappedSchemaElement childElement = child.mappedElements.get(i); 
-						double distance = db.schemaGraph.distance(parentElement.schemaElement, childElement.schemaElement); 
-						double curScore = parentElement.similarity * childElement.similarity * distance; 
+						// double distance = db.schemaGraph.distance(parentElement.schemaElement, childElement.schemaElement);
+						double curScore = parentElement.similarity * childElement.similarity; // * distance;
 						
 						if(curScore > maxScore)
 						{

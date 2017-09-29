@@ -278,57 +278,8 @@ public class SchemaGraph {
         this.loadRelationsFromFile(relationsFile);
         this.loadEdgesFromFile(edgesFile);
 
-        shortestDistanceCompute();
-
-        /*
-		JSONParser parser = new JSONParser();
-		JSONArray jsonRelations = (JSONArray)parser.parse(BasicFunctions.readFile("/Users/cjbaik/dev/feis_stuff/NaLIRWeb/src/zfiles/" + databaseName + "Relations.json"));
-		
-		for(int i = 0; i < jsonRelations.size(); i++)
-		{
-			JSONObject jsonRelation = (JSONObject) jsonRelations.get(i);
-			SchemaElement relation = new SchemaElement(schemaElements.size(), (String)jsonRelation.get("name"), (String)jsonRelation.get("type")); 
-			schemaElements.add(relation); 
-			relation.relation = relation;
-
-			JSONArray jsonArray = (JSONArray) jsonRelation.get("attributes"); 
-			for(int j = 0; j < jsonArray.size(); j++)
-			{
-				JSONObject jsonAttribute = (JSONObject) jsonArray.get(j); 
-				SchemaElement attribute = new SchemaElement(schemaElements.size(), (String) jsonAttribute.get("name"), (String) jsonAttribute.get("type")); 
-				attribute.relation = relation; 
-				relation.attributes.add(attribute); 
-				schemaElements.add(attribute); 
-
-				if(jsonAttribute.get("importance") != null)
-				{
-					relation.defaultAttribute = attribute; 
-				}
-				if(attribute.type.equals("pk"))
-				{
-					relation.pk = attribute; 
-				}
-			}
-		}
-
-		weights = new double [schemaElements.size()][schemaElements.size()];
-		for(int i = 0; i < weights.length; i++)
-		{
-			for(int j = 0; j < weights.length; j++)
-			{
-				weights[i][j] = 0;
-			}
-		}
-
-		ArrayList<SchemaElement> relations = this.getElementsByType("relationship entity");
-		for(int i = 0; i < relations.size(); i++)
-		{
-			SchemaElement relation = relations.get(i);
-			for(int j = 0; j < relation.attributes.size(); j++)
-			{
-				weights[relation.elementID][relation.attributes.get(j).elementID] = AttEdge;
-			}
-		}*/
+        // TODO: commenting out. perhaps we don't need?
+        // shortestDistanceCompute();
 	}
 	
 	public void shortestDistanceCompute()
