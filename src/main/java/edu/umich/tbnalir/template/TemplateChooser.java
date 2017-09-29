@@ -328,7 +328,8 @@ public class TemplateChooser {
 
         File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
         Word2Vec vec = WordVectorSerializer.readWord2VecModel(gModel);
-        vec.similarity("cat", "dog");
+        System.out.println(vec.similarity("cat", "dog"));
+        System.out.println(vec.similarity("star", "rating"));
         System.exit(1);
 
         RDBMS db;
