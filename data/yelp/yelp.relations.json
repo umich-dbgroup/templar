@@ -206,11 +206,6 @@
         "type": "int",
         "entropy": 0.0
       },
-      "rating": {
-        "name": "rating",
-        "type": "int",
-        "entropy": 0.0
-      },
       "text": {
         "importance": "primary",
         "name": "text",

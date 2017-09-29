@@ -19,6 +19,11 @@ CREATE TABLE history(
     content VARCHAR(1000)
 );
 
--- add fulltext index for publication (only run once)
--- ALTER TABLE publication ADD FULLTEXT(title);
--- ALTER TABLE publication ADD FULLTEXT(abstract);
+-- add fulltext indexes (only run once)
+ALTER TABLE checkin ADD FULLTEXT(day);
+ALTER TABLE review ADD FULLTEXT(month);
+ALTER TABLE review ADD FULLTEXT(text);
+ALTER TABLE tip ADD FULLTEXT(month);
+ALTER TABLE tip ADD FULLTEXT(text);
+ALTER TABLE category ADD FULLTEXT(category_name);
+ALTER TABLE user ADD FULLTEXT(name);
