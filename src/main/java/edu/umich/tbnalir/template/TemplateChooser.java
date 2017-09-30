@@ -326,11 +326,11 @@ public class TemplateChooser {
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
 
-        File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
+        /*File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
         Word2Vec vec = WordVectorSerializer.readWord2VecModel(gModel);
         System.out.println(vec.similarity("cat", "dog"));
         System.out.println(vec.similarity("star", "rating"));
-        System.exit(1);
+        System.exit(1);*/
 
         RDBMS db;
         try {
