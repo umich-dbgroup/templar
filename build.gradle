@@ -27,6 +27,10 @@ dependencies {
 }
 
 shadowJar {
+    // Exclude large word2vec files
+    exclude(dependency('org.deeplearning.4j:deeplearning4j-nlp:0.9.1'))
+    exclude(dependency('org.nd4j:nd4j-native-platform:0.9.1'))
+
     zip64 true
     mergeServiceFiles()
 }
