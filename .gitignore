@@ -56,3 +56,6 @@ fabric.properties
 libs/stanford-parser-3.2.0-models.jar
 libs/stanford-parser-3.8.0-models.jar
 libs/GoogleNews*
+
+# output files
+*.out
