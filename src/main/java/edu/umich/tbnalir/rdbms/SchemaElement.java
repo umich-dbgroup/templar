@@ -47,8 +47,12 @@ public class SchemaElement implements Serializable
 		if(this.equals(this.relation.defaultAttribute))
 		{
 			if (SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag)) {
-				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this); 
-				mappedSchemaElement.similarity = Math.max(SimFunctions.similarity(this.relation.name, tag), SimFunctions.similarity(this.name, tag));
+				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
+                double relationSim = SimFunctions.similarity(this.relation.name, tag);
+                double relationSimAdj = 1 - (1 - relationSim) * (1 - relationSim);
+                double attrSim = SimFunctions.similarity(this.name, tag);
+                double attrSimAdj = 1 - (1 - attrSim) * (1 - attrSim);
+				mappedSchemaElement.similarity = Math.max(relationSim, attrSim);
 				// mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag));
 				return mappedSchemaElement; 
 			}			

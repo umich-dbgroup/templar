@@ -355,9 +355,9 @@ public class TemplateChooser {
         }*/
 
         List<String> queryStrs = new ArrayList<>();
-        queryStrs.add("find all cities which has a \"Taj Mahal\" restaurant");
-        queryStrs.add("find all the reviews for all pet groomers with more than 100 reviews");
-        queryStrs.add("find all pet groomers which have more than 100 reviews");
+        // queryStrs.add("find all cities which has a \"Taj Mahal\" restaurant");
+        // queryStrs.add("find all the reviews for all pet groomers with more than 100 reviews");
+        // queryStrs.add("find all pet groomers which have more than 100 reviews");
         queryStrs.add("find all dance schools in \"Los Angeles\"");
         queryStrs.add("find all pet hospices in Pittsburgh");
 
