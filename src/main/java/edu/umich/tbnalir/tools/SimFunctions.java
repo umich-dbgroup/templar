@@ -15,6 +15,7 @@ import edu.cmu.lti.ws4j.Relatedness;
 import edu.cmu.lti.ws4j.RelatednessCalculator;
 import edu.cmu.lti.ws4j.impl.WuPalmer;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemmatizer;
+import edu.umich.tbnalir.template.TemplateChooser;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class SimFunctions 
@@ -72,7 +73,8 @@ public class SimFunctions
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
-				sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i)); 
+				// sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
+                sims[i] = TemplateChooser.vec.similarity(nodeLabel, mappedValues.get(i));
 			}			
 			
 			for(int i = 0; i < mappedValues.size(); i++)
@@ -116,14 +118,17 @@ public class SimFunctions
 	
 	public static double similarity(String word1, String word2) throws Exception
 	{
-		double similarity = 0; 
-		
-		similarity = wordNetSim(word1, word2); 
+		double similarity = 0;
+
+        similarity = TemplateChooser.vec.similarity(word1, word2);
+
+        /*
+		similarity = wordNetSim(word1, word2);
 		if(similarity < pqSim(word1, word2))
 		{
 			similarity = pqSim(word1, word2); 
 		}
-		similarity += pqSim(word1, word2)/10; 
+		similarity += pqSim(word1, word2)/10; */
 		
 		return similarity; 
 	}

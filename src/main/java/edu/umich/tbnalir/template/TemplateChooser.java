@@ -28,6 +28,7 @@ import java.util.*;
  * Created by cjbaik on 9/6/17.
  */
 public class TemplateChooser {
+    public static Word2Vec vec;
     Map<String, Relation> relations;
 
     public TemplateChooser(Map<String, Relation> relations) {
@@ -326,11 +327,10 @@ public class TemplateChooser {
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
 
-        /*File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
+        Log.info("Reading word2vec models...");
+        File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
         Word2Vec vec = WordVectorSerializer.readWord2VecModel(gModel);
-        System.out.println(vec.similarity("cat", "dog"));
-        System.out.println(vec.similarity("star", "rating"));
-        System.exit(1);*/
+        Log.info("Done reading word2vec models.");
 
         RDBMS db;
         try {
