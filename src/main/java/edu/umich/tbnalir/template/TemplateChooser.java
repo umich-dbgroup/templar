@@ -306,7 +306,8 @@ public class TemplateChooser {
                         newAccumRel.add(rel);
 
                         // If it's a pred for a weak entity, then generate a projection for the primary entity
-                        if (rel.isWeak() && curNode.parent.tokenType.equals("CMT") && curNode.relationship.equals("dobj")) {
+                        if (rel.isWeak() && curNode.parent.tokenType.equals("CMT") &&
+                                (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj") || curNode.relationship.equals("nsubjpass"))) {
                             Relation parent = this.relations.get(rel.getParent());
                             // TODO: do I need to increment aliasInt here for the parent? how?
                             Projection proj = new Projection(parent.getPrimaryAttr(), null);
@@ -367,18 +368,11 @@ public class TemplateChooser {
                 stopwords.add(word.trim());
             }
 
-            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
         }
-
-        queryStrs.add("What are all the gyms in \"Los Angeles\"?");
-        queryStrs.add("Which restaurants in Dallas were reviewed by user Patrick?");
-        // queryStrs.add("Find all dance schools in \"Los Angeles\"");
-        // queryStrs.add("List the addresses of all Walmarts in \"Los Angeles\"");
-        // queryStrs.add("Find all tips about \"Vintner Grill\" that received more than 9 likes.");
-        // queryStrs.add("Find all tips from a user who has written a review in 2012.");
 
         int i = 0;
         for (String queryStr : queryStrs) {
@@ -519,6 +513,9 @@ public class TemplateChooser {
                         // Only do NTs for the remainder
                         if (!relatedNode.tokenType.equals("NT")) continue;
 
+                        // Leave children of CMTs alone, because they're unlikely to be modified
+                        if (relatedNode.parent.tokenType.equals("CMT")) continue;
+
                         MappedSchemaElement chosenMappedSchemaEl = null;
                         int choice = node.choice;
                         // double nodeSimilarity = node.getChoiceMap().similarity;
@@ -537,10 +534,10 @@ public class TemplateChooser {
                             for (int k = 0; k < node.mappedElements.size(); k++) {
                                 MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
 
-                                boolean relationMatchesAndThisIsPrimary =
+                                boolean relatedIsRelation = relatedMappedEl.schemaElement.type.equals("relation");
+                                boolean relationMatchesAndThisIsPrimary = relatedIsRelation &&
                                         nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name)
                                         && nodeMappedEl.schemaElement.relation.defaultAttribute.equals(nodeMappedEl.schemaElement);
-                                boolean relatedIsRelation = relatedMappedEl.schemaElement.type.equals("relation");
                                 boolean attributeMatchesIfBothAttributes = !relatedIsRelation &&
                                         nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name) &&
                                         nodeMappedEl.schemaElement.name.equals(relatedMappedEl.schemaElement.name);
@@ -555,7 +552,7 @@ public class TemplateChooser {
                                     double relatedScore = relatedMappedEl.similarity;
                                     double nodeScore = nodeMappedEl.similarity;
 
-                                    if (nodeScore > 0.5 && relatedScore > 0.5) {
+                                    if (nodeScore > 0.6 && relatedScore > 0.6) {
                                         // Weigh each disproportionately and compare
                                         double firstScore = 0.8 * relatedScore + 0.2 * nodeScore;
                                         double secondScore = 0.8 * nodeScore + 0.2 * relatedScore;
@@ -569,6 +566,27 @@ public class TemplateChooser {
                                             choice = k;
                                             addNewForPrimaryAttribute = false;
                                             attachedFT = relatedMappedEl.attachedFT;
+                                        }
+                                    } else if (nodeScore > 0.6) {
+                                        // Add 0.12 to be minimum related score, 0.6, multiplied by weight 0.2
+                                        double nodeSim = nodeScore * 0.8 + 0.12;
+                                        if (nodeSim > maxSimilarity) {
+                                            // In the case that the node is fine as is
+                                            chosenMappedSchemaEl = null;
+                                            maxSimilarity = nodeSim;
+                                            choice = k;
+                                            addNewForPrimaryAttribute = false;
+                                            attachedFT = null;
+                                        }
+                                    } else if (relatedScore > 0.6) {
+                                        double relatedSim = relatedScore * 0.8 + 0.12;
+                                        if (relatedSim > maxSimilarity) {
+                                            // In the case that the related is fine as is
+                                            chosenMappedSchemaEl = null;
+                                            maxSimilarity = relatedSim;
+                                            choice = k;
+                                            addNewForPrimaryAttribute = false;
+                                            attachedFT = null;
                                         }
                                     }
                                 }

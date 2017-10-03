@@ -38,10 +38,38 @@ public class NodeMapper
 		for(int i = 0; i < parseTree.root.children.size(); i++) 
 		{
 			ParseTreeNode rootChild = parseTree.root.children.get(i);
-			if(isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
+			if(rootChild.pos.equals("WDT") || rootChild.pos.startsWith("WP") ||
+                    rootChild.pos.equals("WRB") || isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
 			{
 				rootChild.tokenType = "CMT"; 
 			}
+
+            // if we're asking a question, and dobj of root child is a WDT or WP, swap order of children
+            for (ParseTreeNode grandchild : rootChild.children) {
+                if (grandchild.relationship.equals("dobj") && (grandchild.pos.equals("WDT") || grandchild.pos.equals("WP"))) {
+                    grandchild.tokenType = "CMT";
+
+                    grandchild.parent = parseTree.root;
+                    parseTree.root.children.add(grandchild);
+                    parseTree.root.children.remove(rootChild);
+
+                    rootChild.children.remove(grandchild);
+                    rootChild.parent = grandchild;
+                    grandchild.children.add(rootChild);
+
+                    // If the original root child has nsubjpass, make that a child of the CMT
+                    for (int j = 0; j < rootChild.children.size(); j++) {
+                        ParseTreeNode objToRetrieve = rootChild.children.get(j);
+                        if (!objToRetrieve.equals(grandchild) && objToRetrieve.relationship.equals("nsubjpass")) {
+                            grandchild.children.add(objToRetrieve);
+                            rootChild.children.remove(objToRetrieve);
+                            objToRetrieve.parent = grandchild;
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
 		}
 
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
@@ -211,6 +239,7 @@ public class NodeMapper
                     if (!newElement.equals(origElement) &&
                             newElement.similarity >= origElement.similarity) {
                         // Keep tree in multi-word form if new similarity is higher
+                        treeNode.relationship = relatedNode.relationship;
                         treeNode.mappedElements.removeAll(origMappedElements);
                         parseTree.deleteNode(relatedNode);
                         i--;
