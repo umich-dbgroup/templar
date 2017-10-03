@@ -35,7 +35,8 @@ public class SchemaElement implements Serializable
             if (SimFunctions.ifSchemaSimilar(this.relation.name, tag)) {
                 MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
                 double relationSimilarity = SimFunctions.similarity(this.relation.name, tag);
-                mappedSchemaElement.similarity = 1 - (1 - relationSimilarity) * (1 - relationSimilarity);
+                // mappedSchemaElement.similarity = 1 - (1 - relationSimilarity) * (1 - relationSimilarity);
+                mappedSchemaElement.similarity = relationSimilarity;
                 return mappedSchemaElement;
             }
         }
@@ -49,10 +50,9 @@ public class SchemaElement implements Serializable
 			if (SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
                 double relationSim = SimFunctions.similarity(this.relation.name, tag);
-                double relationSimAdj = 1 - (1 - relationSim) * (1 - relationSim);
                 double attrSim = SimFunctions.similarity(this.name, tag);
-                double attrSimAdj = 1 - (1 - attrSim) * (1 - attrSim);
-				mappedSchemaElement.similarity = Math.max(relationSim, attrSim);
+                double avgSim = (relationSim + attrSim) / 2;
+				mappedSchemaElement.similarity = Math.max(relationSim, avgSim);
 				// mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag));
 				return mappedSchemaElement; 
 			}			

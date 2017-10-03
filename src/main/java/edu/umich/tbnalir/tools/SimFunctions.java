@@ -96,7 +96,7 @@ public class SimFunctions
 
 			// Special case: we penalize if value text attribute is not a proper noun or adjective
             if (element.schemaElement.type.equals("text") && !(treeNode.pos.equals("NNP") || treeNode.pos.equals("JJ"))) {
-                element.similarity *= 0.9;
+                element.similarity *= 0.95;
             }
 		}
 	}
@@ -116,37 +116,50 @@ public class SimFunctions
 	
 	public static double similarity(String word1, String word2) throws Exception
 	{
-		double similarity = 0; 
-		
-		similarity = wordNetSim(word1, word2); 
-		if(similarity < pqSim(word1, word2))
-		{
-			similarity = pqSim(word1, word2); 
-		}
-		similarity += pqSim(word1, word2)/10; 
+		double similarity;
+
+		double wordnetScore = wordNetSim(word1, word2);
+        double pqScore = pqSim(word1, word2);
+		if(wordnetScore < pqScore) {
+			similarity = pqScore;
+		} else {
+            // TODO: this seems like an arbitrary boost to me.
+            //similarity += pqSim(word1, word2) / 10;
+
+            similarity = 0.8 * wordnetScore + 0.2 * pqScore;
+        }
 		
 		return similarity; 
 	}
 	
 	public static double wordNetSim(String word1, String word2) throws Exception
 	{
-		double sim = wordNetSimCompute(word1, word2); 
+		// double sim = wordNetSimCompute(word1, word2);
 		String [] words1 = word1.split("_"); 
 		String [] words2 = word2.split("_"); 
-		
+
+        double totalScoreForI = 0.0;
 		for(int i = 0; i < words1.length; i++)
 		{
+            double maxScoreForThisI = 0.0;
 			for(int j = 0; j < words2.length; j++)
 			{
 				double sim_part = wordNetSimCompute(lemmatizer.lemmatize(words1[i]), lemmatizer.lemmatize(words2[j]));
+                if (sim_part > maxScoreForThisI) {
+                    maxScoreForThisI = sim_part;
+                }
+                /*
 				if(sim_part > sim)
 				{
 					sim = sim_part; 
-				}
+				}*/
 			}
+            totalScoreForI += maxScoreForThisI;
 		}
+
+        return totalScoreForI / words1.length;
 		
-		return sim; 
+		// return sim;
 	}
 
 	public static double wordNetSimCompute(String word1, String word2)

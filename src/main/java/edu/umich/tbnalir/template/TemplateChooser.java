@@ -15,13 +15,12 @@ import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.sql.Operator;
 import edu.umich.tbnalir.tools.PrintForCheck;
 import org.apache.commons.io.FileUtils;
-import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
-import org.deeplearning4j.models.word2vec.Word2Vec;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.*;
 
 /**
@@ -52,6 +51,7 @@ public class TemplateChooser {
         if (remainingNodes.size() == 0) {
             // If projections are empty, generate from primary attributes of relations in translation
             if (accumProj.isEmpty()) {
+                /*
                 for (Relation rel : accumRel) {
                     if (rel.getPrimaryAttr() != null) {
                         List<Projection> newAccumProj = new ArrayList<>(accumProj);
@@ -62,7 +62,7 @@ public class TemplateChooser {
                                 new HashSet<>(accumRel), newAccumProj, new ArrayList<>(accumPred),
                                 new ArrayList<>(accumHaving), superlative, accumScore + 0.8, accumNodes + 1));
                     }
-                }
+                }*/
             } else {
                 PossibleTranslation translation = new PossibleTranslation();
                 translation.setRelations(new HashSet<>(accumRel));
@@ -305,6 +305,16 @@ public class TemplateChooser {
                         if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
                         newAccumRel.add(rel);
 
+                        // If it's a pred for a weak entity, then generate a projection for the primary entity
+                        if (rel.isWeak() && curNode.parent.tokenType.equals("CMT") && curNode.relationship.equals("dobj")) {
+                            Relation parent = this.relations.get(rel.getParent());
+                            // TODO: do I need to increment aliasInt here for the parent? how?
+                            Projection proj = new Projection(parent.getPrimaryAttr(), null);
+                            newAccumProj.add(proj);
+                            newAccumRel.add(parent);
+                        }
+
+
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
                                 accumScore + schemaEl.similarity, accumNodes + 1));
@@ -345,21 +355,30 @@ public class TemplateChooser {
 
         // templates.stream().map(Template::toString).forEach(System.out::println);
 
+        // Read in Stanford Parser Model
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-        /*List<String> queryStrs;
+
+        // Read in stop words list
+        List<String> stopwords = new ArrayList<>();
+        List<String> queryStrs = new ArrayList<>();
         try {
-            queryStrs = FileUtils.readLines(new File(nlqFile), "UTF-8");
+            List<String> stopwordsList = FileUtils.readLines(new File("libs/stopwords.txt"), "UTF-8");
+            for (String word : stopwordsList) {
+                stopwords.add(word.trim());
+            }
+
+            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
-        }*/
+           throw new RuntimeException(e);
+        }
 
-        List<String> queryStrs = new ArrayList<>();
-        // queryStrs.add("find all cities which has a \"Taj Mahal\" restaurant");
-        // queryStrs.add("find all the reviews for all pet groomers with more than 100 reviews");
-        // queryStrs.add("find all pet groomers which have more than 100 reviews");
-        queryStrs.add("find all dance schools in \"Los Angeles\"");
-        queryStrs.add("find all pet hospices in Pittsburgh");
+        queryStrs.add("What are all the gyms in \"Los Angeles\"?");
+        queryStrs.add("Which restaurants in Dallas were reviewed by user Patrick?");
+        // queryStrs.add("Find all dance schools in \"Los Angeles\"");
+        // queryStrs.add("List the addresses of all Walmarts in \"Los Angeles\"");
+        // queryStrs.add("Find all tips about \"Vintner Grill\" that received more than 9 likes.");
+        // queryStrs.add("Find all tips from a user who has written a review in 2012.");
 
         int i = 0;
         for (String queryStr : queryStrs) {
@@ -374,6 +393,17 @@ public class TemplateChooser {
 
             Log.info("Parsing query with NL parser...");
             StanfordNLParser.parse(query, lexiParser);
+
+            // Check stopwords list and remove
+            List<ParseTreeNode> nodesToRemove = new ArrayList<>();
+            for (ParseTreeNode node : query.parseTree.allNodes) {
+                if (stopwords.contains(node.label.toLowerCase())) {
+                    nodesToRemove.add(node);
+                }
+            }
+            for (ParseTreeNode node : nodesToRemove) {
+                query.parseTree.deleteNode(node);
+            }
 
             List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
             Tree parse = lexiParser.apply(rawWords);
@@ -414,11 +444,6 @@ public class TemplateChooser {
 
                 // TODO: move all this logic to Fei's components or clean it up
                 if (isNameToken || isValueToken) {
-                    // TODO: Hack for now, but sometimes this doesn't catch correctly with the stanford parser,
-                    if (node.label.equals("have")) {
-                        continue;
-                    }
-
                     mappedNodes.add(node);
 
                     // Check for related nodes that are auxiliary and delete
@@ -485,9 +510,9 @@ public class TemplateChooser {
                         ParseTreeNode relatedNode;
                         if (adjEntry[0].equals(node)) {
                             relatedNode = adjEntry[1];
-                        } else if (adjEntry[1].equals(node)) {
+                        } /*else if (adjEntry[1].equals(node)) {
                             relatedNode = adjEntry[0];
-                        } else {
+                        } */else {
                             continue;
                         }
 
@@ -496,8 +521,10 @@ public class TemplateChooser {
 
                         MappedSchemaElement chosenMappedSchemaEl = null;
                         int choice = node.choice;
-                        double nodeSimilarity = node.getChoiceMap().similarity;
-                        double maxSimilarity = node.getChoiceMap().similarity;
+                        // double nodeSimilarity = node.getChoiceMap().similarity;
+                        // double maxSimilarity = node.getChoiceMap().similarity;
+                        double maxSimilarity = 0;
+                        List<Integer> matchedNodes = new ArrayList<>();
                         String attachedFT = null;
 
                         boolean matchedNodeEl = false;
@@ -520,19 +547,29 @@ public class TemplateChooser {
                                 if (relationMatchesAndThisIsPrimary
                                         || attributeMatchesIfBothAttributes) {
                                     matchedNodeEl = true;
+                                    matchedNodes.add(k);
 
                                     // Somewhat arbitrarily combine their similarity by averaging and giving a boost
                                     // double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
 
-                                    double combinedScore = Math.max(nodeSimilarity, relatedMappedEl.similarity);
-                                    nodeMappedEl.similarity = combinedScore;
+                                    double relatedScore = relatedMappedEl.similarity;
+                                    double nodeScore = nodeMappedEl.similarity;
 
-                                    if (combinedScore > maxSimilarity) {
-                                        chosenMappedSchemaEl = nodeMappedEl;
-                                        maxSimilarity = combinedScore;
-                                        choice = k;
-                                        addNewForPrimaryAttribute = false;
-                                        attachedFT = relatedMappedEl.attachedFT;
+                                    if (nodeScore > 0.5 && relatedScore > 0.5) {
+                                        // Weigh each disproportionately and compare
+                                        double firstScore = 0.8 * relatedScore + 0.2 * nodeScore;
+                                        double secondScore = 0.8 * nodeScore + 0.2 * relatedScore;
+
+                                        double combinedScore = Math.max(firstScore, secondScore);
+                                        nodeMappedEl.similarity = combinedScore;
+
+                                        if (combinedScore > maxSimilarity) {
+                                            chosenMappedSchemaEl = nodeMappedEl;
+                                            maxSimilarity = combinedScore;
+                                            choice = k;
+                                            addNewForPrimaryAttribute = false;
+                                            attachedFT = relatedMappedEl.attachedFT;
+                                        }
                                     }
                                 }
                             }
@@ -548,6 +585,13 @@ public class TemplateChooser {
                                     maxSimilarity = relatedScore;
                                     addNewForPrimaryAttribute = true;
                                 }
+                            }
+                        }
+
+                        // Penalize all unmatched node elements
+                        for (int m = 0; m < node.mappedElements.size(); m++) {
+                            if (!matchedNodes.contains(m)) {
+                                node.mappedElements.get(m).similarity *= 0.8;
                             }
                         }
 

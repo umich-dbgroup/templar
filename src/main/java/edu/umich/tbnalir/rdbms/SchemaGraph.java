@@ -118,6 +118,14 @@ public class SchemaGraph {
                     if (relInfo.get("join_table") != null) {
                         rel.setJoinTable((Boolean) relInfo.get("join_table"));
                     }
+
+                    if (relInfo.get("weak") != null) {
+                        rel.setWeak((Boolean) relInfo.get("weak"));
+                    }
+
+                    if (relInfo.get("parent") != null) {
+                        rel.setParent((String) relInfo.get("parent"));
+                    }
                 }
             }
 

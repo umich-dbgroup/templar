@@ -113,20 +113,18 @@ public class RDBMS {
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
 //		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
-		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int relation double pk");
+		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int double pk");
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
-			MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label);
-			if(element != null)
-			{
-				treeNode.mappedElements.add(element); 
-			}
+            MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label);
+            if (element != null) {
+                treeNode.mappedElements.add(element);
+            }
 
             // Check for relations
             MappedSchemaElement relEl = attributes.get(i).isRelationSimilar(treeNode.label);
-            if(relEl != null)
-            {
+            if (relEl != null) {
                 treeNode.mappedElements.add(relEl);
             }
 		}

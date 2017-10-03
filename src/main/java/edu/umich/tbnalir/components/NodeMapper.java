@@ -97,7 +97,7 @@ public class NodeMapper
                 	curNode.tokenType = "VT"; 
                 }
                 else if(curNode.tokenType.equals("NA") &&
-						(curNode.pos.startsWith("NN") || curNode.pos.equals("CD"))) // if its POS is
+						(curNode.pos.startsWith("NN") || curNode.pos.equals("CD") || curNode.pos.startsWith("VB"))) // if its POS is
                 {
                     curNode.tokenType = "NTVT";
                 }
@@ -153,7 +153,12 @@ public class NodeMapper
 			if(treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) // schema+text
 			{
 				db.isSchemaExist(treeNode);
-				db.isTextExist(treeNode);
+
+                // Only check for value tokens if we aren't dealing with a verb (which will probably be an attribute
+                // or a relation).
+                if (!treeNode.pos.startsWith("VB")) {
+                    db.isTextExist(treeNode);
+                }
 
                 if(treeNode.mappedElements.size() == 0)
                 {

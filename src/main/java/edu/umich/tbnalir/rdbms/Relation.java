@@ -21,6 +21,9 @@ public class Relation {
 
     boolean joinTable;  // true if it is a join table
 
+    boolean weak;       // true if it is a weak entity
+    String parent;      // name of parent relation if weak entity
+
     FromItem fromItem;
 
     List<Attribute> rankedAttributes; // attributes ranked by entropy
@@ -46,6 +49,8 @@ public class Relation {
         this.primaryAttr = null;
 
         this.joinTable = false;
+        this.weak = false;
+        this.parent = null;
         this.fromItem = null;
         this.rankedAttributes = null;
 
@@ -66,6 +71,8 @@ public class Relation {
         this.primaryAttr = this.attributes.get(other.primaryAttr.getName());
 
         this.joinTable = other.joinTable;
+        this.weak = other.weak;
+        this.parent = other.parent;
         this.fromItem = null;
 
         this.rankedAttributes = new ArrayList<>();
@@ -170,6 +177,22 @@ public class Relation {
 
     public void resetFromItem() {
         this.fromItem = null;
+    }
+
+    public boolean isWeak() {
+        return weak;
+    }
+
+    public void setWeak(boolean weak) {
+        this.weak = weak;
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 
     public FromItem getFromItem() {
