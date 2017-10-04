@@ -68,7 +68,9 @@ public class Relation {
             this.attributes.put(e.getKey(), copyAttr);
         }
 
-        this.primaryAttr = this.attributes.get(other.primaryAttr.getName());
+        if (other.primaryAttr != null) {
+            this.primaryAttr = this.attributes.get(other.primaryAttr.getName());
+        }
 
         this.joinTable = other.joinTable;
         this.weak = other.weak;
