@@ -368,6 +368,9 @@ public class NodeMapper
                     db.isSchemaExist(treeNode);
                     db.isTextExist(treeNode);
 
+                    // Make sure it has mapped elements. If not, skip
+                    if (relatedNode.mappedElements.isEmpty()) continue;
+
                     // Original related element
                     MappedSchemaElement origRelatedEl = relatedNode.mappedElements.get(0);
 
