@@ -135,6 +135,9 @@ public class TemplateChooser {
                         boolean desc = superlativeStr.equals("max");
 
                         Superlative newSuper = new Superlative(attr, funcStr, desc);
+                        if (!newAccumRel.contains(attr.getRelation())) {
+                            newAccumRel.add(attr.getRelation());
+                        }
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, newSuper,
@@ -369,15 +372,16 @@ public class TemplateChooser {
                 stopwords.add(word.trim());
             }
 
-            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            //queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
         }
 
-        queryStrs.add("find the total checkins in Moroccan restaurants in \"Los Angeles\"");
-        queryStrs.add("What is the number of hceckins for \"Cafe Zinho\" on Fridays");
-        queryStrs.add("How many users reviewed \"Sushi Too\" in Pittsburgh");
+        queryStrs.add("which business has the most number of checkins");
+        queryStrs.add("find the user with the most number of reviews");
+        queryStrs.add("Find the business with the most number of reviews in April");
+        queryStrs.add("Find the business which has the most number of categories");
 
         int i = 0;
         for (String queryStr : queryStrs) {

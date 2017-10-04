@@ -150,7 +150,7 @@ public class Template {
         }
 
         // RULE: For a non-empty join path, each relation on the terminal of a join path must have
-        // at least 1 projection, predicate, or having corresponding to that relation.
+        // at least 1 projection, predicate, having, or superlative corresponding to that relation.
         if (!this.joinPath.isEmpty()) {
             terminal_check:
             for (Attribute terminalAttr : this.joinPath.getTerminals()) {
@@ -168,6 +168,12 @@ public class Template {
 
                 for (Having having : translation.getHavings()) {
                     if (having.getAttribute().hasSameRelationAs(terminalAttr)) {
+                        continue terminal_check;
+                    }
+                }
+
+                if (translation.getSuperlative() != null) {
+                    if (translation.getSuperlative().getAttribute().hasSameRelationAs(terminalAttr)) {
                         continue terminal_check;
                     }
                 }
@@ -210,6 +216,12 @@ public class Template {
 
                     for (Having having : translation.getHavings()) {
                         if (having.getAttribute().hasSameRelationAs(consecVertex)) {
+                            continue consec_check;
+                        }
+                    }
+
+                    if (translation.getSuperlative() != null) {
+                        if (translation.getSuperlative().getAttribute().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }
                     }
@@ -478,6 +490,8 @@ public class Template {
         }
 
         if (translation.getSuperlative() != null) {
+            // If the relation isn't contained in the template, punt!
+            if (!this.templateString.contains(" " + translation.getSuperlative().getAttribute().getRelation().toString())) return null;
             result += " order by " + translation.getSuperlative().toString();
         }
 
