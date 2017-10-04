@@ -77,7 +77,7 @@ public class NodeMapper
             ParseTreeNode curNode = parseTree.allNodes.get(i);
             if ((curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
                 // Only return if question is direct object
-                if (!curNode.relationship.equals("dobj")) continue;
+                if (!curNode.relationship.equals("dobj") && !curNode.relationship.equals("dep")) continue;
 
                 // for most question words
                 ParseTreeNode object = null;
@@ -91,8 +91,11 @@ public class NodeMapper
                 // Could not find object
                 if (object == null) continue;
 
-                // TODO: Shove them all after the root
+                curNode.tokenType = "CMT";
+
+                // Shove them all after the root
                 List<ParseTreeNode> rootChildren = new ArrayList<>(parseTree.root.children);
+                curNode.parent.children.remove(curNode);
                 curNode.parent = parseTree.root;
                 parseTree.root.children.clear();
                 parseTree.root.children.add(curNode);
