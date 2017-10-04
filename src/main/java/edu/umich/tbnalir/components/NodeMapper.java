@@ -76,6 +76,9 @@ public class NodeMapper
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
             if ((curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
+                // Only return if question is direct object
+                if (!curNode.relationship.equals("dobj")) continue;
+
                 // for most question words
                 ParseTreeNode object = null;
                 for (ParseTreeNode sibling : curNode.parent.children) {

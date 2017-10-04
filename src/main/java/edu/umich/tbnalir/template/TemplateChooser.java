@@ -372,16 +372,22 @@ public class TemplateChooser {
                 stopwords.add(word.trim());
             }
 
-            //queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
         }
 
-        queryStrs.add("which business has the most number of checkins");
-        queryStrs.add("find the user with the most number of reviews");
-        queryStrs.add("Find the business with the most number of reviews in April");
-        queryStrs.add("Find the business which has the most number of categories");
+        // queryStrs.add("Which Thai restaurant has the most number of reviews");
+        // queryStrs.add("which neighborhood has the most number of businesses in Madison");
+        // queryStrs.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
+        // queryStrs.add("Which Indian restaurant in Dallas has the highest rating?");
+        // queryStrs.add("Which Indian restaurant in Dallas has the most number of reviews?");
+        // queryStrs.add("Which Italian restaurant in Dallas has the highest rating?");
+        // queryStrs.add("Find all states in which there is a Whataburger");
+        // queryStrs.add("Find all cities which has a \"Taj Mahal\"");
+        // queryStrs.add("List all businesses with rating 3.5");
+        // queryStrs.add("List all the reviews which rated a business less than 1");
 
         int i = 0;
         for (String queryStr : queryStrs) {
@@ -397,17 +403,6 @@ public class TemplateChooser {
 
             Log.info("Parsing query with NL parser...");
             StanfordNLParser.parse(query, lexiParser);
-
-            // Check stopwords list and remove
-            List<ParseTreeNode> nodesToRemove = new ArrayList<>();
-            for (ParseTreeNode node : query.parseTree.allNodes) {
-                if (stopwords.contains(node.label.toLowerCase())) {
-                    nodesToRemove.add(node);
-                }
-            }
-            for (ParseTreeNode node : nodesToRemove) {
-                query.parseTree.deleteNode(node);
-            }
 
             List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
             Tree parse = lexiParser.apply(rawWords);
@@ -433,6 +428,17 @@ public class TemplateChooser {
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
+            }
+
+            // Check stopwords list and remove
+            List<ParseTreeNode> nodesToRemove = new ArrayList<>();
+            for (ParseTreeNode node : query.parseTree.allNodes) {
+                if (stopwords.contains(node.label.toLowerCase())) {
+                    nodesToRemove.add(node);
+                }
+            }
+            for (ParseTreeNode node : nodesToRemove) {
+                query.parseTree.deleteNode(node);
             }
 
             System.out.println("PARSE TREE:");
@@ -490,11 +496,11 @@ public class TemplateChooser {
                             functionNode.parent.children.remove(functionNode);
                         }
                     } else {
-                        // Do similar operation if function is child
+                        // Do similar operation if function is child and has no children
                         List<ParseTreeNode> funcToRemove = new ArrayList<>();
                         List<ParseTreeNode> childrenToAdd = new ArrayList<>();
                         for (ParseTreeNode child : node.children) {
-                            if (child.tokenType.equals("FT")) {
+                            if (child.tokenType.equals("FT") && child.children.isEmpty()) {
                                 if (child.function.equals("max") || child.function.equals("min")) {
                                     node.attachedSuperlative = child.function;
                                 } else {
@@ -524,11 +530,14 @@ public class TemplateChooser {
                             continue;
                         }
 
+                        // If it's been removed, don't consider it
+                        if (!query.parseTree.allNodes.contains(relatedNode)) continue;
+
                         // Only do NTs for the remainder
                         if (!relatedNode.tokenType.equals("NT")) continue;
 
-                        // Leave children of CMTs alone, because they're unlikely to be modified
-                        if (relatedNode.parent.tokenType.equals("CMT")) continue;
+                        // Leave direct objects of CMTs alone, because they're unlikely to be modified
+                        if (relatedNode.parent.tokenType.equals("CMT") && relatedNode.relationship.equals("dobj")) continue;
 
                         MappedSchemaElement chosenMappedSchemaEl = null;
                         int choice = node.choice;
