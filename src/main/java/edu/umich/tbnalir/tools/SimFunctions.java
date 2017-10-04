@@ -93,12 +93,12 @@ public class SimFunctions
 			
 			element.choice = 0;
 
-            // Average the top 3 (if not exist, provide 0.5)
+            // Average the top 3 (if not exist, provide 0.95)
             double sum = 0;
             double max = 3;
             for (int i = 0; i < max; i++) {
                 if (i >= (sims.length - 1)) {
-                    sum += 0.5;
+                    sum += 0.95;
                 } else {
                     sum += sims[i];
                 }

@@ -369,11 +369,15 @@ public class TemplateChooser {
                 stopwords.add(word.trim());
             }
 
-            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
         }
+
+        queryStrs.add("find the total checkins in Moroccan restaurants in \"Los Angeles\"");
+        queryStrs.add("What is the number of hceckins for \"Cafe Zinho\" on Fridays");
+        queryStrs.add("How many users reviewed \"Sushi Too\" in Pittsburgh");
 
         int i = 0;
         for (String queryStr : queryStrs) {
