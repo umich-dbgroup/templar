@@ -28,6 +28,35 @@ CREATE TABLE history(
     content VARCHAR(1000)
 );
 
--- add fulltext index for publication (only run once)
--- ALTER TABLE publication ADD FULLTEXT(title);
--- ALTER TABLE publication ADD FULLTEXT(abstract);
+-- add fulltext indexes needed (only run once)
+ALTER TABLE actor ADD FULLTEXT(birth_city);
+ALTER TABLE actor ADD FULLTEXT(birth_year);
+ALTER TABLE actor ADD FULLTEXT(nationality);
+ALTER TABLE actor ADD FULLTEXT(gender);
+ALTER TABLE actor ADD FULLTEXT(name);
+ALTER TABLE cast ADD FULLTEXT(role);
+ALTER TABLE company ADD FULLTEXT(name);
+ALTER TABLE company ADD FULLTEXT(country_code);
+ALTER TABLE director ADD FULLTEXT(birth_city);
+ALTER TABLE director ADD FULLTEXT(birth_year);
+ALTER TABLE director ADD FULLTEXT(nationality);
+ALTER TABLE director ADD FULLTEXT(gender);
+ALTER TABLE director ADD FULLTEXT(name);
+ALTER TABLE genre ADD FULLTEXT(genre);
+ALTER TABLE keyword ADD FULLTEXT(keyword);
+ALTER TABLE movie ADD FULLTEXT(title);
+ALTER TABLE movie ADD FULLTEXT(title_aka);
+ALTER TABLE movie ADD FULLTEXT(budget);
+ALTER TABLE producer ADD FULLTEXT(birth_city);
+ALTER TABLE producer ADD FULLTEXT(birth_year);
+ALTER TABLE producer ADD FULLTEXT(nationality);
+ALTER TABLE producer ADD FULLTEXT(gender);
+ALTER TABLE producer ADD FULLTEXT(name);
+ALTER TABLE tv_series ADD FULLTEXT(title);
+ALTER TABLE tv_series ADD FULLTEXT(title_aka);
+ALTER TABLE tv_series ADD FULLTEXT(budget);
+ALTER TABLE writer ADD FULLTEXT(birth_city);
+ALTER TABLE writer ADD FULLTEXT(birth_year);
+ALTER TABLE writer ADD FULLTEXT(nationality);
+ALTER TABLE writer ADD FULLTEXT(gender);
+ALTER TABLE writer ADD FULLTEXT(name);
