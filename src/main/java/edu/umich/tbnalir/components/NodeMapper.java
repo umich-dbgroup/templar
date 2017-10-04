@@ -35,14 +35,14 @@ public class NodeMapper
 		ParseTree parseTree = query.parseTree;
 		parseTree.root.tokenType = "ROOT"; // mark the root and the root's children; 
 		
-		for(int i = 0; i < parseTree.root.children.size(); i++) 
-		{
-			ParseTreeNode rootChild = parseTree.root.children.get(i);
-			if(rootChild.pos.equals("WDT") || rootChild.pos.startsWith("WP") || isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
-			{
-				rootChild.tokenType = "CMT";
-			}
+		for(int i = 0; i < parseTree.root.children.size(); i++) {
+            ParseTreeNode rootChild = parseTree.root.children.get(i);
+            if (isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
+            {
+                rootChild.tokenType = "CMT";
+            }
 
+            /*
             for (ParseTreeNode grandchild : rootChild.children) {
                 // if we're asking a question, and dobj of root child is a WDT or WP, swap order of children
                 if (grandchild.relationship.equals("dobj") && (grandchild.pos.equals("WDT") || grandchild.pos.equals("WP"))) {
@@ -56,10 +56,10 @@ public class NodeMapper
                     rootChild.parent = grandchild;
                     grandchild.children.add(rootChild);
 
-                    // If the original root child has nsubjpass, make that a child of the CMT
+                    // If the original root child has nsubj, make that a child of the CMT
                     for (int j = 0; j < rootChild.children.size(); j++) {
                         ParseTreeNode objToRetrieve = rootChild.children.get(j);
-                        if (!objToRetrieve.equals(grandchild) && objToRetrieve.relationship.equals("nsubjpass")) {
+                        if (!objToRetrieve.equals(grandchild) && objToRetrieve.relationship.startsWith("nsubj")) {
                             grandchild.children.add(objToRetrieve);
                             rootChild.children.remove(objToRetrieve);
                             objToRetrieve.parent = grandchild;
@@ -68,14 +68,46 @@ public class NodeMapper
                     }
                     break;
                 }
-            }
+            }*/
 		}
 
-        // Handle "how many"
+        // Handle "what", "which", "how many", etc
         List<ParseTreeNode> toDelete = new ArrayList<>();
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
-            if (curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
+            if ((curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
+                // for most question words
+                ParseTreeNode object = null;
+                for (ParseTreeNode sibling : curNode.parent.children) {
+                    if (sibling.relationship.startsWith("nsubj") && !sibling.equals(curNode)) {
+                        object = sibling;
+                        break;
+                    }
+                }
+
+                // Could not find object
+                if (object == null) continue;
+
+                // TODO: Shove them all after the root
+                List<ParseTreeNode> rootChildren = new ArrayList<>(parseTree.root.children);
+                curNode.parent = parseTree.root;
+                parseTree.root.children.clear();
+                parseTree.root.children.add(curNode);
+
+                object.parent = curNode;
+                curNode.children.add(object);
+
+                for (ParseTreeNode rootChild : rootChildren) {
+                    if (!rootChild.equals(curNode) && !rootChild.equals(object)) {
+                        rootChild.parent = object;
+                        rootChild.children.remove(object);
+                        object.children.add(rootChild);
+                    }
+                }
+
+            } else if (curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
+                // for "HOW MANY"
+
                 // Merge the two nodes to one "how many" node
                 ParseTreeNode parent = curNode.parent;
                 curNode.label = curNode.label + " " + parent.label;
