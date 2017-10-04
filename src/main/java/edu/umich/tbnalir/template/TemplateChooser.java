@@ -249,7 +249,8 @@ public class TemplateChooser {
                     }
 
                     // If there is an attached function, this is probably a HAVING, not a predicate.
-                    if (schemaEl.attachedFT != null) {
+                    // That is, unless we are a child of a CMT
+                    if (schemaEl.attachedFT != null && !curNode.parent.tokenType.equals("CMT")) {
                         // TODO: do we need aliasInt for having?
                         Having having = new Having(attr, op, value, schemaEl.attachedFT);
 
@@ -310,7 +311,7 @@ public class TemplateChooser {
                                 (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj") || curNode.relationship.equals("nsubjpass"))) {
                             Relation parent = this.relations.get(rel.getParent());
                             // TODO: do I need to increment aliasInt here for the parent? how?
-                            Projection proj = new Projection(parent.getPrimaryAttr(), null);
+                            Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
                             newAccumProj.add(proj);
                             newAccumRel.add(parent);
                         }
@@ -376,13 +377,14 @@ public class TemplateChooser {
 
         int i = 0;
         for (String queryStr : queryStrs) {
+            Log.info("================");
+            Log.info("QUERY " + i++ + ": " + queryStr);
+            Log.info("================");
+
             // TODO: hack, to convert TX to Texas, probably don't need with something like word2vec
             queryStr = queryStr.replace("TX", "Texas");
             queryStr = queryStr.replace("PA", "Pennsylvania");
 
-            Log.info("================");
-            Log.info("QUERY " + i++ + ": " + queryStr);
-            Log.info("================");
             Query query = new Query(queryStr, db.schemaGraph);
 
             Log.info("Parsing query with NL parser...");
@@ -449,7 +451,7 @@ public class TemplateChooser {
                     }
 
                     // In the case that we have a function as a parent, add accordingly and "ignore" function
-                    if (node.parent.tokenType.equals("FT")) {
+                    if (!node.parent.function.equals("NA")) {
                         String superlative = null;
                         for (MappedSchemaElement mse : node.mappedElements) {
                             mse.attachedFT = node.parent.function;
@@ -460,21 +462,25 @@ public class TemplateChooser {
                             superlative = node.parent.parent.function;
                         }
 
-                        for (ParseTreeNode funcChild : functionNode.children) {
-                            funcChild.parent = node;
-                            node.children.add(funcChild);
+                        // Only move around children if the function isn't actually a CMT (like "how many")
+                        if (!functionNode.tokenType.equals("CMT")) {
+                            for (ParseTreeNode funcChild : functionNode.children) {
+                                funcChild.parent = node;
+                                node.children.add(funcChild);
 
-                            if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
-                                superlative = funcChild.function;
+                                if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
+                                    superlative = funcChild.function;
+                                }
                             }
-                        }
 
-                        if (superlative != null) {
-                            node.attachedSuperlative = superlative;
-                        }
+                            if (superlative != null) {
+                                node.attachedSuperlative = superlative;
+                            }
 
-                        node.parent = functionNode.parent;
-                        functionNode.parent.children.remove(functionNode);
+                            node.parent = functionNode.parent;
+                            node.relationship = functionNode.relationship;
+                            functionNode.parent.children.remove(functionNode);
+                        }
                     } else {
                         // Do similar operation if function is child
                         List<ParseTreeNode> funcToRemove = new ArrayList<>();

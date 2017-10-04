@@ -41,6 +41,7 @@
 <phrase>generate</phrase>
 <phrase>list</phrase>
 <phrase>which</phrase>
+<phrase>how many</phrase>
 </CMT_V>
 <!-- Order By Token -->
 <OBT>
@@ -181,6 +182,9 @@ in the order of
 <phrase>every
 <quantity>all</quantity>
 <example>Return all the books, where the name of every author of each book ends with "Green". </example>
+</phrase>
+<phrase>per
+<quantity>each</quantity>
 </phrase>
 <phrase>each
 <quantity>each</quantity>

@@ -38,14 +38,13 @@ public class NodeMapper
 		for(int i = 0; i < parseTree.root.children.size(); i++) 
 		{
 			ParseTreeNode rootChild = parseTree.root.children.get(i);
-			if(rootChild.pos.equals("WDT") || rootChild.pos.startsWith("WP") ||
-                    rootChild.pos.equals("WRB") || isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
+			if(rootChild.pos.equals("WDT") || rootChild.pos.startsWith("WP") || isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
 			{
-				rootChild.tokenType = "CMT"; 
+				rootChild.tokenType = "CMT";
 			}
 
-            // if we're asking a question, and dobj of root child is a WDT or WP, swap order of children
             for (ParseTreeNode grandchild : rootChild.children) {
+                // if we're asking a question, and dobj of root child is a WDT or WP, swap order of children
                 if (grandchild.relationship.equals("dobj") && (grandchild.pos.equals("WDT") || grandchild.pos.equals("WP"))) {
                     grandchild.tokenType = "CMT";
 
@@ -72,6 +71,83 @@ public class NodeMapper
             }
 		}
 
+        // Handle "how many"
+        List<ParseTreeNode> toDelete = new ArrayList<>();
+        for (int i = 0; i < parseTree.allNodes.size(); i++) {
+            ParseTreeNode curNode = parseTree.allNodes.get(i);
+            if (curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
+                // Merge the two nodes to one "how many" node
+                ParseTreeNode parent = curNode.parent;
+                curNode.label = curNode.label + " " + parent.label;
+                curNode.tokenType = "CMT";
+                curNode.function = "count";
+
+                parent.children.remove(curNode);
+
+                // In the case that it's referring to an object directly (e.g. "How many people have bought...?"
+                if (parent.relationship.equals("amod")) {
+                    ParseTreeNode object = parent.parent;
+
+                    // Disconnect parent from object
+                    object.children.remove(parent);
+                    toDelete.add(parent);
+
+                    // Shove them all after the root
+                    List<ParseTreeNode> rootChildren = new ArrayList<>(parseTree.root.children);
+                    curNode.parent = parseTree.root;
+                    parseTree.root.children.clear();
+                    parseTree.root.children.add(curNode);
+
+                    object.parent = curNode;
+                    curNode.children.add(object);
+
+                    for (ParseTreeNode rootChild : rootChildren) {
+                        rootChild.parent = object;
+                        rootChild.children.remove(object);
+                    }
+                    object.children = rootChildren;
+                } else if (parent.relationship.equals("dep")) {
+                    // Otherwise, need to get subject of verb (e.g. "How many ____ exist?")
+                    ParseTreeNode object = null;
+                    for (ParseTreeNode uncle : parent.parent.children) {
+                        if (uncle.relationship.startsWith("nsubj")) {
+                            object = uncle;
+                            break;
+                        }
+                    }
+
+                    // Could not find object
+                    if (object == null) continue;
+
+                    // Remove object from parent/children
+                    // object.parent.children.addAll(object.children);
+                    // for (ParseTreeNode cousin : object.children) {
+                        // cousin.parent = object.parent;
+                    // }
+
+                    // Disconnect parent from object
+                    toDelete.add(parent);
+
+                    // Shove them all after the root
+                    List<ParseTreeNode> rootChildren = new ArrayList<>(parseTree.root.children);
+                    curNode.parent = parseTree.root;
+                    parseTree.root.children.clear();
+                    parseTree.root.children.add(curNode);
+
+                    object.parent = curNode;
+                    curNode.children.add(object);
+
+                    for (ParseTreeNode rootChild : rootChildren) {
+                        rootChild.parent = object;
+                        rootChild.children.remove(object);
+                    }
+                    object.children.addAll(rootChildren);
+                }
+            }
+        }
+        // Delete removed nodes
+        toDelete.forEach(parseTree::deleteNode);
+
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
 		{
 			ParseTreeNode curNode = parseTree.allNodes.get(i); 
@@ -81,11 +157,11 @@ public class NodeMapper
             	curNode.tokenType = "NEG";  
             }
 		}
-		
+
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
 		{
 			ParseTreeNode curNode = parseTree.allNodes.get(i); 
-			if(curNode.tokenType.equals("NA") && curNode.relationship.equals("mwe")) // merge multi-word expression;
+			if(curNode.tokenType.equals("NA") && (curNode.relationship.equals("mwe"))) // merge multi-word expression;
 			{
 				if(curNode.wordOrder > curNode.parent.wordOrder)
 				{
@@ -170,17 +246,15 @@ public class NodeMapper
 		}
 	}
 	
-	public static void map(Query query, RDBMS db) throws Exception
-	{
-		ParseTree parseTree = query.parseTree; 
-		ArrayList<ParseTreeNode> allNodes = parseTree.allNodes;
-		
-		for(int i = 0; i < allNodes.size(); i++)
-		{
-			ParseTreeNode treeNode = allNodes.get(i); 
-			if(treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) // schema+text
-			{
-				db.isSchemaExist(treeNode);
+	public static void map(Query query, RDBMS db) throws Exception {
+        ParseTree parseTree = query.parseTree;
+        ArrayList<ParseTreeNode> allNodes = parseTree.allNodes;
+
+        for (int i = 0; i < allNodes.size(); i++) {
+            ParseTreeNode treeNode = allNodes.get(i);
+            if (treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) // schema+text
+            {
+                db.isSchemaExist(treeNode);
 
                 // Only check for value tokens if we aren't dealing with a verb (which will probably be an attribute
                 // or a relation).
@@ -188,19 +262,44 @@ public class NodeMapper
                     db.isTextExist(treeNode);
                 }
 
-                if(treeNode.mappedElements.size() == 0)
-                {
+                if (treeNode.mappedElements.size() == 0) {
                     treeNode.tokenType = "NA";
                     continue;
                 }
 
-                for (int j = 0; j < treeNode.mappedElements.size(); j++)
-                {
+                for (int j = 0; j < treeNode.mappedElements.size(); j++) {
                     MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
                     SimFunctions.similarity(treeNode, mappedElement);
                 }
                 Collections.sort(treeNode.mappedElements);
 
+            } else if (treeNode.tokenType.equals("VT")) { // num
+                String OT = "=";
+                if (treeNode.parent.tokenType.equals("OT")) {
+                    OT = treeNode.parent.function;
+                } else {
+                    for (ParseTreeNode child : treeNode.children) {
+                        if (child.tokenType.equals("OT")) {
+                            OT = child.function;
+                        }
+                    }
+                }
+                db.isNumExist(OT, treeNode);
+
+                treeNode.tokenType = "VTNUM";
+                treeNode.attachedOT = OT;
+
+                for (int j = 0; j < treeNode.mappedElements.size(); j++) {
+                    MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
+                    SimFunctions.similarity(treeNode, mappedElement);
+                }
+                Collections.sort(treeNode.mappedElements);
+            }
+        }
+
+        for (int i = 0; i < allNodes.size(); i++) {
+            ParseTreeNode treeNode = allNodes.get(i);
+            if (treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) { // schema+text
                 // Added by cjbaik
                 // If this word is related as an adjective to another word, then try the multi-word expression as well.
                 String originalLabel = treeNode.label;
@@ -220,14 +319,19 @@ public class NodeMapper
                     // Make sure the related node comes after the current word
                     if (relatedNode.wordOrder <= treeNode.wordOrder) continue;
 
+                    // Make sure it hasn't already been removed
+                    if (!parseTree.allNodes.contains(relatedNode)) continue;
+
                     treeNode.label = treeNode.label + " " + relatedNode.label;
                     db.isSchemaExist(treeNode);
                     db.isTextExist(treeNode);
 
+                    // Original related element
+                    MappedSchemaElement origRelatedEl = relatedNode.mappedElements.get(0);
+
                     // Only check and re-sort the new mapped elements
                     List<MappedSchemaElement> newMappedElements = new ArrayList<>();
-                    for (int j = origMappedElements.size() + 1; j < treeNode.mappedElements.size(); j++)
-                    {
+                    for (int j = origMappedElements.size() + 1; j < treeNode.mappedElements.size(); j++) {
                         MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
                         SimFunctions.similarity(treeNode, mappedElement);
                         newMappedElements.add(mappedElement);
@@ -237,11 +341,25 @@ public class NodeMapper
                     MappedSchemaElement newElement = newMappedElements.get(0);
 
                     if (!newElement.equals(origElement) &&
-                            newElement.similarity >= origElement.similarity) {
+                            newElement.similarity >= origElement.similarity &&
+                            newElement.similarity >= origRelatedEl.similarity) {
                         // Keep tree in multi-word form if new similarity is higher
                         treeNode.relationship = relatedNode.relationship;
                         treeNode.mappedElements.removeAll(origMappedElements);
-                        parseTree.deleteNode(relatedNode);
+                        for (ParseTreeNode relatedChild : relatedNode.children) {
+                            if (!relatedChild.equals(treeNode)) {
+                                relatedChild.parent = treeNode;
+                                relatedChild.children.remove(treeNode);
+                                treeNode.children.add(relatedChild);
+                            }
+                        }
+                        if (treeNode.parent.equals(relatedNode)) {
+                            treeNode.parent = relatedNode.parent;
+                            relatedNode.parent.children.add(treeNode);
+                        }
+                        relatedNode.children.clear();
+                        relatedNode.parent.children.remove(relatedNode);
+                        parseTree.allNodes.remove(relatedNode);
                         i--;
                     } else {
                         // Otherwise, revert to option where it's not multi-word elements
@@ -250,24 +368,8 @@ public class NodeMapper
                     }
                     break;
                 }
-			} else if(treeNode.tokenType.equals("VT")) { // num
-				String OT = "=";
-				if(treeNode.parent.tokenType.equals("OT"))
-				{
-					OT = treeNode.parent.function; 
-				} else {
-                    for (ParseTreeNode child : treeNode.children) {
-                        if (child.tokenType.equals("OT")) {
-                            OT = child.function;
-                        }
-                    }
-				}
-				db.isNumExist(OT, treeNode);
-
-                treeNode.tokenType = "VTNUM";
-                treeNode.attachedOT = OT;
-			}
-		}	
+            }
+        }
 	}
 	
 	public static void deleteNoMatch(Query query)

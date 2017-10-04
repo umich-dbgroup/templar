@@ -91,8 +91,20 @@ public class SimFunctions
 				}
 			}
 			
-			element.choice = 0; 
-			element.similarity = sims[0];
+			element.choice = 0;
+
+            // Average the top 3 (if not exist, provide 0.5)
+            double sum = 0;
+            double max = 3;
+            for (int i = 0; i < max; i++) {
+                if (i >= (sims.length - 1)) {
+                    sum += 0.5;
+                } else {
+                    sum += sims[i];
+                }
+            }
+
+			element.similarity = sum / max;
 
 			// Special case: we penalize if value text attribute is not a proper noun or adjective
             if (element.schemaElement.type.equals("text") && !(treeNode.pos.equals("NNP") || treeNode.pos.equals("JJ"))) {
