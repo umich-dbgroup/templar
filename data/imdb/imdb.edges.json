@@ -3,7 +3,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "cast",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -21,7 +21,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "classification",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -39,7 +39,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "copyright",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -57,7 +57,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "directed_by",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -75,7 +75,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "made_by",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -93,7 +93,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "tags",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
@@ -103,7 +103,7 @@
   },
   {
     "foreignAttribute": "kid",
-    "primaryAttribute": "kid",
+    "primaryAttribute": "id",
     "foreignRelation": "tags",
     "primaryRelation": "keyword"
   },
@@ -111,7 +111,7 @@
     "foreignAttribute": "msid",
     "primaryAttribute": "mid",
     "foreignRelation": "written_by",
-    "primaryRelation": "movies"
+    "primaryRelation": "movie"
   },
   {
     "foreignAttribute": "msid",
