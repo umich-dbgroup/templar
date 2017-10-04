@@ -102,10 +102,12 @@ public class NodeMapper
                     curNode.children.add(object);
 
                     for (ParseTreeNode rootChild : rootChildren) {
-                        rootChild.parent = object;
-                        rootChild.children.remove(object);
+                        if (!rootChild.equals(parent) && !rootChild.equals(object)) {
+                            rootChild.parent = object;
+                            rootChild.children.remove(object);
+                            object.children.add(rootChild);
+                        }
                     }
-                    object.children = rootChildren;
                 } else if (parent.relationship.equals("dep")) {
                     // Otherwise, need to get subject of verb (e.g. "How many ____ exist?")
                     ParseTreeNode object = null;
@@ -138,10 +140,12 @@ public class NodeMapper
                     curNode.children.add(object);
 
                     for (ParseTreeNode rootChild : rootChildren) {
-                        rootChild.parent = object;
-                        rootChild.children.remove(object);
+                        if (!rootChild.equals(parent) && !rootChild.equals(object)) {
+                            rootChild.parent = object;
+                            rootChild.children.remove(object);
+                            object.children.add(rootChild);
+                        }
                     }
-                    object.children.addAll(rootChildren);
                 }
             }
         }
