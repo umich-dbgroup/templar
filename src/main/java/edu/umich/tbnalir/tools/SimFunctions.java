@@ -64,11 +64,7 @@ public class SimFunctions
             // Set a threshold for the penalty
             element.similarity = Math.max(1 - penalty, 0.5);
 		} else {
-            // Limit max element mapped values size here
-            int maxSize = Math.min(10, element.mappedValues.size());
-            element.mappedValues = element.mappedValues.subList(0, maxSize);
-
-			double [] sims = new double[element.mappedValues.size()]; 
+			double [] sims = new double[element.mappedValues.size()];
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
@@ -90,24 +86,29 @@ public class SimFunctions
 					}
 				}
 			}
-			
+
+            // Limit max element mapped values size here
+            int maxSize = Math.min(10, element.mappedValues.size());
+            element.mappedValues = element.mappedValues.subList(0, maxSize);
+
 			element.choice = 0;
 
             // Average the top 3 (if not exist, provide 0.95)
             double sum = 0;
             double max = 3;
+            double[] weights = {0.6, 0.3, 0.1};
 
             // The bottom threshold should be at most 0.95 if there is no mapped value for a position
             double bottomThreshold = Math.min(0.95, sims[0]);
             for (int i = 0; i < max; i++) {
                 if (i >= (sims.length - 1)) {
-                    sum += bottomThreshold;
+                    sum += bottomThreshold * weights[i];
                 } else {
-                    sum += sims[i];
+                    sum += sims[i] * weights[i];
                 }
             }
 
-			element.similarity = sum / max;
+			element.similarity = sum;
 
 			// Special case: we penalize if value text attribute is not a proper noun or adjective
             if (element.schemaElement.type.equals("text") && !(treeNode.pos.equals("NNP") || treeNode.pos.equals("JJ"))) {
