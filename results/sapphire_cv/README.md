@@ -7,7 +7,7 @@ We ran experiments to see the coverage we get from creating 4 folds for cross-va
 ## Running Experiments
 
 ```
-java -cp build/libs/tb-nalir-all.jar edu.umich.tbnalir.SchemaAndLogTemplateGenerator data/text-to-sql-data-master/restaurants data/text-to-sql-data-master/restaurants.parsed 1 cv 1234 true | tee results/sapphire_cv/restaurants.join1.cv.1234.out
+java -cp build/libs/tb-nalir-all.jar edu.umich.templar.SchemaAndLogTemplateGenerator data/text-to-sql-data-master/restaurants data/text-to-sql-data-master/restaurants.parsed 1 cv 1234 true | tee results/sapphire_cv/restaurants.join1.cv.1234.out
 ```
 
 Program arguments:

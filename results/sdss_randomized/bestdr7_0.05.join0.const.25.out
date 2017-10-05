@@ -79,8 +79,8 @@ net.sf.jsqlparser.parser.TokenMgrError: Lexical error at line 1, column 140.  En
 	at net.sf.jsqlparser.parser.CCJSqlParser.SingleStatement(CCJSqlParser.java:129)
 	at net.sf.jsqlparser.parser.CCJSqlParser.Statement(CCJSqlParser.java:80)
 	at net.sf.jsqlparser.parser.CCJSqlParserUtil.parse(CCJSqlParserUtil.java:54)
-	at edu.umich.tbnalir.LogTemplateGenerator.parseStatements(LogTemplateGenerator.java:156)
-	at edu.umich.tbnalir.SchemaAndLogTemplateGenerator.main(SchemaAndLogTemplateGenerator.java:83)
+	at edu.umich.templar.LogTemplateGenerator.parseStatements(LogTemplateGenerator.java:156)
+	at edu.umich.templar.SchemaAndLogTemplateGenerator.main(SchemaAndLogTemplateGenerator.java:83)
 09:28  INFO: Parsed 840000 statements...
 09:36  INFO: Parsed 860000 statements...
 10:32  INFO: Parsed 880000 statements...
@@ -108,8 +108,8 @@ net.sf.jsqlparser.parser.TokenMgrError: Lexical error at line 1, column 140.  En
 	at net.sf.jsqlparser.parser.CCJSqlParser.SingleStatement(CCJSqlParser.java:129)
 	at net.sf.jsqlparser.parser.CCJSqlParser.Statement(CCJSqlParser.java:80)
 	at net.sf.jsqlparser.parser.CCJSqlParserUtil.parse(CCJSqlParserUtil.java:54)
-	at edu.umich.tbnalir.LogTemplateGenerator.parseStatements(LogTemplateGenerator.java:156)
-	at edu.umich.tbnalir.SchemaAndLogTemplateGenerator.main(SchemaAndLogTemplateGenerator.java:83)
+	at edu.umich.templar.LogTemplateGenerator.parseStatements(LogTemplateGenerator.java:156)
+	at edu.umich.templar.SchemaAndLogTemplateGenerator.main(SchemaAndLogTemplateGenerator.java:83)
 14:32  INFO: Parsed 1140000 statements...
 14:53  INFO: Parsed 1160000 statements...
 15:05  INFO: Parsed 1180000 statements...

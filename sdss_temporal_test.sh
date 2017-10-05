@@ -13,7 +13,7 @@ do
     do
         for la in "${log_amounts[@]}"
         do
-            java -Xms64g -Xmx128g -cp build/libs/tb-nalir-all.jar edu.umich.tbnalir.SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 bestdr7_0.05.parsed $jl $lt $la temporal results/sdss_temporal/bestdr7_0.05.join${jl}.${lt}.${la}.err  2>&1 | tee results/sdss_temporal/bestdr7_0.05.join${jl}.${lt}.${la}.out
+            java -Xms64g -Xmx128g -cp build/libs/tb-nalir-all.jar edu.umich.templar.SchemaAndLogTemplateGenerator data/sdss/schema/bestdr7 bestdr7_0.05.parsed $jl $lt $la temporal results/sdss_temporal/bestdr7_0.05.join${jl}.${lt}.${la}.err  2>&1 | tee results/sdss_temporal/bestdr7_0.05.join${jl}.${lt}.${la}.out
         done
     done 
 done

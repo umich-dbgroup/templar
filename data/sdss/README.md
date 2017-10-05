@@ -56,5 +56,5 @@ When using JSqlParser, we have this annoying error called the `TokenMgrError` th
 
 ```
 gradle shadowjar          // build
-java -cp build/libs/tb-nalir-all.jar edu.umich.tbnalir.LogParser filename.csv
+java -cp build/libs/tb-nalir-all.jar edu.umich.templar.LogParser filename.csv
 ```
