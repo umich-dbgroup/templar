@@ -398,16 +398,306 @@ public class Templar {
         return result;
     }
 
+    public static void removeStopwords(List<String> stopwords, Query query) {
+        List<ParseTreeNode> nodesToRemove = new ArrayList<>();
+        for (ParseTreeNode node : query.parseTree.allNodes) {
+            if (stopwords.contains(node.label.toLowerCase())) {
+                nodesToRemove.add(node);
+            }
+        }
+        for (ParseTreeNode node : nodesToRemove) {
+            query.parseTree.deleteNode(node);
+        }
+    }
+
+    public static List<ParseTreeNode> getMappedNodes(Query query) {
+        List<ParseTreeNode> mappedNodes = new ArrayList<>();
+        List<ParseTreeNode> mappedNodesToRemove = new ArrayList<>();
+
+        for (ParseTreeNode node : query.parseTree.allNodes) {
+            boolean isNameToken = node.tokenType.equals("NT");
+            boolean isValueToken = node.tokenType.startsWith("VT");
+
+            // TODO: move all this logic to Fei's components or clean it up
+            if (isNameToken || isValueToken) {
+                mappedNodes.add(node);
+
+                // Check for related nodes that are auxiliary and delete
+                for (ParseTreeNode[] auxEntry : query.auxTable) {
+                    // If governing node
+                    if (auxEntry[1].equals(node)) {
+                        mappedNodesToRemove.add(auxEntry[0]);
+                    }
+                }
+
+                // In the case that we have a function as a parent, add accordingly and "ignore" function
+                if (!node.parent.function.equals("NA")) {
+                    String superlative = null;
+                    for (MappedSchemaElement mse : node.mappedElements) {
+                        mse.attachedFT = node.parent.function;
+                    }
+                    ParseTreeNode functionNode = node.parent;
+
+                    if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
+                        superlative = node.parent.parent.function;
+                    }
+
+                    // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
+                    // is a CMT
+                    if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
+                        for (ParseTreeNode funcChild : functionNode.children) {
+                            funcChild.parent = node;
+                            node.children.add(funcChild);
+
+                            if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
+                                superlative = funcChild.function;
+                            }
+                        }
+
+                        if (superlative != null) {
+                            node.attachedSuperlative = superlative;
+                        }
+
+                        node.parent = functionNode.parent;
+                        node.relationship = functionNode.relationship;
+                        functionNode.parent.children.remove(functionNode);
+                    }
+                } else {
+                    // Do similar operation if function is child and has no children
+                    List<ParseTreeNode> funcToRemove = new ArrayList<>();
+                    List<ParseTreeNode> childrenToAdd = new ArrayList<>();
+                    for (ParseTreeNode child : node.children) {
+                        if (child.tokenType.equals("FT") && child.children.isEmpty()) {
+                            if (child.function.equals("max") || child.function.equals("min")) {
+                                node.attachedSuperlative = child.function;
+                            } else {
+                                for (MappedSchemaElement mse : node.mappedElements) {
+                                    mse.attachedFT = child.function;
+                                }
+                            }
+                            childrenToAdd.addAll(child.children);
+                            funcToRemove.add(child);
+                        }
+                    }
+                    node.children.removeAll(funcToRemove);
+                    node.children.addAll(childrenToAdd);
+                }
+            }
+
+            // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
+            // or "num" (number modifier) or "nn" (noun compound modifier) relationship, merge the two.
+            if (isValueToken) {
+                for (ParseTreeNode[] adjEntry : query.adjTable) {
+                    ParseTreeNode relatedNode;
+                    if (adjEntry[0].equals(node)) {
+                        relatedNode = adjEntry[1];
+                    } /*else if (adjEntry[1].equals(node)) {
+                            relatedNode = adjEntry[0];
+                        } */else {
+                        continue;
+                    }
+
+                    // If it's been removed, don't consider it
+                    if (!query.parseTree.allNodes.contains(relatedNode)) continue;
+
+                    // Only do NTs for the remainder
+                    // if (!relatedNode.tokenType.equals("NT")) continue;
+
+                    // Leave direct objects of CMTs alone, because they're unlikely to be modified
+                    if (relatedNode.parent.tokenType.equals("CMT") && relatedNode.relationship.equals("dobj")) continue;
+
+                    MappedSchemaElement chosenMappedSchemaEl = null;
+                    int choice = node.choice;
+                    // double nodeSimilarity = node.getChoiceMap().similarity;
+                    // double maxSimilarity = node.getChoiceMap().similarity;
+                    double maxSimilarity = 0;
+                    List<Integer> matchedNodes = new ArrayList<>();
+                    String attachedFT = null;
+
+                    boolean matchedNodeEl = false;
+                    boolean addNewForPrimaryAttribute = false;
+
+                    for (int j = 0; j < relatedNode.mappedElements.size(); j++) {
+                        MappedSchemaElement relatedMappedEl = relatedNode.mappedElements.get(j);
+                        SchemaElement relatedEl = relatedMappedEl.schemaElement;
+
+                        // Only consider if NT
+                        boolean relatedIsNT = relatedMappedEl.mappedValues.size() == 0 || relatedMappedEl.choice == -1;
+                        if (!relatedIsNT) continue;
+
+                        for (int k = 0; k < node.mappedElements.size(); k++) {
+                            MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
+
+                            boolean relatedIsRelation = relatedMappedEl.schemaElement.type.equals("relation");
+                            boolean relationMatchesAndThisIsPrimary = relatedIsRelation &&
+                                    nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name)
+                                    && nodeMappedEl.schemaElement.relation.defaultAttribute.equals(nodeMappedEl.schemaElement);
+                            boolean attributeMatchesIfBothAttributes = !relatedIsRelation &&
+                                    nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name) &&
+                                    nodeMappedEl.schemaElement.name.equals(relatedMappedEl.schemaElement.name);
+                            if (relationMatchesAndThisIsPrimary
+                                    || attributeMatchesIfBothAttributes) {
+                                matchedNodeEl = true;
+                                matchedNodes.add(k);
+
+                                // Somewhat arbitrarily combine their similarity by averaging and giving a boost
+                                // double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
+
+                                double relatedScore = relatedMappedEl.similarity;
+                                double nodeScore = nodeMappedEl.similarity;
+
+                                if (nodeScore >= Constants.MIN_SIM && relatedScore >= Constants.MIN_SIM) {
+                                    // Weigh each disproportionately and compare
+                                    double firstScore = 0.8 * relatedScore + 0.2 * nodeScore;
+                                    double secondScore = 0.8 * nodeScore + 0.2 * relatedScore;
+
+                                    double combinedScore = Math.max(firstScore, secondScore);
+                                    nodeMappedEl.similarity = combinedScore;
+
+                                    if (combinedScore > maxSimilarity) {
+                                        chosenMappedSchemaEl = nodeMappedEl;
+                                        maxSimilarity = combinedScore;
+                                        choice = k;
+                                        addNewForPrimaryAttribute = false;
+                                        attachedFT = relatedMappedEl.attachedFT;
+                                    }
+                                } else if (nodeScore >= Constants.MIN_SIM) {
+                                    // Add 0.12 to be minimum related score, 0.6, multiplied by weight 0.2
+                                    double nodeSim = nodeScore * 0.8 + 0.12;
+                                    if (nodeSim > maxSimilarity) {
+                                        // In the case that the node is fine as is
+                                        chosenMappedSchemaEl = null;
+                                        maxSimilarity = nodeSim;
+                                        choice = k;
+                                        addNewForPrimaryAttribute = false;
+                                        attachedFT = null;
+                                    }
+                                } else if (relatedScore >= Constants.MIN_SIM) {
+                                    double relatedSim = relatedScore * 0.8 + 0.12;
+                                    if (relatedSim > maxSimilarity) {
+                                        // In the case that the related is fine as is
+                                        chosenMappedSchemaEl = null;
+                                        maxSimilarity = relatedSim;
+                                        choice = k;
+                                        addNewForPrimaryAttribute = false;
+                                        attachedFT = null;
+                                    }
+                                }
+                            }
+                        }
+
+                        // In the case that the NT is the primary attribute, perhaps we're doing a COUNT?
+                        if (!matchedNodeEl &&
+                                relatedEl.equals(relatedEl.relation.defaultAttribute) && relatedMappedEl.choice == -1) {
+                            // Use only the related element's similarity
+                            double relatedScore = relatedMappedEl.similarity;
+
+                            if (relatedScore > maxSimilarity) {
+                                chosenMappedSchemaEl = relatedMappedEl;
+                                maxSimilarity = relatedScore;
+                                addNewForPrimaryAttribute = true;
+                            }
+                        }
+                    }
+
+                    // Penalize all unmatched node elements
+                        /*for (int m = 0; m < node.mappedElements.size(); m++) {
+                            if (!matchedNodes.contains(m)) {
+                                node.mappedElements.get(m).similarity *= 0.8;
+                            }
+                        }*/
+
+                    if (chosenMappedSchemaEl != null) {
+                        if (addNewForPrimaryAttribute) {
+                            chosenMappedSchemaEl.mappedValues.add(node.label);
+                            chosenMappedSchemaEl.choice = chosenMappedSchemaEl.mappedValues.size() - 1;
+
+                            node.mappedElements.add(chosenMappedSchemaEl);
+                            node.choice = node.mappedElements.size() - 1;
+                            chosenMappedSchemaEl.attachedFT = "count";
+                        } else {
+                            chosenMappedSchemaEl.similarity = maxSimilarity;
+                            node.choice = choice;
+                            if (attachedFT != null && node.getChoiceMap().attachedFT == null) {
+                                node.getChoiceMap().attachedFT = attachedFT;
+                            }
+                        }
+                        mappedNodesToRemove.add(relatedNode);
+                    }
+                }
+            }
+        }
+        mappedNodes.removeAll(mappedNodesToRemove);
+        return mappedNodes;
+    }
+
+    public static String getDebugOutput(LexicalizedParser lexiParser, Query query, List<PossibleTranslation> translations,
+                                 List<InstantiatedTemplate> results) {
+        StringBuilder sb = new StringBuilder();
+
+        List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
+        Tree parse = lexiParser.apply(rawWords);
+        TreebankLanguagePack tlp = new PennTreebankLanguagePack();
+        GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
+        GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
+        List<TypedDependency> dependencyList = gs.typedDependencies(false);
+
+        for (TaggedWord tagged : parse.taggedYield()) {
+            sb.append(tagged.word());
+            sb.append(", ");
+            sb.append(tagged.tag());
+            sb.append("\n");
+        }
+
+        for (TypedDependency dep : dependencyList) {
+            sb.append(dep);
+            sb.append("\n");
+        }
+
+        sb.append("\n");
+        sb.append("PARSE TREE:");
+        sb.append(query.parseTree);
+        sb.append("\n");
+
+        PrintForCheck.allParseTreeNodePrintForCheck(query.parseTree);
+        sb.append("\n");
+
+        sb.append("===========\n");
+        sb.append("TRANSLATIONS\n");
+        sb.append("===========\n");
+        for (PossibleTranslation trans : translations) {
+            sb.append(trans.toStringDebug());
+            sb.append("\n");
+        }
+        sb.append("\n");
+
+        sb.append("===========\n");
+        sb.append("RESULTS\n");
+        sb.append("===========\n");
+        for (InstantiatedTemplate result : results) {
+            sb.append(result);
+            sb.append("\n");
+        }
+        sb.append("\n");
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file>");
-            System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt");
+            System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file> <ans-file (optional)>");
+            System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt data/mas/mas_c1.ans");
             System.exit(1);
         }
         String dbName = args[0];
         String prefix = args[1];
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
+
+        String ansFile = null;
+        if (args.length > 4) {
+            ansFile = args[4];
+        }
 
         RDBMS db;
         try {
@@ -428,6 +718,7 @@ public class Templar {
         // Read in stop words list
         List<String> stopwords = new ArrayList<>();
         List<String> queryStrs = new ArrayList<>();
+        List<List<String>> queryAnswers = null;
         try {
             List<String> stopwordsList = FileUtils.readLines(new File("libs/stopwords.txt"), "UTF-8");
             for (String word : stopwordsList) {
@@ -435,6 +726,14 @@ public class Templar {
             }
 
             queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+
+            if (ansFile != null) {
+                List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
+                queryAnswers = new ArrayList<>();
+                for (String line : answerFileLines) {
+                    queryAnswers.add(Arrays.asList(line.trim().split("\t")));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
@@ -455,6 +754,9 @@ public class Templar {
         // queryStrs.add("How many users have reviewed Irish pubs in Dallas?");
 
         int i = 0;
+        int top1 = 0;
+        int top3 = 0;
+        int top5 = 0;
         for (String queryStr : queryStrs) {
             Log.info("================");
             Log.info("QUERY " + i++ + ": " + queryStr);
@@ -466,25 +768,10 @@ public class Templar {
 
             Query query = new Query(queryStr, db.schemaGraph);
 
-            Log.info("Parsing query with NL parser...");
+            // Parse query with NL Parser
             StanfordNLParser.parse(query, lexiParser);
 
-            List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
-            Tree parse = lexiParser.apply(rawWords);
-            TreebankLanguagePack tlp = new PennTreebankLanguagePack();
-            GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
-            GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
-            List<TypedDependency> dependencyList = gs.typedDependencies(false);
-
-            for (TaggedWord tagged : parse.taggedYield()) {
-                System.out.println(tagged.word() + ", " + tagged.tag());
-            }
-
-            for (TypedDependency dep : dependencyList) {
-                System.out.println(dep);
-            }
-
-            Log.info("Mapping nodes to token types...");
+            // Map nodes to token types
             try {
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder builder = factory.newDocumentBuilder();
@@ -495,255 +782,18 @@ public class Templar {
                 throw new RuntimeException(e);
             }
 
-            // Check stopwords list and remove
-            List<ParseTreeNode> nodesToRemove = new ArrayList<>();
-            for (ParseTreeNode node : query.parseTree.allNodes) {
-                if (stopwords.contains(node.label.toLowerCase())) {
-                    nodesToRemove.add(node);
-                }
-            }
-            for (ParseTreeNode node : nodesToRemove) {
-                query.parseTree.deleteNode(node);
-            }
+            removeStopwords(stopwords, query);
 
-            System.out.println("PARSE TREE:");
-            System.out.println(query.parseTree);
-            System.out.println();
-
-            List<ParseTreeNode> mappedNodes = new ArrayList<>();
-            List<ParseTreeNode> mappedNodesToRemove = new ArrayList<>();
-
-            for (ParseTreeNode node : query.parseTree.allNodes) {
-                boolean isNameToken = node.tokenType.equals("NT");
-                boolean isValueToken = node.tokenType.startsWith("VT");
-
-                // TODO: move all this logic to Fei's components or clean it up
-                if (isNameToken || isValueToken) {
-                    mappedNodes.add(node);
-
-                    // Check for related nodes that are auxiliary and delete
-                    for (ParseTreeNode[] auxEntry : query.auxTable) {
-                        // If governing node
-                        if (auxEntry[1].equals(node)) {
-                            mappedNodesToRemove.add(auxEntry[0]);
-                        }
-                    }
-
-                    // In the case that we have a function as a parent, add accordingly and "ignore" function
-                    if (!node.parent.function.equals("NA")) {
-                        String superlative = null;
-                        for (MappedSchemaElement mse : node.mappedElements) {
-                            mse.attachedFT = node.parent.function;
-                        }
-                        ParseTreeNode functionNode = node.parent;
-
-                        if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
-                            superlative = node.parent.parent.function;
-                        }
-
-                        // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
-                        // is a CMT
-                        if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
-                            for (ParseTreeNode funcChild : functionNode.children) {
-                                funcChild.parent = node;
-                                node.children.add(funcChild);
-
-                                if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
-                                    superlative = funcChild.function;
-                                }
-                            }
-
-                            if (superlative != null) {
-                                node.attachedSuperlative = superlative;
-                            }
-
-                            node.parent = functionNode.parent;
-                            node.relationship = functionNode.relationship;
-                            functionNode.parent.children.remove(functionNode);
-                        }
-                    } else {
-                        // Do similar operation if function is child and has no children
-                        List<ParseTreeNode> funcToRemove = new ArrayList<>();
-                        List<ParseTreeNode> childrenToAdd = new ArrayList<>();
-                        for (ParseTreeNode child : node.children) {
-                            if (child.tokenType.equals("FT") && child.children.isEmpty()) {
-                                if (child.function.equals("max") || child.function.equals("min")) {
-                                    node.attachedSuperlative = child.function;
-                                } else {
-                                    for (MappedSchemaElement mse : node.mappedElements) {
-                                        mse.attachedFT = child.function;
-                                    }
-                                }
-                                childrenToAdd.addAll(child.children);
-                                funcToRemove.add(child);
-                            }
-                        }
-                        node.children.removeAll(funcToRemove);
-                        node.children.addAll(childrenToAdd);
-                    }
-                }
-
-                // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
-                // or "num" (number modifier) or "nn" (noun compound modifier) relationship, merge the two.
-                if (isValueToken) {
-                    for (ParseTreeNode[] adjEntry : query.adjTable) {
-                        ParseTreeNode relatedNode;
-                        if (adjEntry[0].equals(node)) {
-                            relatedNode = adjEntry[1];
-                        } /*else if (adjEntry[1].equals(node)) {
-                            relatedNode = adjEntry[0];
-                        } */else {
-                            continue;
-                        }
-
-                        // If it's been removed, don't consider it
-                        if (!query.parseTree.allNodes.contains(relatedNode)) continue;
-
-                        // Only do NTs for the remainder
-                        // if (!relatedNode.tokenType.equals("NT")) continue;
-
-                        // Leave direct objects of CMTs alone, because they're unlikely to be modified
-                        if (relatedNode.parent.tokenType.equals("CMT") && relatedNode.relationship.equals("dobj")) continue;
-
-                        MappedSchemaElement chosenMappedSchemaEl = null;
-                        int choice = node.choice;
-                        // double nodeSimilarity = node.getChoiceMap().similarity;
-                        // double maxSimilarity = node.getChoiceMap().similarity;
-                        double maxSimilarity = 0;
-                        List<Integer> matchedNodes = new ArrayList<>();
-                        String attachedFT = null;
-
-                        boolean matchedNodeEl = false;
-                        boolean addNewForPrimaryAttribute = false;
-
-                        for (int j = 0; j < relatedNode.mappedElements.size(); j++) {
-                            MappedSchemaElement relatedMappedEl = relatedNode.mappedElements.get(j);
-                            SchemaElement relatedEl = relatedMappedEl.schemaElement;
-
-                            // Only consider if NT
-                            boolean relatedIsNT = relatedMappedEl.mappedValues.size() == 0 || relatedMappedEl.choice == -1;
-                            if (!relatedIsNT) continue;
-
-                            for (int k = 0; k < node.mappedElements.size(); k++) {
-                                MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
-
-                                boolean relatedIsRelation = relatedMappedEl.schemaElement.type.equals("relation");
-                                boolean relationMatchesAndThisIsPrimary = relatedIsRelation &&
-                                        nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name)
-                                        && nodeMappedEl.schemaElement.relation.defaultAttribute.equals(nodeMappedEl.schemaElement);
-                                boolean attributeMatchesIfBothAttributes = !relatedIsRelation &&
-                                        nodeMappedEl.schemaElement.relation.name.equals(relatedMappedEl.schemaElement.relation.name) &&
-                                        nodeMappedEl.schemaElement.name.equals(relatedMappedEl.schemaElement.name);
-                                if (relationMatchesAndThisIsPrimary
-                                        || attributeMatchesIfBothAttributes) {
-                                    matchedNodeEl = true;
-                                    matchedNodes.add(k);
-
-                                    // Somewhat arbitrarily combine their similarity by averaging and giving a boost
-                                    // double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
-
-                                    double relatedScore = relatedMappedEl.similarity;
-                                    double nodeScore = nodeMappedEl.similarity;
-
-                                    if (nodeScore >= Constants.MIN_SIM && relatedScore >= Constants.MIN_SIM) {
-                                        // Weigh each disproportionately and compare
-                                        double firstScore = 0.8 * relatedScore + 0.2 * nodeScore;
-                                        double secondScore = 0.8 * nodeScore + 0.2 * relatedScore;
-
-                                        double combinedScore = Math.max(firstScore, secondScore);
-                                        nodeMappedEl.similarity = combinedScore;
-
-                                        if (combinedScore > maxSimilarity) {
-                                            chosenMappedSchemaEl = nodeMappedEl;
-                                            maxSimilarity = combinedScore;
-                                            choice = k;
-                                            addNewForPrimaryAttribute = false;
-                                            attachedFT = relatedMappedEl.attachedFT;
-                                        }
-                                    } else if (nodeScore >= Constants.MIN_SIM) {
-                                        // Add 0.12 to be minimum related score, 0.6, multiplied by weight 0.2
-                                        double nodeSim = nodeScore * 0.8 + 0.12;
-                                        if (nodeSim > maxSimilarity) {
-                                            // In the case that the node is fine as is
-                                            chosenMappedSchemaEl = null;
-                                            maxSimilarity = nodeSim;
-                                            choice = k;
-                                            addNewForPrimaryAttribute = false;
-                                            attachedFT = null;
-                                        }
-                                    } else if (relatedScore >= Constants.MIN_SIM) {
-                                        double relatedSim = relatedScore * 0.8 + 0.12;
-                                        if (relatedSim > maxSimilarity) {
-                                            // In the case that the related is fine as is
-                                            chosenMappedSchemaEl = null;
-                                            maxSimilarity = relatedSim;
-                                            choice = k;
-                                            addNewForPrimaryAttribute = false;
-                                            attachedFT = null;
-                                        }
-                                    }
-                                }
-                            }
-
-                            // In the case that the NT is the primary attribute, perhaps we're doing a COUNT?
-                            if (!matchedNodeEl &&
-                                    relatedEl.equals(relatedEl.relation.defaultAttribute) && relatedMappedEl.choice == -1) {
-                                // Use only the related element's similarity
-                                double relatedScore = relatedMappedEl.similarity;
-
-                                if (relatedScore > maxSimilarity) {
-                                    chosenMappedSchemaEl = relatedMappedEl;
-                                    maxSimilarity = relatedScore;
-                                    addNewForPrimaryAttribute = true;
-                                }
-                            }
-                        }
-
-                        // Penalize all unmatched node elements
-                        /*for (int m = 0; m < node.mappedElements.size(); m++) {
-                            if (!matchedNodes.contains(m)) {
-                                node.mappedElements.get(m).similarity *= 0.8;
-                            }
-                        }*/
-
-                        if (chosenMappedSchemaEl != null) {
-                            if (addNewForPrimaryAttribute) {
-                                chosenMappedSchemaEl.mappedValues.add(node.label);
-                                chosenMappedSchemaEl.choice = chosenMappedSchemaEl.mappedValues.size() - 1;
-
-                                node.mappedElements.add(chosenMappedSchemaEl);
-                                node.choice = node.mappedElements.size() - 1;
-                                chosenMappedSchemaEl.attachedFT = "count";
-                            } else {
-                                chosenMappedSchemaEl.similarity = maxSimilarity;
-                                node.choice = choice;
-                                if (attachedFT != null && node.getChoiceMap().attachedFT == null) {
-                                    node.getChoiceMap().attachedFT = attachedFT;
-                                }
-                            }
-                            mappedNodesToRemove.add(relatedNode);
-                        }
-                    }
-                }
-            }
-            mappedNodes.removeAll(mappedNodesToRemove);
-
-            PrintForCheck.allParseTreeNodePrintForCheck(query.parseTree);
-            System.out.println();
+            List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 
             Templar tc = new Templar(db.schemaGraph.relations);
             List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes, null, null,
                     null, null, null, 0, 0);
 
-            int n = 10;
-
-            Log.info("============");
-            Log.info("TRANSLATIONS");
-            Log.info("============");
             translations.sort((a, b) -> b.getTotalScore().compareTo(a.getTotalScore()));
 
+            int n = 10;
             List<PossibleTranslation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
-            topNTranslations.stream().map(PossibleTranslation::toStringDebug).forEach(System.out::println);
 
             List<InstantiatedTemplate> results = new ArrayList<>();
             Map<String, Integer> resultIndexMap = new HashMap<>();
@@ -772,14 +822,30 @@ public class Templar {
 
             results.sort((a, b) -> b.getTotalScore().compareTo(a.getTotalScore()));
 
-            System.out.println();
-            Log.info("============");
-            Log.info("FINAL RESULTS");
-            Log.info("============");
-            results.subList(0, Math.min(10, results.size())).forEach(System.out::println);
+            Integer rank = null;
+            if (queryAnswers != null) {
+                for (int j = 0; j < Math.min(results.size(), 5); j++) {
+                    if (queryAnswers.get(i).contains(results.get(j).toString())) {
+                        rank = j + 1;
+                        if (rank <= 5) top5++;
+                        if (rank <= 3) top3++;
+                        if (rank == 1) top1++;
+                        break;
+                    }
+                }
+            }
 
-            System.out.println();
+            if (rank == null || rank > 1) {
+                System.out.println(getDebugOutput(lexiParser, query, topNTranslations, results.subList(0, Math.min(10, results.size()))));
+            }
         }
 
+        Log.info("==============");
+        Log.info("SUMMARY");
+        Log.info("==============");
+        Log.info("Total queries: " + queryStrs.size());
+        Log.info("Top 1: " + top1);
+        Log.info("Top 3: " + top3);
+        Log.info("Top 5: " + top5);
     }
 }
