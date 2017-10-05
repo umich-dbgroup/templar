@@ -1,0 +1,14 @@
+select journal_0.homepage from journal as journal_0 where journal_0.name = "PVLDB"
+select author_0.homepage from author as author_0 where author_0.name = "H. V. Jagadish"
+select publication_0.abstract from publication as publication_0 where publication_0.title = "Making database systems usable"
+select publication_0.year from publication as publication_0 where publication_0.title = "Making database systems usable"
+select publication_0.title from publication as publication_0 where publication_0.year > 2000
+select conference_0.homepage from conference as conference_0 where conference_0.name = "VLDB"
+select keyword_0.keyword from keyword as keyword_0
+select organization_0.name from organization as organization_0
+select organization_0.name from organization as organization_0 where organization_0.continent = "North America"
+select organization_0.homepage from organization as organization_0 where organization_0.name = "University of Michigan"
+select publication_0.reference_num from publication as publication_0 where publication_0.title = "Making database systems usable"
+select publication_0.citation_num from publication as publication_0 where publication_0.title = "Making database systems usable"
+select publication_0.year from publication as publication_0 where publication_0.title = "Making database systems usable"
+select publication_0.title from publication as publication_0 where publication_0.citation_num > 200
