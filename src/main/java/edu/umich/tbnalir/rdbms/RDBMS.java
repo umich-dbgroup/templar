@@ -117,13 +117,13 @@ public class RDBMS {
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
-            MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label);
+            MappedSchemaElement element = attributes.get(i).isSchemaExist(treeNode.label, treeNode.pos);
             if (element != null) {
                 treeNode.mappedElements.add(element);
             }
 
             // Check for relations
-            MappedSchemaElement relEl = attributes.get(i).isRelationSimilar(treeNode.label);
+            MappedSchemaElement relEl = attributes.get(i).isRelationSimilar(treeNode.label, treeNode.pos);
             if (relEl != null) {
                 treeNode.mappedElements.add(relEl);
             }

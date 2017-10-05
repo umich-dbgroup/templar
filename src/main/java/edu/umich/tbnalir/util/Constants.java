@@ -21,4 +21,7 @@ public class Constants {
     public static final Double EXACT_MATCH = 1.0;
     public static final Double SLOT_COVERS = 0.5;
     public static final Double NO_MATCH = 0.0;
+
+    // Min similarity score to consider "matching"
+    public static final Double MIN_SIM = 0.6;
 }

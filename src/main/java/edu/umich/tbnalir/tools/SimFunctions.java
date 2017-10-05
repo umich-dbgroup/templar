@@ -15,6 +15,7 @@ import edu.cmu.lti.ws4j.Relatedness;
 import edu.cmu.lti.ws4j.RelatednessCalculator;
 import edu.cmu.lti.ws4j.impl.WuPalmer;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemmatizer;
+import edu.umich.tbnalir.util.Constants;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class SimFunctions 
@@ -29,7 +30,7 @@ public class SimFunctions
 
 	public static void main(String [] args) throws Exception
 	{
-		System.out.println(similarity("publication", "publication_num")); 
+		// System.out.println(similarity("publication", "publication_num"));
 	}
 	
 	public static String lemmatize(String word) throws Exception
@@ -62,7 +63,7 @@ public class SimFunctions
 
             double penalty = Math.abs(sum - size) / size;
             // Set a threshold for the penalty
-            element.similarity = Math.max(1 - penalty, 0.5);
+            element.similarity = Math.max(1 - penalty, Constants.MIN_SIM);
 		} else {
 			double [] sims = new double[element.mappedValues.size()];
 			List<String> mappedValues = element.mappedValues;
@@ -117,9 +118,9 @@ public class SimFunctions
 		}
 	}
 	
-	public static boolean ifSchemaSimilar(String word1, String word2) throws Exception
+	public static boolean ifSchemaSimilar(String word1, String word1pos, String word2, String word2pos) throws Exception
 	{
-		double similarity = similarity(word1, word2); 
+		double similarity = similarity(word1, word1pos, word2, word2pos);
 		if(similarity > 0.5)
 		{
 			return true; 
@@ -130,16 +131,16 @@ public class SimFunctions
 		}
 	}
 	
-	public static double similarity(String word1, String word2) throws Exception
+	public static double similarity(String word1, String word1pos, String word2, String word2pos) throws Exception
 	{
 		double similarity;
 
-		double wordnetScore = wordNetSim(word1, word2);
+		double wordnetScore = wordNetSim(word1, word1pos, word2, word2pos);
         double pqScore = pqSim(word1, word2);
 		if(wordnetScore < pqScore) {
 			similarity = pqScore;
 		} else {
-            // TODO: this seems like an arbitrary boost to me.
+            // this seems like an arbitrary boost to me.
             //similarity += pqSim(word1, word2) / 10;
 
             similarity = 0.8 * wordnetScore + 0.2 * pqScore;
@@ -147,8 +148,22 @@ public class SimFunctions
 		
 		return similarity; 
 	}
-	
-	public static double wordNetSim(String word1, String word2) throws Exception
+
+    public static String convertStanfordPosToMorphadornerPos(String pos) {
+        if (pos.equals("CD")) {
+            return "numeral";
+        } else if (pos.startsWith("JJ")) {
+            return "adjective";
+        } else if (pos.startsWith("NN")) {
+            return "noun";
+        } else if (pos.startsWith("VB")) {
+            return "verb";
+        } else {
+            return null;
+        }
+    }
+
+	public static double wordNetSim(String word1, String word1pos, String word2, String word2pos) throws Exception
 	{
 		// double sim = wordNetSimCompute(word1, word2);
 		String [] words1 = word1.split("_"); 
@@ -160,7 +175,21 @@ public class SimFunctions
             double maxScoreForThisI = 0.0;
 			for(int j = 0; j < words2.length; j++)
 			{
-				double sim_part = wordNetSimCompute(lemmatizer.lemmatize(words1[i]), lemmatizer.lemmatize(words2[j]));
+                String word1lemma;
+                if (word1pos != null) {
+                    word1lemma = lemmatizer.lemmatize(words1[i], convertStanfordPosToMorphadornerPos(word1pos));
+                } else {
+                    word1lemma = lemmatizer.lemmatize(words1[i]);
+                }
+
+                String word2lemma;
+                if (word2pos != null) {
+                    word2lemma = lemmatizer.lemmatize(words2[j], convertStanfordPosToMorphadornerPos(word2pos));
+                } else {
+                    word2lemma = lemmatizer.lemmatize(words2[j]);
+                }
+
+				double sim_part = wordNetSimCompute(word1lemma, word2lemma);
                 if (sim_part > maxScoreForThisI) {
                     maxScoreForThisI = sim_part;
                 }

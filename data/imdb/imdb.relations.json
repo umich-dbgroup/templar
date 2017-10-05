@@ -61,6 +61,7 @@
         "entropy": 0.0
       },
       "role": {
+        "importance": "primary",
         "name": "role",
         "type": "text",
         "entropy": 0.0
@@ -292,7 +293,7 @@
       },
       "budget": {
         "name": "budget",
-        "type": "text",
+        "type": "int",
         "entropy": 0.0
       }
     }

@@ -1,4 +1,4 @@
-package edu.umich.tbnalir.template;
+package edu.umich.tbnalir;
 
 import com.esotericsoftware.minlog.Log;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -13,23 +13,27 @@ import edu.umich.tbnalir.dataStructure.Query;
 import edu.umich.tbnalir.parse.*;
 import edu.umich.tbnalir.rdbms.*;
 import edu.umich.tbnalir.sql.Operator;
+import edu.umich.tbnalir.template.InstantiatedTemplate;
+import edu.umich.tbnalir.template.SchemaDataTemplateGenerator;
+import edu.umich.tbnalir.template.Template;
 import edu.umich.tbnalir.tools.PrintForCheck;
+import edu.umich.tbnalir.tools.SimFunctions;
+import edu.umich.tbnalir.util.Constants;
 import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.nio.charset.Charset;
 import java.util.*;
 
 /**
  * Created by cjbaik on 9/6/17.
  */
-public class TemplateChooser {
+public class Templar {
     Map<String, Relation> relations;
 
-    public TemplateChooser(Map<String, Relation> relations) {
+    public Templar(Map<String, Relation> relations) {
         this.relations = relations;
     }
 
@@ -117,7 +121,7 @@ public class TemplateChooser {
                 List<Predicate> newAccumPred = new ArrayList<>(accumPred);
                 List<Having> newAccumHaving = new ArrayList<>(accumHaving);
 
-                // Treat as projection, if no mapped values or if parent is CMT
+                // Treat as projection, if no mapped values
                 if (schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1) {
                     // Treat as superlative if has both superlative and function
                     if (curNode.attachedSuperlative != null ||
@@ -306,23 +310,87 @@ public class TemplateChooser {
                         newAttr.setRelation(rel);
                         pred.setAttribute(newAttr);
 
-                        if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
-                        newAccumRel.add(rel);
-
-                        // If it's a pred for a weak entity, then generate a projection for the primary entity
-                        if (rel.isWeak() && curNode.parent.tokenType.equals("CMT") &&
-                                (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj") || curNode.relationship.equals("nsubjpass"))) {
-                            Relation parent = this.relations.get(rel.getParent());
-                            // TODO: do I need to increment aliasInt here for the parent? how?
-                            Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
-                            newAccumProj.add(proj);
-                            newAccumRel.add(parent);
+                        double relSim;
+                        double attrSim;
+                        try {
+                            relSim = SimFunctions.similarity(rel.getName(), null, curNode.label, curNode.pos);
+                            attrSim = SimFunctions.similarity(attr.getName(), null, curNode.label, curNode.pos);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
                         }
 
+                        // If parent is CMT, then consider possibilities for projection
+                        if (curNode.parent.tokenType.equals("CMT")) {
+                            if (attrSim >= Constants.MIN_SIM) {
+                                // CASE 1: If attribute is similar, project attribute accordingly
 
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                accumScore + schemaEl.similarity, accumNodes + 1));
+                                // TODO: do I need to increment aliasInt here for the parent? how?
+                                Projection proj = new Projection(attr, curNode.getChoiceMap().attachedFT);
+                                newAccumProj.add(proj);
+                                newAccumRel.add(rel);
+
+                                // Get the maximum of the attribute or relation similarity
+                                double maxSim = Math.max(relSim, attrSim);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + maxSim, accumNodes + 1));
+                            } else if (relSim >= Constants.MIN_SIM) {
+                                // CASE 2: If relation is similar, project relation default attribute
+                                // e.g. "How many papers..."
+                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                newAccumProj.add(proj);
+                                newAccumRel.add(rel);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + relSim, accumNodes + 1));
+                            } else if (rel.isWeak() &&
+                                    (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
+                                            || curNode.relationship.equals("nsubjpass"))) {
+                                // CASE 3: If it's a weak entity, project parent relation default attribute
+                                // e.g. "How many restaurants..."
+
+                                Relation parent = this.relations.get(rel.getParent());
+                                // TODO: do I need to increment aliasInt here for the parent? how?
+                                Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                newAccumProj.add(proj);
+                                newAccumRel.add(parent);
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + schemaEl.similarity, accumNodes + 1));
+                            } else {
+                                // CASE 4: Project relation default attribute in addition to predicate
+                                // e.g. "How many Starbucks..."
+                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
+                                newAccumProj.add(proj);
+                                newAccumRel.add(rel);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + schemaEl.similarity, accumNodes + 1));
+                            }
+                        } else {
+                            // In situations where it's probably not a projection because parent is not CMT
+
+                            if (relSim >= Constants.MIN_SIM) {
+                                // CASE 1: it's a simple relation reference
+                                newAccumRel.add(rel);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + relSim, accumNodes + 1));
+                            } else {
+                                // CASE 2: it's actually supposed to be a predicate
+                                if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
+                                newAccumRel.add(rel);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                        accumScore + schemaEl.similarity, accumNodes + 1));
+                            }
+                        }
                     }
                 }
             }
@@ -340,12 +408,6 @@ public class TemplateChooser {
         String prefix = args[1];
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
-
-        /*File gModel = new File("libs/GoogleNews-vectors-negative300.bin.gz");
-        Word2Vec vec = WordVectorSerializer.readWord2VecModel(gModel);
-        System.out.println(vec.similarity("cat", "dog"));
-        System.out.println(vec.similarity("star", "rating"));
-        System.exit(1);*/
 
         RDBMS db;
         try {
@@ -372,22 +434,25 @@ public class TemplateChooser {
                 stopwords.add(word.trim());
             }
 
-            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
         }
 
-        // queryStrs.add("Which Thai restaurant has the most number of reviews");
-        // queryStrs.add("which neighborhood has the most number of businesses in Madison");
-        // queryStrs.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
-        // queryStrs.add("Which Indian restaurant in Dallas has the highest rating?");
-        // queryStrs.add("Which Indian restaurant in Dallas has the most number of reviews?");
-        // queryStrs.add("Which Italian restaurant in Dallas has the highest rating?");
-        // queryStrs.add("Find all states in which there is a Whataburger");
-        // queryStrs.add("Find all cities which has a \"Taj Mahal\"");
+        // queryStrs.add("What is the nationality of the actor \"Christoph Waltz\"?");
+        // queryStrs.add("How much was the budget of \"Finding Nemo\"");
+        // queryStrs.add("Find all movies produced in 2015");
+        // queryStrs.add("Find all actors born in \"Los Angeles\"");
+        // queryStrs.add("Find the actor who played \"Captain Miller\" in the movie \"Saving Private Ryan\"");
+
+        // queryStrs.add("return me the papers on VLDB conference.");
+        // queryStrs.add("return me the authors who have papers in PVLDB 2010.");
+        // queryStrs.add("return me the paper with more than 200 citations.");
+
         // queryStrs.add("List all businesses with rating 3.5");
         // queryStrs.add("List all the reviews which rated a business less than 1");
+        // queryStrs.add("How many users have reviewed Irish pubs in Dallas?");
 
         int i = 0;
         for (String queryStr : queryStrs) {
@@ -476,8 +541,9 @@ public class TemplateChooser {
                             superlative = node.parent.parent.function;
                         }
 
-                        // Only move around children if the function isn't actually a CMT (like "how many")
-                        if (!functionNode.tokenType.equals("CMT")) {
+                        // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
+                        // is a CMT
+                        if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
                             for (ParseTreeNode funcChild : functionNode.children) {
                                 funcChild.parent = node;
                                 node.children.add(funcChild);
@@ -534,7 +600,7 @@ public class TemplateChooser {
                         if (!query.parseTree.allNodes.contains(relatedNode)) continue;
 
                         // Only do NTs for the remainder
-                        if (!relatedNode.tokenType.equals("NT")) continue;
+                        // if (!relatedNode.tokenType.equals("NT")) continue;
 
                         // Leave direct objects of CMTs alone, because they're unlikely to be modified
                         if (relatedNode.parent.tokenType.equals("CMT") && relatedNode.relationship.equals("dobj")) continue;
@@ -553,6 +619,10 @@ public class TemplateChooser {
                         for (int j = 0; j < relatedNode.mappedElements.size(); j++) {
                             MappedSchemaElement relatedMappedEl = relatedNode.mappedElements.get(j);
                             SchemaElement relatedEl = relatedMappedEl.schemaElement;
+
+                            // Only consider if NT
+                            boolean relatedIsNT = relatedMappedEl.mappedValues.size() == 0 || relatedMappedEl.choice == -1;
+                            if (!relatedIsNT) continue;
 
                             for (int k = 0; k < node.mappedElements.size(); k++) {
                                 MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
@@ -575,7 +645,7 @@ public class TemplateChooser {
                                     double relatedScore = relatedMappedEl.similarity;
                                     double nodeScore = nodeMappedEl.similarity;
 
-                                    if (nodeScore > 0.6 && relatedScore > 0.6) {
+                                    if (nodeScore >= Constants.MIN_SIM && relatedScore >= Constants.MIN_SIM) {
                                         // Weigh each disproportionately and compare
                                         double firstScore = 0.8 * relatedScore + 0.2 * nodeScore;
                                         double secondScore = 0.8 * nodeScore + 0.2 * relatedScore;
@@ -590,7 +660,7 @@ public class TemplateChooser {
                                             addNewForPrimaryAttribute = false;
                                             attachedFT = relatedMappedEl.attachedFT;
                                         }
-                                    } else if (nodeScore > 0.6) {
+                                    } else if (nodeScore >= Constants.MIN_SIM) {
                                         // Add 0.12 to be minimum related score, 0.6, multiplied by weight 0.2
                                         double nodeSim = nodeScore * 0.8 + 0.12;
                                         if (nodeSim > maxSimilarity) {
@@ -601,7 +671,7 @@ public class TemplateChooser {
                                             addNewForPrimaryAttribute = false;
                                             attachedFT = null;
                                         }
-                                    } else if (relatedScore > 0.6) {
+                                    } else if (relatedScore >= Constants.MIN_SIM) {
                                         double relatedSim = relatedScore * 0.8 + 0.12;
                                         if (relatedSim > maxSimilarity) {
                                             // In the case that the related is fine as is
@@ -630,11 +700,11 @@ public class TemplateChooser {
                         }
 
                         // Penalize all unmatched node elements
-                        for (int m = 0; m < node.mappedElements.size(); m++) {
+                        /*for (int m = 0; m < node.mappedElements.size(); m++) {
                             if (!matchedNodes.contains(m)) {
                                 node.mappedElements.get(m).similarity *= 0.8;
                             }
-                        }
+                        }*/
 
                         if (chosenMappedSchemaEl != null) {
                             if (addNewForPrimaryAttribute) {
@@ -661,7 +731,7 @@ public class TemplateChooser {
             PrintForCheck.allParseTreeNodePrintForCheck(query.parseTree);
             System.out.println();
 
-            TemplateChooser tc = new TemplateChooser(db.schemaGraph.relations);
+            Templar tc = new Templar(db.schemaGraph.relations);
             List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes, null, null,
                     null, null, null, 0, 0);
 

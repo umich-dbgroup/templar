@@ -30,11 +30,11 @@ public class SchemaElement implements Serializable
 		this.type = type; 
 	}
 
-    public MappedSchemaElement isRelationSimilar(String tag) throws Exception {
+    public MappedSchemaElement isRelationSimilar(String tag, String tagPos) throws Exception {
         if(this.equals(this.relation.defaultAttribute)) {
-            if (SimFunctions.ifSchemaSimilar(this.relation.name, tag)) {
+            if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos)) {
                 MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
-                double relationSimilarity = SimFunctions.similarity(this.relation.name, tag);
+                double relationSimilarity = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
                 // mappedSchemaElement.similarity = 1 - (1 - relationSimilarity) * (1 - relationSimilarity);
                 mappedSchemaElement.similarity = relationSimilarity;
                 return mappedSchemaElement;
@@ -43,24 +43,24 @@ public class SchemaElement implements Serializable
         return null;
     }
 
-	public MappedSchemaElement isSchemaExist(String tag) throws Exception
+	public MappedSchemaElement isSchemaExist(String tag, String tagPos) throws Exception
 	{
 		if(this.equals(this.relation.defaultAttribute))
 		{
-			if (SimFunctions.ifSchemaSimilar(this.relation.name, tag) || SimFunctions.ifSchemaSimilar(name, tag)) {
+			if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos) || SimFunctions.ifSchemaSimilar(name, null, tag, tagPos)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
-                double relationSim = SimFunctions.similarity(this.relation.name, tag);
-                double attrSim = SimFunctions.similarity(this.name, tag);
+                double relationSim = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
+                double attrSim = SimFunctions.similarity(this.name, null, tag, tagPos);
                 double avgSim = (relationSim + attrSim) / 2;
 				mappedSchemaElement.similarity = Math.max(relationSim, avgSim);
 				// mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag));
 				return mappedSchemaElement; 
 			}			
 		}
-		else if(SimFunctions.ifSchemaSimilar(name, tag))
+		else if(SimFunctions.ifSchemaSimilar(name, null, tag, tagPos))
 		{
 			MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this); 
-			mappedSchemaElement.similarity = SimFunctions.similarity(name, tag); 
+			mappedSchemaElement.similarity = SimFunctions.similarity(name, null, tag, tagPos);
 			return mappedSchemaElement; 
 		}
 		return null; 
@@ -98,7 +98,7 @@ public class SchemaElement implements Serializable
 		}
 		if(!mappedSchemaElement.mappedValues.isEmpty())
 		{
-			return mappedSchemaElement; 
+			return mappedSchemaElement;
 		}
 		
 		return null;
