@@ -400,8 +400,8 @@ public class Templar {
 
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.out.println("Usage: TemplateChooser <db> <schema-prefix> <join-level> <nlq-file>");
-            System.out.println("Example: TemplateChooser mas data/mas/mas 6 data/mas/mas_c1.txt");
+            System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file>");
+            System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt");
             System.exit(1);
         }
         String dbName = args[0];
@@ -434,7 +434,7 @@ public class Templar {
                 stopwords.add(word.trim());
             }
 
-            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
            throw new RuntimeException(e);
