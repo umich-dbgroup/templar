@@ -1,0 +1,60 @@
+NO ANSWER YET
+NO ANSWER YET
+NO ANSWER YET
+select count(distinct(author_0.name)) from author as author_0, publication as publication_0, writes as writes_0 where publication_0.title = "Making database systems usable" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
+NO ANSWER YET
+NO ANSWER YET
+select count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
+select count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid
+select count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid
+select count(distinct(publication_0.title)) from publication as publication_0 where publication_0.year > 2000
+NO ANSWER YET
+NO ANSWER YET
+select count(distinct(publication_0.title)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and journal_0.name = "PVLDB" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
+select count(distinct(publication_0.title)) from author as author_0, conference as conference_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and conference_0.name = "VLDB" and author_0.aid = writes_0.aid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
+NO ANSWER YET
+NO ANSWER YET
+NO ANSWER YET
+select count(distinct(keyword_0.keyword)) from keyword as keyword_0
+select count(distinct(keyword_0.keyword)) from domain as domain_0, domain_keyword as domain_keyword_0, keyword as keyword_0 where domain_0.name = "Databases" and domain_0.did = domain_keyword_0.did and domain_keyword_0.kid = keyword_0.kid
+NO ANSWER YET
+select count(distinct(keyword_0.keyword)) from keyword as keyword_0, publication as publication_0, publication_keyword as publication_keyword_0 where publication_0.title = "Making database systems usable" and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid
+select count(distinct(keyword_0.keyword)) from author as author_0, keyword as keyword_0, publication as publication_0, publication_keyword as publication_keyword_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid and publication_0.pid = writes_0.pid	select count(distinct(keyword_0.keyword)) from author as author_0, domain as domain_0, domain_author as domain_author_0, domain_keyword as domain_keyword_0, keyword as keyword_0 where author_0.name = "H. V. Jagadish" and author_0.aid = domain_author_0.aid and domain_0.did = domain_author_0.did and domain_0.did = domain_keyword_0.did and domain_keyword_0.kid = keyword_0.kid
+select count(distinct(keyword_0.keyword)) from conference as conference_0, keyword as keyword_0, publication as publication_0, publication_keyword as publication_keyword_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid
+select count(distinct(keyword_0.keyword)) from journal as journal_0, keyword as keyword_0, publication as publication_0, publication_keyword as publication_keyword_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid
+select count(distinct(keyword_0.keyword)) from author as author_0, keyword as keyword_0, organization as organization_0, publication as publication_0, publication_keyword as publication_keyword_0, writes as writes_0 where organization_0.name = "University of Michigan" and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid and publication_0.pid = writes_0.pid
+NO ANSWER YET
+NO ANSWER YET
+NO ANSWER YET
+NO ANSWER YET
+select sum(publication_0.citation_num) from keyword as keyword_0, publication as publication_0, publication_keyword as publication_keyword_0 where keyword_0.keyword = "Natural Language" and keyword_0.kid = publication_keyword_0.kid and publication_0.pid = publication_keyword_0.pid
+select count(distinct(organization_0.name)) from organization as organization_0
+select count(distinct(organization_0.name)) from organization as organization_0 where organization_0.continent = "North America"
+select count(distinct(organization_0.name)) from author as author_0, domain as domain_0, domain_author as domain_author_0, organization as organization_0 where domain_0.name = "Databases" and author_0.aid = domain_author_0.aid and author_0.oid = organization_0.oid and domain_0.did = domain_author_0.did
+NO ANSWER YET
+select count(distinct(publication_0.title)) from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where organization_0.name = "University of Michigan" and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and publication_0.pid = writes_0.pid
+select count(distinct(publication_0.title)) from author as author_0, domain as domain_0, domain_author as domain_author_0, domain_publication as domain_publication_0, organization as organization_0, publication as publication_0 where domain_0.name = "Databases" and organization_0.name = "University of Michigan" and author_0.aid = domain_author_0.aid and author_0.oid = organization_0.oid and domain_0.did = domain_author_0.did and domain_0.did = domain_publication_0.did and domain_publication_0.pid = publication_0.pid
+select count(distinct(publication_0.title)) from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where organization_0.name = "University of Michigan" and publication_0.year > 2000 and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and publication_0.pid = writes_0.pid
+select count(distinct(publication_0.title)) from author as author_0, conference as conference_0, organization as organization_0, publication as publication_0, writes as writes_0 where conference_0.name = "VLDB" and organization_0.name = "University of Michigan" and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
+select count(distinct(publication_0.title)) from author as author_0, journal as journal_0, organization as organization_0, publication as publication_0, writes as writes_0 where journal_0.name = "PVLDB" and organization_0.name = "University of Michigan" and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
+NO ANSWER YET
+NO ANSWER YET
+select sum(publication_0.citation_num) from author as author_0, organization as organization_0, publication as publication_0, writes as writes_0 where organization_0.name = "University of Michigan" and author_0.aid = writes_0.aid and author_0.oid = organization_0.oid and publication_0.pid = writes_0.pid
+select count(distinct(author_0.name)) from author as author_0, organization as organization_0 where organization_0.name = "University of Michigan" and author_0.oid = organization_0.oid
+select count(distinct(author_0.name)) from author as author_0, domain as domain_0, domain_author as domain_author_0, organization as organization_0 where domain_0.name = "Databases" and organization_0.name = "University of Michigan" and author_0.aid = domain_author_0.aid and author_0.oid = organization_0.oid and domain_0.did = domain_author_0.did
+select count(distinct(author_0.name)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where journal_0.name = "PVLDB" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
+select count(distinct(author_0.name)) from author as author_0, conference as conference_0, publication as publication_0, writes as writes_0 where conference_0.name = "VLDB" and author_0.aid = writes_0.aid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
+NO ANSWER YET
+NO ANSWER YET
+select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid
+NO ANSWER YET
+select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year = 2005 and journal_0.jid = publication_0.jid
+select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year < 2005 and journal_0.jid = publication_0.jid
+select sum(publication_0.citation_num), publication_0.year from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid group by publication_0.year
+NO ANSWER YET
+select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid
+NO ANSWER YET
+select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year = 2005 and conference_0.cid = publication_0.cid
+select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year < 2005 and conference_0.cid = publication_0.cid
+select publication_0.year, sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid group by publication_0.year
+NO ANSWER YET
