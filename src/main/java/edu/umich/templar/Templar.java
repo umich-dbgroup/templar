@@ -54,20 +54,7 @@ public class Templar {
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
             // If projections are empty, generate from primary attributes of relations in translation
-            if (accumProj.isEmpty()) {
-                /*
-                for (Relation rel : accumRel) {
-                    if (rel.getPrimaryAttr() != null) {
-                        List<Projection> newAccumProj = new ArrayList<>(accumProj);
-                        newAccumProj.add(new Projection(rel.getPrimaryAttr(), null));
-
-                        // TODO: Also arbitrary 0.8 added here!
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                new HashSet<>(accumRel), newAccumProj, new ArrayList<>(accumPred),
-                                new ArrayList<>(accumHaving), superlative, accumScore + 0.8, accumNodes + 1));
-                    }
-                }*/
-            } else {
+            if (!accumProj.isEmpty()) {
                 PossibleTranslation translation = new PossibleTranslation();
                 translation.setRelations(new HashSet<>(accumRel));
                 translation.setProjections(new ArrayList<>(accumProj));
@@ -85,11 +72,25 @@ public class Templar {
         if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
             curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
 
-            for (MappedSchemaElement schemaEl : curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()))) {
+            List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()));
+
+            // If the highest similarity is still less than the minimum similarity, we just pass on this node
+            if (mappedList.get(0).similarity < Constants.MIN_SIM) {
+                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                        new ArrayList<>(accumHaving), superlative, accumScore, accumNodes));
+            }
+
+            for (MappedSchemaElement schemaEl : mappedList) {
                 // Min threshold to even try...
-                if (schemaEl.similarity < 0.5) {
+                if (schemaEl.similarity < Constants.MIN_SIM) {
                     continue;
                 }
+
+                // Add a version without any changes, and MIN_SIM
+                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                        new ArrayList<>(accumHaving), superlative, accumScore + Constants.MIN_SIM, accumNodes + 1));
 
                 Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
                 if (rel == null)
@@ -97,11 +98,6 @@ public class Templar {
 
                 // If we're dealing with a relation, generate a version without it, and also move ahead
                 if (schemaEl.schemaElement.type.equals("relation")) {
-                    // TODO: arbitrary 0.8 added here - what to do?
-                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                            new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                            new ArrayList<>(accumHaving), superlative, accumScore + 0.8, accumNodes + 1));
-
                     Set<Relation> newAccumRel = new HashSet<>(accumRel);
                     newAccumRel.add(rel);
 
@@ -418,7 +414,6 @@ public class Templar {
             boolean isNameToken = node.tokenType.equals("NT");
             boolean isValueToken = node.tokenType.startsWith("VT");
 
-            // TODO: move all this logic to Fei's components or clean it up
             if (isNameToken || isValueToken) {
                 mappedNodes.add(node);
 
@@ -511,7 +506,7 @@ public class Templar {
                     // double nodeSimilarity = node.getChoiceMap().similarity;
                     // double maxSimilarity = node.getChoiceMap().similarity;
                     double maxSimilarity = 0;
-                    List<Integer> matchedNodes = new ArrayList<>();
+                    // List<Integer> matchedNodes = new ArrayList<>();
                     String attachedFT = null;
 
                     boolean matchedNodeEl = false;
@@ -538,7 +533,7 @@ public class Templar {
                             if (relationMatchesAndThisIsPrimary
                                     || attributeMatchesIfBothAttributes) {
                                 matchedNodeEl = true;
-                                matchedNodes.add(k);
+                                // matchedNodes.add(k);
 
                                 // Somewhat arbitrarily combine their similarity by averaging and giving a boost
                                 // double combinedScore = (nodeSimilarity + relatedMappedEl.similarity) / 2;
@@ -736,7 +731,7 @@ public class Templar {
             }
         } catch (Exception e) {
             e.printStackTrace();
-           throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
 
         // queryStrs.add("What is the nationality of the actor \"Christoph Waltz\"?");
@@ -752,6 +747,9 @@ public class Templar {
         // queryStrs.add("List all businesses with rating 3.5");
         // queryStrs.add("List all the reviews which rated a business less than 1");
         // queryStrs.add("How many users have reviewed Irish pubs in Dallas?");
+
+        // queryStrs.add("return me the keywords related to \"H. V. Jagadish\".");
+        // queryStrs.add("return me the papers in PVLDB containing keyword \"Keyword search\".");
 
         int i = 0;
         int top1 = 0;
@@ -824,13 +822,21 @@ public class Templar {
 
             Integer rank = null;
             if (queryAnswers != null) {
-                for (int j = 0; j < Math.min(results.size(), 5); j++) {
+                Double correctResultScore = null;
+                for (int j = 0; j < Math.min(results.size(), 10); j++) {
                     if (queryAnswers.get(i).contains(results.get(j).getValue())) {
+                        if (correctResultScore != null) {
+                            // If this score is less, then we have no ties and we just break
+                            if (results.get(j).getTotalScore() < correctResultScore) {
+                                break;
+                            }
+                        }
+                        correctResultScore = results.get(j).getTotalScore();
+
                         rank = j + 1;
                         if (rank <= 5) top5++;
                         if (rank <= 3) top3++;
                         if (rank == 1) top1++;
-                        break;
                     }
                 }
             }
