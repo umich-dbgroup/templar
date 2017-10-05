@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tb-nalir.iml" filepath="$PROJECT_DIR$/tb-nalir.iml" />
+      <module fileurl="file://$PROJECT_DIR$/templar.iml" filepath="$PROJECT_DIR$/templar.iml" />
     </modules>
   </component>
 </project>
