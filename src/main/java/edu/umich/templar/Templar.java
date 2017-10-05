@@ -759,7 +759,7 @@ public class Templar {
         int top5 = 0;
         for (String queryStr : queryStrs) {
             Log.info("================");
-            Log.info("QUERY " + i++ + ": " + queryStr);
+            Log.info("QUERY " + i + ": " + queryStr);
             Log.info("================");
 
             // TODO: hack, to convert TX to Texas, probably don't need with something like word2vec
@@ -825,7 +825,7 @@ public class Templar {
             Integer rank = null;
             if (queryAnswers != null) {
                 for (int j = 0; j < Math.min(results.size(), 5); j++) {
-                    if (queryAnswers.get(i).contains(results.get(j).toString())) {
+                    if (queryAnswers.get(i).contains(results.get(j).getValue())) {
                         rank = j + 1;
                         if (rank <= 5) top5++;
                         if (rank <= 3) top3++;
@@ -838,6 +838,7 @@ public class Templar {
             if (rank == null || rank > 1) {
                 System.out.println(getDebugOutput(lexiParser, query, topNTranslations, results.subList(0, Math.min(10, results.size()))));
             }
+            i++;
         }
 
         Log.info("==============");
