@@ -53,8 +53,15 @@ public class Templar {
 
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
-            // If projections are empty, generate from primary attributes of relations in translation
-            if (!accumProj.isEmpty()) {
+            // Check if there is at least one valid projection
+            boolean validProjections = false;
+            for (Projection proj : accumProj) {
+                if (!proj.isGroupBy()) {
+                    validProjections = true;
+                }
+            }
+
+            if (validProjections) {
                 PossibleTranslation translation = new PossibleTranslation();
                 translation.setRelations(new HashSet<>(accumRel));
                 translation.setProjections(new ArrayList<>(accumProj));
@@ -97,7 +104,8 @@ public class Templar {
                     throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
                 // If we're dealing with a relation, generate a version without it, and also move ahead
-                if (schemaEl.schemaElement.type.equals("relation")) {
+                if (schemaEl.schemaElement.type.equals("relation") &&
+                        !curNode.parent.tokenType.equals("CMT")) {
                     Set<Relation> newAccumRel = new HashSet<>(accumRel);
                     newAccumRel.add(rel);
 
@@ -196,7 +204,7 @@ public class Templar {
 
                         // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
                         // but only if it's not a group by token
-                        boolean likelyProjection = curNode.parent.tokenType.equals("CMT") || proj.isGroupBy();
+                        boolean likelyProjection = curNode.isFirstMappedDescendantOfCMT() || proj.isGroupBy();
                         double similarityAdded = schemaEl.similarity;
                         if (!likelyProjection) {
                             similarityAdded *= 0.8;
@@ -253,7 +261,9 @@ public class Templar {
 
                     // If there is an attached function, this is probably a HAVING, not a predicate.
                     // That is, unless we are a child of a CMT
-                    if (schemaEl.attachedFT != null && !curNode.parent.tokenType.equals("CMT")) {
+                    // Also, it should be only for nums
+                    if (curNode.tokenType.equals("VTNUM") && schemaEl.attachedFT != null
+                            && !curNode.parent.tokenType.equals("CMT")) {
                         // TODO: do we need aliasInt for having?
                         Having having = new Having(attr, op, value, schemaEl.attachedFT);
 
@@ -720,7 +730,7 @@ public class Templar {
                 stopwords.add(word.trim());
             }
 
-            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -734,22 +744,9 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        // queryStrs.add("What is the nationality of the actor \"Christoph Waltz\"?");
-        // queryStrs.add("How much was the budget of \"Finding Nemo\"");
-        // queryStrs.add("Find all movies produced in 2015");
-        // queryStrs.add("Find all actors born in \"Los Angeles\"");
-        // queryStrs.add("Find the actor who played \"Captain Miller\" in the movie \"Saving Private Ryan\"");
-
-        // queryStrs.add("return me the papers on VLDB conference.");
-        // queryStrs.add("return me the authors who have papers in PVLDB 2010.");
-        // queryStrs.add("return me the paper with more than 200 citations.");
-
-        // queryStrs.add("List all businesses with rating 3.5");
-        // queryStrs.add("List all the reviews which rated a business less than 1");
-        // queryStrs.add("How many users have reviewed Irish pubs in Dallas?");
-
-        // queryStrs.add("return me the keywords related to \"H. V. Jagadish\".");
-        // queryStrs.add("return me the papers in PVLDB containing keyword \"Keyword search\".");
+        queryStrs.add("return me the number of conferences which have papers by \"H. V. Jagadish\".");
+        queryStrs.add("return me the number of journals which have papers by \"H. V. Jagadish\".");
+        queryStrs.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
 
         int i = 0;
         int top1 = 0;

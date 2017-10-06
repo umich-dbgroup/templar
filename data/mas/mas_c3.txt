@@ -1,5 +1,5 @@
-return me the number of conferences, which have papers by "H. V. Jagadish".
-return me the number of journals, which have papers by "H. V. Jagadish".
+return me the number of conferences which have papers by "H. V. Jagadish".
+return me the number of journals which have papers by "H. V. Jagadish".
 return me the number of papers written by "H. V. Jagadish" in each year.
 return me the number of authors of "Making database systems usable".
 return me the number of citations of "Making database systems usable" in each year.
@@ -17,7 +17,7 @@ return me the number of papers by "H. V. Jagadish" on PVLDB after 2000.
 return me the number of papers by "H. V. Jagadish" on VLDB conference after 2000.
 return me the number of keywords.
 return me the number of keywords in Databases area.
-return me the number of papers, which contain the keyword "Natural Language".
+return me the number of papers which contain the keyword "Natural Language".
 return me the number of the keywords of "Making database systems usable".
 return me the number of the keywords related to "H. V. Jagadish".
 return me the number of keywords in VLDB conference.

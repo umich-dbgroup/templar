@@ -1,6 +1,6 @@
-NO ANSWER YET
-NO ANSWER YET
-NO ANSWER YET
+select count(distinct(conference_0.name)) from author as author_0, conference as conference_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
+select count(distinct(journal_0.name)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
+select publication_0.year, count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid group by publication_0.year
 select count(distinct(author_0.name)) from author as author_0, publication as publication_0, writes as writes_0 where publication_0.title = "Making database systems usable" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
 NO ANSWER YET
 NO ANSWER YET
