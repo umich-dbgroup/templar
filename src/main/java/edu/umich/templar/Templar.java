@@ -103,15 +103,17 @@ public class Templar {
                 if (rel == null)
                     throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
-                // If we're dealing with a relation, generate a version without it, and also move ahead
-                if (schemaEl.schemaElement.type.equals("relation") &&
-                        !curNode.parent.tokenType.equals("CMT")) {
-                    Set<Relation> newAccumRel = new HashSet<>(accumRel);
-                    newAccumRel.add(rel);
+                // If we're dealing with a relation, generate a version without it (only if it's not a likely projection),
+                // and also move ahead
+                if (schemaEl.schemaElement.type.equals("relation")) {
+                    if (!curNode.isFirstMappedDescendantOfCMT()) {
+                        Set<Relation> newAccumRel = new HashSet<>(accumRel);
+                        newAccumRel.add(rel);
 
-                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                            newAccumRel, new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                            new ArrayList<>(accumHaving), superlative, accumScore + schemaEl.similarity, accumNodes + 1));
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                newAccumRel, new ArrayList<>(accumProj), new ArrayList<>(accumPred),
+                                new ArrayList<>(accumHaving), superlative, accumScore + schemaEl.similarity, accumNodes + 1));
+                    }
                     continue;
                 }
 
@@ -324,8 +326,8 @@ public class Templar {
                             throw new RuntimeException(e);
                         }
 
-                        // If parent is CMT, then consider possibilities for projection
-                        if (curNode.parent.tokenType.equals("CMT")) {
+                        // Consider possibilities for projection if it's a descendant of CMT
+                        if (curNode.isFirstMappedDescendantOfCMT()) {
                             if (attrSim >= Constants.MIN_SIM) {
                                 // CASE 1: If attribute is similar, project attribute accordingly
 
@@ -386,15 +388,15 @@ public class Templar {
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
                                         accumScore + relSim, accumNodes + 1));
-                            } else {
-                                // CASE 2: it's actually supposed to be a predicate
-                                if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
-                                newAccumRel.add(rel);
-
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + schemaEl.similarity, accumNodes + 1));
                             }
+
+                            // CASE 2: it's actually supposed to be a predicate
+                            if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
+                            newAccumRel.add(rel);
+
+                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
+                                    newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
+                                    accumScore + schemaEl.similarity, accumNodes + 1));
                         }
                     }
                 }
@@ -743,7 +745,10 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        // queryStrs.add("return me the number of citations of \"Making database systems usable\" in each year.");
+        // queryStrs.add("return me the number of the papers of \"H. V. Jagadish\" containing keyword \"User Study\".");
+        // queryStrs.add("return me the number of papers in PVLDB containing keyword \"Keyword search\".");
+        // queryStrs.add("return me the number of papers in VLDB conference containing keyword \"Information Retrieval\".");
+        // queryStrs.add("return me the number of authors who have papers containing keyword \"Relational Database\".");
 
         int i = 0;
         int top1 = 0;

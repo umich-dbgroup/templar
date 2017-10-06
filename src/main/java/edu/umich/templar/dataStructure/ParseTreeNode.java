@@ -88,5 +88,20 @@ public class ParseTreeNode implements Serializable
 		{
 			return label; 
 		}
-	}	
+	}
+
+	public boolean isFirstMappedDescendantOfCMT() {
+        boolean result = false;
+        ParseTreeNode parentCheck = this.parent;
+        while (!parentCheck.label.equals("ROOT")) {
+            if (parentCheck.tokenType.equals("NT") || parentCheck.tokenType.startsWith("VT")) {
+                break;
+            } else if (parentCheck.tokenType.equals("CMT")) {
+                result = true;
+                break;
+            }
+            parentCheck = parentCheck.parent;
+        }
+        return result;
+	}
 }
