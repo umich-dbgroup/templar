@@ -24,4 +24,7 @@ public class Constants {
 
     // Min similarity score to consider "matching"
     public static final Double MIN_SIM = 0.6;
+
+    public static final Double PENALTY_RELATION_WITH_SUPERLATIVE = 0.75;
+    public static final Double PENALTY_PREDICATE_COMMON_NOUN = 0.75;
 }

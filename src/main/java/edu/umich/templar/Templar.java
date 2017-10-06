@@ -19,6 +19,7 @@ import edu.umich.templar.template.Template;
 import edu.umich.templar.tools.PrintForCheck;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Constants;
+import edu.umich.templar.util.Utils;
 import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 
@@ -78,6 +79,7 @@ public class Templar {
 
         if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
             curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
+            curNode.choice = 0;
 
             List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()));
 
@@ -110,9 +112,15 @@ public class Templar {
                         Set<Relation> newAccumRel = new HashSet<>(accumRel);
                         newAccumRel.add(rel);
 
+                        // Enforce a penalty if there's a superlative or function associated with relation
+                        double similarity = schemaEl.similarity;
+                        if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
+                            similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
+                        }
+
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                new ArrayList<>(accumHaving), superlative, accumScore + schemaEl.similarity, accumNodes + 1));
+                                new ArrayList<>(accumHaving), superlative, accumScore + similarity, accumNodes + 1));
                     }
                     continue;
                 }
@@ -383,9 +391,14 @@ public class Templar {
                                 // CASE 1: it's a simple relation reference
                                 newAccumRel.add(rel);
 
+                                // Enforce a penalty if there's a superlative or function associated with relation
+                                double similarity = schemaEl.similarity;
+                                if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
+                                    similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
+                                }
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + relSim, accumNodes + 1));
+                                        accumScore + similarity, accumNodes + 1));
                             }
 
                             // CASE 2: it's actually supposed to be a predicate
@@ -394,7 +407,7 @@ public class Templar {
 
                             // penalize predicates that deal with common nouns
                             double similarity = schemaEl.similarity;
-                            if (curNode.pos.equals("NNS")) similarity *= 0.75;
+                            if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
 
                             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                     newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
@@ -454,8 +467,10 @@ public class Templar {
                     // is a CMT
                     if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
                         for (ParseTreeNode funcChild : functionNode.children) {
-                            funcChild.parent = node;
-                            node.children.add(funcChild);
+                            if (!funcChild.equals(node)) {
+                                funcChild.parent = node;
+                                node.children.add(funcChild);
+                            }
 
                             if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
                                 superlative = funcChild.function;
@@ -469,27 +484,29 @@ public class Templar {
                         node.parent = functionNode.parent;
                         node.relationship = functionNode.relationship;
                         functionNode.parent.children.remove(functionNode);
+                        functionNode.parent.children.add(node);
                     }
-                } else {
-                    // Do similar operation if function is child and has no children
-                    List<ParseTreeNode> funcToRemove = new ArrayList<>();
-                    List<ParseTreeNode> childrenToAdd = new ArrayList<>();
-                    for (ParseTreeNode child : node.children) {
-                        if (child.tokenType.equals("FT") && child.children.isEmpty()) {
-                            if (child.function.equals("max") || child.function.equals("min")) {
-                                node.attachedSuperlative = child.function;
-                            } else {
-                                for (MappedSchemaElement mse : node.mappedElements) {
-                                    mse.attachedFT = child.function;
-                                }
-                            }
-                            childrenToAdd.addAll(child.children);
-                            funcToRemove.add(child);
-                        }
-                    }
-                    node.children.removeAll(funcToRemove);
-                    node.children.addAll(childrenToAdd);
                 }
+
+                // Do similar operation if function is child and has no children
+                // for operations such as: "return me the author who has the most number of papers..."
+                List<ParseTreeNode> funcToRemove = new ArrayList<>();
+                List<ParseTreeNode> childrenToAdd = new ArrayList<>();
+                for (ParseTreeNode child : node.children) {
+                    if (child.tokenType.equals("FT") && child.children.isEmpty()) {
+                        if (child.function.equals("max") || child.function.equals("min")) {
+                            node.attachedSuperlative = child.function;
+                        } else {
+                            for (MappedSchemaElement mse : node.mappedElements) {
+                                mse.attachedFT = child.function;
+                            }
+                        }
+                        childrenToAdd.addAll(child.children);
+                        funcToRemove.add(child);
+                    }
+                }
+                node.children.removeAll(funcToRemove);
+                node.children.addAll(childrenToAdd);
             }
 
             // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
@@ -499,9 +516,9 @@ public class Templar {
                     ParseTreeNode relatedNode;
                     if (adjEntry[0].equals(node)) {
                         relatedNode = adjEntry[1];
-                    } /*else if (adjEntry[1].equals(node)) {
-                            relatedNode = adjEntry[0];
-                        } */else {
+                    } else if (adjEntry[1].equals(node)) {
+                        relatedNode = adjEntry[0];
+                    } else {
                         continue;
                     }
 
@@ -522,7 +539,6 @@ public class Templar {
                     // List<Integer> matchedNodes = new ArrayList<>();
                     String attachedFT = null;
 
-                    boolean matchedNodeEl = false;
                     boolean addNewForPrimaryAttribute = false;
 
                     for (int j = 0; j < relatedNode.mappedElements.size(); j++) {
@@ -532,6 +548,8 @@ public class Templar {
                         // Only consider if NT
                         boolean relatedIsNT = relatedMappedEl.mappedValues.size() == 0 || relatedMappedEl.choice == -1;
                         if (!relatedIsNT) continue;
+
+                        boolean matchedNodeEl = false;
 
                         for (int k = 0; k < node.mappedElements.size(); k++) {
                             MappedSchemaElement nodeMappedEl = node.mappedElements.get(k);
@@ -595,10 +613,16 @@ public class Templar {
                         }
 
                         // In the case that the NT is the primary attribute, perhaps we're doing a COUNT?
-                        if (!matchedNodeEl &&
-                                relatedEl.equals(relatedEl.relation.defaultAttribute) && relatedMappedEl.choice == -1) {
+                        if (!matchedNodeEl && relatedEl.equals(relatedEl.relation.defaultAttribute)) {
                             // Use only the related element's similarity
                             double relatedScore = relatedMappedEl.similarity;
+
+                            // Make a new mapped element to add
+                            MappedSchemaElement newMappedEl = new MappedSchemaElement(relatedMappedEl.schemaElement);
+                            newMappedEl.mappedValues.add(node.label);
+                            newMappedEl.attachedFT = "count";
+                            newMappedEl.similarity = relatedScore;
+                            node.mappedElements.add(newMappedEl);
 
                             if (relatedScore > maxSimilarity) {
                                 chosenMappedSchemaEl = relatedMappedEl;
@@ -617,12 +641,13 @@ public class Templar {
 
                     if (chosenMappedSchemaEl != null) {
                         if (addNewForPrimaryAttribute) {
+                            /*
                             chosenMappedSchemaEl.mappedValues.add(node.label);
                             chosenMappedSchemaEl.choice = chosenMappedSchemaEl.mappedValues.size() - 1;
 
                             node.mappedElements.add(chosenMappedSchemaEl);
                             node.choice = node.mappedElements.size() - 1;
-                            chosenMappedSchemaEl.attachedFT = "count";
+                            chosenMappedSchemaEl.attachedFT = "count";*/
                         } else {
                             chosenMappedSchemaEl.similarity = maxSimilarity;
                             node.choice = choice;
@@ -724,15 +749,9 @@ public class Templar {
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
         // Read in stop words list
-        List<String> stopwords = new ArrayList<>();
         List<String> queryStrs = new ArrayList<>();
         List<List<String>> queryAnswers = null;
         try {
-            List<String> stopwordsList = FileUtils.readLines(new File("libs/stopwords.txt"), "UTF-8");
-            for (String word : stopwordsList) {
-                stopwords.add(word.trim());
-            }
-
             queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
@@ -746,6 +765,11 @@ public class Templar {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+
+        // queryStrs.add("return me the author who has the most number of papers containing keyword \"Relational Database\".");
+        // queryStrs.add("return me the conference that has the most number of papers containing keyword \"Relational Database\".");
+        // queryStrs.add("return me the journal that has the most number of papers containing keyword \"Relational Database\".");
+        // queryStrs.add("return me the number of authors who have more than 10 papers containing keyword \"Relational Database\".");
 
         int i = 0;
         int top1 = 0;
@@ -776,7 +800,7 @@ public class Templar {
                 throw new RuntimeException(e);
             }
 
-            removeStopwords(stopwords, query);
+            removeStopwords(Utils.stopwords, query);
 
             List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 

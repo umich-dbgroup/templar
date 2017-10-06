@@ -17,8 +17,10 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -32,6 +34,20 @@ import java.util.stream.Collectors;
  * Created by cjbaik on 6/20/17.
  */
 public class Utils {
+    public static List<String> stopwords;
+
+    static {
+        stopwords = new ArrayList<>();
+        try {
+            List<String> stopwordsList = FileUtils.readLines(new File("libs/stopwords.txt"), "UTF-8");
+            for (String word : stopwordsList) {
+                stopwords.add(word.trim());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValueDesc(Map<K, V> map) {
         return map.entrySet()
                 .stream()
@@ -307,5 +323,9 @@ public class Utils {
         } else {
             return null;
         }
+    }
+
+    public static boolean isStopword(String word) {
+        return Utils.stopwords.contains(word.trim().toLowerCase());
     }
 }

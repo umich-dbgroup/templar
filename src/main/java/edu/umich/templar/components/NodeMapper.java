@@ -11,6 +11,7 @@ import edu.umich.templar.rdbms.MappedSchemaElement;
 import edu.umich.templar.rdbms.RDBMS;
 import edu.umich.templar.tools.BasicFunctions;
 import edu.umich.templar.tools.SimFunctions;
+import edu.umich.templar.util.Utils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -39,37 +40,9 @@ public class NodeMapper
             {
                 rootChild.tokenType = "CMT";
             }
-
-            /*
-            for (ParseTreeNode grandchild : rootChild.children) {
-                // if we're asking a question, and dobj of root child is a WDT or WP, swap order of children
-                if (grandchild.relationship.equals("dobj") && (grandchild.pos.equals("WDT") || grandchild.pos.equals("WP"))) {
-                    grandchild.tokenType = "CMT";
-
-                    grandchild.parent = parseTree.root;
-                    parseTree.root.children.add(grandchild);
-                    parseTree.root.children.remove(rootChild);
-
-                    rootChild.children.remove(grandchild);
-                    rootChild.parent = grandchild;
-                    grandchild.children.add(rootChild);
-
-                    // If the original root child has nsubj, make that a child of the CMT
-                    for (int j = 0; j < rootChild.children.size(); j++) {
-                        ParseTreeNode objToRetrieve = rootChild.children.get(j);
-                        if (!objToRetrieve.equals(grandchild) && objToRetrieve.relationship.startsWith("nsubj")) {
-                            grandchild.children.add(objToRetrieve);
-                            rootChild.children.remove(objToRetrieve);
-                            objToRetrieve.parent = grandchild;
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }*/
 		}
 
-        // Handle "what", "which", "how many", etc
+        // Handle "what", "which", "how many", "who", etc
         List<ParseTreeNode> toDelete = new ArrayList<>();
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
@@ -339,6 +312,10 @@ public class NodeMapper
 
         for (int i = 0; i < allNodes.size(); i++) {
             ParseTreeNode treeNode = allNodes.get(i);
+
+            // Make sure this isn't a stopword
+            if (Utils.isStopword(treeNode.label)) continue;
+
             if (treeNode.tokenType.equals("NTVT") || treeNode.tokenType.equals("JJ")) { // schema+text
                 // Added by cjbaik
                 // If this word is related as an adjective to another word, then try the multi-word expression as well.
@@ -355,7 +332,6 @@ public class NodeMapper
                     } else {
                         continue;
                     }
-
                     // Make sure the related node comes after the current word
                     if (relatedNode.wordOrder <= treeNode.wordOrder) continue;
 
