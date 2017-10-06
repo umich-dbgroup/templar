@@ -102,6 +102,17 @@ public class ParseTreeNode implements Serializable
             }
             parentCheck = parentCheck.parent;
         }
+
+        if (result && parentCheck.tokenType.equals("CMT")) {
+            // Get the first child of the CMT (skipping an FT if there is one)
+            if (parentCheck.children.get(0).tokenType.equals("FT")) {
+                parentCheck = parentCheck.children.get(0);
+            }
+            // Make sure this is the first child of the CMT
+            parentCheck.children.sort((a, b) -> Integer.valueOf(a.wordOrder).compareTo(b.wordOrder));
+            result = parentCheck.children.get(0).equals(this);
+        }
+
         return result;
 	}
 }

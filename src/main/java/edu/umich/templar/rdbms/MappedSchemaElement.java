@@ -1,5 +1,7 @@
 package edu.umich.templar.rdbms;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +41,11 @@ public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Ser
 		// Needs to have an attached function to be a "having"
 		if (this.attachedFT == null) return false;
 
-		boolean isNumberAndCount = this.schemaElement.isNumeric() && this.attachedFT.equals("count");
-		boolean isTextAndNotCount = this.schemaElement.isText() && !this.attachedFT.equals("count");
+		boolean isNumberAndNotCount = this.schemaElement.isNumeric() && !this.attachedFT.equals("count");
+		boolean isTextAndCountAndNumericValue = this.schemaElement.isText() && this.attachedFT.equals("count")
+                && this.mappedValues.size() > 0 && NumberUtils.isCreatable(this.mappedValues.get(0));
 
-		return !isNumberAndCount && !isTextAndNotCount;
+		return isNumberAndNotCount || isTextAndCountAndNumericValue;
 	}
 
 	public String printForCheck() 

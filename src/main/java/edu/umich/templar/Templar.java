@@ -745,11 +745,6 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        // queryStrs.add("return me the number of the papers of \"H. V. Jagadish\" containing keyword \"User Study\".");
-        // queryStrs.add("return me the number of papers in PVLDB containing keyword \"Keyword search\".");
-        // queryStrs.add("return me the number of papers in VLDB conference containing keyword \"Information Retrieval\".");
-        // queryStrs.add("return me the number of authors who have papers containing keyword \"Relational Database\".");
-
         int i = 0;
         int top1 = 0;
         int top3 = 0;

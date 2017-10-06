@@ -1,6 +1,5 @@
 a
 about
-after
 again
 against
 am
@@ -13,7 +12,6 @@ as
 be
 because
 been
-before
 being
 between
 both
