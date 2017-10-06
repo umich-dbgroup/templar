@@ -2,14 +2,14 @@ select count(distinct(conference_0.name)) from author as author_0, conference as
 select count(distinct(journal_0.name)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
 select publication_0.year, count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid group by publication_0.year
 select count(distinct(author_0.name)) from author as author_0, publication as publication_0, writes as writes_0 where publication_0.title = "Making database systems usable" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
-NO ANSWER YET
+select sum(publication_0.citation_num), publication_0.year from publication as publication_0 where publication_0.title = "Making database systems usable" group by publication_0.year
 NO ANSWER YET
 select count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
 select count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid
 select count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid
 select count(distinct(publication_0.title)) from publication as publication_0 where publication_0.year > 2000
-NO ANSWER YET
-NO ANSWER YET
+select count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year > 2000 and journal_0.jid = publication_0.jid
+select count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year > 2000 and conference_0.cid = publication_0.cid
 select count(distinct(publication_0.title)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and journal_0.name = "PVLDB" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
 select count(distinct(publication_0.title)) from author as author_0, conference as conference_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and conference_0.name = "VLDB" and author_0.aid = writes_0.aid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
 NO ANSWER YET

@@ -30,6 +30,14 @@ public class SchemaElement implements Serializable
 		this.type = type; 
 	}
 
+	public boolean isNumeric() {
+		return this.type.equals("int") || this.type.equals("number") || this.type.equals("double");
+	}
+
+    public boolean isText() {
+        return this.type.equals("text");
+    }
+
     public MappedSchemaElement isRelationSimilar(String tag, String tagPos) throws Exception {
         if(this.equals(this.relation.defaultAttribute)) {
             if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos)) {

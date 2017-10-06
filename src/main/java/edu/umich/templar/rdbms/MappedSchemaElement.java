@@ -34,6 +34,17 @@ public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Ser
 		return 0;
 	}
 
+	// Is a valid candidate to generate a "having" query fragment
+	public boolean isValidHavingCandidate() {
+		// Needs to have an attached function to be a "having"
+		if (this.attachedFT == null) return false;
+
+		boolean isNumberAndCount = this.schemaElement.isNumeric() && this.attachedFT.equals("count");
+		boolean isTextAndNotCount = this.schemaElement.isText() && !this.attachedFT.equals("count");
+
+		return !isNumberAndCount && !isTextAndNotCount;
+	}
+
 	public String printForCheck() 
 	{
 		String result = "";

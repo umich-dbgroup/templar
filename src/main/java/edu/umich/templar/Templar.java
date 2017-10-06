@@ -259,11 +259,10 @@ public class Templar {
                         }
                     }
 
-                    // If there is an attached function, this is probably a HAVING, not a predicate.
-                    // That is, unless we are a child of a CMT
-                    // Also, it should be only for nums
-                    if (curNode.tokenType.equals("VTNUM") && schemaEl.attachedFT != null
-                            && !curNode.parent.tokenType.equals("CMT")) {
+                    // Criteria for HAVING:
+                    // (1) node should not be first descendant of CMT (it should be projection)
+                    // (2) mapped schema element should have a valid attached function
+                    if (!curNode.isFirstMappedDescendantOfCMT() && schemaEl.isValidHavingCandidate()) {
                         // TODO: do we need aliasInt for having?
                         Having having = new Having(attr, op, value, schemaEl.attachedFT);
 
@@ -730,7 +729,7 @@ public class Templar {
                 stopwords.add(word.trim());
             }
 
-            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -744,9 +743,7 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        queryStrs.add("return me the number of conferences which have papers by \"H. V. Jagadish\".");
-        queryStrs.add("return me the number of journals which have papers by \"H. V. Jagadish\".");
-        queryStrs.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
+        // queryStrs.add("return me the number of citations of \"Making database systems usable\" in each year.");
 
         int i = 0;
         int top1 = 0;
