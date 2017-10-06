@@ -392,9 +392,13 @@ public class Templar {
                             if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
                             newAccumRel.add(rel);
 
+                            // penalize predicates that deal with common nouns
+                            double similarity = schemaEl.similarity;
+                            if (curNode.pos.equals("NNS")) similarity *= 0.75;
+
                             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                     newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                    accumScore + schemaEl.similarity, accumNodes + 1));
+                                    accumScore + similarity, accumNodes + 1));
                         }
                     }
                 }
@@ -816,19 +820,22 @@ public class Templar {
             if (queryAnswers != null) {
                 Double correctResultScore = null;
                 for (int j = 0; j < Math.min(results.size(), 10); j++) {
-                    if (queryAnswers.get(i).contains(results.get(j).getValue())) {
-                        if (correctResultScore != null) {
-                            // If this score is less, then we have no ties and we just break
-                            if (results.get(j).getTotalScore() < correctResultScore) {
-                                break;
-                            }
+                    if (correctResultScore != null) {
+                        // If this score is less, then we have no ties and we just break
+                        if (results.get(j).getTotalScore() < correctResultScore) {
+                            break;
                         }
-                        correctResultScore = results.get(j).getTotalScore();
+                    }
 
-                        rank = j + 1;
-                        if (rank <= 5) top5++;
-                        if (rank <= 3) top3++;
-                        if (rank == 1) top1++;
+                    if (queryAnswers.get(i).contains(results.get(j).getValue())) {
+                        if (correctResultScore == null) {
+                            correctResultScore = results.get(j).getTotalScore();
+
+                            rank = j + 1;
+                            if (rank <= 5) top5++;
+                            if (rank <= 3) top3++;
+                            if (rank == 1) top1++;
+                        }
                     }
                 }
             }
