@@ -153,7 +153,7 @@ public class Templar {
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, newSuper,
                                 accumScore + schemaEl.similarity, accumNodes + 1));
                     } else {
-                        Projection proj = new Projection(attr, schemaEl.attachedFT);
+                        Projection proj = new Projection(attr, schemaEl.attachedFT, curNode.QT);
 
                         // If you are creating a projection and there already exists a predicate with the same attribute,
                         // then create an additional path without this projection.
@@ -169,11 +169,6 @@ public class Templar {
                                 selfJoinFlag = true;
                                 aliasInt++;
                             }
-                        }
-
-                        // If we have a quantifier, set GROUP BY
-                        if (curNode.QT != null && curNode.QT.equals("each")) {
-                            proj.setGroupBy(true);
                         }
 
                         // Increment aliasInt for every shared projection
@@ -326,13 +321,13 @@ public class Templar {
                             throw new RuntimeException(e);
                         }
 
-                        // Consider possibilities for projection if it's a descendant of CMT
-                        if (curNode.isFirstMappedDescendantOfCMT()) {
+                        // Consider possibilities for projection if it's a descendant of CMT or each QT
+                        if (curNode.isFirstMappedDescendantOfCMT() || curNode.QT.equals("each")) {
                             if (attrSim >= Constants.MIN_SIM) {
                                 // CASE 1: If attribute is similar, project attribute accordingly
 
                                 // TODO: do I need to increment aliasInt here for the parent? how?
-                                Projection proj = new Projection(attr, curNode.getChoiceMap().attachedFT);
+                                Projection proj = new Projection(attr, curNode.getChoiceMap().attachedFT, curNode.QT);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(rel);
 
@@ -345,7 +340,8 @@ public class Templar {
                             } else if (relSim >= Constants.MIN_SIM) {
                                 // CASE 2: If relation is similar, project relation default attribute
                                 // e.g. "How many papers..."
-                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                        curNode.QT);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(rel);
 
@@ -360,7 +356,8 @@ public class Templar {
 
                                 Relation parent = this.relations.get(rel.getParent());
                                 // TODO: do I need to increment aliasInt here for the parent? how?
-                                Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                        curNode.QT);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(parent);
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
@@ -369,7 +366,8 @@ public class Templar {
                             } else {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
-                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT);
+                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                        curNode.QT);
                                 if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(rel);

@@ -10,12 +10,12 @@ public class Projection extends QueryFragment {
 
     boolean groupBy;        // If we want to GROUP BY this projection, set true
 
-    public Projection(Attribute attribute, String function) {
+    public Projection(Attribute attribute, String function, String qt) {
         // this.alias = alias;
         this.attribute = attribute;
         this.function = function;
 
-        this.groupBy = false;
+        this.groupBy = qt.equals("each");
     }
 
     public Projection(Projection other) {

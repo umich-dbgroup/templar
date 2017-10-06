@@ -44,17 +44,17 @@ select count(distinct(author_0.name)) from author as author_0, organization as o
 select count(distinct(author_0.name)) from author as author_0, domain as domain_0, domain_author as domain_author_0, organization as organization_0 where domain_0.name = "Databases" and organization_0.name = "University of Michigan" and author_0.aid = domain_author_0.aid and author_0.oid = organization_0.oid and domain_0.did = domain_author_0.did
 select count(distinct(author_0.name)) from author as author_0, journal as journal_0, publication as publication_0, writes as writes_0 where journal_0.name = "PVLDB" and author_0.aid = writes_0.aid and journal_0.jid = publication_0.jid and publication_0.pid = writes_0.pid
 select count(distinct(author_0.name)) from author as author_0, conference as conference_0, publication as publication_0, writes as writes_0 where conference_0.name = "VLDB" and author_0.aid = writes_0.aid and conference_0.cid = publication_0.cid and publication_0.pid = writes_0.pid
-NO ANSWER YET
-NO ANSWER YET
+select count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year < 2000 and journal_0.jid = publication_0.jid
+select count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year < 2000 and conference_0.cid = publication_0.cid
 select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid
-NO ANSWER YET
+select sum(publication_0.citation_num), publication_0.title from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid group by publication_0.title
 select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year = 2005 and journal_0.jid = publication_0.jid
 select sum(publication_0.citation_num) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and publication_0.year < 2005 and journal_0.jid = publication_0.jid
 select sum(publication_0.citation_num), publication_0.year from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid group by publication_0.year
-NO ANSWER YET
+select publication_0.year, count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid group by publication_0.year
 select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid
-NO ANSWER YET
+select publication_0.title, sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid group by publication_0.title
 select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year = 2005 and conference_0.cid = publication_0.cid
 select sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and publication_0.year < 2005 and conference_0.cid = publication_0.cid
 select publication_0.year, sum(publication_0.citation_num) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid group by publication_0.year
-NO ANSWER YET
+select publication_0.year, count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid group by publication_0.year
