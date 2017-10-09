@@ -358,7 +358,8 @@ public class Templar {
                                         accumScore + relSim, accumNodes + 1));
                             } else if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
-                                            || curNode.relationship.equals("nsubjpass"))) {
+                                            || curNode.relationship.equals("nsubjpass")
+                                            || curNode.parent.tokenType.equals("FT"))) {
                                 // CASE 3: If it's a weak entity, project parent relation default attribute as well as
                                 // predicate
                                 // e.g. "How many restaurants..."
@@ -773,7 +774,8 @@ public class Templar {
 
         // queryStrs.add("What are all the gyms in \"Los Angeles\"?");
         // queryStrs.add("Find all bars in Dallas");
-        // queryStrs.add("Find all dance schools in \"Los Angeles\"");
+        // queryStrs.add("find the number of preschools in Madison");
+        // queryStrs.add("find the number of restaurants rated more than 3.5");
 
         int i = 0;
         int top1 = 0;
