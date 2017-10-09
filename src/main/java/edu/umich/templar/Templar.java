@@ -359,7 +359,8 @@ public class Templar {
                             } else if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
                                             || curNode.relationship.equals("nsubjpass"))) {
-                                // CASE 3: If it's a weak entity, project parent relation default attribute
+                                // CASE 3: If it's a weak entity, project parent relation default attribute as well as
+                                // predicate
                                 // e.g. "How many restaurants..."
 
                                 Relation parent = this.relations.get(rel.getParent());
@@ -368,6 +369,10 @@ public class Templar {
                                         curNode.QT);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(parent);
+
+                                newAccumPred.add(pred);
+                                newAccumRel.add(rel);
+
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
                                         accumScore + schemaEl.similarity, accumNodes + 1));
@@ -766,10 +771,9 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        // queryStrs.add("return me the author who has the most number of papers containing keyword \"Relational Database\".");
-        // queryStrs.add("return me the conference that has the most number of papers containing keyword \"Relational Database\".");
-        // queryStrs.add("return me the journal that has the most number of papers containing keyword \"Relational Database\".");
-        // queryStrs.add("return me the number of authors who have more than 10 papers containing keyword \"Relational Database\".");
+        // queryStrs.add("What are all the gyms in \"Los Angeles\"?");
+        // queryStrs.add("Find all bars in Dallas");
+        // queryStrs.add("Find all dance schools in \"Los Angeles\"");
 
         int i = 0;
         int top1 = 0;
