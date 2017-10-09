@@ -33,12 +33,14 @@ public class NodeMapper
 	{
 		ParseTree parseTree = query.parseTree;
 		parseTree.root.tokenType = "ROOT"; // mark the root and the root's children; 
-		
+
+        boolean cmtFound = false;
 		for(int i = 0; i < parseTree.root.children.size(); i++) {
             ParseTreeNode rootChild = parseTree.root.children.get(i);
             if (isOfType(tokens, parseTree, rootChild, "CMT_V", null)) // main verb is CMT (return)
             {
                 rootChild.tokenType = "CMT";
+                cmtFound = true;
             }
 		}
 
@@ -46,7 +48,7 @@ public class NodeMapper
         List<ParseTreeNode> toDelete = new ArrayList<>();
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
-            if ((curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
+            if (!cmtFound && (curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
                 // Only return if question is direct object
                 if (!curNode.relationship.equals("dobj") && !curNode.relationship.equals("dep")) continue;
 
@@ -82,7 +84,7 @@ public class NodeMapper
                     }
                 }
 
-            } else if (curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
+            } else if (!cmtFound && curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
                 // for "HOW MANY"
 
                 // Merge the two nodes to one "how many" node
