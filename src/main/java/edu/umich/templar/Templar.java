@@ -834,7 +834,7 @@ public class Templar {
         List<String> queryStrs = new ArrayList<>();
         List<List<String>> queryAnswers = null;
         try {
-            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -857,7 +857,8 @@ public class Templar {
         // queryStrs.add("How many bars in Dallas have a rating above 3.5?");
         // queryStrs.add("What is the number of businesses user Michelle reviews per month?");
         // queryStrs.add("How many businesses in \"San Diego\" has Christine reviewed in 2010?");
-        queryStrs.add("Find the number of reviews on businesses located in \"South Summerlin\" neighborhood");
+        // queryStrs.add("Find the number of reviews on businesses located in \"South Summerlin\" neighborhood");
+        // queryStrs.add("List all the businesses with more than 4.5 stars");
 
         int i = 0;
         int top1 = 0;

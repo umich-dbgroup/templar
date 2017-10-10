@@ -1,11 +1,11 @@
 select business_0.name from business as business_0 where business_0.rating > 4.5
 select business_0.name from business as business_0 where business_0.rating = 3.5
-NO ANSWER YET
+select user_0.user_id from user as user_0 where user_0.name = "Michelle"
 select business_0.state from business as business_0 where business_0.name = "Whataburger"
 select business_0.city from business as business_0, category as category_0 where business_0.name = "MGM Grand Buffet" and category_0.category_name = "Restaurants" and business_0.business_id = category_0.business_id
 select business_0.city from business as business_0 where business_0.rating < 1.5
 select business_0.city from business as business_0 where business_0.name = "Taj Mahal"
-NO ANSWER YET
+select review_0.text from review as review_0 where review_0.rating < 1
 select business_0.name from business as business_0, category as category_0 where business_0.rating > 3.5 and category_0.category_name = "Restaurants" and business_0.business_id = category_0.business_id
 select business_0.city from business as business_0, category as category_0 where business_0.name = "Taj Mahal" and category_0.category_name = "Restaurants" and business_0.business_id = category_0.business_id
 select review_0.text from review as review_0, user as user_0 where user_0.name = "Niloofar" and review_0.user_id = user_0.user_id
