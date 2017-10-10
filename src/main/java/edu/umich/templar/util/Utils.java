@@ -325,7 +325,23 @@ public class Utils {
         }
     }
 
+    public static String removeAliasIntFromAlias(String alias) {
+        String[] splitList = alias.split("_");
+        return splitList[0];
+    }
+
     public static boolean isStopword(String word) {
         return Utils.stopwords.contains(word.trim().toLowerCase());
+    }
+
+    public static Attribute getAttributeFromColumn(Map<String, Relation> relations, Column column) {
+        String tableName = Utils.removeAliasIntFromAlias(column.getTable().getName().toLowerCase());
+        Relation rel = relations.get(tableName);
+        if (rel == null) throw new RuntimeException("Relation " + column.getTable().getName() + " not found!");
+
+        Attribute attr = rel.getAttributes().get(column.getColumnName().toLowerCase());
+        if (attr == null) throw new RuntimeException("Attribute " + column.getColumnName() + " not found!");
+
+        return attr;
     }
 }

@@ -37,22 +37,24 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
     public void visitPredicate(BinaryExpression expr, Operator operator) {
         // Make sure left is column, right is NOT column (otherwise it is join predicate)
         boolean leftIsColumn = expr.getLeftExpression() instanceof Column;
-        boolean rightIsColumn = expr.getRightExpression() instanceof Column;
+        boolean rightIsColumn = (expr.getRightExpression() instanceof Column) &&
+                ((Column) expr.getRightExpression()).getTable().getName() != null;
 
         if (leftIsColumn && !rightIsColumn) {
             Column column = (Column) expr.getLeftExpression();
 
             String value = expr.getRightExpression().toString();
-            if (value.isEmpty()) value = null;
+            if (value.isEmpty()) {
+                value = null;
+            } else {
+                // remove beginning and ending quotes
+                value = value.replaceAll("^\"|\"$", "");
+            }
 
             Attribute attr = null;
             String alias = null;
             if (column.getTable() != null) {
-                Relation rel = this.relations.get(column.getTable().getName());
-                if (rel == null) throw new RuntimeException("Relation " + column.getTable().getName() + " not found!");
-
-                attr = rel.getAttributes().get(column.getColumnName());
-                if (attr == null) throw new RuntimeException("Attribute " + column.getColumnName() + " not found!");
+                attr = Utils.getAttributeFromColumn(this.relations, column);
 
                 if (column.getTable().getAlias() != null && column.getTable().getAlias().getName() != null) {
                     alias = column.getTable().getAlias().getName();
@@ -61,11 +63,12 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
                 }
             }
 
-            if (alias != null) {
-                attr = new Attribute(attr);
+            if (alias != null && attr != null) {
+                Attribute newAttr = new Attribute(attr);
                 Relation newRel = new Relation(attr.getRelation());
-                attr.setRelation(newRel);
+                newAttr.setRelation(newRel);
                 newRel.setAliasInt(Utils.getAliasIntFromAlias(alias));
+                attr = newAttr;
             }
 
             Predicate pred = new Predicate(attr, operator, value);

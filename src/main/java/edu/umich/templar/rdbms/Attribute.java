@@ -109,6 +109,10 @@ public class Attribute {
         this.column = column;
     }
 
+    public String toStringWithConsistentRelation() {
+        return this.relation.getName() + "." + this.name;
+    }
+
     @Override
     public String toString() {
         return this.relation.toString() + "." + this.name;

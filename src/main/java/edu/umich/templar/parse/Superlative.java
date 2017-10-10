@@ -49,11 +49,44 @@ public class Superlative extends QueryFragment {
         }
     }
 
+    public String toStringWithConsistentRelation() {
+        StringBuilder sb = new StringBuilder();
+
+        boolean isCount = this.function != null && this.function.equalsIgnoreCase("count");
+
+        boolean countingIntAttr = this.function != null && this.function.equalsIgnoreCase("count")
+                && this.attribute.getType().equals("int");
+
+        if (this.function != null && !countingIntAttr) {
+            sb.append(this.function);
+            sb.append("(");
+            if (isCount) {
+                sb.append("distinct(");
+            }
+        }
+        sb.append(this.attribute.toStringWithConsistentRelation());
+        if (this.function != null && !countingIntAttr) {
+            sb.append(")");
+            if (isCount) {
+                sb.append(")");
+            }
+        }
+
+        if (this.desc) {
+            sb.append(" desc");
+        } else {
+            sb.append(" asc");
+        }
+
+        sb.append(" limit 1");
+
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        // TODO: explore this more, but are all COUNT functions going to be DISTINCT?
         boolean isCount = this.function != null && this.function.equalsIgnoreCase("count");
 
         boolean countingIntAttr = this.function != null && this.function.equalsIgnoreCase("count")

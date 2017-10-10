@@ -15,7 +15,7 @@ public class Projection extends QueryFragment {
         this.attribute = attribute;
         this.function = function;
 
-        this.groupBy = qt.equals("each");
+        this.groupBy = qt != null && qt.equals("each");
     }
 
     public Projection(Projection other) {
@@ -58,6 +58,13 @@ public class Projection extends QueryFragment {
         } else {
             this.function = "count";
         }
+    }
+
+    public String toStringWithConsistentRelation() {
+        String function = this.function == null ? "" : this.function;
+        String groupByStr = this.groupBy ? "group" : "";
+        return this.attribute.getRelation().getName() + "." + this.attribute.getName()
+                + ":" + function + ":" + groupByStr;
     }
 
     @Override

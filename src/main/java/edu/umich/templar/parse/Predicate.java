@@ -41,6 +41,11 @@ public class Predicate extends QueryFragment {
         this.value = value;
     }
 
+    public String toStringWithConsistentRelation() {
+        return this.attribute.getRelation().getName() + "." + this.attribute.getName()
+                + this.op + this.value;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

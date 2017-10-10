@@ -14,7 +14,9 @@ import java.util.*;
 public class Relation {
     String name;
     RelationType type;
-    Attribute primaryAttr;
+
+    Attribute pk;  // primary key
+    Attribute primaryAttr;  // primary attribute (the most "important" attribute, distinct from the pk)
     Map<String, Attribute> attributes;
 
     Integer aliasInt; // aliasInt
@@ -46,6 +48,7 @@ public class Relation {
             e.getValue().setRelation(this);
         }
 
+        this.pk = null;
         this.primaryAttr = null;
 
         this.joinTable = false;
@@ -68,6 +71,10 @@ public class Relation {
             this.attributes.put(e.getKey(), copyAttr);
         }
 
+        if (other.pk != null) {
+            this.pk = this.attributes.get(other.pk.getName());
+        }
+
         if (other.primaryAttr != null) {
             this.primaryAttr = this.attributes.get(other.primaryAttr.getName());
         }
@@ -77,9 +84,12 @@ public class Relation {
         this.parent = other.parent;
         this.fromItem = null;
 
-        this.rankedAttributes = new ArrayList<>();
-        for (Attribute otherAttr : other.rankedAttributes) {
-            this.rankedAttributes.add(this.attributes.get(otherAttr.getName()));
+        this.rankedAttributes = null;
+        if (other.rankedAttributes != null) {
+            this.rankedAttributes = new ArrayList<>();
+            for (Attribute otherAttr : other.rankedAttributes) {
+                this.rankedAttributes.add(this.attributes.get(otherAttr.getName()));
+            }
         }
 
         this.aliasInt = 0;
@@ -167,6 +177,14 @@ public class Relation {
 
     public void setAttributes(Map<String, Attribute> attributes) {
         this.attributes = attributes;
+    }
+
+    public Attribute getPk() {
+        return pk;
+    }
+
+    public void setPk(Attribute pk) {
+        this.pk = pk;
     }
 
     public Attribute getPrimaryAttr() {

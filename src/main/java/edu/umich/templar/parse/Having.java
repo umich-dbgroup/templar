@@ -45,6 +45,16 @@ public class Having extends QueryFragment {
         this.value = value;
     }
 
+    public String getFunction() {
+        return function;
+    }
+
+    public String toStringWithConsistentRelation() {
+        String function = this.function == null ? "" : this.function;
+        return this.attribute.getRelation().getName() + "." +
+                this.attribute.getName() + this.op + this.value + ":" + function;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

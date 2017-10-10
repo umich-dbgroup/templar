@@ -53,6 +53,7 @@ public class SchemaGraph {
 
                 Map<String, Attribute> attributeMap = new HashMap<>();
                 Attribute primaryAttr = null;
+                Attribute pk = null;
                 for (Object attrNameObj : attrObj.keySet()) {
                     JSONObject attrInfo = (JSONObject) attrObj.get(attrNameObj);
                     String attrName = (String) attrInfo.get("name");
@@ -65,6 +66,7 @@ public class SchemaGraph {
                     }
                     if (attrInfo.get("pk") != null) {
                         attr.setPk((Boolean) attrInfo.get("pk"));
+                        pk = attr;
                     }
 
                     if (attrInfo.get("entropy") != null) {
@@ -112,6 +114,7 @@ public class SchemaGraph {
                     Relation rel = new Relation(relName, (String) relInfo.get("type"), attributeMap);
                     this.relations.put(relName, rel);
 
+                    rel.setPk(pk);
                     rel.setPrimaryAttr(primaryAttr);
 
                     if (relInfo.get("join_table") != null) {

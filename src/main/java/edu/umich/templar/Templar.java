@@ -13,14 +13,14 @@ import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.parse.*;
 import edu.umich.templar.rdbms.*;
 import edu.umich.templar.sql.Operator;
-import edu.umich.templar.template.InstantiatedTemplate;
-import edu.umich.templar.template.SchemaDataTemplateGenerator;
-import edu.umich.templar.template.Template;
+import edu.umich.templar.template.*;
 import edu.umich.templar.tools.PrintForCheck;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Utils;
+import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,9 +33,36 @@ import java.util.*;
  */
 public class Templar {
     Map<String, Relation> relations;
+    NLSQLLogCounter logCounter;
 
-    public Templar(Map<String, Relation> relations) {
+    public Templar(Map<String, Relation> relations, NLSQLLogCounter logCounter) {
         this.relations = relations;
+        this.logCounter = logCounter;
+    }
+
+    public double getWeightedSimilarity(double similarity, String token, Object qfOrRel) {
+        double universalScore = 0;
+        double tokenScore = 0;
+        if (qfOrRel instanceof QueryFragment) {
+            QueryFragment qf = (QueryFragment) qfOrRel;
+            universalScore = this.logCounter.getUniversalFreqScore(qf);
+            if (token != null) {
+                QueryFragmentCounter tkCounter = this.logCounter.getTokenCounters().get(token.toLowerCase());
+                if (tkCounter != null) {
+                    tokenScore = tkCounter.getFreqScore(qf);
+                }
+            }
+        } else if (qfOrRel instanceof Relation) {
+            Relation rel = (Relation) qfOrRel;
+            universalScore = this.logCounter.getUniversalFreqScore(rel);
+            if (token != null) {
+                QueryFragmentCounter tkCounter = this.logCounter.getTokenCounters().get(token.toLowerCase());
+                if (tkCounter != null) {
+                    tokenScore = tkCounter.getFreqScore(rel);
+                }
+            }
+        }
+        return 0.5 * similarity + 0.1 * Math.sqrt(universalScore) + 0.4 * Math.sqrt(tokenScore);
     }
 
     public List<PossibleTranslation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
@@ -97,9 +124,10 @@ public class Templar {
                 }
 
                 // Add a version without any changes, and MIN_SIM
+                double scoreToAdd = this.getWeightedSimilarity(Constants.MIN_SIM, null, null);
                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                         new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                        new ArrayList<>(accumHaving), superlative, accumScore + Constants.MIN_SIM, accumNodes + 1));
+                        new ArrayList<>(accumHaving), superlative, accumScore + scoreToAdd, accumNodes + 1));
 
                 Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
                 if (rel == null)
@@ -117,6 +145,8 @@ public class Templar {
                         if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
                             similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                         }
+
+                        similarity = this.getWeightedSimilarity(similarity, curNode.label, rel);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, new ArrayList<>(accumProj), new ArrayList<>(accumPred),
@@ -157,9 +187,12 @@ public class Templar {
                             newAccumRel.add(attr.getRelation());
                         }
 
+                        double similarity = schemaEl.similarity;
+                        similarity = this.getWeightedSimilarity(similarity, curNode.label, newSuper);
+
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, newSuper,
-                                accumScore + schemaEl.similarity, accumNodes + 1));
+                                accumScore + similarity, accumNodes + 1));
                     } else {
                         Projection proj = new Projection(attr, schemaEl.attachedFT, curNode.QT);
 
@@ -169,11 +202,6 @@ public class Templar {
                         int aliasInt = 0;
                         for (Predicate pred : accumPred) {
                             if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                if (!selfJoinFlag) {
-                                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                            new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                            new ArrayList<>(accumHaving), superlative, accumScore + 0.5, accumNodes + 1));
-                                }
                                 selfJoinFlag = true;
                                 aliasInt++;
                             }
@@ -214,6 +242,7 @@ public class Templar {
                         if (!likelyProjection) {
                             similarityAdded *= 0.8;
                         }
+                        similarityAdded = this.getWeightedSimilarity(similarityAdded, curNode.label, proj);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
@@ -283,9 +312,12 @@ public class Templar {
                         if (!newAccumHaving.contains(having)) newAccumHaving.add(having);
                         newAccumRel.add(rel);
 
+                        double similarity = schemaEl.similarity;
+                        similarity = this.getWeightedSimilarity(similarity, curNode.label, having);
+
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                 newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                accumScore + schemaEl.similarity, accumNodes + 1));
+                                accumScore + similarity, accumNodes + 1));
                     } else {
                         // If you are creating a predicate and there already exists a projection with the same attribute,
                         // then create an additional path of eliminating this predicate.
@@ -293,9 +325,11 @@ public class Templar {
 
                         for (Projection p : accumProj) {
                             if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
+                                /*
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
                                         new ArrayList<>(accumHaving), superlative, accumScore + 0.5, accumNodes + 1));
+                                        */
 
                                 aliasInt++;
                             }
@@ -341,6 +375,7 @@ public class Templar {
 
                                 // Get the maximum of the attribute or relation similarity
                                 double maxSim = Math.max(relSim, attrSim);
+                                maxSim = this.getWeightedSimilarity(maxSim, curNode.label, proj);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
@@ -353,9 +388,12 @@ public class Templar {
                                 newAccumProj.add(proj);
                                 newAccumRel.add(rel);
 
+                                double similarity = relSim;
+                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
+
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + relSim, accumNodes + 1));
+                                        accumScore + similarity, accumNodes + 1));
                             } else if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
                                             || curNode.relationship.equals("nsubjpass")
@@ -374,21 +412,28 @@ public class Templar {
                                 newAccumPred.add(pred);
                                 newAccumRel.add(rel);
 
+                                double similarity = schemaEl.similarity;
+                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
+                                // TODO: do I need to average the predicate weight too?
+
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + schemaEl.similarity, accumNodes + 1));
+                                        accumScore + similarity, accumNodes + 1));
                             } else {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
-                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                Projection proj = new Projection(rel.getPk(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
                                 if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
                                 newAccumProj.add(proj);
                                 newAccumRel.add(rel);
 
+                                double similarity = schemaEl.similarity;
+                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
+
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + schemaEl.similarity, accumNodes + 1));
+                                        accumScore + similarity, accumNodes + 1));
                             }
                         } else {
                             // In situations where it's probably not a projection because parent is not CMT
@@ -402,6 +447,9 @@ public class Templar {
                                 if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
                                     similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                                 }
+
+                                similarity = this.getWeightedSimilarity(similarity, curNode.label, rel);
+
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                         newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
                                         accumScore + similarity, accumNodes + 1));
@@ -414,6 +462,8 @@ public class Templar {
                             // penalize predicates that deal with common nouns
                             double similarity = schemaEl.similarity;
                             if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+
+                            similarity = this.getWeightedSimilarity(similarity, curNode.label, pred);
 
                             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
                                     newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
@@ -746,6 +796,32 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
+        // Load in everything for log counter
+        NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
+        List<String> nlq = new ArrayList<>();
+        try {
+            nlq = FileUtils.readLines(new File(prefix + "_all.txt"), "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Select> selects = Utils.parseStatements(prefix + "_all.ans");
+        for (int i = 0; i < selects.size(); i++) {
+            Query query = new Query(nlq.get(i), db.schemaGraph);
+            List<String> tokens = Arrays.asList(query.sentence.outputWords);
+            nlsqlLogCounter.addNLQSQLPair(tokens, selects.get(i));
+        }
+
+        /*
+        Templar templar = new Templar(db.schemaGraph.relations, nlsqlLogCounter);
+        Relation user = db.schemaGraph.relations.get("user");
+        Attribute username = user.getAttributes().get("name");
+        System.out.println("username: " + templar.getWeightedSimilarity(0.5, "people", new Projection(username, "count", null)));
+        Relation tip = db.schemaGraph.relations.get("tip");
+        Attribute tipid = tip.getAttributes().get("tip_id");
+        System.out.println("tip_text: " + templar.getWeightedSimilarity(0.5, "people", new Projection(tipid, "count", null)));
+        System.exit(1);*/
+
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
@@ -758,7 +834,7 @@ public class Templar {
         List<String> queryStrs = new ArrayList<>();
         List<List<String>> queryAnswers = null;
         try {
-            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -772,10 +848,16 @@ public class Templar {
             throw new RuntimeException(e);
         }
 
-        // queryStrs.add("What are all the gyms in \"Los Angeles\"?");
-        // queryStrs.add("Find all bars in Dallas");
-        // queryStrs.add("find the number of preschools in Madison");
-        // queryStrs.add("find the number of restaurants rated more than 3.5");
+        // queryStrs.add("what is the average rating given in Michelle reviews");
+        // queryStrs.add("What is the number of businesses user Michelle reviews per month?");
+        // queryStrs.add("How many reviews has Michelle written in March 2014?");
+        // queryStrs.add("How many people reviewed the restaurant \"Texas De Brazil\" in Dallas TX?");
+        // queryStrs.add("How many people reviewed \"Bistro Di Napoli\" in 2015?");
+        // queryStrs.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
+        // queryStrs.add("How many bars in Dallas have a rating above 3.5?");
+        // queryStrs.add("What is the number of businesses user Michelle reviews per month?");
+        // queryStrs.add("How many businesses in \"San Diego\" has Christine reviewed in 2010?");
+        queryStrs.add("Find the number of reviews on businesses located in \"South Summerlin\" neighborhood");
 
         int i = 0;
         int top1 = 0;
@@ -810,7 +892,7 @@ public class Templar {
 
             List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 
-            Templar tc = new Templar(db.schemaGraph.relations);
+            Templar tc = new Templar(db.schemaGraph.relations, nlsqlLogCounter);
             List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes, null, null,
                     null, null, null, 0, 0);
 
