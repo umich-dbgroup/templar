@@ -32,7 +32,7 @@ What is the number of businesses user Michelle reviews per month?
 How many reviews has Adrienne written?
 How many reviews has Michelle written in March 2014?
 How many businesses has Michelle reviewed in 2010?
-How many businesses in San Diego has Christine reviewed in 2010?
+How many businesses in "San Diego" has Christine reviewed in 2010?
 How many Target are there in "Los Angeles"?
 How many users have reviewed Irish pubs in Dallas?
 What is the average rating of reviews written in year 2014?
