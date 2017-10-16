@@ -76,7 +76,7 @@ public class SchemaElement implements Serializable
 	
 	public MappedSchemaElement isTextExist(String value, Connection conn) throws Exception 
 	{
-		Statement statement = conn.createStatement(); 
+		Statement statement = conn.createStatement();
 		String numberSQL = "SELECT *" + " FROM size WHERE size.relation = '" + this.relation.name + "'"; 
         // System.out.println(numberSQL);
 		ResultSet number = statement.executeQuery(numberSQL); 
@@ -102,7 +102,10 @@ public class SchemaElement implements Serializable
 		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);  
 		while(result.next())
 		{
-			mappedSchemaElement.mappedValues.add(result.getString(1)); 
+            String resultStr = result.getString(1);
+            if (resultStr != null) {
+                mappedSchemaElement.mappedValues.add(resultStr);
+            }
 		}
 		if(!mappedSchemaElement.mappedValues.isEmpty())
 		{
@@ -114,7 +117,7 @@ public class SchemaElement implements Serializable
 	
 	public MappedSchemaElement isNumExist(String number, String operator, Connection conn) throws Exception 
 	{
-		Statement statement = conn.createStatement(); 
+		Statement statement = conn.createStatement();
 		String query = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + operator + " " + number + " LIMIT 0, 5"; 
 
         // System.out.println(query);
