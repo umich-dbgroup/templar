@@ -2,7 +2,7 @@ package edu.umich.templar.parse;
 
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sql.Operator;
+import edu.umich.templar.sqlparse.Operator;
 
 import java.util.*;
 

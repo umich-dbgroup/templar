@@ -68,9 +68,8 @@ public class SimFunctions
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
-				// sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
-                sims[i] = TemplateChooser.vec.similarity(nodeLabel, mappedValues.get(i));
-			}			
+				sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
+			}
 			
 			for(int i = 0; i < mappedValues.size(); i++)
 			{

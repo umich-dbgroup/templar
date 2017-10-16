@@ -5,7 +5,7 @@ import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.JoinPath;
 import edu.umich.templar.parse.Projection;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sql.*;
+import edu.umich.templar.sqlparse.*;
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.BinaryExpression;
@@ -688,7 +688,7 @@ public class TemplateRoot {
             // Set predicates on template
             Expression where = ps.getWhere();
             if (where != null) {
-                PredicateUnroller predicateUnroller = new PredicateUnroller(TemplateRoot.relations);
+                PredicateUnroller predicateUnroller = new PredicateUnroller(TemplateRoot.relations, relations);
                 where.accept(predicateUnroller);
                 List<Predicate> preds = predicateUnroller.getPredicates();
                 template.setPredicates(preds);

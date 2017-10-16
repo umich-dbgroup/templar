@@ -5,8 +5,8 @@ import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Function;
 import edu.umich.templar.rdbms.FunctionParameter;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sql.ConstantRemovalExprDeParser;
-import edu.umich.templar.sql.LiteralExpression;
+import edu.umich.templar.sqlparse.ConstantRemovalExprDeParser;
+import edu.umich.templar.sqlparse.LiteralExpression;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
@@ -263,7 +263,7 @@ public class Utils {
         for (char token : tokensToReplace) {
             sql = sql.replace(token, '_');
         }
-        final String finalSql = sql.toLowerCase();
+        final String finalSql = sql;
 
         return () -> {
             Statement stmt;
@@ -271,19 +271,21 @@ public class Utils {
                 stmt = CCJSqlParserUtil.parse(finalSql);
             } catch (JSQLParserException e) {
                 if (Log.DEBUG) e.printStackTrace();
+                // System.out.println(finalSql);
                 return;
             } catch (Throwable t) {
                 t.printStackTrace();
                 return;
             }
-            if (stmt == null || !(stmt instanceof Select)) return; // Case that it's not a select statement
+            if (stmt == null || !(stmt instanceof Select)) {
+                return; // Case that it's not a select statement
+            }
             stmts.add((Select) stmt);
         };
     }
 
-    public static List<Select> parseStatements(String queryLogFilename) {
+    public static List<Select> parseStatements(List<String> sqls) {
         try {
-            List<String> sqls = Files.readAllLines(Paths.get(queryLogFilename));
             ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
             ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
             for (String sql : sqls) {
@@ -314,6 +316,15 @@ public class Utils {
         }
     }
 
+    public static List<Select> parseStatements(String queryLogFilename) {
+        try {
+            List<String> sqls = Files.readAllLines(Paths.get(queryLogFilename));
+            return Utils.parseStatements(sqls);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static Integer getAliasIntFromAlias(String alias) {
         String[] splitList = alias.split("_");
         String lastSplit = splitList[splitList.length - 1];
@@ -334,14 +345,32 @@ public class Utils {
         return Utils.stopwords.contains(word.trim().toLowerCase());
     }
 
-    public static Attribute getAttributeFromColumn(Map<String, Relation> relations, Column column) {
-        String tableName = Utils.removeAliasIntFromAlias(column.getTable().getName().toLowerCase());
-        Relation rel = relations.get(tableName);
-        if (rel == null) throw new RuntimeException("Relation " + column.getTable().getName() + " not found!");
+    public static Attribute getAttributeFromColumn(Map<String, Relation> relations, List<Relation> queryRelations, Column column) {
+        Relation rel = null;
+        Attribute attr = null;
+        if (column.getTable().getName() != null) {
+            String tableName = Utils.removeAliasIntFromAlias(column.getTable().getName().trim().toLowerCase());
+            rel = relations.get(tableName);
+            if (rel == null) {
+                for (Relation qr : queryRelations) {
+                    if (qr.getAliasSet().contains(tableName)) {
+                        rel = qr;
+                        break;
+                    }
+                }
+            }
+            // if (rel == null) throw new RuntimeException("Relation " + column.getTable().getName() + " not found!");
+            if (rel == null) return null;
 
-        Attribute attr = rel.getAttributes().get(column.getColumnName().toLowerCase());
-        if (attr == null) throw new RuntimeException("Attribute " + column.getColumnName() + " not found!");
+            attr = rel.getAttributes().get(column.getColumnName().toLowerCase());
+        } else {
+            for (Relation qr : queryRelations) {
+                attr = qr.getAttributes().get(column.getColumnName());
+                if (attr != null) break;
+            }
+        }
 
+        // if (attr == null) throw new RuntimeException("Attribute " + column.getColumnName() + " not found!");
         return attr;
     }
 }

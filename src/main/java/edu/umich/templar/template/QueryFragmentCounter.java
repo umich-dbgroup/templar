@@ -22,9 +22,25 @@ public class QueryFragmentCounter {
         } else if (qf instanceof Predicate) {
             Predicate pred = (Predicate) qf;
             this.counter.add(pred.toStringWithConsistentRelation().intern());
+
+            Predicate predWithoutValue = new Predicate(pred);
+            predWithoutValue.setValue(null);
+            this.counter.add(predWithoutValue.toStringWithConsistentRelation().intern());
+
+            Predicate predWithoutValueOrOp = new Predicate(predWithoutValue);
+            predWithoutValueOrOp.setOp(null);
+            this.counter.add(predWithoutValueOrOp.toStringWithConsistentRelation().intern());
         } else if (qf instanceof Having) {
             Having having = (Having) qf;
             this.counter.add(having.toStringWithConsistentRelation().intern());
+
+            Having havingWithoutValue = new Having(having);
+            havingWithoutValue.setValue(null);
+            this.counter.add(havingWithoutValue.toStringWithConsistentRelation().intern());
+
+            Having havingWithoutValueOrOp = new Having(havingWithoutValue);
+            havingWithoutValue.setOp(null);
+            this.counter.add(havingWithoutValueOrOp.toStringWithConsistentRelation().intern());
         } else if (qf instanceof Superlative) {
             Superlative superlative = (Superlative) qf;
             this.counter.add(superlative.toStringWithConsistentRelation().intern());
@@ -35,21 +51,40 @@ public class QueryFragmentCounter {
 
     public double getFreqScore(QueryFragment qf) {
         double totalSize = this.counter.size();
-        double fragCount;
+
+        if (totalSize == 0) return 0;
+
+        double fragCount = 0;
         if (qf instanceof Projection) {
             Projection proj = (Projection) qf;
-            fragCount = this.counter.getCount(proj.toStringWithConsistentRelation().intern());
+            fragCount += this.counter.getCount(proj.toStringWithConsistentRelation().intern());
         } else if (qf instanceof Predicate) {
             Predicate pred = (Predicate) qf;
-            fragCount = this.counter.getCount(pred.toStringWithConsistentRelation().intern());
+            fragCount += this.counter.getCount(pred.toStringWithConsistentRelation().intern());
+
+            Predicate predWithoutValue = new Predicate(pred);
+            predWithoutValue.setValue(null);
+            fragCount += this.counter.getCount(predWithoutValue.toStringWithConsistentRelation().intern());
+
+            Predicate predWithoutValueOrOp = new Predicate(predWithoutValue);
+            predWithoutValueOrOp.setOp(null);
+            fragCount += this.counter.getCount(predWithoutValueOrOp.toStringWithConsistentRelation().intern());
         } else if (qf instanceof Having) {
             Having having = (Having) qf;
-            fragCount = this.counter.getCount(having.toStringWithConsistentRelation().intern());
+            fragCount += this.counter.getCount(having.toStringWithConsistentRelation().intern());
+
+            Having havingWithoutValue = new Having(having);
+            havingWithoutValue.setValue(null);
+            fragCount += this.counter.getCount(havingWithoutValue.toStringWithConsistentRelation().intern());
+
+            Having havingWithoutValueOrOp = new Having(havingWithoutValue);
+            havingWithoutValue.setOp(null);
+            fragCount += this.counter.getCount(havingWithoutValueOrOp.toStringWithConsistentRelation().intern());
         } else if (qf instanceof Superlative) {
             Superlative superlative = (Superlative) qf;
-            fragCount = this.counter.getCount(superlative.toStringWithConsistentRelation().intern());
+            fragCount += this.counter.getCount(superlative.toStringWithConsistentRelation().intern());
         } else {
-            fragCount = this.counter.getCount(qf.toString());
+            fragCount += this.counter.getCount(qf.toString());
         }
         return fragCount / totalSize;
     }
@@ -60,12 +95,18 @@ public class QueryFragmentCounter {
 
     public double getFreqScore(Relation r) {
         double totalSize = this.counter.size();
+
+        if (totalSize == 0) return 0;
+
         double relCount = this.counter.getCount(r.getName());
         return relCount / totalSize;
     }
 
     public double getFreqScore(String s) {
         double totalSize = this.counter.size();
+
+        if (totalSize == 0) return 0;
+
         double relCount = this.counter.getCount(s);
         return relCount / totalSize;
     }

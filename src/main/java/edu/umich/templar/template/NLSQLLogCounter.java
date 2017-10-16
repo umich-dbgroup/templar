@@ -4,11 +4,12 @@ import edu.umich.templar.parse.*;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.RDBMS;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sql.HavingUnroller;
-import edu.umich.templar.sql.PredicateUnroller;
-import edu.umich.templar.sql.ProjectionUnroller;
+import edu.umich.templar.sqlparse.HavingUnroller;
+import edu.umich.templar.sqlparse.PredicateUnroller;
+import edu.umich.templar.sqlparse.ProjectionUnroller;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
@@ -31,7 +32,7 @@ public class NLSQLLogCounter {
     public static void main(String[] args) {
         RDBMS db;
         try {
-            db = new RDBMS("yelp", "data/yelp/yelp");
+            db = new RDBMS("senlidb", "data/senlidb/senlidb", false);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -41,18 +42,20 @@ public class NLSQLLogCounter {
 
         List<String> nlq = new ArrayList<>();
         try {
-            nlq = FileUtils.readLines(new File("data/yelp/yelp_all.txt"), "UTF-8");
+            nlq = FileUtils.readLines(new File("data/senlidb/test.txt"), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        List<Select> selects = Utils.parseStatements("data/yelp/yelp_all.ans");
+        List<Select> selects = Utils.parseStatements("data/senlidb/test.ans");
         for (int i = 0; i < selects.size(); i++) {
             String[] tokens = StringUtils.split(nlq.get(i));
             nlsqlLogCounter.addNLQSQLPair(Arrays.asList(tokens), selects.get(i));
         }
 
-        QueryFragmentCounter counter =  nlsqlLogCounter.getTokenCounters().get("people");
+        // QueryFragmentCounter counter =  nlsqlLogCounter.getTokenCounters().get("people");
+        QueryFragmentCounter counter = nlsqlLogCounter.getUniversalCounter();
+
         Bag counterBag = counter.getCounter();
         Map<String, Integer> fragByFrequency = new HashMap<>();
         for (Object item : counterBag) {
@@ -61,7 +64,7 @@ public class NLSQLLogCounter {
 
         Map<String, Integer> sortedFragByFrequency = Utils.sortByValueDesc(fragByFrequency);
         for (Map.Entry<String, Integer> e : sortedFragByFrequency.entrySet()) {
-            System.out.println(e.getKey() + ": " + counter.getFreqScore(e.getKey()));
+            System.out.println(e.getKey() + ": " + counter.getCounter().getCount(e.getKey()));
         }
     }
 
@@ -69,6 +72,14 @@ public class NLSQLLogCounter {
         this.universalCounter = new QueryFragmentCounter();
         this.tokenCounters = new HashMap<>();
         this.relations = relations;
+        Map<String, Relation> lowercaseRelations = new HashMap<>();
+
+        // TODO: Kind of a hack, but for each relation, save the relation to a lowercase version of the key as well
+        for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
+            lowercaseRelations.put(e.getKey().toLowerCase(), e.getValue());
+        }
+
+        this.relations.putAll(lowercaseRelations);
     }
 
     public QueryFragmentCounter getUniversalCounter() {
@@ -81,6 +92,9 @@ public class NLSQLLogCounter {
 
     // If tokens are null or empty, we only count universal tokens
     public void addNLQSQLPair(List<String> tokens, Select select) {
+        // Only handle PlainSelect
+        if (!(select.getSelectBody() instanceof PlainSelect)) return;
+
         // Parse Select into query fragments
         PlainSelect ps = (PlainSelect) select.getSelectBody();
 
@@ -90,52 +104,73 @@ public class NLSQLLogCounter {
         List<Having> havings = new ArrayList<>();
         List<Superlative> superlatives = new ArrayList<>();
 
+        // System.out.println(select);
+
+        // Relations
+        if (ps.getFromItem() instanceof Table) {
+            Table table = (Table) ps.getFromItem();
+            Relation rel = this.relations.get(table.getName());
+            if (rel != null) {
+                rel = new Relation(rel);
+                if (table.getAlias() != null) {
+                    rel.getAliasSet().add(table.getAlias().getName().trim());
+                }
+                relations.add(rel);
+            }
+        }
+        if (ps.getJoins() != null) {
+            for (Join join : ps.getJoins()) {
+                if (join.getRightItem() instanceof Table) {
+                    Table table = (Table) join.getRightItem();
+                    Relation rel = this.relations.get(table.getName());
+                    if (rel != null) {
+                        rel = new Relation(rel);
+                        if (table.getAlias() != null) {
+                            rel.getAliasSet().add(table.getAlias().getName().trim());
+                        }
+                        relations.add(rel);
+                    }
+                }
+            }
+        }
+
         // Projections
         for (SelectItem item : ps.getSelectItems()) {
             if (item instanceof SelectExpressionItem) {
-                ProjectionUnroller projUnroller = new ProjectionUnroller(this.relations);
-                ((SelectExpressionItem) item).getExpression().accept(projUnroller);
-                projections.addAll(projUnroller.getProjections());
+                ProjectionUnroller projUnroller = new ProjectionUnroller(this.relations, relations);
+                Expression expr = ((SelectExpressionItem) item).getExpression();
+                if (expr instanceof Function || expr instanceof Column) {
+                    expr.accept(projUnroller);
+                    projections.addAll(projUnroller.getProjections());
+                }
             }
         }
         // Check group by for projections
         if (ps.getGroupByColumnReferences() != null) {
             for (Expression expr : ps.getGroupByColumnReferences()) {
                 if (expr instanceof Column) {
-                    Attribute attr = Utils.getAttributeFromColumn(this.relations, (Column) expr);
-                    for (Projection proj : projections) {
-                        if (attr.hasSameRelationNameAndNameAs(proj.getAttribute())) {
-                            proj.setGroupBy(true);
+                    Attribute attr = Utils.getAttributeFromColumn(this.relations, relations, (Column) expr);
+                    if (attr != null) {
+                        for (Projection proj : projections) {
+                            if (attr.hasSameRelationNameAndNameAs(proj.getAttribute())) {
+                                proj.setGroupBy(true);
+                            }
                         }
                     }
                 }
             }
         }
 
-        // Relations
-        if (ps.getFromItem() instanceof Table) {
-            Relation rel = this.relations.get(((Table) ps.getFromItem()).getName().toLowerCase());
-            relations.add(rel);
-        }
-        if (ps.getJoins() != null) {
-            for (Join join : ps.getJoins()) {
-                if (join.getRightItem() instanceof Table) {
-                    Relation rel = this.relations.get(((Table) join.getRightItem()).getName().toLowerCase());
-                    relations.add(rel);
-                }
-            }
-        }
-
         // Predicates
         if (ps.getWhere() != null) {
-            PredicateUnroller predicateUnroller = new PredicateUnroller(this.relations);
+            PredicateUnroller predicateUnroller = new PredicateUnroller(this.relations, relations);
             ps.getWhere().accept(predicateUnroller);
             predicates.addAll(predicateUnroller.getPredicates());
         }
 
         // Havings
         if (ps.getHaving() != null) {
-            HavingUnroller havingUnroller = new HavingUnroller(this.relations);
+            HavingUnroller havingUnroller = new HavingUnroller(this.relations, relations);
             ps.getHaving().accept(havingUnroller);
             havings.addAll(havingUnroller.getHavings());
         }

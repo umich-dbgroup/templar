@@ -1,7 +1,7 @@
 package edu.umich.templar.parse;
 
 import edu.umich.templar.rdbms.Attribute;
-import edu.umich.templar.sql.Operator;
+import edu.umich.templar.sqlparse.Operator;
 import edu.umich.templar.util.Constants;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -42,8 +42,21 @@ public class Predicate extends QueryFragment {
     }
 
     public String toStringWithConsistentRelation() {
-        return this.attribute.getRelation().getName() + "." + this.attribute.getName()
-                + this.op + this.value;
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.attribute.getRelation().getName());
+        sb.append(".");
+        sb.append(this.attribute.getName());
+        if (this.op != null) {
+            sb.append(this.op);
+        } else {
+            sb.append("o?");
+        }
+        if (this.value != null) {
+            sb.append(this.value);
+        } else {
+            sb.append("v?");
+        }
+        return sb.toString();
     }
 
     @Override

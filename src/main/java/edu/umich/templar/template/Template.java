@@ -8,7 +8,7 @@ import edu.umich.templar.rdbms.JoinEdge;
 import edu.umich.templar.rdbms.JoinPath;
 import edu.umich.templar.parse.Projection;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sql.Operator;
+import edu.umich.templar.sqlparse.Operator;
 import edu.umich.templar.parse.Predicate;
 import edu.umich.templar.util.Constants;
 import net.sf.jsqlparser.JSQLParserException;
