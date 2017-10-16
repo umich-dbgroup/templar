@@ -224,6 +224,8 @@ public class SchemaDataTemplateGenerator {
 
         // If true, chooses top n from each relation
         // If false, chooses top n from all relations
+
+        /*
         boolean chooseTopEachRelationProjection = false;
         boolean chooseTopEachRelationPredicate = false;
 
@@ -231,6 +233,7 @@ public class SchemaDataTemplateGenerator {
                 maxProjectionSize, chooseTopEachRelationProjection);
         Set<Set<Attribute>> predicateAttributes = this.guessPredicateAttributes(relations, chooseTopPredicate,
                 maxPredicateSize, chooseTopEachRelationPredicate);
+                */
 
         templates.addAll(tr.generateNoPredicateProjectionTemplates(relations, joinPath));
         // templates.addAll(tr.generateNoAttributeConstantTemplates(maxProjectionSize, maxPredicateSize, relations, joinPath));
@@ -251,10 +254,11 @@ public class SchemaDataTemplateGenerator {
         Log.info("==============================");
         Log.info("Generating templates using schema for join level: " + this.joinLevel);
 
+        /*
         for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
             // Rank attributes by entropy first
             e.getValue().rankAttributesByEntropy(this.db);
-        }
+        }*/
 
         for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
             Relation r = e.getValue();
