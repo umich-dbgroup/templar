@@ -1,4 +1,4 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.ExpressionVisitor;

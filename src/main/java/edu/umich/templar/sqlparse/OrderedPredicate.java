@@ -1,4 +1,4 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 /**
  * Created by cjbaik on 8/29/17.

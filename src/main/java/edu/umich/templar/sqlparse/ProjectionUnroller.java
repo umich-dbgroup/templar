@@ -1,4 +1,4 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 import edu.umich.templar.parse.Projection;
 import edu.umich.templar.rdbms.Attribute;
@@ -19,10 +19,12 @@ import java.util.Map;
  */
 public class ProjectionUnroller extends ExpressionVisitorAdapter {
     Map<String, Relation> relations;
+    List<Relation> queryRelations;
     List<Projection> projections;
 
-    public ProjectionUnroller(Map<String, Relation> relations) {
+    public ProjectionUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
         this.relations = relations;
+        this.queryRelations = queryRelations;
         this.projections = new ArrayList<>();
     }
 
@@ -34,7 +36,8 @@ public class ProjectionUnroller extends ExpressionVisitorAdapter {
     public void visit(Function function) {
         String functionName = function.getName();
         Column col = null;
-        if (function.getParameters() != null && function.getParameters().getExpressions() != null) {
+        if (function.getParameters() != null && function.getParameters().getExpressions() != null &&
+                function.getParameters().getExpressions().size() == 1) {
             for (Expression expr : function.getParameters().getExpressions()) {
                 if (expr instanceof Parenthesis) {
                     expr = ((Parenthesis) expr).getExpression();
@@ -47,14 +50,20 @@ public class ProjectionUnroller extends ExpressionVisitorAdapter {
         }
 
         if (col != null) {
-            Attribute attr = Utils.getAttributeFromColumn(this.relations, col);
-            this.projections.add(new Projection(attr, functionName.toLowerCase(), null));
+            Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, col);
+            if (attr != null) {
+                this.projections.add(new Projection(attr, functionName.toLowerCase(), null));
+            }
         }
     }
 
     @Override
     public void visit(Column column) {
-        Attribute attr = Utils.getAttributeFromColumn(relations, column);
-        this.projections.add(new Projection(attr, null, null));
+        if (column.getTable().getName() != null) {
+            Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, column);
+            if (attr != null) {
+                this.projections.add(new Projection(attr, null, null));
+            }
+        }
     }
 }

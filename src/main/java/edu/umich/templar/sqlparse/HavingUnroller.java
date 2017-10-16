@@ -1,10 +1,11 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 import edu.umich.templar.parse.Having;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.*;
+import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
 
@@ -17,11 +18,12 @@ import java.util.Map;
  */
 public class HavingUnroller extends ExpressionVisitorAdapter {
     List<Having> havings;
+    List<Relation> queryRelations;
     Map<String, Relation> relations;
 
-    public HavingUnroller(Map<String, Relation> relations) {
+    public HavingUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
         this.relations = relations;
-
+        this.queryRelations = queryRelations;
         this.havings = new ArrayList<>();
     }
 
@@ -34,15 +36,19 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
     }
 
     public void visitHaving(BinaryExpression expr, Operator operator) {
+        if (!(expr.getLeftExpression() instanceof Function)) return;
+
         Function function = (Function) expr.getLeftExpression();
 
         Column column = null;
-        for (Expression fnExpr : function.getParameters().getExpressions()) {
-            if (fnExpr instanceof Parenthesis) {
-                fnExpr = ((Parenthesis) fnExpr).getExpression();
-            }
-            if (fnExpr instanceof Column) {
-                column = (Column) fnExpr;
+        if (function.getParameters() != null && function.getParameters().getExpressions() != null) {
+            for (Expression fnExpr : function.getParameters().getExpressions()) {
+                if (fnExpr instanceof Parenthesis) {
+                    fnExpr = ((Parenthesis) fnExpr).getExpression();
+                }
+                if (fnExpr instanceof Column) {
+                    column = (Column) fnExpr;
+                }
             }
         }
 
@@ -51,8 +57,8 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
 
         Attribute attr = null;
         String alias = null;
-        if (column.getTable() != null) {
-            attr = Utils.getAttributeFromColumn(this.relations, column);
+        if (column != null && column.getTable().getName() != null) {
+            attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, column);
 
             if (column.getTable().getAlias() != null && column.getTable().getAlias().getName() != null) {
                 alias = column.getTable().getAlias().getName();
@@ -61,7 +67,7 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
             }
         }
 
-        if (alias != null) {
+        if (alias != null && attr != null) {
             Attribute newAttr = new Attribute(attr);
             Relation newRel = new Relation(attr.getRelation());
             newAttr.setRelation(newRel);
@@ -69,8 +75,10 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
             attr = newAttr;
         }
 
-        Having pred = new Having(attr, operator, value, function.getName());
-        this.havings.add(pred);
+        if (attr != null) {
+            Having pred = new Having(attr, operator, value, function.getName());
+            this.havings.add(pred);
+        }
     }
 
     @Override
@@ -101,5 +109,16 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
     @Override
     public void visit(NotEqualsTo expr) {
         this.visitHaving(expr, Operator.NE);
+    }
+
+    @Override
+    public void visit(AndExpression expr) {
+        expr.getLeftExpression().accept(this);
+        expr.getRightExpression().accept(this);
+    }
+
+    @Override
+    public void visit(Between expr) {
+        // Noop
     }
 }

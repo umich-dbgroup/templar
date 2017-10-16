@@ -1,4 +1,4 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.util.Utils;

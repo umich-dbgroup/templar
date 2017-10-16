@@ -1,4 +1,4 @@
-package edu.umich.templar.sql;
+package edu.umich.templar.sqlparse;
 
 import edu.umich.templar.parse.Predicate;
 import edu.umich.templar.rdbms.Attribute;
@@ -18,11 +18,12 @@ import java.util.Map;
  */
 public class PredicateUnroller extends ExpressionVisitorAdapter {
     List<Predicate> predicates;
+    List<Relation> queryRelations;
     Map<String, Relation> relations;
 
-    public PredicateUnroller(Map<String, Relation> relations) {
+    public PredicateUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
         this.relations = relations;
-
+        this.queryRelations = queryRelations;
         this.predicates = new ArrayList<>();
     }
 
@@ -54,7 +55,7 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
             Attribute attr = null;
             String alias = null;
             if (column.getTable() != null) {
-                attr = Utils.getAttributeFromColumn(this.relations, column);
+                attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, column);
 
                 if (column.getTable().getAlias() != null && column.getTable().getAlias().getName() != null) {
                     alias = column.getTable().getAlias().getName();
@@ -71,8 +72,10 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
                 attr = newAttr;
             }
 
-            Predicate pred = new Predicate(attr, operator, value);
-            this.predicates.add(pred);
+            if (attr != null) {
+                Predicate pred = new Predicate(attr, operator, value);
+                this.predicates.add(pred);
+            }
         }
     }
 
