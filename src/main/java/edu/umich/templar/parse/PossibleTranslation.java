@@ -3,7 +3,7 @@ package edu.umich.templar.parse;
 import edu.umich.templar.qf.*;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sqlparse.Operator;
+import edu.umich.templar.qf.pieces.Operator;
 
 import java.util.*;
 

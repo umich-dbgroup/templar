@@ -1,6 +1,6 @@
-package edu.umich.templar.sqlparse;
+package edu.umich.templar.sqlparse.agnostic;
 
-import edu.umich.templar.qf.Predicate;
+import edu.umich.templar.qf.agnostic.AgnosticPredicate;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by cjbaik on 9/11/17.
+ * Created by cjbaik on 10/16/17.
  */
-public class PredicateUnroller extends ExpressionVisitorAdapter {
-    List<Predicate> predicates;
+public class AgnosticPredicateUnroller extends ExpressionVisitorAdapter {
+    List<AgnosticPredicate> predicates;
     List<Relation> queryRelations;
     Map<String, Relation> relations;
 
-    public PredicateUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
+    public AgnosticPredicateUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
         this.relations = relations;
         this.queryRelations = queryRelations;
         this.predicates = new ArrayList<>();
@@ -32,7 +32,7 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
         return relations;
     }
 
-    public List<Predicate> getPredicates() {
+    public List<AgnosticPredicate> getPredicates() {
         return predicates;
     }
 
@@ -45,36 +45,37 @@ public class PredicateUnroller extends ExpressionVisitorAdapter {
         if (leftIsColumn && !rightIsColumn) {
             Column column = (Column) expr.getLeftExpression();
 
-            String value = expr.getRightExpression().toString();
+            /*String value = expr.getRightExpression().toString();
             if (value.isEmpty()) {
                 value = null;
             } else {
                 // remove beginning and ending quotes
                 value = value.replaceAll("^\"|\"$", "");
-            }
+            }*/
 
             Attribute attr = null;
-            String alias = null;
+            // String alias = null;
             if (column.getTable() != null) {
                 attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, column);
 
+                /*
                 if (column.getTable().getAlias() != null && column.getTable().getAlias().getName() != null) {
                     alias = column.getTable().getAlias().getName();
                 } else {
                     alias = column.getTable().getName();
-                }
+                }*/
             }
 
-            if (alias != null && attr != null) {
+            /*if (alias != null && attr != null) {
                 Attribute newAttr = new Attribute(attr);
                 Relation newRel = new Relation(attr.getRelation());
                 newAttr.setRelation(newRel);
                 newRel.setAliasInt(Utils.getAliasIntFromAlias(alias));
                 attr = newAttr;
-            }
+            }*/
 
             if (attr != null) {
-                Predicate pred = new Predicate(attr, operator, value);
+                AgnosticPredicate pred = new AgnosticPredicate(attr.getAttributeType(), operator);
                 this.predicates.add(pred);
             }
         }

@@ -10,6 +10,7 @@ import edu.umich.templar.sqlparse.LiteralExpression;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
+import net.sf.jsqlparser.expression.Parenthesis;
 import net.sf.jsqlparser.expression.operators.relational.EqualsTo;
 import net.sf.jsqlparser.expression.operators.relational.ExpressionList;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
@@ -343,6 +344,21 @@ public class Utils {
 
     public static boolean isStopword(String word) {
         return Utils.stopwords.contains(word.trim().toLowerCase());
+    }
+
+    public static Column getColumnFromFunction(net.sf.jsqlparser.expression.Function function) {
+        if (function.getParameters() != null && function.getParameters().getExpressions() != null &&
+                function.getParameters().getExpressions().size() == 1) {
+            for (Expression expr : function.getParameters().getExpressions()) {
+                if (expr instanceof Parenthesis) {
+                    expr = ((Parenthesis) expr).getExpression();
+                }
+                if (expr instanceof Column) {
+                    return (Column) expr;
+                }
+            }
+        }
+        return null;
     }
 
     public static Attribute getAttributeFromColumn(Map<String, Relation> relations, List<Relation> queryRelations, Column column) {

@@ -1,7 +1,7 @@
 package edu.umich.templar.qf;
 
 import edu.umich.templar.rdbms.Attribute;
-import edu.umich.templar.sqlparse.Operator;
+import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.util.Constants;
 import org.apache.commons.lang3.math.NumberUtils;
 

@@ -1,4 +1,4 @@
-package edu.umich.templar.sqlparse;
+package edu.umich.templar.qf.pieces;
 
 /**
  * Created by cjbaik on 9/11/17.

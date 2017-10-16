@@ -1,7 +1,8 @@
-package edu.umich.templar.sqlparse;
+package edu.umich.templar.sqlparse.agnostic;
 
-import edu.umich.templar.qf.Having;
+import edu.umich.templar.qf.agnostic.AgnosticHaving;
 import edu.umich.templar.qf.pieces.Operator;
+import edu.umich.templar.qf.pieces.QFFunction;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.util.Utils;
@@ -15,14 +16,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by cjbaik on 9/11/17.
+ * Created by cjbaik on 10/16/17.
  */
-public class HavingUnroller extends ExpressionVisitorAdapter {
-    List<Having> havings;
+public class AgnosticHavingUnroller extends ExpressionVisitorAdapter {
+    List<AgnosticHaving> havings;
     List<Relation> queryRelations;
     Map<String, Relation> relations;
 
-    public HavingUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
+    public AgnosticHavingUnroller(Map<String, Relation> relations, List<Relation> queryRelations) {
         this.relations = relations;
         this.queryRelations = queryRelations;
         this.havings = new ArrayList<>();
@@ -32,7 +33,7 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
         return relations;
     }
 
-    public List<Having> getHavings() {
+    public List<AgnosticHaving> getHavings() {
         return havings;
     }
 
@@ -41,44 +42,36 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
 
         Function function = (Function) expr.getLeftExpression();
 
-        Column column = null;
-        if (function.getParameters() != null && function.getParameters().getExpressions() != null) {
-            for (Expression fnExpr : function.getParameters().getExpressions()) {
-                if (fnExpr instanceof Parenthesis) {
-                    fnExpr = ((Parenthesis) fnExpr).getExpression();
-                }
-                if (fnExpr instanceof Column) {
-                    column = (Column) fnExpr;
-                }
-            }
-        }
+        Column column = Utils.getColumnFromFunction(function);
 
-        String value = expr.getRightExpression().toString();
-        if (value.isEmpty()) value = null;
+        /*String value = expr.getRightExpression().toString();
+        if (value.isEmpty()) value = null;*/
 
         Attribute attr = null;
-        String alias = null;
+        // String alias = null;
         if (column != null && column.getTable().getName() != null) {
             attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, column);
 
+            /*
             if (column.getTable().getAlias() != null && column.getTable().getAlias().getName() != null) {
                 alias = column.getTable().getAlias().getName();
             } else {
                 alias = column.getTable().getName();
-            }
+            }*/
         }
 
-        if (alias != null && attr != null) {
+        /*if (alias != null && attr != null) {
             Attribute newAttr = new Attribute(attr);
             Relation newRel = new Relation(attr.getRelation());
             newAttr.setRelation(newRel);
             newRel.setAliasInt(Utils.getAliasIntFromAlias(alias));
             attr = newAttr;
-        }
+        }*/
 
         if (attr != null) {
-            Having pred = new Having(attr, operator, value, function.getName());
-            this.havings.add(pred);
+            AgnosticHaving having = new AgnosticHaving(attr.getAttributeType(),
+                    QFFunction.getFunction(function.getName()), operator);
+            this.havings.add(having);
         }
     }
 
@@ -116,10 +109,5 @@ public class HavingUnroller extends ExpressionVisitorAdapter {
     public void visit(AndExpression expr) {
         expr.getLeftExpression().accept(this);
         expr.getRightExpression().accept(this);
-    }
-
-    @Override
-    public void visit(Between expr) {
-        // Noop
     }
 }

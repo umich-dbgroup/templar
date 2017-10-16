@@ -1,5 +1,6 @@
 package edu.umich.templar.rdbms;
 
+import edu.umich.templar.qf.pieces.AttributeType;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 
@@ -36,6 +37,16 @@ public class Attribute {
         this.pk = other.pk;
 
         this.entropy = other.entropy;
+    }
+
+    public AttributeType getAttributeType() {
+        if (this.getType().equals("text")) {
+            return AttributeType.TEXT;
+        }
+        if (this.getType().equals("int") || this.getType().equals("double")) {
+            return AttributeType.NUMBER;
+        }
+        throw new RuntimeException("Cannot find attribute type: " + this.type);
     }
 
     public boolean hasSameRelationAs(Attribute other) {

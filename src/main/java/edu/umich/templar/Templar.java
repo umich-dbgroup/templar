@@ -11,16 +11,15 @@ import edu.umich.templar.components.StanfordNLParser;
 import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.parse.*;
+import edu.umich.templar.qf.*;
 import edu.umich.templar.rdbms.*;
-import edu.umich.templar.sql.Operator;
+import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.template.*;
 import edu.umich.templar.tools.PrintForCheck;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Utils;
-import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -497,8 +496,6 @@ public class Templar {
             boolean isValueToken = node.tokenType.startsWith("VT");
 
             if (isNameToken || isValueToken) {
-                mappedNodes.add(node);
-
                 // Check for related nodes that are auxiliary and delete
                 for (ParseTreeNode[] auxEntry : query.auxTable) {
                     // If governing node
@@ -696,15 +693,7 @@ public class Templar {
                         }*/
 
                     if (chosenMappedSchemaEl != null) {
-                        if (addNewForPrimaryAttribute) {
-                            /*
-                            chosenMappedSchemaEl.mappedValues.add(node.label);
-                            chosenMappedSchemaEl.choice = chosenMappedSchemaEl.mappedValues.size() - 1;
-
-                            node.mappedElements.add(chosenMappedSchemaEl);
-                            node.choice = node.mappedElements.size() - 1;
-                            chosenMappedSchemaEl.attachedFT = "count";*/
-                        } else {
+                        if (!addNewForPrimaryAttribute) {
                             chosenMappedSchemaEl.similarity = maxSimilarity;
                             node.choice = choice;
                             if (attachedFT != null && node.getChoiceMap().attachedFT == null) {
@@ -715,6 +704,9 @@ public class Templar {
                     }
                 }
             }
+
+            if (node.mappedElements.size() > 0 ) mappedNodes.add(node);
+
         }
         mappedNodes.removeAll(mappedNodesToRemove);
         return mappedNodes;
@@ -773,6 +765,8 @@ public class Templar {
     }
 
     public static void main(String[] args) {
+        Log.DEBUG();
+
         if (args.length < 4) {
             System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file> <ans-file (optional)>");
             System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt data/mas/mas_c1.ans");
@@ -782,7 +776,6 @@ public class Templar {
         String prefix = args[1];
         int joinLevel = Integer.valueOf(args[2]);
         String nlqFile = args[3];
-
         String ansFile = null;
         if (args.length > 4) {
             ansFile = args[4];
@@ -798,29 +791,61 @@ public class Templar {
 
         // Load in everything for log counter
         NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
+        /*
         List<String> nlq = new ArrayList<>();
+        List<List<String>> queryAnswers = null;
         try {
-            nlq = FileUtils.readLines(new File(prefix + "_all.txt"), "UTF-8");
+            nlq = FileUtils.readLines(new File(nlqFile), "UTF-8");
+            List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
+            queryAnswers = new ArrayList<>();
+            for (String line : answerFileLines) {
+                queryAnswers.add(Arrays.asList(line.trim().split("\t")));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        List<Select> selects = Utils.parseStatements(prefix + "_all.ans");
-        for (int i = 0; i < selects.size(); i++) {
-            Query query = new Query(nlq.get(i), db.schemaGraph);
-            List<String> tokens = Arrays.asList(query.sentence.outputWords);
-            nlsqlLogCounter.addNLQSQLPair(tokens, selects.get(i));
+        // Shuffle the nlqs and sqls
+        List<Integer> shuffleIndexes = new ArrayList<>();
+        for (int i = 0; i < nlq.size(); i++) {
+            shuffleIndexes.add(i);
+        }
+        Collections.shuffle(shuffleIndexes, new Random(1234));
+
+        // Test set (first 25%), Log/Training set (remainder)
+        shuffleIndexes = shuffleIndexes.subList(0, shuffleIndexes.size() / 4);
+
+        List<String> testNLQ = new ArrayList<>();
+        List<List<String>> testSQL = new ArrayList<>();
+
+        List<String> logNLQ = new ArrayList<>();
+        List<String> logSQLStr = new ArrayList<>();
+
+        for (int i = 0; i < nlq.size(); i++) {
+            if (shuffleIndexes.contains(i)) {
+                testNLQ.add(nlq.get(i));
+                testSQL.add(queryAnswers.get(i));
+            } else {
+                List<String> sqlList = queryAnswers.get(i);
+                // Disregard invalid answers
+                if (!sqlList.get(0).startsWith("NO")) {
+                    logNLQ.add(nlq.get(i));
+                    // only use the first correct answer if there's more than 1
+                    logSQLStr.add(sqlList.get(0));
+                }
+            }
         }
 
-        /*
-        Templar templar = new Templar(db.schemaGraph.relations, nlsqlLogCounter);
-        Relation user = db.schemaGraph.relations.get("user");
-        Attribute username = user.getAttributes().get("name");
-        System.out.println("username: " + templar.getWeightedSimilarity(0.5, "people", new Projection(username, "count", null)));
-        Relation tip = db.schemaGraph.relations.get("tip");
-        Attribute tipid = tip.getAttributes().get("tip_id");
-        System.out.println("tip_text: " + templar.getWeightedSimilarity(0.5, "people", new Projection(tipid, "count", null)));
-        System.exit(1);*/
+        List<Select> logSQL = Utils.parseStatements(logSQLStr);
+
+        // Add NLQ/SQL log pairs
+        for (int i = 0; i < logNLQ.size(); i++) {
+            if (logSQL.get(i) != null) {
+                Query query = new Query(logNLQ.get(i), db.schemaGraph);
+                List<String> tokens = Arrays.asList(query.sentence.outputWords);
+                nlsqlLogCounter.addNLQSQLPair(tokens, logSQL.get(i));
+            }
+        }*/
 
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
@@ -830,17 +855,16 @@ public class Templar {
         // Read in Stanford Parser Model
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        // Read in stop words list
-        List<String> queryStrs = new ArrayList<>();
-        List<List<String>> queryAnswers = null;
+        List<String> testNLQ = new ArrayList<>();
+        List<List<String>> testSQL = new ArrayList<>();
         try {
-            queryStrs.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
-                queryAnswers = new ArrayList<>();
+                testSQL = new ArrayList<>();
                 for (String line : answerFileLines) {
-                    queryAnswers.add(Arrays.asList(line.trim().split("\t")));
+                    testSQL.add(Arrays.asList(line.trim().split("\t")));
                 }
             }
         } catch (Exception e) {
@@ -860,11 +884,13 @@ public class Templar {
         // queryStrs.add("Find the number of reviews on businesses located in \"South Summerlin\" neighborhood");
         // queryStrs.add("List all the businesses with more than 4.5 stars");
 
+        // queryStrs.add("List all posts");
+
         int i = 0;
         int top1 = 0;
         int top3 = 0;
         int top5 = 0;
-        for (String queryStr : queryStrs) {
+        for (String queryStr : testNLQ) {
             Log.info("================");
             Log.info("QUERY " + i + ": " + queryStr);
             Log.info("================");
@@ -930,7 +956,7 @@ public class Templar {
             results.sort((a, b) -> b.getTotalScore().compareTo(a.getTotalScore()));
 
             Integer rank = null;
-            if (queryAnswers != null) {
+            if (testSQL != null) {
                 Double correctResultScore = null;
                 for (int j = 0; j < Math.min(results.size(), 10); j++) {
                     if (correctResultScore != null) {
@@ -940,7 +966,7 @@ public class Templar {
                         }
                     }
 
-                    if (queryAnswers.get(i).contains(results.get(j).getValue())) {
+                    if (testSQL.get(i).contains(results.get(j).getValue())) {
                         if (correctResultScore == null) {
                             correctResultScore = results.get(j).getTotalScore();
 
@@ -962,7 +988,7 @@ public class Templar {
         Log.info("==============");
         Log.info("SUMMARY");
         Log.info("==============");
-        Log.info("Total queries: " + queryStrs.size());
+        Log.info("Total queries: " + testNLQ.size());
         Log.info("Top 1: " + top1);
         Log.info("Top 3: " + top3);
         Log.info("Top 5: " + top5);
