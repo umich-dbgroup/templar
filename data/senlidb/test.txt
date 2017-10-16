@@ -1,0 +1,780 @@
+List the top 50000 posts that have been viewed more than 10000 times ordered by the number of views descending
+Get the most viewed 50000 posts that have the number of views higher than 10000, ordered by the count of views
+show top 50000 posts which have more than 10000 views
+select top 50000 posts that have over 10000 ordered descending
+Get the average in weeks of the time between the creation date of users and current date
+calculate the average diference in weeks between creationdate and present for all users
+List all posts
+all posts
+select all posts
+show all posts
+List the top 20 users with displayname containing 'Marinov'
+for users with displayname like Marinov display top 20
+List all badges
+select all badges
+how many baddges are
+List all the comments that have 'hibernate' in the text.
+Get all comments with 'hibernate' in the text
+all comments that contains 'hibernate'
+show comments that has 'hibernate' in them
+select displayname from users where id is greater than 100000
+List parent details for posts that have a higher socre than 0
+Get posts where score is not 0
+score and parentid of posts that has score
+parentid score for posts with score not null
+Get owneruserid, id of posts that have posttypeid = 2 ordered by owneruserid
+being ordered by OwnerUserId, show OwnerUserId and id of posts that have PostTypeId 2
+Get id, name of posttypes with name = 'answer'
+display id and name for all posttypes that have the name 'Answer'
+List id, body of posts that have the same postid as the id of posttags and TagId of PostTags = 17 and Id of posts  < 1000
+show id and body for all posts with tagid 17 and id < 1000
+id, body for posts that have tagid = 17 and id less than 1000
+how many users from russi have tags like 'sql' in their posts which were created sfter 2016-01-01
+show the number of users that have posts after 2016-01-01 with 'sql'in their tags and live in russia
+show row number as #, id as user link and reputation of users from 'bulgar', sorted desc by reputation
+Get the top 15 names displayed, number of answers and total score of users that are located in London, have a post recent than 30 days and have 'scala' in their pst tag ordered by the descending total number of answers
+List the top 5 posts that have owneruserid = id os users
+get top 5 entries from either posts and users
+list highest reputation posts from 2013
+Get the best posts from 2013
+Get the top 50000 posts with viewcount > 1000000 ordered by viewcount
+for posts with mothe than 1000000 ViewCount, show everything for the first 50000, ordered by viewcount
+List the top 10 postid, the number of id of postlinks ordered by the number of id descending
+List DisplayName of Users
+show displayname for all users
+for all users, show theirs displayname
+List all the details for the tag 'java'
+show all tags that have tagname 'java'
+tags that have tagname java
+List the top 10000 id and body of posts that have the number of views higher that 10000
+id as [User Link] and reputation for users from 'cracow' or 'krakow' sorted resc by reputation
+for users from 'cracow' or 'krakox' get id as [User link] and reputation and sort them by reputation descending
+List the difference in days between LastAccessDate of users and the current date, id of users
+List the id and reputation of users that are located in 'Malaysia' and have a reputation greater than 1000 ordered by descending reputation
+select id as user link and reputation from users where location like Malaysia and reputation over 1000 ordered by reputation descending
+selelct the ids of all users that live in malaysia and their reputation is over 1000, descending by reputation
+List the top 10 post feedbacks for post with id 54136791344
+select top 10 posts feedback where post id is 54136791344
+Get the post type id of posts that have id > 1
+show posttypeid for posts with id > 1
+list all posttypeid for posts that have id greater than 1
+List the top 2 posts with body containing 'sarcastic'
+show top 2 posts about sarcastic
+Get creationdate, the current date, the difference between current date and creation date of users with id = 2173917
+show creationdate, currentdate and the sifference between those two for user 2173917
+show the age, views of all users that have more than 100 views
+get displayname, reputation, location of users with 'Hungary' in location, ordered by descending reputation
+List the top 10 posts ordered by descending number of views
+show top 10 posts ordered by viewcount descending
+list everything on top 10 posts and sort the result descending on viewcount
+List the score and view count for all posts
+Get the score and the number of views for each post
+show score and viewcount for all posts
+for all posts, display their score and viewcount
+score and viewcount for posts
+List all the id's and the scores for all posts
+Get the score and id for each post
+id and score of all posts
+show the id and dthe score of posts
+from posts get id and score
+List the parent id and the number of posts that have the post type id =2 and the length of the body less or equal than 200 and the word 'scrum' in the body, only if the number of posts is greater than 1
+List all the parent id's and the number of posts if it is higher than 1 for posts that have the body length less or equal to 200 and contain 'scrum'
+show parentidd and the number of ids of posts that have posttypeid = 2, len of body less than 200, body like scrum with more than 1 id orderdd descending by count of id
+select the parent id and the number of posts where posttypeid is 2 and the length of body is less than 200 and have the body like scrum, grouped by parentid, having more than 1 id, ordered by the number of ids descending
+List top 100 users with reputation > 100 and 'Colorado' in Location and 'z' in DisplayName
+get top 100 users with reputation > 100, from 'Colorado' and have a 'z' in their display name
+100 users from 'Colorado', with reputation greater than 100 and with a 'z' in their displayname
+select displayname, is, location reputation, number of useridd from users and badges where reputation is >= 550000 grouped by displayname, id, location, reputation ordered by reputation desc
+Get different top 1000 title, body of posts that have id = postid of posttags and id - tagid of tags and tagname of tags = 'php' or 'javascript' or 'jquery'
+show top 1000 distinct posts , but only title and body , that have 'php' or 'javascript' or 'jquery' in their tagname
+get the boddy and title of top 1000 posts that have either 'php', 'javascipt' or 'jquery' in their tagname
+List the top 100 users
+show top 100 users
+for the top 100 users list everything
+get all the informations for the top 100 users
+Get the difference in weeks between CreationDate of posts and the current date
+how many weeks ago were all posts created
+show how many weeks have passed since every post was create
+List the id, post type id, creation date, score and owner user id of posts have the post type id equal to 2, have been created between '01/01/2015' and '06/30/2015' and have owner user id one of the values (3010968,187606,187690,189205)
+show id, posttypeid, creationdate, score and owneruserid for those posts that were created between '01/01/2015' and '06/30/2015', have posttypeid 2 and owneruserid in list 3010968,187606,187690,189205
+List all posts with owneruserid = 2173917 and PostTypeId = 2 that have been created more recent than '2015-01-01'
+show all informations about those posts that have owneruserid 2173917, posttype 2 and are created after > 2015-01-01
+List all posts with 'Django' in the Title
+posts that contains 'Django'
+get all posts about 'Django'
+List top 50000 favoriteCount, Tagname,Count of posts that have the same id as postid of PostTags and Tags contain 'c#'
+favoritecount, tagname and count for top 50000 posts with tag 'c#'
+for posts with tag 'c#' get favoritecount, tagname and count
+List all the posts with a score higher than 150 ordered by score
+Get    Id,   AccountId,   DisplayName,   Reputation,   WebsiteUrl,   Location of usersthat have id equal to one of the values in (6628959, 6690644, 6678804, 6700305, 6700283, 6609213) ordered by descending reputation
+Id, AccountId, DisplayName, Reputation, WebsiteUrl, Location for users 6628959, 6690644, 6678804, 6700305, 6700283, 6609213 by reputation desc
+fror either user with id 6628959, 6690644, 6678804, 6700305, 6700283, 6609213 get Id, AccountId, DisplayName, Reputation, WebsiteUrl, Location and sort them descendding by reputation
+List the total number of posts. List the total number of posts that don't have any answers.
+Get the total number of posts. Also get the total number of posts that have the answer count equal to 0.
+count the number of posts and also the number of posts that weren't answered
+how many posts are there, and how many doesn't have an answer
+List all postfeedback
+display all the informations about PostFeedback
+get all from PostFeedback
+show all from PostFeedback
+Get the id of posts as Post Link for all posts that have 'http://giphy.com/gifs/%/fullscreen' in the body and the creation date higher than '1 jan 2015'
+Get the first 100 titles of posts with titles that start with 'Problem' or 'problem', ordered by the lenght of the title
+show top 100 titles of posts that have 'problem' at the begining of their title, sorted by the length of the title
+List 50000000000 users ordered by newest user id
+List the newest 50000000000 users
+show top 50000000000 users, but only id and displayname
+id and display name of top 50000000000 users
+List all posts with the tag 'c'
+show tags with tagname = c
+tags with tagname = c
+tags with tagname 'c'
+show all reasons for review rejection
+select all review rejection reasons
+List all posts
+select all posts
+show all posts
+all posts
+List the number of posts with id = 1
+show the number of all posts that have id 1
+how many posts ahve id 1
+Get the id and score of posts for id = 4 or id = 6
+show id and score for posts that have idd between 4 and 6
+for posts with id between 4 and 6 show id and score
+Get all posts feedback for id = 4109
+show all PostFeedback for id 4109
+for id 4109, get all about PostFeedback
+Get the total number of users
+number of users
+how many users are
+get the total number of users
+List the number of posts that have the 'python' tag
+Get the number of posts which have a tag 'python'
+get top 1 posts that has as tag 'python'
+get 1 post that has tags like 'python'
+Get all users
+show all users
+display all users
+all users with displaymane = 'Alex A.'
+show all users with the name 'Alex A.'
+for all users that have the displayname starting with Wiktor St show all informatons
+Get id, TagName, Count of tags for Count > 1000 ordered by descending Count
+show id, tagname, cpunt for all tags that have count > 1000 sorted desc by count
+id, tagname, count for all tags that have more than 1000 count ordedred by count descending
+Get the number of posts that have tags containing 'serverless'
+number of posts that have tags like severless
+Get all users named 'artur'
+List all users with the display name 'artur'
+show all users that are called 'artur'
+from users, get all that has 'artur in their name'
+Get the users with the Location in Canada and reputation higher or equal to 1000, oredered by descending reputation
+List all users that have a reputation higher than 1000 and are located in Canada ordered by reputation descending
+select all users users from canada that have reputatin over 1000 ordered by reputation descnding
+all users from canada with reputation >= 1000 orderedd desc by reputation
+Select all users from Iran that have a reputation higher than 2700
+List all the users from Iran with a reputation of over 2700
+show all users from iran that has reputation over 2700
+list all users from iran with reputation > 2700
+List different id's , tags, and creation date of posts for tags containing 'image-procesing'
+select ddistinct id, tags, creationdate where tags contains image-processing
+different id, tags, creationdate of posts with taks like image-processing
+Get the top 100 owner displayed name, creation date of posts ordered by the most recent creation date
+get OwnerDisplayName, CreationDate of top 100 posts, orderedd by creationdadte
+List the first post that has the type id equal to 2
+get the top post that have posttypeid 2
+show all information for the first post that have posttypeid 2
+List 20 highest reputation posts
+number of posts with tagid= 1589 and posttypeid = 1
+List all omments with userid = 2762884 ordered by descending creationdate
+show all informations for those comments that are created by user 2762884 ordered descending by creationdate
+for those comments owned by user 2762884 sorted descending by creationdate
+Get id, emailhash,aboutme of users
+show id, emailhash and about me for all users
+for all users get id, emailhash and aboutme
+id, emailhash, aboutme all users
+List the top 10 users
+get top 10 users
+show first top 10 users
+List all votes,posts with owneruserid of post = 507 and creationdate of vote = '27 Jan 2011' and postId of vote = id of post
+List the title and body of posts which have 'CJam' in the body
+Get title and body of posts if 'CJam' is in the body
+title, body of posts with body 'CJam' order by score
+show title and body from posts thata have 'CJam' in body, order score asc
+Get id as 'Post link',body,score of posts with length of the body higher than 200
+body and score for posts less than 200
+posts longer than 200 show body and score
+List all posts with id = 184618
+show all posts for user 184618
+all posts for user with id 184618
+show numberedd the id and reputation of users from india that have reputation greater than 1530, sorted descening by reputation
+List all the posts
+get everything about posts
+list all posts
+show informations for all posts
+Get the total number of users
+number of users
+how many users are
+List the top 100 sum of score as 'totalscore', sum of score * 1000 / number of id as 'AvgScore',owner user id as 'UserName' and the total number of posts ordered by the descending totalscore
+display the sum of score, sum of score multiplied by 1000 and dividedd by the number of ids, owneruserid and the number of ids of posts an sort them descending by the sum of their score
+List the score, title,body and body of accepted answer of the top 50 posts that have 'VHDL' in title
+Get top 50 posts and accepted answers related to 'VHDL'
+List 50 highest scores posts and accepted answers with 'VHDL' in the title
+top 50 posts that are accepted and their title contains 'VHDL', ordered ascending by score
+show the scre, title and body of top 50 posts thata are accepted as answers, their body contains VHDL and are ordered by score asc
+List all users which have displayName = 'CodeJack'
+get all users with ddisplayname 'CodeJack'
+users that have 'CodedJack' as displayname
+List top 10 Posts with owneruserid = 2357543
+show top 10 posts owned by user 2357543
+which are top 10 posts of user 2357543
+for user 2357543 get first 10 posts
+List the number of posts with total views between 15000 and 20000
+how many posts have their views between 15000 and 20000
+select the number of posts that have their viewcount between 15000 and 20000
+List the displayname of users that have te id the same as owneruser of posts
+List title from posts if the title contains 'Magento' else add 'Magento' in front of the title
+Get all posts that have 'powerbi' in the tag
+show all posts that have 'powerbi' as tags
+show tagname and the number of tags with that name for posts thata have taks like '<sql>' and were created between '2014-11-01' and '2014-12-01', ordered descending by desc
+List the tags of pots that have the tags = 'sockets'
+show id as User Link and reputation of users from 'kuala lumpur' ordered descending by reputation
+Get the top 50 posts
+show top 50 posts
+get everything about the first 50 posts
+List the total number of posts and the owner user id of posts that have the score higher than 1000 grouped by the owner user id of the post
+show the total number of posts and the owneruserid for those posts with score higher than 100
+List the total number of tags
+select the number of column in Tags
+how many rows are in Tags
+how many tags are there?
+Get the top 100 titles,tags,bounty amount, creation date of posts that have the same id as the post id of votes
+display top 100 title, tags, BountyAmount and creationdate for posts
+List all users
+show all users
+all users
+display all users
+Get different PostID,TagName of PostTags and Tags which have TagId of PostTags = Id of Tags and PostID in the top 50 PostId of PostTags for TagName = 'r' or 'python'
+List all tags that have the tag name 'isabelle'
+select all tags where nametag is 'isabelle'
+tags with name isabelle
+List all users that are from 'yerevan' and have the displayed name 'babi' ordered by descending reputation
+select all users in Yerevan where their name is Babl ordered descending
+show all users from Yerevan that have their display name Babl
+show all Balb users from Yerevan
+List title, body and tags from posts that don't have an empty title
+Get posts with a title
+List all posts that have a title
+show the id, body, title and tags of top 5000 posts that has title
+Get the first 200 id as 'Post Link',body,FavoriteCount,score,creationdate,tags of Posts for tags containing '<android>' ordered by FavouriteCount descending
+get id, body, favoritecount, score, creationdate and tags for those posts with tags like '<android>', sorted descending by favoritecount
+Get all the different tags of posts, ordered by tags
+show unique tags that are in posts and order them by tags
+display distinct tags of posts and sort thenascending bt tags
+List the total number of posts created by OwnerUserId=3052665
+how many posts were written by user 3052665
+show the number of posts owne by user 3052665
+List all posts with id < 1000
+show all posts that have their id under 1000
+all posts with id < 1000
+Get the top 100 id's, score, viewcount and commentcount of posts that have the post type id equal to 2
+show id, score, viewcount and commentcout of top 100 entries from posts that have posttypeid 2
+Get all posts with post type = 3
+select all from posts where post type id is 2
+show all posts that have posttypeid 2
+show all posts that have posttypeid equal to 2
+List the number of posts that were viewed more than 60000 times
+Get the number of posts with the view count greater than 60000
+select the number of posts that have their view count greater than 60000
+how many posts have more than 60000 views
+number of posts with more than 60000 views
+Get all the badges that start with the letter 'A'
+get all badges that starts with 'A'
+show all badges that have 'A' as their first letter
+Get the first 50000 users based on score, reputation and tag count
+List the top 50000 users with scores, reputation and number of tags
+Get different id, reputation, displayName, WebsiteUrl, AboutMe, Views of users with the same id as Id of comments and location containing 'rancisco' and text of comment containing 'Node.js'
+show all distinct id, reputation, displayname, websiteurl, aboutme and views of users from 'francisco' who commented about 'Node.js'
+List top 10000 Id,   DisplayName,   Reputation,   WebsiteUrl,   Location,   CreationDate,   LastAccessDate,   AboutMe,   Views,   UpVotes,   DownVotes,   ProfileImageUrl,   EmailHash,   Age,   AccountId of users that have 'Kenya' in location
+Id, DisplayName, Reputation, WebsiteUrl, Location, CreationDate, LastAccessDate, AboutMe, Views, UpVotes, DownVotes, ProfileImageUrl, EmailHash, Age, AccountId fron all users from Kenya
+List top 50 posts with 'javascript' in the tag
+show top 50 posts that have tags like 'javascript'
+top 50 posts that that have 'javascript' as tag
+Get the total number of locations , location of users, grouped by the Location and ordered by the number of locations descending
+Get the id of vote types
+get all ids from votetypes
+show all ids for votetypes
+List all the vote types that have id < 10
+for idd less than 10, get all from votetypes
+List the top 10 scores of posts multiplied by 1.0 and divided by view count as 'Ratio' and the title of posts ordered by Ratio
+show top 10 posts, but only display score divided by viewcount as ratio, title and posts, ordered by ratio
+List all posts that have the score between 10 and 20
+select all posts with score between 10 and 20
+select all posts0here score between 10 and 20
+List top 10 creationdate of users ordered by creationdate
+show first 10 created users
+which were the first 10 users
+name the first 10 users based on creationdate
+List the top 20 posts with ,android. in the tag and posttypeid = 1 ordered by descending score
+List the id and tags of posts that have the type equal to 1 and 'c#<' in the tag and the id smaller than 28922954
+show id, tags of those posts that have posttypeid 1 and tags like 'c#>' and their id is less than 28922954
+Get different Id, Reputation, DisplayName, WebsiteUrl,AboutMe,EmailHash,Views of Users with id = UserID of comments and Location containing 'israel'
+show disctict id, reputation, displayname, websiteurl, aboutme, email, hash and views for users from 'israel'
+Get the number of posts that have the id of the tag 1589 and the post type is 1
+select number of posts that are poststags there tagid = 1589 and posttypeid = 1
+Get the total number of users with more than 10 upvotes
+how many user have more than 10 upvotes
+List id of posts that have tags = 'salt-stack'
+Get age, sum of upVotes of users that have age between 30 and 33
+for users between 30 and 33 show age and the total of their upvotes
+Get id, tags of posts with 'python' not in the tags and owneruserid = 1663352
+show id and tag for all posts owned by user 1663352 and do not contains 'python'
+how many viewcount have those posts that are owned by user 2173917, have posttypeid 2 and were created in between '2015-01-05' and '2015-01-11'
+Get reputation of users grouped by reputation
+show users's reputation grouped and ordered by reputation
+users's reputation grouped by reputation and ordered by reputation
+List all comments with PostId one of the PostID of PostTags with tagid = 17
+show, numbered, the id andddd reputation of all users from kiev that have their reputation over 1000 are sort them descending by reputation
+List top 100 posts
+show top 100 posts
+get all informations for first 100 posts
+for top 100 posts, get all informations
+List the id and the parent id of all posts ordered by id
+from posts, get id and parentid, order by id
+show id, parentid of posts ordered by id
+List the displayed name, id, location and reputation of all users ordered by descending reputation
+select displayname, id, location and reputation from users ordered by reputation descending
+show displayname, id, location, reputation of all users sorted by reputation desc
+List the age and total of age of all users
+how many users are of every age
+number or users of every age
+List the first 10 id and name of posttypes
+List all comments with 'brazilianldsjag.com' in the text
+Get all the comments that have the text containing 'brazilianldsjag.com'
+select all coments that contains brazilianldsjag.com
+comments with brazilianldsjag.com
+Get the score of all posts
+List the score from each post
+select score from posts
+show all scores for posts
+List all users with the display name containing 'Bhargav'
+get everything for users that have 'Bhargav' in their displayname
+Get top 10 votes
+top 20 votes
+votes top 10
+show top 10 votes
+List the total number of users
+how many users are
+number of users
+get number of users that have been created since 2016-12-16
+Get the number of users created more recent than 2016-12-16
+select the number of rows of Users that have their creation date before 2016-12-16
+how many users were registered before 2016-12-16
+how many users were created before 2016-12-16
+List all posts that have the title starting with 'How'
+show all posts that have title starts with 'How'
+get all informations for those posts that have 'How' at the start of their title
+List the id as 'post link' of posts with body starting with 'Try this'
+for all bodies of posts that starts with 'Try this' show the id
+Get the post id as 'post link', id as 'suggested edit links' of suggested edits
+show postid and id for all suggestededits
+Get title, id, score, viewcount of posts with title containing 'jest'
+title, id, score and viewcount for posts that have 'jest' in their title
+for posts with title like jest display title, id, score, viewcount
+List the top 20 votes that don't have a null user and the vote type is not 5 or 8
+Get the top 20 votes by not null users and with the vote type not 5 or 8
+show top 20 votes that doesnt have userid null, and VoteTypeId NOT IN (5, 8)
+from votes, get top 20 that have a userid and votetypeid not between 5 and 8
+Get all users that have a reputation greater than 10000
+select all users where reputation is greater than 10000
+SELECT all FROM UsersWHERE reputation > 10000
+users with reputation > 10000
+users that have reputation more than 10000
+Get the total number of posts that have a valid accepted answer id.
+List the total number of posts that have an accepted answer that is not null.
+List all users with location containing 'hyderabad' and 'java' in About Me, ordered by descending reputation
+show all informations about those users that live in 'hyderabad' and jave 'java' in their description, ordered descending by reputation
+List the displayname, creatiodate of users. List the number of displayname of users
+Get the top 11 users
+list first 11 users
+show top 11 users
+list all you can get about top 11 users
+Get average score of posts with posttypeid = 2 and owneruserid = 184706
+show average score those posts owned by user 184706 and that have posttypeid 2
+List the first creation date of posts ordered by creation date
+show the date of the first posts ever created
+List the number of weeks since a post has been deleted and the number of deleted posts
+Get the number of deleted posts and the number of weeks since they have been deleted
+show text, postid of comments that have in their text  'I don' and end with 'agree' ordered desc by creationdate
+show badges
+select all name from badges
+show all names for badges
+how namy badges are
+List the number of posts that have the number of owners less than 10
+select the number of posts grouped by owner user id having less than 10 owner user id
+show number of posts grouped by owner user id that have less than 10 owners
+Get id, CreationDate,LastAccessDate, differeence between CreationDate and LastAccessDate in days of users
+get id, creationdate, lastaccessdate and the difference in days between CreationDate and  LastAccessDate for all users
+Get the first displayed name, number of all users grouped by the displayed name of the user
+for top 1 users get displayname and theis number
+Select all users with the name displayed as 'Alex A.'
+Get all users with the displayed name 'Alex A.'
+List all post links
+show all postlinks
+all postlinks
+id, reputation, loation and age of the top 10 users from iran desc by reputation
+top 10 users from iran
+List top 50 Title,Body of possts ordered by CreationDate
+show title and body of top 50 posts ordered by creationdate
+title and body for top 50 posts sorted by creationdate
+Get the email hash of users that have id = 2899618
+for user 2899618 get emailhash
+show emailhash for user 2899618
+Get sourcetagname, targettagname of TagSynonyms
+show sourcetagname and targettagnam for eveey tagsynonyms
+sourcetagname and targettagname from tagsynonyms
+Get the top 10 posts that have 'CDC' in the body
+show top 10 posts that have a body like 'CDC'
+List the total number of id as 'total users', sum of UpVotes as 'total upvotes', sum of downvotes as 'total downvotes' of users
+show total users, total upvotes and total downvotes for all users
+how many users are in total and how many upvotes and downvotes were made by users
+List all the votes
+get everything about votes
+show anything about votes
+show all from votes
+list the tag id and the tags from all posts
+select tagid, tags from posts full join poststags on id
+select tagid, tags from posts full join poststags where posts.id = poststags.postid
+select tagid, tags from posts full join poststags where posts.id is equal to poststags.postid
+List all users with a reputation higher than 200
+Get the users with reputation over 200
+all users with reputation > 200
+users with reputation over 200
+List all posts with 'compiler-errors' or 'compiler-warnings' in tags and 'explain' in the body
+Get all posts where the tags contain 'compiler-errors' or 'compiler-warnings' and the body contain 'explain'
+Get the total number of posts with 'iot' contained in the tags
+number of posts with tags iot
+number of posts with tags like iot
+List top 10 DisplayName, reputation of Users with reputation > 100000
+show the displayname and the reputation for those users with reputation > 100000
+for top 10 users with reputation over 100000 shoe their displayname and reputation
+List the first 1000 posts
+ddisplay top 1000 posts
+get all informations for top 1000 posts
+show id and reputation off users from turkey with reputation over over 1000, rdered by reputation descending
+id reputation for user from turkey reputattion >= 1000 order reputation desc
+Get the number of posts that have body = 'test' and id > 1
+how many posts have body 'test' and have an id dgreater than 1
+List all the databases
+all from sys.database
+show all information from sys.databases
+show top 100 id, displayname, reputation, location, views, upvote, downvote and age for users from 'Sofia' or 'Plovdiv' or 'Varna' or 'Bulgaria' sorted descending by reputation
+List the total number of posts
+show all posts
+get all informations for all posts
+Get the number of posts that have a tag containing <compiler-errors>
+how many <compiler-errors> are
+which posts contains <compiler-errors>
+Get the tag id and the total number of post tags that have the same id as the id of the Tag
+select tagid, number as total from posttags, group by tag, orded by total
+select the id and the number of all poststags that are tags grouped by tagid and orderedd by number
+Get all users with reputation > 2059
+show all users with reputation 2059
+Get Location of Users that contains 'chennai'
+show location for all users from 'chennai'
+show, numbered, the id, reputation and location of those users from 'Kerala' and have reputation greater than 1000
+Get the top 10 posts that have the id equal to 191316
+get top 10 posts that have id equal to 191316
+for idd 191316, get top 10 posts
+Get the total number of different tags
+how many distinct tagsname are there?
+count the number of unique tagnames
+Get AccountID,Age,Location of users taht have Age = 28 and Location = 'Cracow'
+show acoountid, along with their age and location for all users thata are 28 years old and are in 'Cracow'
+for all users that are 28 and are in 'Cracow', show accountid, age and location
+Get all tags with count > 1000
+List the highest reputation users from 'jaipur' with reputation greater than 1000 ordered by descending reputation
+Get the users with reputation higher than 1000 and location 'jaipur' ordered by descending reputation
+which users from jaipur have reputation over 1000
+select all users from jaipur that have reputation over 1000
+show the id and reputation of all users from jaipur that have reputation greater than 1000
+Get the text of the comment with id 1000
+List the text of the 1000th comment
+show text from comments with id = 1000
+select text fom comments that  has id 1000
+Get the total number of distinct users
+how many different ids for tags are there?
+Get posts from user that has id = 1
+select different owner user id and ownerdisplayname where owneruserid=1
+show distinct owneruserid, ownerdisplayname that has owneruserid 1
+show all comments whose text contains ' new File("resources/images/", image)'
+List all posts with posttypeid = 1 and title containing 'female'
+all posts for posttypeid 1 and title 'female'
+for posttypeid 1 and title 'female' show all posts
+Get top 100 posts
+top 100 posts
+show top 100 posts
+List top 20 posts
+top 20 posts
+show top 20 posts
+get id as postId, name as postType and name as voteType for all posts that have id = 14628012 or parentid = 14628012
+Get top 100 posts from users with id's 5468160 or 4934748
+show top 100 posts of users between 5468160 and 4934748
+for users between 5468160 and 4934748 show top 100 posts
+Get top 100 tags, average CommentCount as AvgCom of posts ordered by AvgCom
+show top 100 tags and their average comment count for all posts sorted by average, descending
+List top 10000 id, body of posts with viewcount > 10000
+id, body for posts with viewCount > 10000 top 10000
+top 10000 posts id, body for fosts with ViewCount>10000
+Get top 10 body of posts with 'salt' in the tags and order by descending score
+List title, score, ViewCount of Posts ordered by descending Score and ascending Viewcount
+show title, score, viewcount of all posts, ordered by score dedscending and by viewcount ascending
+title, viewcount, score of posts, order score desc, viewcount asc
+List the title, view count and tags of all posts that have 'Exception' in title and number of views greater than 40000 ordered by decending views
+select title, view count, tags from posts where title is like Exception and has more than 40000 views
+select title, viewcount and tags of posts that have their title like Exception and more than 40000 views
+Get id, tagname of tags
+show id and tagsname
+id and tagname for all tags
+Get the top 50000 posts that have viewcount between 0 and 10343 ordered by descending viewcount
+display top 50000 posts with viewcount greater than 0 and dless than 10343, sorted by viewcount descending
+List the creation date, the number of views, tags and the favourite count of all posts
+show creationdate, viewcount, tags and dfevoritecount of posts
+from all posts get CreationDate, ViewCount, Tags, FavoriteCount
+Get id of Badges
+get all ids for a badge
+show all ids possible for a badge
+List the top 10000 id and body of posts that have the number of views > 10000
+List the average score of posts with id between 200 and 300
+show the average score for those posts that have idd between 200 and 300
+Get the creation date of users that have reputation < 101 ordered by creation date
+show only creationdate for users with reputation less than 101, ordered by creationdate descending
+Get targettagname of tagsynonyms for targettagname that contains 'java'
+show TargetTagName for TagSynonyms that have 'jave' in TargetTagName
+Get the date and total number of badges with the name = 'Constituent' grouped and ordered by date
+show date, and how many bagdes 'Constituent' were awarded then, ordered by date
+List the display name, id, location and reputation of all users, ordered by descending reputation
+SELECT DisplayName, Id, Location, Reputationof all usersORDERed BY Reputation DESCending
+Get the sum of commentcount of posts that have closeddate >'1.1.2013' AND LastActivityDate < '1.1.2014'
+how many comment were mate to posts that have their closeddate after '1.1.2013' and their LastActivityDate before '1.1.2014'
+List the score and the number of scores of posts that have score > 10 and score < 100 ordered by score
+Get the score and the total number of score of posts with score between 10 and 100
+display score, the number of scores for posts with score between 10 and 100, ordered by score
+Get all columns of Information_Schema for table_name 'Users'
+whow all informations about INFORMATION_SCHEMA.COLUMNS that have table_name 'Users'
+Get all the users that have displayed name containing 'Undhad'
+display all informations for those users that have 'Undhad' in their displayname
+show tagname, count, body excerpt for all tags with count > 1000
+for tags with more than 1000 count get tagname, count, body excerpt
+Get the first post
+Get the top 10000 id, body of posts the have viewcount > 10000
+for posts with more than 10000 viewcount show id and body for the top 10000
+List all posts with 'facebook-analytics' tags
+all posts with tags 'facebook-analytics'
+posts that have 'facebook-analytics' tag
+List all comments from posts that have been created earlier than 2014
+Get all coments for posts created after 2014
+select all comments that are after 2014
+show those coments that after 2014
+which comments are after 2014
+select all comments that have their creation date after 2014
+Get all posts ordered by id
+get all posts sorted by id
+List all posts
+show posts
+Get the id, reputation of users that have the reputation bigger than 100000
+show id and dreputation for those users with reputation over 100000
+for those users with reputation over 100000, get id and reputation
+Get all users ordered by descending reputation with atlanta as location
+List all the users that are located in atlanta ordered by descending reputation
+select all from users where location like 'atlanta' order by reputation desc
+select all users from atlanta ordered by reputation
+Get all the users that have the numeric value of their display name = 1
+get all users that have displayname 1
+for displayname 1, get all users
+List the number of users created in 2014
+Get the number of users that were created in 2014
+number of users in 2014
+how many users registeredd in 2014
+how namy userts has creationdadte in 2014
+Get the body of posts that have 'doi.org' in the body
+List all bodies for posts that contain 'doi.org' in the body
+show body that contains 'doi.org' from posts
+all posts that have in their body 'doi.org'
+List all comments
+show all comments
+all coments
+please select all of the comments
+List a random tag that has been used more than 100 times
+show last id from tags that has count > 100
+for the newest id that has count > 100 show first tag
+List the top 10 comments ordered by descending score
+List all the CloseAsOffTopicReasonTypes
+show all from CloseAsOffTopicReasonTypes
+get everything about CloseAsOffTopicReasonTypes
+id, location and reputation for users with reputation over 1000000 sorted desc by reputation
+for users with reputation > 100000 get id, location and reputation orderedd by reputation
+List highest reputation posts with tags like c++,stl,boost and opengl from users in Moscow
+Get top posts from users in Moscow that have c++,stl,boost or opengl tags
+select id, reputation tagname where location is moscow and tagnae is c++, stl, boost, opengl, grouped by idd, tagname and reputation
+List the id and tag name of all tags
+select id and tagname from tags
+show id and tag name for all tags
+List all users that don't have a null or empty AboutMe
+Get all users that have an about me description
+select all from users where about me is not null and about me different than ''
+select all from users where aoubt me is not blank
+show all users that does not have about me empty
+show all users that doesn't have about me empty
+List all posts with 'Weka' in the title or body and the score higher than 1
+display all posts that have 'weka' in either title or body and have a score higher than 1
+List all comments for userid = 5752362
+all comments for user 5752362 ordered descending by creationdate
+user 5752362 all comments descending by date
+List total number of posts as 'QuestionCOunt' than have the same id as posttags TagID and posttypeid is not 2
+how many posts have posttypeid not 2
+number of posts thata have PostTypeId != 2
+Get the first 50000 posts that have total views higher than 1000000 ordered by the view count descending
+List the top 50000 posts with view count greater than 1000000, ordered by number of views descending
+select top 50000 posts where view count is greater than 1000000 ordered by view count
+show top 50000 posts that have more than 1000000 views ordered by views
+Get the top 20 displayname of users
+show displayname fop top 20 users
+List top 50 posts created in the second half of 2008 that don't have empty tags
+Get top 50 posts with tags created between July and December of 2008
+List top 50 posts that have tags and were created in the last 6 months of 2008
+top 50 posts only id, tags, bodyd, viewcountand creationdate with tags!= null, year 2008, month between 7 and 12
+show id, tags, body, viewcount, score, creation date of top 50 posts thata have tags != null, are created in 2008, between july and december
+List all posts with tags = 'awk' and answercount higher than 10
+get all posts tags 'awk' and  answercount > 10
+show all posts with answercount > 10 and tags like 'awk'
+List the id as 'Post Link' and score form posts with 'get_started' in the title and with parentid not being null
+List the sum of viewcount of posts for posts with posttypeid = 1 and owneruserid = '22656' and parentid = id of the post
+calculate the sum of all viewcounts of posts that have PostTypeId 1 and OwnerUserId = 22656
+List the number of comments each user has made
+Get the number of comments per user
+List the creation date of users with id = -1
+show the creationdate of the user with id -1
+Get the top 100 posts that have posttypeid =2 and owneruserid = 1980228 and score  > 0
+List all posts that have 'config' in the post tag
+show all posts with tags like 'config'
+display those posts that have 'config' in their tags
+Get all posts with tags = '<sql>' and AcceptedAnswerID = NULL and POstTypeID =1 and CreationDate between between '2013-01-01' and  '2013-12-31'
+show all posts that have tags like '<sql>', AcceptedAnswerId is NULL, PostTypeId is 1 and their CreationDate is between '2013-01-01' and  '2013-12-31'
+Get all the users ordered by descending length of their displayed name
+Get DisplayName, title of Users and Posts with OwnerUserID of post = Id of users and ViewCout of posts = max viewcount of posts
+show displayname and title of user with the most viewcount
+displaname and title of the posts with the most views
+List the id, body , title, creation date, closed date, last activity date, view count and tags of posts that have 'paypal' in the tags and no answers, ordered by descending id's
+show id,body as content,title, CreationDate,ClosedDate,Score,LastActivityDate,ViewCount,tag for those posts that their tags are like 'paypal', have AnswerCount 0 and are ordered descending by id
+List all comments
+all comments
+show all comments
+select all comments
+List the id, score and body of posts with more views than 10
+Get the id, score and body of all posts that have been viewed more than 10 times
+id score body from posts with viewcount > 10
+show id, score, body of posts that have viewcount over 10
+List the id, display name, location, account id and website url of users that have 'switzer' in the location
+show id, displayname, location, accountid, WebsiteUrl for all users that live somewhere that have 'switzer' in their name
+List users with posts that have a total score over 1000
+Get users with posts score higher that 1000
+show owneruserid and the sum of its scores that are > 1000
+owneruserid and the sum of his scores that are over 1000
+List all tags that have 'sql' in the tag ordered by tagname descending
+get all from tags with tagname like 'sql' sorted by tagname descending
+get id, postid, votetypeidd, userid, creationdate and bountyamount for all votes that have teir postid in between 21984272 and 21948145 and are sorbet by userid, creationdate, votetypeid
+List the id,body and the score of posts that have 'stakeholder' in the tag
+show id, body, score of posts with tags like 'stakeholder'
+select id, body and score of posts that has 'stakeholder' in tags
+Get the score, creation date, tags of posts that have score > 10 or the tag like 'linux'
+show score, creationdate and tags for tags which have either score greather than 10 or have 'linux' as tag
+Get the id, reputation and displayed name of users thatbhave reputation > 10000 ordered by reputation
+show id, reputation and displayname for those user with a reputation greater than 10000, ordered by reputation
+Get the top 25 posts id, owner id and score which have the post type = 2 and score less than 0, oredered by score
+select top 25 posts id, owneruserid and score where score < 40 and posttyped = 2 order by score
+list the tag name from tags for tags 'angularjs' or 'reactjs'
+select tagname, count from tags where tagname = 'angularjs' or tagname = 'reactjs'
+show tagname, count where tag like angularjs or reactjs
+List the top 100 id, displayname, upvotes+downvotes as 'Votes', upvotes,downvotes of users ordered by descending votes
+show id, displayname, total of uptoves and downvotes, upvotes, downvotes of users, sorted by votes dedscending
+List top 10 deleted posts from user with id 130164
+show top 10 deleted posts of user 130164
+select top 1 posts of owneruserid = 130163 that were deleted
+List top 20 posts
+top 20 posts
+show the top 20 posts
+Get displayName,reputation of users that have reputation = maximum reputation of users
+user with the highest reputation
+user highest reputation
+whick user has the highest reputation
+List all posts that have 'predix' in the title or the tags
+Get all posts with the title or tags containing 'predix'
+select all posts with tags like predix or title like predix
+posts with tags ot title like predix
+List id, reputation, displayed name and location for users located in Pakistan or pakistan ordered by descending reputation
+Get id, reputation, displayed name and location of users that have the location containing 'Pakistan' or 'pakistan'
+select id, reputation, displayname, locationfrom userswhere location like 'Pakistan' or location like 'pakistan' order by reputation desc
+show the idd, reputation, display name and location of all users that live in pakistan oedered by reputation
+Get all the posts that have the id = 4971636
+Get the total number of posts with title containing 'semarchy'
+how many posts have 'semarchy' in title
+number of posts with 'semarchy' in tile
+List all posts with 'bigdata' tag
+select id, title and tags where tags contains bigdata
+show id, title, tags with tags has 'bigdata'
+List the id, tag name and count of all tags
+select id, name and number of all tags
+id, name and count of all tags
+Get the id, reputation and location of all users that have more views than 500
+select id, reputation, location where views >= 500
+id reputation location of users where views >= 500
+List top 10 users by reputation
+Get the highest reputation users
+Get the top 10 users
+select top 10 users order by reputation desc
+show top 10 users with the most reputation
+List all posthistory for posthistorytype = 4 or posthistorytype = 5 and postid = 1
+show everything from posthistory that have postid 1 and PostHistoryTypeId either 4 or 5
+show distinct ids, location, reputation, displayname, websiteurl, aboutme, viewsfor all users from 'ndia' and their websiteurl is like 'linkedin'
+Get all post tags
+get all from posttags
+show everythind about posttags
+List the commentcount, ClosedDate of posts with the closeddate > 2013-01-01
+for post closed after 2013-01-01 show CommentCount, and ClosedDate
+List the id and displayname of users
+show both idd and displayname from users
+Get post details for top 150 posts with the tag '<swift>'
+List the top 250 posts ordered by id that have the tag '<swift>'
+top 250 posts, with title != null, and tags = '<swift>' but only id, posttypeid, title, tags, score, answercount, favoritecount
+id, posttypeid, title, tags, score answercount, favoritecount of all posts that doesn;t have title null and have tags = '<swift>'
+List comments by highest score for user with id 241153
+show score, text, postid where userid = 241153 ordered desc by score but asc by text
+score, text and postid of comments of user 241153, oreder score desc, text asc
+List the number of posts and the view count of each post if the view count is greater than 1
+Get the number of all posts and the view count that were viewed more than 1 time
+select how many posts and view count from posts grouped by view count having count greater than 1
+show count of views of every post
+how many views have every post
+Get the most viewed 20 tags
+List top 20 tags by view count
+List the top 30 posts that have the owner user id in the top 100 id's of users that have reputation equal to 1, and post type id equal to 2, ordered by descending creation date
+List topp 1000 CreationDate, Body, Title, ClosedDate of posts for posts with not null Title ordered by descending CreationDate
+show top 1000 posts but only creationdate, body, title and closed date thata doesn't have title null ordered descending by creationdate
+creationdadte, body, title, closeddate for top 1000 posts that have title != null
+Get RelatedPostID of posts that have the postId the same as id of popstLinks and postId of posts = 53734
+get relatedpostid for all posts that have postid 53734
+for all posts with postid 53734 display RelatedPostId
+Get displayName of users tha have displayname = 'A'
+Get the body from posts of user with id 2097152
+List the body for all posts of user 2097152
+show the body of posts that have id 2097152
+body of posts of user 2097152
+List number of posts of each user
+Get how many posts each user made
+show user id and number of its posts grouped by id
+Get the top 10 post id's, creation date , owner user id and the comment of suggested edits
+Get all tags with the name 'coldfusion'
+List all tags named 'coldfusion'
+show all tags that have its tagname 'coldfusion'
+Get Title, Tags of posts
+get title and tags for all posts
+title and dtags for posts

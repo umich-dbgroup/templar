@@ -7,117 +7,118 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostTypeId": {
                 "name": "PostTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "AcceptedAnswerId": {
                 "name": "AcceptedAnswerId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ParentId": {
                 "name": "ParentId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeletionDate": {
                 "name": "DeletionDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Score": {
                 "name": "Score",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ViewCount": {
                 "name": "ViewCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Body": {
                 "name": "Body",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "OwnerUserId": {
                 "name": "OwnerUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "OwnerDisplayName": {
                 "name": "OwnerDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "LastEditorUserId": {
                 "name": "LastEditorUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "LastEditorDisplayName": {
                 "name": "LastEditorDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "LastEditDate": {
                 "name": "LastEditDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "LastActivityDate": {
                 "name": "LastActivityDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Title": {
                 "name": "Title",
-                "type": "varchar",
-                "entropy": 0
+                "importance": "primary",
+                "type": "text",
+                "entropy": 0.0
             },
             "Tags": {
                 "name": "Tags",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "AnswerCount": {
                 "name": "AnswerCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CommentCount": {
                 "name": "CommentCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "FavoriteCount": {
                 "name": "FavoriteCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ClosedDate": {
                 "name": "ClosedDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CommunityOwnedDate": {
                 "name": "CommunityOwnedDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -129,78 +130,79 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Reputation": {
                 "name": "Reputation",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DisplayName": {
                 "name": "DisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "importance": "primary",
+                "type": "text",
+                "entropy": 0.0
             },
             "LastAccessDate": {
                 "name": "LastAccessDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "WebsiteUrl": {
                 "name": "WebsiteUrl",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Location": {
                 "name": "Location",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "AboutMe": {
                 "name": "AboutMe",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Views": {
                 "name": "Views",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "UpVotes": {
                 "name": "UpVotes",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DownVotes": {
                 "name": "DownVotes",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ProfileImageUrl": {
                 "name": "ProfileImageUrl",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "EmailHash": {
                 "name": "EmailHash",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "AccountId": {
                 "name": "AccountId",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Age": {
                 "name": "Age",
                 "type": "int",
-                "entropy": 0
-            },
+                "entropy": 0.0
+            }
         }
     },
     "Comments": {
@@ -211,39 +213,40 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Score": {
                 "name": "Score",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
-            "varchar": {
-                "name": "varchar",
-                "type": "varchar",
-                "entropy": 0
+            "Text": {
+                "name": "Text",
+                "type": "text",
+                "importance": "primary",
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserDisplayName": {
                 "name": "UserDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "UserId": {
                 "name": "UserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -255,33 +258,34 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserId": {
                 "name": "UserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "importance": "primary",
+                "entropy": 0.0
             },
             "Date": {
                 "name": "Date",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Class": {
                 "name": "Class",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "TagBased": {
                 "name": "TagBased",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -293,50 +297,50 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "IsUniversal": {
                 "name": "IsUniversal",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "MarkdownMini": {
                 "name": "MarkdownMini",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationModeratorId": {
                 "name": "CreationModeratorId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ApprovalDate": {
                 "name": "ApprovalDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ApprovalModeratorId": {
                 "name": "ApprovalModeratorId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeactivationDate": {
                 "name": "DeactivationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeactivationModeratorId": {
                 "name": "DeactivationModeratorId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -348,46 +352,46 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "FlagTypeId": {
                 "name": "FlagTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CloseReasonTypeId": {
                 "name": "CloseReasonTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CloseAsOffTopicReasonTypeId": {
                 "name": "CloseAsOffTopicReasonTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "DuplicateOfQuestionId": {
                 "name": "DuplicateOfQuestionId",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "BelongsOnBaseHostAddress": {
                 "name": "BelongsOnBaseHostAddress",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -399,29 +403,29 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "IsAnonymous": {
                 "name": "IsAnonymous",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "VoteTypeId": {
                 "name": "VoteTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -433,50 +437,50 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostHistoryTypeId": {
                 "name": "PostHistoryTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
+            },
+            "Text": {
+                "name": "Text",
+                "type": "text",
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "RevisionGUID": {
                 "name": "RevisionGUID",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserId": {
                 "name": "UserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserDisplayName": {
                 "name": "UserDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Comment": {
                 "name": "Comment",
-                "type": "varchar",
-                "entropy": 0
-            },
-            "varchar": {
-                "name": "varchar",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -488,29 +492,29 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "RelatedPostId": {
                 "name": "RelatedPostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "LinkTypeId": {
                 "name": "LinkTypeId",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -522,51 +526,51 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostNoticeTypeId": {
                 "name": "PostNoticeTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeletionDate": {
                 "name": "DeletionDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ExpiryDate": {
                 "name": "ExpiryDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Body": {
                 "name": "Body",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "OwnerUserId": {
                 "name": "OwnerUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeletionUserId": {
                 "name": "DeletionUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -578,37 +582,37 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ClassId": {
                 "name": "ClassId",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Body": {
                 "name": "Body",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "IsHidden": {
                 "name": "IsHidden",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Predefined": {
                 "name": "Predefined",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostNoticeDurationId": {
                 "name": "PostNoticeDurationId",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -620,117 +624,117 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostTypeId": {
                 "name": "PostTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "AcceptedAnswerId": {
                 "name": "AcceptedAnswerId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ParentId": {
                 "name": "ParentId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeletionDate": {
                 "name": "DeletionDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Score": {
                 "name": "Score",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ViewCount": {
                 "name": "ViewCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Body": {
                 "name": "Body",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "OwnerUserId": {
                 "name": "OwnerUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "OwnerDisplayName": {
                 "name": "OwnerDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "LastEditorUserId": {
                 "name": "LastEditorUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "LastEditorDisplayName": {
                 "name": "LastEditorDisplayName",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "LastEditDate": {
                 "name": "LastEditDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "LastActivityDate": {
                 "name": "LastActivityDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Title": {
                 "name": "Title",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Tags": {
                 "name": "Tags",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "AnswerCount": {
                 "name": "AnswerCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CommentCount": {
                 "name": "CommentCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "FavoriteCount": {
                 "name": "FavoriteCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ClosedDate": {
                 "name": "ClosedDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "CommunityOwnedDate": {
                 "name": "CommunityOwnedDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -743,13 +747,13 @@
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "TagId": {
                 "name": "TagId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -761,23 +765,23 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "PostTypeId": {
                 "name": "PostTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -789,35 +793,35 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ReviewTaskId": {
                 "name": "ReviewTaskId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ReviewTaskResultTypeId": {
                 "name": "ReviewTaskResultTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "date",
-                "entropy": 0
+                "entropy": 0.0
             },
             "RejectionReasonId": {
                 "name": "RejectionReasonId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Comment": {
                 "name": "Comment",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -829,47 +833,47 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ReviewTaskTypeId": {
                 "name": "ReviewTaskTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "date",
-                "entropy": 0
+                "entropy": 0.0
             },
             "DeletionDate": {
                 "name": "DeletionDate",
                 "type": "date",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ReviewTaskStateId": {
                 "name": "ReviewTaskStateId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "SuggestedEditId": {
                 "name": "SuggestedEditId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CompletedByReviewTaskId": {
                 "name": "CompletedByReviewTaskId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -881,59 +885,59 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ApprovalDate": {
                 "name": "ApprovalDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "RejectionDate": {
                 "name": "RejectionDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "OwnerUserId": {
                 "name": "OwnerUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Comment": {
                 "name": "Comment",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
-            "varchar": {
-                "name": "varchar",
-                "type": "varchar",
-                "entropy": 0
+            "Text": {
+                "name": "Text",
+                "type": "text",
+                "entropy": 0.0
             },
             "Title": {
                 "name": "Title",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Tags": {
                 "name": "Tags",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "RevisionGUID": {
                 "name": "RevisionGUID",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -945,41 +949,41 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "SuggestedEditId": {
                 "name": "SuggestedEditId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserId": {
                 "name": "UserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "VoteTypeId": {
                 "name": "VoteTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "TargetUserId": {
                 "name": "TargetUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "TargetRepChange": {
                 "name": "TargetRepChange",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -990,30 +994,31 @@
             "Id": {
                 "name": "Id",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "TagName": {
                 "name": "TagName",
-                "type": "varchar",
+                "type": "text",
+                "importance": "primary",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Count": {
                 "name": "Count",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ExcerptPostId": {
                 "name": "ExcerptPostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "WikiPostId": {
                 "name": "WikiPostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -1025,56 +1030,56 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "SourceTagName": {
                 "name": "SourceTagName",
-                "type": "varchar",
+                "type": "text",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "TargetTagName": {
                 "name": "TargetTagName",
-                "type": "varchar",
+                "type": "text",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "OwnerUserId": {
                 "name": "OwnerUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "AutoRenameCount": {
                 "name": "AutoRenameCount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "LastAutoRename": {
                 "name": "LastAutoRename",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "Score": {
                 "name": "Score",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             },
             "ApprovedByUserId": {
                 "name": "ApprovedByUserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "ApprovalDate": {
                 "name": "ApprovalDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -1086,35 +1091,35 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "PostId": {
                 "name": "PostId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "VoteTypeId": {
                 "name": "VoteTypeId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "UserId": {
                 "name": "UserId",
                 "type": "int",
                 "fk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "CreationDate": {
                 "name": "CreationDate",
                 "type": "datetime",
-                "entropy": 0
+                "entropy": 0.0
             },
             "BountyAmount": {
                 "name": "BountyAmount",
                 "type": "int",
-                "entropy": 0
+                "entropy": 0.0
             }
         }
     },
@@ -1126,12 +1131,12 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1143,17 +1148,17 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1165,17 +1170,17 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1187,12 +1192,12 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1204,12 +1209,12 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1221,17 +1226,17 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1243,17 +1248,17 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     },
@@ -1265,17 +1270,17 @@
                 "name": "Id",
                 "type": "int",
                 "pk": true,
-                "entropy": 0
+                "entropy": 0.0
             },
             "Name": {
                 "name": "Name",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             },
             "Description": {
                 "name": "Description",
-                "type": "varchar",
-                "entropy": 0
+                "type": "text",
+                "entropy": 0.0
             }
         }
     }
