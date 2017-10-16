@@ -19,6 +19,8 @@ public class Relation {
     Attribute primaryAttr;  // primary attribute (the most "important" attribute, distinct from the pk)
     Map<String, Attribute> attributes;
 
+    Set<String> aliasSet;  // only used when loading external queries
+
     Integer aliasInt; // aliasInt
 
     boolean joinTable;  // true if it is a join table
@@ -58,6 +60,7 @@ public class Relation {
         this.rankedAttributes = null;
 
         this.aliasInt = 0;
+        this.aliasSet = new HashSet<>();
     }
 
     public Relation(Relation other) {
@@ -93,6 +96,7 @@ public class Relation {
         }
 
         this.aliasInt = 0;
+        this.aliasSet = new HashSet<>(other.aliasSet);
     }
 
     public Integer getAliasInt() {
@@ -109,6 +113,14 @@ public class Relation {
 
     public void setJoinTable(boolean joinTable) {
         this.joinTable = joinTable;
+    }
+
+    public Set<String> getAliasSet() {
+        return aliasSet;
+    }
+
+    public void setAliasSet(Set<String> aliasSet) {
+        this.aliasSet = aliasSet;
     }
 
     public List<Attribute> rankAttributesByEntropy(RDBMS db) {
