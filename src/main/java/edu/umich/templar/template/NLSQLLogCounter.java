@@ -32,7 +32,7 @@ public class NLSQLLogCounter {
     public static void main(String[] args) {
         RDBMS db;
         try {
-            db = new RDBMS("senlidb", "data/senlidb/senlidb", false);
+            db = new RDBMS("senlidb", "data/senlidb/senlidb");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
