@@ -1,9 +1,9 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.parse.Predicate;
+import edu.umich.templar.qf.Predicate;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.JoinPath;
-import edu.umich.templar.parse.Projection;
+import edu.umich.templar.qf.Projection;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.sqlparse.*;
 import edu.umich.templar.util.Constants;

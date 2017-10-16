@@ -1,15 +1,15 @@
 package edu.umich.templar.template;
 
 import com.esotericsoftware.minlog.Log;
-import edu.umich.templar.parse.Having;
+import edu.umich.templar.qf.Having;
 import edu.umich.templar.parse.PossibleTranslation;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.JoinEdge;
 import edu.umich.templar.rdbms.JoinPath;
-import edu.umich.templar.parse.Projection;
+import edu.umich.templar.qf.Projection;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.sqlparse.Operator;
-import edu.umich.templar.parse.Predicate;
+import edu.umich.templar.qf.Predicate;
 import edu.umich.templar.util.Constants;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;

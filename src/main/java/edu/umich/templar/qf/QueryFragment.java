@@ -1,4 +1,4 @@
-package edu.umich.templar.parse;
+package edu.umich.templar.qf;
 
 import edu.umich.templar.rdbms.Attribute;
 

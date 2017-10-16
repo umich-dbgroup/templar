@@ -1,6 +1,6 @@
 package edu.umich.templar.sqlparse;
 
-import edu.umich.templar.parse.Having;
+import edu.umich.templar.qf.Having;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.util.Utils;

@@ -1,26 +1,37 @@
-package edu.umich.templar.parse;
+package edu.umich.templar.qf;
 
 import edu.umich.templar.rdbms.Attribute;
 
 /**
- * Created by cjbaik on 9/27/17.
+ * Created by cjbaik on 9/12/17.
  */
-public class Superlative extends QueryFragment {
-    boolean desc;   // true if descending
-
+public class Projection extends QueryFragment {
     String function;        // Function, if any
 
-    public Superlative(Attribute attribute, String function, boolean desc) {
+    boolean groupBy;        // If we want to GROUP BY this projection, set true
+
+    public Projection(Attribute attribute, String function, String qt) {
+        // this.alias = alias;
         this.attribute = attribute;
         this.function = function;
-        this.desc = desc;
+
+        this.groupBy = qt != null && qt.equals("each");
     }
 
-    public Superlative(Superlative other) {
+    public Projection(Projection other) {
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
+
         this.function = other.function;
-        this.desc = other.desc;
+        this.groupBy = other.groupBy;
+    }
+
+    public boolean isGroupBy() {
+        return groupBy;
+    }
+
+    public void setGroupBy(boolean groupBy) {
+        this.groupBy = groupBy;
     }
 
     public String getFunction() {
@@ -31,7 +42,7 @@ public class Superlative extends QueryFragment {
         this.function = function;
     }
 
-    public boolean covers(Superlative other) {
+    public boolean covers(Projection other) {
         if (this.equals(other)) return true;
 
         if (this.getAttribute().equals(other.getAttribute())) {
@@ -50,43 +61,17 @@ public class Superlative extends QueryFragment {
     }
 
     public String toStringWithConsistentRelation() {
-        StringBuilder sb = new StringBuilder();
-
-        boolean isCount = this.function != null && this.function.equalsIgnoreCase("count");
-
-        boolean countingIntAttr = this.function != null && this.function.equalsIgnoreCase("count")
-                && this.attribute.getType().equals("int");
-
-        if (this.function != null && !countingIntAttr) {
-            sb.append(this.function);
-            sb.append("(");
-            if (isCount) {
-                sb.append("distinct(");
-            }
-        }
-        sb.append(this.attribute.toStringWithConsistentRelation());
-        if (this.function != null && !countingIntAttr) {
-            sb.append(")");
-            if (isCount) {
-                sb.append(")");
-            }
-        }
-
-        if (this.desc) {
-            sb.append(" desc");
-        } else {
-            sb.append(" asc");
-        }
-
-        sb.append(" limit 1");
-
-        return sb.toString();
+        String function = this.function == null ? "" : this.function;
+        String groupByStr = this.groupBy ? "group" : "";
+        return this.attribute.getRelation().getName() + "." + this.attribute.getName()
+                + ":" + function + ":" + groupByStr;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
+        // TODO: explore this more, but are all COUNT functions going to be DISTINCT?
         boolean isCount = this.function != null && this.function.equalsIgnoreCase("count");
 
         boolean countingIntAttr = this.function != null && this.function.equalsIgnoreCase("count")
@@ -106,15 +91,6 @@ public class Superlative extends QueryFragment {
                 sb.append(")");
             }
         }
-
-        if (this.desc) {
-            sb.append(" desc");
-        } else {
-            sb.append(" asc");
-        }
-
-        sb.append(" limit 1");
-
         return sb.toString();
     }
 
@@ -123,9 +99,9 @@ public class Superlative extends QueryFragment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Superlative that = (Superlative) o;
+        Projection that = (Projection) o;
 
-        if (desc != that.desc) return false;
+        if (groupBy != that.groupBy) return false;
         if (function != null ? !function.equals(that.function) : that.function != null) return false;
         return !(attribute != null ? !attribute.equals(that.attribute) : that.attribute != null);
 
@@ -135,8 +111,7 @@ public class Superlative extends QueryFragment {
     public int hashCode() {
         int result = function != null ? function.hashCode() : 0;
         result = 31 * result + (attribute != null ? attribute.hashCode() : 0);
-        result = 31 * result + (desc ? 1 : 0);
+        result = 31 * result + (groupBy ? 1 : 0);
         return result;
     }
-
 }

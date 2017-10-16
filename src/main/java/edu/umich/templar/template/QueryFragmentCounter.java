@@ -1,6 +1,6 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.parse.*;
+import edu.umich.templar.qf.*;
 import edu.umich.templar.rdbms.Relation;
 import org.apache.commons.collections.Bag;
 import org.apache.commons.collections.bag.HashBag;

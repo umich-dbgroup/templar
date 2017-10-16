@@ -1,6 +1,6 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.parse.*;
+import edu.umich.templar.qf.*;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.RDBMS;
 import edu.umich.templar.rdbms.Relation;
