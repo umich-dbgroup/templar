@@ -359,6 +359,9 @@ public class NodeMapper
                     }
                     Collections.sort(newMappedElements);
 
+                    // Make sure it has mapped elements. If not, skip
+                    if (newMappedElements.isEmpty()) continue;
+
                     MappedSchemaElement newElement = newMappedElements.get(0);
 
                     if (!newElement.equals(origElement) &&
