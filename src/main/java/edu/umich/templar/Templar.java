@@ -10,7 +10,6 @@ import edu.umich.templar.components.NodeMapper;
 import edu.umich.templar.components.StanfordNLParser;
 import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
-import edu.umich.templar.parse.*;
 import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.agnostic.AgnosticGraph;
 import edu.umich.templar.rdbms.*;

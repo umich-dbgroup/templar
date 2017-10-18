@@ -1,6 +1,5 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.parse.Translation;
 import edu.umich.templar.qf.Having;
 import edu.umich.templar.qf.Predicate;
 import edu.umich.templar.qf.Projection;

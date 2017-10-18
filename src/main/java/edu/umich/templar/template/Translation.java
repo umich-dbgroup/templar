@@ -1,4 +1,4 @@
-package edu.umich.templar.parse;
+package edu.umich.templar.template;
 
 import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.agnostic.*;
