@@ -132,6 +132,7 @@ public class Translation {
         for (ScoredQueryFragment qf : this.scoredQFs) {
             totalSim += qf.getSimilarity();
         }
+
         return totalSim / this.scoredQFs.size();
     }
 

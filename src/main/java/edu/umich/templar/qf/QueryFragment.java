@@ -35,9 +35,10 @@ public class QueryFragment {
     public List<QueryFragment> convertToQFTemplate() {
         List<QueryFragment> result = new ArrayList<>();
 
-        if (this instanceof RelationFragment || this instanceof BlankQueryFragment) {
-            // We don't have an agnostic version of these
+        if (this instanceof BlankQueryFragment) {
             result.add(new BlankQueryFragment());
+        } else if (this instanceof RelationFragment) {
+            result.add(new RelationFragment(((RelationFragment) this).getRelation()));
         } else if (this instanceof Projection) {
             Projection proj = (Projection) this;
             Projection projTmpl = new Projection(proj.getAttribute().canonical(), proj.getFunction(), null);
@@ -73,9 +74,10 @@ public class QueryFragment {
     public List<AgnosticQueryFragment> convertToAgnostic() {
         List<AgnosticQueryFragment> result = new ArrayList<>();
 
-        if (this instanceof RelationFragment || this instanceof BlankQueryFragment) {
-            // We don't have an agnostic version of these
+        if (this instanceof BlankQueryFragment) {
             result.add(new AgnosticBlank());
+        } else if (this instanceof RelationFragment) {
+            result.add(new AgnosticRelationFragment());
         } else if (this instanceof Projection) {
             Projection proj = (Projection) this;
             QFFunction thisFunction = null;

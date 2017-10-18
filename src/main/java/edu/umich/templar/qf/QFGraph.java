@@ -74,9 +74,6 @@ public class QFGraph {
         List<QueryFragment> subselectQFs = new ArrayList<>();
 
         // Relations
-        // Note: We don't add any instances of relations to the QFGraph because those relationships are (hopefully)
-        // better captured in the Join Path Generator
-
         List<Relation> relations = new ArrayList<>();
         if (ps.getFromItem() instanceof Table) {
             Table table = (Table) ps.getFromItem();
@@ -87,6 +84,7 @@ public class QFGraph {
                     rel.getAliasSet().add(table.getAlias().getName().trim());
                 }
                 relations.add(rel);
+                selectQFs.add(new RelationFragment(rel));
             }
         } else if (ps.getFromItem() instanceof SubSelect) {
             // in the case it is a subquery
@@ -105,6 +103,7 @@ public class QFGraph {
                             rel.getAliasSet().add(table.getAlias().getName().trim());
                         }
                         relations.add(rel);
+                        selectQFs.add(new RelationFragment(rel));
                     }
                 } else if (join.getRightItem() instanceof SubSelect) {
                     PlainSelect subPs = (PlainSelect) ((SubSelect) join.getRightItem()).getSelectBody();

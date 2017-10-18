@@ -75,8 +75,10 @@ public class AgnosticGraph {
         List<AgnosticQueryFragment> subselectQFs = new ArrayList<>();
 
         // Relations
-        // Note: We don't add any instances of relations to the AgnosticGraph because a catch-all "relation" query
-        // fragment would be completely useless.
+
+        // Add agnostic relation fragment (because there's no queries without any relations)
+        selectQFs.add(new AgnosticRelationFragment());
+
         List<Relation> relations = new ArrayList<>();
         if (ps.getFromItem() instanceof Table) {
             Table table = (Table) ps.getFromItem();
