@@ -254,6 +254,10 @@ public class JoinPath {
         return true;
     }
 
+    public int getJoinEdgeCount() {
+        return this.joinEdges.size();
+    }
+
     public Set<JoinEdge> getSelfJoins() {
         return this.selfJoins;
     }

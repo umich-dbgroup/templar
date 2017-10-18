@@ -1,10 +1,10 @@
-package edu.umich.templar.qf.agnostic;
+package edu.umich.templar.qf;
 
 /**
- * Created by cjbaik on 10/16/17.
+ * Created by cjbaik on 10/18/17.
  */
-public class AgnosticLimit extends AgnosticQueryFragment {
-    public AgnosticLimit() {
+public class Limit extends QueryFragment {
+    public Limit() {
         super();
     }
 

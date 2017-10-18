@@ -1,6 +1,7 @@
 package edu.umich.templar.sqlparse.agnostic;
 
 import edu.umich.templar.qf.agnostic.AgnosticProjection;
+import edu.umich.templar.qf.pieces.AttributeType;
 import edu.umich.templar.qf.pieces.QFFunction;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
@@ -10,6 +11,7 @@ import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.expression.Parenthesis;
 import net.sf.jsqlparser.schema.Column;
+import net.sf.jsqlparser.statement.select.AllColumns;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +38,25 @@ public class AgnosticProjectionUnroller extends ExpressionVisitorAdapter {
     @Override
     public void visit(Function function) {
         String functionName = function.getName();
-        Column col = Utils.getColumnFromFunction(function);
 
-        if (col != null) {
-            Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, col);
-            if (attr != null) {
-                this.projections.add(new AgnosticProjection(attr.getAttributeType(), QFFunction.getFunction(functionName)));
+        // In the case that it's "all columns"
+        if (function.isAllColumns()) {
+            this.projections.add(new AgnosticProjection(AttributeType.ALL, QFFunction.getFunction(functionName)));
+        } else {
+            Column col = Utils.getColumnFromFunction(function);
+
+            if (col != null) {
+                Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, col);
+                if (attr != null) {
+                    this.projections.add(new AgnosticProjection(attr.getAttributeType(), QFFunction.getFunction(functionName)));
+                }
             }
         }
+    }
+
+    @Override
+    public void visit(AllColumns allColumns) {
+        this.projections.add(new AgnosticProjection(AttributeType.ALL, null));
     }
 
     @Override

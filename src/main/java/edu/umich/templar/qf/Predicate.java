@@ -13,12 +13,14 @@ public class Predicate extends QueryFragment {
     String value;
 
     public Predicate(Attribute attribute, Operator op, String value) {
+        super();
         this.attribute = attribute;
         this.op = op;
         this.value = value;
     }
 
     public Predicate(Predicate other) {
+        super();
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.op = other.op;

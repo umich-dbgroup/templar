@@ -39,6 +39,11 @@ public class Attribute {
         this.entropy = other.entropy;
     }
 
+    public static Attribute allColumnsAttr() {
+        Attribute attr = new Attribute("*", "*");
+        return attr;
+    }
+
     public AttributeType getAttributeType() {
         if (this.getType().equals("text")) {
             return AttributeType.TEXT;
@@ -124,8 +129,21 @@ public class Attribute {
         return this.relation.getName() + "." + this.name;
     }
 
+    public Attribute canonical() {
+        Attribute attr = new Attribute(this);
+        if (attr.getRelation() != null) {
+            Relation canonicalRel = new Relation(attr.getRelation());
+            canonicalRel.setAliasInt(0);
+            attr.setRelation(canonicalRel);
+        }
+        return attr;
+    }
+
     @Override
     public String toString() {
+        if (this.relation == null) {
+            return this.name;
+        }
         return this.relation.toString() + "." + this.name;
     }
 

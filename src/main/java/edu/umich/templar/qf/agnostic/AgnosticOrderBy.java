@@ -9,11 +9,13 @@ import edu.umich.templar.qf.pieces.QFFunction;
 public class AgnosticOrderBy extends AgnosticQueryFragment {
     AttributeType type;
     QFFunction function;
+    boolean desc;
 
-    public AgnosticOrderBy(AttributeType type, QFFunction function) {
+    public AgnosticOrderBy(AttributeType type, QFFunction function, boolean desc) {
         super();
         this.type = type;
         this.function = function;
+        this.desc = desc;
     }
 
     public AttributeType getType() {
@@ -51,6 +53,7 @@ public class AgnosticOrderBy extends AgnosticQueryFragment {
         return sb.toString();
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,12 +61,17 @@ public class AgnosticOrderBy extends AgnosticQueryFragment {
 
         AgnosticOrderBy that = (AgnosticOrderBy) o;
 
-        return type == that.type;
+        if (desc != that.desc) return false;
+        if (type != that.type) return false;
+        return function == that.function;
 
     }
 
     @Override
     public int hashCode() {
-        return type != null ? type.hashCode() : 0;
+        int result = type != null ? type.hashCode() : 0;
+        result = 31 * result + (function != null ? function.hashCode() : 0);
+        result = 31 * result + (desc ? 1 : 0);
+        return result;
     }
 }

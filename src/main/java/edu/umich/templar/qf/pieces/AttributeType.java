@@ -4,7 +4,7 @@ package edu.umich.templar.qf.pieces;
  * Created by cjbaik on 10/16/17.
  */
 public enum AttributeType {
-    TEXT("text"), NUMBER("number");
+    TEXT("text"), NUMBER("number"), ALL("*");
 
     private String text;
 

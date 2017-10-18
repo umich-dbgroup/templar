@@ -11,12 +11,14 @@ public class Superlative extends QueryFragment {
     String function;        // Function, if any
 
     public Superlative(Attribute attribute, String function, boolean desc) {
+        super();
         this.attribute = attribute;
         this.function = function;
         this.desc = desc;
     }
 
     public Superlative(Superlative other) {
+        super();
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.function = other.function;
@@ -29,6 +31,10 @@ public class Superlative extends QueryFragment {
 
     public void setFunction(String function) {
         this.function = function;
+    }
+
+    public boolean isDesc() {
+        return desc;
     }
 
     public boolean covers(Superlative other) {

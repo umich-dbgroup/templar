@@ -15,6 +15,7 @@ public class Having extends QueryFragment {
     String function;   // function, like "count"
 
     public Having(Attribute attribute, Operator op, String value, String function) {
+        super();
         this.attribute = attribute;
         this.op = op;
         this.value = value;
@@ -22,6 +23,7 @@ public class Having extends QueryFragment {
     }
 
     public Having(Having other) {
+        super();
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.op = other.op;
@@ -116,5 +118,28 @@ public class Having extends QueryFragment {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Having having = (Having) o;
+
+        if (op != having.op) return false;
+        if (value != null ? !value.equals(having.value) : having.value != null) return false;
+        if (attribute != null ? !attribute.equals(having.attribute) : having.attribute != null) return false;
+        return !(function != null ? !function.equals(having.function) : having.function != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = op != null ? op.hashCode() : 0;
+        result = 31 * result + (value != null ? value.hashCode() : 0);
+        result = 31 * result + (attribute != null ? attribute.hashCode() : 0);
+        result = 31 * result + (function != null ? function.hashCode() : 0);
+        return result;
     }
 }

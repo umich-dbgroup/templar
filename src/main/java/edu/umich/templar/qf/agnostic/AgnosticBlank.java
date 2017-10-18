@@ -1,13 +1,9 @@
 package edu.umich.templar.qf.agnostic;
 
 /**
- * Created by cjbaik on 10/16/17.
+ * Created by cjbaik on 10/18/17.
  */
-public class AgnosticLimit extends AgnosticQueryFragment {
-    public AgnosticLimit() {
-        super();
-    }
-
+public class AgnosticBlank extends AgnosticQueryFragment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

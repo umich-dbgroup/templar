@@ -11,7 +11,7 @@ public class Projection extends QueryFragment {
     boolean groupBy;        // If we want to GROUP BY this projection, set true
 
     public Projection(Attribute attribute, String function, String qt) {
-        // this.alias = alias;
+        super();
         this.attribute = attribute;
         this.function = function;
 
@@ -19,6 +19,7 @@ public class Projection extends QueryFragment {
     }
 
     public Projection(Projection other) {
+        super();
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
 
@@ -80,14 +81,14 @@ public class Projection extends QueryFragment {
         if (this.function != null && !countingIntAttr) {
             sb.append(this.function);
             sb.append("(");
-            if (isCount) {
+            if (isCount && !this.attribute.getType().equals("*")) {
                 sb.append("distinct(");
             }
         }
         sb.append(this.attribute.toString());
         if (this.function != null && !countingIntAttr) {
             sb.append(")");
-            if (isCount) {
+            if (isCount && !this.attribute.getType().equals("*")) {
                 sb.append(")");
             }
         }

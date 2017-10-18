@@ -1,0 +1,35 @@
+package edu.umich.templar.qf;
+
+import edu.umich.templar.rdbms.Relation;
+
+/**
+ * Created by cjbaik on 10/17/17.
+ */
+public class RelationFragment extends QueryFragment {
+    Relation relation;
+
+    public RelationFragment(Relation relation) {
+        super();
+        this.relation = relation;
+    }
+
+    public Relation getRelation() {
+        return relation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RelationFragment that = (RelationFragment) o;
+
+        return !(relation != null ? !relation.equals(that.relation) : that.relation != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return relation != null ? relation.hashCode() : 0;
+    }
+}

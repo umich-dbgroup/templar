@@ -7,8 +7,8 @@ import java.util.Map;
  * Created by cjbaik on 10/16/17.
  */
 public class AgnosticQueryFragment {
-    int count;                                          // number of total appearances;
-    Map<AgnosticQueryFragment, Integer> cooccurrence;   // co-occurrence cooccurrence with other query fragments
+    int count;                                                // number of total appearances;
+    Map<AgnosticQueryFragment, Integer> cooccurrence;         // co-occurrence with other query fragments
 
     public AgnosticQueryFragment() {
         this.count = 0;
@@ -21,6 +21,10 @@ public class AgnosticQueryFragment {
             return 0;
         }
         return count;
+    }
+
+    public int getCount() {
+        return this.count;
     }
 
     public void incrementCount() {

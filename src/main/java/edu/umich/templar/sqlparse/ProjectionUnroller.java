@@ -1,6 +1,7 @@
 package edu.umich.templar.sqlparse;
 
 import edu.umich.templar.qf.Projection;
+import edu.umich.templar.qf.pieces.AttributeType;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.util.Utils;
@@ -9,6 +10,7 @@ import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.expression.Function;
 import net.sf.jsqlparser.expression.Parenthesis;
 import net.sf.jsqlparser.schema.Column;
+import net.sf.jsqlparser.statement.select.AllColumns;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,26 +37,25 @@ public class ProjectionUnroller extends ExpressionVisitorAdapter {
     @Override
     public void visit(Function function) {
         String functionName = function.getName();
-        Column col = null;
-        if (function.getParameters() != null && function.getParameters().getExpressions() != null &&
-                function.getParameters().getExpressions().size() == 1) {
-            for (Expression expr : function.getParameters().getExpressions()) {
-                if (expr instanceof Parenthesis) {
-                    expr = ((Parenthesis) expr).getExpression();
-                }
-                if (expr instanceof Column) {
-                    col = (Column) expr;
-                    break;
-                }
-            }
-        }
 
-        if (col != null) {
-            Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, col);
-            if (attr != null) {
-                this.projections.add(new Projection(attr, functionName.toLowerCase(), null));
+        // In the case that it's "all columns"
+        if (function.isAllColumns()) {
+            this.projections.add(new Projection(Attribute.allColumnsAttr(), functionName, null));
+        } else {
+            Column col = Utils.getColumnFromFunction(function);
+
+            if (col != null) {
+                Attribute attr = Utils.getAttributeFromColumn(this.relations, this.queryRelations, col);
+                if (attr != null) {
+                    this.projections.add(new Projection(attr, functionName.toLowerCase(), null));
+                }
             }
         }
+    }
+
+    @Override
+    public void visit(AllColumns allColumns) {
+        this.projections.add(new Projection(Attribute.allColumnsAttr(), null, null));
     }
 
     @Override

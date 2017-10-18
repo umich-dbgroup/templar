@@ -12,6 +12,7 @@ import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.parse.*;
 import edu.umich.templar.qf.*;
+import edu.umich.templar.qf.agnostic.AgnosticGraph;
 import edu.umich.templar.rdbms.*;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.template.*;
@@ -19,6 +20,8 @@ import edu.umich.templar.tools.PrintForCheck;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Utils;
+import net.sf.jsqlparser.statement.select.PlainSelect;
+import net.sf.jsqlparser.statement.select.Select;
 import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Document;
 
@@ -32,71 +35,31 @@ import java.util.*;
  */
 public class Templar {
     Map<String, Relation> relations;
-    NLSQLLogCounter logCounter;
+    AgnosticGraph agnosticGraph;  // schema-agnostic co-occurrence graph
+    QFGraph qfGraph;              // schema-aware co-occurrence graph
 
-    public Templar(Map<String, Relation> relations, NLSQLLogCounter logCounter) {
+    public Templar(Map<String, Relation> relations, AgnosticGraph agnosticGraph, QFGraph qfGraph) {
         this.relations = relations;
-        this.logCounter = logCounter;
-    }
-
-    public double getWeightedSimilarity(double similarity, String token, Object qfOrRel) {
-        double universalScore = 0;
-        double tokenScore = 0;
-        if (qfOrRel instanceof QueryFragment) {
-            QueryFragment qf = (QueryFragment) qfOrRel;
-            universalScore = this.logCounter.getUniversalFreqScore(qf);
-            if (token != null) {
-                QueryFragmentCounter tkCounter = this.logCounter.getTokenCounters().get(token.toLowerCase());
-                if (tkCounter != null) {
-                    tokenScore = tkCounter.getFreqScore(qf);
-                }
-            }
-        } else if (qfOrRel instanceof Relation) {
-            Relation rel = (Relation) qfOrRel;
-            universalScore = this.logCounter.getUniversalFreqScore(rel);
-            if (token != null) {
-                QueryFragmentCounter tkCounter = this.logCounter.getTokenCounters().get(token.toLowerCase());
-                if (tkCounter != null) {
-                    tokenScore = tkCounter.getFreqScore(rel);
-                }
-            }
-        }
-        return 0.5 * similarity + 0.1 * Math.sqrt(universalScore) + 0.4 * Math.sqrt(tokenScore);
+        this.agnosticGraph = agnosticGraph;
+        this.qfGraph = qfGraph;
     }
 
     public List<PossibleTranslation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
-                                                                           Set<Relation> accumRel,
-                                                                           List<Projection> accumProj,
-                                                                           List<Predicate> accumPred,
-                                                                           List<Having> accumHaving,
-                                                                           Superlative superlative,
-                                                                           double accumScore, double accumNodes) {
+                                                                           PossibleTranslation trans) {
         List<PossibleTranslation> result = new ArrayList<>();
-
-        if (accumRel == null) accumRel = new HashSet<>();
-        if (accumProj == null) accumProj = new ArrayList<>();
-        if (accumPred == null) accumPred = new ArrayList<>();
-        if (accumHaving == null) accumHaving = new ArrayList<>();
 
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
             // Check if there is at least one valid projection
             boolean validProjections = false;
-            for (Projection proj : accumProj) {
+            for (Projection proj : trans.getProjections()) {
                 if (!proj.isGroupBy()) {
                     validProjections = true;
                 }
             }
 
             if (validProjections) {
-                PossibleTranslation translation = new PossibleTranslation();
-                translation.setRelations(new HashSet<>(accumRel));
-                translation.setProjections(new ArrayList<>(accumProj));
-                translation.setPredicates(new ArrayList<>(accumPred));
-                translation.setHavings(new ArrayList<>(accumHaving));
-                translation.setSuperlative(superlative);
-                translation.setTranslationScore(accumScore / accumNodes);
-                result.add(translation);
+                result.add(trans);
             }
             return result;
         }
@@ -109,24 +72,15 @@ public class Templar {
 
             List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()));
 
-            // If the highest similarity is still less than the minimum similarity, we just pass on this node
-            if (mappedList.get(0).similarity < Constants.MIN_SIM) {
-                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                        new ArrayList<>(accumHaving), superlative, accumScore, accumNodes));
-            }
-
             for (MappedSchemaElement schemaEl : mappedList) {
                 // Min threshold to even try...
                 if (schemaEl.similarity < Constants.MIN_SIM) {
-                    continue;
+                    // Add a dummy node with minimum similarity
+                    PossibleTranslation newTrans = new PossibleTranslation(trans);
+                    newTrans.addQueryFragment(new BlankQueryFragment(), Constants.MIN_SIM);
+                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                    break;
                 }
-
-                // Add a version without any changes, and MIN_SIM
-                double scoreToAdd = this.getWeightedSimilarity(Constants.MIN_SIM, null, null);
-                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                        new ArrayList<>(accumHaving), superlative, accumScore + scoreToAdd, accumNodes + 1));
 
                 Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
                 if (rel == null)
@@ -136,20 +90,16 @@ public class Templar {
                 // and also move ahead
                 if (schemaEl.schemaElement.type.equals("relation")) {
                     if (!curNode.isFirstMappedDescendantOfCMT()) {
-                        Set<Relation> newAccumRel = new HashSet<>(accumRel);
-                        newAccumRel.add(rel);
-
                         // Enforce a penalty if there's a superlative or function associated with relation
                         double similarity = schemaEl.similarity;
                         if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
                             similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                         }
 
-                        similarity = this.getWeightedSimilarity(similarity, curNode.label, rel);
+                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        newTrans.addQueryFragment(new RelationFragment(rel), similarity);
 
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                newAccumRel, new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                new ArrayList<>(accumHaving), superlative, accumScore + similarity, accumNodes + 1));
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
                     continue;
                 }
@@ -157,12 +107,6 @@ public class Templar {
                 Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
                 if (attr == null)
                     throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
-
-                // Copy relevant structures so recursive operations don't interfere with it
-                Set<Relation> newAccumRel = new HashSet<>(accumRel);
-                List<Projection> newAccumProj = new ArrayList<>(accumProj);
-                List<Predicate> newAccumPred = new ArrayList<>(accumPred);
-                List<Having> newAccumHaving = new ArrayList<>(accumHaving);
 
                 // Treat as projection, if no mapped values
                 if (schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1) {
@@ -182,16 +126,11 @@ public class Templar {
                         boolean desc = superlativeStr.equals("max");
 
                         Superlative newSuper = new Superlative(attr, funcStr, desc);
-                        if (!newAccumRel.contains(attr.getRelation())) {
-                            newAccumRel.add(attr.getRelation());
-                        }
 
-                        double similarity = schemaEl.similarity;
-                        similarity = this.getWeightedSimilarity(similarity, curNode.label, newSuper);
+                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        trans.addQueryFragment(newSuper, schemaEl.similarity);
 
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                newAccumRel, newAccumProj, newAccumPred, newAccumHaving, newSuper,
-                                accumScore + similarity, accumNodes + 1));
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     } else {
                         Projection proj = new Projection(attr, schemaEl.attachedFT, curNode.QT);
 
@@ -199,7 +138,7 @@ public class Templar {
                         // then create an additional path without this projection.
                         boolean selfJoinFlag = false;
                         int aliasInt = 0;
-                        for (Predicate pred : accumPred) {
+                        for (Predicate pred : trans.getPredicates()) {
                             if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
                                 selfJoinFlag = true;
                                 aliasInt++;
@@ -208,7 +147,7 @@ public class Templar {
 
                         // Increment aliasInt for every shared projection
                         boolean aggregateNewProj = false;
-                        for (Projection curProj : accumProj) {
+                        for (Projection curProj : trans.getProjections()) {
                             if (curProj.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
                                 aliasInt++;
                             }
@@ -231,21 +170,17 @@ public class Templar {
 
                         if (aggregateNewProj) proj.applyAggregateFunction();
 
-                        newAccumProj.add(proj);
-                        newAccumRel.add(rel);
-
                         // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
                         // but only if it's not a group by token
                         boolean likelyProjection = curNode.isFirstMappedDescendantOfCMT() || proj.isGroupBy();
-                        double similarityAdded = schemaEl.similarity;
+                        double similarity = schemaEl.similarity;
                         if (!likelyProjection) {
-                            similarityAdded *= 0.8;
+                            similarity *= 0.8;
                         }
-                        similarityAdded = this.getWeightedSimilarity(similarityAdded, curNode.label, proj);
+                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        newTrans.addQueryFragment(proj, similarity);
 
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                accumScore + similarityAdded, accumNodes + 1));
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
                 } else {
                     // For predicates and havings.
@@ -285,11 +220,9 @@ public class Templar {
 
                     if (op == null) op = Operator.EQ;
 
-                    if (schemaEl.choice != -1) {
-                        // TODO: open up the possibility that you have more than 1 mapped value?
-                        if (value == null) {
-                            value = schemaEl.mappedValues.get(0);
-                        }
+                    // TODO: open up the possibility that you have more than 1 mapped value?
+                    if (value == null) {
+                        value = schemaEl.mappedValues.get(0);
                     }
 
                     // Criteria for HAVING:
@@ -301,35 +234,24 @@ public class Templar {
 
                         // Should not do the same attribute for having as a projection
                         boolean projExists = false;
-                        for (Projection proj : accumProj) {
+                        for (Projection proj : trans.getProjections()) {
                             if (having.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
                                 projExists = true;
                             }
                         }
                         if (projExists) continue;
 
-                        if (!newAccumHaving.contains(having)) newAccumHaving.add(having);
-                        newAccumRel.add(rel);
+                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        newTrans.addQueryFragment(having, schemaEl.similarity);
 
-                        double similarity = schemaEl.similarity;
-                        similarity = this.getWeightedSimilarity(similarity, curNode.label, having);
-
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                accumScore + similarity, accumNodes + 1));
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     } else {
                         // If you are creating a predicate and there already exists a projection with the same attribute,
                         // then create an additional path of eliminating this predicate.
                         int aliasInt = 0;
 
-                        for (Projection p : accumProj) {
+                        for (Projection p : trans.getProjections()) {
                             if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                /*
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        new HashSet<>(accumRel), new ArrayList<>(accumProj), new ArrayList<>(accumPred),
-                                        new ArrayList<>(accumHaving), superlative, accumScore + 0.5, accumNodes + 1));
-                                        */
-
                                 aliasInt++;
                             }
                         }
@@ -340,7 +262,7 @@ public class Templar {
                         boolean notNumberWithNonEquality = !(curNode.tokenType.equals("VTNUM") && curNode.attachedOT != null
                                 && !curNode.attachedOT.equals("="));
                         if (notNumberWithNonEquality) {
-                            for (Predicate curPred : accumPred) {
+                            for (Predicate curPred : trans.getPredicates()) {
                                 if (curPred.getAttribute().hasSameRelationNameAndNameAs(pred.getAttribute())) {
                                     aliasInt++;
                                 }
@@ -366,33 +288,25 @@ public class Templar {
                         if (curNode.isFirstMappedDescendantOfCMT() || curNode.QT.equals("each")) {
                             if (attrSim >= Constants.MIN_SIM) {
                                 // CASE 1: If attribute is similar, project attribute accordingly
-
-                                // TODO: do I need to increment aliasInt here for the parent? how?
                                 Projection proj = new Projection(attr, curNode.getChoiceMap().attachedFT, curNode.QT);
-                                newAccumProj.add(proj);
-                                newAccumRel.add(rel);
 
                                 // Get the maximum of the attribute or relation similarity
                                 double maxSim = Math.max(relSim, attrSim);
-                                maxSim = this.getWeightedSimilarity(maxSim, curNode.label, proj);
 
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + maxSim, accumNodes + 1));
+                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                newTrans.addQueryFragment(proj, maxSim);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             } else if (relSim >= Constants.MIN_SIM) {
                                 // CASE 2: If relation is similar, project relation default attribute
                                 // e.g. "How many papers..."
                                 Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
-                                newAccumProj.add(proj);
-                                newAccumRel.add(rel);
 
-                                double similarity = relSim;
-                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
+                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                newTrans.addQueryFragment(proj, relSim);
 
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + similarity, accumNodes + 1));
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             } else if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
                                             || curNode.relationship.equals("nsubjpass")
@@ -402,44 +316,30 @@ public class Templar {
                                 // e.g. "How many restaurants..."
 
                                 Relation parent = this.relations.get(rel.getParent());
-                                // TODO: do I need to increment aliasInt here for the parent? how?
                                 Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
-                                newAccumProj.add(proj);
-                                newAccumRel.add(parent);
+                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                newTrans.addQueryFragment(proj, schemaEl.similarity);
+                                newTrans.addQueryFragment(pred, schemaEl.similarity);
 
-                                newAccumPred.add(pred);
-                                newAccumRel.add(rel);
-
-                                double similarity = schemaEl.similarity;
-                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
-                                // TODO: do I need to average the predicate weight too?
-
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + similarity, accumNodes + 1));
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             } else {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
                                 Projection proj = new Projection(rel.getPk(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
-                                if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
-                                newAccumProj.add(proj);
-                                newAccumRel.add(rel);
 
-                                double similarity = schemaEl.similarity;
-                                similarity = this.getWeightedSimilarity(similarity, curNode.label, proj);
+                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                newTrans.addQueryFragment(proj, schemaEl.similarity);
+                                newTrans.addQueryFragment(pred, schemaEl.similarity);
 
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + similarity, accumNodes + 1));
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             }
                         } else {
                             // In situations where it's probably not a projection because parent is not CMT
 
                             if (relSim >= Constants.MIN_SIM) {
                                 // CASE 1: it's a simple relation reference
-                                newAccumRel.add(rel);
 
                                 // Enforce a penalty if there's a superlative or function associated with relation
                                 double similarity = schemaEl.similarity;
@@ -447,26 +347,22 @@ public class Templar {
                                     similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                                 }
 
-                                similarity = this.getWeightedSimilarity(similarity, curNode.label, rel);
+                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                newTrans.addQueryFragment(new RelationFragment(rel), similarity);
 
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                        newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                        accumScore + similarity, accumNodes + 1));
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             }
 
                             // CASE 2: it's actually supposed to be a predicate
-                            if (!newAccumPred.contains(pred)) newAccumPred.add(pred);
-                            newAccumRel.add(rel);
 
                             // penalize predicates that deal with common nouns
                             double similarity = schemaEl.similarity;
                             if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
 
-                            similarity = this.getWeightedSimilarity(similarity, curNode.label, pred);
+                            PossibleTranslation newTrans = new PossibleTranslation(trans);
+                            newTrans.addQueryFragment(pred, similarity);
 
-                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes),
-                                    newAccumRel, newAccumProj, newAccumPred, newAccumHaving, superlative,
-                                    accumScore + similarity, accumNodes + 1));
+                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                         }
                     }
                 }
@@ -765,8 +661,6 @@ public class Templar {
     }
 
     public static void main(String[] args) {
-        Log.DEBUG();
-
         if (args.length < 4) {
             System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file> <ans-file (optional)>");
             System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt data/mas/mas_c1.ans");
@@ -790,7 +684,7 @@ public class Templar {
         }
 
         // Load in everything for log counter
-        NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
+        // NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
         /*
         List<String> nlq = new ArrayList<>();
         List<List<String>> queryAnswers = null;
@@ -846,6 +740,17 @@ public class Templar {
                 nlsqlLogCounter.addNLQSQLPair(tokens, logSQL.get(i));
             }
         }*/
+
+        // Load in agnostic graph
+        AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
+        QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
+
+        // TODO: change this to cross-validation statements or whatever is needed.
+        List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
+        for (Select select : selects) {
+            agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
+            qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
+        }
 
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
@@ -919,11 +824,11 @@ public class Templar {
 
             List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 
-            Templar tc = new Templar(db.schemaGraph.relations, nlsqlLogCounter);
-            List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes, null, null,
-                    null, null, null, 0, 0);
+            Templar tc = new Templar(db.schemaGraph.relations, agnosticGraph, qfGraph);
+            List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
+                    new PossibleTranslation(agnosticGraph, qfGraph));
 
-            translations.sort((a, b) -> b.getTotalScore().compareTo(a.getTotalScore()));
+            translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
 
             int n = 10;
             List<PossibleTranslation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
@@ -935,14 +840,14 @@ public class Templar {
                 for (PossibleTranslation trans : topNTranslations) {
                     Set<PossibleTranslation> perms = trans.getAliasPermutations();
                     for (PossibleTranslation perm : perms) {
-                        InstantiatedTemplate inst = tmpl.instantiate(perm);
-                        if (inst == null) continue;
+                        InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
+                        if (inst.getValue() == null) continue;
 
                         Integer existingIndex = resultIndexMap.get(inst.getValue());
 
                         if (existingIndex != null) {
                             InstantiatedTemplate existingTmpl = results.get(existingIndex);
-                            if (inst.getTotalScore() > existingTmpl.getTotalScore()) {
+                            if (inst.getScore() > existingTmpl.getScore()) {
                                 results.set(existingIndex, inst);
                             }
                         } else {
@@ -953,7 +858,7 @@ public class Templar {
                 }
             }
 
-            results.sort((a, b) -> b.getTotalScore().compareTo(a.getTotalScore()));
+            results.sort((a, b) -> b.getScore().compareTo(a.getScore()));
 
             Integer rank = null;
             if (testSQL != null) {
@@ -961,14 +866,14 @@ public class Templar {
                 for (int j = 0; j < Math.min(results.size(), 10); j++) {
                     if (correctResultScore != null) {
                         // If this score is less, then we have no ties and we just break
-                        if (results.get(j).getTotalScore() < correctResultScore) {
+                        if (results.get(j).getScore() < correctResultScore) {
                             break;
                         }
                     }
 
                     if (testSQL.get(i).contains(results.get(j).getValue())) {
                         if (correctResultScore == null) {
-                            correctResultScore = results.get(j).getTotalScore();
+                            correctResultScore = results.get(j).getScore();
 
                             rank = j + 1;
                             if (rank <= 5) top5++;
