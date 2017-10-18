@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Created by cjbaik on 9/11/17.
  */
-public class PossibleTranslation {
+public class Translation {
     List<ScoredQueryFragment> scoredQFs;     // all query fragments for QFGraph
     List<ScoredAgnosticQueryFragment> scoredAQFs; // all agnostic query fragments for AgnosticGraph
 
@@ -31,12 +31,12 @@ public class PossibleTranslation {
     QFGraph qfGraph;
 
     // Cache alias permutations
-    Set<PossibleTranslation> permutations;
+    Set<Translation> permutations;
 
     // Total translation score
     Double score;
 
-    public PossibleTranslation(AgnosticGraph agnosticGraph, QFGraph qfGraph) {
+    public Translation(AgnosticGraph agnosticGraph, QFGraph qfGraph) {
         this.agnosticGraph = agnosticGraph;
         this.qfGraph = qfGraph;
 
@@ -56,7 +56,7 @@ public class PossibleTranslation {
         this.score = null;
     }
 
-    public PossibleTranslation(PossibleTranslation other) {
+    public Translation(Translation other) {
         this.agnosticGraph = other.agnosticGraph;
         this.qfGraph = other.qfGraph;
 
@@ -248,9 +248,9 @@ public class PossibleTranslation {
         return result;
     }
 
-    private Set<PossibleTranslation> getAliasPermutationsHelper(PossibleTranslation pt,
+    private Set<Translation> getAliasPermutationsHelper(Translation pt,
                                                                 Map<String, List<ScoredQueryFragment>> remaining) {
-        Set<PossibleTranslation> results = new HashSet<>();
+        Set<Translation> results = new HashSet<>();
         Iterator<String> it = remaining.keySet().iterator();
 
         if (it.hasNext()) {
@@ -261,7 +261,7 @@ public class PossibleTranslation {
             // Get permutations if more than 1 option
             if (qfList.size() > 1) {
                 for (int i = 0; i < qfList.size(); i++) {
-                    PossibleTranslation newPt = new PossibleTranslation(pt);
+                    Translation newPt = new Translation(pt);
 
                     for (int j = 0; j < qfList.size(); j++) {
                         int qfIndex = i + j;
@@ -299,7 +299,7 @@ public class PossibleTranslation {
             } else {
                 ScoredQueryFragment qf = qfList.get(0);
 
-                PossibleTranslation newPt = new PossibleTranslation(pt);
+                Translation newPt = new Translation(pt);
                 if (qf.getQf() instanceof Projection) {
                     Projection copyProj = new Projection((Projection) qf.getQf());
                     newPt.addQueryFragment(copyProj, qf.getSimilarity());
@@ -327,10 +327,10 @@ public class PossibleTranslation {
     // If we have a projection with author_0 and a predicate with author_1, for example,
     // this will print all possible permutations of aliases where the projection will have author_1 and
     // the predicate will have author_0 instead, etc.
-    public Set<PossibleTranslation> getAliasPermutations() {
+    public Set<Translation> getAliasPermutations() {
         if (this.permutations != null) return this.permutations;
 
-        Set<PossibleTranslation> results = new HashSet<>();
+        Set<Translation> results = new HashSet<>();
 
         Map<String, List<ScoredQueryFragment>> attributesToQueryFragments = new HashMap<>();
 
@@ -379,7 +379,7 @@ public class PossibleTranslation {
             qfList.add(new ScoredQueryFragment(this.superlative, this.scoreMap.get(this.superlative)));
         }
 
-        PossibleTranslation newPt = new PossibleTranslation(this.agnosticGraph, this.qfGraph);
+        Translation newPt = new Translation(this.agnosticGraph, this.qfGraph);
         results.addAll(this.getAliasPermutationsHelper(newPt, attributesToQueryFragments));
 
         // Cache permutations

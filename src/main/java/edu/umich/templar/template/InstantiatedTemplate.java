@@ -1,6 +1,6 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.parse.PossibleTranslation;
+import edu.umich.templar.parse.Translation;
 import edu.umich.templar.qf.Having;
 import edu.umich.templar.qf.Predicate;
 import edu.umich.templar.qf.Projection;
@@ -19,10 +19,10 @@ import java.util.*;
  */
 public class InstantiatedTemplate {
     Template template;
-    PossibleTranslation translation;
+    Translation translation;
     String value;
 
-    public InstantiatedTemplate(Template template, PossibleTranslation translation) {
+    public InstantiatedTemplate(Template template, Translation translation) {
         this.template = template;
         this.translation = translation;
         this.value = this.instantiate();
@@ -284,7 +284,7 @@ public class InstantiatedTemplate {
         // Complexity is really only used as a tiebreaker with a small epsilon weight
         double epsilon = 0.01;
 
-        return (1.0 - epsilon) * this.translation.getScore() + epsilon * this.getComplexity();
+        return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getComplexity());
     }
 
     private Double getComplexity() {

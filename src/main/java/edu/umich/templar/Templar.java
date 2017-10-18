@@ -44,9 +44,9 @@ public class Templar {
         this.qfGraph = qfGraph;
     }
 
-    public List<PossibleTranslation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
-                                                                           PossibleTranslation trans) {
-        List<PossibleTranslation> result = new ArrayList<>();
+    public List<Translation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
+                                                                           Translation trans) {
+        List<Translation> result = new ArrayList<>();
 
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
@@ -76,7 +76,7 @@ public class Templar {
                 // Min threshold to even try...
                 if (schemaEl.similarity < Constants.MIN_SIM) {
                     // Add a dummy node with minimum similarity
-                    PossibleTranslation newTrans = new PossibleTranslation(trans);
+                    Translation newTrans = new Translation(trans);
                     newTrans.addQueryFragment(new BlankQueryFragment(), Constants.MIN_SIM);
                     result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     break;
@@ -96,7 +96,7 @@ public class Templar {
                             similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                         }
 
-                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        Translation newTrans = new Translation(trans);
                         newTrans.addQueryFragment(new RelationFragment(rel), similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -127,7 +127,7 @@ public class Templar {
 
                         Superlative newSuper = new Superlative(attr, funcStr, desc);
 
-                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        Translation newTrans = new Translation(trans);
                         trans.addQueryFragment(newSuper, schemaEl.similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -177,7 +177,7 @@ public class Templar {
                         if (!likelyProjection) {
                             similarity *= 0.8;
                         }
-                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        Translation newTrans = new Translation(trans);
                         newTrans.addQueryFragment(proj, similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -241,7 +241,7 @@ public class Templar {
                         }
                         if (projExists) continue;
 
-                        PossibleTranslation newTrans = new PossibleTranslation(trans);
+                        Translation newTrans = new Translation(trans);
                         newTrans.addQueryFragment(having, schemaEl.similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -293,7 +293,7 @@ public class Templar {
                                 // Get the maximum of the attribute or relation similarity
                                 double maxSim = Math.max(relSim, attrSim);
 
-                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(proj, maxSim);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -303,7 +303,7 @@ public class Templar {
                                 Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
 
-                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(proj, relSim);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -318,7 +318,7 @@ public class Templar {
                                 Relation parent = this.relations.get(rel.getParent());
                                 Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
-                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(proj, schemaEl.similarity);
                                 newTrans.addQueryFragment(pred, schemaEl.similarity);
 
@@ -329,7 +329,7 @@ public class Templar {
                                 Projection proj = new Projection(rel.getPk(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
 
-                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(proj, schemaEl.similarity);
                                 newTrans.addQueryFragment(pred, schemaEl.similarity);
 
@@ -347,7 +347,7 @@ public class Templar {
                                     similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                                 }
 
-                                PossibleTranslation newTrans = new PossibleTranslation(trans);
+                                Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(new RelationFragment(rel), similarity);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -359,7 +359,7 @@ public class Templar {
                             double similarity = schemaEl.similarity;
                             if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
 
-                            PossibleTranslation newTrans = new PossibleTranslation(trans);
+                            Translation newTrans = new Translation(trans);
                             newTrans.addQueryFragment(pred, similarity);
 
                             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -608,7 +608,7 @@ public class Templar {
         return mappedNodes;
     }
 
-    public static String getDebugOutput(LexicalizedParser lexiParser, Query query, List<PossibleTranslation> translations,
+    public static String getDebugOutput(LexicalizedParser lexiParser, Query query, List<Translation> translations,
                                  List<InstantiatedTemplate> results) {
         StringBuilder sb = new StringBuilder();
 
@@ -642,7 +642,7 @@ public class Templar {
         sb.append("===========\n");
         sb.append("TRANSLATIONS\n");
         sb.append("===========\n");
-        for (PossibleTranslation trans : translations) {
+        for (Translation trans : translations) {
             sb.append(trans.toStringDebug());
             sb.append("\n");
         }
@@ -825,21 +825,21 @@ public class Templar {
             List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 
             Templar tc = new Templar(db.schemaGraph.relations, agnosticGraph, qfGraph);
-            List<PossibleTranslation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
-                    new PossibleTranslation(agnosticGraph, qfGraph));
+            List<Translation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
+                    new Translation(agnosticGraph, qfGraph));
 
             translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
 
             int n = 10;
-            List<PossibleTranslation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
+            List<Translation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
 
             List<InstantiatedTemplate> results = new ArrayList<>();
             Map<String, Integer> resultIndexMap = new HashMap<>();
 
             for (Template tmpl : templates) {
-                for (PossibleTranslation trans : topNTranslations) {
-                    Set<PossibleTranslation> perms = trans.getAliasPermutations();
-                    for (PossibleTranslation perm : perms) {
+                for (Translation trans : topNTranslations) {
+                    Set<Translation> perms = trans.getAliasPermutations();
+                    for (Translation perm : perms) {
                         InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
                         if (inst.getValue() == null) continue;
 
