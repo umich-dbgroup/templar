@@ -3,7 +3,7 @@ select count(distinct(journal_0.name)) from author as author_0, journal as journ
 select publication_0.year, count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid group by publication_0.year
 select count(distinct(author_0.name)) from author as author_0, publication as publication_0, writes as writes_0 where publication_0.title = "Making database systems usable" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
 select sum(publication_0.citation_num), publication_0.year from publication as publication_0 where publication_0.title = "Making database systems usable" group by publication_0.year
-NO ANSWER YET
+select count(distinct(publication_1.title)) from cite as cite_0, publication as publication_0, publication as publication_1 where publication_0.title = "Making database systems usable" and publication_1.year < 2010 and cite_0.cited = publication_0.pid and cite_0.citing = publication_1.pid
 select count(distinct(publication_0.title)) from author as author_0, publication as publication_0, writes as writes_0 where author_0.name = "H. V. Jagadish" and author_0.aid = writes_0.aid and publication_0.pid = writes_0.pid
 select count(distinct(publication_0.title)) from conference as conference_0, publication as publication_0 where conference_0.name = "VLDB" and conference_0.cid = publication_0.cid
 select count(distinct(publication_0.title)) from journal as journal_0, publication as publication_0 where journal_0.name = "PVLDB" and journal_0.jid = publication_0.jid
