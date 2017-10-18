@@ -280,15 +280,18 @@ public class InstantiatedTemplate {
     }
 
     public Double getScore() {
-        // Complexity is really only used as a tiebreaker with a small epsilon weight
+        // Complexity is only used as a tiebreaker with a small epsilon weight
         double epsilon = 0.01;
 
-        return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getComplexity());
+        return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getSimplicity());
     }
 
-    private Double getComplexity() {
-        // Add 1 to join edge count in the case there's only one relation.
-        return 1.0 / (1 + this.template.getJoinPath().getJoinEdgeCount());
+    private Double getSimplicity() {
+        if (this.template.getJoinPath().getRelationCount() == 0) {
+            return 1.0;
+        } else {
+            return 1.0 / this.template.getJoinPath().getRelationCount();
+        }
     }
 
     public String getValue() {
