@@ -15,6 +15,10 @@ public class AgnosticQueryFragment {
         this.cooccurrence = new HashMap<>();
     }
 
+    public Map<AgnosticQueryFragment, Integer> getCooccurrenceMap() {
+        return cooccurrence;
+    }
+
     public int getCooccurrence(AgnosticQueryFragment other) {
         Integer count = this.cooccurrence.get(other);
         if (count == null) {

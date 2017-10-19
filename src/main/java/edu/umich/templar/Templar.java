@@ -76,7 +76,7 @@ public class Templar {
                 if (schemaEl.similarity < Constants.MIN_SIM) {
                     // Add a dummy node with minimum similarity
                     Translation newTrans = new Translation(trans);
-                    newTrans.addQueryFragment(new BlankQueryFragment(), Constants.MIN_SIM);
+                    newTrans.addQueryFragment(new BlankQueryFragment(curNode), Constants.MIN_SIM);
                     result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     break;
                 }
@@ -96,7 +96,7 @@ public class Templar {
                         }
 
                         Translation newTrans = new Translation(trans);
-                        newTrans.addQueryFragment(new RelationFragment(rel), similarity);
+                        newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
@@ -108,7 +108,8 @@ public class Templar {
                     throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
 
                 // Treat as projection, if no mapped values
-                if (schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1) {
+                boolean isProjectionOrSuperlative = schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1;
+                if (isProjectionOrSuperlative) {
                     // Treat as superlative if has both superlative and function
                     if (curNode.attachedSuperlative != null ||
                             (schemaEl.attachedFT != null &&
@@ -124,23 +125,36 @@ public class Templar {
                         }
                         boolean desc = superlativeStr.equals("max");
 
-                        Superlative newSuper = new Superlative(attr, funcStr, desc);
+                        Superlative newSuper = new Superlative(curNode, attr, funcStr, desc);
 
                         Translation newTrans = new Translation(trans);
                         trans.addQueryFragment(newSuper, schemaEl.similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     } else {
-                        Projection proj = new Projection(attr, schemaEl.attachedFT, curNode.QT);
+                        Projection proj = new Projection(curNode, attr, schemaEl.attachedFT, curNode.QT);
 
-                        // If you are creating a projection and there already exists a predicate with the same attribute,
-                        // then create an additional path without this projection.
-                        boolean selfJoinFlag = false;
+                        // Check two things (either/or) with predicates if they share the same attribute:
+                        // (1) Increment alias
+                        // (2) Merge the projection into the predicate, if related by adjective
                         int aliasInt = 0;
                         for (Predicate pred : trans.getPredicates()) {
                             if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                selfJoinFlag = true;
+                                // (1) increment alias
                                 aliasInt++;
+
+                                // (2) merge the projection into the predicate, if related by adjective
+                                if (pred.getNode().isRelatedByAdjective(curNode)) {
+                                    Translation newTrans = new Translation(trans);
+
+                                    Predicate newPred = new Predicate(pred);
+                                    double oldSim = newTrans.getSimilarity(pred);
+                                    newTrans.removeQueryFragment(pred);
+
+                                    double sim = Math.max(oldSim, schemaEl.similarity);
+                                    newTrans.addQueryFragment(newPred, sim);
+                                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                }
                             }
                         }
 
@@ -171,7 +185,7 @@ public class Templar {
 
                         // Penalize the similarity if this projection is not the child of a CMT (Command Token) node
                         // but only if it's not a group by token
-                        boolean likelyProjection = curNode.isFirstMappedDescendantOfCMT() || proj.isGroupBy();
+                        // boolean likelyProjection = curNode.isFirstMappedDescendantOfCMT() || proj.isGroupBy();
                         double similarity = schemaEl.similarity;
                         /*if (!likelyProjection) {
                             similarity *= 0.8;
@@ -229,7 +243,7 @@ public class Templar {
                     // (2) mapped schema element should have a valid attached function
                     if (!curNode.isFirstMappedDescendantOfCMT() && schemaEl.isValidHavingCandidate()) {
                         // TODO: do we need aliasInt for having?
-                        Having having = new Having(attr, op, value, schemaEl.attachedFT);
+                        Having having = new Having(curNode, attr, op, value, schemaEl.attachedFT);
 
                         // Should not do the same attribute for having as a projection
                         boolean projExists = false;
@@ -245,17 +259,31 @@ public class Templar {
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     } else {
-                        // If you are creating a predicate and there already exists a projection with the same attribute,
-                        // then create an additional path of eliminating this predicate.
+                        Predicate pred = new Predicate(curNode, attr, op, value);
+
                         int aliasInt = 0;
 
+                        // Check two things (either/or) with projections if they share the same attribute:
+                        // (1) Increment alias
+                        // (2) Merge the projection into the predicate if they are related by adjective
                         for (Projection p : trans.getProjections()) {
                             if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
+                                // (1) Increment alias
                                 aliasInt++;
+
+                                // (2) Merge the projection into the predicate, if related by adjective
+                                if (p.getNode().isRelatedByAdjective(curNode)) {
+                                    Translation newTrans = new Translation(trans);
+                                    double oldSim = newTrans.getSimilarity(p);
+                                    newTrans.removeQueryFragment(p);
+
+                                    double sim = Math.max(oldSim, schemaEl.similarity);
+                                    Predicate newPred = new Predicate(pred);
+                                    newTrans.addQueryFragment(newPred, sim);
+                                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                }
                             }
                         }
-
-                        Predicate pred = new Predicate(attr, op, value);
 
                         // Check previous predicates, if same attr exists, increment aliasInt
                         boolean notNumberWithNonEquality = !(curNode.tokenType.equals("VTNUM") && curNode.attachedOT != null
@@ -287,7 +315,7 @@ public class Templar {
                         if (curNode.isFirstMappedDescendantOfCMT() || curNode.QT.equals("each")) {
                             if (attrSim >= Constants.MIN_SIM) {
                                 // CASE 1: If attribute is similar, project attribute accordingly
-                                Projection proj = new Projection(attr, curNode.getChoiceMap().attachedFT, curNode.QT);
+                                Projection proj = new Projection(curNode, attr, curNode.getChoiceMap().attachedFT, curNode.QT);
 
                                 // Get the maximum of the attribute or relation similarity
                                 double maxSim = Math.max(relSim, attrSim);
@@ -299,7 +327,7 @@ public class Templar {
                             } else if (relSim >= Constants.MIN_SIM) {
                                 // CASE 2: If relation is similar, project relation default attribute
                                 // e.g. "How many papers..."
-                                Projection proj = new Projection(rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                Projection proj = new Projection(curNode, rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
 
                                 Translation newTrans = new Translation(trans);
@@ -315,7 +343,7 @@ public class Templar {
                                 // e.g. "How many restaurants..."
 
                                 Relation parent = this.relations.get(rel.getParent());
-                                Projection proj = new Projection(parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
+                                Projection proj = new Projection(curNode, parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
                                 Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(proj, schemaEl.similarity);
@@ -325,7 +353,7 @@ public class Templar {
                             } else {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
-                                Projection proj = new Projection(rel.getPk(), curNode.getChoiceMap().attachedFT,
+                                Projection proj = new Projection(curNode, rel.getPk(), curNode.getChoiceMap().attachedFT,
                                         curNode.QT);
 
                                 Translation newTrans = new Translation(trans);
@@ -357,7 +385,7 @@ public class Templar {
                                 }
 
                                 Translation newTrans = new Translation(trans);
-                                newTrans.addQueryFragment(new RelationFragment(rel), similarity);
+                                newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             }
@@ -469,6 +497,7 @@ public class Templar {
 
             // In the case we have a VT related to an NT, and they share an "amod" (adjective modifier)
             // or "num" (number modifier) or "nn" (noun compound modifier) relationship, merge the two.
+            /*
             if (isValueToken) {
                 for (ParseTreeNode[] adjEntry : query.adjTable) {
                     ParseTreeNode relatedNode;
@@ -591,13 +620,6 @@ public class Templar {
                         }
                     }
 
-                    // Penalize all unmatched node elements
-                        /*for (int m = 0; m < node.mappedElements.size(); m++) {
-                            if (!matchedNodes.contains(m)) {
-                                node.mappedElements.get(m).similarity *= 0.8;
-                            }
-                        }*/
-
                     if (chosenMappedSchemaEl != null) {
                         if (!addNewForPrimaryAttribute) {
                             chosenMappedSchemaEl.similarity = maxSimilarity;
@@ -609,7 +631,7 @@ public class Templar {
                         mappedNodesToRemove.add(relatedNode);
                     }
                 }
-            }
+            }*/
 
             if (node.mappedElements.size() > 0 ) mappedNodes.add(node);
 
@@ -774,6 +796,42 @@ public class Templar {
         List<List<String>> testSQL = new ArrayList<>();
         try {
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+
+            // testNLQ.add("return me the paper by \"H. V. Jagadish\" with more than 200 citations.");
+
+            // "VLDB conference" not evaluated correctly
+            /*
+            testNLQ.add("return me the authors who have papers in VLDB conference before 1995 or after 2002.");
+            testNLQ.add("return me the papers on VLDB conference after 2000.");
+            testNLQ.add("return me the papers by \"H. V. Jagadish\" on VLDB conference.");
+            testNLQ.add("return me the papers by \"H. V. Jagadish\" on VLDB conference after 2000.");
+            testNLQ.add("return me the authors who have papers in the VLDB conference.");
+            testNLQ.add("return me all the papers in VLDB conference in \"University of Michigan\".");
+            testNLQ.add("return me the papers by \"H. V. Jagadish\" on VLDB conference with more than 200 citations.");
+            testNLQ.add("return me the paper after 2000 in VLDB conference with more than 200 citations.");
+            */
+
+            // Returning an integer is rare, and simplicity is not weighted high enough
+            /*
+            testNLQ.add("return me the references of \"Making database systems usable\".");
+            testNLQ.add("return me the citations of \"Making database systems usable\".");
+            testNLQ.add("return me all the organizations in Databases area located in \"North America\".");
+            */
+
+            // How to handle blanks (esp. for co-occurrence)
+            /*
+            testNLQ.add("return me the papers of \"H. V. Jagadish\" containing keyword \"User Study\".");
+            testNLQ.add("return me the papers in PVLDB containing keyword \"Keyword search\".");
+            testNLQ.add("return me the papers in VLDB conference containing keyword \"Information Retrieval\".");
+            testNLQ.add("return me the authors who have papers containing keyword \"Relational Database\".");
+            */
+
+            // Not sure
+            /*
+            testNLQ.add("return me all the researchers in Databases area in \"University of Michigan\".");
+            testNLQ.add("return me the paper after 2000 in Databases area with more than 200 citations.");
+            */
+
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");

@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.rdbms.Attribute;
 
 /**
@@ -12,6 +13,14 @@ public class Projection extends QueryFragment {
 
     public Projection(Attribute attribute, String function, String qt) {
         super();
+        this.attribute = attribute;
+        this.function = function;
+
+        this.groupBy = qt != null && qt.equals("each");
+    }
+
+    public Projection(ParseTreeNode node, Attribute attribute, String function, String qt) {
+        super(node);
         this.attribute = attribute;
         this.function = function;
 

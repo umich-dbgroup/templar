@@ -90,6 +90,20 @@ public class ParseTreeNode implements Serializable
 		}
 	}
 
+	public boolean isRelatedByAdjective(ParseTreeNode other) {
+        String reln;
+        if (this.parent.equals(other)) {
+            reln = this.relationship;
+        } else if (other.parent.equals(this)) {
+            reln = other.relationship;
+        } else {
+            return false;
+        }
+
+        return reln.equals("amod") || reln.equals("num") || reln.equals("nn") || reln.equals("nummod")
+                || reln.equals("compound") || reln.equals("dobj");
+    }
+
 	public boolean isFirstMappedDescendantOfCMT() {
         boolean result = false;
         ParseTreeNode parentCheck = this.parent;

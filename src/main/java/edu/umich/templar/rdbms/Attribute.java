@@ -131,8 +131,8 @@ public class Attribute {
 
     public Attribute canonical() {
         Attribute attr = new Attribute(this);
-        if (attr.getRelation() != null) {
-            Relation canonicalRel = new Relation(attr.getRelation());
+        if (this.relation != null) {
+            Relation canonicalRel = new Relation(this.relation);
             canonicalRel.setAliasInt(0);
             attr.setRelation(canonicalRel);
         }

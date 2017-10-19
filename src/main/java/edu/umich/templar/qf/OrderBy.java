@@ -17,6 +17,30 @@ public class OrderBy extends QueryFragment {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("order[");
+        if (this.function != null) {
+            sb.append(this.function);
+            sb.append('(');
+        }
+
+        sb.append(this.attribute);
+
+        if (this.function != null) {
+            sb.append(')');
+        }
+
+        if (this.desc) {
+            sb.append(":desc");
+        } else {
+            sb.append(":asc");
+        }
+        sb.append(']');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

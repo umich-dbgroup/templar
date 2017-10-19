@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.util.Constants;
@@ -16,6 +17,14 @@ public class Having extends QueryFragment {
 
     public Having(Attribute attribute, Operator op, String value, String function) {
         super();
+        this.attribute = attribute;
+        this.op = op;
+        this.value = value;
+        this.function = function;
+    }
+
+    public Having(ParseTreeNode node, Attribute attribute, Operator op, String value, String function) {
+        super(node);
         this.attribute = attribute;
         this.op = op;
         this.value = value;

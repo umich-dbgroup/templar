@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.util.Constants;
@@ -14,6 +15,13 @@ public class Predicate extends QueryFragment {
 
     public Predicate(Attribute attribute, Operator op, String value) {
         super();
+        this.attribute = attribute;
+        this.op = op;
+        this.value = value;
+    }
+
+    public Predicate(ParseTreeNode node, Attribute attribute, Operator op, String value) {
+        super(node);
         this.attribute = attribute;
         this.op = op;
         this.value = value;

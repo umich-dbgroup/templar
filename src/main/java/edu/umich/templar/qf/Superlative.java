@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.rdbms.Attribute;
 
 /**
@@ -12,6 +13,13 @@ public class Superlative extends QueryFragment {
 
     public Superlative(Attribute attribute, String function, boolean desc) {
         super();
+        this.attribute = attribute;
+        this.function = function;
+        this.desc = desc;
+    }
+
+    public Superlative(ParseTreeNode node, Attribute attribute, String function, boolean desc) {
+        super(node);
         this.attribute = attribute;
         this.function = function;
         this.desc = desc;

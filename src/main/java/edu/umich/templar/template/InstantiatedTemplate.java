@@ -287,6 +287,7 @@ public class InstantiatedTemplate {
     }
 
     private Double getSimplicity() {
+        // An empty join path is actually a query with 1 relation.
         if (this.template.getJoinPath().getRelationCount() == 0) {
             return 1.0;
         } else {

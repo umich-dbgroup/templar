@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.qf.agnostic.*;
 import edu.umich.templar.qf.pieces.QFFunction;
 import edu.umich.templar.rdbms.Attribute;
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 public class QueryFragment {
     protected Attribute attribute;
+    ParseTreeNode node;                               // node that this query fragment was derived from
 
     int count;                                        // number of total appearances
     Map<QueryFragment, Integer> cooccurrence;         // co-occurrence with other query fragments
@@ -22,6 +24,15 @@ public class QueryFragment {
         this.count = 0;
         this.cooccurrence = new HashMap<>();
         this.attribute = null;
+    }
+
+    // Use when creating QFs from NL tree
+    public QueryFragment(ParseTreeNode node) {
+        this.node = node;
+    }
+
+    public ParseTreeNode getNode() {
+        return node;
     }
 
     public Attribute getAttribute() {
@@ -117,6 +128,10 @@ public class QueryFragment {
             throw new RuntimeException("Unrecognized query fragment type!");
         }
         return result;
+    }
+
+    public Map<QueryFragment, Integer> getCooccurrenceMap() {
+        return cooccurrence;
     }
 
     public int getCooccurrence(QueryFragment other) {

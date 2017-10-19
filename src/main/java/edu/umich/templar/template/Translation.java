@@ -15,6 +15,13 @@ public class Translation {
     List<ScoredQueryFragment> scoredQFs;     // all query fragments for QFGraph
     List<ScoredAgnosticQueryFragment> scoredAQFs; // all agnostic query fragments for AgnosticGraph
 
+    // Map to store QF to scoredQFs/scoredAQFs for easy access
+    Map<QueryFragment, List<ScoredQueryFragment>> scoredQFMap;
+    Map<QueryFragment, List<ScoredAgnosticQueryFragment>> scoredAQFMap;
+
+    // Maps query fragment to similarity scores for easy access during alias permutations generation
+    Map<QueryFragment, Double> scoreMap;
+
     // Breakdown of query fragments by type
     Set<RelationFragment> relations;
     List<Projection> projections;
@@ -22,9 +29,6 @@ public class Translation {
     List<Having> havings;
     List<BlankQueryFragment> blanks;
     Superlative superlative;
-
-    // Maps query fragment to similarity scores for easy access during alias permutations generation
-    Map<QueryFragment, Double> scoreMap;
 
     // Schema-agnostic and schema-aware graphs
     AgnosticGraph agnosticGraph;
@@ -42,6 +46,9 @@ public class Translation {
 
         this.scoredQFs = new ArrayList<>();
         this.scoredAQFs = new ArrayList<>();
+
+        this.scoredAQFMap = new HashMap<>();
+        this.scoredQFMap = new HashMap<>();
 
         this.relations = new HashSet<>();
         this.projections = new ArrayList<>();
@@ -62,6 +69,9 @@ public class Translation {
 
         this.scoredQFs = new ArrayList<>(other.scoredQFs);
         this.scoredAQFs = new ArrayList<>(other.scoredAQFs);
+
+        this.scoredAQFMap = new HashMap<>(other.scoredAQFMap);
+        this.scoredQFMap = new HashMap<>(other.scoredQFMap);
 
         this.relations = new HashSet<>(other.relations);
         this.projections = new ArrayList<>(other.projections);
@@ -139,25 +149,31 @@ public class Translation {
     public Double getQFGraphScore() {
         double diceSum = 0.0;
         for (int i = 0; i < this.scoredQFs.size(); i++) {
+            ScoredQueryFragment qfi = this.scoredQFs.get(i);
             for (int j = 0; j < this.scoredQFs.size(); j++) {
-                ScoredQueryFragment qfi = this.scoredQFs.get(i);
                 ScoredQueryFragment qfj = this.scoredQFs.get(j);
                 diceSum += qfi.getDiceCoefficient(qfj);
             }
         }
-        return diceSum / this.scoredQFs.size() / this.scoredQFs.size();
+        double totalCount = this.scoredQFs.size();
+        return diceSum / totalCount / totalCount;
     }
 
     public Double getAgnosticGraphScore() {
         double diceSum = 0.0;
         for (int i = 0; i < this.scoredAQFs.size(); i++) {
+            ScoredAgnosticQueryFragment qfi = this.scoredAQFs.get(i);
             for (int j = 0; j < this.scoredAQFs.size(); j++) {
-                ScoredAgnosticQueryFragment qfi = this.scoredAQFs.get(i);
                 ScoredAgnosticQueryFragment qfj = this.scoredAQFs.get(j);
                 diceSum += qfi.getDiceCoefficient(qfj);
             }
         }
-        return diceSum / this.scoredAQFs.size() / this.scoredAQFs.size();
+        double totalCount = this.scoredAQFs.size();
+        return diceSum / totalCount / totalCount;
+    }
+
+    public double getSimilarity(QueryFragment qf) {
+        return this.scoreMap.get(qf);
     }
 
     public Double getScore() {
@@ -190,7 +206,39 @@ public class Translation {
         return this.score;
     }
 
+    public void removeQueryFragment(QueryFragment qf) {
+        this.score = null;
+
+        if (qf instanceof RelationFragment) {
+            this.relations.remove(qf);
+        } else if (qf instanceof Projection) {
+            this.projections.remove(qf);
+        } else if (qf instanceof Predicate) {
+            this.predicates.remove(qf);
+        } else if (qf instanceof Having) {
+            this.havings.remove(qf);
+        } else if (qf instanceof Superlative) {
+            this.superlative = null;
+        } else if (qf instanceof BlankQueryFragment) {
+            this.blanks.remove(qf);
+        } else {
+            throw new RuntimeException("Unrecognized query fragment type!");
+        }
+
+        List<ScoredAgnosticQueryFragment> scoredAQFList = this.scoredAQFMap.get(qf);
+        this.scoredAQFs.removeAll(scoredAQFList);
+        this.scoredAQFMap.remove(qf);
+
+        List<ScoredQueryFragment> scoredQFList = this.scoredQFMap.get(qf);
+        this.scoredQFs.removeAll(scoredQFList);
+        this.scoredQFMap.remove(qf);
+
+        this.scoreMap.remove(qf);
+    }
+
     public void addQueryFragment(QueryFragment qf, double similarity) {
+        this.score = null;
+
         if (qf instanceof RelationFragment) {
             this.addRelation((RelationFragment) qf);
         } else if (qf instanceof Projection) {
@@ -209,20 +257,31 @@ public class Translation {
 
         // Add all agnostic query fragments as needed
         List<AgnosticQueryFragment> agnosticQFs = qf.convertToAgnostic();
+        List<ScoredAgnosticQueryFragment> qfScoredAQFList = new ArrayList<>();
+
+        this.scoredAQFMap.put(qf, qfScoredAQFList);
+
         for (AgnosticQueryFragment aqf : agnosticQFs) {
             if (this.agnosticGraph != null) {
                 aqf = this.agnosticGraph.getOrInsertQF(aqf);
             }
-            this.scoredAQFs.add(new ScoredAgnosticQueryFragment(aqf, similarity));
+            ScoredAgnosticQueryFragment scoredAQF = new ScoredAgnosticQueryFragment(aqf, similarity);
+            qfScoredAQFList.add(scoredAQF);
+            this.scoredAQFs.add(scoredAQF);
         }
 
         // Add all regular query fragments as needed
         List<QueryFragment> qfTemplates = qf.convertToQFTemplate();
+        List<ScoredQueryFragment> qfScoredQFList = new ArrayList<>();
+
+        this.scoredQFMap.put(qf, qfScoredQFList);
+
         for (QueryFragment qfTemplate : qfTemplates) {
             if (this.qfGraph != null) {
                 qfTemplate = this.qfGraph.getOrInsertQF(qfTemplate);
             }
             ScoredQueryFragment sqf = new ScoredQueryFragment(qfTemplate, similarity);
+            qfScoredQFList.add(sqf);
             this.scoredQFs.add(sqf);
         }
 

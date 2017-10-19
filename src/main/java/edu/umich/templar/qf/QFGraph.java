@@ -103,7 +103,6 @@ public class QFGraph {
                             rel.getAliasSet().add(table.getAlias().getName().trim());
                         }
                         relations.add(rel);
-                        selectQFs.add(new RelationFragment(rel));
                     }
                 } else if (join.getRightItem() instanceof SubSelect) {
                     PlainSelect subPs = (PlainSelect) ((SubSelect) join.getRightItem()).getSelectBody();

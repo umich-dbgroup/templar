@@ -168,10 +168,9 @@ public class SimFunctions
 		String [] words1 = word1.split("_"); 
 		String [] words2 = word2.split("_"); 
 
-        double totalScoreForI = 0.0;
+		double maxScore = 0.0;
 		for(int i = 0; i < words1.length; i++)
 		{
-            double maxScoreForThisI = 0.0;
 			for(int j = 0; j < words2.length; j++)
 			{
                 String word1lemma;
@@ -189,8 +188,8 @@ public class SimFunctions
                 }
 
 				double sim_part = wordNetSimCompute(word1lemma, word2lemma);
-                if (sim_part > maxScoreForThisI) {
-                    maxScoreForThisI = sim_part;
+                if (sim_part > maxScore) {
+                    maxScore = sim_part;
                 }
                 /*
 				if(sim_part > sim)
@@ -198,11 +197,8 @@ public class SimFunctions
 					sim = sim_part; 
 				}*/
 			}
-            totalScoreForI += maxScoreForThisI;
 		}
-
-        return totalScoreForI / words1.length;
-		
+        return maxScore;
 		// return sim;
 	}
 

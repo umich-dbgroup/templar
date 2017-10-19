@@ -1,5 +1,6 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.rdbms.Relation;
 
 /**
@@ -10,6 +11,11 @@ public class RelationFragment extends QueryFragment {
 
     public RelationFragment(Relation relation) {
         super();
+        this.relation = relation;
+    }
+
+    public RelationFragment(ParseTreeNode node, Relation relation) {
+        super(node);
         this.relation = relation;
     }
 
