@@ -642,7 +642,7 @@ public class Templar {
         sb.append("TRANSLATIONS\n");
         sb.append("===========\n");
         for (Translation trans : translations) {
-            sb.append(trans.toStringDebug());
+            sb.append(trans.toString());
             sb.append("\n");
         }
         sb.append("\n");

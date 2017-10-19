@@ -249,8 +249,7 @@ public class Translation {
         return result;
     }
 
-    private Set<Translation> getAliasPermutationsHelper(Translation pt,
-                                                                Map<String, List<ScoredQueryFragment>> remaining) {
+    private Set<Translation> getAliasPermutationsHelper(Translation pt, Map<String, List<ScoredQueryFragment>> remaining) {
         Set<Translation> results = new HashSet<>();
         Iterator<String> it = remaining.keySet().iterator();
 
@@ -380,7 +379,15 @@ public class Translation {
             qfList.add(new ScoredQueryFragment(this.superlative, this.scoreMap.get(this.superlative)));
         }
 
+        // Copy over blanks and relationfragments since they don't need to be aliased
         Translation newPt = new Translation(this.agnosticGraph, this.qfGraph);
+        for (BlankQueryFragment blank : this.blanks) {
+            newPt.addQueryFragment(blank, this.scoreMap.get(blank));
+        }
+        for (RelationFragment rel : this.relations) {
+            newPt.addQueryFragment(rel, this.scoreMap.get(rel));
+        }
+
         results.addAll(this.getAliasPermutationsHelper(newPt, attributesToQueryFragments));
 
         // Cache permutations
@@ -389,7 +396,8 @@ public class Translation {
         return results;
     }
 
-    public String toStringDebug() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("SCORE: ");
         sb.append(this.getScore());
