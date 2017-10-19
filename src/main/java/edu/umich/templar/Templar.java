@@ -173,9 +173,9 @@ public class Templar {
                         // but only if it's not a group by token
                         boolean likelyProjection = curNode.isFirstMappedDescendantOfCMT() || proj.isGroupBy();
                         double similarity = schemaEl.similarity;
-                        if (!likelyProjection) {
+                        /*if (!likelyProjection) {
                             similarity *= 0.8;
-                        }
+                        }*/
                         Translation newTrans = new Translation(trans);
                         newTrans.addQueryFragment(proj, similarity);
 
@@ -333,6 +333,16 @@ public class Templar {
                                 newTrans.addQueryFragment(pred, schemaEl.similarity);
 
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+
+                                // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
+                                // penalize predicates that deal with common nouns
+                                double similarity = schemaEl.similarity;
+                                if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+
+                                Translation newTrans2 = new Translation(trans);
+                                newTrans2.addQueryFragment(pred, similarity);
+
+                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans2));
                             }
                         } else {
                             // In situations where it's probably not a projection because parent is not CMT
@@ -560,8 +570,9 @@ public class Templar {
                             }
                         }
 
-                        // In the case that the NT is the primary attribute, perhaps we're doing a COUNT?
-                        if (!matchedNodeEl && relatedEl.equals(relatedEl.relation.defaultAttribute)) {
+                        // In the case that the NT is the primary attribute, and this is a number, perhaps we're doing a COUNT?
+                        if (!matchedNodeEl && node.tokenType.equals("VTNUM") &&
+                                relatedEl.equals(relatedEl.relation.defaultAttribute)) {
                             // Use only the related element's similarity
                             double relatedScore = relatedMappedEl.similarity;
 
@@ -775,20 +786,6 @@ public class Templar {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-
-        // queryStrs.add("what is the average rating given in Michelle reviews");
-        // queryStrs.add("What is the number of businesses user Michelle reviews per month?");
-        // queryStrs.add("How many reviews has Michelle written in March 2014?");
-        // queryStrs.add("How many people reviewed the restaurant \"Texas De Brazil\" in Dallas TX?");
-        // queryStrs.add("How many people reviewed \"Bistro Di Napoli\" in 2015?");
-        // queryStrs.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
-        // queryStrs.add("How many bars in Dallas have a rating above 3.5?");
-        // queryStrs.add("What is the number of businesses user Michelle reviews per month?");
-        // queryStrs.add("How many businesses in \"San Diego\" has Christine reviewed in 2010?");
-        // queryStrs.add("Find the number of reviews on businesses located in \"South Summerlin\" neighborhood");
-        // queryStrs.add("List all the businesses with more than 4.5 stars");
-
-        // queryStrs.add("List all posts");
 
         int i = 0;
         int top1 = 0;
