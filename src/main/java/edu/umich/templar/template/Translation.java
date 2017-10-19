@@ -152,7 +152,7 @@ public class Translation {
             ScoredQueryFragment qfi = this.scoredQFs.get(i);
             for (int j = 0; j < this.scoredQFs.size(); j++) {
                 ScoredQueryFragment qfj = this.scoredQFs.get(j);
-                diceSum += qfi.getDiceCoefficient(qfj);
+                diceSum += qfi.getWeightedDiceCoefficient(qfj);
             }
         }
         double totalCount = this.scoredQFs.size();
@@ -165,7 +165,7 @@ public class Translation {
             ScoredAgnosticQueryFragment qfi = this.scoredAQFs.get(i);
             for (int j = 0; j < this.scoredAQFs.size(); j++) {
                 ScoredAgnosticQueryFragment qfj = this.scoredAQFs.get(j);
-                diceSum += qfi.getDiceCoefficient(qfj);
+                diceSum += qfi.getWeightedDiceCoefficient(qfj);
             }
         }
         double totalCount = this.scoredAQFs.size();

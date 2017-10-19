@@ -14,15 +14,45 @@ public class ScoredAgnosticQueryFragment {
         this.similarity = similarity;
     }
 
-    public double getDiceCoefficient(ScoredAgnosticQueryFragment other) {
+    public double getMaxDiceCoefficient() {
+        double maxDice = 0.0;
+        for (Map.Entry<AgnosticQueryFragment, Integer> e : this.getAqf().getCooccurrenceMap().entrySet()) {
+            double dice = (double) (2 * e.getValue()) / (this.getAqf().getCount() + e.getKey().getCount());
+            if (dice > maxDice) {
+                maxDice = dice;
+            }
+        }
+
+        return maxDice;
+    }
+
+    public double getAverageDiceCoefficient() {
+        double diceSum = 0.0;
+        for (Map.Entry<AgnosticQueryFragment, Integer> e : this.getAqf().getCooccurrenceMap().entrySet()) {
+            diceSum += (double) (2 * e.getValue()) / (this.getAqf().getCount() + e.getKey().getCount());
+        }
+        double denom = this.getAqf().getCooccurrenceMap().size();
+        if (denom == 0) return 0.0;
+
+        return diceSum / denom;
+    }
+
+    public double getWeightedDiceCoefficient(ScoredAgnosticQueryFragment other) {
         if (this.equals(other)) return 1.0;
 
         boolean thisIsBlankOrRel = this.getAqf() instanceof AgnosticBlank || this.getAqf() instanceof AgnosticRelationFragment;
         boolean otherIsBlankOrRel = other.getAqf() instanceof AgnosticBlank || other.getAqf() instanceof AgnosticRelationFragment;
-        if (thisIsBlankOrRel || otherIsBlankOrRel) {
-            // TODO: instead of assigning a dice of 0.5, we could also assign it
-            // as the average of the other component's cooccurrences in the graph, or another value...
-            return this.similarity * other.similarity * 0.5;
+
+        if (thisIsBlankOrRel && otherIsBlankOrRel) {
+            return 0.0;
+        } else if (thisIsBlankOrRel) {
+            // return this.similarity * other.similarity * 0.5;
+            // return this.similarity * other.similarity * other.getAverageDiceCoefficient();
+            return this.similarity * other.similarity * other.getMaxDiceCoefficient();
+        } else if (otherIsBlankOrRel) {
+            // return this.similarity * other.similarity * 0.5;
+            // return this.similarity * other.similarity * this.getAverageDiceCoefficient();
+            return this.similarity * other.similarity * this.getMaxDiceCoefficient();
         }
 
         double numer = 2 * this.getSimilarity() * other.getSimilarity() * this.getAqf().getCooccurrence(other.getAqf());
