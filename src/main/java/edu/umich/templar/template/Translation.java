@@ -1,5 +1,6 @@
 package edu.umich.templar.template;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.agnostic.*;
 import edu.umich.templar.rdbms.Attribute;
@@ -288,6 +289,32 @@ public class Translation {
         this.scoreMap.put(qf, similarity);
     }
 
+    public boolean containsNode(ParseTreeNode node) {
+        for (RelationFragment rel : this.relations) {
+            if (rel.getNode().equals(node)) return true;
+        }
+
+        for (Projection proj : this.projections) {
+            if (proj.getNode().equals(node)) return true;
+        }
+
+        for (Predicate pred : this.predicates) {
+            if (pred.getNode().equals(node)) return true;
+        }
+
+        for (Having having : this.havings) {
+            if (having.getNode().equals(node)) return true;
+        }
+
+        for (BlankQueryFragment blank : this.blanks) {
+            if (blank.getNode().equals(node)) return true;
+        }
+
+        if (this.superlative != null && this.superlative.getNode().equals(node)) return true;
+
+        return false;
+    }
+
     public Set<Relation> getReferencedRelations() {
         Set<Relation> result = new HashSet<>();
         for (RelationFragment rel : this.relations) {
@@ -497,7 +524,8 @@ public class Translation {
         if (this.superlative != null) {
             sb.append(this.superlative.toString());
         }
-        sb.append("]");
+        sb.append("]; blanks: ");
+        sb.append(this.blanks.size());
 
         return sb.toString();
     }

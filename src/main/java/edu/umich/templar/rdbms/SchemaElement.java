@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.tools.SimFunctions;
 
 @SuppressWarnings("serial")
@@ -77,36 +79,41 @@ public class SchemaElement implements Serializable
 	public MappedSchemaElement isTextExist(String value, Connection conn) throws Exception 
 	{
 		Statement statement = conn.createStatement();
-		String numberSQL = "SELECT *" + " FROM size WHERE size.relation = '" + this.relation.name + "'"; 
-        // System.out.println(numberSQL);
-		ResultSet number = statement.executeQuery(numberSQL); 
-		number.next(); 
-		int size = number.getInt(1);
 
-		String SQL = "";
-		if(size < 2000)
-		{
-			SQL = "SELECT " + this.name + " FROM " + this.relation.name; 
+		List<String> cache = MappingCache.getText(this.relation.name, this.name, value);
+		if (cache == null) {
+			String numberSQL = "SELECT *" + " FROM size WHERE size.relation = '" + this.relation.name + "'";
+			// System.out.println(numberSQL);
+			ResultSet number = statement.executeQuery(numberSQL);
+			number.next();
+			int size = number.getInt(1);
+
+			String SQL = "";
+			if (size < 2000) {
+				SQL = "SELECT " + this.name + " FROM " + this.relation.name;
+			} else if (size >= 2000 && size < 100000) {
+				SQL = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + " LIKE '%" + value + "%' LIMIT 0, 2000";
+			} else {
+				SQL = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE MATCH(" + this.name + ") AGAINST ('" + value + "') LIMIT 0, 2000";
+			}
+			// System.out.println(SQL);
+			ResultSet result = statement.executeQuery(SQL);
+
+			cache = new ArrayList<>();
+			while (result.next()) {
+				String resultStr = result.getString(1);
+				if (resultStr != null) {
+					cache.add(resultStr);
+				}
+			}
+			MappingCache.putText(this.relation.name, this.name, value, cache);
 		}
-		else if(size >= 2000 && size < 100000)
-		{
-			SQL = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + " LIKE '%" +  value + "%' LIMIT 0, 2000";
-		}
-		else
-		{
-			SQL = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE MATCH(" + this.name + ") AGAINST ('" +  value + "') LIMIT 0, 2000"; 
-		}
-		// System.out.println(SQL);
-		ResultSet result = statement.executeQuery(SQL); 
 		
-		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);  
-		while(result.next())
-		{
-            String resultStr = result.getString(1);
-            if (resultStr != null) {
-                mappedSchemaElement.mappedValues.add(resultStr);
-            }
+		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
+		for (String resultStr : cache) {
+            mappedSchemaElement.mappedValues.add(resultStr);
 		}
+
 		if(!mappedSchemaElement.mappedValues.isEmpty())
 		{
 			return mappedSchemaElement;
@@ -118,26 +125,37 @@ public class SchemaElement implements Serializable
 	public MappedSchemaElement isNumExist(String number, String operator, Connection conn) throws Exception 
 	{
 		Statement statement = conn.createStatement();
-		String query = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + operator + " " + number + " LIMIT 0, 5"; 
+        List<String> cache = MappingCache.getNum(this.relation.name, this.name, operator, number);
+        if (cache == null) {
+            String query = "SELECT " + this.name + " FROM " + this.relation.name + " WHERE " + this.name + operator + " " + number + " LIMIT 0, 5";
 
-        // System.out.println(query);
-		ResultSet result = statement.executeQuery(query); 
-		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);  
-		while(result.next())
-		{
-			Double mapNum = result.getDouble(1);
+            // System.out.println(query);
+            ResultSet result = statement.executeQuery(query);
 
-            String mapNumber;
+            cache = new ArrayList<>();
+            while (result.next()) {
+                Double mapNum = result.getDouble(1);
 
-            // If is int, present as such
-            if (mapNum == Math.floor(mapNum)) {
-                mapNumber = "" + mapNum.intValue();
-            } else {
-                mapNumber = "" + mapNum;
+                String mapNumber;
+
+                // If is int, present as such
+                if (mapNum == Math.floor(mapNum)) {
+                    mapNumber = "" + mapNum.intValue();
+                } else {
+                    mapNumber = "" + mapNum;
+                }
+
+                cache.add(mapNumber);
             }
+            MappingCache.putNum(this.relation.name, this.name, operator, number, cache);
+        }
 
-			mappedSchemaElement.mappedValues.add(mapNumber);
-		}
+		MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
+
+        for (String resultStr : cache) {
+            mappedSchemaElement.mappedValues.add(resultStr);
+        }
+
 		if(!mappedSchemaElement.mappedValues.isEmpty())
 		{
 			return mappedSchemaElement; 

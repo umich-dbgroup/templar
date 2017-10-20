@@ -29,6 +29,7 @@ public class Projection extends QueryFragment {
 
     public Projection(Projection other) {
         super();
+        this.node = other.node;
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
 

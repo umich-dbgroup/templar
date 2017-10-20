@@ -1,6 +1,7 @@
 package edu.umich.templar.util;
 
 import com.esotericsoftware.minlog.Log;
+import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Function;
 import edu.umich.templar.rdbms.FunctionParameter;
@@ -388,5 +389,23 @@ public class Utils {
 
         // if (attr == null) throw new RuntimeException("Attribute " + column.getColumnName() + " not found!");
         return attr;
+    }
+
+    public static Operator getOperatorFromString(String string) {
+        switch (string) {
+            case ">":
+                return Operator.GT;
+            case ">=":
+                return Operator.GTE;
+            case "<":
+                return Operator.LT;
+            case "<=":
+                return Operator.LTE;
+            case "!=":
+                return Operator.NE;
+            case "=":
+                return Operator.EQ;
+        }
+        return null;
     }
 }

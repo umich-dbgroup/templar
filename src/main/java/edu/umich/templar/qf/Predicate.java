@@ -29,6 +29,7 @@ public class Predicate extends QueryFragment {
 
     public Predicate(Predicate other) {
         super();
+        this.node = other.node;
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.op = other.op;

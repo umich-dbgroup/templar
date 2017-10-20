@@ -1,5 +1,6 @@
 package edu.umich.templar.rdbms;
 
+import edu.umich.templar.dataStructure.ParseTreeNode;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.Serializable;
@@ -34,6 +35,10 @@ public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Ser
 			return 1; 
 		}
 		return 0;
+	}
+
+	public boolean isSuperlative(ParseTreeNode node) {
+		return node.attachedSuperlative != null || (this.attachedFT != null && (this.attachedFT.equals("max") || this.attachedFT.equals("min")));
 	}
 
 	// Is a valid candidate to generate a "having" query fragment

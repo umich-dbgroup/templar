@@ -1,6 +1,8 @@
 package edu.umich.templar.tools;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.umich.templar.rdbms.MappedSchemaElement;
 
@@ -15,6 +17,7 @@ import edu.cmu.lti.ws4j.RelatednessCalculator;
 import edu.cmu.lti.ws4j.impl.WuPalmer;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemmatizer;
 import edu.umich.templar.util.Constants;
+import info.debatty.java.stringsimilarity.Cosine;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class SimFunctions 
@@ -68,7 +71,8 @@ public class SimFunctions
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
-				sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
+                sims[i] = SimFunctions.cosineSim(nodeLabel, mappedValues.get(i));
+				// sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
 			}
 			
 			for(int i = 0; i < mappedValues.size(); i++)
@@ -201,6 +205,25 @@ public class SimFunctions
         return maxScore;
 		// return sim;
 	}
+
+    static Cosine cosine = new Cosine(2);
+    static Map<String, Map<String, Integer>> profileCache = new HashMap<>();
+
+    public static double cosineSim(String word1, String word2) {
+        Map<String, Integer> word1Profile = profileCache.get(word1);
+        if (word1Profile == null) {
+            word1Profile = cosine.getProfile(word1);
+            profileCache.put(word1, word1Profile);
+        }
+
+        Map<String, Integer> word2Profile = profileCache.get(word2);
+        if (word2Profile == null) {
+            word2Profile = cosine.getProfile(word2);
+            profileCache.put(word2, word2Profile);
+        }
+
+        return cosine.similarity(word1Profile, word2Profile);
+    }
 
 	public static double wordNetSimCompute(String word1, String word2)
 	{

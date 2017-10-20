@@ -27,6 +27,7 @@ public class Superlative extends QueryFragment {
 
     public Superlative(Superlative other) {
         super();
+        this.node = other.node;
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.function = other.function;

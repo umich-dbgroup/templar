@@ -90,6 +90,15 @@ public class ParseTreeNode implements Serializable
 		}
 	}
 
+	public ParseTreeNode getNummodChild() {
+        for (ParseTreeNode child : this.children) {
+            if (child.relationship.equals("nummod")) {
+                return child;
+            }
+        }
+        return null;
+    }
+
 	public boolean isRelatedByAdjective(ParseTreeNode other) {
         String reln;
         if (this.parent.equals(other)) {

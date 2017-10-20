@@ -33,6 +33,7 @@ public class Having extends QueryFragment {
 
     public Having(Having other) {
         super();
+        this.node = other.node;
         this.attribute = new Attribute(other.attribute);
         this.attribute.setRelation(other.attribute.getRelation());
         this.op = other.op;

@@ -57,11 +57,11 @@ public class ScoredQueryFragment {
         } else if (thisIsBlank) {
             // return this.similarity * other.similarity * 0.5;
             // return this.similarity * other.similarity * other.getAverageDiceCoefficient();
-            return this.similarity * other.similarity * other.getMaxDiceCoefficient();
+            return (1 - this.similarity) * other.similarity * other.getMaxDiceCoefficient();
         } else if (otherIsBlank) {
             // return this.similarity * other.similarity * 0.5;
             // return this.similarity * this.getAverageDiceCoefficient();
-            return this.similarity * other.similarity * this.getMaxDiceCoefficient();
+            return this.similarity * (1 - other.similarity) * this.getMaxDiceCoefficient();
         }
 
         double numer = 2 * this.getQf().getCooccurrence(other.getQf());
