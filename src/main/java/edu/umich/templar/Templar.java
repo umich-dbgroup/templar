@@ -63,10 +63,10 @@ public class Templar {
         return newTrans;
     }
 
-    public List<Translation> generateNewTranslationWithProjectionOrSuperlativeOrHaving(List<ParseTreeNode> remainingNodes,
-                                                                                       Translation trans, ParseTreeNode node,
-                                                                                       MappedSchemaElement mse, Attribute attr,
-                                                                                       double similarity) {
+    public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
+                                                                               Translation trans, ParseTreeNode node,
+                                                                               MappedSchemaElement mse, Attribute attr,
+                                                                               double similarity) {
         List<Translation> result = new ArrayList<>();
 
         if (mse.isSuperlative(node)) {
@@ -245,7 +245,7 @@ public class Templar {
                 // Treat as projection, if no mapped values
                 boolean isProjectionOrSuperlative = schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1;
                 if (isProjectionOrSuperlative) {
-                    result.addAll(this.generateNewTranslationWithProjectionOrSuperlativeOrHaving(remainingNodes, trans, curNode, schemaEl,
+                    result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, curNode, schemaEl,
                             attr, schemaEl.similarity));
                 } else {
                     // For predicates and havings.
@@ -285,7 +285,6 @@ public class Templar {
 
                     if (op == null) op = Operator.EQ;
 
-                    // TODO: open up the possibility that you have more than 1 mapped value?
                     if (value == null) {
                         value = schemaEl.mappedValues.get(0);
                     }
@@ -293,7 +292,6 @@ public class Templar {
                     // Criteria for HAVING:
                     // (1) node should not be first descendant of CMT (it should be projection)
                     // (2) mapped schema element should have a valid attached function
-                    // TODO: hmmm.. how do we account for an additional "more than 10 papers" version?
                     if (!curNode.isFirstMappedDescendantOfCMT() && schemaEl.isValidHavingCandidate()) {
                         Having having = new Having(curNode, attr, op, value, schemaEl.attachedFT);
 
@@ -313,17 +311,10 @@ public class Templar {
                     } else {
                         Predicate pred = new Predicate(curNode, attr, op, value);
 
-                        // int aliasInt = 0;
-
-                        // Check two things (either/or) with projections if they share the same attribute:
-                        // (1) Increment alias
-                        // (2) Merge the projection into the predicate if they are related by adjective
+                        // Merge the projection into the predicate if they are related by adjective
                         for (Projection p : trans.getProjections()) {
                             if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                // (1) Increment alias
-                                // aliasInt++;
-
-                                // (2) Merge the projection into the predicate, if related by adjective
+                                // Merge the projection into the predicate, if related by adjective
                                 if (p.getNode().isRelatedByAdjective(curNode)) {
                                     Translation newTrans = new Translation(trans);
                                     double oldSim = newTrans.getSimilarity(p);
@@ -337,37 +328,22 @@ public class Templar {
                             }
                         }
 
-                        // Check previous predicates, if same attr exists, increment aliasInt
-                        /*
-                        boolean notNumberWithNonEquality = !(curNode.tokenType.equals("VTNUM") && curNode.attachedOT != null
-                                && !curNode.attachedOT.equals("="));
-                        if (notNumberWithNonEquality) {
-                            for (Predicate curPred : trans.getPredicates()) {
-                                if (curPred.getAttribute().hasSameRelationNameAndNameAs(pred.getAttribute())) {
-                                    // aliasInt++;
-                                }
-                            }
-                        }*/
-
                         // Consider possibilities for projection if it's a descendant of CMT OR group by OR superlative
                         if (curNode.isFirstMappedDescendantOfCMT() || curNode.QT.equals("each")
                                 || curNode.attachedSuperlative != null) {
                             if (attrSim >= Constants.MIN_SIM) {
                                 // CASE 1: If attribute is similar, project attribute accordingly
-                                // Projection proj = new Projection(curNode, attr, curNode.getChoiceMap().attachedFT, curNode.QT);
 
                                 // Get the maximum of the attribute or relation similarity
                                 double maxSim = Math.max(relSim, attrSim);
 
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlativeOrHaving(remainingNodes, trans,
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
                                         curNode, schemaEl, attr, maxSim));
                             } else if (relSim >= Constants.MIN_SIM) {
                                 // CASE 2: If relation is similar, project relation default attribute
                                 // e.g. "How many papers..."
-                                // Projection proj = new Projection(curNode, rel.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
-                                        // curNode.QT);
 
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlativeOrHaving(remainingNodes, trans,
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
                                         curNode, schemaEl, rel.getPrimaryAttr(), relSim));
                             } else if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
@@ -378,27 +354,19 @@ public class Templar {
                                 // e.g. "How many restaurants..."
 
                                 Relation parent = this.relations.get(rel.getParent());
-                                // Projection proj = new Projection(curNode, parent.getPrimaryAttr(), curNode.getChoiceMap().attachedFT,
-                                        // curNode.QT);
 
                                 Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(pred, schemaEl.similarity);
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlativeOrHaving(remainingNodes, newTrans,
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
                                         curNode, schemaEl, parent.getPrimaryAttr(), schemaEl.similarity));
                             } else {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
-                                // Projection proj = new Projection(curNode, rel.getPk(), curNode.getChoiceMap().attachedFT,
-                                        // curNode.QT);
 
                                 Translation newTrans = new Translation(trans);
                                 newTrans.addQueryFragment(pred, schemaEl.similarity);
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlativeOrHaving(remainingNodes, newTrans,
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
                                         curNode, schemaEl, rel.getPk(), schemaEl.similarity));
-
-                                // Translation newTrans = this.newTranslationWithProjection(trans, proj, schemaEl.similarity);
-                                // newTrans.addQueryFragment(pred, schemaEl.similarity);
-                                // result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
 
                                 // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
                                 // penalize predicates that deal with common nouns
@@ -833,30 +801,28 @@ public class Templar {
         List<String> testNLQ = new ArrayList<>();
         List<List<String>> testSQL = new ArrayList<>();
         try {
-            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             /*
-            // Ambiguous use of "cooperated"
+            // Ambiguous use of "cooperated" / join path failure
             testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
             testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\".");
             testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\".");
             testNLQ.add("return me the number of authors who have cooperated with \"H. V. Jagadish\".");
+            testNLQ.add("return me the number of papers written by \"H. V. Jagadish\", \"Yunyao Li\", and \"Cong Yu\".");
 
             // NL parser failure
             testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005.");  // written is the root, but "papers" should be
 
             // Node mapping failure
             testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
-
-            // Join path failure (?)
-            testNLQ.add("return me the number of papers written by \"H. V. Jagadish\", \"Yunyao Li\", and \"Cong Yu\".");
+            */
 
             // Co-occurrence overweighed (?)
             testNLQ.add("return me the journal that has the most number of papers containing keyword \"Relational Database\".");
             testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
             testNLQ.add("return me the number of keywords, which have been contained by more than 100 papers in VLDB conference.");
             testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\" with the most number of citations.");
-            */
 
             // Missnig a predicate
             /*
