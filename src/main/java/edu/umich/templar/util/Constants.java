@@ -17,14 +17,11 @@ public class Constants {
     public static final String TIME = "#time";
     public static final String ORDER = "#order";
 
-    // Constants for affinity score
-    public static final Double EXACT_MATCH = 1.0;
-    public static final Double SLOT_COVERS = 0.5;
-    public static final Double NO_MATCH = 0.0;
-
     // Min similarity score to consider "matching"
     public static final Double MIN_SIM = 0.6;
 
+    public static final Double PENALTY_UNLIKELY_PROJECTION = 0.5;
     public static final Double PENALTY_RELATION_WITH_SUPERLATIVE = 0.3;
     public static final Double PENALTY_PREDICATE_COMMON_NOUN = 0.75;
+    public static final Double PENALTY_PREDICATE_WITH_SUPERLATIVE = 0.3;
 }

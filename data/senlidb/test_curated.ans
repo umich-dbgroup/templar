@@ -1,0 +1,15 @@
+select top 50000 * from posts where posts.ViewCount > 10000 ORDER BY posts.ViewCount desc
+SELECT avg(DATEDIFF(ww,CreationDate, GETDATE())) FROM Users;
+select * from posts
+SELECT TOP 20 * FROM users WHERE DisplayName LIKE '%Marinov%'
+select * from badges
+select * from Comments where Text='*hibernate*'
+SELECT DisplayName FROM Users WHERE Id<100000
+Select score, parentid from posts where score is not null
+select OwnerUserId, Id from Posts where PostTypeId = 2 order by OwnerUserId
+select Id, Name from PostTypes where Name='Answer'
+select p.Id, p.Body from Posts p inner join PostTags pt on p.Id = pt.PostId where pt.TagId = 17 and p.Id < 1000
+select top 50000 * from posts where posts.ViewCount>1000000 ORDER BY posts.ViewCount
+SELECT TOP 10 postid, count(id) FROM PostLinks group by postid ORDER BY count(id) DESC
+select DisplayName from Users
+SELECT * FROM Tags WHERE TagName='java'

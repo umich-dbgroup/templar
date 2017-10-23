@@ -1,0 +1,16 @@
+show top 50000 posts which have more than 10000 views
+calculate the average difference in weeks between creationdate and present for all users
+List all posts
+List the top 20 users with displayname containing 'Marinov'
+select all badges
+List all the comments that have 'hibernate' in the text.
+select displayname from users where id is less than 100000
+Get posts where score is not null
+!! Get owneruserid, id of posts that have posttypeid 2 ordered by owneruserid
+Get id and name of Answer posttypes
+Get id and body of posts with tag id 17 with post id less than 1000
+show top 50000 posts which have more than 1000000 views
+show the post id with the most postlinks
+show all users
+show top 10000 posts with more than 10000 views
+show posttype ids where id > 1

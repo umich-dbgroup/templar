@@ -17,6 +17,7 @@ import edu.cmu.lti.ws4j.RelatednessCalculator;
 import edu.cmu.lti.ws4j.impl.WuPalmer;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemmatizer;
 import edu.umich.templar.util.Constants;
+import edu.umich.templar.util.Word2Vec;
 import info.debatty.java.stringsimilarity.Cosine;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -136,6 +137,7 @@ public class SimFunctions
 	
 	public static double similarity(String word1, String word1pos, String word2, String word2pos) throws Exception
 	{
+        /*
 		double similarity;
 
 		double wordnetScore = wordNetSim(word1, word1pos, word2, word2pos);
@@ -149,8 +151,11 @@ public class SimFunctions
             similarity = 0.8 * wordnetScore + 0.2 * pqScore;
         }
 		
-		return similarity; 
-	}
+		return similarity;
+	    */
+
+        return word2vecSim(word1, word1pos, word2, word2pos);
+    }
 
     public static String convertStanfordPosToMorphadornerPos(String pos) {
         if (pos.equals("CD")) {
@@ -223,6 +228,69 @@ public class SimFunctions
         }
 
         return cosine.similarity(word1Profile, word2Profile);
+    }
+
+    static Map<String, Double> cachedSim = new HashMap<>();
+    public static double word2vecSim(String word1, String word2) {
+        String combined;
+        if (word1.compareTo(word2) < 0) {
+            combined = word1 + ":" + word2;
+        } else {
+            combined = word2 + ":" + word1;
+        }
+        Double sim = cachedSim.get(combined);
+        if (sim == null) {
+            sim = Word2Vec.getSimilarity(word1, word2);
+
+            // scale so it's 0 to 1
+            sim = (sim + 1.0) / 2;
+
+            cachedSim.put(combined, sim);
+        }
+        return sim;
+    }
+
+	public static double word2vecSim(String word1, String word1pos, String word2, String word2pos) {
+        String [] words1 = word1.split("_");
+        String [] words2 = word2.split("_");
+
+        if (word1pos != null) word1pos = convertStanfordPosToMorphadornerPos(word1pos);
+        if (word2pos != null) word2pos = convertStanfordPosToMorphadornerPos(word2pos);
+
+        double maxScore = 0.0;
+        for (int i = 0; i < words1.length; i++) {
+            for (int j = 0; j < words2.length; j++) {
+                String first = words1[i];
+                String firstLemma;
+                if (word1pos != null) {
+                    firstLemma = lemmatizer.lemmatize(first, word1pos);
+                } else {
+                    firstLemma = lemmatizer.lemmatize(first);
+                }
+                String second = words2[j];
+                String secondLemma;
+                if (word2pos != null) {
+                    secondLemma = lemmatizer.lemmatize(second, word2pos);
+                } else {
+                    secondLemma = lemmatizer.lemmatize(second);
+                }
+
+                double sim = word2vecSim(firstLemma, secondLemma);
+                maxScore = Math.max(maxScore, sim);
+
+                String firstPlural = firstLemma + "s";
+                sim = word2vecSim(firstPlural, secondLemma);
+                maxScore = Math.max(maxScore, sim);
+
+                String secondPlural = secondLemma + "s";
+                sim = word2vecSim(firstLemma, secondPlural);
+                maxScore = Math.max(maxScore, sim);
+
+                sim = word2vecSim(firstPlural, secondPlural);
+                maxScore = Math.max(maxScore, sim);
+            }
+        }
+        return maxScore;
     }
 
 	public static double wordNetSimCompute(String word1, String word2)

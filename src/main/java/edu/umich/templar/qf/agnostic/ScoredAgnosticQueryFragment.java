@@ -47,12 +47,12 @@ public class ScoredAgnosticQueryFragment {
             return 0.0;
         } else if (thisIsBlankOrRel) {
             // return this.similarity * other.similarity * 0.5;
-            // return this.similarity * other.similarity * other.getAverageDiceCoefficient();
-            return (1 - this.similarity) * other.similarity * other.getMaxDiceCoefficient();
+            return this.similarity * other.similarity * other.getAverageDiceCoefficient();
+            // return (1 - this.similarity) * other.similarity * other.getMaxDiceCoefficient();
         } else if (otherIsBlankOrRel) {
             // return this.similarity * other.similarity * 0.5;
-            // return this.similarity * other.similarity * this.getAverageDiceCoefficient();
-            return this.similarity * (1 - other.similarity) * this.getMaxDiceCoefficient();
+            return this.similarity * other.similarity * this.getAverageDiceCoefficient();
+            // return this.similarity * (1 - other.similarity) * this.getMaxDiceCoefficient();
         }
 
         double numer = 2 * this.getSimilarity() * other.getSimilarity() * this.getAqf().getCooccurrence(other.getAqf());

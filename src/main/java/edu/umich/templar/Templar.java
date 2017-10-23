@@ -12,6 +12,7 @@ import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.agnostic.AgnosticGraph;
+import edu.umich.templar.qf.pieces.AttributeType;
 import edu.umich.templar.rdbms.*;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.template.*;
@@ -73,18 +74,28 @@ public class Templar {
             Translation newTrans = this.newTranslationWithSuperlative(trans, node, mse, attr, similarity);
             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
         } else {
-            Projection proj = new Projection(node, attr, mse.attachedFT, node.QT);
+            // Eliminate unlikely function/attr type combos
+            String funcName = mse.attachedFT;
+            if (funcName != null) {
+                boolean textSum = mse.attachedFT.equals("sum") && attr.getAttributeType().equals(AttributeType.TEXT);
+                if (textSum) {
+                    return result;
+                }
+
+                boolean numCount = mse.attachedFT.equals("count") && attr.getAttributeType().equals(AttributeType.NUMBER);
+                if (numCount) {
+                    funcName = null;
+                }
+            }
+
+
+            Projection proj = new Projection(node, attr, funcName, node.QT);
 
             // Check two things (either/or) with predicates if they share the same attribute:
-            // (1) Increment alias
-            // (2) Merge the projection into the predicate, if related by adjective
-            // int aliasInt = 0;
+            // Merge the projection into the predicate, if related by adjective
             for (Predicate pred : trans.getPredicates()) {
                 if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                    // (1) increment alias
-                    // aliasInt++;
-
-                    // (2) merge the projection into the predicate, if related by adjective
+                    // merge the projection into the predicate, if related by adjective
                     if (pred.getNode().isRelatedByAdjective(node)) {
                         Translation newTrans = new Translation(trans);
 
@@ -111,14 +122,26 @@ public class Templar {
                 if (curProj.isGroupBy()) {
                     aggregateNewProj = true;
                 }
+
+                // Don't make duplicate projections
+                if (curProj.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
+                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), new Translation(trans)));
+                    return result;
+                }
             }
 
             Translation newTrans = new Translation(trans);
-            newTrans.addQueryFragment(proj, similarity);
 
             if (aggregateNewProj) {
                 proj.applyAggregateFunction();
             }
+
+            // If not child of CMT or groupby, unlikely projection
+            if (!node.isFirstMappedDescendantOfCMT() && !proj.isGroupBy()) {
+                similarity *= Constants.PENALTY_UNLIKELY_PROJECTION;
+            }
+
+            newTrans.addQueryFragment(proj, similarity);
 
             if (aggregateExistingProj != null) {
                 Projection newProj = new Projection(aggregateExistingProj);
@@ -158,7 +181,7 @@ public class Templar {
         // Pass on this node if it's already in the translation (e.g. by means of a forward-looking HAVING that
         // already used it)
         if (trans.containsNode(curNode)) {
-            return this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), trans);
+            return this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), new Translation(trans));
         }
 
         if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
@@ -369,9 +392,12 @@ public class Templar {
                                         curNode, schemaEl, rel.getPk(), schemaEl.similarity));
 
                                 // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
-                                // penalize predicates that deal with common nouns
                                 double similarity = schemaEl.similarity;
+
+                                // penalize predicates that deal with common nouns
                                 if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                                // penalize if a superlative is attached to this node
+                                if (curNode.attachedSuperlative != null) similarity *= Constants.PENALTY_PREDICATE_WITH_SUPERLATIVE;
 
                                 Translation newTrans2 = new Translation(trans);
                                 newTrans2.addQueryFragment(pred, similarity);
@@ -801,44 +827,25 @@ public class Templar {
         List<String> testNLQ = new ArrayList<>();
         List<List<String>> testSQL = new ArrayList<>();
         try {
-            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
+            // impossible sum(text) proj
+            // testNLQ.add("return me the total citations of the papers in \"University of Michigan\".");
+            // testNLQ.add("return me the total citations of all the papers in PVLDB.");
+            // testNLQ.add("return me the citations of each paper in PVLDB.");
+
+            // Word2vec issue
             /*
-            // Ambiguous use of "cooperated" / join path failure
-            testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
-            testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\".");
-            testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\".");
-            testNLQ.add("return me the number of authors who have cooperated with \"H. V. Jagadish\".");
-            testNLQ.add("return me the number of papers written by \"H. V. Jagadish\", \"Yunyao Li\", and \"Cong Yu\".");
-
-            // NL parser failure
-            testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB after 2005.");  // written is the root, but "papers" should be
-
-            // Node mapping failure
-            testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
+            testNLQ.add("return me the number of keywords in Databases area.");
+            testNLQ.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
             */
 
-            // Co-occurrence overweighed (?)
-            testNLQ.add("return me the journal that has the most number of papers containing keyword \"Relational Database\".");
-            testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
-            testNLQ.add("return me the number of keywords, which have been contained by more than 100 papers in VLDB conference.");
-            testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\" with the most number of citations.");
+            // lemmatize word before passing to word2vec?
+            // testNLQ.add("return me the authors who have cited the papers by \"H. V. Jagadish\".");
+            // testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
 
-            // Missnig a predicate
-            /*
-            testNLQ.add("return me the conferences, which have more than 10 papers by \"H. V. Jagadish\".");
-            testNLQ.add("return me the conference, which have the most number of papers by \"H. V. Jagadish\".");
-            testNLQ.add("return me the journals, which have more than 10 papers by \"H. V. Jagadish\".");
-            testNLQ.add("return me the journal, which have the most number of papers by \"H. V. Jagadish\".");
-            testNLQ.add("return me the paper in PVLDB with the most citations.");
-            testNLQ.add("return me the paper by \"H. V. Jagadish\" with the most citations.");
-            testNLQ.add("return me the paper after 2000 in PVLDB with the most citations.");
-            testNLQ.add("return me the authors who have more than 10 papers in PVLDB.");
-            testNLQ.add("return me the authors who have the most number of papers in PVLDB.");
-            */
-
-            // function not added correctly
-            // testNLQ.add("return me the author in the \"University of Michigan\" in Databases area whose papers have more than 5000 total citations.");
+            // blanks overrated
+            // testNLQ.add("return me the number of papers written by \"H. V. Jagadish\", \"Yunyao Li\", and \"Cong Yu\".");
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");

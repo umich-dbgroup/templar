@@ -280,8 +280,8 @@ public class InstantiatedTemplate {
     }
 
     public Double getScore() {
-        // Complexity is only used as a tiebreaker with a small epsilon weight
-        double epsilon = 0.01;
+        // Complexity weight
+        double epsilon = 0.1;
 
         return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getSimplicity());
     }
