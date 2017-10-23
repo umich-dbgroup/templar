@@ -30,6 +30,10 @@ public class AgnosticGraph {
         this.qfList = new ArrayList<>();
     }
 
+    public void setRelations(Map<String, Relation> relations) {
+        this.relations = relations;
+    }
+
     public static void main(String[] args) {
         RDBMS db;
         try {

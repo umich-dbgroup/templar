@@ -749,7 +749,7 @@ public class Templar {
 
         // Load in everything for log counter
         // NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
-        /*
+
         List<String> nlq = new ArrayList<>();
         List<List<String>> queryAnswers = null;
         try {
@@ -776,7 +776,7 @@ public class Templar {
         List<String> testNLQ = new ArrayList<>();
         List<List<String>> testSQL = new ArrayList<>();
 
-        List<String> logNLQ = new ArrayList<>();
+        //List<String> logNLQ = new ArrayList<>();
         List<String> logSQLStr = new ArrayList<>();
 
         for (int i = 0; i < nlq.size(); i++) {
@@ -787,7 +787,7 @@ public class Templar {
                 List<String> sqlList = queryAnswers.get(i);
                 // Disregard invalid answers
                 if (!sqlList.get(0).startsWith("NO")) {
-                    logNLQ.add(nlq.get(i));
+                    // logNLQ.add(nlq.get(i));
                     // only use the first correct answer if there's more than 1
                     logSQLStr.add(sqlList.get(0));
                 }
@@ -797,6 +797,7 @@ public class Templar {
         List<Select> logSQL = Utils.parseStatements(logSQLStr);
 
         // Add NLQ/SQL log pairs
+        /*
         for (int i = 0; i < logNLQ.size(); i++) {
             if (logSQL.get(i) != null) {
                 Query query = new Query(logNLQ.get(i), db.schemaGraph);
@@ -809,9 +810,8 @@ public class Templar {
         AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
         QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
 
-        // TODO: change this to cross-validation statements or whatever is needed.
-        List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
-        for (Select select : selects) {
+        // List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
+        for (Select select : logSQL) {
             agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
             qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
         }
@@ -824,10 +824,11 @@ public class Templar {
         // Read in Stanford Parser Model
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        List<String> testNLQ = new ArrayList<>();
-        List<List<String>> testSQL = new ArrayList<>();
+        // List<String> testNLQ = new ArrayList<>();
+        // List<List<String>> testSQL = new ArrayList<>();
+        /*
         try {
-            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             // impossible sum(text) proj
             // testNLQ.add("return me the total citations of the papers in \"University of Michigan\".");
@@ -835,10 +836,8 @@ public class Templar {
             // testNLQ.add("return me the citations of each paper in PVLDB.");
 
             // Word2vec issue
-            /*
-            testNLQ.add("return me the number of keywords in Databases area.");
-            testNLQ.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
-            */
+            // testNLQ.add("return me the number of keywords in Databases area.");
+            // testNLQ.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
 
             // lemmatize word before passing to word2vec?
             // testNLQ.add("return me the authors who have cited the papers by \"H. V. Jagadish\".");
@@ -857,7 +856,7 @@ public class Templar {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }
+        }*/
 
         int i = 0;
         int top1 = 0;
