@@ -6,6 +6,7 @@ import edu.umich.templar.qf.agnostic.*;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.qf.pieces.Operator;
+import edu.umich.templar.util.Constants;
 
 import java.util.*;
 
@@ -13,6 +14,12 @@ import java.util.*;
  * Created by cjbaik on 9/11/17.
  */
 public class Translation {
+    // SCORE MODE:
+    // 0: NL only
+    // 1: NL + Agnostic
+    // 2: NL + QF
+    public static int MODE = 0;
+
     List<ScoredQueryFragment> scoredQFs;     // all query fragments for QFGraph
     List<ScoredAgnosticQueryFragment> scoredAQFs; // all agnostic query fragments for AgnosticGraph
 
@@ -138,6 +145,44 @@ public class Translation {
         this.superlative = superlative;
     }
 
+    public Double getNLAGScore() {
+        double totalSim = 0.0;
+        for (ScoredAgnosticQueryFragment aqf : this.scoredAQFs) {
+            if (aqf.getSimilarity() < Constants.SIM_AUG_THRESHOLD) {
+                double cooccurSum = 0.0;
+                for (ScoredAgnosticQueryFragment scoredAQF : this.scoredAQFs) {
+                    cooccurSum += aqf.getWeightedDiceCoefficient(scoredAQF);
+                }
+                double cooccurScore = cooccurSum / this.scoredAQFs.size();
+                double scaledCooccur = cooccurScore * (1 - Constants.SIM_AUG_THRESHOLD) + Constants.SIM_AUG_THRESHOLD;
+                totalSim += scaledCooccur;
+            } else {
+                totalSim += aqf.getSimilarity();
+            }
+        }
+
+        return totalSim / this.scoredAQFs.size();
+    }
+
+    public Double getNLQFScore() {
+        double totalSim = 0.0;
+        for (ScoredQueryFragment qf : this.scoredQFs) {
+            if (qf.getSimilarity() < Constants.SIM_AUG_THRESHOLD) {
+                double cooccurSum = 0.0;
+                for (ScoredQueryFragment scoredQF : this.scoredQFs) {
+                    cooccurSum += qf.getWeightedDiceCoefficient(scoredQF);
+                }
+                double cooccurScore = cooccurSum / this.scoredQFs.size();
+                double scaledCooccur = cooccurScore * (1 - Constants.SIM_AUG_THRESHOLD) + Constants.SIM_AUG_THRESHOLD;
+                totalSim += scaledCooccur;
+            } else {
+                totalSim += qf.getSimilarity();
+            }
+        }
+
+        return totalSim / this.scoredQFs.size();
+    }
+
     public Double getNLScore() {
         double totalSim = 0.0;
         for (ScoredQueryFragment qf : this.scoredQFs) {
@@ -147,6 +192,7 @@ public class Translation {
         return totalSim / this.scoredQFs.size();
     }
 
+    /*
     public Double getQFGraphScore() {
         double diceSum = 0.0;
         for (int i = 0; i < this.scoredQFs.size(); i++) {
@@ -171,7 +217,7 @@ public class Translation {
         }
         double totalCount = this.scoredAQFs.size();
         return diceSum / totalCount / totalCount;
-    }
+    }*/
 
     public double getSimilarity(QueryFragment qf) {
         return this.scoreMap.get(qf);
@@ -180,6 +226,16 @@ public class Translation {
     public Double getScore() {
         if (this.score != null) return this.score;
 
+        if (MODE == 0) {
+            this.score = this.getNLScore();
+        }
+        if (MODE == 1) {
+            this.score = this.getNLAGScore();
+        }
+        if (MODE == 2) {
+            this.score = this.getNLQFScore();
+        }
+        /*
         double product = this.getNLScore();
         int root = 1;
 
@@ -203,6 +259,9 @@ public class Translation {
                 this.score = Math.cbrt(product);
                 break;
         }
+
+        // TODO: testing only NL score;
+        this.score = this.getNLScore();*/
 
         return this.score;
     }
@@ -485,8 +544,14 @@ public class Translation {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("SCORE: ");
+        sb.append("TOT: ");
         sb.append(this.getScore());
+        sb.append("; NL: ");
+        sb.append(this.getNLScore());
+        sb.append("; NL+AG: ");
+        sb.append(this.getNLAGScore());
+        sb.append("; NL+QF: ");
+        sb.append(this.getNLQFScore());
         sb.append("; rels: [");
 
         StringJoiner relSj = new StringJoiner(",");

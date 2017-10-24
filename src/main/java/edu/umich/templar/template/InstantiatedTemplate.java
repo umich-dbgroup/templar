@@ -287,12 +287,16 @@ public class InstantiatedTemplate {
     }
 
     private Double getSimplicity() {
+        double simplicity;
         // An empty join path is actually a query with 1 relation.
         if (this.template.getJoinPath().getRelationCount() == 0) {
-            return 1.0;
+            simplicity = 1.0;
         } else {
-            return 1.0 / this.template.getJoinPath().getRelationCount();
+            simplicity = 1.0 / this.template.getJoinPath().getRelationCount();
         }
+
+        // TODO: normalize to 0.5, but is there a cleaner way to do this?
+        return (simplicity * 0.5) + 0.25;
     }
 
     public String getValue() {
@@ -301,7 +305,7 @@ public class InstantiatedTemplate {
 
     @Override
     public String toString() {
-        return "[" + this.getScore() + "] " + this.value;
+        return "TOT: " + this.getScore() + "; TR: " + this.translation.getScore() + "; SMP: " + this.getSimplicity() + "; " + this.value;
     }
 
 }

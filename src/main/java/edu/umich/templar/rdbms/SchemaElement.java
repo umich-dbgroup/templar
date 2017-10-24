@@ -41,15 +41,12 @@ public class SchemaElement implements Serializable
     }
 
     public MappedSchemaElement isRelationSimilar(String tag, String tagPos) throws Exception {
-        if(this.equals(this.relation.defaultAttribute)) {
-            if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos)) {
-                MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
-                double relationSimilarity = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
-                // mappedSchemaElement.similarity = 1 - (1 - relationSimilarity) * (1 - relationSimilarity);
-                mappedSchemaElement.similarity = relationSimilarity;
-                return mappedSchemaElement;
-            }
+        if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos)) {
+            MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
+            mappedSchemaElement.similarity = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
+            return mappedSchemaElement;
         }
+
         return null;
     }
 

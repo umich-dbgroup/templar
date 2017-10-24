@@ -122,13 +122,18 @@ public class RDBMS {
                 treeNode.mappedElements.add(element);
             }
 
-            // Check for relations
-            MappedSchemaElement relEl = attributes.get(i).isRelationSimilar(treeNode.label, treeNode.pos);
-            if (relEl != null) {
-                treeNode.mappedElements.add(relEl);
-            }
 		}
-		if(!treeNode.mappedElements.isEmpty())
+
+		List<SchemaElement> relations = schemaGraph.getElementsByType("relation");
+		for (SchemaElement rel : relations) {
+			// Check for relations
+			MappedSchemaElement relEl = rel.isRelationSimilar(treeNode.label, treeNode.pos);
+			if (relEl != null) {
+				treeNode.mappedElements.add(relEl);
+			}
+		}
+
+		if (!treeNode.mappedElements.isEmpty())
 		{
 			return true; 
 		}

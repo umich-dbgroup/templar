@@ -135,7 +135,7 @@ public class NodeMapper
                     // Remove object from parent/children
                     // object.parent.children.addAll(object.children);
                     // for (ParseTreeNode cousin : object.children) {
-                        // cousin.parent = object.parent;
+                    // cousin.parent = object.parent;
                     // }
 
                     // Disconnect parent from object
@@ -158,10 +158,37 @@ public class NodeMapper
                         }
                     }
                 }
+            } else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
+                // Strange interpretations like for "return me the papers written by H. V. Jagadish and Yunyao Li on PVLDB after 2005."
+                // Tree is derived as return -xcomp-> written -dep-> papers, and relationships need to be swapped
+                ParseTreeNode toElevate = null;
+                for (ParseTreeNode child : curNode.children) {
+                    if (child.relationship.equals("dep")) {
+                        toElevate = child;
+                    }
+                }
+                if (toElevate != null) {
+                    List<ParseTreeNode> curNodeChildren = curNode.children;
+                    curNodeChildren.remove(toElevate);
+                    ParseTreeNode curNodeParent = curNode.parent;
+
+                    curNode.parent = toElevate;
+                    curNodeParent.children.remove(curNode);
+                    curNode.children = toElevate.children;
+                    for (ParseTreeNode child : curNode.children) {
+                        child.parent = curNode;
+                    }
+
+                    toElevate.parent = curNodeParent;
+                    toElevate.parent.children.add(toElevate);
+                    toElevate.children = curNodeChildren;
+                    toElevate.children.add(curNode);
+                    for (ParseTreeNode child : toElevate.children) {
+                        child.parent = toElevate;
+                    }
+                }
             }
         }
-        // Delete removed nodes
-        toDelete.forEach(parseTree::deleteNode);
 
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
 		{

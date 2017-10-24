@@ -2,6 +2,7 @@ package edu.umich.templar.tools;
 
 import edu.umich.templar.dataStructure.ParseTree;
 import edu.umich.templar.dataStructure.ParseTreeNode;
+import edu.umich.templar.util.Constants;
 
 public class PrintForCheck 
 {
@@ -20,7 +21,7 @@ public class PrintForCheck
 
 			if(node.mappedElements.size() > 0)
 			{
-				for(int j = 0; j < node.mappedElements.size() && j < 5; j++)
+				for(int j = 0; j < node.mappedElements.size() && j < Constants.MAX_MAPPED_EL; j++)
 				{
 					result += node.mappedElements.get(j).printForCheck() + "| "; 
 				}

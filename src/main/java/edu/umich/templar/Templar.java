@@ -162,15 +162,15 @@ public class Templar {
 
         // Base case: generate current possible translations now
         if (remainingNodes.size() == 0) {
-            // Check if there is at least one valid projection
-            boolean validProjections = false;
+            // Check if there is exactly one valid projection, and an optional Group By (assumption for our workload)
+            int validProjections = 0;
             for (Projection proj : trans.getProjections()) {
                 if (!proj.isGroupBy()) {
-                    validProjections = true;
+                    validProjections++;
                 }
             }
 
-            if (validProjections) {
+            if (validProjections == 1) {
                 result.add(trans);
             }
             return result;
@@ -188,7 +188,7 @@ public class Templar {
             curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
             curNode.choice = 0;
 
-            List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(5, curNode.mappedElements.size()));
+            List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(Constants.MAX_MAPPED_EL, curNode.mappedElements.size()));
 
             for (MappedSchemaElement schemaEl : mappedList) {
                 // Min threshold to even try...
@@ -763,39 +763,6 @@ public class Templar {
             e.printStackTrace();
         }
 
-        // Shuffle the nlqs and sqls
-        List<Integer> shuffleIndexes = new ArrayList<>();
-        for (int i = 0; i < nlq.size(); i++) {
-            shuffleIndexes.add(i);
-        }
-        Collections.shuffle(shuffleIndexes, new Random(1234));
-
-        // Test set (first 25%), Log/Training set (remainder)
-        shuffleIndexes = shuffleIndexes.subList(0, shuffleIndexes.size() / 4);
-
-        List<String> testNLQ = new ArrayList<>();
-        List<List<String>> testSQL = new ArrayList<>();
-
-        //List<String> logNLQ = new ArrayList<>();
-        List<String> logSQLStr = new ArrayList<>();
-
-        for (int i = 0; i < nlq.size(); i++) {
-            if (shuffleIndexes.contains(i)) {
-                testNLQ.add(nlq.get(i));
-                testSQL.add(queryAnswers.get(i));
-            } else {
-                List<String> sqlList = queryAnswers.get(i);
-                // Disregard invalid answers
-                if (!sqlList.get(0).startsWith("NO")) {
-                    // logNLQ.add(nlq.get(i));
-                    // only use the first correct answer if there's more than 1
-                    logSQLStr.add(sqlList.get(0));
-                }
-            }
-        }
-
-        List<Select> logSQL = Utils.parseStatements(logSQLStr);
-
         // Add NLQ/SQL log pairs
         /*
         for (int i = 0; i < logNLQ.size(); i++) {
@@ -810,8 +777,8 @@ public class Templar {
         AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
         QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
 
-        // List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
-        for (Select select : logSQL) {
+        List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
+        for (Select select : selects) {
             agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
             qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
         }
@@ -819,32 +786,34 @@ public class Templar {
         SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
-        // templates.stream().map(Template::toString).forEach(System.out::println);
-
         // Read in Stanford Parser Model
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
 
-        // List<String> testNLQ = new ArrayList<>();
-        // List<List<String>> testSQL = new ArrayList<>();
-        /*
+        List<String> testNLQ = new ArrayList<>();
+        List<List<String>> testSQL = new ArrayList<>();
         try {
-            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // impossible sum(text) proj
-            // testNLQ.add("return me the total citations of the papers in \"University of Michigan\".");
-            // testNLQ.add("return me the total citations of all the papers in PVLDB.");
-            // testNLQ.add("return me the citations of each paper in PVLDB.");
+            // handle "cooperated"
+            // testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
+            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\".");
+            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\".");
 
-            // Word2vec issue
-            // testNLQ.add("return me the number of keywords in Databases area.");
-            // testNLQ.add("return me the number of papers written by \"H. V. Jagadish\" in each year.");
+            // merging adj node failed
+            /*
+            testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\" with more than 200 citations.");
+            testNLQ.add("return me the authors who have more than 10 papers in PVLDB.");
+            testNLQ.add("return me the paper in Databases area with the most citations.");
+            testNLQ.add("return me the paper after 2000 in Databases area with the most citations.");
 
-            // lemmatize word before passing to word2vec?
-            // testNLQ.add("return me the authors who have cited the papers by \"H. V. Jagadish\".");
-            // testNLQ.add("return me the number of authors who have cited the papers by \"H. V. Jagadish\".");
+            // simplicity overweighted
+            testNLQ.add("return me the paper by \"H. V. Jagadish\" with the most citations.");
+            testNLQ.add("return me the paper after 2000 in PVLDB with the most citations.");
 
-            // blanks overrated
-            // testNLQ.add("return me the number of papers written by \"H. V. Jagadish\", \"Yunyao Li\", and \"Cong Yu\".");
+            // "total" not captured correctly
+            testNLQ.add("return me the author in the \"University of Michigan\" whose papers have more than 5000 total citations.");
+            testNLQ.add("return me the author in the \"University of Michigan\" in Databases area whose papers have more than 5000 total citations.");
+            */
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -856,7 +825,7 @@ public class Templar {
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }*/
+        }
 
         int i = 0;
         int top1 = 0;
@@ -891,6 +860,8 @@ public class Templar {
 
             List<ParseTreeNode> mappedNodes = getMappedNodes(query);
 
+            // agnosticGraph = null;
+            // qfGraph = null;
             Templar tc = new Templar(db.schemaGraph.relations, agnosticGraph, qfGraph);
             List<Translation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
                     new Translation(agnosticGraph, qfGraph));
