@@ -189,6 +189,7 @@ public class NodeMapper
                 }
             }*/
         }
+        parseTree.allNodes.removeAll(toDelete);
 
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
 		{
