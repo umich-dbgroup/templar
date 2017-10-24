@@ -178,6 +178,22 @@ public class Templar {
                 }
             }
 
+            // Penalize any relations if they have an adjective relationship with any projection/predicate
+            for (RelationFragment rel : trans.getRelations()) {
+                double similarity = trans.getSimilarity(rel);
+                for (Projection proj : trans.getProjections()) {
+                    if (rel.getNode().isRelatedByAdjective(proj.getNode())) {
+                        similarity *= Constants.PENALTY_RELATION_WITH_ADJECTIVE;
+                    }
+                }
+                for (Predicate pred : trans.getPredicates()) {
+                    if (rel.getNode().isRelatedByAdjective(pred.getNode())) {
+                        similarity *= Constants.PENALTY_RELATION_WITH_ADJECTIVE;
+                    }
+                }
+                trans.setSimilarity(rel, similarity);
+            }
+
             if (validProjections == 1) {
                 result.add(trans);
             }
@@ -806,8 +822,11 @@ public class Templar {
         List<String> testNLQ = new ArrayList<>();
         List<List<String>> testSQL = new ArrayList<>();
         try {
+            // TODO: set this MODE to test different types of graphs
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+
+            // testNLQ.add("return me the papers on VLDB conference after 2000.");
 
             // handle "cooperated"
             // testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");

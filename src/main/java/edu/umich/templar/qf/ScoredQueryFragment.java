@@ -78,4 +78,8 @@ public class ScoredQueryFragment {
         return this.similarity * numer / denom;
         //return numer / denom;
     }
+
+    public void setSimilarity(double similarity) {
+        this.similarity = similarity;
+    }
 }

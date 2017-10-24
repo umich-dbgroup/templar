@@ -23,7 +23,7 @@ public class NodeMapper
 	{
 		tokenize(query, tokens); 
 		deleteUseless(query); 
-		map(query, db); 
+		map(query, db);
 		deleteNoMatch(query); 
 		individualRanking(query); 
 		groupRanking(query, db); 
@@ -158,7 +158,7 @@ public class NodeMapper
                         }
                     }
                 }
-            } else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
+            } /*else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
                 // Strange interpretations like for "return me the papers written by H. V. Jagadish and Yunyao Li on PVLDB after 2005."
                 // Tree is derived as return -xcomp-> written -dep-> papers, and relationships need to be swapped
                 ParseTreeNode toElevate = null;
@@ -187,7 +187,7 @@ public class NodeMapper
                         child.parent = toElevate;
                     }
                 }
-            }
+            }*/
         }
 
 		for(int i = 0; i < parseTree.allNodes.size(); i++)

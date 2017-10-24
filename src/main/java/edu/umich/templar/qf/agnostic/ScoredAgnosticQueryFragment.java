@@ -70,4 +70,8 @@ public class ScoredAgnosticQueryFragment {
     public Double getSimilarity() {
         return similarity;
     }
+
+    public void setSimilarity(Double similarity) {
+        this.similarity = similarity;
+    }
 }

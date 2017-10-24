@@ -236,8 +236,14 @@ public class Translation {
         return this.scoreMap.get(qf);
     }
 
-    public double setSimilarity(QueryFragment qf, double similarity) {
-        return this.scoreMap.put(qf, similarity);
+    public void setSimilarity(QueryFragment qf, double similarity) {
+        for (ScoredQueryFragment sqf : this.scoredQFMap.get(qf)) {
+            sqf.setSimilarity(similarity);
+        }
+        for (ScoredAgnosticQueryFragment saqf : this.scoredAQFMap.get(qf)) {
+            saqf.setSimilarity(similarity);
+        }
+        this.scoreMap.put(qf, similarity);
     }
 
     public void setScore(double score) {

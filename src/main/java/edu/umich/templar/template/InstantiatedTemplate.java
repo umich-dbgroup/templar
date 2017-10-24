@@ -296,7 +296,7 @@ public class InstantiatedTemplate {
 
     public Double getScore() {
         // Complexity weight
-        double epsilon = 0.1;
+        double epsilon = 0.01;
 
         return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getSimplicity());
     }
