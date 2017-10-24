@@ -30,8 +30,8 @@ import java.util.*;
 public class TemplarCV {
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.out.println("Usage: TemplarCV <db> <schema-prefix> <join-level> <agnostic-sql-train, comma-separated> <nlq-file> <ans-file>");
-            System.out.println("Example: Templar mas data/mas/mas 6 data/yelp/yelp_all.ans,data/imdb/imdb_all.ans data/mas/mas_all.txt data/mas/mas_all.ans");
+            System.out.println("Usage: TemplarCV <db> <schema-prefix> <join-level> <agnostic-sql-train, comma-separated> <nlq-file> <ans-file> <trans-mode>");
+            System.out.println("Example: Templar mas data/mas/mas 6 data/yelp/yelp_all.ans,data/imdb/imdb_all.ans data/mas/mas_all.txt data/mas/mas_all.ans 2");
             System.exit(1);
         }
         String dbName = args[0];
@@ -40,6 +40,9 @@ public class TemplarCV {
         String[] agnosticSQLFiles = args[3].split(",");
         String nlqFile = args[4];
         String ansFile = args[5];
+
+        // Set translation mode (0 for NL only, 1 for NL + agnostic, 2 for NL + QF)
+        Translation.MODE = Integer.valueOf(args[6]);
 
         RDBMS db;
         RDBMS db2;
@@ -65,7 +68,6 @@ public class TemplarCV {
             }
         }
 
-        // TODO: load and shuffle set for cross validation, need to be able to re-claim ordering later.
         List<String> nlq = new ArrayList<>();
         List<List<String>> queryAnswers = new ArrayList<>();
         try {
