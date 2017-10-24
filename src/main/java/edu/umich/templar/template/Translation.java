@@ -240,6 +240,10 @@ public class Translation {
         return this.scoreMap.put(qf, similarity);
     }
 
+    public void setScore(double score) {
+        this.score = score;
+    }
+
     public Double getScore() {
         if (this.score != null) return this.score;
 
@@ -556,6 +560,7 @@ public class Translation {
         this.permutations = results;
         for (Translation perm : this.permutations) {
             perm.setParent(this);
+            perm.setScore(this.score);
         }
 
         return results;

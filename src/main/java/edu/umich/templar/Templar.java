@@ -95,16 +95,21 @@ public class Templar {
             // Merge the projection into the predicate, if related by adjective
             for (Predicate pred : trans.getPredicates()) {
                 if (pred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                    // merge the projection into the predicate, if related by adjective
                     if (pred.getNode().isRelatedByAdjective(node)) {
                         Translation newTrans = new Translation(trans);
-
-                        Predicate newPred = new Predicate(pred);
                         double oldSim = newTrans.getSimilarity(pred);
                         newTrans.removeQueryFragment(pred);
-
                         double sim = Math.max(oldSim, similarity);
-                        newTrans.addQueryFragment(newPred, sim);
+
+                        // Add a HAVING instead if there's a function attached to this
+                        if (mse.attachedFT != null) {
+                            Having having = new Having(node, attr, pred.getOp(), pred.getValue(), mse.attachedFT);
+                            newTrans.addQueryFragment(having, sim);
+                        } else {
+                            // merge the projection into the predicate
+                            Predicate newPred = new Predicate(pred);
+                            newTrans.addQueryFragment(newPred, sim);
+                        }
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
                 }
@@ -344,12 +349,17 @@ public class Templar {
                                 if (p.getNode().isRelatedByAdjective(curNode)) {
                                     Translation newTrans = new Translation(trans);
                                     double oldSim = newTrans.getSimilarity(p);
-
                                     newTrans.removeQueryFragment(p);
-
                                     double sim = Math.max(oldSim, schemaEl.similarity);
-                                    Predicate newPred = new Predicate(pred);
-                                    newTrans.addQueryFragment(newPred, sim);
+
+                                    // Add a HAVING instead if there's a function attached to the projection
+                                    if (p.getFunction() != null) {
+                                        Having having = new Having(curNode, attr, pred.getOp(), pred.getValue(), p.getFunction());
+                                        newTrans.addQueryFragment(having, sim);
+                                    } else {
+                                        Predicate newPred = new Predicate(pred);
+                                        newTrans.addQueryFragment(newPred, sim);
+                                    }
                                     result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                                 }
                             }
@@ -797,7 +807,7 @@ public class Templar {
         List<List<String>> testSQL = new ArrayList<>();
         try {
             Translation.MODE = 2;
-            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             // handle "cooperated"
             // testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
@@ -813,10 +823,6 @@ public class Templar {
             testNLQ.add("return me the paper by \"H. V. Jagadish\" with the most citations.");
             testNLQ.add("return me the paper after 2000 in PVLDB with the most citations.");
             */
-
-            // "total" not captured correctly
-            testNLQ.add("return me the author in the \"University of Michigan\" whose papers have more than 5000 total citations.");
-            testNLQ.add("return me the author in the \"University of Michigan\" in Databases area whose papers have more than 5000 total citations.");
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
