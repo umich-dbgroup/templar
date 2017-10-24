@@ -77,12 +77,12 @@ public class Templar {
             // Eliminate unlikely function/attr type combos
             String funcName = mse.attachedFT;
             if (funcName != null) {
-                boolean textSum = mse.attachedFT.equals("sum") && attr.getAttributeType().equals(AttributeType.TEXT);
+                boolean textSum = funcName.equals("sum") && attr.getAttributeType().equals(AttributeType.TEXT);
                 if (textSum) {
                     return result;
                 }
 
-                boolean numCount = mse.attachedFT.equals("count") && attr.getAttributeType().equals(AttributeType.NUMBER);
+                boolean numCount = funcName.equals("count") && attr.getAttributeType().equals(AttributeType.NUMBER);
                 if (numCount) {
                     funcName = null;
                 }
@@ -136,11 +136,6 @@ public class Templar {
                 proj.applyAggregateFunction();
             }
 
-            // If not child of CMT or groupby, unlikely projection
-            if (!node.isFirstMappedDescendantOfCMT() && !proj.isGroupBy()) {
-                similarity *= Constants.PENALTY_UNLIKELY_PROJECTION;
-            }
-
             newTrans.addQueryFragment(proj, similarity);
 
             if (aggregateExistingProj != null) {
@@ -167,6 +162,14 @@ public class Templar {
             for (Projection proj : trans.getProjections()) {
                 if (!proj.isGroupBy()) {
                     validProjections++;
+
+                    // If not child of CMT or groupby, unlikely projection
+                    if (!proj.getNode().isFirstMappedDescendantOfCMT()) {
+                        double oldSim = trans.getSimilarity(proj);
+                        oldSim *= Constants.PENALTY_UNLIKELY_PROJECTION;
+                        trans.setSimilarity(proj, oldSim);
+                    }
+
                 }
             }
 
@@ -190,13 +193,16 @@ public class Templar {
 
             List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(Constants.MAX_MAPPED_EL, curNode.mappedElements.size()));
 
+            // Add a blank query fragment with minimum similarity, as long as it's not superlative, function, group by
+            if (curNode.attachedSuperlative == null && curNode.QT.isEmpty()) {
+                Translation blankTrans = new Translation(trans);
+                blankTrans.addQueryFragment(new BlankQueryFragment(curNode), Constants.MIN_SIM);
+                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), blankTrans));
+            }
+
             for (MappedSchemaElement schemaEl : mappedList) {
                 // Min threshold to even try...
                 if (schemaEl.similarity < Constants.MIN_SIM) {
-                    // Add a dummy node with minimum similarity
-                    Translation newTrans = new Translation(trans);
-                    newTrans.addQueryFragment(new BlankQueryFragment(curNode), Constants.MIN_SIM);
-                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     break;
                 }
 
@@ -242,27 +248,24 @@ public class Templar {
                     throw new RuntimeException(e);
                 }
 
-                // If you have a primary attribute, generate a HAVING
-                if (rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM) {
-                    // If it has a child that has a "nummod" relationship, generate a HAVING
-                    ParseTreeNode nummodChild = curNode.getNummodChild();
-                    if (nummodChild != null) {
-                        // later, do not add existing nodes if is nummod and having exists.. somehow
-                        Translation newTrans = new Translation(trans);
+                // If it has a child that has a "nummod" relationship, generate a HAVING
+                boolean havingPrimaryAttr = rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM;
+                ParseTreeNode nummodChild = curNode.getNummodChild();
+                if (havingPrimaryAttr && nummodChild != null) {
+                    Translation newTrans = new Translation(trans);
 
-                        // Remove any existing predicates with the number if they exist
-                        for (Predicate pred : newTrans.getPredicates()) {
-                            if (pred.getNode().equals(nummodChild)) {
-                                newTrans.removeQueryFragment(pred);
-                                break;
-                            }
+                    // Remove any existing predicates with the number if they exist
+                    for (Predicate pred : newTrans.getPredicates()) {
+                        if (pred.getNode().equals(nummodChild)) {
+                            newTrans.removeQueryFragment(pred);
+                            break;
                         }
-
-                        Having having = new Having(nummodChild, rel.getPrimaryAttr(),
-                                Utils.getOperatorFromString(nummodChild.attachedOT), nummodChild.label, "count");
-                        newTrans.addQueryFragment(having, schemaEl.similarity);
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
+
+                    Having having = new Having(nummodChild, rel.getPrimaryAttr(),
+                            Utils.getOperatorFromString(nummodChild.attachedOT), nummodChild.label, "count");
+                    newTrans.addQueryFragment(having, schemaEl.similarity);
+                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                 }
 
                 // Treat as projection, if no mapped values
@@ -341,6 +344,7 @@ public class Templar {
                                 if (p.getNode().isRelatedByAdjective(curNode)) {
                                     Translation newTrans = new Translation(trans);
                                     double oldSim = newTrans.getSimilarity(p);
+
                                     newTrans.removeQueryFragment(p);
 
                                     double sim = Math.max(oldSim, schemaEl.similarity);
@@ -792,28 +796,27 @@ public class Templar {
         List<String> testNLQ = new ArrayList<>();
         List<List<String>> testSQL = new ArrayList<>();
         try {
-            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            Translation.MODE = 2;
+            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             // handle "cooperated"
             // testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
             // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\".");
             // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\".");
 
-            // merging adj node failed
             /*
-            testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Divesh Srivastava\" with more than 200 citations.");
-            testNLQ.add("return me the authors who have more than 10 papers in PVLDB.");
+            // merging general adj failed
             testNLQ.add("return me the paper in Databases area with the most citations.");
             testNLQ.add("return me the paper after 2000 in Databases area with the most citations.");
 
             // simplicity overweighted
             testNLQ.add("return me the paper by \"H. V. Jagadish\" with the most citations.");
             testNLQ.add("return me the paper after 2000 in PVLDB with the most citations.");
+            */
 
             // "total" not captured correctly
             testNLQ.add("return me the author in the \"University of Michigan\" whose papers have more than 5000 total citations.");
             testNLQ.add("return me the author in the \"University of Michigan\" in Databases area whose papers have more than 5000 total citations.");
-            */
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
@@ -877,9 +880,17 @@ public class Templar {
             for (Template tmpl : templates) {
                 for (Translation trans : topNTranslations) {
                     Set<Translation> perms = trans.getAliasPermutations();
+                    List<InstantiatedTemplate> insts = new ArrayList<>();
+                    perm_loop:
                     for (Translation perm : perms) {
                         InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
                         if (inst.getValue() == null) continue;
+                        for (InstantiatedTemplate existing : insts) {
+                            if (inst.isEquivalentPermutationTo(existing)) {
+                                continue perm_loop;
+                            }
+                        }
+                        insts.add(inst);
 
                         Integer existingIndex = resultIndexMap.get(inst.getValue());
 

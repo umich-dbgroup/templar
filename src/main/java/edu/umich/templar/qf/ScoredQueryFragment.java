@@ -1,5 +1,7 @@
 package edu.umich.templar.qf;
 
+import edu.umich.templar.util.Constants;
+
 import java.util.Map;
 
 /**
@@ -58,12 +60,14 @@ public class ScoredQueryFragment {
             // return this.similarity * other.similarity * 0.5;
             // return (1 - this.similarity) * other.similarity * other.getAverageDiceCoefficient();
             return (1 - this.similarity) * other.getAverageDiceCoefficient();
+            // return Constants.MIN_SIM * other.getAverageDiceCoefficient();
             // return other.getAverageDiceCoefficient();
             // return (1 - this.similarity) * other.similarity * other.getMaxDiceCoefficient();
         } else if (otherIsBlank) {
             // return this.similarity * other.similarity * 0.5;
             // return this.similarity * (1 - other.similarity) * this.getAverageDiceCoefficient();
-            return this.similarity * this.getAverageDiceCoefficient();
+            return (1 - this.similarity) * this.getAverageDiceCoefficient();
+            // return this.similarity * this.getAverageDiceCoefficient();
             // return this.getAverageDiceCoefficient();
             // return this.similarity * (1 - other.similarity) * this.getMaxDiceCoefficient();
         }

@@ -27,6 +27,21 @@ public class InstantiatedTemplate {
         this.value = this.instantiate();
     }
 
+    public boolean isEquivalentPermutationTo(InstantiatedTemplate other) {
+        // In the case that two templates are equivalent (i.e. symmetrical) due to alias permutations
+        // e.g. author_0.name = "first" AND author_1.name = "second" VS.
+        //      author_0.name = "second" AND author_1.name = "first"
+
+        if (!this.template.equals(other.template)) return false;
+        if (this.translation.getParent() == null || other.translation.getParent() == null) return false;
+        if (!this.translation.getParent().equals(other.translation.getParent())) return false;
+
+        // The entire join path must be consecutive
+        if (this.template.getJoinPath().getConsecutives().size() != 1) return false;
+        JoinPath consecs = this.template.getJoinPath().getConsecutives().iterator().next();
+        return this.template.getJoinPath().equals(consecs);
+    }
+
     private String instantiate() {
         String templateString = this.template.toString();
         String result = templateString;

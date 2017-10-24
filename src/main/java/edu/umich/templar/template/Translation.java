@@ -42,6 +42,9 @@ public class Translation {
     AgnosticGraph agnosticGraph;
     QFGraph qfGraph;
 
+    // Parent translation if this is alias
+    Translation parent;
+
     // Cache alias permutations
     Set<Translation> permutations;
 
@@ -67,6 +70,7 @@ public class Translation {
 
         this.scoreMap = new HashMap<>();
 
+        this.parent = null;
         this.permutations = null;
         this.score = null;
     }
@@ -96,6 +100,7 @@ public class Translation {
 
         this.score = other.score;
 
+        this.parent = other.parent;
         this.permutations = null;
     }
 
@@ -143,6 +148,14 @@ public class Translation {
         if (this.superlative != null) throw new RuntimeException("Tried to set duplicate superlative.");
 
         this.superlative = superlative;
+    }
+
+    public Translation getParent() {
+        return parent;
+    }
+
+    public void setParent(Translation parent) {
+        this.parent = parent;
     }
 
     public Double getNLAGScore() {
@@ -221,6 +234,10 @@ public class Translation {
 
     public double getSimilarity(QueryFragment qf) {
         return this.scoreMap.get(qf);
+    }
+
+    public double setSimilarity(QueryFragment qf, double similarity) {
+        return this.scoreMap.put(qf, similarity);
     }
 
     public Double getScore() {
@@ -537,6 +554,9 @@ public class Translation {
 
         // Cache permutations
         this.permutations = results;
+        for (Translation perm : this.permutations) {
+            perm.setParent(this);
+        }
 
         return results;
     }
