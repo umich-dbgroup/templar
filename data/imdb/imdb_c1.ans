@@ -1,0 +1,18 @@
+select movie_0.release_year from movie as movie_0 where movie_0.title = "Dead Poets Society"
+select actor_0.birth_year from actor as actor_0 where actor_0.name = "Ellen Page"
+select actor_0.nationality from actor as actor_0 where actor_0.name = "Ellen Page"
+select movie_0.title from movie as movie_0 where movie_0.release_year = 2015
+select actor_0.name from actor as actor_0 where actor_0.birth_city = "Los Angeles"
+select actor_0.name from actor as actor_0 where actor_0.nationality = "Canada"
+select actor_0.name from actor as actor_0 where actor_0.birth_year = 1984
+select actor_0.birth_year from actor as actor_0 where actor_0.name = "Benedict Cumberbatch"
+select actor_0.nationality from actor as actor_0 where actor_0.name = "Christoph Waltz"
+select actor_0.birth_year from actor as actor_0 where actor_0.name = "Kevin Spacey"	select director_0.birth_year from director as director_0 where director_0.name = "Kevin Spacey"	select producer_0.birth_year from producer as producer_0 where producer_0.name = "Kevin Spacey"
+select actor_0.birth_year from actor as actor_0 where actor_0.name = "Kevin Spacey"	select director_0.birth_year from director as director_0 where director_0.name = "Kevin Spacey"	select producer_0.birth_year from producer as producer_0 where producer_0.name = "Kevin Spacey"
+select director_0.birth_city from director as director_0 where director_0.name = "Kevin Spacey"	select producer_0.birth_city from producer as producer_0 where producer_0.name = "Kevin Spacey"	select actor_0.birth_city from actor as actor_0 where actor_0.name = "Kevin Spacey"
+select director_0.birth_city from director as director_0 where director_0.name = "Kevin Spacey"	select producer_0.birth_city from producer as producer_0 where producer_0.name = "Kevin Spacey"	select actor_0.birth_city from actor as actor_0 where actor_0.name = "Kevin Spacey"
+select director_0.nationality from director as director_0 where director_0.name = "Kevin Spacey"	select producer_0.nationality from producer as producer_0 where producer_0.name = "Kevin Spacey"	select actor_0.nationality from actor as actor_0 where actor_0.name = "Kevin Spacey"
+select actor_0.name from actor as actor_0 where actor_0.nationality = "Italy"
+select actor_0.name from actor as actor_0 where actor_0.birth_city = "Milan"
+select movie_0.budget from movie as movie_0 where movie_0.title = "Finding Nemo"
+select actor_0.name from actor as actor_0 where actor_0.birth_city = "Tehran"

@@ -1,5 +1,5 @@
 Find all movies directed by "Steven Spielberg" after 2006
-Who is the director of the movie "Catch me if you can"?
+Who is the director of the movie "Catch Me If You Can"?
 Find the actor who played "Captain Miller" in the movie "Saving Private Ryan"
 What is the genre of the movie "Jurassic Park"?
 Who was the director of the movie Joy from 2015?
@@ -9,7 +9,7 @@ Find all movies written and produced by "Woody Allen"
 Find all movies featuring "Kate Winslet"
 What was the budget of the movie Juno from 2007?
 Find all comedies produced in year 2015
-Who was the actor that played Vinny Gambini in the movie "My Cousin Vinny"?
+Who was the actor that played "Vinny Gambini" in the movie "My Cousin Vinny"?
 Find all actors born in "Los Angeles" after 1980
 Find all movies by directors born in "Los Angeles"
 What company produced the movie "Juno"?
