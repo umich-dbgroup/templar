@@ -58,7 +58,7 @@ Find all actors from Canada who acted in "James Bond" movies
 List "James Bond" directors
 find all films in which "Rowan Atkinson" acted as "Mr. Bean"
 List all the movies directed by "Asghar Farhadi" in which "Taraneh Alidoosti" played
-where is the director of "the past" from
+where is the director of "The Past" from
 who acted the role of "Mr. Bean"
 what are the genres of movies directed by "Asghar Farhadi"
 Which movie had the character "Daffy Duck"
