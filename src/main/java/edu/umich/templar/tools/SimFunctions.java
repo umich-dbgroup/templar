@@ -264,8 +264,8 @@ public class SimFunctions
     }
 
 	public static double word2vecSim(String word1, String word1pos, String word2, String word2pos) {
-        String [] words1 = word1.split("_");
-        String [] words2 = word2.split("_");
+        String [] words1 = word1.split("_|-| ");
+        String [] words2 = word2.split("_|-| ");
 
         if (word1pos != null) word1pos = convertStanfordPosToMorphadornerPos(word1pos);
         if (word2pos != null) word2pos = convertStanfordPosToMorphadornerPos(word2pos);
