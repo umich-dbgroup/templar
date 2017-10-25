@@ -207,6 +207,9 @@ public class InstantiatedTemplate {
 
             // Special case: no predicates
             if (translation.getPredicates().isEmpty()) {
+                // If there is a join
+                result = result.replace(" where " + Constants.PRED + " and ", " where ");
+                // If there is not a join
                 result = result.replace(" where " + Constants.PRED, "");
             } else {
                 Map<Attribute, String[]> usedAttributes = new HashMap<>();
