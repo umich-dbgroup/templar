@@ -1,10 +1,17 @@
 import re
 import sys
 
-c1_count = 14
-c2_count = 59
-c3_count = 60
-c4_count = 63
+# mas settings
+# c1_count = 14
+# c2_count = 59
+# c3_count = 60
+# c4_count = 63
+
+# yelp settings
+c1_count = 8
+c2_count = 49
+c3_count = 51
+c4_count = 20
 
 c1_top1 = 0
 c1_top3 = 0
