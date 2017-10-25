@@ -1,0 +1,20 @@
+papers misinterpreted as journal instead of pub
+4, 13, 14, 15, 16, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 43, 49, 50, 51, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 75, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 92, 98, 99, 100, 102, 107, 108, 109, 110, 111, 112, 113, 114, 122, 127, 128, 129, 130, 131, 136, 137, 139, 141, 143, 144, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 194, 195
+
+"cooperated" is linked to "organization" incorrectly
+133, 134, 135, 140, 146
+
+doesn't know how to interpret year number (e.g. "before 1995")
+19
+
+impossible query
+193
+
+NL Parser ordered incorrectly
+22
+
+Mis-interpreted aggregate query (e.g. "number of citations before 2010")
+78
+
+Incorrect join path
+94
