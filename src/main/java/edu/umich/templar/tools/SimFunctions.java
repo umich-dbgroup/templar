@@ -215,6 +215,11 @@ public class SimFunctions
     static Map<String, Map<String, Integer>> profileCache = new HashMap<>();
 
     public static double cosineSim(String word1, String word2) {
+        // Clear cache at arbitrary moment
+        if (profileCache.size() > 10000) {
+            profileCache.clear();
+        }
+
         word1 = word1.toLowerCase();
         word2 = word2.toLowerCase();
         Map<String, Integer> word1Profile = profileCache.get(word1);
@@ -234,6 +239,11 @@ public class SimFunctions
 
     static Map<String, Double> cachedSim = new HashMap<>();
     public static double word2vecSim(String word1, String word2) {
+        // Clear cache at arbitrary moment
+        if (cachedSim.size() > 10000) {
+            cachedSim.clear();
+        }
+
         String combined;
         if (word1.compareTo(word2) < 0) {
             combined = word1 + ":" + word2;
