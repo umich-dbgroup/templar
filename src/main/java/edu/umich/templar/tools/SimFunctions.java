@@ -154,6 +154,7 @@ public class SimFunctions
 		return similarity;
 	    */
 
+        if (word1.equals(word2)) return 1.0;
         return word2vecSim(word1, word1pos, word2, word2pos);
     }
 
