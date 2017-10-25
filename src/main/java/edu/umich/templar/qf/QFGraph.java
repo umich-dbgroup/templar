@@ -130,6 +130,9 @@ public class QFGraph {
             ps.getWhere().accept(predicateUnroller);
             for (Predicate pred : predicateUnroller.getPredicates()) {
                 Predicate valuelessPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
+                Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
+                noAliasRel.setAliasInt(0);
+                valuelessPred.getAttribute().setRelation(noAliasRel);
                 selectQFs.add(valuelessPred);
             }
         }

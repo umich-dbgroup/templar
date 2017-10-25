@@ -234,11 +234,6 @@
     "name": "user",
     "type": "relation",
     "attributes": {
-      "uid": {
-        "name": "uid",
-        "type": "int",
-        "entropy": 0.0
-      },
       "user_id": {
         "name": "user_id",
         "type": "text",

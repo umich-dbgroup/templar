@@ -1,0 +1,36 @@
+select count(distinct(movie_0.title)) from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Jennifer Aniston" and movie_0.release_year > 2010 and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select count(distinct(actor_0.name)) from actor as actor_0, cast as cast_0, movie as movie_0 where movie_0.title = "Grumpier Old Men" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select count(distinct(movie_0.title)) from directed_by as directed_by_0, director as director_0, movie as movie_0 where director_0.name = "Alfred Hitchcock" and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid
+NO ANSWER YET
+select count(distinct(movie_0.title)), movie_0.release_year from directed_by as directed_by_0, director as director_0, movie as movie_0 where director_0.name = "Woody Allen" and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid group by movie_0.release_year
+select count(distinct(movie_0.title)) from movie as movie_0 where movie_0.release_year = 2013
+select count(distinct(movie_0.title)) from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Ronald Reagan" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select count(distinct(actor_0.name)) from actor as actor_0 where actor_0.birth_city = "Los Angeles" and actor_0.birth_year > 2000
+select count(distinct(movie_0.title)) from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Humphrey Bogart" and movie_0.release_year < 1942 and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select movie_0.release_year, count(distinct(movie_0.title)) from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Brad Pitt" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid group by movie_0.release_year
+select count(distinct(movie_0.title)) from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Tom Cruise" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

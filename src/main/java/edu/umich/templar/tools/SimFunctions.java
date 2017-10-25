@@ -215,6 +215,8 @@ public class SimFunctions
     static Map<String, Map<String, Integer>> profileCache = new HashMap<>();
 
     public static double cosineSim(String word1, String word2) {
+        word1 = word1.toLowerCase();
+        word2 = word2.toLowerCase();
         Map<String, Integer> word1Profile = profileCache.get(word1);
         if (word1Profile == null) {
             word1Profile = cosine.getProfile(word1);

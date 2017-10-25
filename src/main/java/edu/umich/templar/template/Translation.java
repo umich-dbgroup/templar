@@ -179,6 +179,7 @@ public class Translation {
 
     public Double getNLQFScore() {
         double totalSim = 0.0;
+        /*
         for (ScoredQueryFragment qf : this.scoredQFs) {
             if (qf.getSimilarity() < Constants.SIM_AUG_THRESHOLD) {
                 double cooccurSum = 0.0;
@@ -191,6 +192,17 @@ public class Translation {
             } else {
                 totalSim += qf.getSimilarity();
             }
+        }*/
+
+        for (ScoredQueryFragment qf : this.scoredQFs) {
+            double cooccurSum = 0.0;
+            for (ScoredQueryFragment scoredQF : this.scoredQFs) {
+                cooccurSum += qf.getWeightedDiceCoefficient(scoredQF);
+            }
+            double cooccurScore = cooccurSum / this.scoredQFs.size();
+            double sim = Math.max(qf.getSimilarity(), Constants.SIM_AUG_THRESHOLD);
+            double scaledCooccur = cooccurScore * (1 - sim) + sim;
+            totalSim += scaledCooccur;
         }
 
         return totalSim / this.scoredQFs.size();

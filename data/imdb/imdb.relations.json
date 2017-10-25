@@ -293,7 +293,7 @@
       },
       "budget": {
         "name": "budget",
-        "type": "int",
+        "type": "text",
         "entropy": 0.0
       }
     }

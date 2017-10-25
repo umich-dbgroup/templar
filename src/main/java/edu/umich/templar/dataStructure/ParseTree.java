@@ -116,7 +116,8 @@ public class ParseTree implements Serializable
 		for(int i = 0; i < node.children.size(); i++)
 		{
 			parent.children.add(position+i, node.children.get(i)); 
-			node.children.get(i).parent = parent; 
+			node.children.get(i).parent = parent;
+			node.children.get(i).relationship = "changed";
 		}
 		allNodes.remove(node); 
 		

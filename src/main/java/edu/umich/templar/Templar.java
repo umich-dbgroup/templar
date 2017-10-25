@@ -233,7 +233,9 @@ public class Templar {
 
                 double relSim;
                 try {
-                    relSim = SimFunctions.similarity(rel.getName(), null, curNode.label, curNode.pos);
+                    String relPos;
+                    relPos = rel.isJoinTable()? "VB" : "NN";
+                    relSim = SimFunctions.similarity(rel.getName(), relPos, curNode.label, curNode.pos);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -264,7 +266,7 @@ public class Templar {
 
                 double attrSim;
                 try {
-                    attrSim = SimFunctions.similarity(attr.getName(), null, curNode.label, curNode.pos);
+                    attrSim = SimFunctions.similarity(attr.getName(), "NN", curNode.label, curNode.pos);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -441,7 +443,7 @@ public class Templar {
                                 // CASE 1: it's a simple relation reference
 
                                 // Enforce a penalty if there's a superlative or function associated with relation
-                                double similarity = schemaEl.similarity;
+                                double similarity = relSim;
                                 if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
                                     similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                                 }
@@ -807,7 +809,7 @@ public class Templar {
         AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
         QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
 
-        List<Select> selects = Utils.parseStatements("data/mas/mas_all.ans");
+        List<Select> selects = Utils.parseStatements("data/yelp/yelp_all.ans");
         for (Select select : selects) {
             agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
             qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
@@ -826,22 +828,32 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // testNLQ.add("return me the papers on VLDB conference after 2000.");
+            // Why is the second query freezing? (but esp. only during the full execution??)
+            // testNLQ.add("What neighborhood is restaurant \"Flat Top Grill\" in?");
 
-            // handle "cooperated"
-            // testNLQ.add("return me the authors who have cooperated both with \"H. V. Jagadish\" and \"Divesh Srivastava\".");
-            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\" or \"Divesh Srivastava\".");
-            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\".");
+            // "star" is mis-evaluated
+            // testNLQ.add("List all 5 star Italian restaurants");
 
-            /*
-            // merging general adj failed
-            testNLQ.add("return me the paper in Databases area with the most citations.");
-            testNLQ.add("return me the paper after 2000 in Databases area with the most citations.");
-
-            // simplicity overweighted
-            testNLQ.add("return me the paper by \"H. V. Jagadish\" with the most citations.");
-            testNLQ.add("return me the paper after 2000 in PVLDB with the most citations.");
+            /*// "users" is mis-evaluated
+            testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
             */
+
+            // The correct result is not very simple
+            /*
+            testNLQ.add("Find all the reviews for all pet groomers with more than 100 reviews");
+            */
+
+            // Correct projection is penalized
+            /*
+            testNLQ.add("What are all the gyms in \"Los Angeles\"?");
+            testNLQ.add("Find all bars reviewed by Patrick");
+            testNLQ.add("Find all bars reviewed by Patrick with at least 3 stars");
+            testNLQ.add("Find all bars in \"Los Angeles\" with at least 30 reviews");
+
+            // "Dance schools" isn't combined properly
+            testNLQ.add("Find all dance schools in \"Los Angeles\"");
+            */
+
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");

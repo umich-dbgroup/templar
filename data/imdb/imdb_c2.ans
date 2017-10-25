@@ -41,62 +41,29 @@ NO ANSWER YET
 select movie_0.title from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.name = "Robin Wright" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
 select actor_0.name from actor as actor_0 where actor_0.birth_city = "Austin" and actor_0.gender = "female"
 NO ANSWER YET
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+NO ANSWER YET
+select actor_0.name from actor as actor_0 where actor_0.birth_year > 1980 and actor_0.nationality = "Italy"
+select actor_0.name from actor as actor_0 where actor_0.birth_city = "New York City" and actor_0.birth_year > 1980 and actor_0.gender = "female"
+select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.gender = "female" and movie_0.title = "Saving Private Ryan" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where cast_0.role = "Alan Turing" and movie_0.title = "The Imitation Game" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where cast_0.role = "Alan Turing" and movie_0.title = "The Imitation Game" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select movie_0.release_year from movie as movie_0 where movie_0.title = "The Imitation Game"
+NO ANSWER YET
+select director_0.name from director as director_0 where director_0.nationality = "Afghanistan"
+select actor_0.name from actor as actor_0 where actor_0.nationality = "Afghanistan"
+NO ANSWER YET
+NO ANSWER YET
+select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where movie_0.title = "Camp X-Ray" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where actor_0.nationality = "Canada" and movie_0.title = "James Bond" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
+select director_0.name from directed_by as directed_by_0, director as director_0, movie as movie_0 where movie_0.title = "James Bond" and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid
+NO ANSWER YET
+select movie_0.title from actor as actor_0, cast as cast_0, directed_by as directed_by_0, director as director_0, movie as movie_0 where actor_0.name = "Taraneh Alidoosti" and director_0.name = "Asghar Farhadi" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid
+NO ANSWER YET
+select actor_0.name from actor as actor_0, cast as cast_0 where cast_0.role = "Mr. Bean" and actor_0.aid = cast_0.aid
+select genre_0.genre from classification as classification_0, directed_by as directed_by_0, director as director_0, genre as genre_0, movie as movie_0 where director_0.name = "Asghar Farhadi" and classification_0.gid = genre_0.gid and classification_0.msid = movie_0.mid and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid
+select movie_0.title from cast as cast_0, movie as movie_0 where cast_0.role = "Daffy Duck" and cast_0.msid = movie_0.mid
+NO ANSWER YET
+NO ANSWER YET
+select director_0.name from company as company_0, copyright as copyright_0, directed_by as directed_by_0, director as director_0, movie as movie_0 where company_0.name = "NBCUniversal" and director_0.gender = "male" and company_0.id = copyright_0.cid and copyright_0.msid = movie_0.mid and directed_by_0.did = director_0.did and directed_by_0.msid = movie_0.mid
+NO ANSWER YET
+NO ANSWER YET

@@ -51,7 +51,7 @@ What year was the movie "The Imitation Game" produced
 Find all movies about Iraq war
 Find all the directors who are from Afghanistan
 Give me the name of all the actors from Afghanistan
-Who is the writer of "The Truman show"
+Who is the writer of "The Truman Show"
 List all the Sci-Fi movies which released in 2010
 Find the actors who played in the movie "Camp X-Ray"
 Find all actors from Canada who acted in "James Bond" movies
