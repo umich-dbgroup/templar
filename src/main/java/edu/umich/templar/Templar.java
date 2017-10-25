@@ -77,8 +77,13 @@ public class Templar {
             // Eliminate unlikely function/attr type combos
             String funcName = mse.attachedFT;
             if (funcName != null) {
-                boolean textSum = funcName.equals("sum") && attr.getAttributeType().equals(AttributeType.TEXT);
-                if (textSum) {
+                boolean textNotCount = !funcName.equals("count") && attr.getAttributeType().equals(AttributeType.TEXT);
+                if (textNotCount) {
+                    return result;
+                }
+
+                boolean pkFkCount = funcName.equals("count") && (attr.isPk() || attr.isFk());
+                if (pkFkCount) {
                     return result;
                 }
 
@@ -510,7 +515,14 @@ public class Templar {
                     ParseTreeNode functionNode = node.parent;
 
                     if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
-                        superlative = node.parent.parent.function;
+                        node.attachedSuperlative = node.parent.parent.function;
+                    }
+                    if (node.attachedSuperlative == null) {
+                        for (ParseTreeNode funcChild : functionNode.children) {
+                            if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
+                                node.attachedSuperlative = funcChild.function;
+                            }
+                        }
                     }
 
                     // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
@@ -828,31 +840,37 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // Why is the second query freezing? (but esp. only during the full execution??)
-            // testNLQ.add("What neighborhood is restaurant \"Flat Top Grill\" in?");
+            // Superlative failure
+            // testNLQ.add("find the user with the most number of reviews");
+            // testNLQ.add("Find the business with the most number of reviews in April");
+            // testNLQ.add("Find the business which has the most number of categories");
+
+            // Treat PK better
+            /*
+            testNLQ.add("How many Starbucks are there in Dallas TX?");
+            testNLQ.add("How many businesses has Michelle reviewed in 2010?");
+            */
+
+            // Handle "avg" better
+            // testNLQ.add("what is the average rating given in Michelle reviews");
+            // testNLQ.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
+            // testNLQ.add("Find all bars in \"Los Angeles\" with at least 30 reviews and average rating above 3 stars");
+            // testNLQ.add("Find users whose average review rating is below 3");
 
             // "star" is mis-evaluated
+            // testNLQ.add("List all the businesses with more than 4.5 stars");
             // testNLQ.add("List all 5 star Italian restaurants");
+            // testNLQ.add("List all bars reviewed by Patrick with at least 3 stars");
+            // testNLQ.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
+            // testNLQ.add("Find all Chinese restaurants in Dallas with at least 4 stars");
 
-            /*// "users" is mis-evaluated
-            testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
-            */
+            // "users" is mis-evaluated
+            // testNLQ.add("How many users have reviewed Irish pubs in Dallas?");
+            // testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
 
-            // The correct result is not very simple
-            /*
-            testNLQ.add("Find all the reviews for all pet groomers with more than 100 reviews");
-            */
 
-            // Correct projection is penalized
-            /*
-            testNLQ.add("What are all the gyms in \"Los Angeles\"?");
-            testNLQ.add("Find all bars reviewed by Patrick");
-            testNLQ.add("Find all bars reviewed by Patrick with at least 3 stars");
-            testNLQ.add("Find all bars in \"Los Angeles\" with at least 30 reviews");
-
-            // "Dance schools" isn't combined properly
-            testNLQ.add("Find all dance schools in \"Los Angeles\"");
-            */
+            // Parser failure
+            // testNLQ.add("What is the number of businesses user Michelle reviews per month?");
 
 
             if (ansFile != null) {
