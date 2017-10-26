@@ -37,7 +37,7 @@ Find all pet hospices in Pittsburgh
 Find all reviews by Patrick with a rating above 4
 Find all bistros in Pittsburgh
 Find all bakeries in "Los Angeles"
-Find all Apple stores in "Los Angeles"
+Find all Apple Stores in "Los Angeles"
 Find all Dallas restaurants with a rating above 4.5
 Find all breweries in "Los Angeles"
 What neighborhood is restaurant "Flat Top Grill" in?
@@ -47,7 +47,7 @@ Find all users who have written tips about businesses in Dallas
 Find all cities in TX in which there is a restaurant called "MGM Grand Buffet"
 Find the users who have given tips on pet groomers
 List all reviews for bistros with rating less than 1.5
-In which neighborhoods Michelle has reviewed a business?
+In which neighborhoods has Michelle reviewed a business?
 Find all tips for "Cafe Zinho" in TX.
 List all businesses that are restaurants in PA.
 List all users who reviewed businesses that are restaurants.
@@ -89,7 +89,7 @@ What is the number of businesses user Michelle reviews per month?
 How many reviews has Adrienne written?
 How many reviews has Michelle written in March 2014?
 How many businesses has Michelle reviewed in 2010?
-How many businesses in San Diego has Christine reviewed in 2010?
+How many businesses in "San Diego" has Christine reviewed in 2010?
 How many Target are there in "Los Angeles"?
 How many users have reviewed Irish pubs in Dallas?
 What is the average rating of reviews written in year 2014?
