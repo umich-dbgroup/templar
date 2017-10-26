@@ -1,17 +1,24 @@
 import re
 import sys
 
-# mas settings
-# c1_count = 14
-# c2_count = 59
-# c3_count = 60
-# c4_count = 63
-
-# yelp settings
-c1_count = 8
-c2_count = 49
-c3_count = 51
-c4_count = 20
+if (sys.argv[2] == "mas"):
+    c1_count = 14
+    c2_count = 59
+    c3_count = 60
+    c4_count = 63
+elif (sys.argv[2] == "yelp"):
+    c1_count = 8
+    c2_count = 49
+    c3_count = 51
+    c4_count = 20
+elif (sys.argv[2] == "imdb"):
+    c1_count = 18
+    c2_count = 69
+    c3_count = 27
+    c4_count = 17
+else:
+    print("specify dataset as second arg.")
+    sys.exit()
 
 c1_top1 = 0
 c1_top3 = 0
