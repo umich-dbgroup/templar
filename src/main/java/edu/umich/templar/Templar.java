@@ -93,6 +93,13 @@ public class Templar {
                 }
             }
 
+            if (!node.QT.isEmpty()) {
+                boolean returnAllAndNumber = node.QT.equals("all") && attr.getAttributeType().equals(AttributeType.NUMBER);
+                if (returnAllAndNumber) {
+                    return result;
+                }
+            }
+
 
             Projection proj = new Projection(node, attr, funcName, node.QT);
 
@@ -840,9 +847,37 @@ public class Templar {
         try {
             // TODO: set this MODE to test different types of graphs
             Translation.MODE = 2;
-            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            testNLQ.add("What company produced the series Scandal?");
+            // YELP to fix
+            // Missing a "restaurant" predicate
+            // testNLQ.add("find the number of reviews written for \"Cafe Zinho\" restaurants in TX");
+
+            // Find "all" reviews shouldn't return a number, but actual tuples
+            testNLQ.add("Find all the reviews for all pet groomers with more than 100 reviews");
+            testNLQ.add("Find all reviews for businesses rated 2.5");
+
+            // Question parsing
+            // testNLQ.add("In which neighborhoods Michelle has reviewed a business?");
+
+            // Word "reviewed" failure
+            // testNLQ.add("List all users who reviewed businesses that are restaurants in 2010.");
+
+            // "users" is mis-evaluated
+            // testNLQ.add("How many users have reviewed Irish pubs in Dallas?");
+            // testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
+            // testNLQ.add("Find all pet hospices in Pittsburgh");
+
+            // nummod is an "nmod" instead
+            // testNLQ.add("Find all reviews by Patrick with a rating above 4");
+
+            // "star" is mis-evaluated
+            // testNLQ.add("List all the businesses with more than 4.5 stars");
+            // testNLQ.add("List all 5 star Italian restaurants");
+            // testNLQ.add("List all bars reviewed by Patrick with at least 3 stars");
+            // testNLQ.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
+            // testNLQ.add("Find all Chinese restaurants in Dallas with at least 4 stars");
+
 
             // "born" failure
             // testNLQ.add("Find all actors from Austin born after 1980");
@@ -875,17 +910,6 @@ public class Templar {
             // testNLQ.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
             // testNLQ.add("Find all bars in \"Los Angeles\" with at least 30 reviews and average rating above 3 stars");
             // testNLQ.add("Find users whose average review rating is below 3");
-
-            // "star" is mis-evaluated
-            // testNLQ.add("List all the businesses with more than 4.5 stars");
-            // testNLQ.add("List all 5 star Italian restaurants");
-            // testNLQ.add("List all bars reviewed by Patrick with at least 3 stars");
-            // testNLQ.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
-            // testNLQ.add("Find all Chinese restaurants in Dallas with at least 4 stars");
-
-            // "users" is mis-evaluated
-            // testNLQ.add("How many users have reviewed Irish pubs in Dallas?");
-            // testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
 
 
             // Parser failure
