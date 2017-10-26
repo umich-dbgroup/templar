@@ -423,10 +423,12 @@ public class Templar {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
 
-                                Translation newTrans = new Translation(trans);
-                                newTrans.addQueryFragment(pred, schemaEl.similarity);
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
-                                        curNode, schemaEl, rel.getPk(), schemaEl.similarity));
+                                if (rel.getPk() != null) {
+                                    Translation newTrans = new Translation(trans);
+                                    newTrans.addQueryFragment(pred, schemaEl.similarity);
+                                    result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
+                                            curNode, schemaEl, rel.getPk(), schemaEl.similarity));
+                                }
 
                                 // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
                                 double similarity = schemaEl.similarity;
@@ -838,7 +840,24 @@ public class Templar {
         try {
             // TODO: set this MODE to test different types of graphs
             Translation.MODE = 2;
-            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+            // testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+
+            testNLQ.add("What company produced the series Scandal?");
+
+            // "born" failure
+            // testNLQ.add("Find all actors from Austin born after 1980");
+
+            // Question structure failure
+            /*
+            testNLQ.add("When was \"Kevin Spacey\" born?");
+            testNLQ.add("In what year was \"Kevin Spacey\" born?");
+            testNLQ.add("Where is the birth place of \"Kevin Spacey\"");
+            testNLQ.add("In what city was \"Kevin Spacey\" born?");
+            testNLQ.add("What is the nationality of \"Kevin Spacey\"?");
+            */
+
+            // testNLQ.add("Find the business with the most number of reviews in April");
+            // testNLQ.add("Find the business which has the most number of categories");
 
             // Superlative failure
             // testNLQ.add("find the user with the most number of reviews");
