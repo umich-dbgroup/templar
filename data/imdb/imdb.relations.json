@@ -42,12 +42,6 @@
     "type": "relation",
     "join_table": true,
     "attributes": {
-      "id": {
-        "name": "id",
-        "type": "int",
-        "pk": true,
-        "entropy": 0.0
-      },
       "msid": {
         "name": "msid",
         "type": "int",
@@ -146,12 +140,6 @@
     "type": "relation",
     "join_table": true,
     "attributes": {
-      "id": {
-        "name": "id",
-        "type": "int",
-        "pk": true,
-        "entropy": 0.0
-      },
       "msid": {
         "name": "msid",
         "type": "int",
@@ -245,12 +233,6 @@
     "type": "relation",
     "join_table": true,
     "attributes": {
-      "id": {
-        "name": "id",
-        "type": "int",
-        "pk": true,
-        "entropy": 0.0
-      },
       "msid": {
         "name": "msid",
         "type": "int",
