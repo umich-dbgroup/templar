@@ -30,8 +30,8 @@ import java.util.*;
 public class TemplarCV {
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.out.println("Usage: TemplarCV <db> <schema-prefix> <join-level> <agnostic-sql-train, comma-separated> <nlq-file> <ans-file> <trans-mode>");
-            System.out.println("Example: Templar mas data/mas/mas 6 data/yelp/yelp_all.ans,data/imdb/imdb_all.ans data/mas/mas_all.txt data/mas/mas_all.ans 2");
+            System.out.println("Usage: TemplarCV <db> <schema-prefix> <join-level> <agnostic-sql-train, comma-separated> <nlq-file> <ans-file> <trans-mode> <log%>");
+            System.out.println("Example: Templar mas data/mas/mas 6 data/yelp/yelp_all.ans,data/imdb/imdb_all.ans data/mas/mas_all.txt data/mas/mas_all.ans 2 10");
             System.exit(1);
         }
         String dbName = args[0];
@@ -44,16 +44,20 @@ public class TemplarCV {
         // Set translation mode (0 for NL only, 1 for NL + agnostic, 2 for NL + QF)
         Translation.MODE = Integer.valueOf(args[6]);
 
+        // Log percent (10 means use 10% of training set, 25 => 25%, etc.)
+        Double logPercent = Double.valueOf(args[7]) / 100;
+
         RDBMS db;
         RDBMS db2;
         try {
             db = new RDBMS(dbName, prefix);
-            db2 = new RDBMS("yelp", "data/yelp/yelp");
+            db2 = new RDBMS("mas", "data/mas/mas");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
 
+        // TODO: have to add a new DB for each agnostic graph
         AgnosticGraph agnosticGraph = new AgnosticGraph(db2.schemaGraph.relations);
         for (String agnosticSQLFile : agnosticSQLFiles) {
             try {
@@ -133,6 +137,10 @@ public class TemplarCV {
                     }
                 }
             }
+
+            int maxLogSize = ((Double) (logPercent * logSQLStr.size())).intValue();
+            Collections.shuffle(logSQLStr);
+            logSQLStr = logSQLStr.subList(0, maxLogSize);
 
             List<Select> logSQL = Utils.parseStatements(logSQLStr);
             QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
