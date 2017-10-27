@@ -133,7 +133,12 @@ public class ParseTreeNode implements Serializable
             }
             // Make sure this is the first child of the CMT
             parentCheck.children.sort((a, b) -> Integer.valueOf(a.wordOrder).compareTo(b.wordOrder));
-            result = parentCheck.children.get(0).equals(this);
+			for (ParseTreeNode child : parentCheck.children) {
+				if (child.tokenType.equals("NT") || child.tokenType.startsWith("VT")) {
+					result = child.equals(this);
+					break;
+				}
+			}
         }
 
         return result;

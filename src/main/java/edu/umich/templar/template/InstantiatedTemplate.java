@@ -314,7 +314,8 @@ public class InstantiatedTemplate {
         }
 
         // TODO: normalize to 0.5, but is there a cleaner way to do this?
-        return (simplicity * 0.5) + 0.25;
+        // return (simplicity * 0.5) + 0.25;
+        return Math.sqrt(simplicity);
     }
 
     public String getValue() {

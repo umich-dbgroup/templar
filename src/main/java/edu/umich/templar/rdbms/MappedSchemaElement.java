@@ -15,6 +15,7 @@ public class MappedSchemaElement implements Comparable<MappedSchemaElement>, Ser
 
     // Added by cjbaik
     public String attachedFT = null; // the attached FT function
+	public String secondaryFT = null; // secondary attached FT function
 
 	public List<String> mappedValues = new ArrayList<String>();
 	public int choice; 

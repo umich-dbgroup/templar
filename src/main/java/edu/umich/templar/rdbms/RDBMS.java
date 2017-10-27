@@ -1,6 +1,7 @@
 package edu.umich.templar.rdbms;
 
 import edu.umich.templar.dataStructure.ParseTreeNode;
+import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Utils;
 
 import java.sql.Connection;
@@ -113,7 +114,7 @@ public class RDBMS {
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
 //		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");
-		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int double pk");
+		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int double");
 
 		for(int i = 0; i < attributes.size(); i++)
 		{
@@ -157,7 +158,8 @@ public class RDBMS {
 
             // Consider plurals as well, because we have a strict "%LIKE%" query
             if (treeNode.label.endsWith("s")) {
-                MappedSchemaElement singularTextAtt = textAtts.get(i).isTextExist(treeNode.label.substring(0, treeNode.label.length() - 1), conn);
+                String lemmatized = SimFunctions.lemmatize(treeNode.label, "NN");
+                MappedSchemaElement singularTextAtt = textAtts.get(i).isTextExist(lemmatized, conn);
                 if (singularTextAtt != null) {
                     boolean added = false;
                     for (MappedSchemaElement curEl : treeNode.mappedElements) {

@@ -161,17 +161,14 @@ public class Translation {
     public Double getNLAGScore() {
         double totalSim = 0.0;
         for (ScoredAgnosticQueryFragment aqf : this.scoredAQFs) {
-            if (aqf.getSimilarity() < Constants.SIM_AUG_THRESHOLD) {
-                double cooccurSum = 0.0;
-                for (ScoredAgnosticQueryFragment scoredAQF : this.scoredAQFs) {
-                    cooccurSum += aqf.getWeightedDiceCoefficient(scoredAQF);
-                }
-                double cooccurScore = cooccurSum / this.scoredAQFs.size();
-                double scaledCooccur = cooccurScore * (1 - Constants.SIM_AUG_THRESHOLD) + Constants.SIM_AUG_THRESHOLD;
-                totalSim += scaledCooccur;
-            } else {
-                totalSim += aqf.getSimilarity();
+            double cooccurSum = 0.0;
+            for (ScoredAgnosticQueryFragment scoredAQF : this.scoredAQFs) {
+                cooccurSum += aqf.getWeightedDiceCoefficient(scoredAQF);
             }
+            double cooccurScore = cooccurSum / this.scoredAQFs.size();
+            double sim = Math.max(aqf.getSimilarity(), Constants.SIM_AUG_THRESHOLD);
+            double scaledCooccur = cooccurScore * (1 - sim) + sim;
+            totalSim += scaledCooccur;
         }
 
         return totalSim / this.scoredAQFs.size();
@@ -179,21 +176,6 @@ public class Translation {
 
     public Double getNLQFScore() {
         double totalSim = 0.0;
-        /*
-        for (ScoredQueryFragment qf : this.scoredQFs) {
-            if (qf.getSimilarity() < Constants.SIM_AUG_THRESHOLD) {
-                double cooccurSum = 0.0;
-                for (ScoredQueryFragment scoredQF : this.scoredQFs) {
-                    cooccurSum += qf.getWeightedDiceCoefficient(scoredQF);
-                }
-                double cooccurScore = cooccurSum / this.scoredQFs.size();
-                double scaledCooccur = cooccurScore * (1 - Constants.SIM_AUG_THRESHOLD) + Constants.SIM_AUG_THRESHOLD;
-                totalSim += scaledCooccur;
-            } else {
-                totalSim += qf.getSimilarity();
-            }
-        }*/
-
         for (ScoredQueryFragment qf : this.scoredQFs) {
             double cooccurSum = 0.0;
             for (ScoredQueryFragment scoredQF : this.scoredQFs) {

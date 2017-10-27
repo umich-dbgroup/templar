@@ -9,6 +9,7 @@ import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.qf.QFGraph;
 import edu.umich.templar.qf.agnostic.AgnosticGraph;
 import edu.umich.templar.rdbms.RDBMS;
+import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.template.InstantiatedTemplate;
 import edu.umich.templar.template.SchemaDataTemplateGenerator;
 import edu.umich.templar.template.Template;
@@ -29,38 +30,51 @@ import java.util.*;
  */
 public class TemplarCV {
     public static void main(String[] args) {
-        if (args.length < 4) {
-            System.out.println("Usage: TemplarCV <db> <schema-prefix> <join-level> <agnostic-sql-train, comma-separated> <nlq-file> <ans-file> <trans-mode> <log%>");
-            System.out.println("Example: Templar mas data/mas/mas 6 data/yelp/yelp_all.ans,data/imdb/imdb_all.ans data/mas/mas_all.txt data/mas/mas_all.ans 2 10");
+        if (args.length < 5) {
+            System.out.println("Usage: Templar <testset> <join-level> <agnostic-sql-train> <trans-mode> <log %>");
+            System.out.println("Example: TemplarCV mas 6 yelp,imdb 2 10");
             System.exit(1);
         }
         String dbName = args[0];
-        String prefix = args[1];
-        int joinLevel = Integer.valueOf(args[2]);
-        String[] agnosticSQLFiles = args[3].split(",");
-        String nlqFile = args[4];
-        String ansFile = args[5];
+        String prefix = "data/" + dbName + "/" + dbName;
+        int joinLevel = Integer.valueOf(args[1]);
+        String nlqFile = prefix + "_all.txt";
+        String ansFile = prefix + "_all.ans";
+
+        String[] agnosticSets = args[2].split(",");
 
         // Set translation mode (0 for NL only, 1 for NL + agnostic, 2 for NL + QF)
-        Translation.MODE = Integer.valueOf(args[6]);
+        Translation.MODE = Integer.valueOf(args[3]);
 
         // Log percent (10 means use 10% of training set, 25 => 25%, etc.)
-        Double logPercent = Double.valueOf(args[7]) / 100;
+        Double logPercent = Double.valueOf(args[4]) / 100;
 
         RDBMS db;
-        RDBMS db2;
         try {
             db = new RDBMS(dbName, prefix);
-            db2 = new RDBMS("mas", "data/mas/mas");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
 
-        // TODO: have to add a new DB for each agnostic graph
-        AgnosticGraph agnosticGraph = new AgnosticGraph(db2.schemaGraph.relations);
-        for (String agnosticSQLFile : agnosticSQLFiles) {
+        // Load all databases for each agnostic graph
+        Map<String, Relation> agnosticRelations = new HashMap<>();
+        for (String agnosticSet : agnosticSets) {
+            String agnosticPrefix = "data/" + agnosticSet + "/" + agnosticSet;
+            RDBMS agnosticDB;
             try {
+                agnosticDB = new RDBMS(agnosticSet, agnosticPrefix);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+            agnosticRelations.putAll(agnosticDB.schemaGraph.relations);
+        }
+
+        AgnosticGraph agnosticGraph = new AgnosticGraph(agnosticRelations);
+        for (String agnosticSet: agnosticSets) {
+            try {
+                String agnosticSQLFile = "data/" + agnosticSet + "/" + agnosticSet + "_all.ans";
                 List<String> otherSQLStr = FileUtils.readLines(new File(agnosticSQLFile), "UTF-8");
                 List<Select> otherSQL = Utils.parseStatements(otherSQLStr);
 
@@ -78,7 +92,11 @@ public class TemplarCV {
             nlq = FileUtils.readLines(new File(nlqFile), "UTF-8");
             List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
             for (String line : answerFileLines) {
-                queryAnswers.add(Arrays.asList(line.trim().split("\t")));
+                List<String> answerList = new ArrayList<>();
+                for (String ans : line.trim().split("\t")) {
+                    answerList.add(ans.trim());
+                }
+                queryAnswers.add(answerList);
             }
         } catch (Exception e) {
             e.printStackTrace();

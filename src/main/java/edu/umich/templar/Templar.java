@@ -68,6 +68,13 @@ public class Templar {
                                                                                Translation trans, ParseTreeNode node,
                                                                                MappedSchemaElement mse, Attribute attr,
                                                                                double similarity) {
+        return this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, node, mse, attr, similarity, false);
+    }
+
+    public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
+                                                                               Translation trans, ParseTreeNode node,
+                                                                               MappedSchemaElement mse, Attribute attr,
+                                                                               double similarity, boolean specialPkCount) {
         List<Translation> result = new ArrayList<>();
 
         if (mse.isSuperlative(node)) {
@@ -82,7 +89,7 @@ public class Templar {
                     return result;
                 }
 
-                boolean pkFkCount = funcName.equals("count") && (attr.isPk() || attr.isFk());
+                boolean pkFkCount = !specialPkCount && funcName.equals("count") && (attr.isPk() || attr.isFk());
                 if (pkFkCount) {
                     return result;
                 }
@@ -94,8 +101,9 @@ public class Templar {
             }
 
             if (!node.QT.isEmpty()) {
-                boolean returnAllAndNumber = node.QT.equals("all") && attr.getAttributeType().equals(AttributeType.NUMBER);
-                if (returnAllAndNumber) {
+                boolean returnAllAndNumberOrKey = node.QT.equals("all")
+                        && (attr.getAttributeType().equals(AttributeType.NUMBER) || attr.isFk() || attr.isPk());
+                if (returnAllAndNumberOrKey) {
                     return result;
                 }
             }
@@ -142,8 +150,21 @@ public class Templar {
 
                 // Don't make duplicate projections
                 if (curProj.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
-                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), new Translation(trans)));
-                    return result;
+                    // The one exists dominates if it has CMT parent
+                    if (curProj.getNode().isFirstMappedDescendantOfCMT()) {
+                        Translation newTrans = new Translation(trans);
+                        newTrans.addQueryFragment(new BlankQueryFragment(node), similarity);
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                        return result;
+                    } else {
+                        Translation newTrans = new Translation(trans);
+                        double oldSim = newTrans.getSimilarity(curProj);
+                        newTrans.removeQueryFragment(curProj);
+                        double sim = Math.max(oldSim, similarity);
+                        newTrans.addQueryFragment(proj, sim);
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                        return result;
+                    }
                 }
             }
 
@@ -245,8 +266,7 @@ public class Templar {
 
                 double relSim;
                 try {
-                    String relPos;
-                    relPos = rel.isJoinTable()? "VB" : "NN";
+                    String relPos = rel.isJoinTable()? "VB" : "NN";
                     relSim = SimFunctions.similarity(rel.getName(), relPos, curNode.label, curNode.pos);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -406,17 +426,20 @@ public class Templar {
 
                                 result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
                                         curNode, schemaEl, attr, maxSim));
-                            } else if (relSim >= Constants.MIN_SIM) {
+                            }
+                            if (relSim >= Constants.MIN_SIM) {
                                 // CASE 2: If relation is similar, project relation default attribute
                                 // e.g. "How many papers..."
 
                                 result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
                                         curNode, schemaEl, rel.getPrimaryAttr(), relSim));
-                            } else if (rel.isWeak() &&
+                            }
+
+                            if (rel.isWeak() &&
                                     (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
                                             || curNode.relationship.equals("nsubjpass")
                                             || curNode.parent.tokenType.equals("FT"))) {
-                                // CASE 3: If it's a weak entity, project parent relation default attribute as well as
+                                // CASE 3: If it's a weak entity like "categories", project parent relation default attribute as well as
                                 // predicate
                                 // e.g. "How many restaurants..."
 
@@ -434,14 +457,14 @@ public class Templar {
                                     Translation newTrans = new Translation(trans);
                                     newTrans.addQueryFragment(pred, schemaEl.similarity);
                                     result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
-                                            curNode, schemaEl, rel.getPk(), schemaEl.similarity));
+                                            curNode, schemaEl, rel.getPk(), schemaEl.similarity, true));
                                 }
 
                                 // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
                                 double similarity = schemaEl.similarity;
 
                                 // penalize predicates that deal with common nouns
-                                if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                                // if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
                                 // penalize if a superlative is attached to this node
                                 if (curNode.attachedSuperlative != null) similarity *= Constants.PENALTY_PREDICATE_WITH_SUPERLATIVE;
 
@@ -470,9 +493,40 @@ public class Templar {
 
                             // CASE 2: it's actually supposed to be a predicate
 
+                            // Merge predicate into another predicate if related by adjective and one of them has high relSim
+                            /*
+                            for (Predicate existingPred : trans.getPredicates()) {
+                                if (existingPred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
+                                    if (existingPred.getNode().isRelatedByAdjective(curNode)) {
+                                        String existingRelPos = rel.isJoinTable()? "VB" : "NN";
+                                        double existingRelSim = SimFunctions.similarity(rel.getName(), existingRelPos,
+                                                existingPred.getNode().label, existingPred.getNode().pos);
+                                        if (relSim > Constants.MIN_SIM) {
+                                            // If this predicate is similar to relation, then bump up similarity of existing node
+                                            Translation newTrans = new Translation(trans);
+                                            double oldSim = newTrans.getSimilarity(existingPred);
+                                            double similarity = Math.max(oldSim, relSim);
+                                            newTrans.setSimilarity(existingPred, similarity);
+                                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                            // TODO: not sure if this eliminates valid possibilities
+                                            return result;
+                                        } else if (existingRelSim > Constants.MIN_SIM) {
+                                            // If existing predicate is similar to relation, then replace
+                                            Translation newTrans = new Translation(trans);
+                                            newTrans.removeQueryFragment(existingPred);
+                                            double similarity = Math.max(schemaEl.similarity, existingRelSim);
+                                            newTrans.addQueryFragment(pred, similarity);
+                                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                            // TODO: not sure if this eliminates valid possibilities
+                                            return result;
+                                        }
+                                    }
+                                }
+                            }*/
+
                             // penalize predicates that deal with common nouns
                             double similarity = schemaEl.similarity;
-                            if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                            // if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
 
                             Translation newTrans = new Translation(trans);
                             newTrans.addQueryFragment(pred, similarity);
@@ -517,19 +571,41 @@ public class Templar {
 
                 // In the case that we have a function as a parent, add accordingly and "ignore" function
                 if (!node.parent.function.equals("NA")) {
-                    String superlative = null;
-                    for (MappedSchemaElement mse : node.mappedElements) {
-                        mse.attachedFT = node.parent.function;
-                    }
                     ParseTreeNode functionNode = node.parent;
 
-                    if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
-                        node.attachedSuperlative = node.parent.parent.function;
+                    String primaryFT = node.parent.function;
+                    String secondaryFT = null;
+                    if (!functionNode.parent.function.equals("NA")) {
+                        if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
+                            node.attachedSuperlative = functionNode.parent.function;
+                        } else {
+                            secondaryFT = functionNode.parent.function;
+                        }
                     }
-                    if (node.attachedSuperlative == null) {
+                    if (secondaryFT == null || node.attachedSuperlative == null) {
                         for (ParseTreeNode funcChild : functionNode.children) {
-                            if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
-                                node.attachedSuperlative = funcChild.function;
+                            if (!funcChild.function.equals("NA")) {
+                                if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
+                                    node.attachedSuperlative = funcChild.function;
+                                } else {
+                                    secondaryFT = funcChild.function;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    for (MappedSchemaElement mse : node.mappedElements) {
+                        if (mse.schemaElement.type.equals("int") || mse.schemaElement.type.equals("double")) {
+                            if (!primaryFT.equals("count")) {
+                                mse.attachedFT = primaryFT;
+                            } else if (secondaryFT != null && !secondaryFT.equals("count")) {
+                                mse.attachedFT = secondaryFT;
+                            }
+                        } else {
+                            // Only allow "count" for text nodes
+                            if (primaryFT.equals("count") || (secondaryFT != null && secondaryFT.equals("count"))) {
+                                mse.attachedFT = "count";
                             }
                         }
                     }
@@ -543,14 +619,16 @@ public class Templar {
                                 node.children.add(funcChild);
                             }
 
+                            /*
                             if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
                                 superlative = funcChild.function;
-                            }
+                            }*/
                         }
 
+                        /*
                         if (superlative != null) {
                             node.attachedSuperlative = superlative;
-                        }
+                        }*/
 
                         node.parent = functionNode.parent;
                         node.relationship = functionNode.relationship;
@@ -778,19 +856,19 @@ public class Templar {
     }
 
     public static void main(String[] args) {
-        if (args.length < 4) {
-            System.out.println("Usage: Templar <db> <schema-prefix> <join-level> <nlq-file> <ans-file (optional)>");
-            System.out.println("Example: Templar mas data/mas/mas 6 data/mas/mas_c1.txt data/mas/mas_c1.ans");
+        if (args.length < 3) {
+            System.out.println("Usage: Templar <testset> <join-level> <cat-level>");
+            System.out.println("Example: Templar mas 6 all");
+            System.out.println("Example: Templar mas 6 c1");
             System.exit(1);
         }
         String dbName = args[0];
-        String prefix = args[1];
-        int joinLevel = Integer.valueOf(args[2]);
-        String nlqFile = args[3];
-        String ansFile = null;
-        if (args.length > 4) {
-            ansFile = args[4];
-        }
+        String prefix = "data/" + dbName + "/" + dbName;
+        int joinLevel = Integer.valueOf(args[1]);
+        String catLevel = args[2];
+
+        String nlqFile = prefix + "_" + catLevel + ".txt";
+        String ansFile = prefix + "_" + catLevel + ".ans";
 
         RDBMS db;
         try {
@@ -849,24 +927,9 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // YELP to fix
-            // Missing a "restaurant" predicate
-            // testNLQ.add("find the number of reviews written for \"Cafe Zinho\" restaurants in TX");
-
-            // Find "all" reviews shouldn't return a number, but actual tuples
-            testNLQ.add("Find all the reviews for all pet groomers with more than 100 reviews");
-            testNLQ.add("Find all reviews for businesses rated 2.5");
-
             // Question parsing
-            // testNLQ.add("In which neighborhoods Michelle has reviewed a business?");
-
             // Word "reviewed" failure
             // testNLQ.add("List all users who reviewed businesses that are restaurants in 2010.");
-
-            // "users" is mis-evaluated
-            // testNLQ.add("How many users have reviewed Irish pubs in Dallas?");
-            // testNLQ.add("Which restaurants in Dallas were reviewed by user Patrick?");
-            // testNLQ.add("Find all pet hospices in Pittsburgh");
 
             // nummod is an "nmod" instead
             // testNLQ.add("Find all reviews by Patrick with a rating above 4");
@@ -877,7 +940,6 @@ public class Templar {
             // testNLQ.add("List all bars reviewed by Patrick with at least 3 stars");
             // testNLQ.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
             // testNLQ.add("Find all Chinese restaurants in Dallas with at least 4 stars");
-
 
             // "born" failure
             // testNLQ.add("Find all actors from Austin born after 1980");
@@ -899,12 +961,6 @@ public class Templar {
             // testNLQ.add("Find the business with the most number of reviews in April");
             // testNLQ.add("Find the business which has the most number of categories");
 
-            // Treat PK better
-            /*
-            testNLQ.add("How many Starbucks are there in Dallas TX?");
-            testNLQ.add("How many businesses has Michelle reviewed in 2010?");
-            */
-
             // Handle "avg" better
             // testNLQ.add("what is the average rating given in Michelle reviews");
             // testNLQ.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
@@ -920,7 +976,11 @@ public class Templar {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
                 testSQL = new ArrayList<>();
                 for (String line : answerFileLines) {
-                    testSQL.add(Arrays.asList(line.trim().split("\t")));
+                    List<String> answerList = new ArrayList<>();
+                    for (String ans : line.trim().split("\t")) {
+                        answerList.add(ans.trim());
+                    }
+                    testSQL.add(answerList);
                 }
             }
         } catch (Exception e) {

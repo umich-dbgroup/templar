@@ -16,6 +16,7 @@ public class SchemaElement implements Serializable
 	public int elementID = 0; 
 	public String name = ""; // relation_name or attribute_name
 	public String type = ""; // relation, pk, fk, text, number;
+    public boolean joinTable;
 
 	public SchemaElement relation; // for pk, fk, text, number; 
 	
@@ -29,7 +30,8 @@ public class SchemaElement implements Serializable
 	{
 		this.elementID = elementID; 
 		this.name = name; 
-		this.type = type; 
+		this.type = type;
+        this.joinTable = false;
 	}
 
 	public boolean isNumeric() {
@@ -41,9 +43,10 @@ public class SchemaElement implements Serializable
     }
 
     public MappedSchemaElement isRelationSimilar(String tag, String tagPos) throws Exception {
-        if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos)) {
+        String relPos = this.relation.joinTable? "VB" : "NN";
+        if (SimFunctions.ifSchemaSimilar(this.relation.name, relPos, tag, tagPos)) {
             MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this.relation);
-            mappedSchemaElement.similarity = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
+            mappedSchemaElement.similarity = SimFunctions.similarity(this.relation.name, relPos, tag, tagPos);
             return mappedSchemaElement;
         }
 
@@ -52,28 +55,29 @@ public class SchemaElement implements Serializable
 
 	public MappedSchemaElement isSchemaExist(String tag, String tagPos) throws Exception
 	{
-		if(this.equals(this.relation.defaultAttribute))
-		{
-			if (SimFunctions.ifSchemaSimilar(this.relation.name, null, tag, tagPos) || SimFunctions.ifSchemaSimilar(name, null, tag, tagPos)) {
+        String attrPos = "NN";
+		if(this.equals(this.relation.defaultAttribute)) {
+            String relPos = this.relation.joinTable? "VB" : "NN";
+			if (SimFunctions.ifSchemaSimilar(this.relation.name, relPos, tag, tagPos) || SimFunctions.ifSchemaSimilar(name, attrPos, tag, tagPos)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);
-                double relationSim = SimFunctions.similarity(this.relation.name, null, tag, tagPos);
-                double attrSim = SimFunctions.similarity(this.name, null, tag, tagPos);
+                double relationSim = SimFunctions.similarity(this.relation.name, relPos, tag, tagPos);
+                double attrSim = SimFunctions.similarity(this.name, attrPos, tag, tagPos);
                 double avgSim = (relationSim + attrSim) / 2;
 				mappedSchemaElement.similarity = Math.max(relationSim, avgSim);
 				// mappedSchemaElement.similarity = 1-(1-mappedSchemaElement.similarity)*(1-SimFunctions.similarity(name, tag));
 				return mappedSchemaElement; 
 			}			
 		}
-		else if(SimFunctions.ifSchemaSimilar(name, null, tag, tagPos))
+		else if(SimFunctions.ifSchemaSimilar(name, attrPos, tag, tagPos))
 		{
 			MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this); 
-			mappedSchemaElement.similarity = SimFunctions.similarity(name, null, tag, tagPos);
+			mappedSchemaElement.similarity = SimFunctions.similarity(name, attrPos, tag, tagPos);
 			return mappedSchemaElement; 
 		}
 		return null; 
 	}
-	
-	public MappedSchemaElement isTextExist(String value, Connection conn) throws Exception 
+
+	public MappedSchemaElement isTextExist(String value, Connection conn) throws Exception
 	{
 		Statement statement = conn.createStatement();
 

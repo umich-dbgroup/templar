@@ -72,7 +72,9 @@ public class SimFunctions
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
-                sims[i] = SimFunctions.cosineSim(nodeLabel, mappedValues.get(i));
+                double cosineSim = SimFunctions.cosineSim(nodeLabel, mappedValues.get(i));
+                double lemmatizedSim = SimFunctions.cosineSim(lemmatize(nodeLabel, "NN"), lemmatize(mappedValues.get(i), "NN"));
+                sims[i] = Math.max(lemmatizedSim, cosineSim);
 				// sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
 			}
 			
@@ -135,7 +137,7 @@ public class SimFunctions
 		}
 	}
 	
-	public static double similarity(String word1, String word1pos, String word2, String word2pos) throws Exception
+	public static double similarity(String word1, String word1pos, String word2, String word2pos)
 	{
         /*
 		double similarity;
@@ -217,12 +219,15 @@ public class SimFunctions
 
     public static double cosineSim(String word1, String word2) {
         // Clear cache at arbitrary moment
-        if (profileCache.size() > 10000) {
+        if (profileCache.size() > 20000) {
             profileCache.clear();
         }
 
         word1 = word1.toLowerCase();
         word2 = word2.toLowerCase();
+
+        if (word1.equals(word2)) return 1.0;
+
         Map<String, Integer> word1Profile = profileCache.get(word1);
         if (word1Profile == null) {
             word1Profile = cosine.getProfile(word1);
@@ -241,7 +246,7 @@ public class SimFunctions
     static Map<String, Double> cachedSim = new HashMap<>();
     public static double word2vecSim(String word1, String word2) {
         // Clear cache at arbitrary moment
-        if (cachedSim.size() > 10000) {
+        if (cachedSim.size() > 20000) {
             cachedSim.clear();
         }
 
@@ -261,6 +266,11 @@ public class SimFunctions
             cachedSim.put(combined, sim);
         }
         return sim;
+    }
+
+    public static String lemmatize(String word, String wordPos) {
+        wordPos = convertStanfordPosToMorphadornerPos(wordPos);
+        return lemmatizer.lemmatize(word, wordPos);
     }
 
 	public static double word2vecSim(String word1, String word1pos, String word2, String word2pos) {

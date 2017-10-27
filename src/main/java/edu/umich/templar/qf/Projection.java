@@ -65,7 +65,9 @@ public class Projection extends QueryFragment {
 
     public void applyAggregateFunction() {
         if (this.attribute.getType().equals("int")) {
-            this.function = "sum";
+            if (this.function == null || (!this.function.equals("sum") && !this.function.equals("avg"))) {
+                this.function = "sum";
+            }
         } else {
             this.function = "count";
         }

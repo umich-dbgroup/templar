@@ -50,7 +50,8 @@ public class NodeMapper
             ParseTreeNode curNode = parseTree.allNodes.get(i);
             if (!cmtFound && (curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
                 // Only return if question is direct object
-                if (!curNode.relationship.equals("dobj") && !curNode.relationship.equals("dep")) continue;
+                if (!curNode.relationship.equals("dobj") && !curNode.relationship.equals("dep")
+                        && !curNode.relationship.equals("det")) continue;
 
                 // for most question words
                 ParseTreeNode object = null;
@@ -58,6 +59,12 @@ public class NodeMapper
                     if (sibling.relationship.startsWith("nsubj") && !sibling.equals(curNode)) {
                         object = sibling;
                         break;
+                    }
+                }
+
+                if (object == null) {
+                    if (curNode.parent.relationship.startsWith("nsubj")) {
+                        object = curNode.parent;
                     }
                 }
 
@@ -371,6 +378,7 @@ public class NodeMapper
                     if (!parseTree.allNodes.contains(relatedNode)) continue;
 
                     treeNode.label = treeNode.label + " " + relatedNode.label;
+                    treeNode.mappedElements = new ArrayList<>();
                     db.isSchemaExist(treeNode);
                     db.isTextExist(treeNode);
 
@@ -381,25 +389,25 @@ public class NodeMapper
                     MappedSchemaElement origRelatedEl = relatedNode.mappedElements.get(0);
 
                     // Only check and re-sort the new mapped elements
-                    List<MappedSchemaElement> newMappedElements = new ArrayList<>();
-                    for (int j = origMappedElements.size() + 1; j < treeNode.mappedElements.size(); j++) {
+                    for (int j = 0; j < treeNode.mappedElements.size(); j++) {
                         MappedSchemaElement mappedElement = treeNode.mappedElements.get(j);
                         SimFunctions.similarity(treeNode, mappedElement);
-                        newMappedElements.add(mappedElement);
                     }
-                    Collections.sort(newMappedElements);
+                    Collections.sort(treeNode.mappedElements);
 
                     // Make sure it has mapped elements. If not, skip
-                    if (newMappedElements.isEmpty()) continue;
+                    if (treeNode.mappedElements.isEmpty()) {
+                        treeNode.mappedElements = origMappedElements;
+                        continue;
+                    }
 
-                    MappedSchemaElement newElement = newMappedElements.get(0);
+                    MappedSchemaElement newElement = treeNode.mappedElements.get(0);
 
                     if (!newElement.equals(origElement) &&
                             newElement.similarity >= origElement.similarity &&
                             newElement.similarity >= origRelatedEl.similarity) {
                         // Keep tree in multi-word form if new similarity is higher
                         treeNode.relationship = relatedNode.relationship;
-                        treeNode.mappedElements.removeAll(origMappedElements);
                         for (ParseTreeNode relatedChild : relatedNode.children) {
                             if (!relatedChild.equals(treeNode)) {
                                 relatedChild.parent = treeNode;

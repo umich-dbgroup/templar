@@ -118,7 +118,9 @@ public class SchemaGraph {
                     rel.setPrimaryAttr(primaryAttr);
 
                     if (relInfo.get("join_table") != null) {
-                        rel.setJoinTable((Boolean) relInfo.get("join_table"));
+                        boolean joinTable = (Boolean) relInfo.get("join_table");
+                        rel.setJoinTable(joinTable);
+                        relSchemaEl.joinTable = joinTable;
                     }
 
                     if (relInfo.get("weak") != null) {
