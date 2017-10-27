@@ -881,14 +881,16 @@ public class Templar {
         // Load in everything for log counter
         // NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
 
-        List<String> nlq = new ArrayList<>();
         List<List<String>> queryAnswers = null;
         try {
-            nlq = FileUtils.readLines(new File(nlqFile), "UTF-8");
             List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
             queryAnswers = new ArrayList<>();
             for (String line : answerFileLines) {
-                queryAnswers.add(Arrays.asList(line.trim().split("\t")));
+                List<String> answerList = new ArrayList<>();
+                for (String ans : line.trim().split("\t")) {
+                    answerList.add(ans.trim());
+                }
+                queryAnswers.add(answerList);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -908,7 +910,9 @@ public class Templar {
         AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
         QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
 
-        List<Select> selects = Utils.parseStatements("data/yelp/yelp_all.ans");
+        List<String> logSQLStr = new ArrayList<>();
+        queryAnswers.stream().map((list) -> list.get(0)).forEach(logSQLStr::add);
+        List<Select> selects = Utils.parseStatements(logSQLStr);
         for (Select select : selects) {
             agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
             qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
