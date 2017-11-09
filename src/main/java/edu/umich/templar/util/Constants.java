@@ -20,14 +20,17 @@ public class Constants {
     public static final int MAX_MAPPED_EL = 5;
 
     // Min similarity score to consider "matching"
-    public static final Double MIN_SIM = 0.6;
+    public static final Double MIN_SIM = 0.65;
 
     public static final Double PENALTY_UNLIKELY_PROJECTION = 0.5;
     public static final Double PENALTY_RELATION_WITH_SUPERLATIVE = 0.3;
     public static final Double PENALTY_RELATION_WITH_ADJECTIVE = 0.5;
-    public static final Double PENALTY_PREDICATE_COMMON_NOUN = 1.0;
+    public static final Double PENALTY_PREDICATE_COMMON_NOUN = 0.5;
     public static final Double PENALTY_PREDICATE_WITH_SUPERLATIVE = 0.3;
 
     // Threshold to augment NL similarity scores with co-occurrence scores
     public static final Double SIM_AUG_THRESHOLD = 0.8;
+
+    // How big to let the sim cache get before clearing
+    public static final int SIM_CACHE_CLEAR = 20000;
 }

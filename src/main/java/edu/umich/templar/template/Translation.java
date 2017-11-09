@@ -175,28 +175,47 @@ public class Translation {
     }
 
     public Double getNLQFScore() {
-        double totalSim = 0.0;
+        double totalSim = 1.0;
+        int totalCount = 0;
         for (ScoredQueryFragment qf : this.scoredQFs) {
-            double cooccurSum = 0.0;
-            for (ScoredQueryFragment scoredQF : this.scoredQFs) {
-                cooccurSum += qf.getWeightedDiceCoefficient(scoredQF);
+            // Trying to skip blanks
+            if (qf.getQf() instanceof BlankQueryFragment) {
+                totalSim *= qf.getSimilarity();
+                totalCount++;
+            } else {
+                double cooccurSum = 0.0;
+                int cooccurCount = 0;
+                for (ScoredQueryFragment scoredQF : this.scoredQFs) {
+                    // Trying to skip blanks
+                    if (!(scoredQF.getQf() instanceof BlankQueryFragment) && !scoredQF.equals(qf)) {
+                        cooccurSum += qf.getDiceCoefficient(scoredQF);
+
+                        // cooccurSum += qf.getConditionalProbability(scoredQF);
+                        cooccurCount++;
+                    }
+                }
+                double cooccurScore = cooccurSum / Math.max(cooccurCount, 1);
+
+                // Is this necessary?
+                //double sim = Math.max(qf.getSimilarity(), Constants.SIM_AUG_THRESHOLD);
+
+                double sim = qf.getSimilarity();
+                double scaledCooccur = cooccurScore * (1 - sim) + sim;
+                totalSim *= scaledCooccur;
+                totalCount++;
             }
-            double cooccurScore = cooccurSum / this.scoredQFs.size();
-            double sim = Math.max(qf.getSimilarity(), Constants.SIM_AUG_THRESHOLD);
-            double scaledCooccur = cooccurScore * (1 - sim) + sim;
-            totalSim += scaledCooccur;
         }
 
-        return totalSim / this.scoredQFs.size();
+        return Math.pow(totalSim, 1.0 / totalCount);
     }
 
     public Double getNLScore() {
-        double totalSim = 0.0;
+        double totalSim = 1.0;
         for (ScoredQueryFragment qf : this.scoredQFs) {
-            totalSim += qf.getSimilarity();
+            totalSim *= qf.getSimilarity();
         }
 
-        return totalSim / this.scoredQFs.size();
+        return Math.pow(totalSim, 1.0 / this.scoredQFs.size());
     }
 
     /*
@@ -317,7 +336,7 @@ public class Translation {
         this.scoreMap.remove(qf);
     }
 
-    public void addQueryFragment(QueryFragment qf, double similarity) {
+    public void addQueryFragment(QueryFragment qf, Double similarity) {
         this.score = null;
 
         if (qf instanceof RelationFragment) {
@@ -336,36 +355,37 @@ public class Translation {
             throw new RuntimeException("Unrecognized query fragment type!");
         }
 
-        // Add all agnostic query fragments as needed
-        List<AgnosticQueryFragment> agnosticQFs = qf.convertToAgnostic();
-        List<ScoredAgnosticQueryFragment> qfScoredAQFList = new ArrayList<>();
+        if (similarity != null) {
+            // Add all agnostic query fragments as needed
+            List<AgnosticQueryFragment> agnosticQFs = qf.convertToAgnostic();
+            List<ScoredAgnosticQueryFragment> qfScoredAQFList = new ArrayList<>();
 
-        this.scoredAQFMap.put(qf, qfScoredAQFList);
+            this.scoredAQFMap.put(qf, qfScoredAQFList);
 
-        for (AgnosticQueryFragment aqf : agnosticQFs) {
-            if (this.agnosticGraph != null) {
-                aqf = this.agnosticGraph.getOrInsertQF(aqf);
+            for (AgnosticQueryFragment aqf : agnosticQFs) {
+                if (this.agnosticGraph != null) {
+                    aqf = this.agnosticGraph.getOrInsertQF(aqf);
+                }
+                ScoredAgnosticQueryFragment scoredAQF = new ScoredAgnosticQueryFragment(aqf, similarity);
+                qfScoredAQFList.add(scoredAQF);
+                this.scoredAQFs.add(scoredAQF);
             }
-            ScoredAgnosticQueryFragment scoredAQF = new ScoredAgnosticQueryFragment(aqf, similarity);
-            qfScoredAQFList.add(scoredAQF);
-            this.scoredAQFs.add(scoredAQF);
-        }
 
-        // Add all regular query fragments as needed
-        List<QueryFragment> qfTemplates = qf.convertToQFTemplate();
-        List<ScoredQueryFragment> qfScoredQFList = new ArrayList<>();
+            // Add all regular query fragments as needed
+            List<QueryFragment> qfTemplates = qf.convertToQFTemplate();
+            List<ScoredQueryFragment> qfScoredQFList = new ArrayList<>();
 
-        this.scoredQFMap.put(qf, qfScoredQFList);
+            this.scoredQFMap.put(qf, qfScoredQFList);
 
-        for (QueryFragment qfTemplate : qfTemplates) {
-            if (this.qfGraph != null) {
-                qfTemplate = this.qfGraph.getOrInsertQF(qfTemplate);
+            for (QueryFragment qfTemplate : qfTemplates) {
+                if (this.qfGraph != null) {
+                    qfTemplate = this.qfGraph.getOrInsertQF(qfTemplate);
+                }
+                ScoredQueryFragment sqf = new ScoredQueryFragment(qfTemplate, similarity);
+                qfScoredQFList.add(sqf);
+                this.scoredQFs.add(sqf);
             }
-            ScoredQueryFragment sqf = new ScoredQueryFragment(qfTemplate, similarity);
-            qfScoredQFList.add(sqf);
-            this.scoredQFs.add(sqf);
         }
-
         this.scoreMap.put(qf, similarity);
     }
 

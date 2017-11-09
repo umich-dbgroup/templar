@@ -9,9 +9,9 @@ import java.util.Map;
  */
 public class ScoredQueryFragment {
     QueryFragment qf;
-    double similarity;
+    Double similarity;
 
-    public ScoredQueryFragment(QueryFragment qf, double similarity) {
+    public ScoredQueryFragment(QueryFragment qf, Double similarity) {
         this.qf = qf;
         this.similarity = similarity;
     }
@@ -20,7 +20,7 @@ public class ScoredQueryFragment {
         return qf;
     }
 
-    public double getSimilarity() {
+    public Double getSimilarity() {
         return similarity;
     }
 
@@ -48,9 +48,22 @@ public class ScoredQueryFragment {
         return diceSum / denom;
     }
 
-    public double getWeightedDiceCoefficient(ScoredQueryFragment other) {
-        if (this.equals(other)) return 1.0;
+    public double getDiceCoefficient(ScoredQueryFragment other) {
+        // Return 0 if identical
+        if (this.equals(other)) return 0.0;
 
+        double numer = 2 * this.getQf().getCooccurrence(other.getQf());
+        double denom = Math.max(this.getQf().getCount() + other.getQf().getCount(), 1);
+        return numer / denom;
+    }
+
+    public double getWeightedDiceCoefficient(ScoredQueryFragment other) {
+        // if (this.equals(other)) return 1.0;
+
+        // Return 0, in fact...
+        if (this.equals(other)) return 0.0;
+
+        /*
         boolean thisIsBlank = this.getQf() instanceof BlankQueryFragment; //|| this.getQf() instanceof RelationFragment;
         boolean otherIsBlank = other.getQf() instanceof BlankQueryFragment; //|| other.getQf() instanceof RelationFragment;
 
@@ -59,27 +72,47 @@ public class ScoredQueryFragment {
         } else if (thisIsBlank) {
             // return this.similarity * other.similarity * 0.5;
             // return (1 - this.similarity) * other.similarity * other.getAverageDiceCoefficient();
-            return (1 - this.similarity) * other.getAverageDiceCoefficient();
             // return Constants.MIN_SIM * other.getAverageDiceCoefficient();
             // return other.getAverageDiceCoefficient();
             // return (1 - this.similarity) * other.similarity * other.getMaxDiceCoefficient();
+
+            // Preferred working one
+            // return (1 - this.similarity) * other.getAverageDiceCoefficient();
+
+            // Cleaner one
+            return other.getAverageDiceCoefficient();
         } else if (otherIsBlank) {
             // return this.similarity * other.similarity * 0.5;
             // return this.similarity * (1 - other.similarity) * this.getAverageDiceCoefficient();
-            return (1 - this.similarity) * this.getAverageDiceCoefficient();
             // return this.similarity * this.getAverageDiceCoefficient();
             // return this.getAverageDiceCoefficient();
             // return this.similarity * (1 - other.similarity) * this.getMaxDiceCoefficient();
-        }
+
+            // Preferred working one
+            // return (1 - this.similarity) * this.getAverageDiceCoefficient();
+
+            // Cleaner one
+            return this.getAverageDiceCoefficient();
+        }*/
 
         double numer = 2 * this.getQf().getCooccurrence(other.getQf());
         double denom = Math.max(this.getQf().getCount() + other.getQf().getCount(), 1);
         // return this.similarity * other.similarity * numer / denom;
-        return this.similarity * numer / denom;
-        //return numer / denom;
+
+        // Best working one
+        // return this.similarity * numer / denom;
+
+        // Cleaner one
+        return numer / denom;
     }
 
-    public void setSimilarity(double similarity) {
+    public double getConditionalProbability(ScoredQueryFragment other) {
+        double numer = this.getQf().getCooccurrence(other.getQf());
+        double denom = Math.max(this.getQf().getCount(), 1);
+        return numer / denom;
+    }
+
+    public void setSimilarity(Double similarity) {
         this.similarity = similarity;
     }
 }

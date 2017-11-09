@@ -16,6 +16,7 @@ import edu.stanford.nlp.trees.TypedDependency;
 import edu.umich.templar.dataStructure.ParseTree;
 import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class StanfordNLParser 
 {
@@ -72,7 +73,16 @@ public class StanfordNLParser
     			conj += depIndex; 
     			query.conjTable.add(conj); 
     		}
-        	String [] treeTableEntry = {depIndex, curDep.dep().value(), allWords.get(curDep.dep().index())[1], govIndex, curDep.reln().toString()}; 
+
+            String val = allWords.get(curDep.dep().index())[0];
+            String pos = allWords.get(curDep.dep().index())[1];
+
+            // If it's an ambiguous noun + multi-word expression with the first letter capitalized, consider it proper
+            if (pos.equals("NN") && val.split(" ").length > 1 && Character.isUpperCase(val.charAt(0))) {
+                pos = "NNP";
+            }
+
+        	String [] treeTableEntry = {depIndex, curDep.dep().value(), pos, govIndex, curDep.reln().toString()};
         	query.treeTable.add(treeTableEntry); // treeTableEntry is in format: depIndex, depValue, pos, govIndex, relationship; 
 		}
 	}
@@ -128,6 +138,20 @@ public class StanfordNLParser
         for (int i = 0; i < query.treeTable.size(); i++) {
             String[] treeTableEntry = query.treeTable.get(i);
             String reln = treeTableEntry[4];
+
+			// Parser fix: Check if it's a number in the case of some strange cases (e.g. "rating above 4.5")
+			if (reln.equals("nmod")) {
+				ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));
+				ParseTreeNode govNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[3]));
+				if (NumberUtils.isCreatable(depNode.label)) {
+					depNode.relationship = "nummod";
+					reln = "nummod";
+				}
+
+				ParseTreeNode[] adjTableEntry = {depNode, govNode};
+				query.adjTable.add(adjTableEntry);
+			}
+
             if (reln.equals("amod") || reln.equals("num") || reln.equals("nn") || reln.equals("nummod")
                     || reln.equals("compound") || reln.equals("dobj")) {
                 ParseTreeNode depNode = query.parseTree.searchNodeByOrder(Integer.valueOf(treeTableEntry[0]));

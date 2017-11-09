@@ -219,7 +219,7 @@ public class SimFunctions
 
     public static double cosineSim(String word1, String word2) {
         // Clear cache at arbitrary moment
-        if (profileCache.size() > 20000) {
+        if (profileCache.size() > Constants.SIM_CACHE_CLEAR) {
             profileCache.clear();
         }
 
@@ -246,7 +246,7 @@ public class SimFunctions
     static Map<String, Double> cachedSim = new HashMap<>();
     public static double word2vecSim(String word1, String word2) {
         // Clear cache at arbitrary moment
-        if (cachedSim.size() > 20000) {
+        if (cachedSim.size() > Constants.SIM_CACHE_CLEAR) {
             cachedSim.clear();
         }
 

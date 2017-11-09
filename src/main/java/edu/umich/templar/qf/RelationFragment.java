@@ -25,7 +25,7 @@ public class RelationFragment extends QueryFragment {
 
     @Override
     public String toString() {
-        return "rel[" + this.relation.getName() + "]";
+        return "rel[" + this.relation.toString() + "]";
     }
 
     @Override

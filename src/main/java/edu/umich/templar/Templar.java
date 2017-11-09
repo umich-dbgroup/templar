@@ -45,7 +45,7 @@ public class Templar {
     }
 
     public Translation newTranslationWithSuperlative(Translation trans, ParseTreeNode node, MappedSchemaElement mse,
-                                                     Attribute attr, double similarity) {
+                                                     Attribute attr, Double similarity) {
         String funcStr;
         String superlativeStr;
         if (node.attachedSuperlative != null) {
@@ -67,14 +67,14 @@ public class Templar {
     public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
                                                                                Translation trans, ParseTreeNode node,
                                                                                MappedSchemaElement mse, Attribute attr,
-                                                                               double similarity) {
+                                                                               Double similarity) {
         return this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, node, mse, attr, similarity, false);
     }
 
     public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
                                                                                Translation trans, ParseTreeNode node,
                                                                                MappedSchemaElement mse, Attribute attr,
-                                                                               double similarity, boolean specialPkCount) {
+                                                                               Double similarity, boolean specialPkCount) {
         List<Translation> result = new ArrayList<>();
 
         if (mse.isSuperlative(node)) {
@@ -453,18 +453,21 @@ public class Templar {
                                 // CASE 4: Project relation default attribute in addition to predicate
                                 // e.g. "How many Starbucks..."
 
+                                double similarity = schemaEl.similarity;
+
+                                // penalize predicates that deal with common nouns
+                                if (curNode.pos.equals("NNS") || curNode.pos.equals("NN")) {
+                                    similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                                }
+
                                 if (rel.getPk() != null) {
                                     Translation newTrans = new Translation(trans);
-                                    newTrans.addQueryFragment(pred, schemaEl.similarity);
+                                    newTrans.addQueryFragment(pred, similarity);
                                     result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
                                             curNode, schemaEl, rel.getPk(), schemaEl.similarity, true));
                                 }
 
                                 // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
-                                double similarity = schemaEl.similarity;
-
-                                // penalize predicates that deal with common nouns
-                                // if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
                                 // penalize if a superlative is attached to this node
                                 if (curNode.attachedSuperlative != null) similarity *= Constants.PENALTY_PREDICATE_WITH_SUPERLATIVE;
 
@@ -524,9 +527,11 @@ public class Templar {
                                 }
                             }*/
 
-                            // penalize predicates that deal with common nouns
+                            // penalize predicates that deal with common nouns, but only if it's not a weak entity
                             double similarity = schemaEl.similarity;
-                            // if (curNode.pos.equals("NNS")) similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                            if ((curNode.pos.equals("NNS") || curNode.pos.equals("NN")) && !rel.isWeak()) {
+                                similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                            }
 
                             Translation newTrans = new Translation(trans);
                             newTrans.addQueryFragment(pred, similarity);
@@ -931,50 +936,57 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // Question parsing
-            // Word "reviewed" failure
-            // testNLQ.add("List all users who reviewed businesses that are restaurants in 2010.");
-
-            // nummod is an "nmod" instead
-            // testNLQ.add("Find all reviews by Patrick with a rating above 4");
-
-            // "star" is mis-evaluated
-            // testNLQ.add("List all the businesses with more than 4.5 stars");
-            // testNLQ.add("List all 5 star Italian restaurants");
-            // testNLQ.add("List all bars reviewed by Patrick with at least 3 stars");
-            // testNLQ.add("Which neighborhood in Madison has the Italian restaurant with the highest stars");
-            // testNLQ.add("Find all Chinese restaurants in Dallas with at least 4 stars");
-
-            // "born" failure
-            // testNLQ.add("Find all actors from Austin born after 1980");
-
-            // Question structure failure
+            // IMDB to check
             /*
+            // The word "born" is not interpreted correctly
+            testNLQ.add("Find all actors who were born in 1984");
+
+            // "When" and "where", etc. are not interpreted correctly as a question
             testNLQ.add("When was \"Kevin Spacey\" born?");
-            testNLQ.add("In what year was \"Kevin Spacey\" born?");
-            testNLQ.add("Where is the birth place of \"Kevin Spacey\"");
-            testNLQ.add("In what city was \"Kevin Spacey\" born?");
-            testNLQ.add("What is the nationality of \"Kevin Spacey\"?");
+            testNLQ.add("Where is the birth place of \"Kevin Spacey\"?");
+            testNLQ.add("Who acted \"John Nash\" in the movie \"A Beautiful Mind\"?");
+            testNLQ.add("Which movies did \"Alfred Hitchcock\" direct?");
+            testNLQ.add("Who is the director of the tv series \"House of Cards\" from 2013?");
+            testNLQ.add("where is the director of \"The Past\" from");
+
+            // "How much was the budget" is interpreted incorrectly as text, when it's a value
+            testNLQ.add("How much was the budget of \"Finding Nemo\"");
+
+            // Couldn't find "Joy" movie
+            testNLQ.add("Who was the director of the movie Joy from 2015?");
+
+            // Can't handle splitting into two predicates right now
+            testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
+
+            // NL Parser orders incorrectly
+            testNLQ.add("Find all movies featuring \"Kate Winslet\"");
+            testNLQ.add("Find all movies featuring \"Benedict Cumberbatch\"");
+            testNLQ.add("Find all movies directed by \"Woody Allen\" and featuring \"Scarlett Johansson\"");
+
+            // Steven Spielberg disappears for some strange reason
+            testNLQ.add("How many movies are there that are directed by \"Steven Spielberg\" and featuring \"Matt Damon\"?");
+
+            // Response includes "featuring" and "playing" and "character". It should not.
+            testNLQ.add("What are all the movies directed by \"Quentin Tarantino\" featuring \"Christoph Waltz\"?");
+            testNLQ.add("Who is the actor playing \"Alan Turing\" in \"The Imitation Game\"?");
+            testNLQ.add("Which movie had the character \"Daffy Duck\"");
+
+            // Should make genre a "weak entity"
+            testNLQ.add("Find all comedies produced in year 2015");
+            testNLQ.add("List all the Sci-Fi movies which released in 2010");
+
+            // Ranks aren't as good as hoped for certain keyword queries
+            testNLQ.add("Find all movies about Autism");
+            testNLQ.add("Find all movies about Iraq war");
+            testNLQ.add("What are the movies related to nuclear weapons");
+            testNLQ.add("List all the directors of movies about nuclear weapons");
+
+            // "Role" is not selected
+            testNLQ.add("What are the major roles in the movie \"Daddy Long Legs\"");
+
+            // Join paths are strange
+            testNLQ.add("what are the genres of movies directed by \"Asghar Farhadi\");
             */
-
-            // testNLQ.add("Find the business with the most number of reviews in April");
-            // testNLQ.add("Find the business which has the most number of categories");
-
-            // Superlative failure
-            // testNLQ.add("find the user with the most number of reviews");
-            // testNLQ.add("Find the business with the most number of reviews in April");
-            // testNLQ.add("Find the business which has the most number of categories");
-
-            // Handle "avg" better
-            // testNLQ.add("what is the average rating given in Michelle reviews");
-            // testNLQ.add("Find the average number of checkins in restaurant \"Barrio Café\" per day");
-            // testNLQ.add("Find all bars in \"Los Angeles\" with at least 30 reviews and average rating above 3 stars");
-            // testNLQ.add("Find users whose average review rating is below 3");
-
-
-            // Parser failure
-            // testNLQ.add("What is the number of businesses user Michelle reviews per month?");
-
 
             if (ansFile != null) {
                 List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");

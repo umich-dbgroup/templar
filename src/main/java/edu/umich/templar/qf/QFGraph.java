@@ -23,10 +23,14 @@ public class QFGraph {
     Map<String, Relation> relations;   // relation info
     List<QueryFragment> qfList;        // all query fragments in graph
 
+    Double maxDice;
+
     public QFGraph(Map<String, Relation> relations) {
         this.relations = relations;
 
         this.qfList = new ArrayList<>();
+
+        this.maxDice = null;
     }
 
     public static void main(String[] args) {
@@ -83,6 +87,11 @@ public class QFGraph {
                 if (table.getAlias() != null) {
                     rel.getAliasSet().add(table.getAlias().getName().trim());
                 }
+                int aliasInt = 0;
+                while (relations.contains(rel)) {
+                    rel = new Relation(rel);
+                    rel.setAliasInt(++aliasInt);
+                }
                 relations.add(rel);
                 selectQFs.add(new RelationFragment(rel));
             }
@@ -102,7 +111,13 @@ public class QFGraph {
                         if (table.getAlias() != null) {
                             rel.getAliasSet().add(table.getAlias().getName().trim());
                         }
+                        int aliasInt = 0;
+                        while (relations.contains(rel)) {
+                            rel = new Relation(rel);
+                            rel.setAliasInt(++aliasInt);
+                        }
                         relations.add(rel);
+                        selectQFs.add(new RelationFragment(rel));
                     }
                 } else if (join.getRightItem() instanceof SubSelect) {
                     PlainSelect subPs = (PlainSelect) ((SubSelect) join.getRightItem()).getSelectBody();
