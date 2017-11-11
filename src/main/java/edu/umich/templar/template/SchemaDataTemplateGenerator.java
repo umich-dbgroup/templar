@@ -157,6 +157,7 @@ public class SchemaDataTemplateGenerator {
                     Attribute attr = attrEntry.getValue();
 
                     // If this is the PK, add self-joins
+                    /*
                     if (attr.isPk()) {
                         int aliasInt = 0;
                         for (Relation curRel : relations) {
@@ -184,7 +185,7 @@ public class SchemaDataTemplateGenerator {
                                 ps.getJoins().remove(join);
                             }
                         }
-                    }
+                    }*/
 
                     // HACK: Need this because we're creating new attributes on the fly that might not be found in the
                     // original edges maps
@@ -208,7 +209,7 @@ public class SchemaDataTemplateGenerator {
             }
         }
 
-        if (!joinPath.passesSelfJoinCheck()) return templates;
+        // if (!joinPath.passesSelfJoinCheck()) return templates;
 
         /*
          * Generate templates
