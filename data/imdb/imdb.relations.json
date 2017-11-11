@@ -194,6 +194,8 @@
   },
   "genre": {
     "name": "genre",
+    "weak": true,
+    "parent": "movie",
     "type": "relation",
     "attributes": {
       "gid": {
@@ -366,6 +368,11 @@
       },
       "num_of_episodes": {
         "name": "num_of_episodes",
+        "type": "int",
+        "entropy": 0.0
+      },
+      "release_year": {
+        "name": "release_year",
         "type": "int",
         "entropy": 0.0
       },
