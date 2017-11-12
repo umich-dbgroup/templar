@@ -53,7 +53,7 @@ What are the series in which "Scott Foley" is an actor?
 What company produced the series Scandal?
 Find all tv series produced by Netflix
 Find all movies produced by Netflix
-Find all movies featuring Kevin Spacey
+Find all movies featuring "Kevin Spacey"
 Who is the director of the series "House of Cards" produced by Netflix?
 Who is the director of the tv series "House of Cards" from 2013?
 Find all movies in which "Robin Wright" appears
