@@ -48,8 +48,23 @@ public class NodeMapper
         List<ParseTreeNode> toDelete = new ArrayList<>();
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
-            if (!cmtFound && (curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
-                // Only return if question is direct object
+            if (!cmtFound && curNode.pos.equals("WP") && curNode.relationship.equals("nsubj")) {
+                // "Who acted..." and "who acts..."
+                curNode.tokenType = "CMT";
+
+                // Remove node from where it is
+                curNode.parent.children.remove(curNode);
+
+                // Shove it beneath the root
+                curNode.parent = parseTree.root;
+                curNode.children = parseTree.root.children;
+                parseTree.root.children = new ArrayList<>();
+                parseTree.root.children.add(curNode);
+                for (ParseTreeNode child : curNode.children) {
+                    child.parent = curNode;
+                }
+            } else if (!cmtFound && (curNode.pos.equals("WDT") || curNode.pos.equals("WP")) && curNode.children.isEmpty()) {
+                // Only return if question is direct object or other known dependency
                 if (!curNode.relationship.equals("dobj") && !curNode.relationship.equals("dep")
                         && !curNode.relationship.equals("det")) continue;
 
@@ -92,13 +107,17 @@ public class NodeMapper
                 }
 
             } else if (!cmtFound && curNode.pos.equals("WRB") && curNode.parent.pos.equals("JJ") && curNode.children.isEmpty()) {
-                // for "HOW MANY"
+                // for "HOW MANY" or "HOW MUCH"
 
                 // Merge the two nodes to one "how many" node
                 ParseTreeNode parent = curNode.parent;
                 curNode.label = curNode.label + " " + parent.label;
                 curNode.tokenType = "CMT";
-                curNode.function = "count";
+
+                // How many...
+                if (parent.label.toLowerCase().equals("many")) {
+                    curNode.function = "count";
+                }
 
                 parent.children.remove(curNode);
 
@@ -165,7 +184,25 @@ public class NodeMapper
                         }
                     }
                 }
-            } /*else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
+            } else if (!cmtFound && curNode.pos.equals("WRB") && curNode.relationship.equals("advmod")
+                    && curNode.children.isEmpty()) {
+                // "When was..." and "where is..."
+                curNode.tokenType = "CMT";
+
+                // Remove node from where it is
+                curNode.parent.children.remove(curNode);
+
+                // Shove it beneath the root
+                curNode.parent = parseTree.root;
+                curNode.children = parseTree.root.children;
+                parseTree.root.children = new ArrayList<>();
+                parseTree.root.children.add(curNode);
+                for (ParseTreeNode child : curNode.children) {
+                    child.parent = curNode;
+                }
+            }
+
+            /*else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
                 // Strange interpretations like for "return me the papers written by H. V. Jagadish and Yunyao Li on PVLDB after 2005."
                 // Tree is derived as return -xcomp-> written -dep-> papers, and relationships need to be swapped
                 ParseTreeNode toElevate = null;

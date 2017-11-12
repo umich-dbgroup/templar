@@ -53,6 +53,8 @@ public class QFGraph {
     }
 
     public QueryFragment getOrInsertQF(QueryFragment qf) {
+        if (qf instanceof BlankQueryFragment) return qf;
+
         for (QueryFragment listQf : this.qfList) {
             if (qf.equals(listQf)) {
                 return listQf;

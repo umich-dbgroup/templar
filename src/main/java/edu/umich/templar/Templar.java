@@ -936,24 +936,23 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
+            // Testing join path generation
+            // testNLQ.add("return me the authors who have cited papers by \"H. V. Jagadish\"");
+            // testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB.");
+            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\"");
+
             // IMDB to check
             /*
             // The word "born" is not interpreted correctly
             testNLQ.add("Find all actors who were born in 1984");
 
             // "When" and "where", etc. are not interpreted correctly as a question
-            testNLQ.add("When was \"Kevin Spacey\" born?");
-            testNLQ.add("Where is the birth place of \"Kevin Spacey\"?");
-            testNLQ.add("Who acted \"John Nash\" in the movie \"A Beautiful Mind\"?");
-            testNLQ.add("Which movies did \"Alfred Hitchcock\" direct?");
-            testNLQ.add("Who is the director of the tv series \"House of Cards\" from 2013?");
-            testNLQ.add("where is the director of \"The Past\" from");
+            // testNLQ.add("When was \"Kevin Spacey\" born?");
+            // testNLQ.add("Where is the birth place of \"Kevin Spacey\"?");
 
-            // "How much was the budget" is interpreted incorrectly as text, when it's a value
-            testNLQ.add("How much was the budget of \"Finding Nemo\"");
-
-            // Couldn't find "Joy" movie
-            testNLQ.add("Who was the director of the movie Joy from 2015?");
+            // "Acted" isn't correctly correlated with "actor"
+            // testNLQ.add("Who acted \"John Nash\" in the movie \"A Beautiful Mind\"?");
+            // testNLQ.add("Who acts \"Olivia Pope\" in the series Scandal?");
 
             // Can't handle splitting into two predicates right now
             testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
@@ -962,6 +961,7 @@ public class Templar {
             testNLQ.add("Find all movies featuring \"Kate Winslet\"");
             testNLQ.add("Find all movies featuring \"Benedict Cumberbatch\"");
             testNLQ.add("Find all movies directed by \"Woody Allen\" and featuring \"Scarlett Johansson\"");
+            testNLQ.add("Who was the director of the movie Joy from 2015?");
 
             // Steven Spielberg disappears for some strange reason
             testNLQ.add("How many movies are there that are directed by \"Steven Spielberg\" and featuring \"Matt Damon\"?");
@@ -970,11 +970,9 @@ public class Templar {
             testNLQ.add("What are all the movies directed by \"Quentin Tarantino\" featuring \"Christoph Waltz\"?");
             testNLQ.add("Who is the actor playing \"Alan Turing\" in \"The Imitation Game\"?");
             testNLQ.add("Which movie had the character \"Daffy Duck\"");
+            */
 
-            // Should make genre a "weak entity"
-            testNLQ.add("Find all comedies produced in year 2015");
-            testNLQ.add("List all the Sci-Fi movies which released in 2010");
-
+            /*
             // Ranks aren't as good as hoped for certain keyword queries
             testNLQ.add("Find all movies about Autism");
             testNLQ.add("Find all movies about Iraq war");
@@ -1053,18 +1051,11 @@ public class Templar {
 
             for (Template tmpl : templates) {
                 for (Translation trans : topNTranslations) {
-                    Set<Translation> perms = trans.getAliasPermutations();
-                    List<InstantiatedTemplate> insts = new ArrayList<>();
-                    perm_loop:
+                    Set<Translation> perms = trans.getAliasPermutations(tmpl.getJoinPath());
+
                     for (Translation perm : perms) {
                         InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
                         if (inst.getValue() == null) continue;
-                        for (InstantiatedTemplate existing : insts) {
-                            if (inst.isEquivalentPermutationTo(existing)) {
-                                continue perm_loop;
-                            }
-                        }
-                        insts.add(inst);
 
                         Integer existingIndex = resultIndexMap.get(inst.getValue());
 

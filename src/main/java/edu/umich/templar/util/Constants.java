@@ -31,6 +31,5 @@ public class Constants {
     // Threshold to augment NL similarity scores with co-occurrence scores
     public static final Double SIM_AUG_THRESHOLD = 0.8;
 
-    // How big to let the sim cache get before clearing
-    public static final int SIM_CACHE_CLEAR = 20000;
+    public static final int MAX_CACHE_SIZE = 20000;
 }

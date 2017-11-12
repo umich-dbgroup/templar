@@ -19,6 +19,7 @@ import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.EnglishLemm
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Word2Vec;
 import info.debatty.java.stringsimilarity.Cosine;
+import org.apache.commons.collections4.map.LRUMap;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class SimFunctions 
@@ -44,7 +45,8 @@ public class SimFunctions
 		}
 		return lemmatizer.lemmatize(word); 
 	}
-	
+
+    static Map<String, Double> cosineSimCache = new LRUMap<>(Constants.MAX_CACHE_SIZE);
 	public static void similarity(ParseTreeNode treeNode, MappedSchemaElement element)
 	{
 		if(element.similarity > 0)
@@ -72,10 +74,16 @@ public class SimFunctions
 			List<String> mappedValues = element.mappedValues;
 			for(int i = 0; i < mappedValues.size(); i++)
 			{
-                double cosineSim = SimFunctions.cosineSim(nodeLabel, mappedValues.get(i));
-                double lemmatizedSim = SimFunctions.cosineSim(lemmatize(nodeLabel, "NN"), lemmatize(mappedValues.get(i), "NN"));
-                sims[i] = Math.max(lemmatizedSim, cosineSim);
-				// sims[i] = SimFunctions.pqSim(nodeLabel, mappedValues.get(i));
+                String key = nodeLabel + ":" + mappedValues.get(i);
+
+                Double sim = cosineSimCache.get(key);
+                if (sim == null) {
+                    double cosineSim = SimFunctions.cosineSim(nodeLabel, mappedValues.get(i));
+                    double lemmatizedSim = SimFunctions.cosineSim(lemmatize(nodeLabel, "NN"), lemmatize(mappedValues.get(i), "NN"));
+                    sim = Math.max(lemmatizedSim, cosineSim);
+                    cosineSimCache.put(key, sim);
+                }
+                sims[i] = sim;
 			}
 			
 			for(int i = 0; i < mappedValues.size(); i++)
@@ -215,14 +223,9 @@ public class SimFunctions
 	}
 
     static Cosine cosine = new Cosine(2);
-    static Map<String, Map<String, Integer>> profileCache = new HashMap<>();
+    static Map<String, Map<String, Integer>> profileCache = new LRUMap<>(Constants.MAX_CACHE_SIZE);
 
     public static double cosineSim(String word1, String word2) {
-        // Clear cache at arbitrary moment
-        if (profileCache.size() > Constants.SIM_CACHE_CLEAR) {
-            profileCache.clear();
-        }
-
         word1 = word1.toLowerCase();
         word2 = word2.toLowerCase();
 
@@ -243,13 +246,8 @@ public class SimFunctions
         return cosine.similarity(word1Profile, word2Profile);
     }
 
-    static Map<String, Double> cachedSim = new HashMap<>();
+    static Map<String, Double> cachedSim = new LRUMap<>(Constants.MAX_CACHE_SIZE);
     public static double word2vecSim(String word1, String word2) {
-        // Clear cache at arbitrary moment
-        if (cachedSim.size() > Constants.SIM_CACHE_CLEAR) {
-            cachedSim.clear();
-        }
-
         String combined;
         if (word1.compareTo(word2) < 0) {
             combined = word1 + ":" + word2;
@@ -268,9 +266,18 @@ public class SimFunctions
         return sim;
     }
 
+    static Map<String, String> lemmaCache = new LRUMap<>(Constants.MAX_CACHE_SIZE);
     public static String lemmatize(String word, String wordPos) {
-        wordPos = convertStanfordPosToMorphadornerPos(wordPos);
-        return lemmatizer.lemmatize(word, wordPos);
+        String key = word + ":" + wordPos;
+        String cached = lemmaCache.get(key);
+        if (cached != null) {
+            return cached;
+        } else {
+            wordPos = convertStanfordPosToMorphadornerPos(wordPos);
+            String result = lemmatizer.lemmatize(word, wordPos);
+            lemmaCache.put(key, result);
+            return result;
+        }
     }
 
 	public static double word2vecSim(String word1, String word1pos, String word2, String word2pos) {

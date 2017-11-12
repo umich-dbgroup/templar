@@ -1,8 +1,6 @@
 package edu.umich.templar.template;
 
-import edu.umich.templar.qf.Having;
-import edu.umich.templar.qf.Predicate;
-import edu.umich.templar.qf.Projection;
+import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.JoinEdge;
@@ -27,6 +25,7 @@ public class InstantiatedTemplate {
         this.value = this.instantiate();
     }
 
+    /*
     public boolean isEquivalentPermutationTo(InstantiatedTemplate other) {
         // In the case that two templates are equivalent (i.e. symmetrical) due to alias permutations
         // e.g. author_0.name = "first" AND author_1.name = "second" VS.
@@ -40,7 +39,7 @@ public class InstantiatedTemplate {
         if (this.template.getJoinPath().getConsecutives().size() != 1) return false;
         JoinPath consecs = this.template.getJoinPath().getConsecutives().iterator().next();
         return this.template.getJoinPath().equals(consecs);
-    }
+    }*/
 
     private String instantiate() {
         String templateString = this.template.toString();
@@ -55,6 +54,7 @@ public class InstantiatedTemplate {
         if (relationCount != finalRelationCount) return null;
 
         // RULE: Only one vertex of a self-join should have projection/predicates associated with its relation.
+        /*
         for (JoinEdge selfJoin : this.template.getJoinPath().getSelfJoins()) {
             boolean firstVertexHasProjPred = false;
             boolean secondVertexHasProjPred = false;
@@ -80,7 +80,7 @@ public class InstantiatedTemplate {
             if (firstVertexHasProjPred && secondVertexHasProjPred) {
                 return null;
             }
-        }
+        }*/
 
         // RULE: For a non-empty join path, each relation on the terminal of a join path must have
         // at least 1 projection, predicate, having, or superlative corresponding to that relation.
@@ -107,7 +107,7 @@ public class InstantiatedTemplate {
 
                 if (translation.getSuperlative() != null) {
                     if (translation.getSuperlative().getAttribute().hasSameRelationAs(terminalAttr)) {
-                        continue terminal_check;
+                        continue;
                     }
                 }
 
@@ -119,6 +119,7 @@ public class InstantiatedTemplate {
 
         // RULE: At least 1 relation of an interior vertex in a pseudo-self-join must have a projection/predicate/having
         // associated with it.
+        /*
         consec_check:
         for (JoinPath consecutive : this.template.getJoinPath().getConsecutives()) {
             boolean isPseudoSelfJoin = true;
@@ -163,7 +164,7 @@ public class InstantiatedTemplate {
                 // Failed rule.
                 return null;
             }
-        }
+        }*/
 
         boolean subquery = false;
 
@@ -297,11 +298,41 @@ public class InstantiatedTemplate {
         return result;
     }
 
-    public Double getScore() {
-        // Complexity weight
-        double epsilon = 0.01;
+    public Double getQFJoinPathScore() {
+        double avgDice;
 
-        return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * this.getSimplicity());
+        QFGraph qfGraph = this.translation.qfGraph;
+        if (qfGraph == null) {
+            avgDice = 1.0;
+        } else {
+            if (this.template.getJoinPath().isEmpty()) {
+                avgDice = 1.0;
+            } else {
+                double diceSum = 0.0;
+                for (JoinEdge edge : this.template.getJoinPath().getJoinEdges()) {
+                    RelationFragment firstFrag = new RelationFragment(edge.getFirst().getRelation());
+                    RelationFragment secondFrag = new RelationFragment(edge.getSecond().getRelation());
+                    QueryFragment first = qfGraph.getOrInsertQF(firstFrag);
+                    QueryFragment second = qfGraph.getOrInsertQF(secondFrag);
+
+                    double numer = 2 * first.getCooccurrence(second);
+                    double denom = Math.max(first.getCount() + second.getCount(), 1);
+                    diceSum += numer / denom;
+                }
+                avgDice = diceSum / this.template.getJoinPath().getJoinEdges().size();
+            }
+
+        }
+
+        return avgDice / this.template.getRelations().size();
+    }
+
+    public Double getScore() {
+        double delta = 0.01;
+        double epsilon = 0.001;
+
+        double templateScore = ((1.0 - delta) * this.getSimplicity()) + (delta * this.getQFJoinPathScore());
+        return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * templateScore);
     }
 
     private Double getSimplicity() {
@@ -324,7 +355,7 @@ public class InstantiatedTemplate {
 
     @Override
     public String toString() {
-        return "TOT: " + this.getScore() + "; TR: " + this.translation.getScore() + "; SMP: " + this.getSimplicity() + "; " + this.value;
+        return "TOT: " + this.getScore() + "; TR: " + this.translation.getScore() + "; QF: " + this.getQFJoinPathScore() + "; " + this.value;
     }
 
 }

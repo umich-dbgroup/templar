@@ -216,7 +216,7 @@ public class TemplarCV {
 
                 for (Template tmpl : templates) {
                     for (Translation trans : topNTranslations) {
-                        Set<Translation> perms = trans.getAliasPermutations();
+                        Set<Translation> perms = trans.getAliasPermutations(tmpl.getJoinPath());
                         for (Translation perm : perms) {
                             InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
                             if (inst.getValue() == null) continue;

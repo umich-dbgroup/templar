@@ -4,6 +4,7 @@ import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.qf.*;
 import edu.umich.templar.qf.agnostic.*;
 import edu.umich.templar.rdbms.Attribute;
+import edu.umich.templar.rdbms.JoinPath;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.qf.pieces.Operator;
 import edu.umich.templar.util.Constants;
@@ -46,7 +47,7 @@ public class Translation {
     Translation parent;
 
     // Cache alias permutations
-    Set<Translation> permutations;
+    // Set<Translation> permutations;
 
     // Total translation score
     Double score;
@@ -71,7 +72,7 @@ public class Translation {
         this.scoreMap = new HashMap<>();
 
         this.parent = null;
-        this.permutations = null;
+        // this.permutations = null;
         this.score = null;
     }
 
@@ -101,7 +102,7 @@ public class Translation {
         this.score = other.score;
 
         this.parent = other.parent;
-        this.permutations = null;
+        // this.permutations = null;
     }
 
     private void addRelation(RelationFragment relationFragment) {
@@ -435,7 +436,9 @@ public class Translation {
         return result;
     }
 
-    private Set<Translation> getAliasPermutationsHelper(Translation pt, Map<String, List<ScoredQueryFragment>> remaining) {
+    private Set<Translation> getAliasPermutationsHelper(Translation pt,
+                                                        Map<String, List<ScoredQueryFragment>> remaining,
+                                                        JoinPath joinPath) {
         Set<Translation> results = new HashSet<>();
         Iterator<String> it = remaining.keySet().iterator();
 
@@ -480,7 +483,15 @@ public class Translation {
                         }
                     }
 
-                    results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining)));
+                    results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining), joinPath));
+
+                    // If the join path has the same number of terminal symmetric subpaths (+ 1) referring to the relation
+                    // as query fragments we have referring to the attribute, we only need to do this for i = 0
+                    Relation curRel = qfList.get(0).getQf().getAttribute().getRelation();
+                    int symmetricSubpathsCount = joinPath.getSymmetricSubpathTerminalCount(curRel);
+                    if (symmetricSubpathsCount == qfList.size()) {
+                        break;
+                    }
                 }
             } else {
                 ScoredQueryFragment qf = qfList.get(0);
@@ -500,7 +511,7 @@ public class Translation {
                     newPt.addQueryFragment(copySuperlative, qf.getSimilarity());
                 }
                 // Otherwise, move on to next
-                results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining)));
+                results.addAll(this.getAliasPermutationsHelper(newPt, new HashMap<>(remaining), joinPath));
             }
         } else {
             // Base case, where we have no keys remaining. We should generate full translations here.
@@ -513,8 +524,8 @@ public class Translation {
     // If we have a projection with author_0 and a predicate with author_1, for example,
     // this will print all possible permutations of aliases where the projection will have author_1 and
     // the predicate will have author_0 instead, etc.
-    public Set<Translation> getAliasPermutations() {
-        if (this.permutations != null) return this.permutations;
+    public Set<Translation> getAliasPermutations(JoinPath joinPath) {
+        // if (this.permutations != null) return this.permutations;
 
         Set<Translation> results = new HashSet<>();
 
@@ -574,11 +585,11 @@ public class Translation {
             newPt.addQueryFragment(rel, this.scoreMap.get(rel));
         }
 
-        results.addAll(this.getAliasPermutationsHelper(newPt, attributesToQueryFragments));
+        results.addAll(this.getAliasPermutationsHelper(newPt, attributesToQueryFragments, joinPath));
 
         // Cache permutations
-        this.permutations = results;
-        for (Translation perm : this.permutations) {
+        // this.permutations = results;
+        for (Translation perm : results) {
             perm.setParent(this);
             perm.setScore(this.score);
         }

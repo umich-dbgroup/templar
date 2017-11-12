@@ -3,8 +3,7 @@ package edu.umich.templar.rdbms;
 import org.apache.commons.collections.Bag;
 import org.apache.commons.collections.bag.HashBag;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -19,9 +18,6 @@ public class JoinPath {
     // For computing equality of JoinPath, store aliasless versions
     Bag aliaslessTerminals;
     Bag aliaslessJoinEdges;
-
-    // For convenience, store self-joins
-    Set<JoinEdge> selfJoins;
 
     // Paths of consecutive join edges which use the same key
     // e.g. a1.aid = w.aid AND w.aid = a2.aid
@@ -45,7 +41,6 @@ public class JoinPath {
         this.aliaslessTerminals = new HashBag();
 
         this.relations = new HashSet<>();
-        this.selfJoins = new HashSet<>();
 
         this.consecutives = new HashSet<>();
     }
@@ -64,7 +59,6 @@ public class JoinPath {
         this.aliaslessTerminals = new HashBag(other.aliaslessTerminals);
 
         this.relations = new HashSet<>(other.relations);
-        this.selfJoins = new HashSet<>(other.selfJoins);
 
         this.consecutive = other.consecutive;
 
@@ -92,7 +86,9 @@ public class JoinPath {
         return interiorVertices;
     }
 
+    /*
     public boolean passesSelfJoinCheck() {
+        /*
         for (JoinEdge selfJoin : this.selfJoins) {
             // RULE: A self-join cannot be the edge leading to a terminal vertex
             if (this.terminals.contains(selfJoin.getFirst()) ||
@@ -146,7 +142,7 @@ public class JoinPath {
         }
 
         return true;
-    }
+    }*/
 
     public boolean updateTerminalsIfRelationMatches(JoinEdge edge, Attribute existingVertex) {
         Relation rel = existingVertex.getRelation();
@@ -179,15 +175,27 @@ public class JoinPath {
     public boolean updateConsecutiveEdges(JoinEdge edge, JoinEdge existing) {
         // In the case that attr is consecutive (i.e. it's not an attribute with a different key to the same relation)
         boolean isConsecutive = false;
-        if (edge.getFirst().equals(existing.getFirst()) || edge.getFirst().equals(existing.getSecond())) {
-            // this.consecutiveInteriorVertices.add(edge.getFirst());
+
+        // Is it primary-foreign-primary (and therefore invalid?)
+        boolean isPFP = false;
+
+        if (edge.getFirst().equals(existing.getFirst())) {
             isConsecutive = true;
+            isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getSecond().isPk();
+        } else if(edge.getFirst().equals(existing.getSecond())) {
+            isConsecutive = true;
+            isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getSecond().isPk();
         }
 
-        if (edge.getSecond().equals(existing.getFirst()) || edge.getSecond().equals(existing.getSecond())) {
-            // this.consecutiveInteriorVertices.add(edge.getSecond());
+        if (edge.getSecond().equals(existing.getFirst())) {
             isConsecutive = true;
+            isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getFirst().isPk();
+        } else if (edge.getSecond().equals(existing.getSecond())) {
+            isConsecutive = true;
+            isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getFirst().isPk();
         }
+
+        if (isPFP) return false;
 
         if (isConsecutive) {
             boolean added = false;
@@ -207,6 +215,68 @@ public class JoinPath {
         }
 
         return true;
+    }
+
+    // Where a symmetric subpath leads to the terminals of the join path, and consequently
+    // we don't need 2 different orderings of attribute query fragments referring to the same attribute
+    // because they are duplicates.
+    public int getSymmetricSubpathTerminalCount(Relation rel) {
+        if (this.isEmpty()) return 0;
+
+        Set<Attribute> usedTerminals = new HashSet<>();
+        for (Attribute attr : this.terminals) {
+            if (attr.getRelation().getName().equals(rel.getName())) {
+                // Check if it leads to a symmetric subpath
+                Stack<List<Attribute>> stack = new Stack<>();
+                List<Attribute> traversal = new ArrayList<>();
+                traversal.add(attr);
+                stack.push(traversal);
+
+                while (!stack.isEmpty()) {
+                    List<Attribute> curTraversal = stack.pop();
+                    Attribute curAttr = curTraversal.get(curTraversal.size() - 1);
+
+                    // Base case where attribute is other terminal
+                    if (!attr.equals(curAttr) && this.terminals.contains(curAttr)) {
+                        List<AliaslessAttribute> checkTrav = new ArrayList<>();
+                        for (Attribute toCopy : curTraversal) {
+                            checkTrav.add(new AliaslessAttribute(toCopy));
+                        }
+
+                        List<AliaslessAttribute> reverseTraversal = new ArrayList<>(checkTrav);
+                        Collections.reverse(reverseTraversal);
+
+                        if (reverseTraversal.equals(checkTrav)) {
+                            if (!usedTerminals.contains(attr)) {
+                                usedTerminals.add(attr);
+                            }
+                            if (!usedTerminals.contains(curAttr)) {
+                                usedTerminals.add(curAttr);
+                            }
+                        }
+                    } else {
+                        for (JoinEdge edge : this.joinEdges) {
+                            if (edge.getFirst().hasSameRelationAs(curAttr) && !curTraversal.contains(edge.getSecond())) {
+                                List<Attribute> newTrav = new ArrayList<>(curTraversal);
+                                if (!edge.getFirst().equals(curAttr)) {
+                                    newTrav.add(edge.getFirst());
+                                }
+                                newTrav.add(edge.getSecond());
+                                stack.push(newTrav);
+                            } else if (edge.getSecond().hasSameRelationAs(curAttr) && !curTraversal.contains(edge.getFirst())) {
+                                List<Attribute> newTrav = new ArrayList<>(curTraversal);
+                                if (!edge.getSecond().equals(curAttr)) {
+                                    newTrav.add(edge.getSecond());
+                                }
+                                newTrav.add(edge.getFirst());
+                                stack.push(newTrav);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return usedTerminals.size();
     }
 
     public boolean add(JoinEdge edge) {
@@ -247,9 +317,10 @@ public class JoinPath {
         this.relations.add(edge.getFirst().getRelation());
         this.relations.add(edge.getSecond().getRelation());
 
+        /*
         if (edge.isSelfJoin()) {
             this.selfJoins.add(edge);
-        }
+        }*/
 
         return true;
     }
@@ -258,8 +329,8 @@ public class JoinPath {
         return this.relations.size();
     }
 
-    public Set<JoinEdge> getSelfJoins() {
-        return this.selfJoins;
+    public Set<JoinEdge> getJoinEdges() {
+        return joinEdges;
     }
 
     @Override
