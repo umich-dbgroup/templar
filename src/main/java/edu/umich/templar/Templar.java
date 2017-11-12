@@ -275,16 +275,11 @@ public class Templar {
                 // If we're dealing with a relation, generate a version without it (only if it's not a likely projection or superlative),
                 // and also move ahead
                 if (schemaEl.schemaElement.type.equals("relation")) {
-                    if (!curNode.isFirstMappedDescendantOfCMT() && curNode.attachedSuperlative == null) {
-                        // Enforce a penalty if there's a superlative or function associated with relation
-                        double similarity = schemaEl.similarity;
-                        /*
-                        if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
-                            similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
-                        }*/
-
+                    if (schemaEl.similarity > Constants.MIN_REL_SIM &&
+                            !curNode.isFirstMappedDescendantOfCMT() &&
+                            curNode.attachedSuperlative == null) {
                         Translation newTrans = new Translation(trans);
-                        newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
+                        newTrans.addQueryFragment(new RelationFragment(curNode, rel), schemaEl.similarity);
 
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
@@ -957,10 +952,12 @@ public class Templar {
             // Can't handle splitting into two predicates right now
             testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
 
-            // NL Parser orders incorrectly
+            // NL Parser orders certain patterns incorrectly
             testNLQ.add("Find all movies featuring \"Kate Winslet\"");
             testNLQ.add("Find all movies featuring \"Benedict Cumberbatch\"");
             testNLQ.add("Find all movies directed by \"Woody Allen\" and featuring \"Scarlett Johansson\"");
+
+            // Joy is listed as a VERB?
             testNLQ.add("Who was the director of the movie Joy from 2015?");
 
             // Steven Spielberg disappears for some strange reason

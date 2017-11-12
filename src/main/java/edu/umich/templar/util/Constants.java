@@ -21,6 +21,7 @@ public class Constants {
 
     // Min similarity score to consider "matching"
     public static final Double MIN_SIM = 0.65;
+    public static final Double MIN_REL_SIM = 0.8;
 
     public static final Double PENALTY_UNLIKELY_PROJECTION = 0.5;
     public static final Double PENALTY_RELATION_WITH_SUPERLATIVE = 0.3;
