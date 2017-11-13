@@ -13,7 +13,8 @@
         "importance": "primary",
         "name": "name",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "who"
       },
       "gender": {
         "name": "gender",
@@ -28,12 +29,14 @@
       "birth_city": {
         "name": "birth_city",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "where"
       },
       "birth_year": {
         "name": "birth_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       }
     }
   },
@@ -168,7 +171,8 @@
         "importance": "primary",
         "name": "name",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "who"
       },
       "gender": {
         "name": "gender",
@@ -183,12 +187,14 @@
       "birth_city": {
         "name": "birth_city",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "where"
       },
       "birth_year": {
         "name": "birth_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       }
     }
   },
@@ -268,7 +274,8 @@
       "release_year": {
         "name": "release_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       },
       "title_aka": {
         "name": "title_aka",
@@ -296,7 +303,8 @@
         "importance": "primary",
         "name": "name",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "who"
       },
       "gender": {
         "name": "gender",
@@ -311,12 +319,14 @@
       "birth_city": {
         "name": "birth_city",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "where"
       },
       "birth_year": {
         "name": "birth_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       }
     }
   },
@@ -374,7 +384,8 @@
       "release_year": {
         "name": "release_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       },
       "title_aka": {
         "name": "title_aka",
@@ -402,7 +413,8 @@
         "importance": "primary",
         "name": "name",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "who"
       },
       "gender": {
         "name": "gender",
@@ -417,12 +429,14 @@
       "birth_city": {
         "name": "birth_city",
         "type": "text",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "where"
       },
       "birth_year": {
         "name": "birth_year",
         "type": "int",
-        "entropy": 0.0
+        "entropy": 0.0,
+        "question": "when"
       }
     }
   },
