@@ -109,12 +109,11 @@ public class SimFunctions
 
             // Average the top 3 (if not exist, provide 0.95)
             double sum = 0;
-            double max = 3;
             double[] weights = {0.6, 0.3, 0.1};
 
             // The bottom threshold should be at most 0.95 if there is no mapped value for a position
             double bottomThreshold = Math.min(0.95, sims[0]);
-            for (int i = 0; i < max; i++) {
+            for (int i = 0; i < weights.length; i++) {
                 if (i >= (sims.length - 1)) {
                     sum += bottomThreshold * weights[i];
                 } else {
