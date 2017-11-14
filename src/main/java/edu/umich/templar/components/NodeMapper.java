@@ -160,12 +160,6 @@ public class NodeMapper
                     // Could not find object
                     if (object == null) continue;
 
-                    // Remove object from parent/children
-                    // object.parent.children.addAll(object.children);
-                    // for (ParseTreeNode cousin : object.children) {
-                    // cousin.parent = object.parent;
-                    // }
-
                     // Disconnect parent from object
                     toDelete.add(parent);
 
@@ -410,7 +404,7 @@ public class NodeMapper
                         continue;
                     }
                     // Make sure the related node comes after the current word
-                    if (relatedNode.wordOrder <= treeNode.wordOrder) continue;
+                    if ((relatedNode.wordOrder - 1) != treeNode.wordOrder) continue;
 
                     // Make sure it hasn't already been removed
                     if (!parseTree.allNodes.contains(relatedNode)) continue;

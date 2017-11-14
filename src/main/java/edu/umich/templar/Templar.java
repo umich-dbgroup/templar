@@ -928,15 +928,6 @@ public class Templar {
             Translation.MODE = 2;
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
-            // Testing join path generation
-            // testNLQ.add("return me the authors who have cited papers by \"H. V. Jagadish\"");
-            // testNLQ.add("return me the papers written by \"H. V. Jagadish\" and \"Yunyao Li\" on PVLDB.");
-            // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\"");
-
-            // IMDB to check
-            // The word "born" is not interpreted correctly
-            // testNLQ.add("Find all actors who were born in 1984");
-
             /*
             // Can't handle splitting into two predicates right now
             testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
@@ -950,7 +941,6 @@ public class Templar {
             // Response includes "featuring" and "playing" and "character". It should not.
             testNLQ.add("What are all the movies directed by \"Quentin Tarantino\" featuring \"Christoph Waltz\"?");
             testNLQ.add("Who is the actor playing \"Alan Turing\" in \"The Imitation Game\"?");
-            testNLQ.add("Which movie had the character \"Daffy Duck\"");
             */
 
             /*

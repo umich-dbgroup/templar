@@ -34,10 +34,6 @@
 <phrase>select
 <example>Select all the books published in year 1993.</example>
 </phrase>
-<!-- TODO: double check this -->
-<phrase>produce
-<example>Produce all the books published in year 1993.</example>
-</phrase>
 <phrase>generate</phrase>
 <phrase>list</phrase>
 <phrase>which</phrase>
