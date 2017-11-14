@@ -12,6 +12,8 @@ public class Attribute {
     String name;
     String type;
 
+    String question;    // associated question word (e.g. "who" if exists)
+
     Boolean fk; // if foreign key
     Boolean pk; // if primary key
 
@@ -23,6 +25,8 @@ public class Attribute {
         this.name = name;
         this.type = type;
 
+        this.question = null;
+
         this.fk = false;
         this.pk = false;
 
@@ -32,6 +36,8 @@ public class Attribute {
     public Attribute(Attribute other) {
         this.name = other.name;
         this.type = other.type;
+
+        this.question = other.question;
 
         this.fk = other.fk;
         this.pk = other.pk;
@@ -137,6 +143,14 @@ public class Attribute {
             attr.setRelation(canonicalRel);
         }
         return attr;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     @Override

@@ -25,7 +25,9 @@ public class SchemaElement implements Serializable
 	public SchemaElement pk; // for entity
 	public SchemaElement defaultAttribute; 
 	public ArrayList<SchemaElement> inElements = new ArrayList<SchemaElement>(); 
-	
+
+    public String question = null; // associated question word, if applicable ("who", "what", "etc")
+
 	public SchemaElement(int elementID, String name, String type)
 	{
 		this.elementID = elementID; 
@@ -53,10 +55,19 @@ public class SchemaElement implements Serializable
         return null;
     }
 
+    public MappedSchemaElement isQuestionMatch(String question) {
+        if (this.question != null && this.question.equals(question)) {
+            MappedSchemaElement mse = new MappedSchemaElement(this);
+            mse.similarity = 1.0;
+            return mse;
+        }
+        return null;
+    }
+
 	public MappedSchemaElement isSchemaExist(String tag, String tagPos) throws Exception
 	{
         String attrPos = "NN";
-		if(this.equals(this.relation.defaultAttribute)) {
+        if(this.equals(this.relation.defaultAttribute)) {
             String relPos = this.relation.joinTable? "VB" : "NN";
 			if (SimFunctions.ifSchemaSimilar(this.relation.name, relPos, tag, tagPos) || SimFunctions.ifSchemaSimilar(name, attrPos, tag, tagPos)) {
 				MappedSchemaElement mappedSchemaElement = new MappedSchemaElement(this);

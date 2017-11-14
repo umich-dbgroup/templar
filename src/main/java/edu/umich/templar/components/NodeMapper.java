@@ -44,13 +44,14 @@ public class NodeMapper
             }
 		}
 
-        // Handle "what", "which", "how many", "who", etc
+        // Handle "what", "which", "how many", "who", etc.
         List<ParseTreeNode> toDelete = new ArrayList<>();
         for (int i = 0; i < parseTree.allNodes.size(); i++) {
             ParseTreeNode curNode = parseTree.allNodes.get(i);
             if (!cmtFound && curNode.pos.equals("WP") && curNode.relationship.equals("nsubj")) {
                 // "Who acted..." and "who acts..."
                 curNode.tokenType = "CMT";
+                curNode.questionWord = curNode.label.toLowerCase();
 
                 // Remove node from where it is
                 curNode.parent.children.remove(curNode);
@@ -87,6 +88,7 @@ public class NodeMapper
                 if (object == null) continue;
 
                 curNode.tokenType = "CMT";
+                curNode.questionWord = curNode.label.toLowerCase();
 
                 // Shove them all after the root
                 List<ParseTreeNode> rootChildren = new ArrayList<>(parseTree.root.children);
@@ -188,6 +190,7 @@ public class NodeMapper
                     && curNode.children.isEmpty()) {
                 // "When was..." and "where is..."
                 curNode.tokenType = "CMT";
+                curNode.questionWord = curNode.label.toLowerCase();
 
                 // Remove node from where it is
                 curNode.parent.children.remove(curNode);
@@ -201,40 +204,35 @@ public class NodeMapper
                     child.parent = curNode;
                 }
             }
-
-            /*else if (curNode.relationship.equals("xcomp") && curNode.parent.tokenType.equals("CMT")) {
-                // Strange interpretations like for "return me the papers written by H. V. Jagadish and Yunyao Li on PVLDB after 2005."
-                // Tree is derived as return -xcomp-> written -dep-> papers, and relationships need to be swapped
-                ParseTreeNode toElevate = null;
-                for (ParseTreeNode child : curNode.children) {
-                    if (child.relationship.equals("dep")) {
-                        toElevate = child;
-                    }
-                }
-                if (toElevate != null) {
-                    List<ParseTreeNode> curNodeChildren = curNode.children;
-                    curNodeChildren.remove(toElevate);
-                    ParseTreeNode curNodeParent = curNode.parent;
-
-                    curNode.parent = toElevate;
-                    curNodeParent.children.remove(curNode);
-                    curNode.children = toElevate.children;
-                    for (ParseTreeNode child : curNode.children) {
-                        child.parent = curNode;
-                    }
-
-                    toElevate.parent = curNodeParent;
-                    toElevate.parent.children.add(toElevate);
-                    toElevate.children = curNodeChildren;
-                    toElevate.children.add(curNode);
-                    for (ParseTreeNode child : toElevate.children) {
-                        child.parent = toElevate;
-                    }
-                }
-            }*/
         }
         for (ParseTreeNode node : toDelete) {
             parseTree.deleteNode(node);
+        }
+
+        // Other parser quirks
+        for (ParseTreeNode node : parseTree.allNodes) {
+            if (node.pos.startsWith("VB") && node.parent.tokenType.equals("CMT")) {
+                // e.g. "Find all movies directed by..." or "Find movies featuring..."
+                // If you are the verb, and you have an nsubj child
+                ParseTreeNode objectNode = null;
+                for (ParseTreeNode child : node.children) {
+                    if (child.relationship.equals("nsubj")) {
+                        objectNode = child;
+                        break;
+                    }
+                }
+                if (objectNode == null) continue;
+
+                // Move object node above verb
+                ParseTreeNode parent = node.parent;
+                objectNode.parent = parent;
+                node.children.remove(objectNode);
+                objectNode.children = new ArrayList<>();
+                objectNode.children.add(node);
+                node.parent = objectNode;
+                parent.children.remove(node);
+                parent.children.add(objectNode);
+            }
         }
 
 		for(int i = 0; i < parseTree.allNodes.size(); i++)
@@ -361,6 +359,7 @@ public class NodeMapper
                     SimFunctions.similarity(treeNode, mappedElement);
                 }
                 Collections.sort(treeNode.mappedElements);
+                treeNode.choice = 0;
 
             } else if (treeNode.tokenType.equals("VT")) { // num
                 String OT = "=";
@@ -383,6 +382,8 @@ public class NodeMapper
                     SimFunctions.similarity(treeNode, mappedElement);
                 }
                 Collections.sort(treeNode.mappedElements);
+            } else if (treeNode.tokenType.equals("CMT") && treeNode.questionWord != null) {
+                db.isQuestionExist(treeNode);
             }
         }
 
@@ -533,7 +534,7 @@ public class NodeMapper
 						if(NT.similarity >= VT.similarity)
 						{
 							VT.similarity = NT.similarity; 
-							VT.choice = -1; 
+							VT.choice = -1;
 							int VTposition = treeNode.mappedElements.indexOf(VT); 
 							treeNode.mappedElements.set(treeNode.mappedElements.indexOf(NT), VT); 
 							treeNode.mappedElements.set(VTposition, NT); 

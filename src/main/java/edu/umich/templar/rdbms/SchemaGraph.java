@@ -79,6 +79,12 @@ public class SchemaGraph {
                     relSchemaEl.attributes.add(attrSchemaEl);
                     this.schemaElements.add(attrSchemaEl);
 
+                    if (attrInfo.get("question") != null) {
+                        String question = (String) attrInfo.get("question");
+                        attr.setQuestion(question);
+                        attrSchemaEl.question = question;
+                    }
+
                     if (attrInfo.get("importance") != null) {
                         relSchemaEl.defaultAttribute = attrSchemaEl;
                         primaryAttr = attr;

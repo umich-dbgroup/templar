@@ -1,6 +1,7 @@
 package edu.umich.templar.rdbms;
 
 import edu.umich.templar.dataStructure.ParseTreeNode;
+import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Utils;
 
@@ -110,7 +111,28 @@ public class RDBMS {
 			history.add(results.getString(2)); 
 		}
 	}
-	
+
+    public boolean isQuestionExist(ParseTreeNode treeNode) throws Exception {
+        ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text int double");
+
+        for(int i = 0; i < attributes.size(); i++)
+        {
+            MappedSchemaElement element = attributes.get(i).isQuestionMatch(treeNode.questionWord);
+            if (element != null) {
+                treeNode.mappedElements.add(element);
+            }
+        }
+
+        if (!treeNode.mappedElements.isEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 	public boolean isSchemaExist(ParseTreeNode treeNode) throws Exception
 	{
 //		ArrayList<SchemaElement> attributes = schemaGraph.getElementsByType("text number");

@@ -21,6 +21,7 @@ public class ParseTreeNode implements Serializable
     // Added by cjbaik
 	public String attachedOT = null; // the attached OT function if it's a VT
     public String attachedSuperlative = null; // the attached superlative (min/max) if exists
+	public String questionWord = null; // "Who", "what", "where", "when"...
 
 	public ParseTreeNode parent; 
 	public List<ParseTreeNode> children = new ArrayList<ParseTreeNode>();
@@ -113,7 +114,9 @@ public class ParseTreeNode implements Serializable
                 || reln.equals("compound") || reln.equals("dobj");
     }
 
-	public boolean isFirstMappedDescendantOfCMT() {
+	public boolean isFirstLikelyProjection() {
+		if (this.tokenType.equals("CMT") && this.mappedElements.size() > 0) return true;
+
         boolean result = false;
         ParseTreeNode parentCheck = this.parent;
         while (!parentCheck.label.equals("ROOT")) {
@@ -126,7 +129,7 @@ public class ParseTreeNode implements Serializable
             parentCheck = parentCheck.parent;
         }
 
-        if (result && parentCheck.tokenType.equals("CMT")) {
+        if (result && (parentCheck.tokenType.equals("CMT") && parentCheck.mappedElements.size() == 0)) {
             // Get the first child of the CMT (skipping an FT if there is one)
             if (parentCheck.children.get(0).tokenType.equals("FT")) {
                 parentCheck = parentCheck.children.get(0);

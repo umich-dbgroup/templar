@@ -151,7 +151,7 @@ public class Templar {
                 // Don't make duplicate projections
                 if (curProj.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
                     // The one exists dominates if it has CMT parent
-                    if (curProj.getNode().isFirstMappedDescendantOfCMT()) {
+                    if (curProj.getNode().isFirstLikelyProjection()) {
                         Translation newTrans = new Translation(trans);
                         newTrans.addQueryFragment(new BlankQueryFragment(node), similarity);
                         result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
@@ -202,7 +202,7 @@ public class Templar {
                     validProjections++;
 
                     // If not child of CMT or groupby, unlikely projection
-                    if (!proj.getNode().isFirstMappedDescendantOfCMT()) {
+                    if (!proj.getNode().isFirstLikelyProjection()) {
                         double oldSim = trans.getSimilarity(proj);
                         oldSim *= Constants.PENALTY_UNLIKELY_PROJECTION;
                         trans.setSimilarity(proj, oldSim);
@@ -241,298 +241,296 @@ public class Templar {
             return this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), new Translation(trans));
         }
 
-        if (curNode.tokenType.equals("NT") || curNode.tokenType.startsWith("VT")) {
-            curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
-            curNode.choice = 0;
+        curNode.mappedElements.sort((a, b) -> Double.valueOf(b.similarity).compareTo(a.similarity));
+        curNode.choice = 0;
 
-            List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(Constants.MAX_MAPPED_EL, curNode.mappedElements.size()));
+        List<MappedSchemaElement> mappedList = curNode.mappedElements.subList(0, Math.min(Constants.MAX_MAPPED_EL, curNode.mappedElements.size()));
 
-            // Add a blank query fragment with minimum similarity, as long as it's not superlative, function, group by
-            if (curNode.attachedSuperlative == null && curNode.QT.isEmpty()) {
-                Translation blankTrans = new Translation(trans);
-                blankTrans.addQueryFragment(new BlankQueryFragment(curNode), Constants.MIN_SIM);
-                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), blankTrans));
+        // Add a blank query fragment with minimum similarity, as long as it's not superlative, function, group by
+        if (curNode.attachedSuperlative == null && curNode.QT.isEmpty()) {
+            Translation blankTrans = new Translation(trans);
+            blankTrans.addQueryFragment(new BlankQueryFragment(curNode), Constants.MIN_SIM);
+            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), blankTrans));
+        }
+
+        for (MappedSchemaElement schemaEl : mappedList) {
+            // Min threshold to even try...
+            if (schemaEl.similarity < Constants.MIN_SIM) {
+                break;
             }
 
-            for (MappedSchemaElement schemaEl : mappedList) {
-                // Min threshold to even try...
-                if (schemaEl.similarity < Constants.MIN_SIM) {
-                    break;
-                }
+            Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
+            if (rel == null)
+                throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
-                Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
-                if (rel == null)
-                    throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
+            double relSim;
+            try {
+                String relPos = rel.isJoinTable()? "VB" : "NN";
+                relSim = SimFunctions.similarity(rel.getName(), relPos, curNode.label, curNode.pos);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
-                double relSim;
-                try {
-                    String relPos = rel.isJoinTable()? "VB" : "NN";
-                    relSim = SimFunctions.similarity(rel.getName(), relPos, curNode.label, curNode.pos);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-                // If we're dealing with a relation, generate a version without it (only if it's not a likely projection or superlative),
-                // and also move ahead
-                if (schemaEl.schemaElement.type.equals("relation")) {
-                    if (schemaEl.similarity > Constants.MIN_REL_SIM &&
-                            !curNode.isFirstMappedDescendantOfCMT() &&
-                            curNode.attachedSuperlative == null) {
-                        Translation newTrans = new Translation(trans);
-                        newTrans.addQueryFragment(new RelationFragment(curNode, rel), schemaEl.similarity);
-
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
-                    }
-
-                    continue;
-                }
-
-                Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
-                if (attr == null)
-                    throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
-
-                double attrSim;
-                try {
-                    attrSim = SimFunctions.similarity(attr.getName(), "NN", curNode.label, curNode.pos);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-
-                // If it has a child that has a "nummod" relationship, generate a HAVING
-                boolean havingPrimaryAttr = rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM;
-                ParseTreeNode nummodChild = curNode.getNummodChild();
-                if (havingPrimaryAttr && nummodChild != null) {
+            // If we're dealing with a relation, generate a version without it (only if it's not a likely projection or superlative),
+            // and also move ahead
+            if (schemaEl.schemaElement.type.equals("relation")) {
+                if (schemaEl.similarity > Constants.MIN_REL_SIM &&
+                        !curNode.isFirstLikelyProjection() &&
+                        curNode.attachedSuperlative == null) {
                     Translation newTrans = new Translation(trans);
+                    newTrans.addQueryFragment(new RelationFragment(curNode, rel), schemaEl.similarity);
 
-                    // Remove any existing predicates with the number if they exist
-                    for (Predicate pred : newTrans.getPredicates()) {
-                        if (pred.getNode().equals(nummodChild)) {
-                            newTrans.removeQueryFragment(pred);
-                            break;
-                        }
-                    }
-
-                    Having having = new Having(nummodChild, rel.getPrimaryAttr(),
-                            Utils.getOperatorFromString(nummodChild.attachedOT), nummodChild.label, "count");
-                    newTrans.addQueryFragment(having, schemaEl.similarity);
                     result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                 }
 
-                // Treat as projection, if no mapped values
-                boolean isProjectionOrSuperlative = schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1;
-                if (isProjectionOrSuperlative) {
-                    result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, curNode, schemaEl,
-                            attr, schemaEl.similarity));
+                continue;
+            }
+
+            Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
+            if (attr == null)
+                throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
+
+            double attrSim;
+            try {
+                attrSim = SimFunctions.similarity(attr.getName(), "NN", curNode.label, curNode.pos);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            // If it has a child that has a "nummod" relationship, generate a HAVING
+            boolean havingPrimaryAttr = rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM;
+            ParseTreeNode nummodChild = curNode.getNummodChild();
+            if (havingPrimaryAttr && nummodChild != null) {
+                Translation newTrans = new Translation(trans);
+
+                // Remove any existing predicates with the number if they exist
+                for (Predicate pred : newTrans.getPredicates()) {
+                    if (pred.getNode().equals(nummodChild)) {
+                        newTrans.removeQueryFragment(pred);
+                        break;
+                    }
+                }
+
+                Having having = new Having(nummodChild, rel.getPrimaryAttr(),
+                        Utils.getOperatorFromString(nummodChild.attachedOT), nummodChild.label, "count");
+                newTrans.addQueryFragment(having, schemaEl.similarity);
+                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+            }
+
+            // Treat as projection, if no mapped values
+            boolean isProjectionOrSuperlative = schemaEl.mappedValues.isEmpty() || schemaEl.choice == -1;
+            if (isProjectionOrSuperlative) {
+                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, curNode, schemaEl,
+                        attr, schemaEl.similarity));
+            } else {
+                // For predicates and havings.
+                Operator op = null;
+                String value = null;
+
+                // Try to find nearby node with operator token if number
+                if (curNode.tokenType.equals("VTNUM")) {
+                    if (curNode.attachedOT != null) {
+                        switch (curNode.attachedOT) {
+                            case ">":
+                                op = Operator.GT;
+                                value = curNode.label;
+                                break;
+                            case ">=":
+                                op = Operator.GTE;
+                                value = curNode.label;
+                                break;
+                            case "<":
+                                op = Operator.LT;
+                                value = curNode.label;
+                                break;
+                            case "<=":
+                                op = Operator.LTE;
+                                value = curNode.label;
+                                break;
+                            case "!=":
+                                op = Operator.NE;
+                                value = curNode.label;
+                                break;
+                            case "=":
+                                op = Operator.EQ;
+                                break;
+                        }
+                    }
+                }
+
+                if (op == null) op = Operator.EQ;
+
+                if (value == null) {
+                    value = schemaEl.mappedValues.get(0);
+                }
+
+                // Criteria for HAVING:
+                // (1) node should not be first descendant of CMT (it should be projection)
+                // (2) mapped schema element should have a valid attached function
+                if (!curNode.isFirstLikelyProjection() && schemaEl.isValidHavingCandidate()) {
+                    Having having = new Having(curNode, attr, op, value, schemaEl.attachedFT);
+
+                    // Should not do the same attribute for having as a projection
+                    boolean projExists = false;
+                    for (Projection proj : trans.getProjections()) {
+                        if (having.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
+                            projExists = true;
+                        }
+                    }
+                    if (projExists) continue;
+
+                    Translation newTrans = new Translation(trans);
+                    newTrans.addQueryFragment(having, schemaEl.similarity);
+
+                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                 } else {
-                    // For predicates and havings.
-                    Operator op = null;
-                    String value = null;
+                    Predicate pred = new Predicate(curNode, attr, op, value);
 
-                    // Try to find nearby node with operator token if number
-                    if (curNode.tokenType.equals("VTNUM")) {
-                        if (curNode.attachedOT != null) {
-                            switch (curNode.attachedOT) {
-                                case ">":
-                                    op = Operator.GT;
-                                    value = curNode.label;
-                                    break;
-                                case ">=":
-                                    op = Operator.GTE;
-                                    value = curNode.label;
-                                    break;
-                                case "<":
-                                    op = Operator.LT;
-                                    value = curNode.label;
-                                    break;
-                                case "<=":
-                                    op = Operator.LTE;
-                                    value = curNode.label;
-                                    break;
-                                case "!=":
-                                    op = Operator.NE;
-                                    value = curNode.label;
-                                    break;
-                                case "=":
-                                    op = Operator.EQ;
-                                    break;
-                            }
-                        }
-                    }
-
-                    if (op == null) op = Operator.EQ;
-
-                    if (value == null) {
-                        value = schemaEl.mappedValues.get(0);
-                    }
-
-                    // Criteria for HAVING:
-                    // (1) node should not be first descendant of CMT (it should be projection)
-                    // (2) mapped schema element should have a valid attached function
-                    if (!curNode.isFirstMappedDescendantOfCMT() && schemaEl.isValidHavingCandidate()) {
-                        Having having = new Having(curNode, attr, op, value, schemaEl.attachedFT);
-
-                        // Should not do the same attribute for having as a projection
-                        boolean projExists = false;
-                        for (Projection proj : trans.getProjections()) {
-                            if (having.getAttribute().hasSameRelationNameAndNameAs(proj.getAttribute())) {
-                                projExists = true;
-                            }
-                        }
-                        if (projExists) continue;
-
-                        Translation newTrans = new Translation(trans);
-                        newTrans.addQueryFragment(having, schemaEl.similarity);
-
-                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
-                    } else {
-                        Predicate pred = new Predicate(curNode, attr, op, value);
-
-                        // Merge the projection into the predicate if they are related by adjective
-                        for (Projection p : trans.getProjections()) {
-                            if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                // Merge the projection into the predicate, if related by adjective
-                                if (p.getNode().isRelatedByAdjective(curNode)) {
-                                    Translation newTrans = new Translation(trans);
-                                    double oldSim = newTrans.getSimilarity(p);
-                                    newTrans.removeQueryFragment(p);
-                                    double sim = Math.max(oldSim, schemaEl.similarity);
-
-                                    // Add a HAVING instead if there's a function attached to the projection
-                                    if (p.getFunction() != null) {
-                                        Having having = new Having(curNode, attr, pred.getOp(), pred.getValue(), p.getFunction());
-                                        newTrans.addQueryFragment(having, sim);
-                                    } else {
-                                        Predicate newPred = new Predicate(pred);
-                                        newTrans.addQueryFragment(newPred, sim);
-                                    }
-                                    result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
-                                }
-                            }
-                        }
-
-                        // Consider possibilities for projection if it's a descendant of CMT OR group by OR superlative
-                        if (curNode.isFirstMappedDescendantOfCMT() || curNode.QT.equals("each")
-                                || curNode.attachedSuperlative != null) {
-                            if (attrSim >= Constants.MIN_SIM) {
-                                // CASE 1: If attribute is similar, project attribute accordingly
-
-                                // Get the maximum of the attribute or relation similarity
-                                double maxSim = Math.max(relSim, attrSim);
-
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
-                                        curNode, schemaEl, attr, maxSim));
-                            }
-                            if (relSim >= Constants.MIN_SIM) {
-                                // CASE 2: If relation is similar, project relation default attribute
-                                // e.g. "How many papers..."
-
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
-                                        curNode, schemaEl, rel.getPrimaryAttr(), relSim));
-                            }
-
-                            if (rel.isWeak() &&
-                                    (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
-                                            || curNode.relationship.equals("nsubjpass")
-                                            || curNode.parent.tokenType.equals("FT"))) {
-                                // CASE 3: If it's a weak entity like "categories", project parent relation default attribute as well as
-                                // predicate
-                                // e.g. "How many restaurants..."
-
-                                Relation parent = this.relations.get(rel.getParent());
-
+                    // Merge the projection into the predicate if they are related by adjective
+                    for (Projection p : trans.getProjections()) {
+                        if (p.getAttribute().hasSameRelationNameAndNameAs(attr)) {
+                            // Merge the projection into the predicate, if related by adjective
+                            if (p.getNode().isRelatedByAdjective(curNode)) {
                                 Translation newTrans = new Translation(trans);
-                                newTrans.addQueryFragment(pred, schemaEl.similarity);
-                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
-                                        curNode, schemaEl, parent.getPrimaryAttr(), schemaEl.similarity));
-                            } else {
-                                // CASE 4: Project relation default attribute in addition to predicate
-                                // e.g. "How many Starbucks..."
+                                double oldSim = newTrans.getSimilarity(p);
+                                newTrans.removeQueryFragment(p);
+                                double sim = Math.max(oldSim, schemaEl.similarity);
 
-                                double similarity = schemaEl.similarity;
-
-                                // penalize predicates that deal with common nouns
-                                if (curNode.pos.equals("NNS") || curNode.pos.equals("NN")) {
-                                    similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                                // Add a HAVING instead if there's a function attached to the projection
+                                if (p.getFunction() != null) {
+                                    Having having = new Having(curNode, attr, pred.getOp(), pred.getValue(), p.getFunction());
+                                    newTrans.addQueryFragment(having, sim);
+                                } else {
+                                    Predicate newPred = new Predicate(pred);
+                                    newTrans.addQueryFragment(newPred, sim);
                                 }
-
-                                if (rel.getPk() != null) {
-                                    Translation newTrans = new Translation(trans);
-                                    newTrans.addQueryFragment(pred, similarity);
-                                    result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
-                                            curNode, schemaEl, rel.getPk(), schemaEl.similarity, true));
-                                }
-
-                                // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
-                                // penalize if a superlative is attached to this node
-                                if (curNode.attachedSuperlative != null) similarity *= Constants.PENALTY_PREDICATE_WITH_SUPERLATIVE;
-
-                                Translation newTrans2 = new Translation(trans);
-                                newTrans2.addQueryFragment(pred, similarity);
-
-                                result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans2));
-                            }
-                        } else {
-                            // In situations where it's probably not a projection because parent is not CMT
-
-                            if (relSim >= Constants.MIN_SIM) {
-                                // CASE 1: it's a simple relation reference
-
-                                // Enforce a penalty if there's a superlative or function associated with relation
-                                double similarity = relSim;
-                                if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
-                                    similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
-                                }
-
-                                Translation newTrans = new Translation(trans);
-                                newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
-
                                 result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                             }
+                        }
+                    }
 
-                            // CASE 2: it's actually supposed to be a predicate
+                    // Consider possibilities for projection if it's a descendant of CMT OR group by OR superlative
+                    if (curNode.isFirstLikelyProjection() || curNode.QT.equals("each")
+                            || curNode.attachedSuperlative != null) {
+                        if (attrSim >= Constants.MIN_SIM) {
+                            // CASE 1: If attribute is similar, project attribute accordingly
 
-                            // Merge predicate into another predicate if related by adjective and one of them has high relSim
-                            /*
-                            for (Predicate existingPred : trans.getPredicates()) {
-                                if (existingPred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
-                                    if (existingPred.getNode().isRelatedByAdjective(curNode)) {
-                                        String existingRelPos = rel.isJoinTable()? "VB" : "NN";
-                                        double existingRelSim = SimFunctions.similarity(rel.getName(), existingRelPos,
-                                                existingPred.getNode().label, existingPred.getNode().pos);
-                                        if (relSim > Constants.MIN_SIM) {
-                                            // If this predicate is similar to relation, then bump up similarity of existing node
-                                            Translation newTrans = new Translation(trans);
-                                            double oldSim = newTrans.getSimilarity(existingPred);
-                                            double similarity = Math.max(oldSim, relSim);
-                                            newTrans.setSimilarity(existingPred, similarity);
-                                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
-                                            // TODO: not sure if this eliminates valid possibilities
-                                            return result;
-                                        } else if (existingRelSim > Constants.MIN_SIM) {
-                                            // If existing predicate is similar to relation, then replace
-                                            Translation newTrans = new Translation(trans);
-                                            newTrans.removeQueryFragment(existingPred);
-                                            double similarity = Math.max(schemaEl.similarity, existingRelSim);
-                                            newTrans.addQueryFragment(pred, similarity);
-                                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
-                                            // TODO: not sure if this eliminates valid possibilities
-                                            return result;
-                                        }
-                                    }
-                                }
-                            }*/
+                            // Get the maximum of the attribute or relation similarity
+                            double maxSim = Math.max(relSim, attrSim);
 
-                            // penalize predicates that deal with common nouns, but only if it's not a weak entity
+                            result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
+                                    curNode, schemaEl, attr, maxSim));
+                        }
+                        if (relSim >= Constants.MIN_SIM) {
+                            // CASE 2: If relation is similar, project relation default attribute
+                            // e.g. "How many papers..."
+
+                            result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
+                                    curNode, schemaEl, rel.getPrimaryAttr(), relSim));
+                        }
+
+                        if (rel.isWeak() &&
+                                (curNode.relationship.equals("dobj") || curNode.relationship.equals("nsubj")
+                                        || curNode.relationship.equals("nsubjpass")
+                                        || curNode.parent.tokenType.equals("FT"))) {
+                            // CASE 3: If it's a weak entity like "categories", project parent relation default attribute as well as
+                            // predicate
+                            // e.g. "How many restaurants..."
+
+                            Relation parent = this.relations.get(rel.getParent());
+
+                            Translation newTrans = new Translation(trans);
+                            newTrans.addQueryFragment(pred, schemaEl.similarity);
+                            result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
+                                    curNode, schemaEl, parent.getPrimaryAttr(), schemaEl.similarity));
+                        } else {
+                            // CASE 4: Project relation default attribute in addition to predicate
+                            // e.g. "How many Starbucks..."
+
                             double similarity = schemaEl.similarity;
-                            if ((curNode.pos.equals("NNS") || curNode.pos.equals("NN")) && !rel.isWeak()) {
+
+                            // penalize predicates that deal with common nouns
+                            if (curNode.pos.equals("NNS") || curNode.pos.equals("NN")) {
                                 similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
                             }
 
+                            if (rel.getPk() != null) {
+                                Translation newTrans = new Translation(trans);
+                                newTrans.addQueryFragment(pred, similarity);
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, newTrans,
+                                        curNode, schemaEl, rel.getPk(), schemaEl.similarity, true));
+                            }
+
+                            // CASE 5: Maybe it's just a predicate, even though the parent is a CMT
+                            // penalize if a superlative is attached to this node
+                            if (curNode.attachedSuperlative != null) similarity *= Constants.PENALTY_PREDICATE_WITH_SUPERLATIVE;
+
+                            Translation newTrans2 = new Translation(trans);
+                            newTrans2.addQueryFragment(pred, similarity);
+
+                            result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans2));
+                        }
+                    } else {
+                        // In situations where it's probably not a projection because parent is not CMT
+
+                        if (relSim >= Constants.MIN_SIM) {
+                            // CASE 1: it's a simple relation reference
+
+                            // Enforce a penalty if there's a superlative or function associated with relation
+                            double similarity = relSim;
+                            if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
+                                similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
+                            }
+
                             Translation newTrans = new Translation(trans);
-                            newTrans.addQueryFragment(pred, similarity);
+                            newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
 
                             result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                         }
+
+                        // CASE 2: it's actually supposed to be a predicate
+
+                        // Merge predicate into another predicate if related by adjective and one of them has high relSim
+                        /*
+                        for (Predicate existingPred : trans.getPredicates()) {
+                            if (existingPred.getAttribute().hasSameRelationNameAndNameAs(attr)) {
+                                if (existingPred.getNode().isRelatedByAdjective(curNode)) {
+                                    String existingRelPos = rel.isJoinTable()? "VB" : "NN";
+                                    double existingRelSim = SimFunctions.similarity(rel.getName(), existingRelPos,
+                                            existingPred.getNode().label, existingPred.getNode().pos);
+                                    if (relSim > Constants.MIN_SIM) {
+                                        // If this predicate is similar to relation, then bump up similarity of existing node
+                                        Translation newTrans = new Translation(trans);
+                                        double oldSim = newTrans.getSimilarity(existingPred);
+                                        double similarity = Math.max(oldSim, relSim);
+                                        newTrans.setSimilarity(existingPred, similarity);
+                                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                        // TODO: not sure if this eliminates valid possibilities
+                                        return result;
+                                    } else if (existingRelSim > Constants.MIN_SIM) {
+                                        // If existing predicate is similar to relation, then replace
+                                        Translation newTrans = new Translation(trans);
+                                        newTrans.removeQueryFragment(existingPred);
+                                        double similarity = Math.max(schemaEl.similarity, existingRelSim);
+                                        newTrans.addQueryFragment(pred, similarity);
+                                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
+                                        // TODO: not sure if this eliminates valid possibilities
+                                        return result;
+                                    }
+                                }
+                            }
+                        }*/
+
+                        // penalize predicates that deal with common nouns, but only if it's not a weak entity
+                        double similarity = schemaEl.similarity;
+                        if ((curNode.pos.equals("NNS") || curNode.pos.equals("NN")) && !rel.isWeak()) {
+                            similarity *= Constants.PENALTY_PREDICATE_COMMON_NOUN;
+                        }
+
+                        Translation newTrans = new Translation(trans);
+                        newTrans.addQueryFragment(pred, similarity);
+
+                        result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                     }
                 }
             }
@@ -797,7 +795,6 @@ public class Templar {
             }*/
 
             if (node.mappedElements.size() > 0 ) mappedNodes.add(node);
-
         }
         mappedNodes.removeAll(mappedNodesToRemove);
         return mappedNodes;
@@ -937,25 +934,12 @@ public class Templar {
             // testNLQ.add("return me the authors who have cooperated with \"H. V. Jagadish\"");
 
             // IMDB to check
-            /*
             // The word "born" is not interpreted correctly
-            testNLQ.add("Find all actors who were born in 1984");
+            // testNLQ.add("Find all actors who were born in 1984");
 
-            // "When" and "where", etc. are not interpreted correctly as a question
-            // testNLQ.add("When was \"Kevin Spacey\" born?");
-            // testNLQ.add("Where is the birth place of \"Kevin Spacey\"?");
-
-            // "Acted" isn't correctly correlated with "actor"
-            // testNLQ.add("Who acted \"John Nash\" in the movie \"A Beautiful Mind\"?");
-            // testNLQ.add("Who acts \"Olivia Pope\" in the series Scandal?");
-
+            /*
             // Can't handle splitting into two predicates right now
             testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
-
-            // NL Parser orders certain patterns incorrectly
-            testNLQ.add("Find all movies featuring \"Kate Winslet\"");
-            testNLQ.add("Find all movies featuring \"Benedict Cumberbatch\"");
-            testNLQ.add("Find all movies directed by \"Woody Allen\" and featuring \"Scarlett Johansson\"");
 
             // Joy is listed as a VERB?
             testNLQ.add("Who was the director of the movie Joy from 2015?");

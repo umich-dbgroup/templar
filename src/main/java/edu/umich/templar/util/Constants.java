@@ -17,7 +17,7 @@ public class Constants {
     public static final String TIME = "#time";
     public static final String ORDER = "#order";
 
-    public static final int MAX_MAPPED_EL = 5;
+    public static final int MAX_MAPPED_EL = 7;
 
     // Min similarity score to consider "matching"
     public static final Double MIN_SIM = 0.65;
