@@ -4,7 +4,7 @@ What movies have the same director as the movie "Revolutionary Road"?
 Find all movies featuring "Benedict Cumberbatch" and "Keira Knightley"
 Find all movies featuring both "Matt Damon" and "Ben Affleck"
 What is the maximum number of movies in which "Brad Pitt" act in a given year?
-Find the actor with most number of films
+Find the actor with the most number of films
 Who acted in the most number of movies directed by "Jim Jarmusch"
 Find the movie which is classified in the most number of genres
 which movie has the most number of actors from China?

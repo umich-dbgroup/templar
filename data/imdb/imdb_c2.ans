@@ -50,7 +50,7 @@ select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 wher
 select movie_0.release_year from movie as movie_0 where movie_0.title = "The Imitation Game"
 select movie_0.title from keyword as keyword_0, movie as movie_0, tags as tags_0 where keyword_0.keyword = "iraq-war" and keyword_0.id = tags_0.kid and movie_0.mid = tags_0.msid
 select director_0.name from director as director_0 where director_0.nationality = "Afghanistan"
-select actor_0.name from actor as actor_0 where actor_0.nationality = "Afghanistan"
+select actor_0.name from actor as actor_0 where actor_0.nationality = "Afghanistan"	select actor_0.name from actor as actor_0 where actor_0.birth_city = "Afghanistan"
 select writer_0.name from movie as movie_0, writer as writer_0, written_by as written_by_0 where movie_0.title = "The Truman Show" and movie_0.mid = written_by_0.msid and writer_0.wid = written_by_0.wid
 select movie_0.title from classification as classification_0, genre as genre_0, movie as movie_0 where genre_0.genre = "Sci-Fi" and movie_0.release_year = 2010 and classification_0.gid = genre_0.gid and classification_0.msid = movie_0.mid
 select actor_0.name from actor as actor_0, cast as cast_0, movie as movie_0 where movie_0.title = "Camp X-Ray" and actor_0.aid = cast_0.aid and cast_0.msid = movie_0.mid
