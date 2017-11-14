@@ -208,7 +208,7 @@ public class TemplarCV {
 
                 translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
 
-                int n = 10;
+                int n = 15;
                 List<Translation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
 
                 List<InstantiatedTemplate> results = new ArrayList<>();

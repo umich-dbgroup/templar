@@ -125,7 +125,7 @@ which movie has the most number of actors from China?
 Find the actors who played in the latest movie by "Quentin Tarantino"
 Find the name and budget of the latest movie by "Quentin Tarantino"
 Find all movies featuring "Jason Robards" and "Woody Strode"
-Who is directed the latest movie by "NBCUniversal"
+Who directed the latest movie by "NBCUniversal"
 What is the latest movie by "Jim Jarmusch"
 Which producer has worked with the most number of directors?
 Find the latest movie which "Gabriele Ferzetti" acted in
