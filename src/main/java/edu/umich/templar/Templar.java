@@ -929,32 +929,34 @@ public class Templar {
             testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
 
             /*
+            // This is hard...
+            testNLQ.add("What is the maximum number of movies in which \"Brad Pitt\" act in a given year?");
+
             // Can't handle splitting into two predicates right now
             testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
 
-            // Joy is listed as a VERB?
-            testNLQ.add("Who was the director of the movie Joy from 2015?");
+            // nmod falsely collected...
+            // testNLQ.add("How many movies did \"Quentin Tarantino\" direct before 2002 and after 2010?");
 
-            // Steven Spielberg disappears for some strange reason
+            // "latest" requires some parsing tricks for "when" attributes
+            // testNLQ.add("What is the latest movie by \"Jim Jarmusch\"");
+            // testNLQ.add("Who directed the latest movie by \"NBCUniversal\"");
+            // testNLQ.add("Find the latest movie which "Gabriele Ferzetti" acted in");
+
+            // 2 projections..
+            testNLQ.add("Find the name and budget of the latest movie by \"Quentin Tarantino\"");
+
+            // nouns are mischaracterized as verbs
+            testNLQ.add("Who was the director of the movie Joy from 2015?");
             testNLQ.add("How many movies are there that are directed by \"Steven Spielberg\" and featuring \"Matt Damon\"?");
 
-            // Response includes "featuring" and "playing" and "character". It should not.
-            testNLQ.add("What are all the movies directed by \"Quentin Tarantino\" featuring \"Christoph Waltz\"?");
-            testNLQ.add("Who is the actor playing \"Alan Turing\" in \"The Imitation Game\"?");
-            */
-
-            /*
             // Ranks aren't as good as hoped for certain keyword queries
-            testNLQ.add("Find all movies about Autism");
             testNLQ.add("Find all movies about Iraq war");
             testNLQ.add("What are the movies related to nuclear weapons");
             testNLQ.add("List all the directors of movies about nuclear weapons");
 
             // "Role" is not selected
             testNLQ.add("What are the major roles in the movie \"Daddy Long Legs\"");
-
-            // Join paths are strange
-            testNLQ.add("what are the genres of movies directed by \"Asghar Farhadi\");
             */
 
             if (ansFile != null) {
@@ -1015,7 +1017,17 @@ public class Templar {
             translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
 
             int n = 10;
-            List<Translation> topNTranslations = translations.subList(0, Math.min(translations.size(), n));
+            List<Translation> topNTranslations = new ArrayList<>();
+
+            double lastScore = 0.0;
+            for (Translation t : translations) {
+                if (t.getScore() < lastScore && topNTranslations.size() > n) {
+                    break;
+                }
+
+                topNTranslations.add(t);
+                lastScore = t.getScore();
+            }
 
             List<InstantiatedTemplate> results = new ArrayList<>();
             Map<String, Integer> resultIndexMap = new HashMap<>();

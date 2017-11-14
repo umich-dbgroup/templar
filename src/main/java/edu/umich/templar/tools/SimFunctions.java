@@ -1,5 +1,7 @@
 package edu.umich.templar.tools;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +60,18 @@ public class SimFunctions
 		if(NumberUtils.isCreatable(nodeLabel) &&
 				(element.schemaElement.type.equals("int") || element.schemaElement.type.equals("double")))
 		{
+            if (element.mappedValues.size() > 0) element.similarity = 1.0;
+            else element.similarity = 0.0;
+            /*
+            double actual = Double.parseDouble(nodeLabel);
+            List<Double> sims = new ArrayList<>();
+            for (String val : element.mappedValues) {
+                double diff = Math.abs(actual - Double.parseDouble(val));
+                sims.add(diff);
+            }
+
+            Collections.sort(sims, Collections.reverseOrder());
+
             double sum = 0;
             for (int i = 0; i < element.mappedValues.size(); i++) {
                 sum += Double.parseDouble(element.mappedValues.get(i));
@@ -67,7 +81,7 @@ public class SimFunctions
 
             double penalty = Math.abs(sum - size) / size;
             // Set a threshold for the penalty
-            element.similarity = Math.max(1 - penalty, Constants.MIN_SIM);
+            element.similarity = Math.max(1 - penalty, Constants.MIN_SIM);*/
 		} else {
 			double [] sims = new double[element.mappedValues.size()];
 			List<String> mappedValues = element.mappedValues;
@@ -108,6 +122,7 @@ public class SimFunctions
 			element.choice = 0;
 
             // Average the top 3 (if not exist, provide 0.95)
+            /*
             double sum = 0;
             double[] weights = {0.6, 0.3, 0.1};
 
@@ -121,7 +136,8 @@ public class SimFunctions
                 }
             }
 
-			element.similarity = sum;
+			element.similarity = sum;*/
+            element.similarity = sims[0];
 
 			// Special case: we penalize if value text attribute is not a proper noun or adjective
             if (element.schemaElement.type.equals("text") && !(treeNode.pos.equals("NNP") || treeNode.pos.equals("JJ"))) {

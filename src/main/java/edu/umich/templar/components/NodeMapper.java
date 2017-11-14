@@ -221,7 +221,6 @@ public class NodeMapper
                 ParseTreeNode parent = node.parent;
                 objectNode.parent = parent;
                 node.children.remove(objectNode);
-                objectNode.children = new ArrayList<>();
                 objectNode.children.add(node);
                 node.parent = objectNode;
                 parent.children.remove(node);
@@ -435,9 +434,9 @@ public class NodeMapper
 
                     MappedSchemaElement newElement = treeNode.mappedElements.get(0);
 
-                    if (!newElement.equals(origElement) &&
-                            newElement.similarity >= origElement.similarity &&
-                            newElement.similarity >= origRelatedEl.similarity) {
+                    boolean newElIsBetterThanOrigEl = newElement.similarity > origElement.similarity || (newElement.similarity == origElement.similarity && !origElement.mappedValues.isEmpty());
+                    boolean newElIsBetterThanOrigRelatedEl = newElement.similarity > origRelatedEl.similarity || (newElement.similarity == origRelatedEl.similarity && !origRelatedEl.mappedValues.isEmpty());
+                    if (!newElement.equals(origElement) && newElIsBetterThanOrigEl && newElIsBetterThanOrigRelatedEl) {
                         // Keep tree in multi-word form if new similarity is higher
                         treeNode.relationship = relatedNode.relationship;
                         for (ParseTreeNode relatedChild : relatedNode.children) {
@@ -453,6 +452,9 @@ public class NodeMapper
                         }
                         relatedNode.children.clear();
                         relatedNode.parent.children.remove(relatedNode);
+
+                        treeNode.pos = relatedNode.pos;
+
                         parseTree.allNodes.remove(relatedNode);
                         i--;
                     } else {
