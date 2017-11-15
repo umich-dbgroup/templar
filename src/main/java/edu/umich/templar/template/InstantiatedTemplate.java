@@ -329,7 +329,7 @@ public class InstantiatedTemplate {
 
     public Double getScore() {
         double delta = 0.01;
-        double epsilon = 0.001;
+        double epsilon = 0.01;
 
         double templateScore = ((1.0 - delta) * this.getSimplicity()) + (delta * this.getQFJoinPathScore());
         return ((1.0 - epsilon) * this.translation.getScore()) + (epsilon * templateScore);
