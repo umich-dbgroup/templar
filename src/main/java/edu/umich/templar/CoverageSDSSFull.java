@@ -35,29 +35,29 @@ public class CoverageSDSSFull {
         }
 
         // Fix test query log as last 50% no matter what
-        List<String> queries = null;
+        List<String> queryStr = null;
         try {
             Log.info("Reading queries into memory...");
-            queries = FileUtils.readLines(new File(queryLogFilename), "UTF-8");
+            queryStr = FileUtils.readLines(new File(queryLogFilename), "UTF-8");
             Log.info("Done reading queries.");
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
 
+        List<Select> queries = Utils.parseStatements(queryStr);
+
         double halfLog = Math.floor(0.5 * queries.size());
 
         Log.info("Parsing training queries...");
-        List<String> trainQueries = queries.subList(0, (int) halfLog);
-        List<Select> trainStmts = Utils.parseStatements(trainQueries);
-        Set<String> trainStrs = trainStmts.stream().map(Select::toString).collect(Collectors.toSet());
+        List<Select> trainQueries = queries.subList(0, (int) halfLog);
+        Set<String> trainStrs = trainQueries.stream().map(Select::toString).collect(Collectors.toSet());
         Log.info("Done parsing training queries.");
         Log.info("# of templates: " + trainStrs.size());
 
         Log.info("Parsing test queries...");
-        List<String> testQueries = queries.subList((int) halfLog, queries.size() - 1);
-        List<Select> testStmts = Utils.parseStatements(testQueries);
-        List<String> testStrs = testStmts.stream().map(Select::toString).collect(Collectors.toList());
+        List<Select> testQueries = queries.subList((int) halfLog, queries.size() - 1);
+        List<String> testStrs = testQueries.stream().map(Select::toString).collect(Collectors.toList());
         Log.info("Done parsing test queries.");
 
         int coverage = 0;
