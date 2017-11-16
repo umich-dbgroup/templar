@@ -37,7 +37,9 @@ public class CoverageSDSSFull {
         // Fix test query log as last 50% no matter what
         List<String> queries = null;
         try {
+            Log.info("Reading queries into memory...");
             queries = FileUtils.readLines(new File(queryLogFilename), "UTF-8");
+            Log.info("Done reading queries.");
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
