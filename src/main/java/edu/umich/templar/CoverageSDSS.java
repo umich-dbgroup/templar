@@ -75,9 +75,9 @@ public class CoverageSDSS extends CoverageHelper {
 
 
     public static void main(String[] args) {
-        if (args.length < 2) {
-            System.err.println("Usage: CoverageSDSS <query-log-filename> <random seed>");
-            System.err.println("Example: CoverageSDSS data/sdss/final/bestdr7_0.05.parsed 1234");
+        if (args.length < 1) {
+            System.err.println("Usage: CoverageSDSS <query-log-filename>");
+            System.err.println("Example: CoverageSDSS data/sdss/final/bestdr7_0.05.parsed");
             System.exit(1);
         }
 
@@ -94,12 +94,12 @@ public class CoverageSDSS extends CoverageHelper {
 
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
-        CoverageSDSS cv = new CoverageSDSS("templates.out", "errors.out");
+        CoverageSDSS cov = new CoverageSDSS("templates.out", "errors.out");
         Log.info("Parsing statements...");
         List<Select> stmts = Utils.parseStatements(queryLogFilename);
         Log.info("Done parsing statements.");
 
-        cv.performFixedTestSet(logGen, stmts);
-        cv.finish();
+        cov.performFixedTestSet(logGen, stmts);
+        cov.finish();
     }
 }
