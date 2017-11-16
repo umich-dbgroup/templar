@@ -113,7 +113,7 @@ public class CoverageSDSS extends CoverageHelper {
         }
 
         String queryLogFilename = args[0];
-        Integer randomSeed = Integer.valueOf(args[4]);
+        Integer randomSeed = Integer.valueOf(args[1]);
 
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
