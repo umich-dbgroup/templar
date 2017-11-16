@@ -288,7 +288,8 @@ public class Utils {
 
     public static List<Select> parseStatements(List<String> sqls) {
         try {
-            ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+            int cores = Math.min(4, Runtime.getRuntime().availableProcessors());
+            ExecutorService pool = Executors.newFixedThreadPool(cores);
             ConcurrentLinkedQueue<Select> stmts = new ConcurrentLinkedQueue<>();
             for (String sql : sqls) {
                 pool.submit(Utils.getParserRunnable(stmts, sql));
