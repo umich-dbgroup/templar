@@ -34,7 +34,13 @@ public class CoverageHelper {
         float covered = 0;
 
         for (Select select : testStatements) {
-            Template testTemplate = templateFn.apply(select);
+            Template testTemplate = null;
+            try {
+                testTemplate = templateFn.apply(select);
+            } catch (Exception e) {
+                System.out.println("Test ERROR.");
+            }
+
             if (generatedTemplates.contains(testTemplate)) {
                 covered++;
             } else {

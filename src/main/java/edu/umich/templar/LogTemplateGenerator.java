@@ -19,7 +19,15 @@ public class LogTemplateGenerator {
     }
 
     public Set<Template> generate(List<Select> stmts, Function<Select, Template> templateFn) {
-        return stmts.stream().map(templateFn::apply).collect(Collectors.toSet());
+        Set<Template> templates = new HashSet<>();
+        for (Select stmt : stmts) {
+            try {
+                templates.add(templateFn.apply(stmt));
+            } catch (Exception e) {
+                System.out.println("Train ERROR.");
+            }
+        }
+        return templates;
     }
 
     public void performCrossValidation(List<Select> stmts, String basename) {

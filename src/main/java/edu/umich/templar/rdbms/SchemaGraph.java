@@ -261,13 +261,15 @@ public class SchemaGraph {
                 int fk = this.searchAttribute(foreignRelationStr, foreignAttributeStr);
                 int pk = this.searchRelation(primaryRelationStr);
 
-                // if(this.schemaElements.get(fk).relation.type.equals("relationship"))
-                if (foreignRelation.isJoinTable()) {
-                    weights[fk][pk] = relEdge;
-                } else {
-                    weights[fk][pk] = KeyEdge;
+                if (fk != -1 && pk != -1) {
+                    // if(this.schemaElements.get(fk).relation.type.equals("relationship"))
+                    if (foreignRelation.isJoinTable()) {
+                        weights[fk][pk] = relEdge;
+                    } else {
+                        weights[fk][pk] = KeyEdge;
+                    }
+                    this.schemaElements.get(pk).inElements.add(this.schemaElements.get(fk));
                 }
-                this.schemaElements.get(pk).inElements.add(this.schemaElements.get(fk));
                 // END: stuff for Fei's code to work
             }
 

@@ -2,6 +2,7 @@ package edu.umich.templar;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.templar.rdbms.RDBMS;
+import edu.umich.templar.rdbms.SchemaGraph;
 import edu.umich.templar.template.SchemaDataTemplateGenerator;
 import edu.umich.templar.template.Template;
 import edu.umich.templar.template.TemplateRoot;
@@ -114,6 +115,14 @@ public class CoverageSDSS extends CoverageHelper {
 
         String queryLogFilename = args[0];
         Integer randomSeed = Integer.valueOf(args[1]);
+
+        SchemaGraph schemaGraph = null;
+        try {
+            schemaGraph = new SchemaGraph("data/sdss/schema/bestdr7");
+            TemplateRoot.relations = schemaGraph.relations;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
