@@ -11,6 +11,7 @@ import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.statement.select.Select;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by cjbaik on 8/31/17.
@@ -20,89 +21,56 @@ public class CoverageSDSS extends CoverageHelper {
         super(outFileName, errFileName);
     }
 
-    public void performCrossValidation(LogTemplateGenerator logGen, List<Select> stmts, int randomSeed, int cvSplits) {
-        // Split into partitions for cross validation
-        int partitionSize = stmts.size() / cvSplits;
-        int remainder = stmts.size() % cvSplits;
+    public void performFixedTestSet(LogTemplateGenerator logGen, List<Select> stmts) {
+        double halfLog = Math.floor(0.5 * stmts.size());
+        List<Select> trainQueries = stmts.subList(0, (int) halfLog);
+        List<Select> testQueries = stmts.subList((int) halfLog, stmts.size() - 1);
 
-        // Shuffle partitions (deterministically) so cross-validation is randomized
-        Collections.sort(stmts, (o1, o2) -> o1.toString().compareTo(o2.toString()));
-        Collections.shuffle(stmts, new Random(randomSeed));
+        Set<Template> logPredProjTmpl = logGen.generate(trainQueries, TemplateRoot::noPredicateProjectionTemplate);
+        float logPredProjCoverage = this.calculateCoveragePercent(logPredProjTmpl, testQueries, TemplateRoot::noPredicateProjectionTemplate, false);
 
-        List<List<Select>> cvPartitions = new ArrayList<>();
-        int curIndex = 0;
-        for (int i = 0; i < cvSplits; i++) {
-            int fromIndex = curIndex;
-            int toIndex = fromIndex + partitionSize;
-            if (remainder > i) {
-                toIndex += 1;
-            }
-            cvPartitions.add(stmts.subList(fromIndex, toIndex));
-            curIndex = toIndex;
-        }
+        Set<Template> logPredTmpl = logGen.generate(trainQueries, TemplateRoot::noPredicateTemplate);
+        float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, testQueries, TemplateRoot::noPredicateTemplate, false);
 
-        // Cross-validate for each set
-        Log.info("Performing " + cvSplits + "-fold cross-validation...");
+        Set<Template> logAttrConstTmpl = logGen.generate(trainQueries, TemplateRoot::noAttributeConstantTemplate);
+        float logAttrConstCoverage = this.calculateCoveragePercent(logAttrConstTmpl, testQueries, TemplateRoot::noAttributeConstantTemplate, false);
 
-        Log.info("===== Legend =====");
-        Log.info("c <Abs. Constants> / cm <Abs. Constants/Comparison Ops> / a <Abs. Attributes/Constants> / pd <Abs. Full Predicates> / p <Abs. Projections>");
+        Set<Template> logCompProjTmpl = logGen.generate(trainQueries, TemplateRoot::noComparisonProjectionTemplate);
+        float logCompProjCoverage = this.calculateCoveragePercent(logCompProjTmpl, testQueries, TemplateRoot::noComparisonProjectionTemplate, false);
 
-        for (int i = 0; i < cvPartitions.size(); i++) {
-            List<Select> templateGenSet = new ArrayList<>();
-            for (int j = 0; j < cvPartitions.size(); j++) {
-                if (j != i) {
-                    templateGenSet.addAll(cvPartitions.get(j));
-                }
-            }
-            List<Select> coverageTestSet = cvPartitions.get(i);
+        Set<Template> logCompTmpl = logGen.generate(trainQueries, TemplateRoot::noComparisonTemplate);
+        float logCompCoverage = this.calculateCoveragePercent(logCompTmpl, testQueries, TemplateRoot::noComparisonTemplate, false);
 
-            Set<Template> logPredProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateProjectionTemplate);
-            float logPredProjCoverage = this.calculateCoveragePercent(logPredProjTmpl, coverageTestSet, TemplateRoot::noPredicateProjectionTemplate, false);
+        Set<Template> logConstProjTmpl = logGen.generate(trainQueries, TemplateRoot::noConstantProjectionTemplate);
+        float logConstProjCoverage = this.calculateCoveragePercent(logConstProjTmpl, testQueries, TemplateRoot::noConstantProjectionTemplate, false);
 
-            Set<Template> logPredTmpl = logGen.generate(templateGenSet, TemplateRoot::noPredicateTemplate);
-            float logPredCoverage = this.calculateCoveragePercent(logPredTmpl, coverageTestSet, TemplateRoot::noPredicateTemplate, false);
+        Set<Template> logConstTmpl = logGen.generate(trainQueries, TemplateRoot::noConstantTemplate);
+        float logConstCoverage = this.calculateCoveragePercent(logConstTmpl, testQueries, TemplateRoot::noConstantTemplate, false);
 
-            Set<Template> logAttrConstTmpl = logGen.generate(templateGenSet, TemplateRoot::noAttributeConstantTemplate);
-            float logAttrConstCoverage = this.calculateCoveragePercent(logAttrConstTmpl, coverageTestSet, TemplateRoot::noAttributeConstantTemplate, false);
+        Set<Template> logFullTmpl = logGen.generate(trainQueries, TemplateRoot::fullQueryTemplate);
+        float logFullCoverage = this.calculateCoveragePercent(logFullTmpl, testQueries, TemplateRoot::fullQueryTemplate, false);
 
-            Set<Template> logCompProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonProjectionTemplate);
-            float logCompProjCoverage = this.calculateCoveragePercent(logCompProjTmpl, coverageTestSet, TemplateRoot::noComparisonProjectionTemplate, false);
-
-            Set<Template> logCompTmpl = logGen.generate(templateGenSet, TemplateRoot::noComparisonTemplate);
-            float logCompCoverage = this.calculateCoveragePercent(logCompTmpl, coverageTestSet, TemplateRoot::noComparisonTemplate, false);
-
-            Set<Template> logConstProjTmpl = logGen.generate(templateGenSet, TemplateRoot::noConstantProjectionTemplate);
-            float logConstProjCoverage = this.calculateCoveragePercent(logConstProjTmpl, coverageTestSet, TemplateRoot::noConstantProjectionTemplate, false);
-
-            Set<Template> logConstTmpl = logGen.generate(templateGenSet, TemplateRoot::noConstantTemplate);
-            float logConstCoverage = this.calculateCoveragePercent(logConstTmpl, coverageTestSet, TemplateRoot::noConstantTemplate, false);
-
-            Set<Template> logFullTmpl = logGen.generate(templateGenSet, TemplateRoot::fullQueryTemplate);
-            float logFullCoverage = this.calculateCoveragePercent(logFullTmpl, coverageTestSet, TemplateRoot::fullQueryTemplate, false);
-
-            Log.info("--- Fold " + i + " ---");
-            Log.info("Template Gen. Set Size: " + templateGenSet.size());
-            Log.info("Coverage Test Set Size: " + coverageTestSet.size());
-            Log.info("           \tc\tc_p\tcm\tcm_p\ta\tpd\tpd_p\tfull");
-            Log.info("Log Coverage %:\t"
-                    + String.format("%.1f", logConstCoverage) + "%\t"
-                    + String.format("%.1f", logConstProjCoverage) + "%\t"
-                    + String.format("%.1f", logCompCoverage) + "%\t"
-                    + String.format("%.1f", logCompProjCoverage) + "%\t"
-                    + String.format("%.1f", logAttrConstCoverage) + "%\t"
-                    + String.format("%.1f", logPredCoverage) + "%\t"
-                    + String.format("%.1f", logPredProjCoverage) + "%\t"
-                    + String.format("%.1f", logFullCoverage) + "%\t");
-            Log.info("Log Tmpl. Count:\t"
-                    + logConstTmpl.size() + "\t"
-                    + logConstProjTmpl.size() + "\t"
-                    + logCompTmpl.size() + "\t"
-                    + logCompProjTmpl.size() + "\t"
-                    + logAttrConstTmpl.size() + "\t"
-                    + logPredTmpl.size() + "\t"
-                    + logPredProjTmpl.size() + "\t"
-                    + logFullTmpl.size() + "\t\n");
-        }
+        Log.info("Training Set Size: " + trainQueries.size());
+        Log.info("Coverage Test Set Size: " + testQueries.size());
+        Log.info("           \tc\tc_p\tcm\tcm_p\ta\tpd\tpd_p\tfull");
+        Log.info("Log Coverage %:\t"
+                + String.format("%.1f", logConstCoverage) + "%\t"
+                + String.format("%.1f", logConstProjCoverage) + "%\t"
+                + String.format("%.1f", logCompCoverage) + "%\t"
+                + String.format("%.1f", logCompProjCoverage) + "%\t"
+                + String.format("%.1f", logAttrConstCoverage) + "%\t"
+                + String.format("%.1f", logPredCoverage) + "%\t"
+                + String.format("%.1f", logPredProjCoverage) + "%\t"
+                + String.format("%.1f", logFullCoverage) + "%\t");
+        Log.info("Log Tmpl. Count:\t"
+                + logConstTmpl.size() + "\t"
+                + logConstProjTmpl.size() + "\t"
+                + logCompTmpl.size() + "\t"
+                + logCompProjTmpl.size() + "\t"
+                + logAttrConstTmpl.size() + "\t"
+                + logPredTmpl.size() + "\t"
+                + logPredProjTmpl.size() + "\t"
+                + logFullTmpl.size() + "\t\n");
     }
 
 
@@ -126,10 +94,12 @@ public class CoverageSDSS extends CoverageHelper {
 
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
-        int cvSplits = 4;
         CoverageSDSS cv = new CoverageSDSS("templates.out", "errors.out");
+        Log.info("Parsing statements...");
         List<Select> stmts = Utils.parseStatements(queryLogFilename);
-        cv.performCrossValidation(logGen, stmts, randomSeed, cvSplits);
+        Log.info("Done parsing statements.");
+
+        cv.performFixedTestSet(logGen, stmts);
         cv.finish();
     }
 }
