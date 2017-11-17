@@ -561,6 +561,7 @@ public class CoverageSDSS extends CoverageHelper {
                 // Silent. Don't parse.
             }
         }
+        Log.info("Final parsed statements: " + parsed.size());
 
         cov.performFixedTestSet(logGen, parsed);
         cov.finish();
