@@ -24,7 +24,7 @@ public class LogTemplateGenerator {
             try {
                 templates.add(templateFn.apply(stmt));
             } catch (Exception e) {
-                System.out.println("Train ERROR.");
+                // Silent failure
             }
         }
         return templates;

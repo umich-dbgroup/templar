@@ -4,7 +4,7 @@ package edu.umich.templar.qf.pieces;
  * Created by cjbaik on 9/11/17.
  */
 public enum Operator {
-    LT("<"), LTE("<="), GT(">"), GTE(">="), EQ("="), NE("!=");
+    LT("<"), LTE("<="), GT(">"), GTE(">="), EQ("="), NE("!="), BETWEEN("BETWEEN");
 
     private String text;
 

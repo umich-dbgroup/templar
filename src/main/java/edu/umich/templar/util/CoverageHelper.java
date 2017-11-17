@@ -38,7 +38,7 @@ public class CoverageHelper {
             try {
                 testTemplate = templateFn.apply(select);
             } catch (Exception e) {
-                System.out.println("Test ERROR.");
+                // Silent failure
             }
 
             if (generatedTemplates.contains(testTemplate)) {
