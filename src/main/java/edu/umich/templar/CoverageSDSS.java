@@ -7,7 +7,6 @@ import edu.umich.templar.rdbms.Attribute;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.rdbms.SchemaGraph;
 import edu.umich.templar.sqlparse.*;
-import edu.umich.templar.template.Template;
 import edu.umich.templar.template.TemplateRoot;
 import edu.umich.templar.util.CoverageHelper;
 import edu.umich.templar.util.Utils;
@@ -17,7 +16,6 @@ import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -106,9 +104,11 @@ public class CoverageSDSS extends CoverageHelper {
             ps.getWhere().accept(predicateUnroller);
             for (Predicate pred : predicateUnroller.getPredicates()) {
                 Predicate valuelessPred = new Predicate(pred.getAttribute(), pred.getOp(), pred.getValue());
-                Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
-                noAliasRel.setAliasInt(0);
-                valuelessPred.getAttribute().setRelation(noAliasRel);
+                if (pred.getAttribute().getRelation() != null) {
+                    Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
+                    noAliasRel.setAliasInt(0);
+                    valuelessPred.getAttribute().setRelation(noAliasRel);
+                }
                 selectQFs.add(valuelessPred);
             }
         }
@@ -240,9 +240,11 @@ public class CoverageSDSS extends CoverageHelper {
             ps.getWhere().accept(predicateUnroller);
             for (Predicate pred : predicateUnroller.getPredicates()) {
                 Predicate valuelessPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
-                Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
-                noAliasRel.setAliasInt(0);
-                valuelessPred.getAttribute().setRelation(noAliasRel);
+                if (pred.getAttribute().getRelation() != null) {
+                    Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
+                    noAliasRel.setAliasInt(0);
+                    valuelessPred.getAttribute().setRelation(noAliasRel);
+                }
                 selectQFs.add(valuelessPred);
             }
         }
@@ -370,9 +372,11 @@ public class CoverageSDSS extends CoverageHelper {
             ps.getWhere().accept(predicateUnroller);
             for (Predicate pred : predicateUnroller.getPredicates()) {
                 Predicate noConstOpPred = new Predicate(pred.getAttribute(), null, null);
-                Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
-                noAliasRel.setAliasInt(0);
-                noConstOpPred.getAttribute().setRelation(noAliasRel);
+                if (pred.getAttribute().getRelation() != null) {
+                    Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
+                    noAliasRel.setAliasInt(0);
+                    noConstOpPred.getAttribute().setRelation(noAliasRel);
+                }
                 selectQFs.add(noConstOpPred);
             }
         }
