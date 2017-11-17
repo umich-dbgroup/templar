@@ -521,7 +521,7 @@ public class CoverageSDSS extends CoverageHelper {
         }
 
         double fullCov = (double) fullCoveredCount / testQueries.size() * 100;
-        Log.info(level + " Templates: " + qfList.size());
+        Log.info(level + " Templates: " + fullQueries.size());
         Log.info(level + " Coverage: " + fullCoveredCount + "/" + testQueries.size() + " (" + String.format("%.1f", fullCov) + "%)");
 
         double fragCov = (double) fragCoveredCount / testQueries.size() * 100;
