@@ -555,7 +555,7 @@ public class CoverageSDSS extends CoverageHelper {
         List<Select> parsed = new ArrayList<>();
         for (Select stmt : stmts) {
             try {
-                TemplateRoot.fullQueryTemplate(stmt);
+                cov.fullFrag((PlainSelect) stmt.getSelectBody());
                 parsed.add(stmt);
             } catch (Exception e) {
                 // Silent. Don't parse.
