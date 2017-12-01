@@ -181,18 +181,22 @@ public class JoinPath {
 
         if (edge.getFirst().equals(existing.getFirst())) {
             isConsecutive = true;
-            isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getSecond().isPk();
+            // isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getSecond().isPk();
+            isPFP = existing.getSecond().isPk() && edge.getSecond().isPk();
         } else if(edge.getFirst().equals(existing.getSecond())) {
             isConsecutive = true;
-            isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getSecond().isPk();
+            // isPFP = edge.getSecond().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getSecond().isPk();
+            isPFP = existing.getFirst().isPk() && edge.getSecond().isPk();
         }
 
         if (edge.getSecond().equals(existing.getFirst())) {
             isConsecutive = true;
-            isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getFirst().isPk();
+            // isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getSecond()) && edge.getFirst().isPk();
+            isPFP = existing.getSecond().isPk() && edge.getFirst().isPk();
         } else if (edge.getSecond().equals(existing.getSecond())) {
             isConsecutive = true;
-            isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getFirst().isPk();
+            // isPFP = edge.getFirst().hasSameRelationNameAndNameAs(existing.getFirst()) && edge.getFirst().isPk();
+            isPFP = existing.getFirst().isPk() && edge.getFirst().isPk();
         }
 
         if (isPFP) return false;
