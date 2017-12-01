@@ -62,11 +62,13 @@ public class QueryFragment {
         } else if (this instanceof Predicate) {
             Predicate pred = (Predicate) this;
 
-            Predicate newPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
+            Predicate newPred = new Predicate(pred.getAttribute(), null, null);
+            // Predicate newPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
             result.add(newPred);
         } else if (this instanceof Having) {
             Having having = (Having) this;
-            Having newHaving = new Having(having.getAttribute(), having.getOp(), null, having.getFunction());
+            Having newHaving = new Having(having.getAttribute(), null, null, having.getFunction());
+            // Having newHaving = new Having(having.getAttribute(), having.getOp(), null, having.getFunction());
             result.add(newHaving);
         } else if (this instanceof Superlative) {
             Superlative superlative = (Superlative) this;

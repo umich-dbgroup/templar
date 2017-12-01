@@ -146,7 +146,8 @@ public class QFGraph {
             PredicateUnroller predicateUnroller = new PredicateUnroller(this.relations, relations);
             ps.getWhere().accept(predicateUnroller);
             for (Predicate pred : predicateUnroller.getPredicates()) {
-                Predicate valuelessPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
+                Predicate valuelessPred = new Predicate(pred.getAttribute(), null, null);
+                // Predicate valuelessPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
                 Relation noAliasRel = new Relation(pred.getAttribute().getRelation());
                 noAliasRel.setAliasInt(0);
                 valuelessPred.getAttribute().setRelation(noAliasRel);
@@ -159,7 +160,8 @@ public class QFGraph {
             HavingUnroller havingUnroller = new HavingUnroller(this.relations, relations);
             ps.getHaving().accept(havingUnroller);
             for (Having having : havingUnroller.getHavings()) {
-                Having valuelessHaving = new Having(having.getAttribute(), having.getOp(), null, having.getFunction());
+                Having valuelessHaving = new Having(having.getAttribute(), null, null, having.getFunction());
+                // Having valuelessHaving = new Having(having.getAttribute(), having.getOp(), null, having.getFunction());
                 selectQFs.add(valuelessHaving);
             }
         }
