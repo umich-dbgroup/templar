@@ -20,10 +20,13 @@ public class Constants {
     public static final int MAX_MAPPED_EL = 7;
 
     // Min similarity score to consider "matching"
-    public static final Double MIN_SIM = 0.65;
-    public static final Double MIN_REL_SIM = 0.8;
+    // best so far
+    public static final Double MIN_SIM = 0.6;
+
+    public static final Double DELTA_EPSILON = 0.15;
 
     public static final Double PENALTY_UNLIKELY_PROJECTION = 0.5;
+    // public static final Double PENALTY_VERB_TO_RELATION = 1.0;
     public static final Double PENALTY_RELATION_WITH_SUPERLATIVE = 0.3;
     public static final Double PENALTY_RELATION_WITH_ADJECTIVE = 0.5;
     public static final Double PENALTY_PREDICATE_COMMON_NOUN = 0.5;

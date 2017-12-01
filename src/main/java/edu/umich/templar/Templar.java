@@ -274,11 +274,17 @@ public class Templar {
             // If we're dealing with a relation, generate a version without it (only if it's not a likely projection or superlative),
             // and also move ahead
             if (schemaEl.schemaElement.type.equals("relation")) {
-                if (schemaEl.similarity > Constants.MIN_REL_SIM &&
-                        !curNode.isFirstLikelyProjection() &&
+                if (!curNode.isFirstLikelyProjection() &&
                         curNode.attachedSuperlative == null) {
+                    double similarity = schemaEl.similarity;
                     Translation newTrans = new Translation(trans);
-                    newTrans.addQueryFragment(new RelationFragment(curNode, rel), schemaEl.similarity);
+
+                    // penalize verbs
+                    /*
+                    if (curNode.pos.startsWith("VB")) {
+                        similarity *= Constants.PENALTY_VERB_TO_RELATION;
+                    }*/
+                    newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
 
                     result.addAll(this.generatePossibleTranslationsRecursive(new ArrayList<>(remainingNodes), newTrans));
                 }
@@ -481,6 +487,12 @@ public class Templar {
                             if (curNode.attachedSuperlative != null || schemaEl.attachedFT != null) {
                                 similarity *= Constants.PENALTY_RELATION_WITH_SUPERLATIVE;
                             }
+
+                            // penalize verbs
+                            /*
+                            if (curNode.pos.startsWith("VB")) {
+                                similarity *= Constants.PENALTY_VERB_TO_RELATION;
+                            }*/
 
                             Translation newTrans = new Translation(trans);
                             newTrans.addQueryFragment(new RelationFragment(curNode, rel), similarity);
