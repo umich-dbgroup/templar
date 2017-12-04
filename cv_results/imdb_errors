@@ -1,0 +1,11 @@
+4 - NL parser error: 39, 66, 61, 22
+18 - Interpretation error: 121, 72, 35, 58, 112, 84, 110, 81, 113, 33, 32, 111, 54, 67, 106, 83, 103, 78
+13 - Join path error: 87, 55, 114, 115, 99, 47, 96, 104, 37, 118, 97, 44, 48
+
+11 - UNSUPPORTED ERRORS
+---
+4 - mishandled keyword query because of design ("Iraq war", "nuclear weapons"): 98, 68, 86, 85
+4 - "latest": 128, 130, 127, 124
+1 - multiple projections: 125
+1 - need to expand predicate twice, we don't do it: 25
+1 - "maximum number of movies": 119

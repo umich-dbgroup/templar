@@ -1,0 +1,6 @@
+2 - NL parser failure: 22, 139
+8 - interpretation outranked: 43, 129, 58, 51, 62, 180, 39, 135
+11 - join path outranked: 114, 142, 168, 147, 108, 24, 146, 133, 134, 145, 140
+2 - unsupported: 193 (VLDB over ICDE), 78 (required an aggregate we would've never known)
+
+actually correct: 128, 122

@@ -1,0 +1,4 @@
+4 - NL Parser errors: 49, 125, 87, 119
+11 - Interpretation Errors: 114, 100, 3, 0, 2, 55, 84, 60, 91, 15, 90
+3 - Join Path errors: 96, 12, 126
+3 - Unsupported: 111 (don't know need to agg. checkins), 7 (less than 1 is impossible), 98 (asking the number of users called Michelle is dumb)
