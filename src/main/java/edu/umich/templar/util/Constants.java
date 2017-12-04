@@ -21,7 +21,7 @@ public class Constants {
 
     // Min similarity score to consider "matching"
     // best so far
-    public static final Double MIN_SIM = 0.6;
+    public static final Double MIN_SIM = 0.65;
 
     public static final Double DELTA_EPSILON = 0.15;
 
