@@ -48,23 +48,25 @@ public class Templar {
      */
     public static void main(String[] args) {
         try {
-            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "mas", null);
+            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "advising", null);
 
             // Load a SQL Log
+            /*
             List<String> sqlLogFile = FileUtils.readLines(new File("data/mas/mas_all.ans"), "UTF-8");
             List<String> sqlLog = new ArrayList<>();
             for (String line : sqlLogFile) {
                 sqlLog.add(line.split("\t")[0]);
             }
-            templar.loadSQLLog(sqlLog);
+            templar.loadSQLLog(sqlLog);*/
 
             // Translate NLQ
-            List<String> output = templar.translate("return the number of papers in PVLDB");
+            List<String> output = templar.translate("return the department of \"Humanities Topics in Judaism\"");
             output.forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     /*
      * FUNCTIONS TO EXPOSE
      */
@@ -523,8 +525,9 @@ public class Templar {
             }
 
             Attribute attr = rel.getAttributes().get(schemaEl.schemaElement.name);
-            if (attr == null)
+            if (attr == null) {
                 throw new RuntimeException("Attribute " + schemaEl.schemaElement.name + " not found.");
+            }
 
             double attrSim;
             try {
@@ -662,8 +665,10 @@ public class Templar {
                             // CASE 2: If relation is similar, project relation default attribute
                             // e.g. "How many papers..."
 
-                            result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
-                                    curNode, schemaEl, rel.getPrimaryAttr(), relSim));
+                            if (rel.getPrimaryAttr() != null) {
+                                result.addAll(this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans,
+                                        curNode, schemaEl, rel.getPrimaryAttr(), relSim));
+                            }
                         }
 
                         if (rel.isWeak() &&
