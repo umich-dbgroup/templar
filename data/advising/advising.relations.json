@@ -12,7 +12,7 @@
             },
             "area": {
                 "name": "area",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             }
         }
@@ -37,7 +37,7 @@
             },
             "comment_text": {
                 "name": "comment_text",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             }
         }
@@ -53,32 +53,32 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             },
             "department": {
                 "name": "department",
-                "type": "varchar"
+                "type": "text"
             },
             "number": {
                 "name": "number",
-                "type": "varchar"
+                "type": "text"
             },
             "credits": {
                 "name": "credits",
-                "type": "varchar"
+                "type": "text"
             },
             "advisory_requirement": {
                 "name": "advisory_requirement",
-                "type": "varchar"
+                "type": "text"
             },
             "enforced_requirement": {
                 "name": "enforced_requirement",
-                "type": "varchar"
+                "type": "text"
             },
             "description": {
                 "name": "description",
-                "type": "varchar"
+                "type": "text"
             },
             "num_semesters": {
                 "name": "num_semesters",
@@ -90,19 +90,19 @@
             },
             "has_discussion": {
                 "name": "has_discussion",
-                "type": "varchar"
+                "type": "text"
             },
             "has_lab": {
                 "name": "has_lab",
-                "type": "varchar"
+                "type": "text"
             },
             "has_projects": {
                 "name": "has_projects",
-                "type": "varchar"
+                "type": "text"
             },
             "has_exams": {
                 "name": "has_exams",
-                "type": "varchar"
+                "type": "text"
             },
             "num_reviews": {
                 "name": "num_reviews",
@@ -155,51 +155,51 @@
             },
             "monday": {
                 "name": "monday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "tuesday": {
                 "name": "tuesday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "wednesday": {
                 "name": "wednesday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "thursday": {
                 "name": "thursday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "friday": {
                 "name": "friday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "saturday": {
                 "name": "saturday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "sunday": {
                 "name": "sunday",
-                "type": "varchar"
+                "type": "boolean"
             },
             "has_final_project": {
                 "name": "has_final_project",
-                "type": "varchar"
+                "type": "boolean"
             },
             "has_final_exam": {
                 "name": "has_final_exam",
-                "type": "varchar"
+                "type": "boolean"
             },
             "textbook": {
                 "name": "textbook",
-                "type": "varchar"
+                "type": "text"
             },
             "class_address": {
                 "name": "class_address",
-                "type": "varchar"
+                "type": "text"
             },
             "allow_audit": {
                 "name": "allow_audit",
-                "type": "varchar"
+                "type": "boolean"
             }
         }
     },
@@ -337,12 +337,12 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             },
             "uniqname": {
                 "name": "uniqname",
-                "type": "varchar"
+                "type": "text"
             }
         }
     },
@@ -378,16 +378,16 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             },
             "college": {
                 "name": "college",
-                "type": "varchar"
+                "type": "text"
             },
             "introduction": {
                 "name": "introduction",
-                "type": "varchar"
+                "type": "text"
             }
         }
     },
@@ -407,11 +407,11 @@
             },
             "workload": {
                 "name": "workload",
-                "type": "varchar"
+                "type": "int"
             },
             "category": {
                 "name": "category",
-                "type": "varchar"
+                "type": "text"
             }
         }
     },
@@ -426,7 +426,7 @@
             },
             "category": {
                 "name": "category",
-                "type": "varchar"
+                "type": "text"
             },
             "min_credit": {
                 "name": "min_credit",
@@ -434,7 +434,7 @@
             },
             "additional_req": {
                 "name": "additional_req",
-                "type": "varchar"
+                "type": "text"
             }
         }
     },
@@ -449,7 +449,7 @@
             },
             "semester": {
                 "name": "semester",
-                "type": "varchar"
+                "type": "text"
             },
             "year": {
                 "name": "year",
@@ -468,12 +468,12 @@
             },
             "lastname": {
                 "name": "lastname",
-                "type": "varchar",
+                "type": "text",
                 "importance": "primary"
             },
             "firstname": {
                 "name": "firstname",
-                "type": "varchar"
+                "type": "text"
             },
             "program_id": {
                 "name": "program_id",
@@ -481,7 +481,7 @@
             },
             "declare_major": {
                 "name": "declare_major",
-                "type": "varchar"
+                "type": "boolean"
             },
             "total_credit": {
                 "name": "total_credit",
@@ -493,7 +493,7 @@
             },
             "entered_as": {
                 "name": "entered_as",
-                "type": "varchar"
+                "type": "text"
             },
             "admit_term": {
                 "name": "admit_term",
@@ -505,15 +505,15 @@
             },
             "degree": {
                 "name": "degree",
-                "type": "varchar"
+                "type": "text"
             },
             "minor": {
                 "name": "minor",
-                "type": "varchar"
+                "type": "text"
             },
             "internship": {
                 "name": "internship",
-                "type": "varchar"
+                "type": "text"
             }
         }
     },
@@ -543,27 +543,27 @@
             },
             "grade": {
                 "name": "grade",
-                "type": "varchar"
+                "type": "int"
             },
             "how": {
                 "name": "how",
-                "type": "varchar"
+                "type": "text"
             },
             "transfer_source": {
                 "name": "transfer_source",
-                "type": "varchar"
+                "type": "text"
             },
             "earn_credit": {
                 "name": "earn_credit",
-                "type": "varchar"
+                "type": "boolean"
             },
             "repeat_term": {
                 "name": "repeat_term",
-                "type": "varchar"
+                "type": "text"
             },
             "test_id": {
                 "name": "test_id",
-                "type": "varchar"
+                "type": "text"
             }
         }
     }
