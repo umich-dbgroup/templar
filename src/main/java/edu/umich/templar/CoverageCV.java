@@ -2,7 +2,7 @@ package edu.umich.templar;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.templar.rdbms.RDBMS;
-import edu.umich.templar.template.SchemaDataTemplateGenerator;
+import edu.umich.templar.template.JoinPathGenerator;
 import edu.umich.templar.template.Template;
 import edu.umich.templar.template.TemplateRoot;
 import edu.umich.templar.util.CoverageHelper;
@@ -19,7 +19,7 @@ public class CoverageCV extends CoverageHelper {
         super(outFileName, errFileName);
     }
 
-    public void performCrossValidation(SchemaDataTemplateGenerator schemaDataGen, LogTemplateGenerator logGen,
+    public void performCrossValidation(JoinPathGenerator schemaDataGen, LogTemplateGenerator logGen,
                                               List<Select> stmts, int randomSeed, int cvSplits) {
         // Generate templates from SchemaDataTemplateGenerator
         Set<Template> schemaDataTemplates = schemaDataGen.generate();
@@ -234,7 +234,7 @@ public class CoverageCV extends CoverageHelper {
             e.printStackTrace();
         }
 
-        SchemaDataTemplateGenerator schemaDataGen = new SchemaDataTemplateGenerator(db, joinLevel);
+        JoinPathGenerator schemaDataGen = new JoinPathGenerator(db, joinLevel);
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
         int cvSplits = 4;

@@ -2,7 +2,7 @@ package edu.umich.templar;
 
 import com.esotericsoftware.minlog.Log;
 import edu.umich.templar.rdbms.RDBMS;
-import edu.umich.templar.template.SchemaDataTemplateGenerator;
+import edu.umich.templar.template.JoinPathGenerator;
 import edu.umich.templar.template.Template;
 import edu.umich.templar.template.TemplateRoot;
 import edu.umich.templar.util.CoverageHelper;
@@ -22,7 +22,7 @@ public class CoverageTrainTest extends CoverageHelper {
         super(outFileName, errFileName);
     }
 
-    public void performTrainTestCoverage(SchemaDataTemplateGenerator schemaDataGen,
+    public void performTrainTestCoverage(JoinPathGenerator schemaDataGen,
                                     LogTemplateGenerator logGen,
                                     List<Select> trainSet, List<Select> testSet) {
         // Generate templates from SchemaDataTemplateGenerator
@@ -203,7 +203,7 @@ public class CoverageTrainTest extends CoverageHelper {
             e.printStackTrace();
         }
 
-        SchemaDataTemplateGenerator schemaDataGen = new SchemaDataTemplateGenerator(db, joinLevel);
+        JoinPathGenerator schemaDataGen = new JoinPathGenerator(db, joinLevel);
         LogTemplateGenerator logGen = new LogTemplateGenerator();
 
         CoverageTrainTest trainTest = new CoverageTrainTest("templates.out", "errors.out");

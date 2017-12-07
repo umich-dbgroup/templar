@@ -11,7 +11,7 @@ import edu.umich.templar.qf.agnostic.AgnosticGraph;
 import edu.umich.templar.rdbms.RDBMS;
 import edu.umich.templar.rdbms.Relation;
 import edu.umich.templar.template.InstantiatedTemplate;
-import edu.umich.templar.template.SchemaDataTemplateGenerator;
+import edu.umich.templar.template.JoinPathGenerator;
 import edu.umich.templar.template.Template;
 import edu.umich.templar.template.Translation;
 import edu.umich.templar.util.Utils;
@@ -106,7 +106,10 @@ public class TemplarCV {
         for (int i = 0; i < nlq.size(); i++) {
             shuffleIndexes.add(i);
         }
+        // Trial 1: Random seed 1234
         Collections.shuffle(shuffleIndexes, new Random(1234));
+        // Trial 2: Random seed 5678
+        // Collections.shuffle(shuffleIndexes, new Random(5678));
 
         int numFolds = 4;
         List<List<String>> nlqFolds = new ArrayList<>();
@@ -127,7 +130,7 @@ public class TemplarCV {
         }
 
         // Generate join paths
-        SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
+        JoinPathGenerator tg = new JoinPathGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
         // Read in Stanford Parser Model
@@ -196,13 +199,13 @@ public class TemplarCV {
                     throw new RuntimeException(e);
                 }
 
-                Templar.removeStopwords(Utils.stopwords, query);
+                TemplarTest.removeStopwords(Utils.stopwords, query);
 
-                List<ParseTreeNode> mappedNodes = Templar.getMappedNodes(query);
+                List<ParseTreeNode> mappedNodes = TemplarTest.getMappedNodes(query);
 
                 // qfGraph = null;
                 // agnosticGraph = null;
-                Templar tc = new Templar(db.schemaGraph.relations, agnosticGraph, qfGraph);
+                TemplarTest tc = new TemplarTest(db.schemaGraph.relations, agnosticGraph, qfGraph);
                 List<Translation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
                         new Translation(agnosticGraph, qfGraph));
 
@@ -273,7 +276,7 @@ public class TemplarCV {
                     }
                 }
                 if (rank == null || rank > 1) {
-                    System.out.println(Templar.getDebugOutput(lexiParser, query, topNTranslations, results.subList(0, Math.min(10, results.size()))));
+                    System.out.println(TemplarTest.getDebugOutput(lexiParser, query, topNTranslations, results.subList(0, Math.min(10, results.size()))));
                 }
 
                 // Answer not found

@@ -1,22 +1,22 @@
 package edu.umich.templar;
 
 import com.esotericsoftware.minlog.Log;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.ling.SentenceUtils;
+import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.lexparser.LexicalizedParser;
+import edu.stanford.nlp.trees.*;
 import edu.umich.templar.components.NodeMapper;
 import edu.umich.templar.components.StanfordNLParser;
 import edu.umich.templar.dataStructure.ParseTreeNode;
 import edu.umich.templar.dataStructure.Query;
 import edu.umich.templar.qf.*;
+import edu.umich.templar.qf.agnostic.AgnosticGraph;
 import edu.umich.templar.qf.pieces.AttributeType;
+import edu.umich.templar.rdbms.*;
 import edu.umich.templar.qf.pieces.Operator;
-import edu.umich.templar.rdbms.Attribute;
-import edu.umich.templar.rdbms.MappedSchemaElement;
-import edu.umich.templar.rdbms.RDBMS;
-import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.template.InstantiatedTemplate;
-import edu.umich.templar.template.JoinPathGenerator;
-import edu.umich.templar.template.Template;
-import edu.umich.templar.template.Translation;
+import edu.umich.templar.template.*;
+import edu.umich.templar.tools.PrintForCheck;
 import edu.umich.templar.tools.SimFunctions;
 import edu.umich.templar.util.Constants;
 import edu.umich.templar.util.Utils;
@@ -29,253 +29,22 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
- * Created by cjbaik on 12/7/17.
+ * Created by cjbaik on 9/6/17.
  */
-public class Templar {
-    RDBMS db;
+public class TemplarTest {
+    Map<String, Relation> relations;
+    AgnosticGraph agnosticGraph;  // schema-agnostic co-occurrence graph
+    QFGraph qfGraph;              // schema-aware co-occurrence graph
 
-    Document tokens;
-    LexicalizedParser lexiParser;
-
-    QFGraph qfGraph;
-    Set<Template> templates;
-
-    /*
-     * EXAMPLE EXECUTION
-     */
-    public static void main(String[] args) {
-        try {
-            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "mas", null);
-
-            // Load a SQL Log
-            List<String> sqlLogFile = FileUtils.readLines(new File("data/mas/mas_all.ans"), "UTF-8");
-            List<String> sqlLog = new ArrayList<>();
-            for (String line : sqlLogFile) {
-                sqlLog.add(line.split("\t")[0]);
-            }
-            templar.loadSQLLog(sqlLog);
-
-            // Translate NLQ
-            List<String> output = templar.translate("return the number of papers in PVLDB");
-            output.forEach(System.out::println);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /*
-     * FUNCTIONS TO EXPOSE
-     */
-    public Templar(String dbHost, Integer dbPort, String dbUser,
-                   String dbPassword, String datasetName, String dbName) throws Exception {
-        String schemaPrefix = "data/" + datasetName + "/" + datasetName;
-
-        if (dbName == null) {
-            dbName = datasetName;
-        }
-
-        Log.info("Loading database...");
-        this.db = new RDBMS(dbHost, dbPort, dbUser, dbPassword, dbName, schemaPrefix);
-        Log.info("Database loaded.");
-
-        // Read in Stanford Parser Model
-        this.lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
-
-        // Load token types
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        this.tokens = builder.parse(new File("libs/tokens.xml"));
-
-        // Generate join paths
-        int joinLevel = 6;
-        JoinPathGenerator tg = new JoinPathGenerator(db, joinLevel);
-        this.templates = tg.generate();
-
-        this.qfGraph = new QFGraph(this.db.schemaGraph.relations);
+    public TemplarTest(Map<String, Relation> relations, AgnosticGraph agnosticGraph, QFGraph qfGraph) {
+        this.relations = relations;
+        this.agnosticGraph = agnosticGraph;
+        this.qfGraph = qfGraph;
     }
 
-    public void loadSQLLog(List<String> queries) throws Exception {
-        Log.info("Loading SQL log...");
-        List<Select> selects = Utils.parseStatements(queries);
-        for (Select select : selects) {
-            this.qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
-        }
-        Log.info("Done loading SQL log.");
-    }
-
-    public List<String> translate(String nlq) throws Exception {
-        Query query = new Query(nlq, this.db.schemaGraph);
-
-        // Parse query with NL Parser
-        StanfordNLParser.parse(query, lexiParser);
-
-        // Map nodes to token types
-        NodeMapper.phraseProcess(query, db, tokens);
-
-        // Remove stopwords from parse tree
-        query.parseTree.removeStopwords(Utils.stopwords);
-
-        List<ParseTreeNode> mappedNodes = this.getMappedNodes(query);
-        List<Translation> translations = this.generatePossibleTranslationsRecursive(mappedNodes,
-                new Translation(null, this.qfGraph));
-
-        translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
-
-        int n = 10;
-        List<Translation> topNTranslations = new ArrayList<>();
-
-        double lastScore = 0.0;
-        for (Translation t : translations) {
-            if (t.getScore() < lastScore && topNTranslations.size() > n) {
-                break;
-            }
-
-            topNTranslations.add(t);
-            lastScore = t.getScore();
-        }
-
-        List<InstantiatedTemplate> results = new ArrayList<>();
-        Map<String, Integer> resultIndexMap = new HashMap<>();
-
-        for (Template tmpl : this.templates) {
-            for (Translation trans : topNTranslations) {
-                Set<Translation> perms = trans.getAliasPermutations(tmpl.getJoinPath());
-
-                for (Translation perm : perms) {
-                    InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
-                    if (inst.getValue() == null) continue;
-
-                    Integer existingIndex = resultIndexMap.get(inst.getValue());
-
-                    if (existingIndex != null) {
-                        InstantiatedTemplate existingTmpl = results.get(existingIndex);
-                        if (inst.getScore() > existingTmpl.getScore()) {
-                            results.set(existingIndex, inst);
-                        }
-                    } else {
-                        resultIndexMap.put(inst.getValue(), results.size());
-                        results.add(inst);
-                    }
-                }
-            }
-        }
-
-        int maxResults = 10;
-        return results.stream()
-                .sorted((a, b) -> b.getScore().compareTo(a.getScore()))
-                .map(InstantiatedTemplate::getValue)
-                .limit(maxResults)
-                .collect(Collectors.toList());
-    }
-
-    /*
-     * PRIVATE FUNCTIONS
-     */
-    private List<ParseTreeNode> getMappedNodes(Query query) {
-        List<ParseTreeNode> mappedNodes = new ArrayList<>();
-        List<ParseTreeNode> mappedNodesToRemove = new ArrayList<>();
-
-        for (ParseTreeNode node : query.parseTree.allNodes) {
-            boolean isNameToken = node.tokenType.equals("NT");
-            boolean isValueToken = node.tokenType.startsWith("VT");
-
-            if (isNameToken || isValueToken) {
-                // Check for related nodes that are auxiliary and delete
-                for (ParseTreeNode[] auxEntry : query.auxTable) {
-                    // If governing node
-                    if (auxEntry[1].equals(node)) {
-                        mappedNodesToRemove.add(auxEntry[0]);
-                    }
-                }
-
-                // In the case that we have a function as a parent, add accordingly and "ignore" function
-                if (!node.parent.function.equals("NA")) {
-                    ParseTreeNode functionNode = node.parent;
-
-                    String primaryFT = node.parent.function;
-                    String secondaryFT = null;
-                    if (!functionNode.parent.function.equals("NA")) {
-                        if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
-                            node.attachedSuperlative = functionNode.parent.function;
-                        } else {
-                            secondaryFT = functionNode.parent.function;
-                        }
-                    }
-                    if (secondaryFT == null || node.attachedSuperlative == null) {
-                        for (ParseTreeNode funcChild : functionNode.children) {
-                            if (!funcChild.function.equals("NA")) {
-                                if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
-                                    node.attachedSuperlative = funcChild.function;
-                                } else {
-                                    secondaryFT = funcChild.function;
-                                }
-                                break;
-                            }
-                        }
-                    }
-
-                    for (MappedSchemaElement mse : node.mappedElements) {
-                        if (mse.schemaElement.type.equals("int") || mse.schemaElement.type.equals("double")) {
-                            if (!primaryFT.equals("count")) {
-                                mse.attachedFT = primaryFT;
-                            } else if (secondaryFT != null && !secondaryFT.equals("count")) {
-                                mse.attachedFT = secondaryFT;
-                            }
-                        } else {
-                            // Only allow "count" for text nodes
-                            if (primaryFT.equals("count") || (secondaryFT != null && secondaryFT.equals("count"))) {
-                                mse.attachedFT = "count";
-                            }
-                        }
-                    }
-
-                    // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
-                    // is a CMT
-                    if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
-                        for (ParseTreeNode funcChild : functionNode.children) {
-                            if (!funcChild.equals(node)) {
-                                funcChild.parent = node;
-                                node.children.add(funcChild);
-                            }
-                        }
-
-                        node.parent = functionNode.parent;
-                        node.relationship = functionNode.relationship;
-                        functionNode.parent.children.remove(functionNode);
-                        functionNode.parent.children.add(node);
-                    }
-                }
-
-                // Do similar operation if function is child and has no children
-                // for operations such as: "return me the author who has the most number of papers..."
-                List<ParseTreeNode> funcToRemove = new ArrayList<>();
-                List<ParseTreeNode> childrenToAdd = new ArrayList<>();
-                for (ParseTreeNode child : node.children) {
-                    if (child.tokenType.equals("FT") && child.children.isEmpty()) {
-                        if (child.function.equals("max") || child.function.equals("min")) {
-                            node.attachedSuperlative = child.function;
-                        } else {
-                            for (MappedSchemaElement mse : node.mappedElements) {
-                                mse.attachedFT = child.function;
-                            }
-                        }
-                        childrenToAdd.addAll(child.children);
-                        funcToRemove.add(child);
-                    }
-                }
-                node.children.removeAll(funcToRemove);
-                node.children.addAll(childrenToAdd);
-            }
-
-            if (node.mappedElements.size() > 0 ) mappedNodes.add(node);
-        }
-        mappedNodes.removeAll(mappedNodesToRemove);
-        return mappedNodes;
-    }
-
-    private Translation newTranslationWithSuperlative(Translation trans, ParseTreeNode node, MappedSchemaElement mse,
+    public Translation newTranslationWithSuperlative(Translation trans, ParseTreeNode node, MappedSchemaElement mse,
                                                      Attribute attr, Double similarity) {
         String funcStr;
         String superlativeStr;
@@ -295,14 +64,14 @@ public class Templar {
         return newTrans;
     }
 
-    private List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
+    public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
                                                                                Translation trans, ParseTreeNode node,
                                                                                MappedSchemaElement mse, Attribute attr,
                                                                                Double similarity) {
         return this.generateNewTranslationWithProjectionOrSuperlative(remainingNodes, trans, node, mse, attr, similarity, false);
     }
 
-    private List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
+    public List<Translation> generateNewTranslationWithProjectionOrSuperlative(List<ParseTreeNode> remainingNodes,
                                                                                Translation trans, ParseTreeNode node,
                                                                                MappedSchemaElement mse, Attribute attr,
                                                                                Double similarity, boolean specialPkCount) {
@@ -419,8 +188,9 @@ public class Templar {
         }
         return result;
     }
-    private List<Translation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
-                                                                   Translation trans) {
+
+    public List<Translation> generatePossibleTranslationsRecursive(List<ParseTreeNode> remainingNodes,
+                                                                           Translation trans) {
         List<Translation> result = new ArrayList<>();
 
         // Base case: generate current possible translations now
@@ -489,7 +259,7 @@ public class Templar {
                 break;
             }
 
-            Relation rel = this.db.schemaGraph.relations.get(schemaEl.schemaElement.relation.name);
+            Relation rel = this.relations.get(schemaEl.schemaElement.relation.name);
             if (rel == null)
                 throw new RuntimeException("Relation " + schemaEl.schemaElement.relation.name + " not found.");
 
@@ -534,8 +304,7 @@ public class Templar {
             }
 
             // If it has a child that has a "nummod" relationship, generate a HAVING
-            boolean havingPrimaryAttr = rel.getPrimaryAttr() != null &&
-                    rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM;
+            boolean havingPrimaryAttr = rel.getPrimaryAttr().hasSameRelationNameAndNameAs(attr) && relSim >= Constants.MIN_SIM;
             ParseTreeNode nummodChild = curNode.getNummodChild();
             if (havingPrimaryAttr && nummodChild != null) {
                 Translation newTrans = new Translation(trans);
@@ -674,7 +443,7 @@ public class Templar {
                             // predicate
                             // e.g. "How many restaurants..."
 
-                            Relation parent = this.db.schemaGraph.relations.get(rel.getParent());
+                            Relation parent = this.relations.get(rel.getParent());
 
                             Translation newTrans = new Translation(trans);
                             newTrans.addQueryFragment(pred, schemaEl.similarity);
@@ -746,5 +515,413 @@ public class Templar {
             }
         }
         return result;
+    }
+
+    public static void removeStopwords(List<String> stopwords, Query query) {
+        List<ParseTreeNode> nodesToRemove = new ArrayList<>();
+        for (ParseTreeNode node : query.parseTree.allNodes) {
+            if (stopwords.contains(node.label.toLowerCase())) {
+                nodesToRemove.add(node);
+            }
+        }
+        for (ParseTreeNode node : nodesToRemove) {
+            query.parseTree.deleteNode(node);
+        }
+    }
+
+    public static List<ParseTreeNode> getMappedNodes(Query query) {
+        List<ParseTreeNode> mappedNodes = new ArrayList<>();
+        List<ParseTreeNode> mappedNodesToRemove = new ArrayList<>();
+
+        for (ParseTreeNode node : query.parseTree.allNodes) {
+            boolean isNameToken = node.tokenType.equals("NT");
+            boolean isValueToken = node.tokenType.startsWith("VT");
+
+            if (isNameToken || isValueToken) {
+                // Check for related nodes that are auxiliary and delete
+                for (ParseTreeNode[] auxEntry : query.auxTable) {
+                    // If governing node
+                    if (auxEntry[1].equals(node)) {
+                        mappedNodesToRemove.add(auxEntry[0]);
+                    }
+                }
+
+                // In the case that we have a function as a parent, add accordingly and "ignore" function
+                if (!node.parent.function.equals("NA")) {
+                    ParseTreeNode functionNode = node.parent;
+
+                    String primaryFT = node.parent.function;
+                    String secondaryFT = null;
+                    if (!functionNode.parent.function.equals("NA")) {
+                        if (functionNode.parent.function.equals("max") || functionNode.parent.function.equals("min")) {
+                            node.attachedSuperlative = functionNode.parent.function;
+                        } else {
+                            secondaryFT = functionNode.parent.function;
+                        }
+                    }
+                    if (secondaryFT == null || node.attachedSuperlative == null) {
+                        for (ParseTreeNode funcChild : functionNode.children) {
+                            if (!funcChild.function.equals("NA")) {
+                                if (funcChild.function.equals("max") || funcChild.function.equals("min")) {
+                                    node.attachedSuperlative = funcChild.function;
+                                } else {
+                                    secondaryFT = funcChild.function;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    for (MappedSchemaElement mse : node.mappedElements) {
+                        if (mse.schemaElement.type.equals("int") || mse.schemaElement.type.equals("double")) {
+                            if (!primaryFT.equals("count")) {
+                                mse.attachedFT = primaryFT;
+                            } else if (secondaryFT != null && !secondaryFT.equals("count")) {
+                                mse.attachedFT = secondaryFT;
+                            }
+                        } else {
+                            // Only allow "count" for text nodes
+                            if (primaryFT.equals("count") || (secondaryFT != null && secondaryFT.equals("count"))) {
+                                mse.attachedFT = "count";
+                            }
+                        }
+                    }
+
+                    // Only move around children if the function isn't actually a CMT (like "how many"), or its parent
+                    // is a CMT
+                    if (!functionNode.tokenType.equals("CMT") && !functionNode.parent.tokenType.equals("CMT")) {
+                        for (ParseTreeNode funcChild : functionNode.children) {
+                            if (!funcChild.equals(node)) {
+                                funcChild.parent = node;
+                                node.children.add(funcChild);
+                            }
+                        }
+
+                        node.parent = functionNode.parent;
+                        node.relationship = functionNode.relationship;
+                        functionNode.parent.children.remove(functionNode);
+                        functionNode.parent.children.add(node);
+                    }
+                }
+
+                // Do similar operation if function is child and has no children
+                // for operations such as: "return me the author who has the most number of papers..."
+                List<ParseTreeNode> funcToRemove = new ArrayList<>();
+                List<ParseTreeNode> childrenToAdd = new ArrayList<>();
+                for (ParseTreeNode child : node.children) {
+                    if (child.tokenType.equals("FT") && child.children.isEmpty()) {
+                        if (child.function.equals("max") || child.function.equals("min")) {
+                            node.attachedSuperlative = child.function;
+                        } else {
+                            for (MappedSchemaElement mse : node.mappedElements) {
+                                mse.attachedFT = child.function;
+                            }
+                        }
+                        childrenToAdd.addAll(child.children);
+                        funcToRemove.add(child);
+                    }
+                }
+                node.children.removeAll(funcToRemove);
+                node.children.addAll(childrenToAdd);
+            }
+
+            if (node.mappedElements.size() > 0 ) mappedNodes.add(node);
+        }
+        mappedNodes.removeAll(mappedNodesToRemove);
+        return mappedNodes;
+    }
+
+    public static String getDebugOutput(LexicalizedParser lexiParser, Query query, List<Translation> translations,
+                                 List<InstantiatedTemplate> results) {
+        StringBuilder sb = new StringBuilder();
+
+        List<CoreLabel> rawWords = SentenceUtils.toCoreLabelList(query.sentence.outputWords); // use Stanford parser to parse a sentence;
+        Tree parse = lexiParser.apply(rawWords);
+        TreebankLanguagePack tlp = new PennTreebankLanguagePack();
+        GrammaticalStructureFactory gsf = tlp.grammaticalStructureFactory();
+        GrammaticalStructure gs = gsf.newGrammaticalStructure(parse);
+        List<TypedDependency> dependencyList = gs.typedDependencies(false);
+
+        for (TaggedWord tagged : parse.taggedYield()) {
+            sb.append(tagged.word());
+            sb.append(", ");
+            sb.append(tagged.tag());
+            sb.append("\n");
+        }
+
+        for (TypedDependency dep : dependencyList) {
+            sb.append(dep);
+            sb.append("\n");
+        }
+
+        sb.append("\n");
+        sb.append("PARSE TREE:");
+        sb.append(query.parseTree);
+        sb.append("\n");
+
+        PrintForCheck.allParseTreeNodePrintForCheck(query.parseTree);
+        sb.append("\n");
+
+        sb.append("===========\n");
+        sb.append("TRANSLATIONS\n");
+        sb.append("===========\n");
+        for (Translation trans : translations) {
+            sb.append(trans.toString());
+            sb.append("\n");
+        }
+        sb.append("\n");
+
+        sb.append("===========\n");
+        sb.append("RESULTS\n");
+        sb.append("===========\n");
+        for (InstantiatedTemplate result : results) {
+            sb.append(result);
+            sb.append("\n");
+        }
+        sb.append("\n");
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 3) {
+            System.out.println("Usage: TemplarTest <testset> <join-level> <cat-level>");
+            System.out.println("Example: TemplarTest mas 6 all");
+            System.out.println("Example: TemplarTest mas 6 c1");
+            System.exit(1);
+        }
+        String dbName = args[0];
+        String prefix = "data/" + dbName + "/" + dbName;
+        int joinLevel = Integer.valueOf(args[1]);
+        String catLevel = args[2];
+
+        String nlqFile = prefix + "_" + catLevel + ".txt";
+        String ansFile = prefix + "_" + catLevel + ".ans";
+
+        RDBMS db;
+        try {
+            db = new RDBMS(dbName, prefix);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        // Load in everything for log counter
+        // NLSQLLogCounter nlsqlLogCounter = new NLSQLLogCounter(db.schemaGraph.relations);
+
+        List<List<String>> queryAnswers = null;
+        try {
+            List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
+            queryAnswers = new ArrayList<>();
+            for (String line : answerFileLines) {
+                List<String> answerList = new ArrayList<>();
+                for (String ans : line.trim().split("\t")) {
+                    answerList.add(ans.trim());
+                }
+                queryAnswers.add(answerList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Add NLQ/SQL log pairs
+        /*
+        for (int i = 0; i < logNLQ.size(); i++) {
+            if (logSQL.get(i) != null) {
+                Query query = new Query(logNLQ.get(i), db.schemaGraph);
+                List<String> tokens = Arrays.asList(query.sentence.outputWords);
+                nlsqlLogCounter.addNLQSQLPair(tokens, logSQL.get(i));
+            }
+        }*/
+
+        // Load in agnostic graph
+        AgnosticGraph agnosticGraph = new AgnosticGraph(db.schemaGraph.relations);
+        QFGraph qfGraph = new QFGraph(db.schemaGraph.relations);
+
+        List<String> logSQLStr = new ArrayList<>();
+        queryAnswers.stream().map((list) -> list.get(0)).forEach(logSQLStr::add);
+        List<Select> selects = Utils.parseStatements(logSQLStr);
+        for (Select select : selects) {
+            agnosticGraph.analyzeSelect((PlainSelect) select.getSelectBody());
+            qfGraph.analyzeSelect((PlainSelect) select.getSelectBody());
+        }
+
+        JoinPathGenerator tg = new JoinPathGenerator(db, joinLevel);
+        Set<Template> templates = tg.generate();
+
+        // Read in Stanford Parser Model
+        LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+
+        List<String> testNLQ = new ArrayList<>();
+        List<List<String>> testSQL = new ArrayList<>();
+        try {
+            // TODO: set this MODE to test different types of graphs
+            Translation.MODE = 2;
+            testNLQ.addAll(FileUtils.readLines(new File(nlqFile), "UTF-8"));
+
+            /*
+            // This is hard...
+            testNLQ.add("What is the maximum number of movies in which \"Brad Pitt\" act in a given year?");
+
+            // Can't handle splitting into two predicates right now
+            testNLQ.add("Find all movies written and produced by \"Woody Allen\"");
+
+            // nmod falsely collected...
+            // testNLQ.add("How many movies did \"Quentin Tarantino\" direct before 2002 and after 2010?");
+
+            // "latest" requires some parsing tricks for "when" attributes
+            // testNLQ.add("What is the latest movie by \"Jim Jarmusch\"");
+            // testNLQ.add("Who directed the latest movie by \"NBCUniversal\"");
+            // testNLQ.add("Find the latest movie which "Gabriele Ferzetti" acted in");
+
+            // 2 projections..
+            testNLQ.add("Find the name and budget of the latest movie by \"Quentin Tarantino\"");
+
+            // nouns are mischaracterized as verbs
+            testNLQ.add("Who was the director of the movie Joy from 2015?");
+            testNLQ.add("How many movies are there that are directed by \"Steven Spielberg\" and featuring \"Matt Damon\"?");
+
+            // Ranks aren't as good as hoped for certain keyword queries
+            testNLQ.add("Find all movies about Iraq war");
+            testNLQ.add("What are the movies related to nuclear weapons");
+            testNLQ.add("List all the directors of movies about nuclear weapons");
+
+            // "Role" is not selected
+            testNLQ.add("What are the major roles in the movie \"Daddy Long Legs\"");
+            */
+
+            if (ansFile != null) {
+                List<String> answerFileLines = FileUtils.readLines(new File(ansFile), "UTF-8");
+                testSQL = new ArrayList<>();
+                for (String line : answerFileLines) {
+                    List<String> answerList = new ArrayList<>();
+                    for (String ans : line.trim().split("\t")) {
+                        answerList.add(ans.trim());
+                    }
+                    testSQL.add(answerList);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        int i = 0;
+        int top1 = 0;
+        int top3 = 0;
+        int top5 = 0;
+        for (String queryStr : testNLQ) {
+            Log.info("================");
+            Log.info("QUERY " + i + ": " + queryStr);
+            Log.info("================");
+
+            // TODO: hack, to convert TX to Texas, probably don't need later
+            queryStr = queryStr.replace("TX", "Texas");
+            queryStr = queryStr.replace("PA", "Pennsylvania");
+
+            Query query = new Query(queryStr, db.schemaGraph);
+
+            // Parse query with NL Parser
+            StanfordNLParser.parse(query, lexiParser);
+
+            // Map nodes to token types
+            try {
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document tokens = builder.parse(new File("libs/tokens.xml"));
+                NodeMapper.phraseProcess(query, db, tokens);
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+
+            removeStopwords(Utils.stopwords, query);
+
+            List<ParseTreeNode> mappedNodes = getMappedNodes(query);
+
+            TemplarTest tc = new TemplarTest(db.schemaGraph.relations, agnosticGraph, qfGraph);
+            List<Translation> translations = tc.generatePossibleTranslationsRecursive(mappedNodes,
+                    new Translation(agnosticGraph, qfGraph));
+
+            translations.sort((a, b) -> b.getScore().compareTo(a.getScore()));
+
+            int n = 10;
+            List<Translation> topNTranslations = new ArrayList<>();
+
+            double lastScore = 0.0;
+            for (Translation t : translations) {
+                if (t.getScore() < lastScore && topNTranslations.size() > n) {
+                    break;
+                }
+
+                topNTranslations.add(t);
+                lastScore = t.getScore();
+            }
+
+            List<InstantiatedTemplate> results = new ArrayList<>();
+            Map<String, Integer> resultIndexMap = new HashMap<>();
+
+            for (Template tmpl : templates) {
+                for (Translation trans : topNTranslations) {
+                    Set<Translation> perms = trans.getAliasPermutations(tmpl.getJoinPath());
+
+                    for (Translation perm : perms) {
+                        InstantiatedTemplate inst = new InstantiatedTemplate(tmpl, perm);
+                        if (inst.getValue() == null) continue;
+
+                        Integer existingIndex = resultIndexMap.get(inst.getValue());
+
+                        if (existingIndex != null) {
+                            InstantiatedTemplate existingTmpl = results.get(existingIndex);
+                            if (inst.getScore() > existingTmpl.getScore()) {
+                                results.set(existingIndex, inst);
+                            }
+                        } else {
+                            resultIndexMap.put(inst.getValue(), results.size());
+                            results.add(inst);
+                        }
+                    }
+                }
+            }
+
+            results.sort((a, b) -> b.getScore().compareTo(a.getScore()));
+
+            Integer rank = null;
+            if (testSQL != null) {
+                Double correctResultScore = null;
+                for (int j = 0; j < Math.min(results.size(), 10); j++) {
+                    if (correctResultScore != null) {
+                        // If this score is less, then we have no ties and we just break
+                        if (results.get(j).getScore() < correctResultScore) {
+                            break;
+                        }
+                    }
+
+                    if (testSQL.get(i).contains(results.get(j).getValue())) {
+                        if (correctResultScore == null) {
+                            correctResultScore = results.get(j).getScore();
+
+                            rank = j + 1;
+                            if (rank <= 5) top5++;
+                            if (rank <= 3) top3++;
+                            if (rank == 1) top1++;
+                        }
+                    }
+                }
+            }
+
+            if (rank == null || rank > 1) {
+                System.out.println(getDebugOutput(lexiParser, query, topNTranslations, results.subList(0, Math.min(10, results.size()))));
+            }
+            i++;
+        }
+
+        Log.info("==============");
+        Log.info("SUMMARY");
+        Log.info("==============");
+        Log.info("Total queries: " + testNLQ.size());
+        Log.info("Top 1: " + top1);
+        Log.info("Top 3: " + top3);
+        Log.info("Top 5: " + top5);
     }
 }

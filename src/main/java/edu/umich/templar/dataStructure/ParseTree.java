@@ -126,8 +126,20 @@ public class ParseTree implements Serializable
 			this.deletedNodes.add(node); 
 		}
 	}
-	
-	public String toString() 
+
+	public void removeStopwords(List<String> stopwords) {
+		List<ParseTreeNode> nodesToRemove = new ArrayList<>();
+		for (ParseTreeNode node : this.allNodes) {
+			if (stopwords.contains(node.label.toLowerCase())) {
+				nodesToRemove.add(node);
+			}
+		}
+		for (ParseTreeNode node : nodesToRemove) {
+			this.deleteNode(node);
+		}
+	}
+
+	public String toString()
 	{
 		String result = "";
 		LinkedList<ParseTreeNode> nodeList = new LinkedList<ParseTreeNode>(); 

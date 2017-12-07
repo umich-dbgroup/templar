@@ -21,6 +21,8 @@ public class RDBMS {
 
 	public RDBMS(String database_name, String schemaGraphPrefix) throws Exception
 	{
+		this("127.0.0.1", 3306, "root", null, database_name, schemaGraphPrefix);
+		/*
 		String driver = "com.mysql.jdbc.Driver"; 
 		String db_url = "jdbc:mysql://127.0.0.1:3306/";
 		String user = "root";
@@ -29,6 +31,23 @@ public class RDBMS {
 		conn = DriverManager.getConnection(db_url, user, password);
 		
 		Statement statement = conn.createStatement(); 
+		statement.execute("use " + database_name);
+
+		// cjbaik: don't want to load history from database until I find out why
+		// loadHistory(database_name);
+
+		schemaGraph = new SchemaGraph(schemaGraphPrefix);*/
+	}
+
+	public RDBMS(String host, Integer port, String user, String password,
+				 String database_name, String schemaGraphPrefix) throws Exception
+	{
+		String driver = "com.mysql.jdbc.Driver";
+		String db_url = "jdbc:mysql://" + host + ":" + port + "/";
+		Class.forName(driver);
+		conn = DriverManager.getConnection(db_url, user, password);
+
+		Statement statement = conn.createStatement();
 		statement.execute("use " + database_name);
 
 		// cjbaik: don't want to load history from database until I find out why

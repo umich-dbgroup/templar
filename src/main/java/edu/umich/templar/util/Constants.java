@@ -20,9 +20,7 @@ public class Constants {
     public static final int MAX_MAPPED_EL = 7;
 
     // Min similarity score to consider "matching"
-    // best so far
     public static final Double MIN_SIM = 0.65;
-
     public static final Double DELTA_EPSILON = 0.15;
 
     public static final Double PENALTY_UNLIKELY_PROJECTION = 0.5;

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * Created by cjbaik on 6/30/17.
  */
-public class SchemaDataTemplateGenerator {
+public class JoinPathGenerator {
     RDBMS db;
 
     int joinLevel;
@@ -23,7 +23,7 @@ public class SchemaDataTemplateGenerator {
     // keeps track of join paths already generated so we don't have duplicates
     Set<JoinPath> generatedJoinPaths;
 
-    public SchemaDataTemplateGenerator(RDBMS db, int joinLevel) {
+    public JoinPathGenerator(RDBMS db, int joinLevel) {
         this.joinLevel = joinLevel;
         this.relations = db.schemaGraph.relations;
         TemplateRoot.relations = this.relations; // Kind of a hack, but want to store globally for TemplateRoot fns
@@ -345,7 +345,7 @@ public class SchemaDataTemplateGenerator {
             e.printStackTrace();
         }
 
-        SchemaDataTemplateGenerator tg = new SchemaDataTemplateGenerator(db, joinLevel);
+        JoinPathGenerator tg = new JoinPathGenerator(db, joinLevel);
         Set<Template> templates = tg.generate();
 
         templates.stream().map(Template::toStringDebug).forEach(System.out::println);
