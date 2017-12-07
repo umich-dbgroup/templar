@@ -1,4 +1,4 @@
-# TB-NaLIR
+# Templar
 
 ## Build
 
@@ -7,14 +7,21 @@ We use the gradle shadowJar plugin to build the project.
 gradle shadowJar
 ```
 
-## Execute
+## Executable Classes
 
-* `LogTemplateGenerator` - Generates templates given a specified query log and template generation level
-* `SchemaTemplateGenerator` - Generates templates with a specified schema and join depth level
-* `SchemaAndLogTemplateGenerator` - Generates templates with both a schema and a log,
-with a specific % of the log used for generating templates and the remainder of the log used for testing
+* `Templar` - Executes a single NLQ given some parameters.
+* `TemplarCV` - Runs a cross-validation test on a specific dataset given some parameters.
 
 Execute any of the above, by executing the below instruction **after building**:
 ```
 java -cp build/libs/tb-nalir-all.jar edu.umich.templar.<class-name-here> <...insert-args-here...>
 ```
+
+## Public API Methods
+
+We should expose the following methods:
+
+* `src/main/java/edu/umich/templar/Templar.java`
+  * `Templar(String dbHost, int dbPort, String dbUser, String dbPassword, String datasetName, String dbName)` - initializes Templar (run once only)
+  * `loadSQLLog(List<String> sqlLog)` - takes in a list of SQL strings to load into running instance of Templar
+  * `translate(String nlq)` - takes in a natural language query string and returns a List<String> of SQL translations
