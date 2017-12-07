@@ -357,19 +357,21 @@ public class Translation {
         }
 
         if (similarity != null) {
-            // Add all agnostic query fragments as needed
-            List<AgnosticQueryFragment> agnosticQFs = qf.convertToAgnostic();
-            List<ScoredAgnosticQueryFragment> qfScoredAQFList = new ArrayList<>();
+            if (this.agnosticGraph != null) {
+                // Add all agnostic query fragments as needed
+                List<AgnosticQueryFragment> agnosticQFs = qf.convertToAgnostic();
+                List<ScoredAgnosticQueryFragment> qfScoredAQFList = new ArrayList<>();
 
-            this.scoredAQFMap.put(qf, qfScoredAQFList);
+                this.scoredAQFMap.put(qf, qfScoredAQFList);
 
-            for (AgnosticQueryFragment aqf : agnosticQFs) {
-                if (this.agnosticGraph != null) {
-                    aqf = this.agnosticGraph.getOrInsertQF(aqf);
+                for (AgnosticQueryFragment aqf : agnosticQFs) {
+                    if (this.agnosticGraph != null) {
+                        aqf = this.agnosticGraph.getOrInsertQF(aqf);
+                    }
+                    ScoredAgnosticQueryFragment scoredAQF = new ScoredAgnosticQueryFragment(aqf, similarity);
+                    qfScoredAQFList.add(scoredAQF);
+                    this.scoredAQFs.add(scoredAQF);
                 }
-                ScoredAgnosticQueryFragment scoredAQF = new ScoredAgnosticQueryFragment(aqf, similarity);
-                qfScoredAQFList.add(scoredAQF);
-                this.scoredAQFs.add(scoredAQF);
             }
 
             // Add all regular query fragments as needed
