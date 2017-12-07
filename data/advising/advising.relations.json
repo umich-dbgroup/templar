@@ -2,6 +2,8 @@
     "area": {
         "name": "area",
         "type": "relation",
+        "parent": "course",
+        "weak": true,
         "attributes": {
             "course_id": {
                 "name": "course_id",
@@ -10,7 +12,8 @@
             },
             "area": {
                 "name": "area",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             }
         }
     },
@@ -34,7 +37,8 @@
             },
             "comment_text": {
                 "name": "comment_text",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             }
         }
     },
@@ -49,7 +53,8 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             },
             "department": {
                 "name": "department",
@@ -332,7 +337,8 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             },
             "uniqname": {
                 "name": "uniqname",
@@ -372,7 +378,8 @@
             },
             "name": {
                 "name": "name",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             },
             "college": {
                 "name": "college",
@@ -461,7 +468,8 @@
             },
             "lastname": {
                 "name": "lastname",
-                "type": "varchar"
+                "type": "varchar",
+                "importance": "primary"
             },
             "firstname": {
                 "name": "firstname",
