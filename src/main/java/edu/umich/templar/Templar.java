@@ -48,7 +48,7 @@ public class Templar {
      */
     public static void main(String[] args) {
         try {
-            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "advising", null);
+            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "mas", null);
 
             // Load a SQL Log
             /*
@@ -60,7 +60,8 @@ public class Templar {
             templar.loadSQLLog(sqlLog);*/
 
             // Translate NLQ
-            List<String> output = templar.translate("return the department of \"Humanities Topics in Judaism\"");
+            List<String> output = templar.translate("return me the homepage of PVLDB");
+            // List<String> output = templar.translate("return the department of \"Humanities Topics in Judaism\"");
             output.forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
