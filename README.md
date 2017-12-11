@@ -29,4 +29,4 @@ We should expose the following methods:
 ### Dependencies
 
 * `word2vec_server.py` needs to be running for this to work properly, and it will be hit on port 10000.
-* a functioning MySQL instance with necessary data from each dataset pre-loaded
+* a functioning MySQL instance with necessary data from each dataset pre-loaded. For example, have MySQL up and running, then create database name `mas` and follow instructions on the [MAS dataset README](data/mas/README.md).
