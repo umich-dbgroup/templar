@@ -253,7 +253,7 @@ public class JoinPathGenerator {
         Set<Template> templates = new HashSet<>();
 
         Log.info("==============================");
-        Log.info("Generating templates using schema for join level: " + this.joinLevel);
+        Log.info("Generating join paths using schema for join level: " + this.joinLevel);
 
         /*
         for (Map.Entry<String, Relation> e : this.relations.entrySet()) {
@@ -274,7 +274,7 @@ public class JoinPathGenerator {
             templates.addAll(this.getTemplatesForRelationsRecursive(select, relations, new JoinPath(), this.joinLevel));
         }
 
-        Log.info("Done generating " + templates.size() + " templates.");
+        Log.info("Done generating " + templates.size() + " join paths.");
 
         int fullQueryCount = 0;
         int noPredProjCount = 0;
