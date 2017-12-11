@@ -14,7 +14,7 @@ gradle shadowJar
 
 Execute any of the above, by executing the below instruction **after building**:
 ```
-java -cp build/libs/tb-nalir-all.jar edu.umich.templar.<class-name-here> <...insert-args-here...>
+java -cp build/libs/templar-master-all.jar edu.umich.templar.<class-name-here> <...insert-args-here...>
 ```
 
 ## Public API Methods
