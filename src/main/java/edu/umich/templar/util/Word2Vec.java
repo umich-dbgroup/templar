@@ -15,7 +15,7 @@ public class Word2Vec {
         double similarityScore = 0.0;
 
         try {
-            Socket socket = new Socket("localhost", 10000);
+            Socket socket = new Socket("localhost", 10001);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
