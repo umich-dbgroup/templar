@@ -48,7 +48,7 @@ public class Templar {
      */
     public static void main(String[] args) {
         try {
-            Templar templar = new Templar("127.0.0.1", 3306, "root", null, "mas", null);
+            Templar templar = new Templar("127.0.0.1", 3306, "root", "mymeezsql", "advising", "um_info_extended_cleaned");
 
             // Load a SQL Log
             /*
@@ -60,9 +60,18 @@ public class Templar {
             templar.loadSQLLog(sqlLog);*/
 
             // Translate NLQ
-            List<String> output = templar.translate("return me the homepage of PVLDB");
-            // List<String> output = templar.translate("return the department of \"Humanities Topics in Judaism\"");
-            output.forEach(System.out::println);
+            // List<String> output = templar.translate("return me the homepage of PVLDB");
+            while (true) {
+                Scanner reader = new Scanner(System.in).useDelimiter("\n");
+                System.out.print("Query: ");
+                String query = reader.next();
+                // String query = "return the department of \"Humanities Topics in Judaism\"";
+                System.out.println("QUERY: " + query);
+                List<String> output = templar.translate(query);
+                if (output.isEmpty()) System.out.println("No results.");
+                else output.forEach(System.out::println);
+                reader.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
