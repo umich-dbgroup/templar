@@ -63,7 +63,7 @@ public class QueryFragment {
             Predicate pred = (Predicate) this;
 
             Predicate newPred = new Predicate(pred.getAttribute(), null, null);
-            // Predicate newPred = new Predicate(pred.getAttribute(), pred.getOp(), null);
+            // NumericPredicate newPred = new NumericPredicate(pred.getAttribute(), pred.getOp(), null);
             result.add(newPred);
         } else if (this instanceof Having) {
             Having having = (Having) this;

@@ -261,6 +261,7 @@ public class SimFunctions
     }
 
     static Map<String, Double> cachedSim = new LRUMap<>(Constants.MAX_CACHE_SIZE);
+    static Word2Vec word2vec = new Word2Vec(10000);
     public static double word2vecSim(String word1, String word2) {
         String combined;
         if (word1.compareTo(word2) < 0) {
@@ -270,7 +271,7 @@ public class SimFunctions
         }
         Double sim = cachedSim.get(combined);
         if (sim == null) {
-            sim = Word2Vec.getSimilarity(word1, word2);
+            sim = word2vec.getSimilarity(word1, word2);
 
             // scale so it's 0 to 1
             sim = (sim + 1.0) / 2;

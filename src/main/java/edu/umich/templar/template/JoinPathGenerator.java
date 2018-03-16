@@ -315,8 +315,8 @@ public class JoinPathGenerator {
 
         /*
         Log.info("Full Query Count: " + fullQueryCount);
-        Log.info("No Predicate/Projection: " + noPredProjCount);
-        Log.info("No Predicate: " + noPredCount);
+        Log.info("No NumericPredicate/Projection: " + noPredProjCount);
+        Log.info("No NumericPredicate: " + noPredCount);
         Log.info("No Comparison/Projection: " + noCompProjCount);
         Log.info("No Comparison: " + noCompCount);
         Log.info("No Constants/Projection: " + noConstProjCount);

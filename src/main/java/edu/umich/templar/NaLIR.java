@@ -35,7 +35,7 @@ public class NaLIR {
         LexicalizedParser lexiParser = LexicalizedParser.loadModel("edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
         StanfordNLParser.parse(query, lexiParser);
 
-        Log.info("Mapping nodes to token types...");
+        Log.info("FragmentTask nodes to token types...");
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

@@ -68,7 +68,7 @@ public class InstantiatedTemplate {
                 }
             }
 
-            for (Predicate pred : translation.getPredicates()) {
+            for (NumericPredicate pred : translation.getPredicates()) {
                 if (selfJoin.getFirst().hasSameRelationAs(pred.getAttribute())) {
                     firstVertexHasProjPred = true;
                 }
@@ -142,7 +142,7 @@ public class InstantiatedTemplate {
                         }
                     }
 
-                    for (Predicate pred : translation.getPredicates()) {
+                    for (NumericPredicate pred : translation.getPredicates()) {
                         if (pred.getAttribute().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }

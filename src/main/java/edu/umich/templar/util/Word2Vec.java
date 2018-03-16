@@ -5,42 +5,36 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.*;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Word2Vec {
     public static void main(String args[]){
         // double score = getSimilarity("hate", "dislike");
     }
 
-    public static double getSimilarity(String word1, String word2){
+    private int portNum;
+    Map<String, Double> cache;
+
+    public Word2Vec(int portNum) {
+        this.portNum = portNum;
+        this.cache = new HashMap<>();
+    }
+
+    public double getSimilarity(String word1, String word2){
+        if (word1.equals(word2)) return 1.0;
+
         double similarityScore = 0.0;
 
         try {
-            Socket socket = new Socket("localhost", 10001);
+            Socket socket = new Socket("localhost", this.portNum);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-            out.println(word1 + ", " + word2);
+            out.println(word1.toLowerCase() + ", " + word2.toLowerCase());
             similarityScore = Double.parseDouble(in.readLine());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        try{
-            Process pr = Runtime.getRuntime().exec("python word2vec_client.py " +
-                    word1 + " " + word2);
-            BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-            String result = "";
-            String line = "";
-            while ((line = in.readLine()) != null) {
-                result += line;
-                System.out.println(result);
-            }
-            in.close();
-            pr.waitFor();
-            similarityScore = Double.parseDouble(result);
-        } catch (Exception e){
-            e.printStackTrace();
-        }*/
         return similarityScore;
     }
 }
