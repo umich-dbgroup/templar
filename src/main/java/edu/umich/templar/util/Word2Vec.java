@@ -32,6 +32,9 @@ public class Word2Vec {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out.println(word1.toLowerCase() + ", " + word2.toLowerCase());
             similarityScore = Double.parseDouble(in.readLine());
+
+            // normalize to 0, 1
+            similarityScore  = (similarityScore + 1) / 2;
         } catch (Exception e) {
             e.printStackTrace();
         }
