@@ -47,25 +47,15 @@ public class QueryMappings {
             }
         }
 
-        // find if there's a join path between these tables (i.e. are there any that don't connect to any other?)
-        // TODO: this doesn't work because we can have pairs of tables if there are 4, and the whole thing doesn't connect.
+        // add join scores according to SQLizer
         if (rels.size() > 1) {
-            for (Relation r1 : rels) {
-                boolean hasJoin = false;
-                for (Relation r2 : rels) {
-                    if (this.db.hasJoin(r1, r2)) {
-                        hasJoin = true;
-                        break;
-                    }
-                }
-                if (hasJoin) {
-                    accum *= 1 - BaselineParams.SQLIZER_EPSILON;
-                    root++;
-                } else {
-                    accum *= BaselineParams.SQLIZER_EPSILON;
-                    root++;
-                }
-            }
+            int joins = this.db.longestJoinPathLength(rels) - 1;
+            accum *= Math.pow(1 - BaselineParams.SQLIZER_EPSILON, joins);
+            root += joins;
+
+            int failedJoins = rels.size() - joins - 1;
+            accum *= Math.pow(BaselineParams.SQLIZER_EPSILON, failedJoins);
+            root += failedJoins;
         }
 
         return Math.pow(accum, 1.0 / root);

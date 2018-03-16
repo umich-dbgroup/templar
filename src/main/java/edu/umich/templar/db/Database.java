@@ -25,7 +25,7 @@ public class Database {
     Map<Attribute, Attribute> fkpk;
     Map<Attribute, List<Attribute>> pkfk;
 
-    public Database(String host, int port, String user, String pw, String dbName) {
+    public Database(String host, int port, String user, String pw, String dbName, String fkpkFile) {
         String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
         this.name = dbName;
 
@@ -44,6 +44,7 @@ public class Database {
 
         this.fkpk = new HashMap<>();
         this.pkfk = new HashMap<>();
+        this.loadFKPK(fkpkFile);
     }
 
     public ResultSet executeSQL(String sql) throws SQLException {
@@ -80,6 +81,9 @@ public class Database {
                 Attribute primaryAttr = new Attribute(primaryRel, "INT", (String) jsonObj.get("primaryAttribute"));
 
                 this.fkpk.put(foreignAttr, primaryAttr);
+
+                // Delete foreign keys from numeric attributes
+                this.numericAttributes.remove(foreignAttr);
 
                 List<Attribute> attrs = this.pkfk.get(primaryAttr);
                 if (attrs == null) attrs = new ArrayList<>();
@@ -228,6 +232,49 @@ public class Database {
             }
         }
         return false;
+    }
+
+    public List<Relation> longestJoinPathRecursive(List<Relation> path, List<Relation> rels) {
+        // Special case: start with empty path
+        if (path == null || path.isEmpty()) {
+            List<Relation> longestPath = new ArrayList<>();
+            for (Relation curRel : rels) {
+                List<Relation> newPath = new ArrayList<>();
+                newPath.add(curRel);
+                List<Relation> newRemaining = new ArrayList<>(rels);
+                newRemaining.remove(curRel);
+                List<Relation> curPath = this.longestJoinPathRecursive(newPath, newRemaining);
+                if (curPath.size() > longestPath.size()) {
+                    longestPath = curPath;
+                }
+            }
+            return longestPath;
+        }
+
+        // Base case, empty rels
+        if (rels.isEmpty()) return path;
+
+        // Otherwise, start with last relation in path and see how far we can get
+        Relation curRel = path.get(path.size() - 1);
+        List<Relation> longestPath = path;
+        for (Relation other : rels) {
+            if (this.hasJoin(curRel, other)) {
+                List<Relation> newPath = new ArrayList<>(path);
+                newPath.add(other);
+                List<Relation> newRemaining = new ArrayList<>(rels);
+                newRemaining.remove(other);
+                List<Relation> curPath = this.longestJoinPathRecursive(newPath, newRemaining);
+                if (curPath.size() > longestPath.size()) {
+                    longestPath = curPath;
+                }
+            }
+        }
+        return longestPath;
+    }
+
+    public int longestJoinPathLength(Set<Relation> rels) {
+        List<Relation> relsList = new ArrayList<>(rels);
+        return this.longestJoinPathRecursive(null, relsList).size();
     }
 
     public void close() {

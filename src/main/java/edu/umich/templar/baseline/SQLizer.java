@@ -17,7 +17,6 @@ public class SQLizer {
 
     public SQLizer(Database database, String filename) {
         this.db = database;
-        this.db.loadFKPK("data/mas/mas.edges.json");
 
         try {
             CSVReader reader = new CSVReader(new FileReader(filename));
@@ -285,7 +284,7 @@ public class SQLizer {
     }
 
     public static void main(String[] args) {
-        Database database = new Database("localhost", 3306, "root", null, "mas");
+        Database database = new Database("localhost", 3306, "root", null, "mas", "data/mas/mas.edges.json");
         SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv");
         sqlizer.execute(15);
     }
