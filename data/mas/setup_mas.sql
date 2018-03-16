@@ -33,3 +33,5 @@ ALTER TABLE publication ADD FULLTEXT(abstract);
 ALTER TABLE publication ADD FULLTEXT(doi);
 ALTER TABLE author ADD FULLTEXT(homepage);
 ALTER TABLE author ADD FULLTEXT(photo);
+ALTER TABLE keyword_variations ADD FULLTEXT(variation);
+ALTER TABLE keyword ADD FULLTEXT(keyword_short);
