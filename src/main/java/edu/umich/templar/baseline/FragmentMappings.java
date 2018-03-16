@@ -20,4 +20,8 @@ public class FragmentMappings {
     public MatchedDBElement get(int i) {
         return this.cands.get(i);
     }
+
+    public int size() {
+        return this.cands.size();
+    }
 }

@@ -163,9 +163,11 @@ public class SQLizer {
                 NumericPredicate pred = (NumericPredicate) cand;
 
                 double sim = 1.0;
+                double root = 1.0;
 
                 if (!tokens.isEmpty()) {
                     sim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                    root++;
                 }
 
                 // Check predicate
@@ -183,12 +185,33 @@ public class SQLizer {
                     throw new RuntimeException(e);
                 }
 
-                matchedEls.add(new MatchedDBElement(pred, Math.pow(sim, 0.5)));
+                matchedEls.add(new MatchedDBElement(pred, Math.pow(sim, 1.0 / root)));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }
         }
         return matchedEls;
+    }
+
+    private List<MatchedDBElement> pruneTopMatches(List<MatchedDBElement> matches) {
+        List<MatchedDBElement> pruned = new ArrayList<>();
+
+        double lastScore = 0.0;
+        for (int i = 0; i < matches.size(); i++) {
+            if (i < BaselineParams.MAX_TOP_CANDIDATES) {
+                pruned.add(matches.get(i));
+                lastScore = matches.get(i).getScore();
+                continue;
+            }
+
+            // If we went beyond the MAX_TOP_CANDIDATES, only keep going so long as we have a tie
+            if (matches.get(i).getScore() == lastScore) {
+                pruned.add(matches.get(i));
+            } else {
+                break;
+            }
+        }
+        return pruned;
     }
 
     private void executeQueryTask(QueryTask queryTask) {
@@ -218,7 +241,7 @@ public class SQLizer {
             }
             matchedEls.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
             FragmentMappings fragMappings = new FragmentMappings(fragmentTask,
-                    matchedEls.subList(0, BaselineParams.MAX_TOP_CANDIDATES));
+                    this.pruneTopMatches(matchedEls));
             queryMappings.addFragmentMappings(fragMappings);
         }
 
@@ -264,6 +287,6 @@ public class SQLizer {
     public static void main(String[] args) {
         Database database = new Database("localhost", 3306, "root", null, "mas");
         SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv");
-        sqlizer.execute(14);
+        sqlizer.execute(15);
     }
 }

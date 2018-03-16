@@ -48,6 +48,7 @@ public class QueryMappings {
         }
 
         // find if there's a join path between these tables (i.e. are there any that don't connect to any other?)
+        // TODO: this doesn't work because we can have pairs of tables if there are 4, and the whole thing doesn't connect.
         if (rels.size() > 1) {
             for (Relation r1 : rels) {
                 boolean hasJoin = false;
@@ -75,12 +76,16 @@ public class QueryMappings {
         List<Interpretation> maxInterps = new ArrayList<>();
         double maxScore = 0.0;
 
+        int totalInterpsCount = 1;
         int[] counters = new int[this.fragmentMappingsList.size()];
-        for (int i = 0; i <  counters.length; i++) {
+        int[] listSizes = new int[this.fragmentMappingsList.size()];
+        for (int i = 0; i < counters.length; i++) {
             counters[i] = 0;
+            listSizes[i] = this.fragmentMappingsList.get(i).size();
+            totalInterpsCount *= listSizes[i];
         }
 
-        for (int i = 0; i < (BaselineParams.MAX_TOP_CANDIDATES ^ this.fragmentMappingsList.size()); i++) {
+        for (int i = 0; i < totalInterpsCount; i++) {
             for (int j = 0; j < this.fragmentMappingsList.size(); j++) {
                 FragmentMappings fragMappings = this.fragmentMappingsList.get(j);
                 candInterp.add(fragMappings.get(counters[j]));
@@ -97,9 +102,13 @@ public class QueryMappings {
 
             int counterIndex = 0;
             counters[counterIndex]++;
-            while (counters[counterIndex] >= BaselineParams.MAX_TOP_CANDIDATES) {
+            while (counters[counterIndex] >= listSizes[counterIndex]) {
                 counters[counterIndex] = 0;
-                counters[counterIndex + 1] += 1;
+
+                counterIndex++;
+                if (counterIndex >= counters.length) break;
+
+                counters[counterIndex] += 1;
             }
         }
 
