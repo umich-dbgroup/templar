@@ -59,8 +59,8 @@ public class SQLizer {
         }
     }
 
-    private List<DBElement> getTextCandidateMatches(List<String> tokens) {
-        List<DBElement> cands = new ArrayList<>();
+    private Set<DBElement> getTextCandidateMatches(List<String> tokens) {
+        Set<DBElement> cands = new HashSet<>();
 
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
@@ -93,7 +93,7 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchTextCandidates(List<String> tokens, List<DBElement> textCands) {
+    private List<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands) {
         List<MatchedDBElement> matchedEls = new ArrayList<>();
 
         for (DBElement cand : textCands) {
@@ -127,11 +127,11 @@ public class SQLizer {
         return matchedEls;
     }
 
-    private List<DBElement> getNumericCandidateMatches(String numericToken, String op) {
+    private Set<DBElement> getNumericCandidateMatches(String numericToken, String op) {
         if (op.isEmpty()) op = "=";
 
         // If tokens, narrow it down first
-        List<DBElement> cands = new ArrayList<>();
+        Set<DBElement> cands = new HashSet<>();
 
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
@@ -147,7 +147,7 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchNumericCandidates(List<String> tokens, List<DBElement> numericCands) {
+    private List<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands) {
         List<MatchedDBElement> matchedEls = new ArrayList<>();
 
         for (DBElement cand : numericCands) {
@@ -183,7 +183,7 @@ public class SQLizer {
                     throw new RuntimeException(e);
                 }
 
-                matchedEls.add(new MatchedDBElement(pred, Math.pow(sim, 1/2)));
+                matchedEls.add(new MatchedDBElement(pred, Math.pow(sim, 0.5)));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }
@@ -207,7 +207,7 @@ public class SQLizer {
                 }
             }
 
-            List<DBElement> cands;
+            Set<DBElement> cands;
             List<MatchedDBElement> matchedEls;
             if (numericToken == null) {
                 cands = this.getTextCandidateMatches(tokens);
@@ -228,16 +228,19 @@ public class SQLizer {
         int ties = interps.size() - 1;
 
         System.out.println("TOTAL SCORE: " + interps.get(0).getScore() + ", TIES: " + ties);
-        for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
-            FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
+        for (Interpretation interp : interps) {
+            System.out.println("--");
+            for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
+                FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
 
-            String answer = fragmentMappings.getTask().getAnswer();
-            MatchedDBElement bestResult = interps.get(0).get(i);
+                String answer = fragmentMappings.getTask().getAnswer();
+                MatchedDBElement bestResult = interp.get(i);
 
-            System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
-                    + answer  + " : " + bestResult);
-            if (bestResult.getEl().toString().equals(answer)) {
-                correctFrags++;
+                System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
+                        + answer + " : " + bestResult);
+                if (bestResult.getEl().toString().equals(answer)) {
+                    correctFrags++;
+                }
             }
         }
         boolean correct = (correctFrags == totalFrags) && (ties == 0);
@@ -261,6 +264,6 @@ public class SQLizer {
     public static void main(String[] args) {
         Database database = new Database("localhost", 3306, "root", null, "mas");
         SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv");
-        sqlizer.execute(7);
+        sqlizer.execute(14);
     }
 }
