@@ -14,11 +14,9 @@ public class Word2Vec {
     }
 
     private int portNum;
-    Map<String, Double> cache;
 
     public Word2Vec(int portNum) {
         this.portNum = portNum;
-        this.cache = new HashMap<>();
     }
 
     public double getSimilarity(String word1, String word2){

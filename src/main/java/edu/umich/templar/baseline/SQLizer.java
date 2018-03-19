@@ -213,7 +213,7 @@ public class SQLizer {
         return pruned;
     }
 
-    private void executeQueryTask(QueryTask queryTask) {
+    private boolean executeQueryTask(QueryTask queryTask) {
         System.out.println("== QUERY ID: " + queryTask.getQueryId() + " ==");
 
         QueryMappings queryMappings = new QueryMappings(this.db);
@@ -269,14 +269,27 @@ public class SQLizer {
 
         System.out.println("== RESULT: " + (correct? "CORRECT" : "WRONG") + " == ");
         System.out.println();
+
+        return correct;
     }
 
     public void execute(int startAt) {
+        int totalTasks = 0;
+        int correctTasks = 0;
         for (Map.Entry<Integer, QueryTask> e : this.queryTasks.entrySet()) {
             if (e.getKey() < startAt) continue;
 
-            this.executeQueryTask(e.getValue());
+            boolean correct = this.executeQueryTask(e.getValue());
+            if (correct) correctTasks++;
+            totalTasks++;
+
+            System.out.println("SO FAR: " + correctTasks + "/" + totalTasks);
+            System.out.println();
         }
+
+        double accuracyPercent = (double) correctTasks / (double) totalTasks * 100;
+        System.out.println("==== FINAL RESULTS ====");
+        System.out.println(correctTasks + "/" + totalTasks + " (" + accuracyPercent + "%)");
     }
 
     public void execute() {
@@ -284,8 +297,8 @@ public class SQLizer {
     }
 
     public static void main(String[] args) {
-        Database database = new Database("localhost", 3306, "root", null, "mas", "data/mas/mas.edges.json");
+        Database database = new Database(args[0], Integer.valueOf(args[1]), args[2], args[3], "mas", "data/mas/mas.edges.json");
         SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv");
-        sqlizer.execute(15);
+        sqlizer.execute();
     }
 }
