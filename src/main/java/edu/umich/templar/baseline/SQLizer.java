@@ -65,9 +65,8 @@ public class SQLizer {
     private Set<DBElement> getTextCandidateMatches(List<String> tokens, String fragType) {
         Set<DBElement> cands = new HashSet<>();
 
-        // Only find relations if we don't know what type, or it is a relation
-        boolean findRelations = !this.typeOracle || fragType.equalsIgnoreCase("r");
-        if (findRelations) cands.addAll(this.db.getAllRelations());
+        // Add relations to candidates always
+        cands.addAll(this.db.getAllRelations());
 
         // Only find attributes if we don't know what type, or it's not a relation
         boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
@@ -146,9 +145,8 @@ public class SQLizer {
         // If tokens, narrow it down first
         Set<DBElement> cands = new HashSet<>();
 
-        // Only find relations if we don't know what type, or it is a relation
-        boolean findRelations = !this.typeOracle || fragType.equalsIgnoreCase("r");
-        if (findRelations) cands.addAll(this.db.getAllRelations());
+        // Add relations to candidates always
+        cands.addAll(this.db.getAllRelations());
 
         // Only find attributes if we don't know what type, or it's not a relation
         boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
