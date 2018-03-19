@@ -10,12 +10,16 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class SQLizer {
+    // If we assume that SQLizer knows the fragment type appropriate for each keyword always
+    private boolean typeOracle;
+
     private Database db;
     private Similarity sim;
 
     private Map<Integer, QueryTask> queryTasks = new HashMap<>();
 
-    public SQLizer(Database database, String filename) {
+    public SQLizer(Database database, String filename, boolean typeOracle) {
+        this.typeOracle = typeOracle;
         this.db = database;
 
         try {
@@ -58,12 +62,15 @@ public class SQLizer {
         }
     }
 
-    private Set<DBElement> getTextCandidateMatches(List<String> tokens) {
+    private Set<DBElement> getTextCandidateMatches(List<String> tokens, String fragType) {
         Set<DBElement> cands = new HashSet<>();
 
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
-        cands.addAll(this.db.getAllAttributes());
+
+        // Only find attributes if we don't know what type, or it's not a projection
+        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("p");
+        if (findAttributes) cands.addAll(this.db.getAllAttributes());
 
         // Skip tokens if we find an exact match
         boolean foundExactMatch = false;
@@ -86,7 +93,13 @@ public class SQLizer {
             }
         }
 
-        if (!foundExactMatch) cands.addAll(this.db.getSimilarValues(tokens));
+        // If we are operating in type-oracle mode and fragment is selection, then add similar values as tokens
+        // (otherwise, we know it's a projection/relation so we don't need to find values)
+        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("s");
+
+        if (!foundExactMatch && findSimValues) {
+            cands.addAll(this.db.getSimilarValues(tokens));
+        }
 
         System.out.println("Cands for '" + String.join(" ", tokens) + "': " + cands.size());
         return cands;
@@ -126,7 +139,7 @@ public class SQLizer {
         return matchedEls;
     }
 
-    private Set<DBElement> getNumericCandidateMatches(String numericToken, String op) {
+    private Set<DBElement> getNumericCandidateMatches(String numericToken, String op, String fragType) {
         if (op.isEmpty()) op = "=";
 
         // If tokens, narrow it down first
@@ -134,11 +147,20 @@ public class SQLizer {
 
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
-        cands.addAll(this.db.getNumericAttributes());
+
+        // Only find attributes if we don't know what type, or it's not a projection
+        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("p");
+        if (findAttributes) cands.addAll(this.db.getNumericAttributes());
+
+        // If we are operating in type-oracle mode and fragment is selection, then add similar values as tokens
+        // (otherwise, we know it's a projection/relation so we don't need to find values)
+        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("s");
 
         // Add numeric predicates
-        for (Attribute attr : this.db.getNumericAttributes()) {
-            cands.add(new NumericPredicate(attr, op, Double.valueOf(numericToken)));
+        if (findSimValues) {
+            for (Attribute attr : this.db.getNumericAttributes()) {
+                cands.add(new NumericPredicate(attr, op, Double.valueOf(numericToken)));
+            }
         }
 
         System.out.println("Cands for '" + op + " " + numericToken + "': " + cands.size());
@@ -232,10 +254,10 @@ public class SQLizer {
             Set<DBElement> cands;
             List<MatchedDBElement> matchedEls;
             if (numericToken == null) {
-                cands = this.getTextCandidateMatches(tokens);
+                cands = this.getTextCandidateMatches(tokens, fragmentTask.getType());
                 matchedEls = this.matchTextCandidates(tokens, cands);
             } else {
-                cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp());
+                cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getType());
                 matchedEls = this.matchNumericCandidates(tokens, cands);
             }
             matchedEls.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
@@ -297,8 +319,14 @@ public class SQLizer {
     }
 
     public static void main(String[] args) {
-        Database database = new Database(args[0], Integer.valueOf(args[1]), args[2], args[3], "mas", "data/mas/mas.edges.json");
-        SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv");
-        sqlizer.execute();
+        String password = args[3].equalsIgnoreCase("null")? null : args[3];
+        Database database = new Database(args[0], Integer.valueOf(args[1]), args[2], password, "mas", "data/mas/mas.edges.json");
+        SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv", Boolean.valueOf(args[4]));
+
+        if (args.length >= 6) {
+            sqlizer.execute(Integer.valueOf(args[5]));
+        } else {
+            sqlizer.execute();
+        }
     }
 }
