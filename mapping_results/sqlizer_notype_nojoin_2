@@ -1,0 +1,1049 @@
+Connecting to database: <jdbc:mysql://localhost:3306/mas>
+Database connected!
+== QUERY ID: 56 ==
+Cands for 'researchers': 229
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.966798841538404, TIES: 0
+--
+researchers :: author.name : keyword_variations.variation = 'IS researchers' (0.9347)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/1
+
+== QUERY ID: 57 ==
+Cands for 'researchers': 229
+Cands for 'Databases area': 107
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9554498597837966, TIES: 0
+--
+researchers :: author.name : keyword_variations.variation = 'IS researchers' (0.9347)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/2
+
+== QUERY ID: 58 ==
+Cands for 'papers': 1265
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/3
+
+== QUERY ID: 59 ==
+Cands for 'papers': 1265
+Cands for '> 2000': 40
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9999666655554938, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/4
+
+== QUERY ID: 60 ==
+Cands for 'papers': 1265
+Cands for 'VLDB conference': 543
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/5
+
+== QUERY ID: 61 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/6
+
+== QUERY ID: 62 ==
+Cands for 'papers': 1265
+Cands for 'VLDB': 147
+Cands for '> 2000': 40
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9999749990624454, TIES: 19
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/7
+
+== QUERY ID: 63 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+Cands for '> 2000': 40
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9999749990624454, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/8
+
+== QUERY ID: 64 ==
+Cands for 'paper': 1398
+Cands for 'Databases area': 107
+Cands for '> 200': 40
+TOTAL SCORE: 0.9443908085597947, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/9
+
+== QUERY ID: 65 ==
+Cands for 'paper': 1398
+Cands for 'PVLDB': 68
+Cands for '> 200': 40
+TOTAL SCORE: 0.9664245003512404, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/10
+
+== QUERY ID: 66 ==
+Cands for 'paper': 1398
+Cands for 'VLDB conference': 543
+Cands for '> 200': 40
+TOTAL SCORE: 0.9664245003512404, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/11
+
+== QUERY ID: 67 ==
+Cands for 'paper': 1398
+Cands for 'H. V. Jagadish': 138
+Cands for '> 200': 40
+TOTAL SCORE: 0.9664245003512404, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/12
+
+== QUERY ID: 68 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+Cands for '> 200': 40
+TOTAL SCORE: 0.9747111824904551, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/13
+
+== QUERY ID: 69 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+Cands for '> 200': 40
+TOTAL SCORE: 0.9747111824904551, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/14
+
+== QUERY ID: 70 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 40
+Cands for '> 200': 40
+TOTAL SCORE: 0.9663922851273641, TIES: 9
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/15
+
+== QUERY ID: 71 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 40
+Cands for 'Databases area': 107
+Cands for '> 200': 40
+TOTAL SCORE: 0.95797230938071, TIES: 9
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/16
+
+== QUERY ID: 72 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 40
+Cands for 'PVLDB': 68
+Cands for '> 200': 40
+TOTAL SCORE: 0.9746868137970478, TIES: 9
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/17
+
+== QUERY ID: 73 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 40
+Cands for 'VLDB conference': 543
+Cands for '> 200': 40
+TOTAL SCORE: 0.9746868137970478, TIES: 9
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+== RESULT: WRONG == 
+
+SO FAR: 0/18
+
+== QUERY ID: 74 ==
+Cands for 'conferences': 66
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 0
+--
+conferences :: conference.name : conference (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/19
+
+== QUERY ID: 75 ==
+Cands for 'journals': 66
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 0
+--
+journals :: journal.name : journal (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/20
+
+== QUERY ID: 76 ==
+Cands for 'papers': 1265
+Cands for 'written': 165
+Cands for 'H. V. Jagadish': 138
+Cands for 'each year': 70
+TOTAL SCORE: 0.9497796684178511, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+written :: writes : author.name = 'Written Xu Rujing' (0.9367995)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+each year :: publication.year : publication.year (0.8686499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 0/21
+
+== QUERY ID: 77 ==
+Cands for 'authors': 66
+Cands for 'Making database systems usable': 444
+TOTAL SCORE: 1.0, TIES: 0
+--
+authors :: author.name : author (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/22
+
+== QUERY ID: 78 ==
+Cands for 'citations': 126
+Cands for 'Making database systems usable': 444
+Cands for 'each year': 70
+TOTAL SCORE: 0.9541462358619527, TIES: 0
+--
+citations :: publication.citation_num : publication.title = 'Citations' (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+each year :: publication.year : publication.year (0.8686499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 0/23
+
+== QUERY ID: 80 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/24
+
+== QUERY ID: 81 ==
+Cands for 'papers': 1265
+Cands for 'VLDB conference': 543
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/25
+
+== QUERY ID: 82 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/26
+
+== QUERY ID: 83 ==
+Cands for 'papers': 1265
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999499987499375, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/27
+
+== QUERY ID: 84 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999666655554938, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/28
+
+== QUERY ID: 85 ==
+Cands for 'papers': 1265
+Cands for 'VLDB conference': 543
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999666655554938, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/29
+
+== QUERY ID: 86 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/30
+
+== QUERY ID: 87 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/31
+
+== QUERY ID: 88 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999666655554938, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/32
+
+== QUERY ID: 89 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999749990624454, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/33
+
+== QUERY ID: 90 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+Cands for '> 2000': 40
+TOTAL SCORE: 0.9999749990624454, TIES: 9
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+== RESULT: WRONG == 
+
+SO FAR: 0/34
+
+== QUERY ID: 91 ==
+Cands for 'keywords': 66
+TOTAL SCORE: 1.0, TIES: 1
+--
+keywords :: keyword.keyword : keyword.keyword (1.0)
+--
+keywords :: keyword.keyword : keyword (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 0/35
+
+== QUERY ID: 92 ==
+Cands for 'keywords': 66
+Cands for 'Databases area': 107
+TOTAL SCORE: 0.9659968944049457, TIES: 1
+--
+keywords :: keyword.keyword : keyword.keyword (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+keywords :: keyword.keyword : keyword (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 0/36
+
+== QUERY ID: 93 ==
+Cands for 'papers': 1265
