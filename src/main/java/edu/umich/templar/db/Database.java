@@ -25,7 +25,8 @@ public class Database {
     Map<Attribute, Attribute> fkpk;
     Map<Attribute, List<Attribute>> pkfk;
 
-    public Database(String host, int port, String user, String pw, String dbName, String fkpkFile) {
+    public Database(String host, int port, String user, String pw, String dbName,
+                    String fkpkFile, String mainAttrsFile) {
         String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
         this.name = dbName;
 
@@ -45,6 +46,8 @@ public class Database {
         this.fkpk = new HashMap<>();
         this.pkfk = new HashMap<>();
         this.loadFKPK(fkpkFile);
+
+        this.loadMainAttrs(mainAttrsFile);
     }
 
     public ResultSet executeSQL(String sql) throws SQLException {
@@ -93,6 +96,23 @@ public class Database {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void loadMainAttrs(String filename) {
+        try {
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObj = (JSONObject) jsonParser.parse(new FileReader(filename));
+            for (Object obj : jsonObj.keySet()) {
+                String relName = (String) obj;
+                String mainAttrName = (String) jsonObj.get(relName);
+
+                Relation rel = this.getRelationByName(relName);
+                rel.setMainAttribute(mainAttrName);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void loadRelation(String relName) {
