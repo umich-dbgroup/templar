@@ -109,8 +109,8 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands, String fragType) {
-        List<MatchedDBElement> matchedEls = new ArrayList<>();
+    private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands, String fragType) {
+        Set<MatchedDBElement> matchedEls = new HashSet<>();
 
         for (DBElement cand : textCands) {
             if (cand instanceof Relation) {
@@ -119,7 +119,9 @@ public class SQLizer {
 
                 // If we have a type oracle activated and we know it's a projection, treat as such
                 if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
-                    matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                    if (rel.getMainAttribute() != null) {
+                        matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                    }
                 } else {
                     matchedEls.add(new MatchedDBElement(rel, sim));
                 }
@@ -178,8 +180,8 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands, String fragType) {
-        List<MatchedDBElement> matchedEls = new ArrayList<>();
+    private Set<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands, String fragType) {
+        Set<MatchedDBElement> matchedEls = new HashSet<>();
 
         for (DBElement cand : numericCands) {
             if (cand instanceof Relation) {
@@ -188,7 +190,9 @@ public class SQLizer {
 
                 // If we have a type oracle activated and we know it's a projection, treat as such
                 if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
-                    matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                    if (rel.getMainAttribute() != null) {
+                        matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                    }
                 } else {
                     matchedEls.add(new MatchedDBElement(rel, sim));
                 }
@@ -268,7 +272,7 @@ public class SQLizer {
             }
 
             Set<DBElement> cands;
-            List<MatchedDBElement> matchedEls;
+            Set<MatchedDBElement> matchedEls;
             if (numericToken == null) {
                 cands = this.getTextCandidateMatches(tokens, fragmentTask.getType());
                 matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType());
@@ -276,9 +280,11 @@ public class SQLizer {
                 cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getType());
                 matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
             }
-            matchedEls.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
+
+            List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);
+            sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
             FragmentMappings fragMappings = new FragmentMappings(fragmentTask,
-                    this.pruneTopMatches(matchedEls));
+                    this.pruneTopMatches(sorted));
             queryMappings.addFragmentMappings(fragMappings);
         }
 

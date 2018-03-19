@@ -40,6 +40,7 @@ public class Relation extends DBElement implements Serializable {
         for (Attribute attr : this.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {
                 this.mainAttribute = attr;
+                return;
             }
         }
 
