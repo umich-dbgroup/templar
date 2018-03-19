@@ -34,7 +34,7 @@ public class Word2Vec {
             // normalize to 0, 1
             similarityScore  = (similarityScore + 1) / 2;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return similarityScore;
     }
