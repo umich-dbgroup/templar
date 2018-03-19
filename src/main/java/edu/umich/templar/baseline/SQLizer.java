@@ -13,13 +13,17 @@ public class SQLizer {
     // If we assume that SQLizer knows the fragment type appropriate for each keyword always
     private boolean typeOracle;
 
+    // Activate the join penalty indiscriminately
+    private boolean joinScore;
+
     private Database db;
     private Similarity sim;
 
     private Map<Integer, QueryTask> queryTasks = new HashMap<>();
 
-    public SQLizer(Database database, String filename, boolean typeOracle) {
+    public SQLizer(Database database, String filename, boolean typeOracle, boolean joinScore) {
         this.typeOracle = typeOracle;
+        this.joinScore = joinScore;
         this.db = database;
 
         try {
@@ -238,7 +242,7 @@ public class SQLizer {
     private boolean executeQueryTask(QueryTask queryTask) {
         System.out.println("== QUERY ID: " + queryTask.getQueryId() + " ==");
 
-        QueryMappings queryMappings = new QueryMappings(this.db);
+        QueryMappings queryMappings = new QueryMappings(this.db, this.joinScore);
         for (FragmentTask fragmentTask : queryTask.getFragmentTasks()) {
             List<String> tokens = new ArrayList<>();
             String numericToken = null;
@@ -319,12 +323,18 @@ public class SQLizer {
     }
 
     public static void main(String[] args) {
-        String password = args[3].equalsIgnoreCase("null")? null : args[3];
-        Database database = new Database(args[0], Integer.valueOf(args[1]), args[2], password, "mas", "data/mas/mas.edges.json");
-        SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv", Boolean.valueOf(args[4]));
+        String dbHost = args[0];
+        Integer dbPort = Integer.valueOf(args[1]);
+        String dbUser = args[2];
+        String dbPass = args[3].equalsIgnoreCase("null")? null : args[3];
+        Boolean typeOracle = Boolean.valueOf(args[4]);
+        Boolean joinScore = Boolean.valueOf(args[5]);
 
-        if (args.length >= 6) {
-            sqlizer.execute(Integer.valueOf(args[5]));
+        Database database = new Database(dbHost, dbPort, dbUser, dbPass, "mas", "data/mas/mas.edges.json");
+        SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv", typeOracle, joinScore);
+
+        if (args.length >= 7) {
+            sqlizer.execute(Integer.valueOf(args[6]));
         } else {
             sqlizer.execute();
         }

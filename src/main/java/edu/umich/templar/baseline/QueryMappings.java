@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Set;
 
 public class QueryMappings {
+    // Activate the join penalty indiscriminately
+    private boolean joinScore;
+
     private Database db;
     private List<FragmentMappings> fragmentMappingsList;
 
-    public QueryMappings(Database db) {
+    public QueryMappings(Database db, boolean joinScore) {
         this.db = db;
+        this.joinScore = joinScore;
         this.fragmentMappingsList = new ArrayList<>();
     }
 
@@ -48,14 +52,16 @@ public class QueryMappings {
         }
 
         // add join scores according to SQLizer
-        if (rels.size() > 1) {
-            int joins = this.db.longestJoinPathLength(rels) - 1;
-            accum *= Math.pow(1 - BaselineParams.SQLIZER_EPSILON, joins);
-            root += joins;
+        if (this.joinScore) {
+            if (rels.size() > 1) {
+                int joins = this.db.longestJoinPathLength(rels) - 1;
+                accum *= Math.pow(1 - BaselineParams.SQLIZER_EPSILON, joins);
+                root += joins;
 
-            int failedJoins = rels.size() - joins - 1;
-            accum *= Math.pow(BaselineParams.SQLIZER_EPSILON, failedJoins);
-            root += failedJoins;
+                int failedJoins = rels.size() - joins - 1;
+                accum *= Math.pow(BaselineParams.SQLIZER_EPSILON, failedJoins);
+                root += failedJoins;
+            }
         }
 
         return Math.pow(accum, 1.0 / root);
