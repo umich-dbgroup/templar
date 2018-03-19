@@ -109,14 +109,20 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands) {
+    private List<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands, String fragType) {
         List<MatchedDBElement> matchedEls = new ArrayList<>();
 
         for (DBElement cand : textCands) {
             if (cand instanceof Relation) {
                 Relation rel = (Relation) cand;
                 double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
-                matchedEls.add(new MatchedDBElement(rel, sim));
+
+                // If we have a type oracle activated and we know it's a projection, treat as such
+                if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
+                    matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                } else {
+                    matchedEls.add(new MatchedDBElement(rel, sim));
+                }
             } else if (cand instanceof Attribute) {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
@@ -172,14 +178,20 @@ public class SQLizer {
         return cands;
     }
 
-    private List<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands) {
+    private List<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands, String fragType) {
         List<MatchedDBElement> matchedEls = new ArrayList<>();
 
         for (DBElement cand : numericCands) {
             if (cand instanceof Relation) {
                 Relation rel = (Relation) cand;
                 double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
-                matchedEls.add(new MatchedDBElement(rel, sim));
+
+                // If we have a type oracle activated and we know it's a projection, treat as such
+                if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
+                    matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                } else {
+                    matchedEls.add(new MatchedDBElement(rel, sim));
+                }
             } else if (cand instanceof Attribute) {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
@@ -259,10 +271,10 @@ public class SQLizer {
             List<MatchedDBElement> matchedEls;
             if (numericToken == null) {
                 cands = this.getTextCandidateMatches(tokens, fragmentTask.getType());
-                matchedEls = this.matchTextCandidates(tokens, cands);
+                matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType());
             } else {
                 cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getType());
-                matchedEls = this.matchNumericCandidates(tokens, cands);
+                matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
             }
             matchedEls.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
             FragmentMappings fragMappings = new FragmentMappings(fragmentTask,
@@ -330,7 +342,8 @@ public class SQLizer {
         Boolean typeOracle = Boolean.valueOf(args[4]);
         Boolean joinScore = Boolean.valueOf(args[5]);
 
-        Database database = new Database(dbHost, dbPort, dbUser, dbPass, "mas", "data/mas/mas.edges.json");
+        Database database = new Database(dbHost, dbPort, dbUser, dbPass,
+                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
         SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv", typeOracle, joinScore);
 
         if (args.length >= 7) {

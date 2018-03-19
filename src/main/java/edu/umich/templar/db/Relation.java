@@ -12,10 +12,12 @@ import java.util.List;
 public class Relation extends DBElement implements Serializable {
     String name;
     List<Attribute> attributes;
+    Attribute mainAttribute;
 
     public Relation(String name) {
         this.name = name;
         this.attributes = new ArrayList<>();
+        this.mainAttribute = null;
     }
 
     public void addAttribute(Attribute attr) {
@@ -28,6 +30,21 @@ public class Relation extends DBElement implements Serializable {
 
     public List<Attribute> getAttributes() {
         return this.attributes;
+    }
+
+    public Attribute getMainAttribute() {
+        return mainAttribute;
+    }
+
+    public void setMainAttribute(String attrName) {
+        for (Attribute attr : this.attributes) {
+            if (attrName.equalsIgnoreCase(attr.getName())) {
+                this.mainAttribute = attr;
+            }
+        }
+
+        throw new RuntimeException("Could not find attribute with name <"
+                + attrName + "> in relation <" + this.getName() + ">");
     }
 
     public Table toTable() {
