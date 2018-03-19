@@ -68,8 +68,8 @@ public class SQLizer {
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
 
-        // Only find attributes if we don't know what type, or it's not a projection
-        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("p");
+        // Only find attributes if we don't know what type, or it's not a relation
+        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
         if (findAttributes) cands.addAll(this.db.getAllAttributes());
 
         // Skip tokens if we find an exact match
@@ -148,8 +148,8 @@ public class SQLizer {
         // Add relations, attributes to check
         cands.addAll(this.db.getAllRelations());
 
-        // Only find attributes if we don't know what type, or it's not a projection
-        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("p");
+        // Only find attributes if we don't know what type, or it's not a relation
+        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
         if (findAttributes) cands.addAll(this.db.getNumericAttributes());
 
         // If we are operating in type-oracle mode and fragment is selection, then add similar values as tokens
