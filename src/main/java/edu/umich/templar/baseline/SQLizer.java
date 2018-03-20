@@ -156,9 +156,16 @@ public class SQLizer {
                 // For cases like "VLDB conference" where the rel/attr name is embedded in the phrase
                 List<String> checkTokens = new ArrayList<>();
                 for (String token : tokens) {
-                    boolean tokenIsAttrOrRel = token.equalsIgnoreCase(val.getAttribute().getCleanedName()) ||
-                            token.equalsIgnoreCase(val.getAttribute().getRelation().getName());
-                    if (!tokenIsAttrOrRel) {
+                    // Only remove if it's the first or last token
+                    if (tokens.indexOf(token) == 0 || tokens.indexOf(token) == (tokens.size() - 1)) {
+                        boolean tokenIsAttrOrRel = token.equalsIgnoreCase(val.getAttribute().getCleanedName()) ||
+                                token.equalsIgnoreCase(val.getAttribute().getRelation().getName());
+                        if (!tokenIsAttrOrRel) {
+                            checkTokens.add(token);
+                        } else {
+                            continue;
+                        }
+                    } else {
                         checkTokens.add(token);
                     }
                 }

@@ -203,15 +203,21 @@ public class Database {
                     }
                     query += sj.toString();
                 } else {
-                    StringJoiner sj = new StringJoiner(" +");
+                    StringJoiner sj = new StringJoiner(" ");
                     for (String token : tokens) {
                         if (token.length() >= BaselineParams.MIN_FULLTEXT_TOKEN_LENGTH) {
-                            sj.add(token);
+                            // When the token matches the relation or the attribute name, make it an OR instead of AND
+                            if (token.equalsIgnoreCase(attr.getName())
+                                    || token.equalsIgnoreCase(attr.getRelation().getName())) {
+                                sj.add(token);
+                            } else {
+                                sj.add("+" + token);
+                            }
                         }
                     }
                     query = "SELECT " + attr.getName() + " FROM " + attr.getRelation().getName()
                             + " WHERE MATCH(" + attr.getName() + ")"
-                            + " AGAINST ('+" + sj.toString() + "' IN BOOLEAN MODE)";
+                            + " AGAINST ('" + sj.toString() + "' IN BOOLEAN MODE)";
                 }
 
                 ResultSet rs = stmt.executeQuery(query);
