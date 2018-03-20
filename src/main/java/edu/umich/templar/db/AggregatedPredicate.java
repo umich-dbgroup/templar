@@ -53,6 +53,34 @@ public class AggregatedPredicate extends DBElement {
 
     @Override
     public String toString() {
-        return aggFunction + '(' + attr + ") " + op + ' ' + valueFunction + '(' + aggFunction + '(' + attr + "))";
+        StringBuilder sb = new StringBuilder();
+
+        if (this.aggFunction != null) {
+            sb.append(aggFunction);
+            sb.append('(');
+        }
+
+        sb.append(attr);
+
+        if (this.aggFunction != null) {
+            sb.append(')');
+        }
+        sb.append(' ');
+        sb.append(op);
+        sb.append(' ');
+        sb.append(valueFunction);
+        sb.append('(');
+        if (this.aggFunction != null) {
+            sb.append(aggFunction);
+            sb.append('(');
+        }
+        sb.append(attr);
+        if (this.aggFunction != null) {
+            sb.append(')');
+        }
+        sb.append(')');
+
+
+        return sb.toString();
     }
 }

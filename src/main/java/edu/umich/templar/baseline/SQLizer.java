@@ -39,14 +39,21 @@ public class SQLizer {
                                                    String op, List<String> functions) {
         Set<DBElement> cands = new HashSet<>();
 
+        if (op.isEmpty()) op = "=";
+
         if (functions.size() == 1) {
-            // If there's one function, we're dealing with an AggregatedAttribute
-            for (Attribute attr : this.db.getAllAttributes()) {
-                cands.add(new AggregatedAttribute(functions.get(0), attr));
+            // If there's one function, we're dealing with an AggregatedAttribute or AggregatedPredicate
+            if (fragType.equalsIgnoreCase("attr")) {
+                for (Attribute attr : this.db.getAllAttributes()) {
+                    cands.add(new AggregatedAttribute(functions.get(0), attr));
+                }
+            } else {
+                for (Attribute attr : this.db.getAllAttributes()) {
+                    cands.add(new AggregatedPredicate(null, attr, op, functions.get(0)));
+                }
             }
         } else if (functions.size() > 1) {
             // If there's more than 1 function, it needs to be an AggregatedPredicate
-            if (op.isEmpty()) op = "=";
 
             String aggFunction = null;
             String valueFunction = null;
@@ -69,7 +76,6 @@ public class SQLizer {
                 }
             }
         } else {
-
             // Add relations to candidates always
             cands.addAll(this.db.getAllRelations());
 
@@ -162,7 +168,14 @@ public class SQLizer {
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
-                double sim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                double sim;
+                if (pred.getAttr().isMainAttr()) {
+                    double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                    sim = Math.max(attrSim, relSim);
+                } else {
+                    sim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                }
                 matchedEls.add(new MatchedDBElement(pred, sim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
@@ -183,13 +196,15 @@ public class SQLizer {
 
             for (Relation rel : this.db.getAllRelations()) {
                 // If single function, we can handle with NumericPredicate
-                cands.add(new NumericPredicate(rel.getMainAttribute(), op,
-                        Double.valueOf(numericToken), functions.get(0)));
+                if (rel.getMainAttribute() != null) {
+                    cands.add(new NumericPredicate(rel.getMainAttribute(), op,
+                            Double.valueOf(numericToken), functions.get(0)));
+                }
             }
         }
 
-        // Only find similar values if we don't have 2 functions or more (see above for that case)
-        boolean findSimValues = functions.size() <= 1;
+        // Only find similar values if the function isn't a count
+        boolean findSimValues = !functions.contains("count");
 
         // Add numeric predicates
         if (findSimValues) {
