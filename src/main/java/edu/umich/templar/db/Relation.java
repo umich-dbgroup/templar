@@ -36,6 +36,13 @@ public class Relation extends DBElement implements Serializable {
         return mainAttribute;
     }
 
+    public Attribute getAttribute(String attrName) {
+        for (Attribute attr : attributes) {
+            if (attrName.equalsIgnoreCase(attr.getName())) return attr;
+        }
+        return null;
+    }
+
     public void setMainAttribute(String attrName) {
         for (Attribute attr : this.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {

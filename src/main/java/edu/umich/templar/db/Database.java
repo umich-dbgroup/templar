@@ -179,8 +179,8 @@ public class Database {
         return this.relations;
     }
 
-    public List<Value> getSimilarValues(List<String> tokens) {
-        List<Value> values = new ArrayList<>();
+    public List<TextPredicate> getSimilarValues(List<String> tokens) {
+        List<TextPredicate> values = new ArrayList<>();
         for (Attribute attr : this.textAttributes) {
             try {
                 // Get size of relation
@@ -220,7 +220,7 @@ public class Database {
 
                     // Limit max token value in results
                     if (stringValue.length() <= BaselineParams.MAX_CHAR_LENGTH) {
-                        Value val = new Value(attr, stringValue);
+                        TextPredicate val = new TextPredicate(attr, stringValue);
                         values.add(val);
                     }
                 }

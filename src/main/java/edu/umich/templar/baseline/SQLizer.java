@@ -2,6 +2,7 @@ package edu.umich.templar.baseline;
 
 import com.opencsv.CSVReader;
 import edu.umich.templar.db.*;
+import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,53 +28,51 @@ public class SQLizer {
         this.db = database;
 
         try {
-            CSVReader reader = new CSVReader(new FileReader(filename));
             this.sim = new Similarity(10000);
-
-            this.readQueryTasks(reader);
+            this.queryTasks = QueryTaskReader.readQueryTasks(filename);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void readQueryTasks(CSVReader reader) {
-        try {
-            // Skip first header line
-            reader.readNext();
-
-            this.queryTasks = new HashMap<>();
-
-            // Read all fragmentTasks in from CSV file
-            String [] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                int queryId = Integer.valueOf(nextLine[0]);
-                String phrase = nextLine[1];
-                String op = nextLine[2];
-                String type = nextLine[3];
-                String answer = nextLine[7];
-
-                QueryTask task = this.queryTasks.get(queryId);
-                if (task == null) {
-                    task = new QueryTask(queryId);
-                    this.queryTasks.put(queryId, task);
-                }
-
-                task.addMapping(new FragmentTask(phrase, op, type, answer));
-            }
-            reader.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private Set<DBElement> getTextCandidateMatches(List<String> tokens, String fragType) {
+    private Set<DBElement> getTextCandidateMatches(List<String> tokens, String fragType,
+                                                   String op, List<String> functions) {
         Set<DBElement> cands = new HashSet<>();
+
+        // If there's functions, we know that it has to be AggregatedPredicate
+        if (!functions.isEmpty()) {
+            if (functions.size() != 2) throw new RuntimeException("Unexpected number of functions in query.");
+
+            if (op.isEmpty()) op = "=";
+
+            String aggFunction = null;
+            String valueFunction = null;
+
+            for (String function : functions) {
+                if (function.equalsIgnoreCase("max") ||
+                        function.equalsIgnoreCase("min") ||
+                        function.equalsIgnoreCase("avg")) {
+                    if (valueFunction != null) throw new RuntimeException("Value function already set!");
+                    valueFunction = function;
+                } else {
+                    if (aggFunction != null) throw new RuntimeException("Aggregate function already set!");
+                    aggFunction = function;
+                }
+            }
+
+            for (Relation rel : this.db.getAllRelations()) {
+                if (rel.getMainAttribute() != null) {
+                    cands.add(new AggregatedPredicate(aggFunction, rel.getMainAttribute(), op, valueFunction));
+                }
+            }
+            return cands;
+        }
 
         // Add relations to candidates always
         cands.addAll(this.db.getAllRelations());
 
         // Only find attributes if we don't know what type, or it's not a relation
-        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
+        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("rel");
         if (findAttributes) cands.addAll(this.db.getAllAttributes());
 
         // Skip tokens if we find an exact match
@@ -97,9 +96,9 @@ public class SQLizer {
             }
         }
 
-        // If we are operating in type-oracle mode and fragment is selection, then add similar values as tokens
+        // If we are operating in type-oracle mode and fragment is a predicate, then add similar values as tokens
         // (otherwise, we know it's a projection/relation so we don't need to find values)
-        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("s");
+        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("pred");
 
         if (!foundExactMatch && findSimValues) {
             cands.addAll(this.db.getSimilarValues(tokens));
@@ -117,8 +116,8 @@ public class SQLizer {
                 Relation rel = (Relation) cand;
                 double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
 
-                // If we have a type oracle activated and we know it's a projection, treat as such
-                if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
+                // If we have a type oracle activated and we know it's an attribute result, treat as such
+                if (this.typeOracle && fragType.equalsIgnoreCase("attr")) {
                     if (rel.getMainAttribute() != null) {
                         matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
                     }
@@ -129,8 +128,8 @@ public class SQLizer {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
                 matchedEls.add(new MatchedDBElement(attr, sim));
-            } else if (cand instanceof Value) {
-                Value val = (Value) cand;
+            } else if (cand instanceof TextPredicate) {
+                TextPredicate val = (TextPredicate) cand;
 
                 // For cases like "VLDB conference" where the rel/attr name is embedded in the phrase
                 List<String> checkTokens = new ArrayList<>();
@@ -144,6 +143,11 @@ public class SQLizer {
 
                 double sim = this.sim.sim(val.getValue(), String.join(" ", checkTokens));
                 matchedEls.add(new MatchedDBElement(val, sim));
+            } else if (cand instanceof AggregatedPredicate) {
+                AggregatedPredicate pred = (AggregatedPredicate) cand;
+
+                double sim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                matchedEls.add(new MatchedDBElement(pred, sim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }
@@ -151,27 +155,31 @@ public class SQLizer {
         return matchedEls;
     }
 
-    private Set<DBElement> getNumericCandidateMatches(String numericToken, String op, String fragType) {
+    private Set<DBElement> getNumericCandidateMatches(String numericToken, String op, List<String> functions) {
         if (op.isEmpty()) op = "=";
 
         // If tokens, narrow it down first
         Set<DBElement> cands = new HashSet<>();
 
-        // Add relations to candidates always
-        cands.addAll(this.db.getAllRelations());
+        // Add relations to candidates only and functions exist
+        if (!functions.isEmpty()) {
+            if (functions.size() > 1) throw new RuntimeException("Unexpected number of functions.");
 
-        // Only find attributes if we don't know what type, or it's not a relation
-        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("r");
-        if (findAttributes) cands.addAll(this.db.getNumericAttributes());
+            for (Relation rel : this.db.getAllRelations()) {
+                // If single function, we can handle with NumericPredicate
+                cands.add(new NumericPredicate(rel.getMainAttribute(), op,
+                        Double.valueOf(numericToken), functions.get(0)));
+            }
+        }
 
-        // If we are operating in type-oracle mode and fragment is selection, then add similar values as tokens
-        // (otherwise, we know it's a projection/relation so we don't need to find values)
-        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("s");
+        // Only find similar values if we don't have 2 functions or more (see above for that case)
+        boolean findSimValues = functions.size() <= 1;
 
         // Add numeric predicates
         if (findSimValues) {
+            String function = functions.size() == 1? functions.get(0) : null;
             for (Attribute attr : this.db.getNumericAttributes()) {
-                cands.add(new NumericPredicate(attr, op, Double.valueOf(numericToken)));
+                cands.add(new NumericPredicate(attr, op, Double.valueOf(numericToken), function));
             }
         }
 
@@ -184,23 +192,7 @@ public class SQLizer {
         Set<MatchedDBElement> matchedEls = new HashSet<>();
 
         for (DBElement cand : numericCands) {
-            if (cand instanceof Relation) {
-                Relation rel = (Relation) cand;
-                double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
-
-                // If we have a type oracle activated and we know it's a projection, treat as such
-                if (this.typeOracle && fragType.equalsIgnoreCase("p")) {
-                    if (rel.getMainAttribute() != null) {
-                        matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
-                    }
-                } else {
-                    matchedEls.add(new MatchedDBElement(rel, sim));
-                }
-            } else if (cand instanceof Attribute) {
-                Attribute attr = (Attribute) cand;
-                double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
-                matchedEls.add(new MatchedDBElement(attr, sim));
-            } else if (cand instanceof NumericPredicate) {
+            if (cand instanceof NumericPredicate) {
                 NumericPredicate pred = (NumericPredicate) cand;
 
                 double sim = 1.0;
@@ -274,10 +266,11 @@ public class SQLizer {
             Set<DBElement> cands;
             Set<MatchedDBElement> matchedEls;
             if (numericToken == null) {
-                cands = this.getTextCandidateMatches(tokens, fragmentTask.getType());
+                cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
+                        fragmentTask.getOp(), fragmentTask.getFunctions());
                 matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType());
             } else {
-                cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getType());
+                cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getFunctions());
                 matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
             }
 

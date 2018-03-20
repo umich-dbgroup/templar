@@ -1,0 +1,58 @@
+package edu.umich.templar.db;
+
+import java.util.Objects;
+
+/*
+ * For predicates of the form:
+ * e.g. count(publication.title) = max(count(publication.title))
+ */
+public class AggregatedPredicate extends DBElement {
+    private String aggFunction; // Aggregate function ("count"/"sum")
+    private Attribute attr;
+    private String op;
+    private String valueFunction; // "max"/"min"/"average"
+
+    public AggregatedPredicate(String aggFunction, Attribute attr, String op, String valueFunction) {
+        this.aggFunction = aggFunction;
+        this.attr = attr;
+        this.op = op;
+        this.valueFunction = valueFunction;
+    }
+
+    public String getAggFunction() {
+        return aggFunction;
+    }
+
+    public Attribute getAttr() {
+        return attr;
+    }
+
+    public String getOp() {
+        return op;
+    }
+
+    public String getValueFunction() {
+        return valueFunction;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AggregatedPredicate that = (AggregatedPredicate) o;
+        return Objects.equals(aggFunction, that.aggFunction) &&
+                Objects.equals(attr, that.attr) &&
+                Objects.equals(op, that.op) &&
+                Objects.equals(valueFunction, that.valueFunction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aggFunction, attr, op, valueFunction);
+    }
+
+    @Override
+    public String toString() {
+        return aggFunction + '(' + attr + ") " + op + ' ' + valueFunction + '(' + aggFunction + '(' + attr + "))";
+    }
+}

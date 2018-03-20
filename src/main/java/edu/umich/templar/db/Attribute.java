@@ -7,15 +7,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by cjbaik on 1/31/18.
  */
 public class Attribute extends DBElement implements Serializable {
-    Relation relation;
-    AttributeType type;
-    Integer textLength;
-    String name;
+    private Relation relation;
+    private AttributeType type;
+    private Integer textLength;
+    private String name;
 
     public Attribute(Relation rel, String type, String name) {
         this.relation = rel;
@@ -30,6 +31,8 @@ public class Attribute extends DBElement implements Serializable {
             this.type = AttributeType.TIME;
         } else if (type.equalsIgnoreCase("timestamp")) {
             this.type = AttributeType.TIMESTAMP;
+        } else if (type.equalsIgnoreCase("*")) {
+            this.type = AttributeType.ALL_COLUMNS;
         } else {
             throw new RuntimeException("Unrecognized type: " + type + " for " + rel.getName() + "." + name);
         }
@@ -39,6 +42,10 @@ public class Attribute extends DBElement implements Serializable {
 
     public Relation getRelation() {
         return relation;
+    }
+
+    public static Attribute allColumnsAttr() {
+        return new Attribute(null, "*", "*");
     }
 
     public AttributeType getType() {
@@ -82,20 +89,15 @@ public class Attribute extends DBElement implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Attribute attribute = (Attribute) o;
-
-        if (relation != null ? !relation.equals(attribute.relation) : attribute.relation != null) return false;
-        if (type != attribute.type) return false;
-        return !(name != null ? !name.equals(attribute.name) : attribute.name != null);
-
+        return Objects.equals(relation, attribute.relation) &&
+                type == attribute.type &&
+                Objects.equals(name, attribute.name);
     }
 
     @Override
     public int hashCode() {
-        int result = relation != null ? relation.hashCode() : 0;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+
+        return Objects.hash(relation, type, name);
     }
 }

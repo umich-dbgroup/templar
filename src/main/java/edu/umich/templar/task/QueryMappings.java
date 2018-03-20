@@ -1,5 +1,6 @@
-package edu.umich.templar.baseline;
+package edu.umich.templar.task;
 
+import edu.umich.templar.baseline.BaselineParams;
 import edu.umich.templar.db.*;
 
 import java.util.ArrayList;
@@ -42,10 +43,12 @@ public class QueryMappings {
                 rels.add((Relation) mel.getEl());
             } else if (mel.getEl() instanceof Attribute) {
                 rels.add(((Attribute) mel.getEl()).getRelation());
-            } else if (mel.getEl() instanceof Value) {
-                rels.add(((Value) mel.getEl()).getAttribute().getRelation());
+            } else if (mel.getEl() instanceof TextPredicate) {
+                rels.add(((TextPredicate) mel.getEl()).getAttribute().getRelation());
             } else if (mel.getEl() instanceof NumericPredicate) {
                 rels.add(((NumericPredicate) mel.getEl()).getAttr().getRelation());
+            } else if (mel.getEl() instanceof AggregatedPredicate) {
+                rels.add(((AggregatedPredicate) mel.getEl()).getAttr().getRelation());
             } else {
                 throw new RuntimeException("Unknown DBElement type.");
             }

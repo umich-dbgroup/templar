@@ -1,4 +1,4 @@
-package edu.umich.templar.baseline;
+package edu.umich.templar.task;
 
 import edu.umich.templar.db.MatchedDBElement;
 

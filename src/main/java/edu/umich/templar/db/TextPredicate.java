@@ -5,11 +5,11 @@ import java.io.Serializable;
 /**
  * Created by cjbaik on 1/31/18.
  */
-public class Value extends DBElement implements Serializable {
+public class TextPredicate extends DBElement implements Serializable {
     Attribute attribute;
     String value;
 
-    public Value(Attribute attr, String value) {
+    public TextPredicate(Attribute attr, String value) {
         this.attribute = attr;
         this.value = value;
     }
@@ -27,7 +27,7 @@ public class Value extends DBElement implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Value value1 = (Value) o;
+        TextPredicate value1 = (TextPredicate) o;
 
         if (attribute != null ? !attribute.equals(value1.attribute) : value1.attribute != null) return false;
         return !(value != null ? !value.equals(value1.value) : value1.value != null);
