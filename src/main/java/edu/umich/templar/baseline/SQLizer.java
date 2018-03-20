@@ -248,11 +248,10 @@ public class SQLizer {
                             + " WHERE " + pred.getAttr().getName() + " " + pred.getOp() + " " + pred.getValue()
                             + "), 1, 0) AS result");
                     rs.next();
-                    double databaseContentSim;
                     if (rs.getInt(1) > 0) {
-                        databaseContentSim = 1 - BaselineParams.SQLIZER_EPSILON;
+                        sims.add(1 - BaselineParams.SQLIZER_EPSILON);
                     } else {
-                        databaseContentSim = BaselineParams.SQLIZER_EPSILON;
+                        sims.add(BaselineParams.SQLIZER_EPSILON);
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -262,8 +261,10 @@ public class SQLizer {
 
                 List<Double> selSims = new ArrayList<>();
                 selSims.add(predSim);
-                double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
-                selSims.add(relSim);
+                if (!tokens.isEmpty()) {
+                    double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    selSims.add(relSim);
+                }
                 double selSim = Utils.geometricMean(selSims);
 
                 matchedEls.add(new MatchedDBElement(pred, selSim));
