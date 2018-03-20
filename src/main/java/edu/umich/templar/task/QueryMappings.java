@@ -2,6 +2,7 @@ package edu.umich.templar.task;
 
 import edu.umich.templar.baseline.BaselineParams;
 import edu.umich.templar.db.*;
+import edu.umich.templar.util.Utils;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,13 +31,11 @@ public class QueryMappings {
     }
 
     public double calculateScore(List<MatchedDBElement> interp) {
-        double accum = 1.0;
-        double root = 0;
+        List<Double> sims = new ArrayList<>();
 
         Set<Relation> rels = new HashSet<>();
         for (MatchedDBElement mel : interp) {
-            accum *= mel.getScore();
-            root++;
+            sims.add(mel.getScore());
 
             // Add relation to set
             if (mel.getEl() instanceof Relation) {
@@ -60,16 +59,18 @@ public class QueryMappings {
         if (this.joinScore) {
             if (rels.size() > 1) {
                 int joins = this.db.longestJoinPathLength(rels) - 1;
-                accum *= Math.pow(1 - BaselineParams.SQLIZER_EPSILON, joins);
-                root += joins;
+                for (int i = 0; i < joins; i++) {
+                    sims.add(1 - BaselineParams.SQLIZER_EPSILON);
+                }
 
                 int failedJoins = rels.size() - joins - 1;
-                accum *= Math.pow(BaselineParams.SQLIZER_EPSILON, failedJoins);
-                root += failedJoins;
+                for (int i = 0; i < failedJoins; i++) {
+                    sims.add(BaselineParams.SQLIZER_EPSILON);
+                }
             }
         }
 
-        return Math.pow(accum, 1.0 / root);
+        return Utils.geometricMean(sims);
     }
 
     public List<Interpretation> findOptimalInterpretations() {

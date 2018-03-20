@@ -409,4 +409,16 @@ public class Utils {
         }
         return null;
     }
+
+    public static Double geometricMean(List<Double> numbers) {
+        double accum = 1.0;
+        double root = 1.0;
+
+        for (Double number : numbers) {
+            accum *= number;
+            root += 1;
+        }
+
+        return Math.pow(accum, 1.0 / root);
+    }
 }

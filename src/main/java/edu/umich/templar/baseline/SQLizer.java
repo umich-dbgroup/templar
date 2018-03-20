@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import edu.umich.templar.db.*;
 import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
+import edu.umich.templar.util.Utils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.FileReader;
@@ -135,19 +136,23 @@ public class SQLizer {
                 }
             } else if (cand instanceof Attribute) {
                 Attribute attr = (Attribute) cand;
-                double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
+                List<Double> sims = new ArrayList<>();
+                double relSim = this.sim.sim(attr.getRelation().getName(), String.join(" ", tokens));
+                sims.add(relSim);
+                double attrSim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
+                sims.add(attrSim);
+
+                double sim = Utils.geometricMean(sims);
                 matchedEls.add(new MatchedDBElement(attr, sim));
             } else if (cand instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) cand;
 
-                double sim;
-                if (aggr.getAttr().isMainAttr()) {
-                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
-                    double attrSim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
-                    sim = Math.max(attrSim, relSim);
-                } else {
-                    sim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
-                }
+                List<Double> sims = new ArrayList<>();
+                double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
+                sims.add(relSim);
+                double attrSim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
+                sims.add(attrSim);
+                double sim = Utils.geometricMean(sims);
 
                 matchedEls.add(new MatchedDBElement(aggr, sim));
             } else if (cand instanceof TextPredicate) {
@@ -173,14 +178,13 @@ public class SQLizer {
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
-                double sim;
-                if (pred.getAttr().isMainAttr()) {
-                    double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
-                    double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
-                    sim = Math.max(attrSim, relSim);
-                } else {
-                    sim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
-                }
+                List<Double> sims = new ArrayList<>();
+                double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                sims.add(relSim);
+                double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                sims.add(attrSim);
+                double sim = Utils.geometricMean(sims);
+
                 matchedEls.add(new MatchedDBElement(pred, sim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
@@ -231,12 +235,11 @@ public class SQLizer {
             if (cand instanceof NumericPredicate) {
                 NumericPredicate pred = (NumericPredicate) cand;
 
-                double sim = 1.0;
-                double root = 1.0;
+                List<Double> sims = new ArrayList<>();
 
                 if (!tokens.isEmpty()) {
-                    sim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
-                    root++;
+                    double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                    sims.add(attrSim);
                 }
 
                 // Check predicate
@@ -245,16 +248,25 @@ public class SQLizer {
                             + " WHERE " + pred.getAttr().getName() + " " + pred.getOp() + " " + pred.getValue()
                             + "), 1, 0) AS result");
                     rs.next();
+                    double databaseContentSim;
                     if (rs.getInt(1) > 0) {
-                        sim *= 1 - BaselineParams.SQLIZER_EPSILON;
+                        databaseContentSim = 1 - BaselineParams.SQLIZER_EPSILON;
                     } else {
-                        sim *= BaselineParams.SQLIZER_EPSILON;
+                        databaseContentSim = BaselineParams.SQLIZER_EPSILON;
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
 
-                matchedEls.add(new MatchedDBElement(pred, Math.pow(sim, 1.0 / root)));
+                double predSim = Utils.geometricMean(sims);
+
+                List<Double> selSims = new ArrayList<>();
+                selSims.add(predSim);
+                double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                selSims.add(relSim);
+                double selSim = Utils.geometricMean(selSims);
+
+                matchedEls.add(new MatchedDBElement(pred, selSim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }
