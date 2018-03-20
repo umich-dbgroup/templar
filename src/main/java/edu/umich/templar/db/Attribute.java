@@ -80,6 +80,13 @@ public class Attribute extends DBElement implements Serializable {
         this.textLength = textLength;
     }
 
+    public boolean isMainAttr() {
+        if (this.relation != null && this.relation.getMainAttribute() != null) {
+            return this.relation.getMainAttribute().equals(this);
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return this.relation.getName() + "." + this.name;
@@ -97,7 +104,6 @@ public class Attribute extends DBElement implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(relation, type, name);
     }
 }

@@ -49,6 +49,8 @@ public class QueryMappings {
                 rels.add(((NumericPredicate) mel.getEl()).getAttr().getRelation());
             } else if (mel.getEl() instanceof AggregatedPredicate) {
                 rels.add(((AggregatedPredicate) mel.getEl()).getAttr().getRelation());
+            } else if (mel.getEl() instanceof AggregatedAttribute) {
+                rels.add(((AggregatedAttribute) mel.getEl()).getAttr().getRelation());
             } else {
                 throw new RuntimeException("Unknown DBElement type.");
             }

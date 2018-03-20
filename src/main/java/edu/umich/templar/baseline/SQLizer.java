@@ -39,10 +39,13 @@ public class SQLizer {
                                                    String op, List<String> functions) {
         Set<DBElement> cands = new HashSet<>();
 
-        // If there's functions, we know that it has to be AggregatedPredicate
-        if (!functions.isEmpty()) {
-            if (functions.size() != 2) throw new RuntimeException("Unexpected number of functions in query.");
-
+        if (functions.size() == 1) {
+            // If there's one function, we're dealing with an AggregatedAttribute
+            for (Attribute attr : this.db.getAllAttributes()) {
+                cands.add(new AggregatedAttribute(functions.get(0), attr));
+            }
+        } else if (functions.size() > 1) {
+            // If there's more than 1 function, it needs to be an AggregatedPredicate
             if (op.isEmpty()) op = "=";
 
             String aggFunction = null;
@@ -65,43 +68,43 @@ public class SQLizer {
                     cands.add(new AggregatedPredicate(aggFunction, rel.getMainAttribute(), op, valueFunction));
                 }
             }
-            return cands;
-        }
+        } else {
 
-        // Add relations to candidates always
-        cands.addAll(this.db.getAllRelations());
+            // Add relations to candidates always
+            cands.addAll(this.db.getAllRelations());
 
-        // Only find attributes if we don't know what type, or it's not a relation
-        boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("rel");
-        if (findAttributes) cands.addAll(this.db.getAllAttributes());
+            // Only find attributes if we don't know what type, or it's not a relation
+            boolean findAttributes = !this.typeOracle || !fragType.equalsIgnoreCase("rel");
+            if (findAttributes) cands.addAll(this.db.getAllAttributes());
 
-        // Skip tokens if we find an exact match
-        boolean foundExactMatch = false;
-        for (DBElement el : cands) {
-            if (el instanceof Relation) {
-                Relation rel = (Relation) el;
-                double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
-                if (sim == 1.0) {
-                    foundExactMatch = true;
-                    break;
+            // Skip tokens if we find an exact match
+            boolean foundExactMatch = false;
+            for (DBElement el : cands) {
+                if (el instanceof Relation) {
+                    Relation rel = (Relation) el;
+                    double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
+                    if (sim == 1.0) {
+                        foundExactMatch = true;
+                        break;
+                    }
+                } else if (el instanceof Attribute) {
+                    Attribute attr = (Attribute) el;
+                    double sim = this.sim.sim(attr.getName(), String.join(" ", tokens));
+                    if (sim == 1.0) {
+                        foundExactMatch = true;
+                    }
+                } else {
+                    throw new RuntimeException("Unexpected DBElement type.");
                 }
-            } else if (el instanceof Attribute) {
-                Attribute attr = (Attribute) el;
-                double sim = this.sim.sim(attr.getName(), String.join(" ", tokens));
-                if (sim == 1.0) {
-                    foundExactMatch = true;
-                }
-            } else {
-                throw new RuntimeException("Unexpected DBElement type.");
             }
-        }
 
-        // If we are operating in type-oracle mode and fragment is a predicate, then add similar values as tokens
-        // (otherwise, we know it's a projection/relation so we don't need to find values)
-        boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("pred");
+            // If we are operating in type-oracle mode and fragment is a predicate, then add similar values as tokens
+            // (otherwise, we know it's a projection/relation so we don't need to find values)
+            boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("pred");
 
-        if (!foundExactMatch && findSimValues) {
-            cands.addAll(this.db.getSimilarValues(tokens));
+            if (!foundExactMatch && findSimValues) {
+                cands.addAll(this.db.getSimilarValues(tokens));
+            }
         }
 
         System.out.println("Cands for '" + String.join(" ", tokens) + "': " + cands.size());
@@ -128,6 +131,19 @@ public class SQLizer {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
                 matchedEls.add(new MatchedDBElement(attr, sim));
+            } else if (cand instanceof AggregatedAttribute) {
+                AggregatedAttribute aggr = (AggregatedAttribute) cand;
+
+                double sim;
+                if (aggr.getAttr().isMainAttr()) {
+                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    double attrSim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
+                    sim = Math.max(attrSim, relSim);
+                } else {
+                    sim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
+                }
+
+                matchedEls.add(new MatchedDBElement(aggr, sim));
             } else if (cand instanceof TextPredicate) {
                 TextPredicate val = (TextPredicate) cand;
 
