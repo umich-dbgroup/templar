@@ -162,8 +162,6 @@ public class SQLizer {
                                 token.equalsIgnoreCase(val.getAttribute().getRelation().getName());
                         if (!tokenIsAttrOrRel) {
                             checkTokens.add(token);
-                        } else {
-                            continue;
                         }
                     } else {
                         checkTokens.add(token);
