@@ -5,16 +5,16 @@ Cands for 'homepage': 66
 Cands for 'PVLDB': 68
 TOTAL SCORE: 1.0, TIES: 3
 --
-homepage :: journal.homepage : conference.homepage (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
 homepage :: journal.homepage : journal.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-homepage :: journal.homepage : organization.homepage (1.0)
+homepage :: journal.homepage : author.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-homepage :: journal.homepage : author.homepage (1.0)
+homepage :: journal.homepage : conference.homepage (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+homepage :: journal.homepage : organization.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -25,16 +25,16 @@ Cands for 'homepage': 66
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 1.0, TIES: 3
 --
-homepage :: author.homepage : conference.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
 homepage :: author.homepage : journal.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-homepage :: author.homepage : organization.homepage (1.0)
+homepage :: author.homepage : author.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-homepage :: author.homepage : author.homepage (1.0)
+homepage :: author.homepage : conference.homepage (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+homepage :: author.homepage : organization.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
 
@@ -64,38 +64,11 @@ SO FAR: 2/4
 
 == QUERY ID: 5 ==
 Cands for 'papers': 1265
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999499987499375, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9477920774024691, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 2/5
@@ -105,16 +78,16 @@ Cands for 'homepage': 66
 Cands for 'VLDB conference': 543
 TOTAL SCORE: 1.0, TIES: 3
 --
-homepage :: conference.homepage : conference.homepage (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
---
 homepage :: conference.homepage : journal.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-homepage :: conference.homepage : organization.homepage (1.0)
+homepage :: conference.homepage : author.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-homepage :: conference.homepage : author.homepage (1.0)
+homepage :: conference.homepage : conference.homepage (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+homepage :: conference.homepage : organization.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -146,10 +119,10 @@ Cands for 'North America': 99
 TOTAL SCORE: 1.0, TIES: 1
 --
 organizations :: organization.name : organization (1.0)
-North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
 organizations :: organization.name : organization (1.0)
-North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 2/9
@@ -159,16 +132,16 @@ Cands for 'homepage': 66
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 1.0, TIES: 3
 --
-homepage :: organization.homepage : conference.homepage (1.0)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 homepage :: organization.homepage : journal.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-homepage :: organization.homepage : organization.homepage (1.0)
+homepage :: organization.homepage : author.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-homepage :: organization.homepage : author.homepage (1.0)
+homepage :: organization.homepage : conference.homepage (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+homepage :: organization.homepage : organization.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
 
@@ -209,11 +182,11 @@ SO FAR: 3/13
 
 == QUERY ID: 14 ==
 Cands for 'paper': 1398
-Cands for '> 200': 40
-TOTAL SCORE: 0.9500618892719412, TIES: 0
+Cands for '> 200': 12
+TOTAL SCORE: 0.9774891698458928, TIES: 0
 --
 paper :: publication.title : publication.title = 'PAPER' (1.0)
-200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
 == RESULT: WRONG == 
 
 SO FAR: 3/14
@@ -222,28 +195,28 @@ SO FAR: 3/14
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'PVLDB': 68
-Cands for '= 2010': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 3
+Cands for '= 2010': 12
+TOTAL SCORE: 0.9999899995499715, TIES: 3
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year = 2010 : publication.pid = 2010 (0.9999)
+2010 :: publication.year = 2010 : publication.pid = 2010 (0.9999499987499375)
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year = 2010 : organization.oid = 2010 (0.9999)
+2010 :: publication.year = 2010 : organization.oid = 2010 (0.9999499987499375)
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year = 2010 : conference.cid = 2010 (0.9999)
+2010 :: publication.year = 2010 : publication.year = 2010 (0.9999499987499375)
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year = 2010 : publication.year = 2010 (0.9999)
+2010 :: publication.year = 2010 : conference.cid = 2010 (0.9999499987499375)
 == RESULT: WRONG == 
 
 SO FAR: 3/15
@@ -252,58 +225,13 @@ SO FAR: 3/15
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'PVLDB': 68
-Cands for '> 2010': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 9
+Cands for '> 2010': 12
+TOTAL SCORE: 0.9683399386613493, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : keyword.kid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : author.aid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : journal.jid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : organization.oid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : keyword_variations.kid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : conference.cid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : publication.pid > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : publication.year > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : publication.reference_num > 2010 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year > 2010 : publication.citation_num > 2010 (0.9999)
+after 2010 :: publication.year > 2010 : publication.year > 2010 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/16
@@ -312,28 +240,13 @@ SO FAR: 3/16
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for '= 2002': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 3
+Cands for '= 2002': 12
+TOTAL SCORE: 0.967545767709217, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year = 2002 : publication.year = 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year = 2002 : publication.citation_num = 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year = 2002 : publication.pid = 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year = 2002 : conference.cid = 2002 (0.9999)
+in 2002 :: publication.year = 2002 : publication.year = 2002 (0.8479252884145939)
 == RESULT: WRONG == 
 
 SO FAR: 3/17
@@ -342,68 +255,13 @@ SO FAR: 3/17
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for '< 2002': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 11
+Cands for '< 2002': 12
+TOTAL SCORE: 0.9692800305451063, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
+before 2002 :: publication.year < 2002 : domain.did < 2002 (0.855551834176076)
 == RESULT: WRONG == 
 
 SO FAR: 3/18
@@ -412,729 +270,15 @@ SO FAR: 3/18
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for '< 2002': 40
-Cands for '> 1995': 40
-TOTAL SCORE: 0.999959998799936, TIES: 119
+Cands for '< 2002': 12
+Cands for '> 1995': 12
+TOTAL SCORE: 0.9485588015886571, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.year > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : author.aid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword_variations.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.reference_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : conference.cid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : organization.oid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.citation_num > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : publication.pid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : keyword.kid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : author.aid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : journal.jid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.year < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : conference.cid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.pid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.reference_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain_keyword.rank < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : publication.citation_num < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : domain.did < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : keyword_variations.kid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year < 2002 : organization.oid < 2002 (0.9999)
-1995 :: publication.year > 1995 : journal.jid > 1995 (0.9999)
+before 2002 :: publication.year < 2002 : domain.did < 2002 (0.855551834176076)
+after 1995 :: publication.year > 1995 : publication.year > 1995 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/19
@@ -1143,729 +287,15 @@ SO FAR: 3/19
 Cands for 'authors': 66
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for '> 2002': 40
-Cands for '< 1995': 40
-TOTAL SCORE: 0.999959998799936, TIES: 119
+Cands for '> 2002': 12
+Cands for '< 1995': 12
+TOTAL SCORE: 0.9485588015886571, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : organization.oid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword_variations.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : journal.jid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.pid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain.did < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.year < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : author.aid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : conference.cid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : keyword.kid < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.reference_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : domain_keyword.rank < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.pid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : keyword_variations.kid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.reference_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : journal.jid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.year > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : publication.citation_num > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : conference.cid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : author.aid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
---
-authors :: author.name : author (1.0)
-papers :: publication : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2002 :: publication.year > 2002 : organization.oid > 2002 (0.9999)
-1995 :: publication.year < 1995 : publication.citation_num < 1995 (0.9999)
+after 2002 :: publication.year > 2002 : publication.year > 2002 (0.8514109323319947)
+before 1995 :: publication.year < 1995 : domain.did < 1995 (0.855551834176076)
 == RESULT: WRONG == 
 
 SO FAR: 3/20
@@ -2022,48 +452,12 @@ SO FAR: 3/33
 == QUERY ID: 34 ==
 Cands for 'papers': 1265
 Cands for 'PVLDB': 68
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999666655554938, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9605827991108499, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/34
@@ -2071,48 +465,12 @@ SO FAR: 3/34
 == QUERY ID: 35 ==
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999666655554938, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9605827991108499, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/35
@@ -2146,48 +504,12 @@ SO FAR: 3/37
 == QUERY ID: 38 ==
 Cands for 'papers': 1265
 Cands for 'H. V. Jagadish': 138
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999666655554938, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9605827991108499, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/38
@@ -2196,58 +518,13 @@ SO FAR: 3/38
 Cands for 'papers': 1265
 Cands for 'H. V. Jagadish': 138
 Cands for 'PVLDB': 68
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9683399386613493, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/39
@@ -2256,58 +533,13 @@ SO FAR: 3/39
 Cands for 'papers': 1265
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
-Cands for '> 2000': 40
-TOTAL SCORE: 0.9999749990624454, TIES: 9
+Cands for '> 2000': 12
+TOTAL SCORE: 0.9683399386613493, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.reference_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : keyword_variations.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : author.aid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : keyword.kid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : organization.oid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.pid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : journal.jid > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.citation_num > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : publication.year > 2000 (0.9999)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2000 :: publication.year > 2000 : conference.cid > 2000 (0.9999)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
 SO FAR: 3/40
@@ -2339,7 +571,7 @@ SO FAR: 3/42
 == QUERY ID: 43 ==
 Cands for 'keywords': 66
 Cands for 'Databases area': 107
-TOTAL SCORE: 0.9659968944049457, TIES: 1
+TOTAL SCORE: 0.9772008141521271, TIES: 1
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
@@ -2352,14 +584,11 @@ SO FAR: 3/43
 
 == QUERY ID: 44 ==
 Cands for 'papers': 1265
-Cands for 'keyword Natural Language': 145
-TOTAL SCORE: 0.9373899935459094, TIES: 1
+Cands for 'keyword Natural Language': 157
+TOTAL SCORE: 1.0, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
-keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword (0.8787)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword (0.8787)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/44
@@ -2440,16 +669,12 @@ SO FAR: 3/49
 == QUERY ID: 50 ==
 Cands for 'papers': 1265
 Cands for 'H. V. Jagadish': 138
-Cands for 'keyword User Study': 86
-TOTAL SCORE: 0.9636981200375262, TIES: 1
+Cands for 'keyword User Study': 88
+TOTAL SCORE: 1.0, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword (0.895)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-keyword User Study :: keyword.keyword = 'User Study' : keyword (0.895)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/50
@@ -2457,16 +682,12 @@ SO FAR: 3/50
 == QUERY ID: 51 ==
 Cands for 'papers': 1265
 Cands for 'PVLDB': 68
-Cands for 'keyword Keyword search': 268
-TOTAL SCORE: 0.9925953058362231, TIES: 1
+Cands for 'keyword Keyword search': 369
+TOTAL SCORE: 1.0, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword (0.97795)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword (0.97795)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/51
@@ -2474,20 +695,12 @@ SO FAR: 3/51
 == QUERY ID: 52 ==
 Cands for 'papers': 1265
 Cands for 'VLDB conference': 543
-Cands for 'keyword Information Retrieval': 328
-TOTAL SCORE: 0.9777764386268774, TIES: 2
+Cands for 'keyword Information Retrieval': 350
+TOTAL SCORE: 1.0, TIES: 0
 --
 papers :: publication.title : publication.title = 'Papers' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : conference.name = 'Information Retrieval' (0.9348000000000001)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : domain.name = 'Information Retrieval' (0.9348000000000001)
---
-papers :: publication.title : publication.title = 'Papers' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : journal.full_name = 'Information Retrieval' (0.9348000000000001)
+keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/52
@@ -2495,12 +708,12 @@ SO FAR: 3/52
 == QUERY ID: 53 ==
 Cands for 'authors': 66
 Cands for 'papers': 1265
-Cands for 'keyword Relational Database': 135
-TOTAL SCORE: 0.9843909588409606, TIES: 0
+Cands for 'keyword Relational Database': 139
+TOTAL SCORE: 1.0, TIES: 0
 --
 authors :: author.name : author (1.0)
 papers :: publication : publication.title = 'Papers' (1.0)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : publication.title = 'Summarizing Keyword Search in Relational Database' (0.9539)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/53
@@ -2508,7 +721,7 @@ SO FAR: 3/53
 == QUERY ID: 54 ==
 Cands for 'organizations': 66
 Cands for 'Databases area': 107
-TOTAL SCORE: 0.9659968944049457, TIES: 0
+TOTAL SCORE: 0.9772008141521271, TIES: 0
 --
 organizations :: organization.name : organization (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
@@ -2520,19 +733,1084 @@ SO FAR: 3/54
 Cands for 'organizations': 66
 Cands for 'Databases area': 107
 Cands for 'North America': 99
-TOTAL SCORE: 0.9772008141521271, TIES: 1
---
-organizations :: organization.name : organization (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+TOTAL SCORE: 0.982851410135299, TIES: 1
 --
 organizations :: organization.name : organization (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: organization.name : organization (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 3/55
 
 == QUERY ID: 56 ==
 Cands for 'researchers': 229
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9777415715855673, TIES: 0
+--
+researchers :: author.name : keyword_variations.variation = 'IS researchers' (0.9347)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/56
+
+== QUERY ID: 57 ==
+Cands for 'researchers': 229
+Cands for 'Databases area': 107
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.966397784786574, TIES: 0
+--
+researchers :: author.name : keyword_variations.variation = 'IS researchers' (0.9347)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/57
+
+== QUERY ID: 58 ==
+Cands for 'papers': 1265
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/58
+
+== QUERY ID: 59 ==
+Cands for 'papers': 1265
+Cands for '> 2000': 12
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9605827991108499, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/59
+
+== QUERY ID: 60 ==
+Cands for 'papers': 1265
+Cands for 'VLDB conference': 543
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/60
+
+== QUERY ID: 61 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/61
+
+== QUERY ID: 62 ==
+Cands for 'papers': 1265
+Cands for 'VLDB': 147
+Cands for '> 2000': 12
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9683399386613493, TIES: 1
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/62
+
+== QUERY ID: 63 ==
+Cands for 'papers': 1265
+Cands for 'PVLDB': 68
+Cands for '> 2000': 12
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.9683399386613493, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/63
+
+== QUERY ID: 64 ==
+Cands for 'paper': 1398
+Cands for 'Databases area': 107
+Cands for '> 200': 12
+TOTAL SCORE: 0.9662106737229462, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/64
+
+== QUERY ID: 65 ==
+Cands for 'paper': 1398
+Cands for 'PVLDB': 68
+Cands for '> 200': 12
+TOTAL SCORE: 0.9830689194310033, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/65
+
+== QUERY ID: 66 ==
+Cands for 'paper': 1398
+Cands for 'VLDB conference': 543
+Cands for '> 200': 12
+TOTAL SCORE: 0.9830689194310033, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/66
+
+== QUERY ID: 67 ==
+Cands for 'paper': 1398
+Cands for 'H. V. Jagadish': 138
+Cands for '> 200': 12
+TOTAL SCORE: 0.9830689194310033, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/67
+
+== QUERY ID: 68 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+Cands for '> 200': 12
+TOTAL SCORE: 0.9864320458518868, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/68
+
+== QUERY ID: 69 ==
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+Cands for '> 200': 12
+TOTAL SCORE: 0.9864320458518868, TIES: 0
+--
+papers :: publication.title : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/69
+
+== QUERY ID: 70 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 12
+Cands for '> 200': 12
+TOTAL SCORE: 0.9443190943459117, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/70
+
+== QUERY ID: 71 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 12
+Cands for 'Databases area': 107
+Cands for '> 200': 12
+TOTAL SCORE: 0.9420746315020762, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/71
+
+== QUERY ID: 72 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 12
+Cands for 'PVLDB': 68
+Cands for '> 200': 12
+TOTAL SCORE: 0.9552015467738053, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/72
+
+== QUERY ID: 73 ==
+Cands for 'paper': 1398
+Cands for '> 2000': 12
+Cands for 'VLDB conference': 543
+Cands for '> 200': 12
+TOTAL SCORE: 0.9552015467738053, TIES: 0
+--
+paper :: publication.title : publication.title = 'PAPER' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9339763148791447)
+== RESULT: WRONG == 
+
+SO FAR: 3/73
+
+== QUERY ID: 74 ==
+Cands for 'conferences': 50
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 3
+--
+conferences :: count(conference.name) : count(conference.full_name) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+conferences :: count(conference.name) : count(conference.homepage) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+conferences :: count(conference.name) : count(conference.name) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+conferences :: count(conference.name) : count(conference.cid) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/74
+
+== QUERY ID: 75 ==
+Cands for 'journals': 50
+Cands for 'papers': 1265
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 3
+--
+journals :: count(journal.name) : count(journal.jid) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+journals :: count(journal.name) : count(journal.full_name) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+journals :: count(journal.name) : count(journal.homepage) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+journals :: count(journal.name) : count(journal.name) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/75
+
+== QUERY ID: 76 ==
+Cands for 'papers': 50
+Cands for 'written': 165
+Cands for 'H. V. Jagadish': 138
+Cands for 'year': 66
+TOTAL SCORE: 0.9158445478631752, TIES: 3
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+written :: writes : author.name = 'Written Xu Rujing' (0.9367995)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+year :: publication.year : publication.year (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+written :: writes : author.name = 'Written Xu Rujing' (0.9367995)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+year :: publication.year : publication.year (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+written :: writes : author.name = 'Written Xu Rujing' (0.9367995)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+year :: publication.year : publication.year (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+written :: writes : author.name = 'Written Xu Rujing' (0.9367995)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+year :: publication.year : publication.year (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/76
+
+== QUERY ID: 77 ==
+Cands for 'authors': 50
+Cands for 'Making database systems usable': 444
+TOTAL SCORE: 1.0, TIES: 4
+--
+authors :: count(author.name) : count(author.oid) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+authors :: count(author.name) : count(author.aid) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+authors :: count(author.name) : count(author.name) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+authors :: count(author.name) : count(author.homepage) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+authors :: count(author.name) : count(author.photo) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 3/77
+
+== QUERY ID: 78 ==
+Cands for 'citations': 50
+Cands for 'Making database systems usable': 444
+Cands for 'year': 66
+TOTAL SCORE: 0.950085642303756, TIES: 0
+--
+citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+year :: publication.year : publication.year (1.0)
+== RESULT: CORRECT == 
+
+SO FAR: 4/78
+
+== QUERY ID: 80 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 0.8827154414662272, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/79
+
+== QUERY ID: 81 ==
+Cands for 'papers': 50
+Cands for 'VLDB conference': 543
+TOTAL SCORE: 0.8827154414662272, TIES: 3
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/80
+
+== QUERY ID: 82 ==
+Cands for 'papers': 50
+Cands for 'PVLDB': 68
+TOTAL SCORE: 0.8827154414662272, TIES: 3
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/81
+
+== QUERY ID: 83 ==
+Cands for 'papers': 50
+Cands for '> 2000': 12
+TOTAL SCORE: 0.836630702022513, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/82
+
+== QUERY ID: 84 ==
+Cands for 'papers': 50
+Cands for 'PVLDB': 68
+Cands for '> 2000': 12
+TOTAL SCORE: 0.8747830278377969, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/83
+
+== QUERY ID: 85 ==
+Cands for 'papers': 50
+Cands for 'VLDB conference': 543
+Cands for '> 2000': 12
+TOTAL SCORE: 0.8747830278377969, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/84
+
+== QUERY ID: 86 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+TOTAL SCORE: 0.9106794631837336, TIES: 3
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/85
+
+== QUERY ID: 87 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+TOTAL SCORE: 0.9106794631837336, TIES: 3
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/86
+
+== QUERY ID: 88 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for '> 2000': 12
+TOTAL SCORE: 0.8747830278377969, TIES: 3
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/87
+
+== QUERY ID: 89 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for 'PVLDB': 68
+Cands for '> 2000': 12
+TOTAL SCORE: 0.8985045459823586, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/88
+
+== QUERY ID: 90 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for 'VLDB conference': 543
+Cands for '> 2000': 12
+TOTAL SCORE: 0.8985045459823586, TIES: 3
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+== RESULT: WRONG == 
+
+SO FAR: 4/89
+
+== QUERY ID: 91 ==
+Cands for 'keywords': 50
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/90
+
+== QUERY ID: 92 ==
+Cands for 'keywords': 50
+Cands for 'Databases area': 107
+TOTAL SCORE: 0.9772008141521271, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 4/91
+
+== QUERY ID: 93 ==
+Cands for 'papers': 50
+Cands for 'keyword Natural Language': 157
+TOTAL SCORE: 0.8827154414662272, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/92
+
+== QUERY ID: 94 ==
+Cands for 'keywords': 50
+Cands for 'Making database systems usable': 444
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/93
+
+== QUERY ID: 95 ==
+Cands for 'keywords': 50
+Cands for 'H. V. Jagadish': 138
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/94
+
+== QUERY ID: 96 ==
+Cands for 'keywords': 50
+Cands for 'VLDB conference': 543
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/95
+
+== QUERY ID: 97 ==
+Cands for 'keywords': 50
+Cands for 'PVLDB': 68
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/96
+
+== QUERY ID: 98 ==
+Cands for 'keywords': 50
+Cands for 'papers': 1265
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 1.0, TIES: 2
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/97
+
+== QUERY ID: 99 ==
+Cands for 'papers': 50
+Cands for 'H. V. Jagadish': 138
+Cands for 'keyword User Study': 88
+TOTAL SCORE: 0.9106794631837336, TIES: 3
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/98
+
+== QUERY ID: 100 ==
+Cands for 'papers': 50
+Cands for 'PVLDB': 68
+Cands for 'keyword Keyword search': 369
+TOTAL SCORE: 0.9106794631837336, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/99
+
+== QUERY ID: 101 ==
+Cands for 'papers': 50
+Cands for 'VLDB conference': 543
+Cands for 'keyword Information Retrieval': 350
+TOTAL SCORE: 0.9106794631837336, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/100
+
+== QUERY ID: 102 ==
+Cands for 'authors': 50
+Cands for 'papers': 1265
+Cands for 'keyword Relational Database': 139
+TOTAL SCORE: 1.0, TIES: 4
+--
+authors :: count(author.name) : count(author.name) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.photo) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.homepage) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.aid) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.oid) (1.0)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/101
+
+== QUERY ID: 103 ==
+Cands for 'citations': 50
+Cands for 'papers': 1265
+Cands for 'keyword Natural Language': 157
+TOTAL SCORE: 0.950085642303756, TIES: 0
+--
+citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
+papers :: publication : publication.title = 'Papers' (1.0)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/102
+
+== QUERY ID: 104 ==
+Cands for 'organizations': 50
+TOTAL SCORE: 1.0, TIES: 3
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/103
+
+== QUERY ID: 105 ==
+Cands for 'organizations': 50
+Cands for 'North America': 99
+TOTAL SCORE: 1.0, TIES: 7
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/104
+
+== QUERY ID: 106 ==
+Cands for 'organizations': 50
+Cands for 'Databases area': 107
+TOTAL SCORE: 0.9772008141521271, TIES: 3
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 4/105
+
+== QUERY ID: 107 ==
+Cands for 'organizations': 50
+Cands for 'Databases area': 107
+Cands for 'North America': 99
+TOTAL SCORE: 0.982851410135299, TIES: 7
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/106
+
+== QUERY ID: 108 ==
+Cands for 'papers': 50
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.8827154414662272, TIES: 3
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/107
+
+== QUERY ID: 109 ==
+Cands for 'papers': 50
+Cands for 'University of Michigan': 768
+Cands for 'Databases area': 107
+TOTAL SCORE: 0.8950625945713897, TIES: 3
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+== RESULT: WRONG == 
+
+SO FAR: 4/108
+
+== QUERY ID: 110 ==
+Cands for 'papers': 50
+Cands for '> 2000': 12
+Cands for 'University of Michigan': 768
+TOTAL SCORE: 0.8747830278377969, TIES: 3
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG == 
+
+SO FAR: 4/109
+
+== QUERY ID: 111 ==
+Cands for 'papers': 50
+Cands for 'VLDB conference': 543
 Cands for 'University of Michigan': 768

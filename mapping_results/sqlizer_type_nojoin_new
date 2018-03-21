@@ -11,10 +11,10 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 homepage :: journal.homepage : author.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-homepage :: journal.homepage : conference.homepage (1.0)
+homepage :: journal.homepage : organization.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-homepage :: journal.homepage : organization.homepage (1.0)
+homepage :: journal.homepage : conference.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -31,10 +31,10 @@ H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish
 homepage :: author.homepage : author.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-homepage :: author.homepage : conference.homepage (1.0)
+homepage :: author.homepage : organization.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-homepage :: author.homepage : organization.homepage (1.0)
+homepage :: author.homepage : conference.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
 
@@ -84,10 +84,10 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 homepage :: conference.homepage : author.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-homepage :: conference.homepage : conference.homepage (1.0)
+homepage :: conference.homepage : organization.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-homepage :: conference.homepage : organization.homepage (1.0)
+homepage :: conference.homepage : conference.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -136,10 +136,10 @@ University of Michigan :: organization.name = 'University of Michigan' : organiz
 homepage :: organization.homepage : author.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-homepage :: organization.homepage : conference.homepage (1.0)
+homepage :: organization.homepage : organization.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-homepage :: organization.homepage : organization.homepage (1.0)
+homepage :: organization.homepage : conference.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
 
@@ -199,17 +199,17 @@ TOTAL SCORE: 0.9278720464371663, TIES: 3
 authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2010 :: publication.year = 2010 : conference.cid = 2010 (0.9999499987499375)
+--
+authors :: author.name : author.name (1.0)
+papers :: publication : journal (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2010 :: publication.year = 2010 : organization.oid = 2010 (0.9999499987499375)
 --
 authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2010 :: publication.year = 2010 : publication.pid = 2010 (0.9999499987499375)
---
-authors :: author.name : author.name (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2010 :: publication.year = 2010 : conference.cid = 2010 (0.9999499987499375)
 --
 authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
@@ -980,19 +980,19 @@ Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-conferences :: count(conference.name) : count(conference.cid) (1.0)
-papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
 conferences :: count(conference.name) : count(conference.name) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-conferences :: count(conference.name) : count(conference.full_name) (1.0)
+conferences :: count(conference.name) : count(conference.cid) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
 conferences :: count(conference.name) : count(conference.homepage) (1.0)
+papers :: publication : journal (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+conferences :: count(conference.name) : count(conference.full_name) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
@@ -1005,7 +1005,11 @@ Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-journals :: count(journal.name) : count(journal.name) (1.0)
+journals :: count(journal.name) : count(journal.homepage) (1.0)
+papers :: publication : journal (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+journals :: count(journal.name) : count(journal.jid) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
@@ -1013,11 +1017,7 @@ journals :: count(journal.name) : count(journal.full_name) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-journals :: count(journal.name) : count(journal.homepage) (1.0)
-papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
-journals :: count(journal.name) : count(journal.jid) (1.0)
+journals :: count(journal.name) : count(journal.name) (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
@@ -1031,7 +1031,7 @@ Cands for 'H. V. Jagadish': 138
 Cands for 'year': 66
 TOTAL SCORE: 0.8709082083671751, TIES: 3
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 year :: publication.year : publication.year (1.0)
@@ -1041,12 +1041,12 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 year :: publication.year : publication.year (1.0)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 year :: publication.year : publication.year (1.0)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 year :: publication.year : publication.year (1.0)
@@ -1065,13 +1065,13 @@ Making database systems usable :: publication.title = 'Making database systems u
 authors :: count(author.name) : count(author.name) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 --
+authors :: count(author.name) : count(author.aid) (1.0)
+Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+--
 authors :: count(author.name) : count(author.homepage) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 --
 authors :: count(author.name) : count(author.photo) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-authors :: count(author.name) : count(author.aid) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 == RESULT: WRONG == 
 
@@ -1095,10 +1095,10 @@ Cands for 'papers': 50
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 0.8827154414662272, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
 papers :: count(publication.title) : count(journal.jid) (0.6878)
@@ -1115,16 +1115,16 @@ Cands for 'papers': 50
 Cands for 'VLDB conference': 543
 TOTAL SCORE: 0.8827154414662272, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -1155,16 +1155,16 @@ Cands for 'papers': 50
 Cands for '> 2000': 12
 TOTAL SCORE: 0.836630702022513, TIES: 3
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
 
@@ -1176,7 +1176,7 @@ Cands for 'PVLDB': 68
 Cands for '> 2000': 12
 TOTAL SCORE: 0.8747830278377969, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
@@ -1184,11 +1184,11 @@ papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
@@ -1201,19 +1201,19 @@ Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
 TOTAL SCORE: 0.8747830278377969, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
-papers :: count(publication.title) : count(journal.name) (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
@@ -1230,15 +1230,15 @@ papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
 papers :: count(publication.title) : count(journal.jid) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 == RESULT: WRONG == 
@@ -1255,15 +1255,15 @@ papers :: count(publication.title) : count(journal.homepage) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
---
 papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
 papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
@@ -1276,7 +1276,7 @@ Cands for 'H. V. Jagadish': 138
 Cands for '> 2000': 12
 TOTAL SCORE: 0.8747830278377969, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
@@ -1284,11 +1284,11 @@ papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 == RESULT: WRONG == 
@@ -1302,22 +1302,22 @@ Cands for 'PVLDB': 68
 Cands for '> 2000': 12
 TOTAL SCORE: 0.8985045459823586, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
 papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
@@ -1332,22 +1332,22 @@ Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
 TOTAL SCORE: 0.8985045459823586, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
@@ -1361,9 +1361,9 @@ TOTAL SCORE: 1.0, TIES: 2
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
---
 keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 20/90
@@ -1373,10 +1373,10 @@ Cands for 'keywords': 50
 Cands for 'Databases area': 107
 TOTAL SCORE: 0.9772008141521271, TIES: 2
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
 keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
@@ -1390,16 +1390,16 @@ Cands for 'papers': 50
 Cands for 'keyword Natural Language': 157
 TOTAL SCORE: 0.8827154414662272, TIES: 3
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
-keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
---
-papers :: count(publication.title) : count(journal.name) (0.6878)
-keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
---
 papers :: count(publication.title) : count(journal.jid) (0.6878)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
 == RESULT: WRONG == 
 
@@ -1413,10 +1413,10 @@ TOTAL SCORE: 1.0, TIES: 2
 keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 == RESULT: WRONG == 
 
@@ -1427,13 +1427,13 @@ Cands for 'keywords': 50
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 1.0, TIES: 2
 --
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
 keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
 keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
 
@@ -1447,10 +1447,10 @@ TOTAL SCORE: 1.0, TIES: 2
 keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
 
@@ -1461,10 +1461,10 @@ Cands for 'keywords': 50
 Cands for 'PVLDB': 68
 TOTAL SCORE: 1.0, TIES: 2
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
 keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
@@ -1479,15 +1479,15 @@ Cands for 'papers': 16
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.9106794631837336, TIES: 2
 --
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-papers :: publication : journal (0.6878)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 papers :: publication : journal (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+papers :: publication : journal (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 papers :: publication : journal (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
@@ -1500,7 +1500,11 @@ Cands for 'H. V. Jagadish': 138
 Cands for 'keyword User Study': 88
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
 --
@@ -1508,11 +1512,7 @@ papers :: count(publication.title) : count(journal.jid) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
---
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
 == RESULT: WRONG == 
@@ -1525,6 +1525,10 @@ Cands for 'PVLDB': 68
 Cands for 'keyword Keyword search': 369
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
+--
 papers :: count(publication.title) : count(journal.jid) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
@@ -1534,10 +1538,6 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
 --
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
---
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
 == RESULT: WRONG == 
@@ -1550,7 +1550,7 @@ Cands for 'VLDB conference': 543
 Cands for 'keyword Information Retrieval': 350
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
 --
@@ -1562,7 +1562,7 @@ papers :: count(publication.title) : count(journal.homepage) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
 == RESULT: WRONG == 
@@ -1579,11 +1579,7 @@ authors :: count(author.name) : count(author.homepage) (1.0)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-authors :: count(author.name) : count(author.aid) (1.0)
-papers :: publication : journal (0.6878)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
-authors :: count(author.name) : count(author.name) (1.0)
+authors :: count(author.name) : count(author.oid) (1.0)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -1591,7 +1587,11 @@ authors :: count(author.name) : count(author.photo) (1.0)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-authors :: count(author.name) : count(author.oid) (1.0)
+authors :: count(author.name) : count(author.aid) (1.0)
+papers :: publication : journal (0.6878)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.name) (1.0)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -1615,13 +1615,13 @@ SO FAR: 20/102
 Cands for 'organizations': 50
 TOTAL SCORE: 1.0, TIES: 3
 --
-organizations :: count(organization.name) : count(organization.continent) (1.0)
---
-organizations :: count(organization.name) : count(organization.oid) (1.0)
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
 --
 organizations :: count(organization.name) : count(organization.name) (1.0)
 --
-organizations :: count(organization.name) : count(organization.homepage) (1.0)
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+--
+organizations :: count(organization.name) : count(organization.oid) (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 20/103
@@ -1631,28 +1631,28 @@ Cands for 'organizations': 50
 Cands for 'North America': 99
 TOTAL SCORE: 1.0, TIES: 7
 --
-organizations :: count(organization.name) : count(organization.homepage) (1.0)
-North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
---
 organizations :: count(organization.name) : count(organization.oid) (1.0)
-North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
---
-organizations :: count(organization.name) : count(organization.continent) (1.0)
 North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
 organizations :: count(organization.name) : count(organization.name) (1.0)
 North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
+organizations :: count(organization.name) : count(organization.continent) (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
 organizations :: count(organization.name) : count(organization.homepage) (1.0)
-North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
 organizations :: count(organization.name) : count(organization.oid) (1.0)
+North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.name) (1.0)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 --
 organizations :: count(organization.name) : count(organization.continent) (1.0)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 --
-organizations :: count(organization.name) : count(organization.name) (1.0)
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 == RESULT: WRONG == 
 
@@ -1663,13 +1663,13 @@ Cands for 'organizations': 50
 Cands for 'Databases area': 107
 TOTAL SCORE: 0.9772008141521271, TIES: 3
 --
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+--
 organizations :: count(organization.name) : count(organization.name) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
 organizations :: count(organization.name) : count(organization.oid) (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
---
-organizations :: count(organization.name) : count(organization.homepage) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
 organizations :: count(organization.name) : count(organization.continent) (1.0)
@@ -1684,15 +1684,7 @@ Cands for 'Databases area': 107
 Cands for 'North America': 99
 TOTAL SCORE: 0.982851410135299, TIES: 7
 --
-organizations :: count(organization.name) : count(organization.homepage) (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
---
 organizations :: count(organization.name) : count(organization.continent) (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
---
-organizations :: count(organization.name) : count(organization.oid) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
@@ -1700,11 +1692,19 @@ organizations :: count(organization.name) : count(organization.name) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
 --
+organizations :: count(organization.name) : count(organization.oid) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
 organizations :: count(organization.name) : count(organization.homepage) (1.0)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+North America :: organization.continent = 'North America' : keyword.keyword = 'North America' (1.0)
+--
+organizations :: count(organization.name) : count(organization.continent) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 --
-organizations :: count(organization.name) : count(organization.continent) (1.0)
+organizations :: count(organization.name) : count(organization.name) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 --
@@ -1712,7 +1712,7 @@ organizations :: count(organization.name) : count(organization.oid) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 --
-organizations :: count(organization.name) : count(organization.name) (1.0)
+organizations :: count(organization.name) : count(organization.homepage) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
 == RESULT: WRONG == 
@@ -1724,16 +1724,16 @@ Cands for 'papers': 50
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8827154414662272, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
 
@@ -1745,7 +1745,7 @@ Cands for 'University of Michigan': 768
 Cands for 'Databases area': 107
 TOTAL SCORE: 0.8950625945713897, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
@@ -1753,11 +1753,11 @@ papers :: count(publication.title) : count(journal.full_name) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 == RESULT: WRONG == 
@@ -1770,10 +1770,6 @@ Cands for '> 2000': 12
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8747830278377969, TIES: 3
 --
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 papers :: count(publication.title) : count(journal.jid) (0.6878)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
@@ -1783,6 +1779,10 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
@@ -1795,15 +1795,15 @@ Cands for 'VLDB conference': 543
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
+papers :: count(publication.title) : count(journal.name) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 papers :: count(publication.title) : count(journal.jid) (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
-papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
@@ -1828,11 +1828,11 @@ papers :: count(publication.title) : count(journal.jid) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
@@ -1846,17 +1846,7 @@ Cands for '> 2000': 12
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8985045459823586, TIES: 7
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
-VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
-after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
@@ -1867,7 +1857,12 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 papers :: count(publication.title) : count(journal.jid) (0.6878)
-VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
@@ -1876,12 +1871,17 @@ VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
@@ -1896,7 +1896,7 @@ Cands for '> 2000': 12
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8985045459823586, TIES: 3
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
@@ -1911,7 +1911,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
@@ -1937,16 +1937,16 @@ Cands for 'researchers': 50
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8765116726056794, TIES: 3
 --
-researchers :: count(author.name) : count(journal.full_name) (0.6734)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
-researchers :: count(author.name) : count(journal.homepage) (0.6734)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 researchers :: count(author.name) : count(journal.jid) (0.6734)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 researchers :: count(author.name) : count(journal.name) (0.6734)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+researchers :: count(author.name) : count(journal.full_name) (0.6734)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+researchers :: count(author.name) : count(journal.homepage) (0.6734)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
 
@@ -1958,19 +1958,19 @@ Cands for 'Databases area': 107
 Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.8903405287143265, TIES: 3
 --
-researchers :: count(author.name) : count(journal.homepage) (0.6734)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
-researchers :: count(author.name) : count(journal.full_name) (0.6734)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
---
 researchers :: count(author.name) : count(journal.jid) (0.6734)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 --
 researchers :: count(author.name) : count(journal.name) (0.6734)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+researchers :: count(author.name) : count(journal.homepage) (0.6734)
+Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+--
+researchers :: count(author.name) : count(journal.full_name) (0.6734)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 == RESULT: WRONG == 
@@ -1983,6 +1983,14 @@ Cands for 'papers': 16
 Cands for 'PVLDB': 68
 TOTAL SCORE: 0.9106794631837336, TIES: 4
 --
+authors :: count(author.name) : count(author.oid) (1.0)
+papers :: publication : journal (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
+authors :: count(author.name) : count(author.aid) (1.0)
+papers :: publication : journal (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+--
 authors :: count(author.name) : count(author.photo) (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
@@ -1991,15 +1999,7 @@ authors :: count(author.name) : count(author.name) (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-authors :: count(author.name) : count(author.oid) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
 authors :: count(author.name) : count(author.homepage) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-authors :: count(author.name) : count(author.aid) (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 == RESULT: WRONG == 
@@ -2012,11 +2012,15 @@ Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 TOTAL SCORE: 0.9106794631837336, TIES: 4
 --
-authors :: count(author.name) : count(author.oid) (1.0)
+authors :: count(author.name) : count(author.homepage) (1.0)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
 authors :: count(author.name) : count(author.aid) (1.0)
+papers :: publication : journal (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+authors :: count(author.name) : count(author.oid) (1.0)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
@@ -2025,10 +2029,6 @@ papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
 authors :: count(author.name) : count(author.name) (1.0)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
---
-authors :: count(author.name) : count(author.homepage) (1.0)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 == RESULT: WRONG == 
@@ -2041,6 +2041,10 @@ Cands for 'PVLDB': 68
 Cands for '< 2000': 12
 TOTAL SCORE: 0.8758447368587784, TIES: 3
 --
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
+--
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
@@ -2050,10 +2054,6 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 --
 papers :: count(publication.title) : count(journal.jid) (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
---
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 == RESULT: WRONG == 
@@ -2066,11 +2066,7 @@ Cands for 'VLDB conference': 543
 Cands for '< 2000': 12
 TOTAL SCORE: 0.8758447368587784, TIES: 3
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
---
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 --
@@ -2078,7 +2074,11 @@ papers :: count(publication.title) : count(journal.full_name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 == RESULT: WRONG == 
@@ -2126,22 +2126,22 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2005 :: publication.year = 2005 : keyword.kid = 2005 (0.9999499987499375)
---
-citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-2005 :: publication.year = 2005 : publication.pid = 2005 (0.9999499987499375)
---
-citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2005 :: publication.year = 2005 : publication.year = 2005 (0.9999499987499375)
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2005 :: publication.year = 2005 : keyword.kid = 2005 (0.9999499987499375)
+--
+citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
+papers :: publication : journal (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2005 :: publication.year = 2005 : keyword_variations.kid = 2005 (0.9999499987499375)
+--
+citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
+papers :: publication : journal (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+2005 :: publication.year = 2005 : publication.pid = 2005 (0.9999499987499375)
 == RESULT: WRONG == 
 
 SO FAR: 20/123
@@ -2182,19 +2182,19 @@ Cands for 'PVLDB': 68
 Cands for 'year': 66
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-year :: publication.year : publication.year (1.0)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+year :: publication.year : publication.year (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
 == RESULT: WRONG == 
@@ -2237,12 +2237,12 @@ TOTAL SCORE: 0.8906320002530829, TIES: 4
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2005 :: publication.year = 2005 : publication.pid = 2005 (0.9999499987499375)
+2005 :: publication.year = 2005 : publication.year = 2005 (0.9999499987499375)
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-2005 :: publication.year = 2005 : publication.year = 2005 (0.9999499987499375)
+2005 :: publication.year = 2005 : publication.pid = 2005 (0.9999499987499375)
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
@@ -2298,10 +2298,6 @@ Cands for 'VLDB conference': 543
 Cands for 'year': 66
 TOTAL SCORE: 0.9106794631837336, TIES: 3
 --
-papers :: count(publication.title) : count(journal.name) (0.6878)
-VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-year :: publication.year : publication.year (1.0)
---
 papers :: count(publication.title) : count(journal.jid) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
@@ -2311,6 +2307,10 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
 --
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+year :: publication.year : publication.year (1.0)
+--
+papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
 == RESULT: WRONG == 
@@ -2479,17 +2479,17 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 --
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
+written :: writes : writes (0.72845)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
@@ -2505,12 +2505,6 @@ Cands for 'Divesh Srivastava': 67
 Cands for '< 2000': 12
 TOTAL SCORE: 0.8683298038202474, TIES: 3
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
-written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
---
 papers :: count(publication.title) : count(journal.homepage) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
@@ -2524,6 +2518,12 @@ Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh S
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
+written :: writes : writes (0.72845)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
+before 2000 :: publication.year < 2000 : domain.did < 2000 (0.855551834176076)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
@@ -2540,29 +2540,11 @@ Cands for 'Yunyao Li': 893
 Cands for 'Cong Yu': 472
 TOTAL SCORE: 0.891203711556969, TIES: 7
 --
-papers :: count(publication.title) : count(journal.full_name) (0.6878)
-written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
---
-papers :: count(publication.title) : count(journal.homepage) (0.6878)
-written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
---
-papers :: count(publication.title) : count(journal.jid) (0.6878)
-written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
---
 papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
+Cong Yu :: author.name = 'Cong Yu' : author.name = 'Cong Yu' (1.0)
 --
 papers :: count(publication.title) : count(journal.full_name) (0.6878)
 written :: writes : writes (0.72845)
@@ -2586,7 +2568,25 @@ papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Cong Yu' (1.0)
+Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
+--
+papers :: count(publication.title) : count(journal.full_name) (0.6878)
+written :: writes : writes (0.72845)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
+Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
+--
+papers :: count(publication.title) : count(journal.homepage) (0.6878)
+written :: writes : writes (0.72845)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
+Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
+--
+papers :: count(publication.title) : count(journal.jid) (0.6878)
+written :: writes : writes (0.72845)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
+Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
 == RESULT: WRONG == 
 
 SO FAR: 24/145
@@ -2596,10 +2596,10 @@ Cands for 'authors': 50
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 1.0, TIES: 4
 --
-authors :: count(author.name) : count(author.aid) (1.0)
+authors :: count(author.name) : count(author.name) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-authors :: count(author.name) : count(author.name) (1.0)
+authors :: count(author.name) : count(author.homepage) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
 authors :: count(author.name) : count(author.oid) (1.0)
@@ -2608,7 +2608,7 @@ H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish
 authors :: count(author.name) : count(author.photo) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-authors :: count(author.name) : count(author.homepage) (1.0)
+authors :: count(author.name) : count(author.aid) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 == RESULT: WRONG == 
 
@@ -2621,7 +2621,12 @@ Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
 TOTAL SCORE: 0.927881325667996, TIES: 4
 --
-authors :: count(author.name) : count(author.photo) (1.0)
+authors :: count(author.name) : count(author.oid) (1.0)
+cited :: cite : cite (1.0)
+papers :: publication : journal (0.6878)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+--
+authors :: count(author.name) : count(author.name) (1.0)
 cited :: cite : cite (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
@@ -2631,17 +2636,12 @@ cited :: cite : cite (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-authors :: count(author.name) : count(author.oid) (1.0)
-cited :: cite : cite (1.0)
-papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
 authors :: count(author.name) : count(author.aid) (1.0)
 cited :: cite : cite (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-authors :: count(author.name) : count(author.name) (1.0)
+authors :: count(author.name) : count(author.photo) (1.0)
 cited :: cite : cite (1.0)
 papers :: publication : journal (0.6878)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
@@ -2711,7 +2711,11 @@ Cands for '> 10': 8
 Cands for 'keyword Relational Database': 139
 TOTAL SCORE: 0.9499759529587172, TIES: 4
 --
-authors :: count(author.name) : count(author.oid) (1.0)
+authors :: count(author.name) : count(author.name) (1.0)
+10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.aid) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -2719,15 +2723,11 @@ authors :: count(author.name) : count(author.photo) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-authors :: count(author.name) : count(author.name) (1.0)
-10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
 authors :: count(author.name) : count(author.homepage) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-authors :: count(author.name) : count(author.aid) (1.0)
+authors :: count(author.name) : count(author.oid) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -2744,15 +2744,15 @@ conferences :: count(conference.name) : count(conference.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
+conferences :: count(conference.name) : count(conference.cid) (1.0)
+60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
 conferences :: count(conference.name) : count(conference.full_name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
 conferences :: count(conference.name) : count(conference.homepage) (1.0)
-60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
-conferences :: count(conference.name) : count(conference.cid) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -2765,19 +2765,19 @@ Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
 TOTAL SCORE: 0.9499759529587172, TIES: 3
 --
-journals :: count(journal.name) : count(journal.name) (1.0)
-60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
-journals :: count(journal.name) : count(journal.jid) (1.0)
-60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
 journals :: count(journal.name) : count(journal.homepage) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
 journals :: count(journal.name) : count(journal.full_name) (1.0)
+60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+journals :: count(journal.name) : count(journal.name) (1.0)
+60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+journals :: count(journal.name) : count(journal.jid) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -2790,15 +2790,7 @@ Cands for '> 10': 8
 Cands for 'keyword Relational Database': 139
 TOTAL SCORE: 0.9499759529587172, TIES: 4
 --
-authors :: count(author.name) : count(author.photo) (1.0)
-10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
-authors :: count(author.name) : count(author.oid) (1.0)
-10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
-keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
---
-authors :: count(author.name) : count(author.name) (1.0)
+authors :: count(author.name) : count(author.homepage) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -2806,7 +2798,15 @@ authors :: count(author.name) : count(author.aid) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-authors :: count(author.name) : count(author.homepage) (1.0)
+authors :: count(author.name) : count(author.photo) (1.0)
+10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.name) (1.0)
+10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
+keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
+--
+authors :: count(author.name) : count(author.oid) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -2819,7 +2819,7 @@ Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
 TOTAL SCORE: 0.9499759529587172, TIES: 3
 --
-conferences :: count(conference.name) : count(conference.cid) (1.0)
+conferences :: count(conference.name) : count(conference.homepage) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -2827,7 +2827,7 @@ conferences :: count(conference.name) : count(conference.full_name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-conferences :: count(conference.name) : count(conference.homepage) (1.0)
+conferences :: count(conference.name) : count(conference.cid) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -2844,7 +2844,7 @@ Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
 TOTAL SCORE: 0.9499759529587172, TIES: 3
 --
-journals :: count(journal.name) : count(journal.name) (1.0)
+journals :: count(journal.name) : count(journal.full_name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
@@ -2856,7 +2856,7 @@ journals :: count(journal.name) : count(journal.homepage) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 --
-journals :: count(journal.name) : count(journal.full_name) (1.0)
+journals :: count(journal.name) : count(journal.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
 == RESULT: WRONG == 
@@ -2869,11 +2869,11 @@ Cands for '> 100': 8
 Cands for 'VLDB conference': 543
 TOTAL SCORE: 0.9499759529587172, TIES: 2
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
@@ -2890,7 +2890,7 @@ Cands for '> 100': 8
 Cands for 'PVLDB': 68
 TOTAL SCORE: 0.9499759529587172, TIES: 2
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
@@ -2898,7 +2898,7 @@ keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
-keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
+keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 == RESULT: WRONG == 
