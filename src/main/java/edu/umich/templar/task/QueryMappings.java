@@ -30,7 +30,7 @@ public class QueryMappings {
         this.fragmentMappingsList.add(fragmentMappings);
     }
 
-    public double calculateScore(List<MatchedDBElement> interp) {
+    private double calculateScore(List<MatchedDBElement> interp) {
         List<Double> sims = new ArrayList<>();
 
         Set<Relation> rels = new HashSet<>();
@@ -50,6 +50,8 @@ public class QueryMappings {
                 rels.add(((AggregatedPredicate) mel.getEl()).getAttr().getRelation());
             } else if (mel.getEl() instanceof AggregatedAttribute) {
                 rels.add(((AggregatedAttribute) mel.getEl()).getAttr().getRelation());
+            } else if (mel.getEl() instanceof GroupedAttribute) {
+                rels.add(((GroupedAttribute) mel.getEl()).getAttr().getRelation());
             } else {
                 throw new RuntimeException("Unknown DBElement type.");
             }

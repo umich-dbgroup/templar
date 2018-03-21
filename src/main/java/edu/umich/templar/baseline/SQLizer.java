@@ -118,7 +118,8 @@ public class SQLizer {
         return cands;
     }
 
-    private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands, String fragType) {
+    private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands,
+                                                      String fragType, Boolean groupBy) {
         Set<MatchedDBElement> matchedEls = new HashSet<>();
 
         for (DBElement cand : textCands) {
@@ -129,7 +130,11 @@ public class SQLizer {
                 // If we have a type oracle activated and we know it's an attribute result, treat as such
                 if (this.typeOracle && fragType.equalsIgnoreCase("attr")) {
                     if (rel.getMainAttribute() != null) {
-                        matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                        if (groupBy) {
+                            matchedEls.add(new MatchedDBElement(new GroupedAttribute(rel.getMainAttribute()), sim));
+                        } else {
+                            matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                        }
                     }
                 } else {
                     matchedEls.add(new MatchedDBElement(rel, sim));
@@ -137,7 +142,11 @@ public class SQLizer {
             } else if (cand instanceof Attribute) {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
-                matchedEls.add(new MatchedDBElement(attr, sim));
+                if (groupBy) {
+                    matchedEls.add(new MatchedDBElement(new GroupedAttribute(attr), sim));
+                } else {
+                    matchedEls.add(new MatchedDBElement(attr, sim));
+                }
             } else if (cand instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) cand;
 
@@ -246,7 +255,7 @@ public class SQLizer {
                 }
 
                 double predSim = Utils.geometricMean(sims);
-                
+
                 matchedEls.add(new MatchedDBElement(pred, predSim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
@@ -297,7 +306,7 @@ public class SQLizer {
             if (numericToken == null) {
                 cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
                         fragmentTask.getOp(), fragmentTask.getFunctions());
-                matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType());
+                matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType(), fragmentTask.getGroupBy());
             } else {
                 cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getFunctions());
                 matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());

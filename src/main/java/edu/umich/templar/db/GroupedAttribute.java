@@ -2,11 +2,15 @@ package edu.umich.templar.db;
 
 import java.util.Objects;
 
-public class GroupedAttribute {
+public class GroupedAttribute extends DBElement {
     private Attribute attr;
 
     public GroupedAttribute(Attribute attr) {
         this.attr = attr;
+    }
+
+    public Attribute getAttr() {
+        return attr;
     }
 
     @Override
@@ -20,5 +24,10 @@ public class GroupedAttribute {
     @Override
     public int hashCode() {
         return Objects.hash(attr);
+    }
+
+    @Override
+    public String toString() {
+        return this.attr.toString();
     }
 }
