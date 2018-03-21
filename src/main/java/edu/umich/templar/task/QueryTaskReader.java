@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class QueryTaskReader {
-    public static Map<Integer, QueryTask> readQueryTasks(String filename) {
+    public static List<QueryTask> readQueryTasks(String filename) {
         Map<Integer, QueryTask> queryTasks = new HashMap<>();
 
         try {
@@ -51,6 +51,11 @@ public class QueryTaskReader {
             throw new RuntimeException(e);
         }
 
-        return queryTasks;
+        List<QueryTask> qtList = new ArrayList<>();
+        for (Map.Entry<Integer, QueryTask> e : queryTasks.entrySet()) {
+            qtList.add(e.getValue());
+        }
+
+        return qtList;
     }
 }

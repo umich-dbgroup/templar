@@ -7,4 +7,7 @@ public class Params {
 
     /* Parameters for SQLizer */
     public static double SQLIZER_EPSILON = 0.0001;
+
+    /* Harmonic mean minimum epsilon */
+    public static double EPSILON = 0.01;
 }

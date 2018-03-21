@@ -16,7 +16,7 @@ import java.util.*;
 public class LogGraph {
     private Database db;
     private LogLevel mode;
-    private Set<DBElement> nodes;
+    private Map<DBElement, Integer> nodes;
     private Map<DBElementPair, Integer> edges;
 
     public static void main(String[] args) {
@@ -39,8 +39,25 @@ public class LogGraph {
     public LogGraph(Database db, LogLevel mode) {
         this.db = db;
         this.mode = mode;
-        this.nodes = new HashSet<>();
+        this.nodes = new HashMap<>();
         this.edges = new HashMap<>();
+    }
+
+    public void analyzeSQLs(List<String> sqls) {
+        List<Select> selects = Utils.parseStatementsSequential(sqls);
+        for (Select select : selects) {
+            this.extractElementsFromSelect((PlainSelect) select.getSelectBody(), 0);
+        }
+    }
+
+    public int count(DBElement el) {
+        Integer result = this.nodes.get(el);
+        return result != null? result : 0;
+    }
+
+    public int cooccur(DBElementPair pair) {
+        Integer result = this.edges.get(pair);
+        return result != null? result : 0;
     }
 
     private Set<DBElement> modifyElementsForLevel(Set<DBElement> els) {
@@ -99,7 +116,7 @@ public class LogGraph {
         throw new RuntimeException("Attribute <" + attr + "> not found in previous elements list.");
     }
 
-    public Set<DBElement> extractElementsFromSelect(PlainSelect ps, int subLevel) {
+    private Set<DBElement> extractElementsFromSelect(PlainSelect ps, int subLevel) {
         Set<DBElement> elementsInSelect = new HashSet<>();
 
         // Relations
@@ -230,9 +247,8 @@ public class LogGraph {
 
             List<DBElement> els = new ArrayList<>(elementsInSelect);
             for (int i = 0; i < els.size(); i++) {
-                this.nodes.add(els.get(i));
-                for (int j = 1; j < els.size(); j++) {
-                    if (i == j) continue;
+                this.nodes.merge(els.get(i), 1, (a, b) -> a + b);
+                for (int j = i+1; j < els.size(); j++) {
                     DBElementPair pair = new DBElementPair(els.get(i), els.get(j));
                     this.edges.merge(pair, 1, (a, b) -> a + b);
                 }
