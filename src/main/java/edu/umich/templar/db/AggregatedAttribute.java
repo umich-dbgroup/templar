@@ -1,5 +1,7 @@
 package edu.umich.templar.db;
 
+import java.util.Objects;
+
 public class AggregatedAttribute extends DBElement {
     String function;
     Attribute attr;
@@ -15,6 +17,21 @@ public class AggregatedAttribute extends DBElement {
 
     public Attribute getAttr() {
         return attr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AggregatedAttribute that = (AggregatedAttribute) o;
+        return Objects.equals(function, that.function) &&
+                Objects.equals(attr, that.attr);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(function, attr);
     }
 
     @Override

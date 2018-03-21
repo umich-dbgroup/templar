@@ -27,10 +27,10 @@ public class LogFullTemplates {
         Database database = new Database(dbHost, dbPort, dbUser, dbPass,
                 "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
 
-        LogFullTemplates logFullTemplates = new LogFullTemplates(database, LogLevel.FULL);
+        LogFullTemplates logFullTemplates = new LogFullTemplates(database, LogLevel.NO_CONST_OP);
         List<Select> selects = Utils.parseStatementsSequential("data/mas/mas_valid.ans");
         for (Select select : selects) {
-            logFullTemplates.extractElementsFromSelect((PlainSelect) select.getSelectBody());
+            logFullTemplates.extractElementsFromSelect((PlainSelect) select.getSelectBody(), 0);
         }
     }
 
@@ -38,6 +38,47 @@ public class LogFullTemplates {
         this.db = db;
         this.mode = mode;
         this.setCounts = new HashMap<>();
+    }
+
+    private Set<DBElement> modifyElementsForLevel(Set<DBElement> els) {
+        // No modification required if FULL level
+        if (this.mode.equals(LogLevel.FULL)) return els;
+
+        Set<DBElement> newEls = new HashSet<>();
+        for (DBElement el : els) {
+            if (el instanceof AggregatedPredicate) {
+                AggregatedPredicate pred = (AggregatedPredicate) el;
+
+                if (this.mode.equals(LogLevel.NO_CONST_OP)) {
+                    newEls.add(new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
+                            "?", pred.getValueFunction()));
+                } else {
+                    // No modifications involved for NO_CONST
+                    newEls.add(el);
+                }
+            } else if (el instanceof NumericPredicate) {
+                NumericPredicate pred = (NumericPredicate) el;
+
+                if (this.mode.equals(LogLevel.NO_CONST)) {
+                    newEls.add(new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction()));
+                } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
+                    newEls.add(new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction()));
+                }
+
+            } else if (el instanceof TextPredicate) {
+                TextPredicate pred = (TextPredicate) el;
+
+                if (this.mode.equals(LogLevel.NO_CONST)) {
+                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
+                } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
+                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
+                }
+
+            } else {
+                newEls.add(el);
+            }
+        }
+        return newEls;
     }
 
     private void setGroupBy(Set<DBElement> els, Attribute attr) {
@@ -55,7 +96,7 @@ public class LogFullTemplates {
         throw new RuntimeException("Attribute <" + attr + "> not found in previous elements list.");
     }
 
-    public Set<DBElement> extractElementsFromSelect(PlainSelect ps) {
+    public Set<DBElement> extractElementsFromSelect(PlainSelect ps, int subLevel) {
         Set<DBElement> elementsInSelect = new HashSet<>();
 
         // Relations
@@ -72,7 +113,7 @@ public class LogFullTemplates {
         } else if (ps.getFromItem() instanceof SubSelect) {
             // in the case it is a subquery
             PlainSelect subPs = (PlainSelect) ((SubSelect) ps.getFromItem()).getSelectBody();
-            elementsInSelect.addAll(this.extractElementsFromSelect(subPs));
+            elementsInSelect.addAll(this.extractElementsFromSelect(subPs, subLevel + 1));
         }
 
         if (ps.getJoins() != null) {
@@ -87,7 +128,7 @@ public class LogFullTemplates {
                     elementsInSelect.add(rel);
                 } else if (join.getRightItem() instanceof SubSelect) {
                     PlainSelect subPs = (PlainSelect) ((SubSelect) join.getRightItem()).getSelectBody();
-                    elementsInSelect.addAll(this.extractElementsFromSelect(subPs));
+                    elementsInSelect.addAll(this.extractElementsFromSelect(subPs, subLevel + 1));
                 }
             }
         }
@@ -180,28 +221,11 @@ public class LogFullTemplates {
             }
         }
 
-        // increment each qf count once
-        /*
-        List<QueryFragment> storedSelectQFs = new ArrayList<>();
-        for (QueryFragment qf : selectQFs) {
-            QueryFragment storedQF = this.getOrInsertQF(qf);
-            storedQF.incrementCount();
-            storedSelectQFs.add(storedQF);
+        // Only at top level, add to main log set
+        if (subLevel == 0) {
+            elementsInSelect = this.modifyElementsForLevel(elementsInSelect);
+            this.setCounts.merge(elementsInSelect, 1, (a, b) -> a + b);
         }
-
-        // add co-occurrence values for each query fragment in relation to each other
-        for (int i = 0; i < storedSelectQFs.size(); i++) {
-            for (int j = i+1; j < storedSelectQFs.size(); j++) {
-                this.addQFPair(storedSelectQFs.get(i), storedSelectQFs.get(j));
-            }
-        }
-
-        // add co-occurrence values for subqueries
-        for (QueryFragment superQf : storedSelectQFs) {
-            for (QueryFragment subQf : subselectQFs) {
-                this.addQFPair(superQf, subQf);
-            }
-        }*/
 
         return elementsInSelect;
     }

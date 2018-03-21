@@ -1,6 +1,6 @@
 package edu.umich.templar.db;
 
-import edu.umich.templar.baseline.BaselineParams;
+import edu.umich.templar.main.settings.Params;
 import net.sf.jsqlparser.expression.StringValue;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -205,7 +205,7 @@ public class Database {
                 } else {
                     StringJoiner sj = new StringJoiner(" ");
                     for (String token : tokens) {
-                        if (token.length() >= BaselineParams.MIN_FULLTEXT_TOKEN_LENGTH) {
+                        if (token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
                             // When the token matches the relation or the attribute name, make it an OR instead of AND
                             if (token.equalsIgnoreCase(attr.getName())
                                     || token.equalsIgnoreCase(attr.getRelation().getName())) {
@@ -225,7 +225,7 @@ public class Database {
                     String stringValue = rs.getString(1);
 
                     // Limit max token value in results
-                    if (stringValue.length() <= BaselineParams.MAX_CHAR_LENGTH) {
+                    if (stringValue.length() <= Params.MAX_CHAR_LENGTH) {
                         TextPredicate val = new TextPredicate(attr, stringValue);
                         values.add(val);
                     }

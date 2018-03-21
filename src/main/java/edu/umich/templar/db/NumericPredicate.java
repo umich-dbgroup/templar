@@ -1,6 +1,7 @@
 package edu.umich.templar.db;
 
 import java.util.List;
+import java.util.Objects;
 
 public class NumericPredicate extends DBElement {
     private Attribute attr;
@@ -29,6 +30,22 @@ public class NumericPredicate extends DBElement {
 
     public String getFunction() {
         return function;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NumericPredicate that = (NumericPredicate) o;
+        return Objects.equals(attr, that.attr) &&
+                Objects.equals(op, that.op) &&
+                Objects.equals(value, that.value) &&
+                Objects.equals(function, that.function);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attr, op, value, function);
     }
 
     @Override

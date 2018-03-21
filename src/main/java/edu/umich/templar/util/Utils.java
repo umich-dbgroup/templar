@@ -1,13 +1,14 @@
 package edu.umich.templar.util;
 
 import com.esotericsoftware.minlog.Log;
-import edu.umich.templar.qf.pieces.Operator;
-import edu.umich.templar.rdbms.Attribute;
-import edu.umich.templar.rdbms.Function;
-import edu.umich.templar.rdbms.FunctionParameter;
-import edu.umich.templar.rdbms.Relation;
-import edu.umich.templar.sqlparse.ConstantRemovalExprDeParser;
-import edu.umich.templar.sqlparse.LiteralExpression;
+import edu.umich.templar._old.Constants;
+import edu.umich.templar._old.qf.pieces.Operator;
+import edu.umich.templar._old.rdbms.Attribute;
+import edu.umich.templar._old.rdbms.Function;
+import edu.umich.templar._old.rdbms.FunctionParameter;
+import edu.umich.templar._old.rdbms.Relation;
+import edu.umich.templar._old.sqlparse.ConstantRemovalExprDeParser;
+import edu.umich.templar._old.sqlparse.LiteralExpression;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Alias;
 import net.sf.jsqlparser.expression.Expression;
@@ -209,7 +210,7 @@ public class Utils {
             }
         }
 
-        // if old to table name exists, use it
+        // if _old to table name exists, use it
         Table table = oldAliasToTable.get(tableName);
         if (table != null) return table;
 
