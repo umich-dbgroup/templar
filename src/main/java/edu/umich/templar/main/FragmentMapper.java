@@ -22,18 +22,18 @@ public class FragmentMapper {
     // If we assume that the parser correctly discerned the type
     protected boolean typeOracle;
 
-    protected Map<Integer, QueryTask> queryTasks;
+    protected List<QueryTask> queryTasks;
 
-    public FragmentMapper(Database database, String filename, boolean typeOracle) {
+    public FragmentMapper(Database database, List<QueryTask> queryTasks, boolean typeOracle) {
         this.db = database;
         this.typeOracle = typeOracle;
+        this.queryTasks = queryTasks;
 
         // Default scorer is SimpleScorer
         this.scorer = new SimpleScorer();
 
         try {
             this.sim = new Similarity(10000);
-            this.queryTasks = QueryTaskReader.readQueryTasks(filename);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -355,13 +355,13 @@ public class FragmentMapper {
         return correct;
     }
 
-    public void execute(int startAt) {
+    public void execute(Integer queryId) {
         int totalTasks = 0;
         int correctTasks = 0;
-        for (Map.Entry<Integer, QueryTask> e : this.queryTasks.entrySet()) {
-            if (e.getKey() < startAt) continue;
+        for (QueryTask queryTask : this.queryTasks) {
+            if (queryId != null & !queryTask.getQueryId().equals(queryId)) continue;
 
-            boolean correct = this.executeQueryTask(e.getValue());
+            boolean correct = this.executeQueryTask(queryTask);
             if (correct) correctTasks++;
             totalTasks++;
 
@@ -375,6 +375,6 @@ public class FragmentMapper {
     }
 
     public void execute() {
-        this.execute(0);
+        this.execute(null);
     }
 }

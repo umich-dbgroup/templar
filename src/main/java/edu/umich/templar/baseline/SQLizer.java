@@ -6,12 +6,14 @@ import edu.umich.templar.scorer.SQLizerScorer;
 import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
 
+import java.util.List;
+
 public class SQLizer extends FragmentMapper {
     // Activate the SQLizer join penalty indiscriminately
     private boolean joinScore;
 
-    public SQLizer(Database database, String filename, boolean typeOracle, boolean joinScore) {
-        super(database, filename, typeOracle);
+    public SQLizer(Database database, List<QueryTask> queryTasks, boolean typeOracle, boolean joinScore) {
+        super(database, queryTasks, typeOracle);
 
         this.db = database;
         this.joinScore = joinScore;
@@ -19,7 +21,6 @@ public class SQLizer extends FragmentMapper {
 
         try {
             this.sim = new Similarity(10000);
-            this.queryTasks = QueryTaskReader.readQueryTasks(filename);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +36,10 @@ public class SQLizer extends FragmentMapper {
 
         Database database = new Database(dbHost, dbPort, dbUser, dbPass,
                 "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
-        SQLizer sqlizer = new SQLizer(database, "data/mas/mas_all_fragments.csv", typeOracle, joinScore);
+
+        SQLizer sqlizer = new SQLizer(database,
+                QueryTaskReader.readQueryTasks("data/mas/mas_all_fragments.csv"),
+                typeOracle, joinScore);
 
         if (args.length >= 7) {
             sqlizer.execute(Integer.valueOf(args[6]));

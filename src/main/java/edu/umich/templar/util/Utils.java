@@ -446,7 +446,9 @@ public class Utils {
         return null;
     }
 
-    public static Double geometricMean(List<Double> numbers) {
+    public static double geometricMean(List<Double> numbers) {
+        if (numbers.size() == 0) return 0.0;
+
         double accum = 1.0;
         double root = 1.0;
 
@@ -456,5 +458,19 @@ public class Utils {
         }
 
         return Math.pow(accum, 1.0 / root);
+    }
+
+    public static double mean(List<Double> numbers) {
+        if (numbers.size() == 0) return 0.0;
+
+        double accum = 0.0;
+        for (Double number : numbers) {
+            accum += number;
+        }
+        return accum / numbers.size();
+    }
+
+    public static double harmonicMean(double num1, double num2) {
+        return (2 * num1 * num2) / (num1 + num2);
     }
 }
