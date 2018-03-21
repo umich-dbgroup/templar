@@ -328,6 +328,41 @@ public class Utils {
         }
     }
 
+    public static List<Select> parseStatementsSequential(String queryLogFilename) {
+        try {
+            List<String> sqls = Files.readAllLines(Paths.get(queryLogFilename));
+            return Utils.parseStatementsSequential(sqls);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Select> parseStatementsSequential(List<String> sqlLines) {
+        List<Select> stmts = new ArrayList<>();
+
+        for (String sqlLine : sqlLines) {
+            // If we have multiple answers per line (residual from previous system, then pick only first)
+            String sql = sqlLine.split("\t")[0];
+
+            Statement stmt;
+            try {
+                stmt = CCJSqlParserUtil.parse(sql);
+            } catch (JSQLParserException e) {
+                throw new RuntimeException(e);
+            }
+            if (stmt == null || !(stmt instanceof Select)) {
+                throw new RuntimeException("Encountered a non-select statement.");
+            }
+            stmts.add((Select) stmt);
+        }
+
+        Log.info("===== Parsing Results =====");
+        Log.info("Total Queries: " + sqlLines.size());
+        Log.info("Correctly Parsed: " + stmts.size() + "/" + sqlLines.size() + "\n");
+
+        return stmts;
+    }
+
     public static Integer getAliasIntFromAlias(String alias) {
         String[] splitList = alias.split("_");
         String lastSplit = splitList[splitList.length - 1];

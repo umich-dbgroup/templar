@@ -1,26 +1,38 @@
 package edu.umich.templar.log;
 
-import edu.umich.templar.db.Attribute;
-import edu.umich.templar.db.DBElement;
-import edu.umich.templar.db.Database;
-import edu.umich.templar.db.Relation;
+import edu.umich.templar.db.*;
 import edu.umich.templar.log.parse.ParserUtils;
 import edu.umich.templar.log.parse.PredicateParser;
-import edu.umich.templar.log.parse.ProjectionParser;
+import edu.umich.templar.log.parse.AttributeParser;
+import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class LogFullTemplates {
     private Database db;
     private LogLevel mode;
     private Map<Set<DBElement>, Integer> setCounts;
+
+    public static void main(String[] args) {
+        // For testing
+        String dbHost = args[0];
+        Integer dbPort = Integer.valueOf(args[1]);
+        String dbUser = args[2];
+        String dbPass = args[3].equalsIgnoreCase("null")? null : args[3];
+
+        Database database = new Database(dbHost, dbPort, dbUser, dbPass,
+                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
+
+        LogFullTemplates logFullTemplates = new LogFullTemplates(database, LogLevel.FULL);
+        List<Select> selects = Utils.parseStatementsSequential("data/mas/mas_valid.ans");
+        for (Select select : selects) {
+            logFullTemplates.extractElementsFromSelect((PlainSelect) select.getSelectBody());
+        }
+    }
 
     public LogFullTemplates(Database db, LogLevel mode) {
         this.db = db;
@@ -28,19 +40,20 @@ public class LogFullTemplates {
         this.setCounts = new HashMap<>();
     }
 
-    /*
     private void setGroupBy(Set<DBElement> els, Attribute attr) {
         for (DBElement el : els) {
             if (el instanceof Attribute) {
                 Attribute proj = (Attribute) el;
                 if (proj.equals(attr)) {
-                    proj.setGroupBy(true);
+                    els.add(new GroupedAttribute(attr));
+                    els.remove(el);
                     return;
                 }
             }
         }
+
         throw new RuntimeException("Attribute <" + attr + "> not found in previous elements list.");
-    } */
+    }
 
     public Set<DBElement> extractElementsFromSelect(PlainSelect ps) {
         Set<DBElement> elementsInSelect = new HashSet<>();
@@ -82,7 +95,7 @@ public class LogFullTemplates {
         // Projections
         for (SelectItem item : ps.getSelectItems()) {
             if (item instanceof SelectExpressionItem) {
-                ProjectionParser projParser = new ProjectionParser(this.db, relations);
+                AttributeParser projParser = new AttributeParser(this.db, relations);
                 Expression expr = ((SelectExpressionItem) item).getExpression();
 
                 if (expr instanceof net.sf.jsqlparser.expression.Function || expr instanceof Column) {
@@ -92,6 +105,35 @@ public class LogFullTemplates {
             }
         }
 
+        // If any projections are aggregates of all columns, then find other projection and increment
+        AggregatedAttribute aggregatedAllColumns = null;
+        DBElement otherProjection = null;
+        for (DBElement el : elementsInSelect) {
+            if (el instanceof AggregatedAttribute) {
+                AggregatedAttribute aggr = (AggregatedAttribute) el;
+                if (aggr.getAttr().getName().equals("*")) {
+                    aggregatedAllColumns = aggr;
+                }
+            } else if (el instanceof Attribute) {
+                if (otherProjection != null) throw new RuntimeException("Already found other projection!");
+                otherProjection = el;
+            } else if (el instanceof GroupedAttribute) {
+                if (otherProjection != null) throw new RuntimeException("Already found other projection!");
+                otherProjection = el;
+            }
+        }
+        if (aggregatedAllColumns != null && otherProjection != null) {
+            if (otherProjection instanceof GroupedAttribute) {
+                Attribute attr = ((GroupedAttribute) otherProjection).getAttr();
+                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(), attr));
+            } else {
+                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(),
+                        (Attribute) otherProjection));
+            }
+            elementsInSelect.remove(aggregatedAllColumns);
+            elementsInSelect.remove(otherProjection);
+        }
+
         // Predicates
         if (ps.getWhere() != null) {
             PredicateParser predicateParser = new PredicateParser(this.db, relations);
@@ -99,16 +141,11 @@ public class LogFullTemplates {
             elementsInSelect.addAll(predicateParser.getPredicates());
         }
 
-        /*
         // Havings
         if (ps.getHaving() != null) {
-            HavingUnroller havingUnroller = new HavingUnroller(this.relations, relations);
-            ps.getHaving().accept(havingUnroller);
-            for (Having having : havingUnroller.getHavings()) {
-                Having valuelessHaving = new Having(having.getAttribute(), null, null, having.getFunction());
-                // Having valuelessHaving = new Having(having.getAttribute(), having.getOp(), null, having.getFunction());
-                selectQFs.add(valuelessHaving);
-            }
+            PredicateParser havingParser = new PredicateParser(this.db, relations);
+            ps.getHaving().accept(havingParser);
+            elementsInSelect.addAll(havingParser.getPredicates());
         }
 
         // Group By
@@ -121,7 +158,27 @@ public class LogFullTemplates {
                     this.setGroupBy(elementsInSelect, attr);
                 }
             }
-        }*/
+        }
+
+        // Top-1 Queries (assuming they are written in the form ORDER BY attribute DESC limit 1)
+        if (ps.getOrderByElements() != null) {
+            for (OrderByElement orderByElement : ps.getOrderByElements()) {
+                String valueFunction = orderByElement.isAsc()? "min" : "max";
+
+                AttributeParser orderParser = new AttributeParser(this.db, relations);
+                orderByElement.getExpression().accept(orderParser);
+                for (DBElement el : orderParser.getAttributes()) {
+                    if (el instanceof AggregatedAttribute) {
+                        AggregatedAttribute attr = (AggregatedAttribute) el;
+                        elementsInSelect.add(new AggregatedPredicate(attr.getFunction(), attr.getAttr(),
+                                "=", valueFunction));
+                    } else if (el instanceof Attribute) {
+                        Attribute attr = (Attribute) el;
+                        elementsInSelect.add(new AggregatedPredicate(null, attr, "=", valueFunction));
+                    }
+                }
+            }
+        }
 
         // increment each qf count once
         /*
@@ -147,6 +204,5 @@ public class LogFullTemplates {
         }*/
 
         return elementsInSelect;
-
     }
 }

@@ -1,8 +1,6 @@
 package edu.umich.templar.log.parse;
 
-import edu.umich.templar.db.Attribute;
-import edu.umich.templar.db.Database;
-import edu.umich.templar.db.Relation;
+import edu.umich.templar.db.*;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.expression.Function;
@@ -10,21 +8,22 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.statement.select.AllColumns;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ProjectionParser extends ExpressionVisitorAdapter {
+public class AttributeParser extends ExpressionVisitorAdapter {
     private Database db;
     private Set<Relation> queryRelations;
-    private List<Attribute> attributes;
+    private Set<DBElement> attributes;
 
-    public ProjectionParser(Database db, Set<Relation> queryRelations) {
+    public AttributeParser(Database db, Set<Relation> queryRelations) {
         this.db = db;
         this.queryRelations = queryRelations;
-        this.attributes = new ArrayList<>();
+        this.attributes = new HashSet<>();
     }
 
-    public List<Attribute> getAttributes() {
+    public Set<DBElement> getAttributes() {
         return attributes;
     }
 
@@ -34,13 +33,13 @@ public class ProjectionParser extends ExpressionVisitorAdapter {
 
         // In the case that it's "all columns"
         if (function.isAllColumns()) {
-            this.attributes.add(Attribute.allColumnsAttr());
+            this.attributes.add(new AggregatedAttribute(functionName, Attribute.allColumnsAttr()));
         } else {
             Column col = Utils.getColumnFromFunction(function);
 
             if (col != null) {
                 Attribute attr = ParserUtils.getAttributeFromColumn(this.db, this.queryRelations, col);
-                this.attributes.add(attr);
+                this.attributes.add(new AggregatedAttribute(functionName, attr));
             }
         }
     }

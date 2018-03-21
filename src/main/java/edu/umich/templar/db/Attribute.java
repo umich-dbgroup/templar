@@ -89,7 +89,13 @@ public class Attribute extends DBElement implements Serializable {
 
     @Override
     public String toString() {
-        return this.relation.getName() + "." + this.name;
+        StringBuilder sb = new StringBuilder();
+        if (this.relation != null) {
+            sb.append(this.relation.getName());
+            sb.append('.');
+        }
+        sb.append(this.name);
+        return sb.toString();
     }
 
     @Override
