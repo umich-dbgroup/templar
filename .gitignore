@@ -57,6 +57,7 @@ libs/stanford-parser-3.2.0-models.jar
 libs/stanford-parser-3.8.0-models.jar
 model/GoogleNews*
 
-# output files / large files
+# files we exclude
 *.out
 data/senlidb/db_full
+config.properties
