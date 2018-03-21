@@ -15,7 +15,7 @@ import java.util.*;
 
 public class LogGraph {
     private Database db;
-    private LogLevel mode;
+    private LogLevel level;
     private Map<DBElement, Integer> nodes;
     private Map<DBElementPair, Integer> edges;
 
@@ -36,9 +36,9 @@ public class LogGraph {
         }
     }
 
-    public LogGraph(Database db, LogLevel mode) {
+    public LogGraph(Database db, LogLevel level) {
         this.db = db;
-        this.mode = mode;
+        this.level = level;
         this.nodes = new HashMap<>();
         this.edges = new HashMap<>();
     }
@@ -60,43 +60,48 @@ public class LogGraph {
         return result != null? result : 0;
     }
 
-    private Set<DBElement> modifyElementsForLevel(Set<DBElement> els) {
+    public DBElement modifyElementForLevel(DBElement el) {
+        if (level.equals(LogLevel.FULL)) return el;
+
+        if (el instanceof AggregatedPredicate) {
+            AggregatedPredicate pred = (AggregatedPredicate) el;
+
+            if (level.equals(LogLevel.NO_CONST_OP)) {
+                return new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
+                        "?", pred.getValueFunction());
+            } else {
+                // No modifications involved for NO_CONST
+                return el;
+            }
+        } else if (el instanceof NumericPredicate) {
+            NumericPredicate pred = (NumericPredicate) el;
+
+            if (level.equals(LogLevel.NO_CONST)) {
+                return new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction());
+            } else {
+                return new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction());
+            }
+
+        } else if (el instanceof TextPredicate) {
+            TextPredicate pred = (TextPredicate) el;
+
+            if (level.equals(LogLevel.NO_CONST)) {
+                return new TextPredicate(pred.getAttribute(), "");
+            } else {
+                return new TextPredicate(pred.getAttribute(), "");
+            }
+        } else {
+            return el;
+        }
+    }
+
+    public Set<DBElement> modifyElementsForLevel(Set<DBElement> els) {
         // No modification required if FULL level
-        if (this.mode.equals(LogLevel.FULL)) return els;
+        if (level.equals(LogLevel.FULL)) return els;
 
         Set<DBElement> newEls = new HashSet<>();
         for (DBElement el : els) {
-            if (el instanceof AggregatedPredicate) {
-                AggregatedPredicate pred = (AggregatedPredicate) el;
-
-                if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
-                            "?", pred.getValueFunction()));
-                } else {
-                    // No modifications involved for NO_CONST
-                    newEls.add(el);
-                }
-            } else if (el instanceof NumericPredicate) {
-                NumericPredicate pred = (NumericPredicate) el;
-
-                if (this.mode.equals(LogLevel.NO_CONST)) {
-                    newEls.add(new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction()));
-                } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction()));
-                }
-
-            } else if (el instanceof TextPredicate) {
-                TextPredicate pred = (TextPredicate) el;
-
-                if (this.mode.equals(LogLevel.NO_CONST)) {
-                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
-                } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
-                }
-
-            } else {
-                newEls.add(el);
-            }
+            newEls.add(this.modifyElementForLevel(el));
         }
         return newEls;
     }

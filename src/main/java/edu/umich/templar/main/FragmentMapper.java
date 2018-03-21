@@ -143,6 +143,8 @@ public class FragmentMapper {
                             matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
                         }
                     }
+                } else if (this.typeOracle && !fragType.equalsIgnoreCase("rel")) {
+                    continue;
                 } else {
                     matchedEls.add(new MatchedDBElement(rel, sim));
                 }

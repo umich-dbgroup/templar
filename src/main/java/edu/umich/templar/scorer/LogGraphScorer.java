@@ -38,16 +38,19 @@ public class LogGraphScorer implements InterpretationScorer {
         // Calculate co-occurrence scores
         for (int i = 0; i < interp.size(); i++) {
             for (int j = i+1; j < interp.size(); j++) {
-                DBElement el1 = interp.get(i).getEl();
-                DBElement el2 = interp.get(j).getEl();
+                DBElement el1 = this.logGraph.modifyElementForLevel(interp.get(i).getEl());
+                DBElement el2 = this.logGraph.modifyElementForLevel(interp.get(j).getEl());
 
+                // Only if both are not relations
+                boolean bothNotRelations = !(el1 instanceof Relation || el2 instanceof Relation);
 
-                // Only for non-relations
-//                boolean bothNotRelations = !(el1 instanceof Relation || el2 instanceof Relation);
-                boolean bothNotRelations = true;
+                // Only if at least one is not relation
+                boolean atLeastOneNotRelation = !(el1 instanceof Relation) || !(el2 instanceof Relation);
 
                 boolean bothHaveCount = this.logGraph.count(el1) > 0 && this.logGraph.count(el2) > 0;
-                if (bothNotRelations) {
+
+                // if (bothNotRelations) {
+                if (true) {
                     if (bothHaveCount) {
                         DBElementPair pair = new DBElementPair(el1, el2);
                         double dice = (2.0 * (double) this.logGraph.cooccur(pair))
