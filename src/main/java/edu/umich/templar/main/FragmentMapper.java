@@ -348,13 +348,18 @@ public class FragmentMapper {
         }
 
         List<Interpretation> interps = queryMappings.findOptimalInterpretations();
-        int correctFrags = 0;
+
         int totalFrags = queryTask.size();
         int ties = interps.size() - 1;
+
+        int correctInterps = 0;
 
         System.out.println("TOTAL SCORE: " + interps.get(0).getScore() + ", TIES: " + ties);
         for (Interpretation interp : interps) {
             System.out.println("--");
+            int correctFrags = 0;
+
+
             for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
                 FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
 
@@ -367,8 +372,10 @@ public class FragmentMapper {
                     correctFrags++;
                 }
             }
+            if (correctFrags == totalFrags) correctInterps++;
         }
-        boolean correct = (correctFrags == totalFrags) && (ties == 0);
+
+        boolean correct = (correctInterps == interps.size());
 
         System.out.println("== RESULT: " + (correct? "CORRECT" : "WRONG") + " == ");
         System.out.println();
