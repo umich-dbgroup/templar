@@ -10,7 +10,7 @@ public class FragmentTask {
     private Boolean groupBy;
     private List<String> answers;
 
-    public FragmentTask(String phrase, String op, String type, List<String> functions, Boolean groupBy, List<String> answer) {
+    public FragmentTask(String phrase, String op, String type, List<String> functions, Boolean groupBy, List<String> answers) {
         this.phrase = phrase;
         this.op = op;
         this.type = type;
