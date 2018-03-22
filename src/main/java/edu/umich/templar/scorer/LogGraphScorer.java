@@ -43,8 +43,8 @@ public class LogGraphScorer implements InterpretationScorer {
 
                 boolean bothHaveCount = this.logGraph.count(el1) > 0 && this.logGraph.count(el2) > 0;
 
-                // if (bothNotRelations) {
-                if (true) {
+                if (bothNotRelations) {
+                // if (true) {
                     if (bothHaveCount) {
                         DBElementPair pair = new DBElementPair(el1, el2);
                         double dice = (2.0 * (double) this.logGraph.cooccur(pair))
