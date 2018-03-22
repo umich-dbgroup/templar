@@ -20,18 +20,12 @@ public class LogGraphScorer implements InterpretationScorer {
 
     @Override
     public double score(List<MatchedDBElement> interp) {
-        // List<Double> nodeCounts = new ArrayList<>();
-        // List<Double> edgeCounts = new ArrayList<>();
         List<Double> sims = new ArrayList<>();
         List<Double> diceScores = new ArrayList<>();
 
         // int numNodes = 0;
         for (MatchedDBElement mel : interp) {
             sims.add(mel.getScore());
-            // nodeCounts.add((double) this.logGraph.count(mel.getEl()));
-
-            // Only non-relations
-            // if (!(mel.getEl() instanceof Relation)) numNodes++;
         }
         double simScore = Utils.geometricMean(sims);
 

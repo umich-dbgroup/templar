@@ -276,6 +276,13 @@ public class FragmentMapper {
     private List<MatchedDBElement> pruneTopMatches(List<MatchedDBElement> matches) {
         List<MatchedDBElement> pruned = new ArrayList<>();
 
+        // Special case, where top match is exact and none of the others are
+        if (matches.size() >= 2 && matches.get(0).getScore() == 1 && matches.get(1).getScore() < 1) {
+            pruned.add(matches.get(0));
+            return pruned;
+        }
+
+
         double lastScore = 0.0;
         for (int i = 0; i < matches.size(); i++) {
             if (i < Params.MAX_TOP_CANDIDATES) {
