@@ -12,14 +12,14 @@ Final log size: 142
 Cands for 'conferences': 66
 Cands for '> 10': 8
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.16488264712205536, TIES: 0
+TOTAL SCORE: 0.16140699637094774, TIES: 0
 --
-conferences :: conference.name : journal.name (0.6028)
+conferences :: conference.name : conference.name (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 0/1
+SO FAR: 1/1
 
 == QUERY ID: 139 ==
 Cands for 'papers': 66
@@ -28,17 +28,17 @@ Cands for 'H. V. Jagadish': 138
 Cands for 'Yunyao Li': 893
 Cands for 'PVLDB': 68
 Cands for '> 2005': 12
-TOTAL SCORE: 0.4673558913647353, TIES: 0
+TOTAL SCORE: 0.4486619663550763, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-written :: writes : journal (0.62065)
+written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Yunyao Li :: author.name = 'Yunyao Li' : journal.name = 'INT J PRESS-POLIT' (0.764149)
+Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2005 :: publication.year > 2005 : publication.year > 2005 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 0/2
+SO FAR: 2/2
 
 == QUERY ID: 162 ==
 Cands for 'keyword': 66
@@ -49,9 +49,9 @@ TOTAL SCORE: 0.17559162477039522, TIES: 0
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/3
+SO FAR: 3/3
 
 == QUERY ID: 88 ==
 Cands for 'papers': 50
@@ -64,9 +64,9 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/4
+SO FAR: 4/4
 
 == QUERY ID: 155 ==
 Cands for 'authors': 50
@@ -77,9 +77,9 @@ TOTAL SCORE: 0.2586294765132583, TIES: 0
 authors :: count(author.name) : count(author.name) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 3/5
+SO FAR: 5/5
 
 == QUERY ID: 180 ==
 Cands for 'paper': 66
@@ -92,9 +92,9 @@ paper :: publication.title : author.name (0.61705)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 3/6
+SO FAR: 5/6
 
 == QUERY ID: 98 ==
 Cands for 'papers': 50
@@ -105,9 +105,9 @@ TOTAL SCORE: 0.25525177714868974, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/7
+SO FAR: 6/7
 
 == QUERY ID: 62 ==
 Cands for 'papers': 66
@@ -117,12 +117,12 @@ Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.3842605250814373, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+VLDB :: conference.name = 'VLDB', journal.name='VLDB' : journal.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/8
+SO FAR: 6/8
 
 == QUERY ID: 158 ==
 Cands for 'keywords': 50
@@ -133,22 +133,22 @@ TOTAL SCORE: 0.1603022186886932, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/9
+SO FAR: 7/9
 
 == QUERY ID: 133 ==
 Cands for 'authors': 66
 Cands for 'H. V. Jagadish': 138
 Cands for 'Divesh Srivastava': 67
-TOTAL SCORE: 0.35608747746465713, TIES: 0
+TOTAL SCORE: 0.163265306122449, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/10
+SO FAR: 8/10
 
 == QUERY ID: 113 ==
 Cands for 'papers': 50
@@ -161,20 +161,20 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/11
+SO FAR: 9/11
 
 == QUERY ID: 80 ==
 Cands for 'papers': 50
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.4076461849445562, TIES: 0
+TOTAL SCORE: 0.36447565841842255, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 6/12
+SO FAR: 10/12
 
 == QUERY ID: 181 ==
 Cands for 'paper': 66
@@ -187,9 +187,9 @@ paper :: publication.title : author.name (0.61705)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/13
+SO FAR: 10/13
 
 == QUERY ID: 19 ==
 Cands for 'authors': 66
@@ -197,16 +197,16 @@ Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '< 2002': 12
 Cands for '> 1995': 12
-TOTAL SCORE: 0.3995437965075556, TIES: 0
+TOTAL SCORE: 0.2754837852675374, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+authors :: author.name : author.name (1.0)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2002 :: publication.year < 2002 : publication.year < 2002 (0.8395920212690673)
 after 1995 :: publication.year > 1995 : publication.year > 1995 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/14
+SO FAR: 11/14
 
 == QUERY ID: 97 ==
 Cands for 'keywords': 50
@@ -217,9 +217,9 @@ TOTAL SCORE: 0.21925285655728502, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 papers :: publication : author (0.56255)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/15
+SO FAR: 11/15
 
 == QUERY ID: 145 ==
 Cands for 'papers': 50
@@ -233,16 +233,16 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Yu Cong' (1.0)
+Cong Yu :: author.name = 'Cong Yu', author.name = 'Yu Cong' : author.name = 'Yu Cong' (1.0)
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
-Cong Yu :: author.name = 'Cong Yu' : author.name = 'Cong Yu' (1.0)
-== RESULT: WRONG == 
+Cong Yu :: author.name = 'Cong Yu', author.name = 'Yu Cong' : author.name = 'Cong Yu' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 6/16
+SO FAR: 12/16
 
 == QUERY ID: 163 ==
 Cands for 'keyword': 66
@@ -253,9 +253,9 @@ TOTAL SCORE: 0.14095544370026944, TIES: 0
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/17
+SO FAR: 13/17
 
 == QUERY ID: 190 ==
 Cands for 'keywords': 66
@@ -266,26 +266,20 @@ TOTAL SCORE: 0.2097257202622819, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 8/18
+SO FAR: 14/18
 
 == QUERY ID: 93 ==
 Cands for 'keywords': 50
 Cands for 'Making database systems usable': 444
-TOTAL SCORE: 0.019801980198019802, TIES: 2
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 8/19
+SO FAR: 15/19
 
 == QUERY ID: 12 ==
 Cands for 'citations': 66
@@ -294,20 +288,20 @@ TOTAL SCORE: 0.019788137265117748, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 9/20
+SO FAR: 16/20
 
 == QUERY ID: 46 ==
 Cands for 'keywords': 66
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.10457346342107937, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-keywords :: keyword.keyword : domain.name (0.70175)
+keywords :: keyword.keyword : keyword.keyword (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 9/21
+SO FAR: 17/21
 
 == QUERY ID: 57 ==
 Cands for 'researchers': 66
@@ -318,9 +312,9 @@ TOTAL SCORE: 0.14649528011505378, TIES: 0
 researchers :: author.name : author.name (0.6078)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/22
+SO FAR: 18/22
 
 == QUERY ID: 36 ==
 Cands for 'papers': 66
@@ -331,9 +325,9 @@ TOTAL SCORE: 0.40135461571106756, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 11/23
+SO FAR: 19/23
 
 == QUERY ID: 82 ==
 Cands for 'papers': 50
@@ -342,9 +336,9 @@ TOTAL SCORE: 0.4394733554026215, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/24
+SO FAR: 20/24
 
 == QUERY ID: 116 ==
 Cands for 'researchers': 50
@@ -355,24 +349,24 @@ TOTAL SCORE: 0.15496610194836094, TIES: 0
 researchers :: count(author.name) : count(author.name) (0.6078)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/25
+SO FAR: 21/25
 
 == QUERY ID: 17 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '= 2002': 12
-TOTAL SCORE: 0.4194009636649228, TIES: 0
+TOTAL SCORE: 0.24829526725351375, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+authors :: author.name : author.name (1.0)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 in 2002 :: publication.year = 2002 : publication.year = 2002 (0.8479252884145939)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/26
+SO FAR: 22/26
 
 == QUERY ID: 59 ==
 Cands for 'papers': 66
@@ -383,9 +377,9 @@ TOTAL SCORE: 0.3853000045273024, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/27
+SO FAR: 23/27
 
 == QUERY ID: 2 ==
 Cands for 'homepage': 66
@@ -398,14 +392,14 @@ H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish
 homepage :: author.homepage : journal.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 --
-homepage :: author.homepage : author.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
 homepage :: author.homepage : organization.homepage (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+--
+homepage :: author.homepage : author.homepage (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 14/28
+SO FAR: 23/28
 
 == QUERY ID: 168 ==
 Cands for 'author': 66
@@ -413,16 +407,16 @@ Cands for 'University of Michigan': 768
 Cands for 'papers': 16
 Cands for 'Databases area': 107
 Cands for 'citations': 8
-TOTAL SCORE: 0.2677263925408374, TIES: 0
+TOTAL SCORE: 0.22553693534434208, TIES: 0
 --
-author :: author.name : publication.title (0.65205)
+author :: author.name : author.name (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 papers :: publication : domain (0.58485)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: sum(publication.citation_num) = max(sum(publication.citation_num)) : sum(journal.name) = max(sum(journal.name)) (0.6021)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 14/29
+SO FAR: 23/29
 
 == QUERY ID: 107 ==
 Cands for 'papers': 50
@@ -431,9 +425,9 @@ TOTAL SCORE: 0.29322640129900873, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/30
+SO FAR: 24/30
 
 == QUERY ID: 20 ==
 Cands for 'authors': 66
@@ -441,33 +435,27 @@ Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '> 2002': 12
 Cands for '< 1995': 12
-TOTAL SCORE: 0.39954379650755556, TIES: 0
+TOTAL SCORE: 0.2754837852675374, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+authors :: author.name : author.name (1.0)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2002 :: publication.year > 2002 : publication.year > 2002 (0.8514109323319947)
 before 1995 :: publication.year < 1995 : publication.year < 1995 (0.8395920212690673)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/31
+SO FAR: 25/31
 
 == QUERY ID: 96 ==
 Cands for 'keywords': 50
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.019801980198019802, TIES: 2
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/32
+SO FAR: 26/32
 
 == QUERY ID: 21 ==
 Cands for 'area': 66
@@ -476,57 +464,57 @@ TOTAL SCORE: 0.019766336610989105, TIES: 0
 --
 area :: domain.name : organization.name (0.60535)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 15/33
+SO FAR: 26/33
 
 == QUERY ID: 8 ==
 Cands for 'organizations': 66
 TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 organizations :: organization.name : organization.name (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/34
+SO FAR: 27/34
 
 == QUERY ID: 110 ==
 Cands for 'papers': 50
 Cands for 'VLDB conference': 543
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.31616216016678617, TIES: 0
+TOTAL SCORE: 0.25741832715466517, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/35
+SO FAR: 28/35
 
 == QUERY ID: 37 ==
 Cands for 'papers': 66
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.3951511169652178, TIES: 0
+TOTAL SCORE: 0.3871436739914974, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 16/36
+SO FAR: 29/36
 
 == QUERY ID: 49 ==
 Cands for 'keywords': 66
 Cands for 'papers': 16
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.25410538350912715, TIES: 0
+TOTAL SCORE: 0.19046115808537867, TIES: 0
 --
-keywords :: keyword.keyword : organization.homepage (0.68875)
+keywords :: keyword.keyword : keyword.keyword (1.0)
 papers :: publication : author (0.56255)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 16/37
+SO FAR: 29/37
 
 == QUERY ID: 38 ==
 Cands for 'papers': 66
@@ -537,9 +525,9 @@ TOTAL SCORE: 0.4569438090568342, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 17/38
+SO FAR: 30/38
 
 == QUERY ID: 111 ==
 Cands for 'papers': 50
@@ -550,9 +538,9 @@ TOTAL SCORE: 0.3201210124295509, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 18/39
+SO FAR: 31/39
 
 == QUERY ID: 173 ==
 Cands for 'journal': 66
@@ -563,9 +551,9 @@ TOTAL SCORE: 0.26452467690981385, TIES: 0
 journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 19/40
+SO FAR: 32/40
 
 == QUERY ID: 137 ==
 Cands for 'papers': 66
@@ -580,24 +568,24 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 after 2005 :: publication.year > 2005 : publication.year > 2005 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 20/41
+SO FAR: 33/41
 
 == QUERY ID: 142 ==
 Cands for 'authors': 66
 Cands for 'cited': 16
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.6291876790135509, TIES: 0
+TOTAL SCORE: 0.321160254906957, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-cited :: cite : writes (0.65925)
+authors :: author.name : author.name (1.0)
+cited :: cite : cite (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 20/42
+SO FAR: 33/42
 
 == QUERY ID: 159 ==
 Cands for 'keywords': 50
@@ -608,22 +596,22 @@ TOTAL SCORE: 0.13077948921213656, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 21/43
+SO FAR: 34/43
 
 == QUERY ID: 187 ==
 Cands for 'journals': 66
 Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.38547674046129393, TIES: 0
+TOTAL SCORE: 0.3669794346020034, TIES: 0
 --
-journals :: journal.name : author.name (0.65695)
+journals :: journal.name : journal.name (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 21/44
+SO FAR: 35/44
 
 == QUERY ID: 79 ==
 Cands for 'papers': 50
@@ -632,31 +620,31 @@ TOTAL SCORE: 0.39911042898665333, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 22/45
+SO FAR: 36/45
 
 == QUERY ID: 48 ==
 Cands for 'keywords': 66
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.11673823917087059, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-keywords :: keyword.keyword : journal.homepage (0.68875)
+keywords :: keyword.keyword : keyword.keyword (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 22/46
+SO FAR: 37/46
 
 == QUERY ID: 3 ==
 Cands for 'abstract': 66
 Cands for 'Making database systems usable': 444
-TOTAL SCORE: 0.17893687769179478, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-abstract :: publication.abstract : author.name (0.6131)
+abstract :: publication.abstract : publication.abstract (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 22/47
+SO FAR: 38/47
 
 == QUERY ID: 169 ==
 Cands for 'papers': 66
@@ -671,45 +659,45 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 23/48
+SO FAR: 39/48
 
 == QUERY ID: 149 ==
 Cands for 'author': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.4107646260133559, TIES: 0
+TOTAL SCORE: 0.3303281372031086, TIES: 0
 --
-author :: author.name : journal.name (0.6826)
+author :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 23/49
+SO FAR: 40/49
 
 ==== FINAL RESULTS ====
-23/49 (46.93877551020408%)
-04:23  INFO: ===== FOLD 1 =====
+40/49 (81.63265306122449%)
+03:00  INFO: ===== FOLD 1 =====
 Original log size: 142
 Trimming log to 100.0%...
 Final log size: 142
-04:23  INFO: ===== Parsing Results =====
-04:23  INFO: Total Queries: 142
-04:23  INFO: Correctly Parsed: 142/142
+03:00  INFO: ===== Parsing Results =====
+03:00  INFO: Total Queries: 142
+03:00  INFO: Correctly Parsed: 142/142
 
 == QUERY ID: 151 ==
 Cands for 'journal': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.44342109253501694, TIES: 0
+TOTAL SCORE: 0.29511999502332453, TIES: 0
 --
-journal :: journal.name : author.name (0.6826)
+journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 0/1
+SO FAR: 1/1
 
 == QUERY ID: 141 ==
 Cands for 'papers': 66
@@ -724,9 +712,9 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 before 2000 :: publication.year < 2000 : publication.year < 2000 (0.8395920212690673)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/2
+SO FAR: 2/2
 
 == QUERY ID: 99 ==
 Cands for 'papers': 50
@@ -736,10 +724,10 @@ TOTAL SCORE: 0.26603961907714163, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-keyword Keyword search :: keyword.keyword = 'Keyword search' : keyword.keyword = 'Keyword Search' (1.0)
-== RESULT: WRONG == 
+keyword Keyword search :: keyword.keyword = 'Keyword Search' : keyword.keyword = 'Keyword Search' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 1/3
+SO FAR: 3/3
 
 == QUERY ID: 179 ==
 Cands for 'paper': 66
@@ -750,9 +738,9 @@ TOTAL SCORE: 0.0844410777144649, TIES: 0
 paper :: publication.title : journal.name (0.73065)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/4
+SO FAR: 3/4
 
 == QUERY ID: 68 ==
 Cands for 'papers': 66
@@ -765,39 +753,39 @@ papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/5
+SO FAR: 3/5
 
 == QUERY ID: 182 ==
 Cands for 'paper': 66
 Cands for '> 2000': 12
 Cands for 'VLDB conference': 543
 Cands for 'citations': 50
-TOTAL SCORE: 0.11136878129947185, TIES: 0
+TOTAL SCORE: 0.07204295546767958, TIES: 0
 --
 paper :: publication.title : author.name (0.61705)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/6
+SO FAR: 3/6
 
 == QUERY ID: 129 ==
 Cands for 'citations': 50
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '= 2005': 12
-TOTAL SCORE: 0.3946069947135565, TIES: 0
+TOTAL SCORE: 0.24936832377358692, TIES: 0
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 2005 :: publication.year = 2005 : publication.year = 2005 (0.9999499987499375)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/7
+SO FAR: 4/7
 
 == QUERY ID: 167 ==
 Cands for 'author': 66
@@ -810,35 +798,35 @@ author :: author.name : author.name (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 papers :: publication : author (0.56255)
 citations :: sum(publication.citation_num) = max(sum(publication.citation_num)) : sum(journal.name) = max(sum(journal.name)) (0.6021)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/8
+SO FAR: 4/8
 
 == QUERY ID: 185 ==
 Cands for 'authors': 66
 Cands for '> 10': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.32465340850414665, TIES: 0
+TOTAL SCORE: 0.28910813587380246, TIES: 0
 --
-authors :: author.name : journal.name (0.70365)
+authors :: author.name : author.name (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/9
+SO FAR: 5/9
 
 == QUERY ID: 183 ==
 Cands for 'authors': 66
 Cands for '> 10': 8
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.1469759061845184, TIES: 0
+TOTAL SCORE: 0.08637734017453012, TIES: 0
 --
-authors :: author.name : journal.name (0.70365)
+authors :: author.name : author.name (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/10
+SO FAR: 6/10
 
 == QUERY ID: 172 ==
 Cands for 'journals': 66
@@ -849,65 +837,59 @@ TOTAL SCORE: 0.17814053385300196, TIES: 0
 journals :: journal.name : journal.name (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/11
+SO FAR: 7/11
 
 == QUERY ID: 132 ==
 Cands for 'papers': 50
 Cands for 'VLDB conference': 543
 Cands for 'year': 66
-TOTAL SCORE: 0.26212688988158805, TIES: 0
+TOTAL SCORE: 0.19599545472844943, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/12
+SO FAR: 8/12
 
 == QUERY ID: 91 ==
 Cands for 'keywords': 50
 Cands for 'Databases area': 107
-TOTAL SCORE: 0.019797406974211448, TIES: 2
+TOTAL SCORE: 0.019797406974211448, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
---
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
-Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/13
+SO FAR: 9/13
 
 == QUERY ID: 22 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.6580961245503978, TIES: 0
+TOTAL SCORE: 0.4592186240302265, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 2/14
+SO FAR: 9/14
 
 == QUERY ID: 156 ==
 Cands for 'conferences': 50
 Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.27602927661889437, TIES: 0
+TOTAL SCORE: 0.2050722945429304, TIES: 0
 --
-conferences :: count(conference.name) : count(publication.title) (0.62715)
+conferences :: count(conference.name) : count(conference.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/15
+SO FAR: 10/15
 
 == QUERY ID: 50 ==
 Cands for 'papers': 66
@@ -918,9 +900,9 @@ TOTAL SCORE: 0.27109072814365387, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 3/16
+SO FAR: 11/16
 
 == QUERY ID: 28 ==
 Cands for 'conference': 66
@@ -929,37 +911,31 @@ TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 conference :: conference.name : conference.name (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/17
+SO FAR: 12/17
 
 == QUERY ID: 94 ==
 Cands for 'keywords': 50
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.019801980198019802, TIES: 2
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/18
+SO FAR: 13/18
 
 == QUERY ID: 58 ==
 Cands for 'papers': 66
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.425487099589602, TIES: 0
+TOTAL SCORE: 0.25303638714835125, TIES: 0
 --
-papers :: publication.title : publication.citation_num (0.6027)
-University of Michigan :: organization.name = 'University of Michigan' : publication.title = 'The University of Michigan at TREC 2003' (0.958998)
-== RESULT: WRONG == 
+papers :: publication.title : publication.title (0.6507000000000001)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 4/19
+SO FAR: 14/19
 
 == QUERY ID: 63 ==
 Cands for 'papers': 66
@@ -972,22 +948,22 @@ papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/20
+SO FAR: 15/20
 
 == QUERY ID: 191 ==
 Cands for 'authors': 66
 Cands for '> 10': 8
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.1587084919833418, TIES: 0
+TOTAL SCORE: 0.10731446462086006, TIES: 0
 --
-authors :: author.name : journal.name (0.70365)
+authors :: author.name : author.name (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/21
+SO FAR: 16/21
 
 == QUERY ID: 4 ==
 Cands for 'year': 66
@@ -996,37 +972,37 @@ TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 year :: publication.year : publication.year (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/22
+SO FAR: 17/22
 
 == QUERY ID: 35 ==
 Cands for 'papers': 66
 Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
-TOTAL SCORE: 0.5217181100536143, TIES: 0
+TOTAL SCORE: 0.40625535181309796, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/23
+SO FAR: 18/23
 
 == QUERY ID: 15 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'PVLDB': 68
 Cands for '= 2010': 12
-TOTAL SCORE: 0.4352255911340524, TIES: 0
+TOTAL SCORE: 0.31883904397667717, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2010 :: publication.year = 2010 : publication.year = 2010 (0.9999499987499375)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/24
+SO FAR: 18/24
 
 == QUERY ID: 160 ==
 Cands for 'keywords': 66
@@ -1037,52 +1013,52 @@ TOTAL SCORE: 0.30145530243416213, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/25
+SO FAR: 19/25
 
 == QUERY ID: 66 ==
 Cands for 'paper': 66
 Cands for 'VLDB conference': 543
 Cands for '> 200': 12
-TOTAL SCORE: 0.5217278744616513, TIES: 0
+TOTAL SCORE: 0.4062608837850645, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/26
+SO FAR: 19/26
 
 == QUERY ID: 40 ==
 Cands for 'papers': 66
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
-TOTAL SCORE: 0.4590071005924329, TIES: 0
+TOTAL SCORE: 0.3753436491293325, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/27
+SO FAR: 20/27
 
 == QUERY ID: 16 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'PVLDB': 68
 Cands for '> 2010': 12
-TOTAL SCORE: 0.5832401590026043, TIES: 0
+TOTAL SCORE: 0.42681711970059727, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2010 :: publication.year > 2010 : publication.year > 2010 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/28
+SO FAR: 20/28
 
 == QUERY ID: 194 ==
 Cands for 'author': 66
@@ -1097,22 +1073,22 @@ University of Michigan :: organization.name = 'University of Michigan' : organiz
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 papers :: publication : domain (0.58485)
 5000 citations :: sum(publication.citation_num) > 5000 : sum(publication.citation_num) > 5000 (0.9339763148791447)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/29
+SO FAR: 20/29
 
 == QUERY ID: 86 ==
 Cands for 'papers': 50
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.349719377091932, TIES: 0
+TOTAL SCORE: 0.2934381562744913, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 7/30
+SO FAR: 21/30
 
 == QUERY ID: 14 ==
 Cands for 'paper': 66
@@ -1121,9 +1097,9 @@ TOTAL SCORE: 0.593239348240913, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/31
+SO FAR: 21/31
 
 == QUERY ID: 76 ==
 Cands for 'papers': 50
@@ -1136,9 +1112,9 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 8/32
+SO FAR: 22/32
 
 == QUERY ID: 186 ==
 Cands for 'conferences': 66
@@ -1149,9 +1125,9 @@ TOTAL SCORE: 0.3572540713181159, TIES: 0
 conferences :: conference.name : conference.name (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 9/33
+SO FAR: 23/33
 
 == QUERY ID: 43 ==
 Cands for 'keywords': 66
@@ -1160,9 +1136,9 @@ TOTAL SCORE: 0.019797406974211448, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/34
+SO FAR: 24/34
 
 == QUERY ID: 105 ==
 Cands for 'organizations': 50
@@ -1171,9 +1147,9 @@ TOTAL SCORE: 0.24927302276428784, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 11/35
+SO FAR: 25/35
 
 == QUERY ID: 83 ==
 Cands for 'papers': 50
@@ -1184,9 +1160,9 @@ TOTAL SCORE: 0.4459847216919209, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/36
+SO FAR: 26/36
 
 == QUERY ID: 143 ==
 Cands for 'papers': 50
@@ -1199,55 +1175,55 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/37
+SO FAR: 27/37
 
 == QUERY ID: 41 ==
 Cands for 'area': 66
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.1009227293948294, TIES: 0
+TOTAL SCORE: 0.019766336610989105, TIES: 0
 --
-area :: domain.name : domain.name (0.5742)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+area :: domain.name : organization.name (0.60535)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 13/38
+SO FAR: 27/38
 
 == QUERY ID: 118 ==
 Cands for 'authors': 50
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.48125056855461934, TIES: 0
+TOTAL SCORE: 0.25295932652050684, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (1.0)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 13/39
+SO FAR: 28/39
 
 == QUERY ID: 140 ==
 Cands for 'authors': 66
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.4706636859947376, TIES: 0
+TOTAL SCORE: 0.2857142857142857, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/40
+SO FAR: 29/40
 
 == QUERY ID: 23 ==
 Cands for 'organization': 66
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.4696323091202072, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-organization :: organization.name : publication.title (0.628)
+organization :: organization.name : organization.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/41
+SO FAR: 30/41
 
 == QUERY ID: 144 ==
 Cands for 'papers': 50
@@ -1262,9 +1238,9 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 before 2000 :: publication.year < 2000 : publication.year < 2000 (0.8395920212690673)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/42
+SO FAR: 31/42
 
 == QUERY ID: 9 ==
 Cands for 'organizations': 66
@@ -1273,39 +1249,39 @@ TOTAL SCORE: 0.5, TIES: 0
 --
 organizations :: organization.name : organization.name (1.0)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/43
+SO FAR: 32/43
 
 == QUERY ID: 69 ==
 Cands for 'papers': 66
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
 Cands for '> 200': 12
-TOTAL SCORE: 0.4579839926304956, TIES: 0
+TOTAL SCORE: 0.37469536248978347, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 15/44
+SO FAR: 32/44
 
 == QUERY ID: 73 ==
 Cands for 'paper': 66
 Cands for '> 2000': 12
 Cands for 'VLDB conference': 543
 Cands for '> 200': 12
-TOTAL SCORE: 0.4615528641275002, TIES: 0
+TOTAL SCORE: 0.3721733602733435, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 15/45
+SO FAR: 32/45
 
 == QUERY ID: 178 ==
 Cands for 'paper': 66
@@ -1316,9 +1292,9 @@ TOTAL SCORE: 0.06526399448927397, TIES: 0
 paper :: publication.title : journal.name (0.73065)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 15/46
+SO FAR: 32/46
 
 == QUERY ID: 148 ==
 Cands for 'papers': 66
@@ -1333,24 +1309,24 @@ written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 15/47
+SO FAR: 32/47
 
 == QUERY ID: 131 ==
 Cands for 'citations': 50
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for 'year': 66
-TOTAL SCORE: 0.4412110446885884, TIES: 0
+TOTAL SCORE: 0.2725181739771419, TIES: 0
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/48
+SO FAR: 33/48
 
 == QUERY ID: 87 ==
 Cands for 'papers': 50
@@ -1361,19 +1337,19 @@ TOTAL SCORE: 0.3928609864095044, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/49
+SO FAR: 34/49
 
 ==== FINAL RESULTS ====
-16/49 (32.6530612244898%)
-08:42  INFO: ===== FOLD 2 =====
+34/49 (69.38775510204081%)
+05:52  INFO: ===== FOLD 2 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-08:42  INFO: ===== Parsing Results =====
-08:42  INFO: Total Queries: 141
-08:42  INFO: Correctly Parsed: 141/141
+05:52  INFO: ===== Parsing Results =====
+05:52  INFO: Total Queries: 141
+05:52  INFO: Correctly Parsed: 141/141
 
 == QUERY ID: 29 ==
 Cands for 'references': 66
@@ -1382,7 +1358,7 @@ TOTAL SCORE: 0.3533603689958777, TIES: 0
 --
 references :: publication.reference_num : conference.name (0.6407499999999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
 SO FAR: 0/1
 
@@ -1393,7 +1369,7 @@ TOTAL SCORE: 0.5702973066540772, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
 SO FAR: 1/2
 
@@ -1401,14 +1377,14 @@ SO FAR: 1/2
 Cands for 'conferences': 50
 Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.26383339597227207, TIES: 0
+TOTAL SCORE: 0.19318709809801532, TIES: 0
 --
-conferences :: count(conference.name) : count(publication.title) (0.62715)
+conferences :: count(conference.name) : count(conference.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/3
+SO FAR: 2/3
 
 == QUERY ID: 122 ==
 Cands for 'citations': 66
@@ -1419,50 +1395,50 @@ TOTAL SCORE: 0.06262218300097107, TIES: 0
 citations :: publication.citation_num : publication.citation_num (0.8148)
 paper :: publication.title : author.name (0.61705)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/4
+SO FAR: 2/4
 
 == QUERY ID: 164 ==
 Cands for 'journal': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.43573737743544205, TIES: 0
+TOTAL SCORE: 0.30457429752119886, TIES: 0
 --
-journal :: journal.name : author.name (0.6826)
+journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/5
+SO FAR: 3/5
 
 == QUERY ID: 147 ==
 Cands for 'authors': 50
 Cands for 'cited': 16
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.5682830698629252, TIES: 0
+TOTAL SCORE: 0.2650703749811346, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (1.0)
-cited :: cite : writes (0.65925)
+cited :: cite : cite (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/6
+SO FAR: 3/6
 
 == QUERY ID: 24 ==
 Cands for 'conferences': 66
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.5931283888475171, TIES: 0
+TOTAL SCORE: 0.3580063517385407, TIES: 0
 --
-conferences :: conference.name : publication.title (0.62715)
+conferences :: conference.name : conference.name (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 1/7
+SO FAR: 3/7
 
 == QUERY ID: 55 ==
 Cands for 'organizations': 66
@@ -1473,9 +1449,9 @@ TOTAL SCORE: 0.3417542410648013, TIES: 0
 organizations :: organization.name : organization.name (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/8
+SO FAR: 4/8
 
 == QUERY ID: 44 ==
 Cands for 'papers': 66
@@ -1484,9 +1460,9 @@ TOTAL SCORE: 0.2002536232515417, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 3/9
+SO FAR: 5/9
 
 == QUERY ID: 61 ==
 Cands for 'papers': 66
@@ -1497,9 +1473,9 @@ TOTAL SCORE: 0.3456667640808932, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/10
+SO FAR: 6/10
 
 == QUERY ID: 123 ==
 Cands for 'citations': 50
@@ -1512,9 +1488,9 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2005 :: publication.year = 2005 : publication.year = 2005 (0.9999499987499375)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/11
+SO FAR: 6/11
 
 == QUERY ID: 124 ==
 Cands for 'citations': 50
@@ -1527,9 +1503,9 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2005 :: publication.year < 2005 : publication.year < 2005 (0.8395920212690673)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/12
+SO FAR: 6/12
 
 == QUERY ID: 71 ==
 Cands for 'paper': 66
@@ -1542,20 +1518,20 @@ paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/13
+SO FAR: 6/13
 
 == QUERY ID: 56 ==
 Cands for 'researchers': 66
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.35036717948460827, TIES: 0
+TOTAL SCORE: 0.11000774898324199, TIES: 0
 --
-researchers :: author.name : publication.abstract (0.5911)
-University of Michigan :: organization.name = 'University of Michigan' : publication.title = 'The University of Michigan at TREC 2003' (0.958998)
-== RESULT: WRONG == 
+researchers :: author.name : author.name (0.6078)
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 4/14
+SO FAR: 7/14
 
 == QUERY ID: 112 ==
 Cands for 'papers': 50
@@ -1565,12 +1541,12 @@ Cands for 'University of Michigan': 768
 TOTAL SCORE: 0.37585746420520616, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB :: conference.name = 'VLDB' : journal.name = 'VLDB' (1.0)
+VLDB :: conference.name = 'VLDB', journal.name='VLDB' : journal.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/15
+SO FAR: 7/15
 
 == QUERY ID: 175 ==
 Cands for 'paper': 66
@@ -1581,22 +1557,18 @@ TOTAL SCORE: 0.1746776142236927, TIES: 0
 paper :: publication.title : author.name (0.61705)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 4/16
+SO FAR: 7/16
 
 == QUERY ID: 90 ==
 Cands for 'keywords': 50
-TOTAL SCORE: 0.019801980198019802, TIES: 2
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.kid) (1.0)
---
-keywords :: count(keyword.keyword) : count(keyword.keyword_short) (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/17
+SO FAR: 8/17
 
 == QUERY ID: 104 ==
 Cands for 'organizations': 50
@@ -1605,9 +1577,9 @@ TOTAL SCORE: 0.6666666666666666, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (1.0)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/18
+SO FAR: 9/18
 
 == QUERY ID: 30 ==
 Cands for 'citations': 66
@@ -1616,51 +1588,35 @@ TOTAL SCORE: 0.019788137265117748, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/19
+SO FAR: 10/19
 
 == QUERY ID: 157 ==
 Cands for 'journals': 50
 Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.2653986780212386, TIES: 0
+TOTAL SCORE: 0.19318709809801532, TIES: 0
 --
-journals :: count(journal.name) : count(publication.title) (0.73165)
+journals :: count(journal.name) : count(journal.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/20
+SO FAR: 11/20
 
 == QUERY ID: 117 ==
 Cands for 'authors': 50
 Cands for 'papers': 16
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.4653239214860312, TIES: 4
---
-authors :: count(author.name) : count(author.homepage) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-authors :: count(author.name) : count(author.oid) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-authors :: count(author.name) : count(author.photo) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
---
-authors :: count(author.name) : count(author.aid) (1.0)
-papers :: publication : journal (0.6878)
-PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
+TOTAL SCORE: 0.4653239214860312, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (1.0)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/21
+SO FAR: 11/21
 
 == QUERY ID: 121 ==
 Cands for 'citations': 50
@@ -1671,20 +1627,29 @@ TOTAL SCORE: 0.49603963558906405, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/22
+SO FAR: 11/22
 
 == QUERY ID: 6 ==
 Cands for 'homepage': 66
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.25909146701145924, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 3
 --
-homepage :: conference.homepage : keyword.keyword (0.7212000000000001)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
-== RESULT: WRONG == 
+homepage :: conference.homepage : conference.homepage (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+homepage :: conference.homepage : journal.homepage (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+homepage :: conference.homepage : organization.homepage (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+--
+homepage :: conference.homepage : author.homepage (1.0)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 6/23
+SO FAR: 11/23
 
 == QUERY ID: 33 ==
 Cands for 'papers': 66
@@ -1693,22 +1658,22 @@ TOTAL SCORE: 0.48146346811567425, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/24
+SO FAR: 12/24
 
 == QUERY ID: 100 ==
 Cands for 'papers': 50
 Cands for 'VLDB conference': 543
 Cands for 'keyword Information Retrieval': 350
-TOTAL SCORE: 0.2737751061294538, TIES: 0
+TOTAL SCORE: 0.23531858195206992, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/25
+SO FAR: 13/25
 
 == QUERY ID: 189 ==
 Cands for 'keywords': 66
@@ -1719,9 +1684,9 @@ TOTAL SCORE: 0.2123360310838476, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 8/26
+SO FAR: 14/26
 
 == QUERY ID: 72 ==
 Cands for 'paper': 66
@@ -1734,18 +1699,18 @@ paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 8/27
+SO FAR: 14/27
 
 == QUERY ID: 7 ==
 Cands for 'keywords': 66
 TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 9/28
+SO FAR: 15/28
 
 == QUERY ID: 171 ==
 Cands for 'conference': 66
@@ -1756,37 +1721,31 @@ TOTAL SCORE: 0.2329312001144097, TIES: 0
 conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/29
+SO FAR: 16/29
 
 == QUERY ID: 84 ==
 Cands for 'papers': 50
 Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
-TOTAL SCORE: 0.42162378826936603, TIES: 0
+TOTAL SCORE: 0.36888817270876795, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/30
+SO FAR: 17/30
 
 == QUERY ID: 103 ==
 Cands for 'organizations': 50
-TOTAL SCORE: 0.019801980198019802, TIES: 3
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (1.0)
---
-organizations :: count(organization.name) : count(organization.homepage) (1.0)
---
-organizations :: count(organization.name) : count(organization.oid) (1.0)
---
-organizations :: count(organization.name) : count(organization.continent) (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/31
+SO FAR: 18/31
 
 == QUERY ID: 176 ==
 Cands for 'paper': 66
@@ -1797,33 +1756,33 @@ TOTAL SCORE: 0.09535378715973863, TIES: 0
 paper :: publication.title : author.name (0.61705)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 10/32
+SO FAR: 18/32
 
 == QUERY ID: 26 ==
 Cands for 'domain': 66
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.2841006398867655, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-domain :: domain.name : author.name (0.6754)
+domain :: domain.name : domain.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/33
+SO FAR: 19/33
 
 == QUERY ID: 25 ==
 Cands for 'journals': 66
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.6018821887331162, TIES: 0
+TOTAL SCORE: 0.3580063517385407, TIES: 0
 --
-journals :: journal.name : publication.title (0.73165)
+journals :: journal.name : journal.name (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 10/34
+SO FAR: 19/34
 
 == QUERY ID: 85 ==
 Cands for 'papers': 50
@@ -1834,22 +1793,22 @@ TOTAL SCORE: 0.37692805523824646, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 11/35
+SO FAR: 20/35
 
 == QUERY ID: 60 ==
 Cands for 'papers': 66
 Cands for 'VLDB conference': 543
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.341055417130506, TIES: 0
+TOTAL SCORE: 0.2590767645807154, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 11/36
+SO FAR: 21/36
 
 == QUERY ID: 70 ==
 Cands for 'paper': 66
@@ -1860,20 +1819,20 @@ TOTAL SCORE: 0.4862818709996137, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 11/37
+SO FAR: 21/37
 
 == QUERY ID: 47 ==
 Cands for 'keywords': 66
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.263385734652005, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 11/38
+SO FAR: 22/38
 
 == QUERY ID: 109 ==
 Cands for 'papers': 50
@@ -1884,22 +1843,22 @@ TOTAL SCORE: 0.34649445160759773, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/39
+SO FAR: 23/39
 
 == QUERY ID: 74 ==
 Cands for 'conferences': 50
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.5391484059486729, TIES: 0
+TOTAL SCORE: 0.3580063517385407, TIES: 0
 --
-conferences :: count(conference.name) : count(publication.title) (0.62715)
+conferences :: count(conference.name) : count(conference.name) (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 12/40
+SO FAR: 23/40
 
 == QUERY ID: 64 ==
 Cands for 'paper': 66
@@ -1910,33 +1869,33 @@ TOTAL SCORE: 0.32920057502222416, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 12/41
+SO FAR: 23/41
 
 == QUERY ID: 177 ==
 Cands for 'paper': 66
 Cands for 'VLDB conference': 543
 Cands for 'citations': 50
-TOTAL SCORE: 0.09497595476135716, TIES: 0
+TOTAL SCORE: 0.09312851289098317, TIES: 0
 --
 paper :: publication.title : author.name (0.61705)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 12/42
+SO FAR: 23/42
 
 == QUERY ID: 10 ==
 Cands for 'homepage': 66
 Cands for 'University of Michigan': 768
-TOTAL SCORE: 0.2620966360783586, TIES: 0
+TOTAL SCORE: 0.1524959497105744, TIES: 0
 --
 homepage :: organization.homepage : keyword.keyword (0.7212000000000001)
-University of Michigan :: organization.name = 'University of Michigan' : publication.title = 'The University of Michigan at TREC 2003' (0.958998)
-== RESULT: WRONG == 
+University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 12/43
+SO FAR: 23/43
 
 == QUERY ID: 78 ==
 Cands for 'citations': 50
@@ -1947,9 +1906,9 @@ TOTAL SCORE: 0.23384874824812726, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/44
+SO FAR: 24/44
 
 == QUERY ID: 126 ==
 Cands for 'papers': 50
@@ -1960,22 +1919,22 @@ TOTAL SCORE: 0.26240350452781386, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/45
+SO FAR: 25/45
 
 == QUERY ID: 42 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.6240510151140349, TIES: 0
+TOTAL SCORE: 0.38877586666670666, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+authors :: author.name : author.name (1.0)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 14/46
+SO FAR: 26/46
 
 == QUERY ID: 101 ==
 Cands for 'authors': 50
@@ -1986,32 +1945,32 @@ TOTAL SCORE: 0.2725065630611188, TIES: 0
 authors :: count(author.name) : count(author.name) (1.0)
 papers :: publication : publication (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/47
+SO FAR: 27/47
 
 == QUERY ID: 127 ==
 Cands for 'citations': 50
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.48624620761469667, TIES: 0
+TOTAL SCORE: 0.34064035602186843, TIES: 0
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 15/48
+SO FAR: 28/48
 
 ==== FINAL RESULTS ====
-15/48 (31.25%)
-12:04  INFO: ===== FOLD 3 =====
+28/48 (58.333333333333336%)
+08:11  INFO: ===== FOLD 3 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-12:05  INFO: ===== Parsing Results =====
-12:05  INFO: Total Queries: 141
-12:05  INFO: Correctly Parsed: 141/141
+08:11  INFO: ===== Parsing Results =====
+08:11  INFO: Total Queries: 141
+08:11  INFO: Correctly Parsed: 141/141
 
 == QUERY ID: 39 ==
 Cands for 'papers': 66
@@ -2024,7 +1983,7 @@ papers :: publication.title : publication.title (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
 SO FAR: 1/1
 
@@ -2032,14 +1991,14 @@ SO FAR: 1/1
 Cands for 'conference': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.4945453669368746, TIES: 0
+TOTAL SCORE: 0.3080630638410043, TIES: 0
 --
-conference :: conference.name : journal.name (0.5548)
+conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 1/2
+SO FAR: 2/2
 
 == QUERY ID: 13 ==
 Cands for 'year': 66
@@ -2048,9 +2007,9 @@ TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 year :: publication.year : publication.year (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 2/3
+SO FAR: 3/3
 
 == QUERY ID: 125 ==
 Cands for 'citations': 50
@@ -2063,20 +2022,20 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 2/4
+SO FAR: 3/4
 
 == QUERY ID: 95 ==
 Cands for 'keywords': 50
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.2327360560947429, TIES: 0
+TOTAL SCORE: 0.10256410256410257, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (1.0)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 2/5
+SO FAR: 4/5
 
 == QUERY ID: 136 ==
 Cands for 'papers': 66
@@ -2089,9 +2048,9 @@ papers :: publication.title : publication.title (0.6507000000000001)
 written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 3/6
+SO FAR: 5/6
 
 == QUERY ID: 106 ==
 Cands for 'organizations': 50
@@ -2102,22 +2061,22 @@ TOTAL SCORE: 0.332366821973988, TIES: 0
 organizations :: count(organization.name) : count(organization.name) (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 4/7
+SO FAR: 6/7
 
 == QUERY ID: 188 ==
 Cands for 'keywords': 66
 Cands for '> 100': 8
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.2605190151900112, TIES: 0
+TOTAL SCORE: 0.1904279809207101, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.8144237838031467)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 4/8
+SO FAR: 7/8
 
 == QUERY ID: 108 ==
 Cands for 'papers': 50
@@ -2128,9 +2087,9 @@ TOTAL SCORE: 0.28466943261024946, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 5/9
+SO FAR: 8/9
 
 == QUERY ID: 115 ==
 Cands for 'researchers': 50
@@ -2139,9 +2098,9 @@ TOTAL SCORE: 0.14103837793755927, TIES: 0
 --
 researchers :: count(author.name) : count(author.name) (0.6078)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 6/10
+SO FAR: 9/10
 
 == QUERY ID: 114 ==
 Cands for 'citations': 50
@@ -2152,20 +2111,20 @@ TOTAL SCORE: 0.23147243478198792, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : author (0.56255)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 6/11
+SO FAR: 9/11
 
 == QUERY ID: 32 ==
 Cands for 'papers': 66
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.5642607347538536, TIES: 0
+TOTAL SCORE: 0.41971725245111696, TIES: 0
 --
-papers :: publication.title : publication.citation_num (0.6027)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
-== RESULT: WRONG == 
+papers :: publication.title : publication.title (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 6/12
+SO FAR: 10/12
 
 == QUERY ID: 102 ==
 Cands for 'citations': 50
@@ -2176,9 +2135,9 @@ TOTAL SCORE: 0.18083701525174226, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : publication (0.6507000000000001)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/13
+SO FAR: 11/13
 
 == QUERY ID: 193 ==
 Cands for 'author': 66
@@ -2191,9 +2150,9 @@ author :: author.name : author.name (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 papers :: publication : author (0.56255)
 5000 citations :: sum(publication.citation_num) > 5000 : sum(publication.citation_num) > 5000 (0.9339763148791447)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/14
+SO FAR: 11/14
 
 == QUERY ID: 67 ==
 Cands for 'paper': 66
@@ -2204,35 +2163,35 @@ TOTAL SCORE: 0.48827010842639545, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 7/15
+SO FAR: 11/15
 
 == QUERY ID: 52 ==
 Cands for 'papers': 66
 Cands for 'VLDB conference': 543
 Cands for 'keyword Information Retrieval': 350
-TOTAL SCORE: 0.2511434849149195, TIES: 0
+TOTAL SCORE: 0.2350736799378632, TIES: 0
 --
-papers :: publication.title : publication.citation_num (0.6027)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
+papers :: publication.title : publication.title (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 7/16
+SO FAR: 12/16
 
 == QUERY ID: 161 ==
 Cands for 'keyword': 66
 Cands for 'papers': 8
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.30512816674233206, TIES: 0
+TOTAL SCORE: 0.23219609771811192, TIES: 0
 --
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 7/17
+SO FAR: 13/17
 
 == QUERY ID: 45 ==
 Cands for 'keywords': 66
@@ -2241,22 +2200,22 @@ TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 8/18
+SO FAR: 14/18
 
 == QUERY ID: 128 ==
 Cands for 'citations': 66
 Cands for 'paper': 66
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.2510256958125481, TIES: 0
+TOTAL SCORE: 0.03832330603086636, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
-paper :: publication.title : journal.name (0.73065)
-VLDB conference :: conference.name = 'VLDB' : publication.title = 'Will the real VLDB conference please stand up?' (0.7649485)
-== RESULT: WRONG == 
+paper :: publication.title : author.name (0.61705)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 8/19
+SO FAR: 14/19
 
 == QUERY ID: 92 ==
 Cands for 'papers': 50
@@ -2265,9 +2224,9 @@ TOTAL SCORE: 0.2731991037885043, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 9/20
+SO FAR: 15/20
 
 == QUERY ID: 146 ==
 Cands for 'authors': 50
@@ -2276,9 +2235,9 @@ TOTAL SCORE: 0.07999999999999999, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/21
+SO FAR: 16/21
 
 == QUERY ID: 11 ==
 Cands for 'references': 66
@@ -2287,9 +2246,9 @@ TOTAL SCORE: 0.3876010845618743, TIES: 0
 --
 references :: publication.reference_num : conference.name (0.6407499999999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 10/22
+SO FAR: 16/22
 
 == QUERY ID: 1 ==
 Cands for 'homepage': 66
@@ -2298,61 +2257,61 @@ TOTAL SCORE: 0.09701625335997996, TIES: 0
 --
 homepage :: journal.homepage : keyword.keyword (0.7212000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 10/23
+SO FAR: 16/23
 
 == QUERY ID: 89 ==
 Cands for 'papers': 50
 Cands for 'H. V. Jagadish': 138
 Cands for 'VLDB conference': 543
 Cands for '> 2000': 12
-TOTAL SCORE: 0.3912652152765106, TIES: 0
+TOTAL SCORE: 0.36576455491753107, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/24
+SO FAR: 17/24
 
 == QUERY ID: 192 ==
 Cands for 'author': 66
 Cands for 'papers': 8
 Cands for 'VLDB conference': 543
-TOTAL SCORE: 0.31553974874844143, TIES: 0
+TOTAL SCORE: 0.03838912976904559, TIES: 0
 --
-author :: author.name : journal.name (0.6826)
-papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
-== RESULT: WRONG == 
+author :: author.name : author.name (1.0)
+papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
+== RESULT: WRONG ==
 
-SO FAR: 10/25
+SO FAR: 17/25
 
 == QUERY ID: 27 ==
 Cands for 'authors': 66
 Cands for 'Making database systems usable': 444
-TOTAL SCORE: 0.42830441985522405, TIES: 0
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
-authors :: author.name : publication.abstract (0.62505)
+authors :: author.name : author.name (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 10/26
+SO FAR: 18/26
 
 == QUERY ID: 75 ==
 Cands for 'journals': 50
 Cands for 'papers': 16
 Cands for 'H. V. Jagadish': 138
-TOTAL SCORE: 0.5688120191648642, TIES: 0
+TOTAL SCORE: 0.37205113809510265, TIES: 0
 --
-journals :: count(journal.name) : count(publication.title) (0.73165)
+journals :: count(journal.name) : count(journal.name) (1.0)
 papers :: publication : author (0.56255)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 10/27
+SO FAR: 18/27
 
 == QUERY ID: 5 ==
 Cands for 'papers': 66
@@ -2361,9 +2320,9 @@ TOTAL SCORE: 0.6215874315484046, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 11/28
+SO FAR: 19/28
 
 == QUERY ID: 34 ==
 Cands for 'papers': 66
@@ -2374,35 +2333,35 @@ TOTAL SCORE: 0.5208403013561402, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/29
+SO FAR: 20/29
 
 == QUERY ID: 135 ==
 Cands for 'authors': 66
 Cands for 'H. V. Jagadish': 138
 Cands for '> 2000': 12
-TOTAL SCORE: 0.48786680788962794, TIES: 0
+TOTAL SCORE: 0.25164644696058897, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.8514109323319947)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/30
+SO FAR: 21/30
 
 == QUERY ID: 134 ==
 Cands for 'authors': 66
 Cands for 'H. V. Jagadish': 138
 Cands for 'Divesh Srivastava': 67
-TOTAL SCORE: 0.37021188640286734, TIES: 0
+TOTAL SCORE: 0.13559322033898305, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
+authors :: author.name : author.name (1.0)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 12/31
+SO FAR: 22/31
 
 == QUERY ID: 120 ==
 Cands for 'papers': 50
@@ -2413,22 +2372,22 @@ TOTAL SCORE: 0.24125610966877087, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2000 :: publication.year < 2000 : publication.year < 2000 (0.8395920212690673)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/32
+SO FAR: 23/32
 
 == QUERY ID: 166 ==
 Cands for 'author': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.5026436705058952, TIES: 0
+TOTAL SCORE: 0.18844086436250923, TIES: 0
 --
-author :: author.name : journal.name (0.6826)
+author :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/33
+SO FAR: 24/33
 
 == QUERY ID: 138 ==
 Cands for 'papers': 66
@@ -2436,16 +2395,16 @@ Cands for 'written': 16
 Cands for 'H. V. Jagadish': 138
 Cands for 'Yunyao Li': 893
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.48861906169084934, TIES: 0
+TOTAL SCORE: 0.48565109219982144, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-written :: writes : journal (0.62065)
+written :: writes : writes (0.72845)
 H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-Yunyao Li :: author.name = 'Yunyao Li' : journal.name = 'INT J PRESS-POLIT' (0.764149)
+Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 13/34
+SO FAR: 25/34
 
 == QUERY ID: 81 ==
 Cands for 'papers': 50
@@ -2454,82 +2413,70 @@ TOTAL SCORE: 0.4240431117163701, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/35
+SO FAR: 26/35
 
 == QUERY ID: 54 ==
 Cands for 'organizations': 66
 Cands for 'Databases area': 107
-TOTAL SCORE: 0.2729927061455216, TIES: 0
+TOTAL SCORE: 0.22164763480596847, TIES: 0
 --
-organizations :: organization.name : publication.title (0.6183)
+organizations :: organization.name : organization.name (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/36
+SO FAR: 27/36
 
 == QUERY ID: 77 ==
 Cands for 'authors': 50
 Cands for 'Making database systems usable': 444
-TOTAL SCORE: 0.019801980198019802, TIES: 4
---
-authors :: count(author.name) : count(author.homepage) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-authors :: count(author.name) : count(author.oid) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-authors :: count(author.name) : count(author.photo) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
---
-authors :: count(author.name) : count(author.aid) (1.0)
-Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
+TOTAL SCORE: 0.019801980198019802, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/37
+SO FAR: 28/37
 
 == QUERY ID: 53 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.378482251946734, TIES: 0
+TOTAL SCORE: 0.20799926308557867, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : publication (0.6507000000000001)
+authors :: author.name : author.name (1.0)
+papers :: publication : author (0.56255)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 14/38
+SO FAR: 28/38
 
 == QUERY ID: 154 ==
 Cands for 'journals': 50
 Cands for '> 60': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.2953494190598989, TIES: 0
+TOTAL SCORE: 0.21851575257524458, TIES: 0
 --
-journals :: count(journal.name) : count(publication.title) (0.73165)
+journals :: count(journal.name) : count(journal.name) (1.0)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 14/39
+SO FAR: 29/39
 
 == QUERY ID: 51 ==
 Cands for 'papers': 66
 Cands for 'PVLDB': 68
 Cands for 'keyword Keyword search': 369
-TOTAL SCORE: 0.2796697207181913, TIES: 0
+TOTAL SCORE: 0.23682873942464744, TIES: 0
 --
-papers :: publication.title : publication.citation_num (0.6027)
+papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-keyword Keyword search :: keyword.keyword = 'Keyword search' : publication.title = 'Keyword Search in Databases' (0.9444)
-== RESULT: WRONG == 
+keyword Keyword search :: keyword.keyword = 'Keyword Search' : keyword.keyword = 'Keyword Search' (1.0)
+== RESULT: CORRECT ==
 
-SO FAR: 14/40
+SO FAR: 30/40
 
 == QUERY ID: 119 ==
 Cands for 'papers': 50
@@ -2540,22 +2487,22 @@ TOTAL SCORE: 0.2320105351254947, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2000 :: publication.year < 2000 : publication.year < 2000 (0.8395920212690673)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/41
+SO FAR: 31/41
 
 == QUERY ID: 184 ==
 Cands for 'authors': 66
 Cands for 'papers': 8
 Cands for 'PVLDB': 68
-TOTAL SCORE: 0.3203581069241581, TIES: 0
+TOTAL SCORE: 0.06586875630608609, TIES: 0
 --
-authors :: author.name : journal.name (0.70365)
+authors :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 15/42
+SO FAR: 32/42
 
 == QUERY ID: 152 ==
 Cands for 'authors': 50
@@ -2566,37 +2513,37 @@ TOTAL SCORE: 0.2745959937503465, TIES: 0
 authors :: count(author.name) : count(author.name) (1.0)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.8144237838031467)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/43
+SO FAR: 33/43
 
 == QUERY ID: 18 ==
 Cands for 'authors': 66
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '< 2002': 12
-TOTAL SCORE: 0.3991295768599376, TIES: 0
+TOTAL SCORE: 0.31261802253821713, TIES: 0
 --
-authors :: author.name : publication.title (0.6433)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+authors :: author.name : author.name (1.0)
+papers :: publication : author (0.56255)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2002 :: publication.year < 2002 : publication.year < 2002 (0.8395920212690673)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 16/44
+SO FAR: 33/44
 
 == QUERY ID: 150 ==
 Cands for 'conference': 66
 Cands for 'papers': 8
 Cands for 'keyword Relational Database': 139
-TOTAL SCORE: 0.4945453669368746, TIES: 0
+TOTAL SCORE: 0.3080630638410043, TIES: 0
 --
-conference :: conference.name : journal.name (0.5548)
+conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(publication.title) = max(count(publication.title)) (0.6507000000000001)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/45
+SO FAR: 34/45
 
 == QUERY ID: 65 ==
 Cands for 'paper': 66
@@ -2607,24 +2554,24 @@ TOTAL SCORE: 0.5208493940508809, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.year > 200 (0.8173777950483364)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 16/46
+SO FAR: 34/46
 
 == QUERY ID: 130 ==
 Cands for 'citations': 50
 Cands for 'papers': 16
 Cands for 'VLDB conference': 543
 Cands for '< 2005': 12
-TOTAL SCORE: 0.37509167718063297, TIES: 0
+TOTAL SCORE: 0.27802809219816216, TIES: 0
 --
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
-papers :: publication : journal (0.6878)
-VLDB conference :: conference.name = 'VLDB' : journal.name = 'Epj Web of Conferences' (0.7621485)
+papers :: publication : publication (0.6507000000000001)
+VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2005 :: publication.year < 2005 : publication.year < 2005 (0.8395920212690673)
-== RESULT: WRONG == 
+== RESULT: CORRECT ==
 
-SO FAR: 16/47
+SO FAR: 35/47
 
 == QUERY ID: 174 ==
 Cands for 'paper': 66
@@ -2633,9 +2580,9 @@ TOTAL SCORE: 0.019765048753412697, TIES: 0
 --
 paper :: publication.title : journal.name (0.73065)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
+== RESULT: WRONG ==
 
-SO FAR: 16/48
+SO FAR: 35/48
 
 ==== FINAL RESULTS ====
-16/48 (33.33333333333333%)
+35/48 (72.91666666666666%)
