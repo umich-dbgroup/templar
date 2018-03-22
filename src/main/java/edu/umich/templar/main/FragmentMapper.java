@@ -159,9 +159,15 @@ public class FragmentMapper {
             } else if (cand instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) cand;
 
-                double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
                 double attrSim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
-                double sim = Math.max(relSim, attrSim);
+
+                double sim;
+                if (aggr.getAttr().isMainAttr()) {
+                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    sim = Math.max(relSim, attrSim);
+                } else {
+                    sim = attrSim;
+                }
 
                 matchedEls.add(new MatchedDBElement(aggr, sim));
             } else if (cand instanceof TextPredicate) {
@@ -187,9 +193,15 @@ public class FragmentMapper {
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
-                double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
                 double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
-                double sim = Math.max(relSim, attrSim);
+
+                double sim;
+                if (pred.getAttr().isMainAttr()) {
+                    double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    sim = Math.max(relSim, attrSim);
+                } else {
+                    sim = attrSim;
+                }
 
                 matchedEls.add(new MatchedDBElement(pred, sim));
             } else {
