@@ -3,10 +3,7 @@ package edu.umich.templar.task;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class QueryTaskReader {
     public static List<QueryTask> readQueryTasks(String filename) {
@@ -36,7 +33,7 @@ public class QueryTaskReader {
                 if (nextLine[5].equalsIgnoreCase("1")) {
                     groupBy = true;
                 }
-                String answer = nextLine[6];
+                List<String> answers = Arrays.asList(nextLine[6].split(";"));
 
                 QueryTask task = queryTasks.get(queryId);
                 if (task == null) {
@@ -44,7 +41,7 @@ public class QueryTaskReader {
                     queryTasks.put(queryId, task);
                 }
 
-                task.addMapping(new FragmentTask(phrase, op, type, functions, groupBy, answer));
+                task.addMapping(new FragmentTask(phrase, op, type, functions, groupBy, answers));
             }
             reader.close();
         } catch (Exception e) {

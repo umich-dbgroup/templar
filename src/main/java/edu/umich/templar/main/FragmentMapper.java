@@ -358,12 +358,12 @@ public class FragmentMapper {
             for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
                 FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
 
-                String answer = fragmentMappings.getTask().getAnswer();
+                List<String> answers = fragmentMappings.getTask().getAnswers();
                 MatchedDBElement bestResult = interp.get(i);
 
                 System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
-                        + answer + " : " + bestResult);
-                if (bestResult.getEl().toString().equals(answer)) {
+                        + String.join(", ", answers) + " : " + bestResult);
+                if (answers.contains(bestResult.getEl().toString())) {
                     correctFrags++;
                 }
             }
