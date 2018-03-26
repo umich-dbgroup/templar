@@ -2,6 +2,8 @@ package edu.umich.templar.log;
 
 import edu.umich.templar.db.*;
 import edu.umich.templar.log.graph.DBElementPair;
+import edu.umich.templar.log.graph.LogGraph;
+import edu.umich.templar.log.graph.LogGraphNode;
 import edu.umich.templar.log.parse.ParserUtils;
 import edu.umich.templar.log.parse.PredicateParser;
 import edu.umich.templar.log.parse.AttributeParser;
@@ -13,7 +15,7 @@ import net.sf.jsqlparser.statement.select.*;
 
 import java.util.*;
 
-public class LogGraph {
+public class LogCountGraph {
     private Database db;
     private LogLevel level;
     private Map<DBElement, Integer> nodes;
@@ -29,14 +31,14 @@ public class LogGraph {
         Database database = new Database(dbHost, dbPort, dbUser, dbPass,
                 "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
 
-        LogGraph logGraph = new LogGraph(database, LogLevel.FULL);
+        LogCountGraph logCountGraph = new LogCountGraph(database, LogLevel.FULL);
         List<Select> selects = Utils.parseStatementsSequential("data/mas/mas_valid.ans");
         for (Select select : selects) {
-            logGraph.extractElementsFromSelect((PlainSelect) select.getSelectBody(), 0);
+            logCountGraph.extractElementsFromSelect((PlainSelect) select.getSelectBody(), 0);
         }
     }
 
-    public LogGraph(Database db, LogLevel level) {
+    public LogCountGraph(Database db, LogLevel level) {
         this.db = db;
         this.level = level;
         this.nodes = new HashMap<>();
@@ -48,6 +50,14 @@ public class LogGraph {
         for (Select select : selects) {
             this.extractElementsFromSelect((PlainSelect) select.getSelectBody(), 0);
         }
+    }
+
+    public Map<DBElement, Integer> getNodes() {
+        return nodes;
+    }
+
+    public Map<DBElementPair, Integer> getEdges() {
+        return edges;
     }
 
     public int count(DBElement el) {

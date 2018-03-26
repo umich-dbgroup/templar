@@ -40,6 +40,7 @@ public class Attribute extends DBElement implements Serializable {
         this.name = name;
     }
 
+    @Override
     public Relation getRelation() {
         return relation;
     }

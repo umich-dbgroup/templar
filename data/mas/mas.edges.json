@@ -112,5 +112,11 @@
     "primaryAttribute": "pid",
     "foreignRelation": "writes",
     "primaryRelation": "publication"
+  },
+  {
+    "foreignAttribute": "kid",
+    "primaryAttribute": "kid",
+    "foreignRelation": "keyword_variations",
+    "primaryRelation": "keyword"
   }
 ]

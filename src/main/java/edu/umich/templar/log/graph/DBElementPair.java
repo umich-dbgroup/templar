@@ -17,6 +17,13 @@ public class DBElementPair {
         this.elements.sort(Comparator.comparing(DBElement::hashCode));
     }
 
+    public DBElement getFirst() {
+        return this.elements.get(0);
+    }
+
+    public DBElement getSecond() {
+        return this.elements.get(1);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -27,7 +34,6 @@ public class DBElementPair {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(elements);
     }
 }

@@ -33,6 +33,11 @@ public class NumericPredicate extends DBElement {
     }
 
     @Override
+    public Relation getRelation() {
+        return this.attr.getRelation();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

@@ -3,8 +3,9 @@ package edu.umich.templar.main;
 import com.esotericsoftware.minlog.Log;
 import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.Database;
-import edu.umich.templar.log.LogGraph;
+import edu.umich.templar.log.LogCountGraph;
 import edu.umich.templar.log.LogLevel;
+import edu.umich.templar.log.graph.LogGraph;
 import edu.umich.templar.task.QueryTask;
 import edu.umich.templar.task.QueryTaskReader;
 import org.apache.commons.io.FileUtils;
@@ -109,7 +110,8 @@ public class TemplarCV {
             // List<Integer> curFoldShuffleIndexes = shuffleIndexFolds.get(i);
 
             if (runLogGraph) {
-                LogGraph logGraph = new LogGraph(db, logLevel);
+                LogCountGraph logCountGraph = new LogCountGraph(db, logLevel);
+
                 // Analyze everything in SQLs excluding current
                 List<String> sqlLog = new ArrayList<>(sqls);
                 sqlLog.removeAll(curFoldSQLs);
@@ -121,7 +123,9 @@ public class TemplarCV {
                 sqlLog = sqlLog.subList(0, logSize);
                 System.out.println("Final log size: " + sqlLog.size());
 
-                logGraph.analyzeSQLs(sqlLog);
+                logCountGraph.analyzeSQLs(sqlLog);
+
+                LogGraph logGraph = new LogGraph(db, logCountGraph);
 
                 Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph);
                 templar.execute();

@@ -359,7 +359,6 @@ public class FragmentMapper {
             System.out.println("--");
             int correctFrags = 0;
 
-
             for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
                 FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
 
