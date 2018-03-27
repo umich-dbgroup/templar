@@ -369,7 +369,7 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 120,30 reviews,>=,pred,,,business.review_count >= 30
 120,rating 3 stars,>,pred,avg,,avg(review.rating) > 3
 121,Egyptian,,pred,,,category.category_name = 'Egyptian'
-121,restaurants,,attr+pred,,,"category.category_name = 'Restaurants',business.name"
+121,restaurants,,attr+pred,count,,"category.category_name = 'Restaurants',count(business.name)"
 121,Edinburgh,,pred,,,business.city = 'Edinburgh'
 122,Indian,,pred,,,category.category_name = 'Indian'
 122,restaurant,,attr+pred,,,"category.category_name = 'Restaurants',business.name"
@@ -386,10 +386,10 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 125,restaurant,,attr+pred,,,"category.category_name = 'Restaurants',business.name"
 125,Dallas,,pred,,,business.city = 'Dallas'
 125,rating,,pred,max,,business.rating = max(business.rating)
-126,users,,attr,,,user.name
+126,users,,attr,,1,user.name
 126,review rating 3,<,pred,avg,,avg(review.rating) < 3
-127,business,,attr,,,business.name
+127,business,,attr,,1,business.name
 127,reviews,,pred,"max, count",,count(review.text) = max(count(review.text))
 127,April,,pred,,,review.month = 'April'
-128,business,,attr,,,business.name
+128,business,,attr,,1,business.name
 128,categories,,pred,"max, count",,count(category.category_name) = max(count(category.category_name))
