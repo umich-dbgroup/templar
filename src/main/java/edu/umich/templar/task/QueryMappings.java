@@ -37,6 +37,7 @@ public class QueryMappings {
             totalInterpsCount *= listSizes[i];
         }
 
+        System.out.println("TOTAL INTERPS COUNT: " + totalInterpsCount);
         for (int i = 0; i < totalInterpsCount; i++) {
             for (int j = 0; j < this.fragmentMappingsList.size(); j++) {
                 FragmentMappings fragMappings = this.fragmentMappingsList.get(j);

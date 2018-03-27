@@ -1,5 +1,6 @@
 package edu.umich.templar.log.graph;
 
+import edu.umich.templar.db.Relation;
 import edu.umich.templar.util.Utils;
 
 import java.util.*;
@@ -31,7 +32,16 @@ public class LogGraphTree {
     }
 
     public LogGraphNode getParent(LogGraphNode child) {
-        return this.parents.get(child);
+        if (this.root.equals(child)) {
+            Set<LogGraphNode> parents = this.children.get(this.root);
+            if (parents.size() != 1) {
+                throw new RuntimeException("Node is root and has more than one child, so no parent.");
+            }
+            Iterator<LogGraphNode> iter = parents.iterator();
+            return iter.next();
+        } else {
+            return this.parents.get(child);
+        }
     }
 
     public boolean hasChildren(LogGraphNode parent) {
@@ -73,20 +83,32 @@ public class LogGraphTree {
         Set<LogGraphNode> children = this.children.get(node);
         LogGraphNode parent = this.parents.get(node);
 
-        Set<LogGraphNode> siblings = this.children.get(parent);
-        siblings.remove(node);
+        // If not root, then delete all siblings
+        if (!this.root.equals(node)) {
+            Set<LogGraphNode> siblings = this.children.get(parent);
+            siblings.remove(node);
 
-        if (children != null) {
-            for (LogGraphNode child : children) {
-                this.parents.put(child, parent);
-                siblings.add(child);
+            if (children != null) {
+                for (LogGraphNode child : children) {
+                    this.parents.put(child, parent);
+                    siblings.add(child);
+                }
+            } else {
+                this.leaves.remove(node);
+            }
+
+            if (parent.equals(this.root) && siblings.size() <= 1) {
+                this.leaves.add(parent);
             }
         } else {
-            this.leaves.remove(node);
-        }
+            if (children.size() != 1) throw new RuntimeException("Cannot remove root with more than 1 child.");
 
-        if (parent.equals(this.root) && siblings.size() <= 1) {
-            this.leaves.add(parent);
+            this.children.put(this.root, null);
+
+            Iterator<LogGraphNode> iter = children.iterator();
+            LogGraphNode newRoot = iter.next();
+            this.root = newRoot;
+            this.parents.put(newRoot, null);
         }
 
         this.nodes.remove(node);
@@ -96,7 +118,7 @@ public class LogGraphTree {
         return leaves;
     }
 
-    public double totalDistance() {
+    public double joinScore() {
         Stack<LogGraphNode> stack = new Stack<>();
         stack.push(this.root);
 
@@ -105,14 +127,23 @@ public class LogGraphTree {
             LogGraphNode node = stack.pop();
             if (this.hasChildren(node)) {
                 for (LogGraphNode child : this.children.get(node)) {
-                    weights.add(node.getWeight(child));
+                    // Only if both nodes are relations
+                    if (child.getElement() instanceof Relation && node.getElement() instanceof Relation) {
+                        weights.add(node.getWeight(child));
+                    }
                     stack.push(child);
                 }
             }
         }
 
+        // Return perfect score
+        if (weights.isEmpty()) return 1.0;
+
         // TODO: Can't figure out best way to calculate this, nor how it should play out in the scorer.
-        return Utils.geometricMean(weights);
+        // return Utils.geometricMean(weights);
+
+        // Return the mean of the weights, but divide by n^2 instead of n to penalize long paths
+        return Utils.mean(weights) / weights.size();
     }
 
     public String debug() {

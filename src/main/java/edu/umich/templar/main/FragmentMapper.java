@@ -288,15 +288,18 @@ public class FragmentMapper {
     private List<MatchedDBElement> pruneTopMatches(List<MatchedDBElement> matches) {
         List<MatchedDBElement> pruned = new ArrayList<>();
 
-        // Special case, where top match is exact and none of the others are
-        if (matches.size() >= 2 && matches.get(0).getScore() == 1 && matches.get(1).getScore() < 1) {
-            pruned.add(matches.get(0));
-            return pruned;
-        }
-
-
         double lastScore = 0.0;
         for (int i = 0; i < matches.size(); i++) {
+            // If we ever get to a score below MIN_SIM, just stop and skip
+            if (matches.get(i).getScore() < Params.MIN_SIM) {
+                break;
+            }
+
+            // If we came to the end of a list of exact scores
+            if (lastScore == 1.0 && matches.get(i).getScore() < lastScore) {
+                break;
+            }
+
             if (i < Params.MAX_TOP_CANDIDATES) {
                 pruned.add(matches.get(i));
                 lastScore = matches.get(i).getScore();
@@ -342,8 +345,15 @@ public class FragmentMapper {
 
             List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);
             sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
-            FragmentMappings fragMappings = new FragmentMappings(fragmentTask,
-                    this.pruneTopMatches(sorted));
+
+            List<MatchedDBElement> pruned = this.pruneTopMatches(sorted);
+            System.out.println("Mappings for " + fragmentTask.getPhrase() + ": " + pruned.size());
+
+            for (MatchedDBElement mel : pruned) {
+                System.out.println(" - " + mel);
+            }
+
+            FragmentMappings fragMappings = new FragmentMappings(fragmentTask, pruned);
             queryMappings.addFragmentMappings(fragMappings);
         }
 

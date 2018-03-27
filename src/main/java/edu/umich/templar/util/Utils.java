@@ -450,7 +450,7 @@ public class Utils {
         if (numbers.size() == 0) return 0.0;
 
         double accum = 1.0;
-        double root = 1.0;
+        double root = 0.0;
 
         for (Double number : numbers) {
             accum *= number;
@@ -472,5 +472,15 @@ public class Utils {
 
     public static double harmonicMean(double num1, double num2) {
         return (2 * num1 * num2) / (num1 + num2);
+    }
+
+    public static double harmonicMean(List<Double> numbers) {
+        double numer = (double) numbers.size();
+
+        double denom = 0.0;
+        for (Double number : numbers) {
+            denom += 1.0 / number;
+        }
+        return numer / denom;
     }
 }

@@ -58,6 +58,7 @@ public class TemplarCV {
         Double logPercent = Double.valueOf(args[3]) / 100;
 
         Boolean typeOracle = Boolean.valueOf(args[4]);
+        Boolean includeSteiner = Boolean.valueOf(args[5]);
 
         // Read config for database info
         Database db = new Database(TemplarConfig.getProperty("dbhost"),
@@ -127,7 +128,13 @@ public class TemplarCV {
 
                 LogGraph logGraph = new LogGraph(db, logCountGraph);
 
-                Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph);
+                Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph, includeSteiner);
+
+                // TODO: wrong: 162, 19, 57, 20, 173, 137, 169
+                // TODO: long: 139, 180, 168, 137, 169, 71
+                // TODO: harder wrong: 21, 98, 145, 163, 116, 168
+                // TODO: steiner tree fail: 142
+                // TODO: look at 22, 147
                 templar.execute();
             } else {
                 // TODO: LogFullTemplates

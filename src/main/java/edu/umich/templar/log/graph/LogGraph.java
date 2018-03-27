@@ -9,6 +9,8 @@ import java.util.*;
 
 public class LogGraph {
     private Database db;
+    private LogCountGraph logCountGraph;
+
     private Map<DBElement, LogGraphNode> elementMap;
     private Set<LogGraphNode> nodes;
 
@@ -18,6 +20,8 @@ public class LogGraph {
         this.db = db;
         this.elementMap = new HashMap<>();
         this.nodes = new HashSet<>();
+        this.logCountGraph = logCountGraph;
+
         this.shortestPaths = new HashMap<>();
 
         this.init(logCountGraph);
@@ -51,6 +55,18 @@ public class LogGraph {
                 first.addEdge(second, diceDistance);
             }
         }
+    }
+
+    public DBElement modifyElementForLevel(DBElement el) {
+        return this.logCountGraph.modifyElementForLevel(el);
+    }
+
+    public int count(DBElement el) {
+        return this.logCountGraph.count(el);
+    }
+
+    public int cooccur(DBElementPair pair) {
+        return this.logCountGraph.cooccur(pair);
     }
 
     private void addNode(LogGraphNode node) {
@@ -99,9 +115,39 @@ public class LogGraph {
             double minDist = 99999999999.0;
             for (LogGraphNode treeVertex : mst.getNodes()) {
                 for (LogGraphNode point : nodes) {
+                    Double dist = treeVertex.getWeight(point);
+                    if (dist == null) continue;
+                    if (dist < minDist) {
+                        minPointParent = treeVertex;
+                        minPointNode = point;
+                        minDist = dist;
+                    }
+                }
+            }
+            mst.addNode(minPointParent, minPointNode);
+            nodes.remove(minPointNode);
+        }
+
+        return mst;
+    }
+
+    private LogGraphTree shortestPathPrims(List<LogGraphNode> nodes) {
+        LogGraphNode curVertex = nodes.remove(0);
+
+        LogGraphTree mst = new LogGraphTree(curVertex);
+
+        while (!nodes.isEmpty()) {
+            LogGraphNode minPointParent = null;
+            LogGraphNode minPointNode = null;
+            double minDist = 99999999999.0;
+            for (LogGraphNode treeVertex : mst.getNodes()) {
+                for (LogGraphNode point : nodes) {
                     LogGraphNodePair pair = new LogGraphNodePair(treeVertex, point);
                     LogGraphPath shortestPath = this.shortestPaths.get(pair);
 
+                    if (shortestPath == null) {
+                        throw new RuntimeException("Could not find shortest path for " + pair);
+                    }
                     double pathDist = shortestPath.distance();
                     if (pathDist < minDist) {
                         minPointParent = treeVertex;
@@ -128,7 +174,7 @@ public class LogGraph {
         }
 
         // Step 2: Find MST of shortest paths graph: run Prim's algorithm
-        LogGraphTree mst = this.prims(new ArrayList<>(pointNodes));
+        LogGraphTree mst = this.shortestPathPrims(new ArrayList<>(pointNodes));
 
         // Step 3: Replace each edge in the MST with the full nodes from the shortest paths
         Set<LogGraphNode> fullSubgraph = new HashSet<>();
@@ -160,7 +206,8 @@ public class LogGraph {
 
         while (!leaves.isEmpty()) {
             LogGraphNode leaf = leaves.pop();
-            if (!pointNodes.contains(leaf)) {
+            // Leaves can also NOT be relations!
+            if (!pointNodes.contains(leaf) || leaf.getElement() instanceof Relation) {
                 LogGraphNode parent = finalMST.getParent(leaf);
                 // Traverse up the leaf and remove from final MST
                 finalMST.removeNode(leaf);
