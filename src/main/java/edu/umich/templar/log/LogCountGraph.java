@@ -71,37 +71,47 @@ public class LogCountGraph {
     }
 
     public DBElement modifyElementForLevel(DBElement el) {
-        if (level.equals(LogLevel.FULL)) return el;
-
-        if (el instanceof AggregatedPredicate) {
+        if (el instanceof AggregatedAttribute) {
+            // Un-aggregate all attributes
+            return ((AggregatedAttribute) el).getAttr();
+        } else if (el instanceof AggregatedPredicate) {
             AggregatedPredicate pred = (AggregatedPredicate) el;
 
             if (level.equals(LogLevel.NO_CONST_OP)) {
                 return new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
                         "?", pred.getValueFunction());
             } else {
-                // No modifications involved for NO_CONST
+                // No modifications involved for FULL or NO_CONST
                 return el;
             }
+        } else if (el instanceof Attribute) {
+            return el;
+        } else if (el instanceof GroupedAttribute) {
+            return ((GroupedAttribute) el).getAttr();
         } else if (el instanceof NumericPredicate) {
             NumericPredicate pred = (NumericPredicate) el;
 
-            if (level.equals(LogLevel.NO_CONST)) {
+            if (level.equals(LogLevel.FULL)) {
+                return el;
+            } else if (level.equals(LogLevel.NO_CONST)) {
                 return new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction());
             } else {
                 return new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction());
             }
-
+        } else if (el instanceof Relation) {
+            return el;
         } else if (el instanceof TextPredicate) {
             TextPredicate pred = (TextPredicate) el;
 
-            if (level.equals(LogLevel.NO_CONST)) {
+            if (level.equals(LogLevel.FULL)) {
+                return el;
+            } else if (level.equals(LogLevel.NO_CONST)) {
                 return new TextPredicate(pred.getAttribute(), "");
             } else {
                 return new TextPredicate(pred.getAttribute(), "");
             }
         } else {
-            return el;
+            throw new RuntimeException("Unrecognized element type for: " + el);
         }
     }
 
