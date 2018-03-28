@@ -200,7 +200,9 @@ public class FragmentMapper {
             }
         }
 
-        return this.sim.sim(pred.getValue().replaceAll("[^A-Za-z0-9 ]", ""), String.join(" ", checkTokens));
+        String predValue = pred.getValue().replaceAll("[^A-Za-z0-9 ]", "");
+        String phraseValue = String.join(" ", checkTokens).replaceAll("[^A-Za-z0-9 ]", "");
+        return this.sim.sim(phraseValue, predValue);
     }
 
     private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands,
