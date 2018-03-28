@@ -206,9 +206,9 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 67,reviewed,,rel,,,review
 67,Sushi Too,,pred,,,business.name = 'Sushi Too'
 67,Pittsburgh,,pred,,,business.city = 'Pittsburgh'
-68,pet groomers,,attr+pred,count,,"category.category_name = 'Pet Groomers',count(business.name)"
+68,pet groomers,,attr+pred,count,,"category.category_name = 'Pet Groomers',count(business.name);business.name = 'Pet Groomers',count(business.name)"
 68,Edinburgh,,pred,,,business.city = 'Edinburgh'
-69,pet groomers,,attr+pred,count,,"category.category_name = 'Pet Groomers',count(business.name)"
+69,pet groomers,,attr+pred,count,,"category.category_name = 'Pet Groomers',count(business.name);business.name = 'Pet Groomers',count(business.name)"
 69,Edinburgh,,pred,,,business.city = 'Edinburgh'
 70,restaurants,,attr+pred,count,,"category.category_name = 'Restaurants',count(business.name)"
 70,Pittsburgh,,pred,,,business.city = 'Pittsburgh'
