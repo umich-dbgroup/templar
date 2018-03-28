@@ -196,7 +196,7 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 64,reviews,,attr,count,,count(review.text)
 64,Niloofar,,pred,,,user.name = 'Niloofar'
 64,2015,=,pred,,,review.year = 2015
-65,rating,,attr,avg,,review.rating
+65,rating,,attr,avg,,avg(review.rating)
 65,Michelle,,pred,,,user.name = 'Michelle'
 65,reviews,,rel,,,review
 66,checkins,,attr,sum,,sum(checkin.count)
