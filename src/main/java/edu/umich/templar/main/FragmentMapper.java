@@ -447,7 +447,7 @@ public class FragmentMapper {
                 MatchedDBElement bestResult = interp.get(i);
 
                 System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
-                        + String.join(", ", answers) + " : " + bestResult);
+                        + String.join("; ", answers) + " : " + bestResult);
                 if (answers.contains(bestResult.getEl().toString())) {
                     correctFrags++;
                 }
