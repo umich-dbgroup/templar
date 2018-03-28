@@ -8,6 +8,9 @@ public class Params {
     /* Parameters for SQLizer */
     public static double SQLIZER_EPSILON = 0.0001;
 
+    /* Lemmatizer epsilon */
+    public static double LEMMATIZER_EPSILON = 0.000001;
+
     /* Minimum similarity for pruning */
     public static double MIN_SIM = 0.55;
 

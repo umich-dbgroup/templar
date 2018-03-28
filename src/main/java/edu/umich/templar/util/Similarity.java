@@ -1,6 +1,7 @@
 package edu.umich.templar.util;
 
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.PorterStemmerLemmatizer;
+import edu.umich.templar.main.settings.Params;
 
 public class Similarity {
     private Word2Vec word2vec;
@@ -22,7 +23,7 @@ public class Similarity {
         String[] word2Split = word2.split(" ");
         if (word1Split.length == 1 && word2Split.length == 1) {
             if (this.lemmatizer.lemmatize(word1).equals(this.lemmatizer.lemmatize(word2))) {
-                return 1.0;
+                return 1.0 - Params.LEMMATIZER_EPSILON;
             }
         }
 

@@ -319,7 +319,7 @@ public class FragmentMapper {
             }
 
             // If we came to the end of a list of exact scores
-            if (lastScore == 1.0 && matches.get(i).getScore() < lastScore) {
+            if (lastScore > 0.99 && matches.get(i).getScore() < lastScore) {
                 break;
             }
 
@@ -370,7 +370,7 @@ public class FragmentMapper {
             sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
 
             List<MatchedDBElement> pruned = this.pruneTopMatches(sorted);
-            System.out.println("Mappings for " + fragmentTask.getPhrase() + ": " + pruned.size());
+            System.out.println("Pruned candidates for " + fragmentTask.getPhrase() + ": " + pruned.size());
 
             for (MatchedDBElement mel : pruned) {
                 System.out.println(" - " + mel);
