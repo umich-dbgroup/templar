@@ -363,7 +363,7 @@ public class FragmentMapper {
             }
 
             // If we came to the end of a list of exact scores
-            if (lastScore > 0.99 && matches.get(i).getScore() < lastScore) {
+            if (lastScore >= Params.EXACT_SCORE && matches.get(i).getScore() < Params.EXACT_SCORE) {
                 break;
             }
 

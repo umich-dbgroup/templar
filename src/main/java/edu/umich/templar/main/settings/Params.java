@@ -14,6 +14,9 @@ public class Params {
     /* Minimum similarity for pruning */
     public static double MIN_SIM = 0.55;
 
+    /* "Exact score" threshold for pruning */
+    public static double EXACT_SCORE = 1 - LEMMATIZER_EPSILON;
+
     /* Harmonic mean minimum epsilon */
     public static double EPSILON = 0.01;
 
