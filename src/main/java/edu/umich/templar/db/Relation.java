@@ -52,7 +52,7 @@ public class Relation extends DBElement implements Serializable {
     public void setProjAttribute(Relation rel, String attrName) {
         for (Attribute attr : rel.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {
-                this.mainAttribute = attr;
+                this.projAttribute = attr;
                 return;
             }
         }
