@@ -388,6 +388,8 @@ public class FragmentMapper {
 
         QueryMappings queryMappings = new QueryMappings(this.scorer);
         for (FragmentTask fragmentTask : queryTask.getFragmentTasks()) {
+            if (!this.typeOracle) fragmentTask.setType(null);
+
             List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
 
             if (pruned == null) {

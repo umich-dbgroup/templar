@@ -47,4 +47,8 @@ public class FragmentTask {
         return this.phrase + ":" + this.op + ":" + this.type + ":"
                 + String.join(",", this.functions) + ":" + this.groupBy.toString();
     }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
