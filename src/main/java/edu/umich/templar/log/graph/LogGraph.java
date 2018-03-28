@@ -1,5 +1,6 @@
 package edu.umich.templar.log.graph;
 
+import edu.umich.templar.db.AttributeAndPredicate;
 import edu.umich.templar.db.DBElement;
 import edu.umich.templar.db.Database;
 import edu.umich.templar.db.Relation;
@@ -168,9 +169,21 @@ public class LogGraph {
         // Step 1: Make sure shortest paths are calculated for all points
         List<LogGraphNode> pointNodes = new ArrayList<>();
         for (DBElement point : points) {
-            LogGraphNode pointNode = this.getOrAddNode(point);
-            this.findShortestPathToAllOtherNodes(pointNode);
-            pointNodes.add(pointNode);
+            if (point instanceof AttributeAndPredicate) {
+                AttributeAndPredicate attrPred = (AttributeAndPredicate) point;
+                LogGraphNode attrPoint = this.getOrAddNode(attrPred.getAttribute());
+                pointNodes.add(attrPoint);
+
+                LogGraphNode predPoint = this.getOrAddNode(attrPred.getPredicate());
+                pointNodes.add(predPoint);
+
+                this.findShortestPathToAllOtherNodes(attrPoint);
+                this.findShortestPathToAllOtherNodes(predPoint);
+            } else {
+                LogGraphNode pointNode = this.getOrAddNode(point);
+                this.findShortestPathToAllOtherNodes(pointNode);
+                pointNodes.add(pointNode);
+            }
         }
 
         // Step 2: Find MST of shortest paths graph: run Prim's algorithm

@@ -110,7 +110,7 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 38,Pittsburgh,,pred,,,business.city = 'Pittsburgh'
 39,bakeries,,attr+pred,,,"category.category_name = 'Bakeries',business.name"
 39,Los Angeles,,pred,,,business.city = 'Los Angeles'
-40,Apple Stores,,attr,,,business.name = 'Apple Store'
+40,Apple Stores,,attr+pred,,,"business.name = 'Apple Store',business.name"
 40,Los Angeles,,pred,,,business.city = 'Los Angeles'
 41,Dallas,,pred,,,business.city = 'Dallas'
 41,restaurants,,attr+pred,,,"category.category_name = 'Restaurants',business.name"
@@ -364,7 +364,7 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 119,restaurants,,attr+pred,,,"category.category_name = 'Restaurants',business.name"
 119,Meadowood neighborhood,,pred,,,neighborhood.neighborhood_name  = 'Meadowood'
 119,Madison,,pred,,,business.city = 'Madison'
-120,bars,,attr+pred,,,"category.category_name = 'Bars',business.name"
+120,bars,,attr+pred,,1,"category.category_name = 'Bars',business.name"
 120,Los Angeles,,pred,,,business.city = 'Los Angeles'
 120,30 reviews,>=,pred,,,business.review_count >= 30
 120,rating 3 stars,>,pred,avg,,avg(review.rating) > 3

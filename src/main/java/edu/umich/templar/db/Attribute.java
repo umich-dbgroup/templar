@@ -21,9 +21,11 @@ public class Attribute extends DBElement implements Serializable {
     public Attribute(Relation rel, String type, String name) {
         this.relation = rel;
 
-        if (type.equalsIgnoreCase("varchar") || type.equalsIgnoreCase("text") || type.equalsIgnoreCase("char")) {
+        if (type.equalsIgnoreCase("varchar") || type.equalsIgnoreCase("text")
+                || type.equalsIgnoreCase("char") || type.equalsIgnoreCase("longtext")) {
             this.type = AttributeType.TEXT;
-        } else if (type.toLowerCase().startsWith("int") || type.equalsIgnoreCase("integer")) {
+        } else if (type.toLowerCase().startsWith("int") || type.equalsIgnoreCase("integer")
+                || type.toLowerCase().equals("bigint") || type.toLowerCase().equals("bit")) {
             this.type = AttributeType.INT;
         } else if (type.equalsIgnoreCase("double") || type.equalsIgnoreCase("float")) {
             this.type = AttributeType.DOUBLE;

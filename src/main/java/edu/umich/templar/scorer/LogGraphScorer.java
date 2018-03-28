@@ -77,15 +77,8 @@ public class LogGraphScorer implements InterpretationScorer {
 
             // If Steiner tree pruned away an element from the interpretation, return 0.0.
             for (DBElement el : els) {
-                boolean found = false;
-                for (LogGraphNode node : steinerTree.getNodes()) {
-                    if (node.getElement().equals(el)) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    // System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
+                if (!steinerTree.contains(el)) {
+                    System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
                     return 0.0;
                 }
             }

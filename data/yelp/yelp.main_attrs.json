@@ -1,0 +1,9 @@
+{
+    "business": "name",
+    "category": "business.name",
+    "checkin": "count",
+    "neighborhood": "neighborhood_name",
+    "review": "text",
+    "tip": "text",
+    "user": "name"
+}

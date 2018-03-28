@@ -110,6 +110,16 @@ public class LogCountGraph {
             } else {
                 return new TextPredicate(pred.getAttribute(), "");
             }
+        } else if (el instanceof AttributeAndPredicate) {
+            AttributeAndPredicate attrPred = (AttributeAndPredicate) el;
+
+            if (level.equals(LogLevel.FULL)) {
+                return el;
+            } else {
+                return new AttributeAndPredicate(
+                        this.modifyElementForLevel(attrPred.getAttribute()),
+                        this.modifyElementForLevel(attrPred.getPredicate()));
+            }
         } else {
             throw new RuntimeException("Unrecognized element type for: " + el);
         }

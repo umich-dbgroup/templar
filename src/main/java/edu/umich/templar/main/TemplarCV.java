@@ -130,12 +130,7 @@ public class TemplarCV {
 
                 Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph, includeSteiner);
 
-                // TODO: wrong: 162, 19, 57, 20, 173, 137, 169
-                // TODO: long: 139, 180, 168, 137, 169, 71
-                // TODO: harder wrong: 21, 98, 145, 163, 116, 168
-                // TODO: steiner tree fail: 142
-                // TODO: look at 22, 147
-                templar.execute();
+                templar.execute(40);
             } else {
                 // TODO: LogFullTemplates
                 continue;

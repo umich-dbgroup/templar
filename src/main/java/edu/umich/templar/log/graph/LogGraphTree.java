@@ -1,5 +1,7 @@
 package edu.umich.templar.log.graph;
 
+import edu.umich.templar.db.AttributeAndPredicate;
+import edu.umich.templar.db.DBElement;
 import edu.umich.templar.db.Relation;
 import edu.umich.templar.util.Utils;
 
@@ -144,6 +146,23 @@ public class LogGraphTree {
 
         // Return the mean of the weights, but divide by n^2 instead of n to penalize long paths
         return Utils.mean(weights) / weights.size();
+    }
+
+    public boolean contains(DBElement el) {
+        List<DBElement> toFind = new ArrayList<>();
+        if (el instanceof AttributeAndPredicate) {
+            toFind.add(((AttributeAndPredicate) el).getAttribute());
+            toFind.add(((AttributeAndPredicate) el).getPredicate());
+        } else {
+            toFind.add(el);
+        }
+
+        for (LogGraphNode node : this.nodes) {
+            if (toFind.contains(node.getElement())) {
+                toFind.remove(node.getElement());
+            }
+        }
+        return toFind.isEmpty();
     }
 
     public String debug() {

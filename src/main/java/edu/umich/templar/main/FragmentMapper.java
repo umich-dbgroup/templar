@@ -55,6 +55,15 @@ public class FragmentMapper {
                 for (Attribute attr : this.db.getAllAttributes()) {
                     cands.add(new AggregatedAttribute(functions.get(0), attr));
                 }
+            } else if (fragType.contains("attr") && fragType.contains("pred")) {
+                // If it's both an attribute and a predicate, attach the function to the attribute,
+                // and create a predicate for all similar values
+                for (TextPredicate textPred : this.db.getSimilarValues(tokens)) {
+                    cands.add(
+                            new AttributeAndPredicate(
+                                    new AggregatedAttribute(functions.get(0), textPred.getRelation().getMainAttribute()),
+                                    textPred));
+                }
             } else {
                 for (Attribute attr : this.db.getAllAttributes()) {
                     cands.add(new AggregatedPredicate(null, attr, op, functions.get(0)));
@@ -114,15 +123,42 @@ public class FragmentMapper {
 
             // If we are operating in type-oracle mode and fragment is a predicate, then add similar values as tokens
             // (otherwise, we know it's a projection/relation so we don't need to find values)
-            boolean findSimValues = !this.typeOracle || fragType.equalsIgnoreCase("pred");
+            boolean findSimValues = !this.typeOracle || fragType.contains("pred");
 
             if (!foundExactMatch && findSimValues) {
-                cands.addAll(this.db.getSimilarValues(tokens));
+                List<TextPredicate> simValues = this.db.getSimilarValues(tokens);
+
+                if (this.typeOracle && fragType.contains("pred") && fragType.contains("attr")) {
+                    for (TextPredicate pred : simValues) {
+                        cands.add(new AttributeAndPredicate(pred.getRelation().getMainAttribute(), pred));
+                    }
+                } else {
+                    cands.addAll(simValues);
+                }
             }
         }
 
         System.out.println("Cands for '" + String.join(" ", tokens) + "': " + cands.size());
         return cands;
+    }
+
+    private double matchTextPredicate(TextPredicate pred, List<String> tokens) {
+        // For cases like "VLDB conference" where the rel/attr name is embedded in the phrase
+        List<String> checkTokens = new ArrayList<>();
+        for (String token : tokens) {
+            // Only remove if it's the first or last token
+            if (tokens.indexOf(token) == 0 || tokens.indexOf(token) == (tokens.size() - 1)) {
+                boolean tokenIsAttrOrRel = token.equalsIgnoreCase(pred.getAttribute().getCleanedName()) ||
+                        token.equalsIgnoreCase(pred.getAttribute().getRelation().getName());
+                if (!tokenIsAttrOrRel) {
+                    checkTokens.add(token);
+                }
+            } else {
+                checkTokens.add(token);
+            }
+        }
+
+        return this.sim.sim(pred.getValue().replaceAll("[^A-Za-z0-9 ]", ""), String.join(" ", checkTokens));
     }
 
     private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands,
@@ -172,24 +208,7 @@ public class FragmentMapper {
                 matchedEls.add(new MatchedDBElement(aggr, sim));
             } else if (cand instanceof TextPredicate) {
                 TextPredicate val = (TextPredicate) cand;
-
-                // For cases like "VLDB conference" where the rel/attr name is embedded in the phrase
-                List<String> checkTokens = new ArrayList<>();
-                for (String token : tokens) {
-                    // Only remove if it's the first or last token
-                    if (tokens.indexOf(token) == 0 || tokens.indexOf(token) == (tokens.size() - 1)) {
-                        boolean tokenIsAttrOrRel = token.equalsIgnoreCase(val.getAttribute().getCleanedName()) ||
-                                token.equalsIgnoreCase(val.getAttribute().getRelation().getName());
-                        if (!tokenIsAttrOrRel) {
-                            checkTokens.add(token);
-                        }
-                    } else {
-                        checkTokens.add(token);
-                    }
-                }
-
-                double sim = this.sim.sim(val.getValue(), String.join(" ", checkTokens));
-                matchedEls.add(new MatchedDBElement(val, sim));
+                matchedEls.add(new MatchedDBElement(cand, this.matchTextPredicate(val, tokens)));
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
@@ -204,6 +223,10 @@ public class FragmentMapper {
                 }
 
                 matchedEls.add(new MatchedDBElement(pred, sim));
+            } else if (cand instanceof AttributeAndPredicate) {
+                AttributeAndPredicate attrPred = (AttributeAndPredicate) cand;
+                matchedEls.add(new MatchedDBElement(cand,
+                        this.matchTextPredicate((TextPredicate) attrPred.getPredicate(), tokens)));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }

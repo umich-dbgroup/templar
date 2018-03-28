@@ -1,5 +1,6 @@
 package edu.umich.templar.db;
 
+import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.PorterStemmerLemmatizer;
 import edu.umich.templar.main.settings.Params;
 import net.sf.jsqlparser.expression.StringValue;
 import org.json.simple.JSONArray;
@@ -16,6 +17,8 @@ import java.util.*;
 public class Database {
     String name;
 
+    private PorterStemmerLemmatizer lemmatizer;
+
     Connection connection;
     Set<Relation> relations;
 
@@ -29,6 +32,8 @@ public class Database {
                     String fkpkFile, String mainAttrsFile) {
         String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
         this.name = dbName;
+
+        this.lemmatizer = new PorterStemmerLemmatizer();
 
         System.out.println("Connecting to database: <" + url + ">");
         try {
@@ -78,15 +83,19 @@ public class Database {
                 JSONObject jsonObj = (JSONObject) obj;
                 String foreignRelName = (String) jsonObj.get("foreignRelation");
                 Relation foreignRel = this.getRelationByName(foreignRelName);
-                Attribute foreignAttr = new Attribute(foreignRel, "INT", (String) jsonObj.get("foreignAttribute"));
+                Attribute foreignAttr = foreignRel.getAttribute((String) jsonObj.get("foreignAttribute"));
                 String primaryRelName = (String) jsonObj.get("primaryRelation");
                 Relation primaryRel = this.getRelationByName(primaryRelName);
-                Attribute primaryAttr = new Attribute(primaryRel, "INT", (String) jsonObj.get("primaryAttribute"));
+                Attribute primaryAttr = primaryRel.getAttribute((String) jsonObj.get("primaryAttribute"));
 
                 this.fkpk.put(foreignAttr, primaryAttr);
 
                 // Delete foreign keys from numeric attributes
                 this.numericAttributes.remove(foreignAttr);
+
+                // Delete any keys from text attributes
+                this.textAttributes.remove(foreignAttr);
+                this.textAttributes.remove(primaryAttr);
 
                 List<Attribute> attrs = this.pkfk.get(primaryAttr);
                 if (attrs == null) attrs = new ArrayList<>();
@@ -107,7 +116,14 @@ public class Database {
                 String mainAttrName = (String) jsonObj.get(relName);
 
                 Relation rel = this.getRelationByName(relName);
-                rel.setMainAttribute(mainAttrName);
+
+                String[] splitMainAttr = mainAttrName.split("\\.");
+                if (splitMainAttr.length > 1) {
+                    Relation parentRel = this.getRelationByName(splitMainAttr[0]);
+                    rel.setMainAttribute(parentRel, splitMainAttr[1]);
+                } else {
+                    rel.setMainAttribute(rel, mainAttrName);
+                }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -199,23 +215,26 @@ public class Database {
 
                     StringJoiner sj = new StringJoiner(" OR ");
                     for (String token : tokens) {
+                        token = this.lemmatizer.lemmatize(token);
                         sj.add("(" + attr.getName() + " LIKE " + "'%" + this.escapeSQL(token) + "%'" + ")");
                     }
                     query += sj.toString();
                 } else {
                     StringJoiner sj = new StringJoiner(" ");
                     for (String token : tokens) {
+                        token = this.lemmatizer.lemmatize(token);
+
                         if (token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
                             // When the token matches the relation or the attribute name, make it an OR instead of AND
                             if (token.equalsIgnoreCase(attr.getName())
                                     || token.equalsIgnoreCase(attr.getRelation().getName())) {
-                                sj.add(token);
+                                sj.add(token + "*");
                             } else {
-                                sj.add("+" + token);
+                                sj.add("+" + token + "*");
                             }
                         }
                     }
-                    query = "SELECT " + attr.getName() + " FROM " + attr.getRelation().getName()
+                    query = "SELECT DISTINCT(" + attr.getName() + ") FROM " + attr.getRelation().getName()
                             + " WHERE MATCH(" + attr.getName() + ")"
                             + " AGAINST ('" + sj.toString() + "' IN BOOLEAN MODE)";
                 }

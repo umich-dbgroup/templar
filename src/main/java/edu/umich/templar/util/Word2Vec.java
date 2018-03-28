@@ -38,7 +38,7 @@ public class Word2Vec {
             socket.close();
 
             // normalize to 0, 1
-            similarityScore  = (similarityScore + 1) / 2;
+            similarityScore = (similarityScore + 1) / 2;
         } catch (Exception e) {
             // Retry up to n times.
             return this.getSimilarity(word1, word2, retry + 1);

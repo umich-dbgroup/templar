@@ -43,8 +43,8 @@ public class Relation extends DBElement implements Serializable {
         return null;
     }
 
-    public void setMainAttribute(String attrName) {
-        for (Attribute attr : this.attributes) {
+    public void setMainAttribute(Relation rel, String attrName) {
+        for (Attribute attr : rel.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {
                 this.mainAttribute = attr;
                 return;
@@ -52,7 +52,7 @@ public class Relation extends DBElement implements Serializable {
         }
 
         throw new RuntimeException("Could not find attribute with name <"
-                + attrName + "> in relation <" + this.getName() + ">");
+                + attrName + "> in relation <" + rel.name + ">");
     }
 
     public Table toTable() {
