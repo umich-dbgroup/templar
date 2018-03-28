@@ -316,7 +316,7 @@ Query ID,Phrase,Operator,Fragment Type,Functions,Group By,Answer
 103,Michelle,,pred,,,user.name = 'Michelle'
 103,2010,=,pred,,,tip.year = 2010
 104,checkins,,attr,sum,,sum(checkin.count)
-104,Brighton Heights neighborhood,,pred,,,neighborhood.neighborhood_name  = 'Brighton Heights'
+104,Brighton Heights neighborhood,,pred,,,neighborhood.neighborhood_name = 'Brighton Heights'
 105,checkins,,attr,sum,,sum(checkin.count)
 105,Sundays,,pred,,,checkin.day = 'Sunday'
 106,reviews,,attr,count,,count(review.text)
