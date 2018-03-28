@@ -130,7 +130,7 @@ public class TemplarCV {
 
                 Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph, includeSteiner);
 
-                templar.execute(40);
+                templar.execute();
             } else {
                 // TODO: LogFullTemplates
                 continue;
