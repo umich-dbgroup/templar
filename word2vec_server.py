@@ -9,6 +9,9 @@ def filter_words(model, words):
     result = []
     num_del = 0
     for word in words:
+        if word in result:
+            # duplicate word
+            num_del += 1
         if word in model.wv:
             result.append(word)
         else:
