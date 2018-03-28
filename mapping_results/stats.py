@@ -17,10 +17,11 @@ def analyze_file(filename):
                     phrases[phrase] = True
 
                 answers = []
-                for ans in answers_str.split(","):
+                for ans in answers_str.split(";"):
                     answers.append(ans.strip())
 
-                guess = guess_str.split('(')[0].strip()
+                m = re.match('(.*)\([0-9.]+\)', guess_str)
+                guess = m.group(1).strip()
                 phrases[phrase] = phrases[phrase] and (guess in answers)
             # end of query
             if line.startswith('== RESULT'):
