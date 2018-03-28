@@ -1,6 +1,6 @@
 {
     "business": "name",
-    "category": "business.name",
+    "category": "category_name",
     "checkin": "count",
     "neighborhood": "neighborhood_name",
     "review": "text",

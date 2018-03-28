@@ -13,6 +13,7 @@ public class Relation extends DBElement implements Serializable {
     String name;
     List<Attribute> attributes;
     Attribute mainAttribute;
+    Attribute projAttribute;
 
     public Relation(String name) {
         this.name = name;
@@ -36,6 +37,11 @@ public class Relation extends DBElement implements Serializable {
         return mainAttribute;
     }
 
+    public Attribute getProjAttribute() {
+        if (projAttribute != null) return projAttribute;
+        else return mainAttribute;
+    }
+
     public Attribute getAttribute(String attrName) {
         for (Attribute attr : attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) return attr;
@@ -43,7 +49,7 @@ public class Relation extends DBElement implements Serializable {
         return null;
     }
 
-    public void setMainAttribute(Relation rel, String attrName) {
+    public void setProjAttribute(Relation rel, String attrName) {
         for (Attribute attr : rel.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {
                 this.mainAttribute = attr;
@@ -53,6 +59,18 @@ public class Relation extends DBElement implements Serializable {
 
         throw new RuntimeException("Could not find attribute with name <"
                 + attrName + "> in relation <" + rel.name + ">");
+    }
+
+    public void setMainAttribute(String attrName) {
+        for (Attribute attr : this.attributes) {
+            if (attrName.equalsIgnoreCase(attr.getName())) {
+                this.mainAttribute = attr;
+                return;
+            }
+        }
+
+        throw new RuntimeException("Could not find attribute with name <"
+                + attrName + "> in relation <" + this.name + ">");
     }
 
     public Table toTable() {

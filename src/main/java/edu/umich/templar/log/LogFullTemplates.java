@@ -25,7 +25,8 @@ public class LogFullTemplates {
         String dbPass = args[3].equalsIgnoreCase("null")? null : args[3];
 
         Database database = new Database(dbHost, dbPort, dbUser, dbPass,
-                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
+                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json",
+                "data/mas/mas.proj_attrs.json");
 
         LogFullTemplates logFullTemplates = new LogFullTemplates(database, LogLevel.NO_CONST_OP);
         List<Select> selects = Utils.parseStatementsSequential("data/mas/mas_valid.ans");
