@@ -19,6 +19,7 @@ public class Relation extends DBElement implements Serializable {
         this.name = name;
         this.attributes = new ArrayList<>();
         this.mainAttribute = null;
+        this.projAttribute = null;
     }
 
     public void addAttribute(Attribute attr) {

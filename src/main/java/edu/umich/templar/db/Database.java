@@ -53,7 +53,7 @@ public class Database {
         this.loadFKPK(fkpkFile);
 
         this.loadMainAttrs(mainAttrsFile);
-        this.loadProjAttrs(mainAttrsFile);
+        this.loadProjAttrs(projAttrsFile);
     }
 
     public ResultSet executeSQL(String sql) throws SQLException {
