@@ -93,11 +93,11 @@ public class FragmentMapper {
 
         if (functions.size() == 1) {
             // If there's one function, we're dealing with an AggregatedAttribute or AggregatedPredicate
-            if (fragType.equalsIgnoreCase("attr")) {
+            if (fragType != null && fragType.equalsIgnoreCase("attr")) {
                 for (Attribute attr : this.db.getAllAttributes()) {
                     cands.add(new AggregatedAttribute(functions.get(0), attr));
                 }
-            } else if (fragType.contains("attr") && fragType.contains("pred")) {
+            } else if (fragType != null && fragType.contains("attr") && fragType.contains("pred")) {
                 // If it's both an attribute and a predicate, attach the function to the attribute,
                 // and create a predicate for all similar values
                 for (TextPredicate textPred : this.db.getSimilarValues(tokens)) {
