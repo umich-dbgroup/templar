@@ -42,4 +42,9 @@ public class FragmentTask {
     public List<String> getAnswers() {
         return answers;
     }
+
+    public String getKeyString() {
+        return this.phrase + ":" + this.op + ":" + this.type + ":"
+                + String.join(",", this.functions) + ":" + this.groupBy.toString();
+    }
 }
