@@ -7,7 +7,7 @@ import edu.umich.templar.scorer.SimpleScorer;
 import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
 import edu.umich.templar.util.Utils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import java.sql.ResultSet;
 import java.util.*;
@@ -348,7 +348,7 @@ public class FragmentMapper {
             String numericToken = null;
 
             for (String token : fragmentTask.getPhrase().split(" ")) {
-                if (StringUtils.isNumeric(token)) {
+                if (NumberUtils.isCreatable(token)) {
                     numericToken = token;
                 } else {
                     tokens.add(token);

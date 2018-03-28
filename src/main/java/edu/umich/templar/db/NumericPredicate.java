@@ -68,7 +68,11 @@ public class NumericPredicate extends DBElement {
         result.append(' ');
         result.append(this.op);
         result.append(' ');
-        result.append(this.value.intValue());
+        if (Math.floor(this.value) == this.value) {
+            result.append(this.value.intValue());
+        } else {
+            result.append(this.value);
+        }
 
         return result.toString();
     }
