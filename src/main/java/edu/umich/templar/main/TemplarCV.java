@@ -33,6 +33,8 @@ public class TemplarCV {
         String sqlFile = prefix + "_all.ans";
         String fkpkFile = prefix + ".edges.json";
         String mainAttrsFile = prefix + ".main_attrs.json";
+        String projAttrsFile = prefix + ".proj_attrs.json";
+        String candCacheFilename = prefix + ".cands.cache";
 
         boolean runLogGraph;
         if (args[1].equalsIgnoreCase("set")) {
@@ -65,7 +67,7 @@ public class TemplarCV {
                 TemplarConfig.getIntegerProperty("dbport"),
                 TemplarConfig.getProperty("dbuser"),
                 TemplarConfig.getProperty("dbpassword"),
-                dbName, fkpkFile, mainAttrsFile);
+                dbName, fkpkFile, mainAttrsFile, projAttrsFile);
 
         List<String> sqls = new ArrayList<>();
         try {
@@ -128,7 +130,8 @@ public class TemplarCV {
 
                 LogGraph logGraph = new LogGraph(db, logCountGraph);
 
-                Templar templar = new Templar(db, curFoldTasks, typeOracle, logGraph, includeSteiner);
+                Templar templar = new Templar(db, candCacheFilename, curFoldTasks,
+                        typeOracle, logGraph, includeSteiner);
 
                 templar.execute();
             } else {

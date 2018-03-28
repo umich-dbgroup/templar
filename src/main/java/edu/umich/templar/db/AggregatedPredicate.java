@@ -1,12 +1,13 @@
 package edu.umich.templar.db;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /*
  * For predicates of the form:
  * e.g. count(publication.title) = max(count(publication.title))
  */
-public class AggregatedPredicate extends DBElement {
+public class AggregatedPredicate extends DBElement implements Serializable {
     private String aggFunction; // Aggregate function ("count"/"sum")
     private Attribute attr;
     private String op;

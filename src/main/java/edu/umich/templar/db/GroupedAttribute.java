@@ -1,8 +1,9 @@
 package edu.umich.templar.db;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class GroupedAttribute extends DBElement {
+public class GroupedAttribute extends DBElement implements Serializable {
     private Attribute attr;
 
     public GroupedAttribute(Attribute attr) {

@@ -29,7 +29,7 @@ public class Database {
     Map<Attribute, List<Attribute>> pkfk;
 
     public Database(String host, int port, String user, String pw, String dbName,
-                    String fkpkFile, String mainAttrsFile) {
+                    String fkpkFile, String mainAttrsFile, String projAttrsFile) {
         String url = "jdbc:mysql://" + host + ":" + port + "/" + dbName;
         this.name = dbName;
 
@@ -53,6 +53,7 @@ public class Database {
         this.loadFKPK(fkpkFile);
 
         this.loadMainAttrs(mainAttrsFile);
+        this.loadProjAttrs(mainAttrsFile);
     }
 
     public ResultSet executeSQL(String sql) throws SQLException {
@@ -107,7 +108,7 @@ public class Database {
         }
     }
 
-    public void loadMainAttrs(String filename) {
+    private void loadMainAttrs(String filename) {
         try {
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObj = (JSONObject) jsonParser.parse(new FileReader(filename));
@@ -116,19 +117,34 @@ public class Database {
                 String mainAttrName = (String) jsonObj.get(relName);
 
                 Relation rel = this.getRelationByName(relName);
+                rel.setMainAttribute(mainAttrName);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-                String[] splitMainAttr = mainAttrName.split("\\.");
-                if (splitMainAttr.length > 1) {
-                    Relation parentRel = this.getRelationByName(splitMainAttr[0]);
-                    rel.setMainAttribute(parentRel, splitMainAttr[1]);
+    private void loadProjAttrs(String filename) {
+        try {
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObj = (JSONObject) jsonParser.parse(new FileReader(filename));
+            for (Object obj : jsonObj.keySet()) {
+                String relName = (String) obj;
+                String projAttrName = (String) jsonObj.get(relName);
+
+                Relation rel = this.getRelationByName(relName);
+
+                String[] splitProjAttr = projAttrName.split("\\.");
+                if (splitProjAttr.length > 1) {
+                    Relation parentRel = this.getRelationByName(splitProjAttr[0]);
+                    rel.setProjAttribute(parentRel, splitProjAttr[1]);
                 } else {
-                    rel.setMainAttribute(rel, mainAttrName);
+                    rel.setProjAttribute(rel, projAttrName);
                 }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void loadRelation(String relName) {

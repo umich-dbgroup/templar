@@ -12,8 +12,8 @@ public class SQLizer extends FragmentMapper {
     // Activate the SQLizer join penalty indiscriminately
     private boolean joinScore;
 
-    public SQLizer(Database database, List<QueryTask> queryTasks, boolean typeOracle, boolean joinScore) {
-        super(database, queryTasks, typeOracle);
+    public SQLizer(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle, boolean joinScore) {
+        super(database, candCacheFilename, queryTasks, typeOracle);
 
         this.db = database;
         this.joinScore = joinScore;
@@ -35,9 +35,11 @@ public class SQLizer extends FragmentMapper {
         Boolean joinScore = Boolean.valueOf(args[5]);
 
         Database database = new Database(dbHost, dbPort, dbUser, dbPass,
-                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json");
+                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json",
+                "data/mas/mas.proj_attrs.json");
 
-        SQLizer sqlizer = new SQLizer(database,
+        String candCacheFilename = "blah";
+        SQLizer sqlizer = new SQLizer(database, candCacheFilename,
                 QueryTaskReader.readQueryTasks("data/mas/mas_all_fragments.csv"),
                 typeOracle, joinScore);
 

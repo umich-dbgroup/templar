@@ -1,6 +1,8 @@
 package edu.umich.templar.db;
 
-public class AttributeAndPredicate extends DBElement {
+import java.io.Serializable;
+
+public class AttributeAndPredicate extends DBElement implements Serializable {
     private DBElement attribute;
     private DBElement predicate;
 

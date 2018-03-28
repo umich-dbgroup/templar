@@ -10,9 +10,9 @@ import edu.umich.templar.task.QueryTask;
 import java.util.List;
 
 public class Templar extends FragmentMapper {
-    public Templar(Database database, List<QueryTask> queryTasks, boolean typeOracle,
+    public Templar(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle,
                    LogGraph logGraph, boolean includeSteiner) {
-        super(database, queryTasks, typeOracle);
+        super(database, candCacheFilename, queryTasks, typeOracle);
 
         // this.setScorer(new LogCountGraphScorer(logGraph));
         this.setScorer(new LogGraphScorer(logGraph, includeSteiner));

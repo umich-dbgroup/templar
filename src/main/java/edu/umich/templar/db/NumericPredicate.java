@@ -1,9 +1,10 @@
 package edu.umich.templar.db;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class NumericPredicate extends DBElement {
+public class NumericPredicate extends DBElement implements Serializable {
     private Attribute attr;
     private String op;
     private Double value;

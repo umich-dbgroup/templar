@@ -1,8 +1,9 @@
 package edu.umich.templar.db;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class MatchedDBElement {
+public class MatchedDBElement implements Serializable {
     DBElement el;
     double score;
 

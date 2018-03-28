@@ -2,7 +2,9 @@ package edu.umich.templar.task;
 
 import com.opencsv.CSVReader;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class QueryTaskReader {
@@ -10,7 +12,7 @@ public class QueryTaskReader {
         Map<Integer, QueryTask> queryTasks = new HashMap<>();
 
         try {
-            CSVReader reader = new CSVReader(new FileReader(filename));
+            CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
 
             // Skip first header line
             reader.readNext();

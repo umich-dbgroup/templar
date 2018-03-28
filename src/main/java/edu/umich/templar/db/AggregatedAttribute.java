@@ -1,8 +1,9 @@
 package edu.umich.templar.db;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class AggregatedAttribute extends DBElement {
+public class AggregatedAttribute extends DBElement implements Serializable {
     String function;
     Attribute attr;
 

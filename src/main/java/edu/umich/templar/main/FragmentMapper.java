@@ -9,6 +9,7 @@ import edu.umich.templar.util.Similarity;
 import edu.umich.templar.util.Utils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.io.*;
 import java.sql.ResultSet;
 import java.util.*;
 
@@ -24,16 +25,57 @@ public class FragmentMapper {
 
     protected List<QueryTask> queryTasks;
 
-    public FragmentMapper(Database database, List<QueryTask> queryTasks, boolean typeOracle) {
+    // Candidate cache contains <phrase>:<type> -> pruned candidate mappings
+    private Map<String, List<MatchedDBElement>> candidateCache;
+    private String candCacheFilename;
+
+    public FragmentMapper(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         this.db = database;
         this.typeOracle = typeOracle;
         this.queryTasks = queryTasks;
+
+        this.candCacheFilename = candCacheFilename;
+        this.loadCacheIfExists();
 
         // Default scorer is SimpleScorer
         this.scorer = new SimpleScorer();
 
         try {
             this.sim = new Similarity(10000);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadCacheIfExists() {
+        File file = new File(this.candCacheFilename);
+        if (file.exists()) {
+            try {
+                System.out.println("Loading cache from: <" + this.candCacheFilename + ">");
+                FileInputStream fin = new FileInputStream(file);
+                ObjectInputStream oin = new ObjectInputStream(fin);
+                this.candidateCache = (Map<String, List<MatchedDBElement>>) oin.readObject();
+                oin.close();
+                fin.close();
+                System.out.println("Cache loaded!");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            this.candidateCache = new HashMap<>();
+        }
+    }
+
+    private void saveCache() {
+        System.out.println("Saving cache...");
+        File file = new File(this.candCacheFilename);
+        try {
+            FileOutputStream fout = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(this.candidateCache);
+            oos.close();
+            fout.close();
+            System.out.println("Saved cache to <" + this.candCacheFilename + ">!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -61,7 +103,7 @@ public class FragmentMapper {
                 for (TextPredicate textPred : this.db.getSimilarValues(tokens)) {
                     cands.add(
                             new AttributeAndPredicate(
-                                    new AggregatedAttribute(functions.get(0), textPred.getRelation().getMainAttribute()),
+                                    new AggregatedAttribute(functions.get(0), textPred.getRelation().getProjAttribute()),
                                     textPred));
                 }
             } else {
@@ -130,7 +172,7 @@ public class FragmentMapper {
 
                 if (this.typeOracle && fragType.contains("pred") && fragType.contains("attr")) {
                     for (TextPredicate pred : simValues) {
-                        cands.add(new AttributeAndPredicate(pred.getRelation().getMainAttribute(), pred));
+                        cands.add(new AttributeAndPredicate(pred.getRelation().getProjAttribute(), pred));
                     }
                 } else {
                     cands.addAll(simValues);
@@ -344,32 +386,38 @@ public class FragmentMapper {
 
         QueryMappings queryMappings = new QueryMappings(this.scorer);
         for (FragmentTask fragmentTask : queryTask.getFragmentTasks()) {
-            List<String> tokens = new ArrayList<>();
-            String numericToken = null;
+            List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
 
-            for (String token : fragmentTask.getPhrase().split(" ")) {
-                if (NumberUtils.isCreatable(token)) {
-                    numericToken = token;
-                } else {
-                    tokens.add(token);
+            if (pruned == null) {
+                List<String> tokens = new ArrayList<>();
+                String numericToken = null;
+
+                for (String token : fragmentTask.getPhrase().split(" ")) {
+                    if (NumberUtils.isCreatable(token)) {
+                        numericToken = token;
+                    } else {
+                        tokens.add(token);
+                    }
                 }
+
+                Set<DBElement> cands;
+                Set<MatchedDBElement> matchedEls;
+                if (numericToken == null) {
+                    cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
+                            fragmentTask.getOp(), fragmentTask.getFunctions());
+                    matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType(), fragmentTask.getGroupBy());
+                } else {
+                    cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getFunctions());
+                    matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
+                }
+
+                List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);
+                sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
+
+                pruned = this.pruneTopMatches(sorted);
+                this.candidateCache.put(fragmentTask.getKeyString(), pruned);
             }
 
-            Set<DBElement> cands;
-            Set<MatchedDBElement> matchedEls;
-            if (numericToken == null) {
-                cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
-                        fragmentTask.getOp(), fragmentTask.getFunctions());
-                matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType(), fragmentTask.getGroupBy());
-            } else {
-                cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getFunctions());
-                matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
-            }
-
-            List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);
-            sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
-
-            List<MatchedDBElement> pruned = this.pruneTopMatches(sorted);
             System.out.println("Pruned candidates for " + fragmentTask.getPhrase() + ": " + pruned.size());
 
             for (MatchedDBElement mel : pruned) {
@@ -424,6 +472,10 @@ public class FragmentMapper {
             boolean correct = this.executeQueryTask(queryTask);
             if (correct) correctTasks++;
             totalTasks++;
+
+            if ((totalTasks % Params.CACHE_SAVE_INTERVAL) == 0) {
+                this.saveCache();
+            }
 
             System.out.println("SO FAR: " + correctTasks + "/" + totalTasks);
             System.out.println();
