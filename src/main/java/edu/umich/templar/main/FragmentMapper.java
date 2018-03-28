@@ -481,6 +481,9 @@ public class FragmentMapper {
             System.out.println();
         }
 
+        // Final save for cache
+        this.saveCache();
+
         double accuracyPercent = (double) correctTasks / (double) totalTasks * 100;
         System.out.println("==== FINAL RESULTS ====");
         System.out.println(correctTasks + "/" + totalTasks + " (" + accuracyPercent + "%)");
