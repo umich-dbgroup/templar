@@ -71,6 +71,8 @@ public class RDBMS {
             while (results.next()) {
                 vals.add(results.getInt(1));
             }
+            results.close();
+			statement.close();
 
             return vals;
         } catch (Exception e) {
@@ -82,11 +84,15 @@ public class RDBMS {
         try {
             Statement statement = this.conn.createStatement();
             ResultSet result = statement.executeQuery("SELECT COUNT(*) FROM " + r.getName());
+            int size;
             if (result.next()) {
-                return result.getInt(1);
+                size = result.getInt(1);
             } else {
                 throw new RuntimeException("Could not get relation size for " + r.getName());
             }
+            result.close();
+            statement.close();
+            return size;
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -110,7 +116,8 @@ public class RDBMS {
 				}
 				finalResults.add(row); 
 			}
-			
+			result.close();
+			statement.close();
 			return finalResults; 
 		} catch(Exception e)
 		{
@@ -128,6 +135,8 @@ public class RDBMS {
 		{
 			history.add(results.getString(2)); 
 		}
+		results.close();
+		statement.close();
 	}
 
     public boolean isQuestionExist(ParseTreeNode treeNode) throws Exception {

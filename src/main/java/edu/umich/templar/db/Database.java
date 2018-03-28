@@ -205,6 +205,8 @@ public class Database {
                         + "FROM " + attr.getRelation().getName());
                 sizeRs.next();
                 int size = sizeRs.getInt(1);
+                sizeRs.close();
+                sizeStmt.close();
 
                 Statement stmt = this.connection.createStatement();
 
@@ -249,6 +251,8 @@ public class Database {
                         values.add(val);
                     }
                 }
+                rs.close();
+                stmt.close();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
