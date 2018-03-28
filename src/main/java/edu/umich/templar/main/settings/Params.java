@@ -21,5 +21,5 @@ public class Params {
     public static double CONF_FW = 0.8;
 
     /* Cache save interval (how many tasks we should wait) */
-    public static int CACHE_SAVE_INTERVAL = 10;
+    public static int CACHE_SAVE_INTERVAL = 5;
 }
