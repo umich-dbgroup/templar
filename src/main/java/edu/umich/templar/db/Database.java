@@ -3,6 +3,7 @@ package edu.umich.templar.db;
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.PorterStemmerLemmatizer;
 import edu.umich.templar.main.settings.Params;
 import net.sf.jsqlparser.expression.StringValue;
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -211,6 +212,11 @@ public class Database {
         return this.relations;
     }
 
+    private String lemmatizeForFullText(String token) {
+        String stemmed = this.lemmatizer.lemmatize(token);
+        return StringUtils.getCommonPrefix(stemmed, token);
+    }
+
     public List<TextPredicate> getSimilarValues(List<String> tokens) {
         List<TextPredicate> values = new ArrayList<>();
         for (Attribute attr : this.textAttributes) {
@@ -233,14 +239,14 @@ public class Database {
 
                     StringJoiner sj = new StringJoiner(" OR ");
                     for (String token : tokens) {
-                        token = this.lemmatizer.lemmatize(token);
+                        token = this.lemmatizeForFullText(token);
                         sj.add("(" + attr.getName() + " LIKE " + "'%" + this.escapeSQL(token) + "%'" + ")");
                     }
                     query += sj.toString();
                 } else {
                     StringJoiner sj = new StringJoiner(" ");
                     for (String token : tokens) {
-                        token = this.lemmatizer.lemmatize(token);
+                        token = this.lemmatizeForFullText(token);
 
                         if (token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
                             // When the token matches the relation or the attribute name, make it an OR instead of AND
