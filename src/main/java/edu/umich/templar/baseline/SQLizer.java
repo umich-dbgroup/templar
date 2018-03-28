@@ -1,6 +1,8 @@
 package edu.umich.templar.baseline;
 
+import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.*;
+import edu.umich.templar.log.LogLevel;
 import edu.umich.templar.main.FragmentMapper;
 import edu.umich.templar.scorer.SQLizerScorer;
 import edu.umich.templar.task.*;
@@ -27,24 +29,30 @@ public class SQLizer extends FragmentMapper {
     }
 
     public static void main(String[] args) {
-        String dbHost = args[0];
-        Integer dbPort = Integer.valueOf(args[1]);
-        String dbUser = args[2];
-        String dbPass = args[3].equalsIgnoreCase("null")? null : args[3];
-        Boolean typeOracle = Boolean.valueOf(args[4]);
-        Boolean joinScore = Boolean.valueOf(args[5]);
+        String dbName = args[0];
+        String prefix = "data/" + dbName + "/" + dbName;
+        String fkpkFile = prefix + ".edges.json";
+        String fragsFile = prefix + "_all_fragments.csv";
+        String mainAttrsFile = prefix + ".main_attrs.json";
+        String projAttrsFile = prefix + ".proj_attrs.json";
+        String candCacheFilename = prefix + ".cands.cache";
 
-        Database database = new Database(dbHost, dbPort, dbUser, dbPass,
-                "mas", "data/mas/mas.edges.json", "data/mas/mas.main_attrs.json",
-                "data/mas/mas.proj_attrs.json");
+        Boolean typeOracle = Boolean.valueOf(args[1]);
+        Boolean joinScore = Boolean.valueOf(args[2]);
 
-        String candCacheFilename = "blah";
-        SQLizer sqlizer = new SQLizer(database, candCacheFilename,
-                QueryTaskReader.readQueryTasks("data/mas/mas_all_fragments.csv"),
+        // Read config for database info
+        Database db = new Database(TemplarConfig.getProperty("dbhost"),
+                TemplarConfig.getIntegerProperty("dbport"),
+                TemplarConfig.getProperty("dbuser"),
+                TemplarConfig.getProperty("dbpassword"),
+                dbName, fkpkFile, mainAttrsFile, projAttrsFile);
+
+        SQLizer sqlizer = new SQLizer(db, candCacheFilename,
+                QueryTaskReader.readQueryTasks(fragsFile),
                 typeOracle, joinScore);
 
-        if (args.length >= 7) {
-            sqlizer.execute(Integer.valueOf(args[6]));
+        if (args.length >= 4) {
+            sqlizer.execute(Integer.valueOf(args[3]));
         } else {
             sqlizer.execute();
         }
