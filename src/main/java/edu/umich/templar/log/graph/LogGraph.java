@@ -144,6 +144,7 @@ public class LogGraph {
             for (LogGraphNode treeVertex : mst.getNodes()) {
                 for (LogGraphNode point : nodes) {
                     LogGraphNodePair pair = new LogGraphNodePair(treeVertex, point);
+
                     LogGraphPath shortestPath = this.shortestPaths.get(pair);
 
                     if (shortestPath == null) {
@@ -172,17 +173,23 @@ public class LogGraph {
             if (point instanceof AttributeAndPredicate) {
                 AttributeAndPredicate attrPred = (AttributeAndPredicate) point;
                 LogGraphNode attrPoint = this.getOrAddNode(attrPred.getAttribute());
-                pointNodes.add(attrPoint);
+                if (!pointNodes.contains(attrPoint)) {
+                    pointNodes.add(attrPoint);
+                }
 
                 LogGraphNode predPoint = this.getOrAddNode(attrPred.getPredicate());
-                pointNodes.add(predPoint);
+                if (!pointNodes.contains(predPoint)) {
+                    pointNodes.add(predPoint);
+                }
 
                 this.findShortestPathToAllOtherNodes(attrPoint);
                 this.findShortestPathToAllOtherNodes(predPoint);
             } else {
                 LogGraphNode pointNode = this.getOrAddNode(point);
                 this.findShortestPathToAllOtherNodes(pointNode);
-                pointNodes.add(pointNode);
+                if (!pointNodes.contains(pointNode)) {
+                    pointNodes.add(pointNode);
+                }
             }
         }
 
