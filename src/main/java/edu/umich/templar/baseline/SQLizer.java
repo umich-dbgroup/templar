@@ -12,14 +12,14 @@ import java.util.List;
 
 public class SQLizer extends FragmentMapper {
     // Activate the SQLizer join penalty indiscriminately
-    private boolean joinScore;
+    // private boolean joinScore;
 
-    public SQLizer(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle, boolean joinScore) {
+    public SQLizer(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         super(database, candCacheFilename, queryTasks, typeOracle);
 
         this.db = database;
-        this.joinScore = joinScore;
-        this.setScorer(new SQLizerScorer(this.db, this.joinScore));
+        // this.joinScore = joinScore;
+        this.setScorer(new SQLizerScorer(this.db));
 
         try {
             this.sim = new Similarity(10000);
@@ -38,7 +38,7 @@ public class SQLizer extends FragmentMapper {
         String candCacheFilename = prefix + ".cands.cache";
 
         Boolean typeOracle = Boolean.valueOf(args[1]);
-        Boolean joinScore = Boolean.valueOf(args[2]);
+        // Boolean joinScore = Boolean.valueOf(args[2]);
 
         // Read config for database info
         Database db = new Database(TemplarConfig.getProperty("dbhost"),
@@ -48,8 +48,7 @@ public class SQLizer extends FragmentMapper {
                 dbName, fkpkFile, mainAttrsFile, projAttrsFile);
 
         SQLizer sqlizer = new SQLizer(db, candCacheFilename,
-                QueryTaskReader.readQueryTasks(fragsFile),
-                typeOracle, joinScore);
+                QueryTaskReader.readQueryTasks(fragsFile), typeOracle);
 
         if (args.length >= 4) {
             sqlizer.execute(Integer.valueOf(args[3]));

@@ -11,11 +11,11 @@ import java.util.Set;
 
 public class SQLizerScorer implements InterpretationScorer {
     private Database db;
-    private boolean joinScore;
+    // private boolean joinScore;
 
-    public SQLizerScorer(Database db, boolean joinScore) {
+    public SQLizerScorer(Database db) {
         this.db = db;
-        this.joinScore = joinScore;
+        // this.joinScore = joinScore;
     }
 
     @Override
@@ -27,6 +27,7 @@ public class SQLizerScorer implements InterpretationScorer {
             sims.add(mel.getScore());
 
             // Add relation to set
+            /*
             if (mel.getEl() instanceof Relation) {
                 rels.add((Relation) mel.getEl());
             } else if (mel.getEl() instanceof Attribute) {
@@ -43,11 +44,11 @@ public class SQLizerScorer implements InterpretationScorer {
                 rels.add(((GroupedAttribute) mel.getEl()).getAttr().getRelation());
             } else {
                 throw new RuntimeException("Unknown DBElement type.");
-            }
+            }*/
         }
 
         // add join scores according to SQLizer
-        if (this.joinScore) {
+        /*if (this.joinScore) {
             if (rels.size() > 1) {
                 int joins = this.db.longestJoinPathLength(rels) - 1;
                 for (int i = 0; i < joins; i++) {
@@ -59,7 +60,7 @@ public class SQLizerScorer implements InterpretationScorer {
                     sims.add(Params.SQLIZER_EPSILON);
                 }
             }
-        }
+        }*/
 
         return Utils.geometricMean(sims);
     }

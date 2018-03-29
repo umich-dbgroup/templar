@@ -5,13 +5,17 @@ def analyze_file(filename):
     total_frags_correct = 0
     total_frags = 0
     total_queries = 0
+    total_ties = 0
 
     with open(filename) as f:
         phrases = {}
         for line in f:
+            ties_m = re.match('.*TIES: ([0-9]+).*', line)
+            if ties_m is not None and int(ties_m.group(1)) != 0:
+                total_ties += 1
             if "::" in line:
                 phrase, result = line.split("::")
-                answers_str, guess_str = result.split(':')
+                answers_str, guess_str = result.split(':', 1)
 
                 if phrase not in phrases:
                     phrases[phrase] = True
@@ -36,6 +40,7 @@ def analyze_file(filename):
     print 'Correct frags: ' + str(total_frags_correct)
     print 'Total frags: ' + str(total_frags)
     print 'Total queries: ' + str(total_queries)
+    print 'Total ties: ' + str(total_ties)
 
 def main():
     parser = argparse.ArgumentParser()
