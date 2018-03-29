@@ -31,7 +31,7 @@ public class TemplarCV {
         String prefix = "data/" + dbName + "/" + dbName;
         String fragsFile = prefix + "_all_fragments.csv";
         String sqlFile = prefix + "_all.ans";
-        String fkpkFile = prefix + ".edges.json";
+        String fkpkFile = prefix + ".fkpk.json";
         String mainAttrsFile = prefix + ".main_attrs.json";
         String projAttrsFile = prefix + ".proj_attrs.json";
         String candCacheFilename = prefix + ".cands.cache";

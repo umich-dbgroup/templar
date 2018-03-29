@@ -31,7 +31,7 @@ public class SQLizer extends FragmentMapper {
     public static void main(String[] args) {
         String dbName = args[0];
         String prefix = "data/" + dbName + "/" + dbName;
-        String fkpkFile = prefix + ".edges.json";
+        String fkpkFile = prefix + ".fkpk.json";
         String fragsFile = prefix + "_all_fragments.csv";
         String mainAttrsFile = prefix + ".main_attrs.json";
         String projAttrsFile = prefix + ".proj_attrs.json";
