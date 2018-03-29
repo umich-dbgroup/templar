@@ -8,8 +8,13 @@ public class Params {
     /* Parameters for SQLizer */
     public static double SQLIZER_EPSILON = 0.0001;
 
+    /** For our epsilons: word2vec_oov > lemmatizer > special_chars **/
+
     /* Lemmatizer epsilon */
     public static double LEMMATIZER_EPSILON = 0.0000001;
+
+    /* Special chars epsilon */
+    public static double SPECIAL_CHARS_EPSILON = 0.00000001;
 
     /* Minimum similarity for pruning */
     public static double MIN_SIM = 0.55;

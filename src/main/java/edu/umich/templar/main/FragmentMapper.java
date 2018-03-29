@@ -207,9 +207,23 @@ public class FragmentMapper {
             }
         }
 
-        String predValue = Utils.removeNonAlphaNumeric(pred.getValue());
-        String phraseValue = Utils.removeNonAlphaNumeric(String.join(" ", checkTokens));
-        return this.sim.sim(phraseValue, predValue);
+        String predValue = pred.getValue();
+        String phraseValue = String.join(" ", checkTokens);
+        if (predValue.equalsIgnoreCase(phraseValue)) {
+            // If exact match, return 1.0
+            return 1.0;
+        }
+
+        int oldPredValueLen = predValue.length();
+        int oldPhraseValueLen = phraseValue.length();
+
+        predValue = Utils.removeNonAlphaNumeric(predValue);
+        phraseValue = Utils.removeNonAlphaNumeric(phraseValue);
+
+        double penalty = Params.SPECIAL_CHARS_EPSILON *
+                ((oldPredValueLen - predValue.length()) + (oldPhraseValueLen - phraseValue.length()));
+
+        return this.sim.sim(phraseValue, predValue) - penalty;
     }
 
     private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands,
@@ -398,7 +412,7 @@ public class FragmentMapper {
             if (!this.typeOracle) fragmentTask.setType(null);
 
             List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
-
+            
             if (pruned == null) {
                 List<String> tokens = new ArrayList<>();
                 String numericToken = null;

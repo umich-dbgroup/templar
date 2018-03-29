@@ -2,6 +2,7 @@ package edu.umich.templar.db;
 
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.PorterStemmerLemmatizer;
 import edu.umich.templar.main.settings.Params;
+import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.StringValue;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
@@ -213,8 +214,12 @@ public class Database {
     }
 
     private String lemmatizeForFullText(String token) {
-        String stemmed = this.lemmatizer.lemmatize(token);
-        return StringUtils.getCommonPrefix(stemmed, token);
+        if (token.length() > Params.MIN_FULLTEXT_TOKEN_LENGTH) {
+            String stemmed = this.lemmatizer.lemmatize(token);
+            return StringUtils.getCommonPrefix(stemmed, token);
+        } else {
+            return token;
+        }
     }
 
     public List<TextPredicate> getSimilarValues(List<String> tokens) {
@@ -248,7 +253,7 @@ public class Database {
                     for (String token : tokens) {
                         token = this.lemmatizeForFullText(token);
 
-                        if (token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
+                        if (!Utils.isStopword(token) && token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
                             // When the token matches the relation or the attribute name, make it an OR instead of AND
                             if (token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getName()))
                                     || token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getRelation().getName()))) {
