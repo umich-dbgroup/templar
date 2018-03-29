@@ -1,0 +1,12 @@
+{
+    "actor": "name",
+    "cast": "role",
+    "company": "name",
+    "director": "name",
+    "genre": "genre",
+    "keyword": "keyword",
+    "movie": "title",
+    "producer": "name",
+    "tv_series": "title",
+    "writer": "name"
+}
