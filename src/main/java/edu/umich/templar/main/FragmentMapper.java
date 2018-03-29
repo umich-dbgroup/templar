@@ -95,7 +95,7 @@ public class FragmentMapper {
             // If there's one function, we're dealing with an AggregatedAttribute or AggregatedPredicate
             if (fragType != null && fragType.equalsIgnoreCase("attr")) {
                 for (Attribute attr : this.db.getAllAttributes()) {
-                    cands.add(new AggregatedAttribute(functions.get(0), attr));
+                    cands.add(new AggregatedAttribute(null, functions.get(0), attr));
                 }
             } else if (fragType != null && fragType.contains("attr") && fragType.contains("pred")) {
                 // If it's both an attribute and a predicate, attach the function to the attribute,
@@ -103,7 +103,8 @@ public class FragmentMapper {
                 for (TextPredicate textPred : this.db.getSimilarValues(tokens)) {
                     cands.add(
                             new AttributeAndPredicate(
-                                    new AggregatedAttribute(functions.get(0), textPred.getRelation().getProjAttribute()),
+                                    new AggregatedAttribute(null, functions.get(0),
+                                            textPred.getRelation().getProjAttribute()),
                                     textPred));
                 }
             } else {
@@ -112,7 +113,7 @@ public class FragmentMapper {
                 }
             }
         } else if (functions.size() > 1) {
-            // If there's more than 1 function, it needs to be an AggregatedPredicate
+            // If there's more than 1 function, it can also be either an AggregatedAttribute or AggregatedPredicate
 
             String aggFunction = null;
             String valueFunction = null;
@@ -129,9 +130,15 @@ public class FragmentMapper {
                 }
             }
 
-            for (Relation rel : this.db.getAllRelations()) {
-                if (rel.getMainAttribute() != null) {
-                    cands.add(new AggregatedPredicate(aggFunction, rel.getMainAttribute(), op, valueFunction));
+            if (fragType != null && fragType.equalsIgnoreCase("attr")) {
+                for (Attribute attr : this.db.getAllAttributes()) {
+                    cands.add(new AggregatedAttribute(valueFunction, aggFunction, attr));
+                }
+            } else {
+                for (Relation rel : this.db.getAllRelations()) {
+                    if (rel.getMainAttribute() != null) {
+                        cands.add(new AggregatedPredicate(aggFunction, rel.getMainAttribute(), op, valueFunction));
+                    }
                 }
             }
         } else {
@@ -191,7 +198,7 @@ public class FragmentMapper {
             // Only remove if it's the first or last token
             if (tokens.indexOf(token) == 0 || tokens.indexOf(token) == (tokens.size() - 1)) {
                 boolean tokenIsAttrOrRel = token.equalsIgnoreCase(pred.getAttribute().getCleanedName()) ||
-                        token.equalsIgnoreCase(pred.getAttribute().getRelation().getName());
+                        token.equalsIgnoreCase(pred.getAttribute().getRelation().getCleanedName());
                 if (!tokenIsAttrOrRel) {
                     checkTokens.add(token);
                 }
@@ -200,8 +207,8 @@ public class FragmentMapper {
             }
         }
 
-        String predValue = pred.getValue().replaceAll("[^A-Za-z0-9 ]", "");
-        String phraseValue = String.join(" ", checkTokens).replaceAll("[^A-Za-z0-9 ]", "");
+        String predValue = Utils.removeNonAlphaNumeric(pred.getValue());
+        String phraseValue = Utils.removeNonAlphaNumeric(String.join(" ", checkTokens));
         return this.sim.sim(phraseValue, predValue);
     }
 
@@ -212,7 +219,7 @@ public class FragmentMapper {
         for (DBElement cand : textCands) {
             if (cand instanceof Relation) {
                 Relation rel = (Relation) cand;
-                double sim = this.sim.sim(rel.getName(), String.join(" ", tokens));
+                double sim = this.sim.sim(rel.getCleanedName(), String.join(" ", tokens));
 
                 // If we have a type oracle activated and we know it's an attribute result, treat as such
                 if (this.typeOracle && fragType.equalsIgnoreCase("attr")) {
@@ -243,7 +250,7 @@ public class FragmentMapper {
 
                 double sim;
                 if (aggr.getAttr().isMainAttr()) {
-                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getName(), String.join(" ", tokens));
+                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getCleanedName(), String.join(" ", tokens));
                     sim = Math.max(relSim, attrSim);
                 } else {
                     sim = attrSim;
@@ -396,11 +403,11 @@ public class FragmentMapper {
                 List<String> tokens = new ArrayList<>();
                 String numericToken = null;
 
-                for (String token : fragmentTask.getPhrase().split(" ")) {
+                for (String token : fragmentTask.getPhrase().split(" |-")) {
                     if (NumberUtils.isCreatable(token)) {
                         numericToken = token;
                     } else {
-                        tokens.add(token);
+                        tokens.add(Utils.removeNonAlphaNumeric(token));
                     }
                 }
 

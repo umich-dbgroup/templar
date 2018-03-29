@@ -13,6 +13,7 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
+import java.security.acl.Group;
 import java.util.*;
 
 public class LogCountGraph {
@@ -149,7 +150,7 @@ public class LogCountGraph {
             }
         }
 
-        throw new RuntimeException("Attribute <" + attr + "> not found in previous elements list.");
+        els.add(new GroupedAttribute(attr));
     }
 
     private Set<DBElement> extractElementsFromSelect(PlainSelect ps, int subLevel) {
@@ -204,29 +205,53 @@ public class LogCountGraph {
 
         // If any projections are aggregates of all columns, then find other projection and increment
         AggregatedAttribute aggregatedAllColumns = null;
-        DBElement otherProjection = null;
+        List<DBElement> otherProjections = new ArrayList<>();
         for (DBElement el : elementsInSelect) {
             if (el instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) el;
                 if (aggr.getAttr().getName().equals("*")) {
                     aggregatedAllColumns = aggr;
+                } else {
+                    otherProjections.add(el);
                 }
             } else if (el instanceof Attribute) {
-                if (otherProjection != null) throw new RuntimeException("Already found other projection!");
-                otherProjection = el;
+                otherProjections.add(el);
             } else if (el instanceof GroupedAttribute) {
-                if (otherProjection != null) throw new RuntimeException("Already found other projection!");
-                otherProjection = el;
+                otherProjections.add(el);
             }
         }
-        if (aggregatedAllColumns != null && otherProjection != null) {
+        if (aggregatedAllColumns != null && otherProjections.size() >= 1) {
+            DBElement otherProjection = null;
+            if (otherProjections.size() == 1) {
+                otherProjection = otherProjections.get(0);
+            } else if (otherProjections.size() == 2){
+                for (DBElement proj : otherProjections) {
+                    // Prioritize projections of elements that aren't grouped
+                    if (!(proj instanceof GroupedAttribute)) {
+                        otherProjection = proj;
+                        break;
+                    }
+                }
+            } else {
+                throw new RuntimeException("Not expecting more than 2 projections! Oops.");
+            }
+
             if (otherProjection instanceof GroupedAttribute) {
                 Attribute attr = ((GroupedAttribute) otherProjection).getAttr();
-                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(), attr));
+                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
+                        aggregatedAllColumns.getAggrFunction(),
+                        attr));
+            } else if (otherProjection instanceof AggregatedAttribute) {
+                AggregatedAttribute aggr = (AggregatedAttribute) otherProjection;
+                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
+                        aggr.getAggrFunction(),
+                        aggr.getAttr()));
             } else {
-                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(),
+                elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
+                        aggregatedAllColumns.getAggrFunction(),
                         (Attribute) otherProjection));
             }
+
             elementsInSelect.remove(aggregatedAllColumns);
             elementsInSelect.remove(otherProjection);
         }
@@ -267,7 +292,7 @@ public class LogCountGraph {
                 for (DBElement el : orderParser.getAttributes()) {
                     if (el instanceof AggregatedAttribute) {
                         AggregatedAttribute attr = (AggregatedAttribute) el;
-                        elementsInSelect.add(new AggregatedPredicate(attr.getFunction(), attr.getAttr(),
+                        elementsInSelect.add(new AggregatedPredicate(attr.getAggrFunction(), attr.getAttr(),
                                 "=", valueFunction));
                     } else if (el instanceof Attribute) {
                         Attribute attr = (Attribute) el;

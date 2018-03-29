@@ -31,6 +31,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -375,9 +377,19 @@ public class Utils {
         }
     }
 
+    public static String removeNonAlphaNumeric(String str) {
+        // Replace possible delimiter with a space, then replace the rest with nothing.
+        return str.replaceAll("-", " ").replaceAll("[^A-Za-z0-9 ]", "");
+    }
+
     public static String removeAliasIntFromAlias(String alias) {
-        String[] splitList = alias.split("_");
-        return splitList[0];
+        Pattern pattern = Pattern.compile("(.*)_[0-9]+");
+        Matcher matcher = pattern.matcher(alias);
+        if (matcher.matches()) {
+            return matcher.group(1);
+        } else {
+            return alias;
+        }
     }
 
     public static boolean isStopword(String word) {

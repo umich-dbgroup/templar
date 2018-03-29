@@ -250,8 +250,8 @@ public class Database {
 
                         if (token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
                             // When the token matches the relation or the attribute name, make it an OR instead of AND
-                            if (token.equalsIgnoreCase(attr.getName())
-                                    || token.equalsIgnoreCase(attr.getRelation().getName())) {
+                            if (token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getName()))
+                                    || token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getRelation().getName()))) {
                                 sj.add(token + "*");
                             } else {
                                 sj.add("+" + token + "*");

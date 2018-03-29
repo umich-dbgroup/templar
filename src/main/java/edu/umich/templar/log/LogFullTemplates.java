@@ -13,6 +13,7 @@ import net.sf.jsqlparser.statement.select.*;
 import java.util.*;
 
 public class LogFullTemplates {
+    /*
     private Database db;
     private LogLevel mode;
     private Map<Set<DBElement>, Integer> setCounts;
@@ -229,5 +230,5 @@ public class LogFullTemplates {
         }
 
         return elementsInSelect;
-    }
+    }*/
 }

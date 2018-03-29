@@ -62,6 +62,10 @@ public class Relation extends DBElement implements Serializable {
                 + attrName + "> in relation <" + rel.name + ">");
     }
 
+    public String getCleanedName() {
+        return this.name.replaceAll("_", " ");
+    }
+
     public void setMainAttribute(String attrName) {
         for (Attribute attr : this.attributes) {
             if (attrName.equalsIgnoreCase(attr.getName())) {
