@@ -31,14 +31,7 @@ public class LogGraphScorer implements InterpretationScorer {
         for (MatchedDBElement mel : interp) {
             sims.add(mel.getScore());
             DBElement newEl = this.logGraph.modifyElementForLevel(mel.getEl());
-
-            // If two relations in the interpretation are identical, return 0.0
-            // (i.e. we can have non-relation duplicates, for self-joins for example)
-            if (els.contains(newEl) && newEl instanceof Relation) {
-                System.out.println("Returning 0.0 because " + newEl + " is a duplicate in the interpretation.");
-                return 0.0;
-            }
-
+            
             els.add(newEl);
         }
 

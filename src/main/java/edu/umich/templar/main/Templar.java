@@ -1,9 +1,7 @@
 package edu.umich.templar.main;
 
 import edu.umich.templar.db.Database;
-import edu.umich.templar.log.LogCountGraph;
 import edu.umich.templar.log.graph.LogGraph;
-import edu.umich.templar.scorer.LogCountGraphScorer;
 import edu.umich.templar.scorer.LogGraphScorer;
 import edu.umich.templar.task.QueryTask;
 
