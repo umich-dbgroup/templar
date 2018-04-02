@@ -527,7 +527,7 @@ public class FragmentMapper {
                 correctFragsTies0, correctFragsTies1, correctFragsTiesFrac);
     }
 
-    public void execute(Integer queryId) {
+    public String execute(Integer queryId) {
         AllQueryTaskResults allResults = new AllQueryTaskResults();
 
         int i = 0;
@@ -549,13 +549,16 @@ public class FragmentMapper {
         this.saveCache();
 
         // Statistics
-        System.out.println("==== FINAL RESULTS ====");
+        System.out.println("==== FOLD RESULTS ====");
         // This is meant to go in our Google Doc format of results:
         // https://docs.google.com/spreadsheets/d/1baAWwGnXmfbE9h6L3k7CE1naqSVM1k-bwDICTqAQmEI/edit#gid=2050195104
-        System.out.println(allResults.toCSVString());
+        String retStr = allResults.toCSVString();
+        System.out.println(retStr);
+
+        return retStr;
     }
 
-    public void execute() {
-        this.execute(null);
+    public String execute() {
+        return this.execute(null);
     }
 }

@@ -106,6 +106,7 @@ public class TemplarCV {
         }
 
         // MAIN LOOP
+        StringBuilder resultBuffer = new StringBuilder();
         for (int i = 0; i < NUM_FOLDS; i++) {
             Log.info("===== FOLD " + i + " =====");
             List<QueryTask> curFoldTasks = queryTaskFolds.get(i);
@@ -133,11 +134,16 @@ public class TemplarCV {
                 Templar templar = new Templar(db, candCacheFilename, curFoldTasks,
                         typeOracle, logGraph, includeSteiner);
 
-                templar.execute();
+                String resultStr = templar.execute();
+                resultBuffer.append(resultStr);
+                resultBuffer.append("\n");
             } else {
                 // TODO: LogFullTemplates
                 continue;
             }
         }
+
+        System.out.println("==== FINAL RESULTS ====");
+        System.out.println(resultBuffer.toString());
     }
 }
