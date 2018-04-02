@@ -1,4 +1,4 @@
-objc[23364]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10c7204c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10c7e84e0). One of the two will be used. Which one is undefined.
+objc[29751]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x1037ce4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1038964e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/mas>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -12,26 +12,23 @@ Final log size: 142
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
 == QUERY ID: 170 ==
-Cands for 'conferences': 66
 Pruned candidates for conferences: 1
  - conference.name (0.9999999)
-Cands for '> 10': 8
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.7239634248944092, TIES: 0
+TOTAL SCORE: 0.7239634200813196, TIES: 0
 --
 conferences :: conference.name : conference.name (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 139 ==
-Cands for 'papers': 66
 Pruned candidates for papers: 9
  - journal.name (0.6878)
  - publication.title (0.6507000000000001)
@@ -42,22 +39,18 @@ Pruned candidates for papers: 9
  - domain_conference.did (0.5982)
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
-Cands for 'written': 16
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
-Cands for 'Yunyao Li': 893
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
-Cands for 'PVLDB': 68
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '> 2005': 11
 Pruned candidates for after 2005: 5
  - publication.year > 2005 (0.7856133113688948)
  - author.aid > 2005 (0.754084299001113)
@@ -65,23 +58,19 @@ Pruned candidates for after 2005: 5
  - publication.reference_num > 2005 (0.7074955406219887)
  - publication.citation_num > 2005 (0.7044858870126498)
 TOTAL INTERPS COUNT: 225
-TOTAL SCORE: 0.6873029290759581, TIES: 0
+TOTAL SCORE: 0.6873029268140918, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2005 :: publication.year > 2005 : publication.year > 2005 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 2/2
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 6)> [Ties0: 6] [Ties1: 6] [Ties1/t: 6.00]
 == QUERY ID: 162 ==
-Cands for 'keyword': 66
 Pruned candidates for keyword: 1
  - keyword.keyword (1.0)
-Cands for 'papers': 8
 Pruned candidates for papers: 6
  - count(journal.name) = max(count(journal.name)) (0.6878)
  - count(publication.title) = max(count(publication.title)) (0.6507000000000001)
@@ -97,26 +86,23 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 2/3
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 88 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '> 2000': 11
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -124,23 +110,19 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7255386618784899, TIES: 0
+TOTAL SCORE: 0.7255386584962267, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 3/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 155 ==
-Cands for 'authors': 50
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
-Cands for 'keyword Relational Database': 152
 Pruned candidates for keyword Relational Database: 1
  - keyword.keyword = 'Relational Database' (1.0)
 TOTAL INTERPS COUNT: 1
@@ -149,14 +131,9 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 authors :: count(author.name) : count(author.name) (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 4/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 180 ==
-Cands for 'paper': 66
 Pruned candidates for paper: 5
  - journal.name (0.73065)
  - publication.title (0.67795)
@@ -169,15 +146,12 @@ Pruned candidates for after 2000: 5
  - keyword.kid > 2000 (0.7350822811087205)
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
-Cands for 'Databases area': 144
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-Cands for 'citations': 50
 Pruned candidates for citations: 6
  - publication.citation_num = max(publication.citation_num) (0.8148)
  - cite.cited = max(cite.cited) (0.63845)
@@ -185,42 +159,40 @@ Pruned candidates for citations: 6
  - domain_keyword.rank = max(domain_keyword.rank) (0.5858)
  - organization.oid = max(organization.oid) (0.58405)
  - author.oid = max(author.oid) (0.58405)
-TOTAL INTERPS COUNT: 900
+TOTAL INTERPS COUNT: 750
 TOTAL SCORE: 0.6706392008088153, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 5/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 98 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for keyword User Study: 1
  - keyword.keyword = 'User Study' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7130840893278362, TIES: 0
+TOTAL SCORE: 0.7130840847062364, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 6/7
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 62 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -232,7 +204,6 @@ Pruned candidates for papers: 9
  - domain_conference.did (0.5982)
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
-Cands for 'VLDB': 150
 Pruned candidates for VLDB: 2
  - journal.name = 'VLDB' (1.0)
  - conference.name = 'VLDB' (1.0)
@@ -242,7 +213,6 @@ Pruned candidates for after 2000: 5
  - keyword.kid > 2000 (0.7350822811087205)
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
-Cands for 'University of Michigan': 773
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 90
@@ -252,18 +222,13 @@ papers :: publication.title : publication.title (0.6507000000000001)
 VLDB :: conference.name = 'VLDB'; journal.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 7/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 158 ==
-Cands for 'keywords': 50
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
-Cands for '> 100': 8
 Pruned candidates for 100 papers: 1
  - count(publication.title) > 100 (0.7349802548368222)
-Cands for 'VLDB conference': 547
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 1
@@ -272,42 +237,34 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.7349802548368222)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 8/9
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 133 ==
-Cands for 'authors': 66
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
-Cands for 'Divesh Srivastava': 67
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8335153175548163, TIES: 0
+TOTAL SCORE: 0.8335153122214832, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 9/10
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 113 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -325,21 +282,21 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/11
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 80 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -347,10 +304,8 @@ TOTAL SCORE: 0.7024706808107973, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/12
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 181 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -380,30 +335,25 @@ paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 12/13
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 19 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
-Cands for 'papers': 16
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '< 2002': 11
 Pruned candidates for before 2002: 5
  - domain.did < 2002 (0.791351609589568)
  - publication.year < 2002 (0.7693119068362324)
  - keyword.kid < 2002 (0.74353527824845)
  - author.aid < 2002 (0.7368824159932167)
  - domain_keyword.rank < 2002 (0.710984841610565)
-Cands for '> 1995': 11
 Pruned candidates for after 1995: 5
  - publication.year > 1995 (0.7856133113688948)
  - author.aid > 1995 (0.754084299001113)
@@ -418,20 +368,17 @@ papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2002 :: publication.year < 2002 : domain.did < 2002 (0.791351609589568)
 after 1995 :: publication.year > 1995 : publication.year > 1995 (0.7856133113688948)
-== RESULT: WRONG == 
-
-SO FAR: 12/14
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 97 ==
-Cands for 'keywords': 50
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -440,55 +387,50 @@ TOTAL SCORE: 0.7081723296339025, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 papers :: publication : journal (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 12/15
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 145 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
-Cands for 'Cong Yu': 1793
 Pruned candidates for Cong Yu: 2
  - author.name = 'Cong Yu' (1.0)
  - author.name = 'Yu Cong' (1.0)
 TOTAL INTERPS COUNT: 90
-TOTAL SCORE: 0.6987265666937401, TIES: 1
+TOTAL SCORE: 0.6987265639068339, TIES: 1
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 Cong Yu :: author.name = 'Cong Yu'; author.name = 'Yu Cong' : author.name = 'Cong Yu' (1.0)
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 Cong Yu :: author.name = 'Cong Yu'; author.name = 'Yu Cong' : author.name = 'Yu Cong' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 12/16
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 163 ==
 Pruned candidates for keyword: 1
  - keyword.keyword (1.0)
@@ -500,39 +442,33 @@ Pruned candidates for papers: 6
  - count(author.name) = max(count(author.name)) (0.58445)
  - count(conference.name) = max(count(conference.name)) (0.58445)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 6
-TOTAL SCORE: 0.7081723531729818, TIES: 0
+TOTAL SCORE: 0.7081723484651661, TIES: 0
 --
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 12/17
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 190 ==
-Cands for 'keywords': 66
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.7239634248944092, TIES: 0
+TOTAL SCORE: 0.7239634200813196, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 13/18
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 93 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
-Cands for 'Making database systems usable': 480
 Pruned candidates for Making database systems usable: 1
  - publication.title = 'Making database systems usable' (1.0)
 TOTAL INTERPS COUNT: 1
@@ -540,12 +476,9 @@ TOTAL SCORE: 0.8307691907692298, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 12 ==
-Cands for 'citations': 66
 Pruned candidates for citations: 6
  - publication.citation_num (0.8148)
  - cite.cited (0.63845)
@@ -560,54 +493,45 @@ TOTAL SCORE: 0.7241301821693925, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 15/20
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 46 ==
-Cands for 'keywords': 66
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8019999599999991, TIES: 0
+TOTAL SCORE: 0.8019999519999994, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 16/21
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 57 ==
-Cands for 'researchers': 66
 Pruned candidates for researchers: 5
  - journal.name (0.6734)
  - author.name (0.6078)
  - publication.abstract (0.5911)
  - keyword_variations.variation (0.5907)
  - publication.doi (0.58695)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-TOTAL INTERPS COUNT: 30
+TOTAL INTERPS COUNT: 25
 TOTAL SCORE: 0.6872223360672901, TIES: 0
 --
 researchers :: author.name : journal.name (0.6734)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 16/22
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 36 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -620,30 +544,28 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7408389255811952, TIES: 0
+TOTAL SCORE: 0.7408389209595955, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 17/23
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 82 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -655,51 +577,42 @@ TOTAL SCORE: 0.6561957466606455, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 18/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 116 ==
-Cands for 'researchers': 50
 Pruned candidates for researchers: 5
  - count(journal.name) (0.6734)
  - count(author.name) (0.6078)
  - count(publication.abstract) (0.5911)
  - count(keyword_variations.variation) (0.5907)
  - count(publication.doi) (0.58695)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-TOTAL INTERPS COUNT: 30
+TOTAL INTERPS COUNT: 25
 TOTAL SCORE: 0.6872223360672901, TIES: 0
 --
 researchers :: count(author.name) : count(journal.name) (0.6734)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 18/25
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 17 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '= 2002': 11
 Pruned candidates for in 2002: 4
  - publication.year = 2002 (0.7807938460310763)
  - conference.cid = 2002 (0.7040954622776658)
@@ -712,10 +625,10 @@ authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 in 2002 :: publication.year = 2002 : publication.year = 2002 (0.7807938460310763)
-== RESULT: WRONG == 
-
-SO FAR: 18/26
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 59 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -741,63 +654,54 @@ TOTAL SCORE: 0.6851699573098197, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 19/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 2 ==
-Cands for 'homepage': 66
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
  - organization.homepage (1.0)
  - author.homepage (1.0)
  - journal.homepage (1.0)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 4
-TOTAL SCORE: 0.802, TIES: 3
+TOTAL SCORE: 0.801999992, TIES: 3
 --
 homepage :: author.homepage : conference.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 --
 homepage :: author.homepage : organization.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 --
 homepage :: author.homepage : author.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 --
 homepage :: author.homepage : journal.homepage (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 19/28
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.25]
 == QUERY ID: 168 ==
-Cands for 'author': 66
 Pruned candidates for author: 1
  - author.name (1.0)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-Cands for 'papers': 16
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
-Pruned candidates for Databases area: 6
+ - publication_keyword (0.61615)
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-Cands for 'citations': 8
 Pruned candidates for citations: 3
  - sum(journal.name) = max(sum(journal.name)) (0.6021)
  - sum(keyword.keyword) = max(sum(keyword.keyword)) (0.5806)
  - sum(publication.title) = max(sum(publication.title)) (0.56955)
-TOTAL INTERPS COUNT: 90
+TOTAL INTERPS COUNT: 75
 TOTAL SCORE: 0.6634643442211937, TIES: 0
 --
 author :: author.name : author.name (1.0)
@@ -805,21 +709,19 @@ University of Michigan :: organization.name = 'University of Michigan' : organiz
 papers :: publication : journal (0.6878)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: sum(publication.citation_num) = max(sum(publication.citation_num)) : sum(journal.name) = max(sum(journal.name)) (0.6021)
-== RESULT: WRONG == 
-
-SO FAR: 19/29
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 107 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -827,31 +729,25 @@ TOTAL SCORE: 0.6760970544371709, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 20/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 20 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '> 2002': 11
 Pruned candidates for after 2002: 5
  - publication.year > 2002 (0.7856133113688948)
  - author.aid > 2002 (0.754084299001113)
  - keyword.kid > 2002 (0.7350822811087205)
  - publication.reference_num > 2002 (0.7074955406219887)
  - publication.citation_num > 2002 (0.7044858870126498)
-Cands for '< 1995': 11
 Pruned candidates for before 1995: 5
  - domain.did < 1995 (0.791351609589568)
  - publication.year < 1995 (0.7693119068362324)
@@ -866,10 +762,10 @@ papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2002 :: publication.year > 2002 : publication.year > 2002 (0.7856133113688948)
 before 1995 :: publication.year < 1995 : domain.did < 1995 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 20/31
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 96 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -880,12 +776,9 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 21/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 21 ==
-Cands for 'area': 66
 Pruned candidates for area: 5
  - organization.name (0.60535)
  - organization.continent (0.5904)
@@ -899,33 +792,28 @@ TOTAL SCORE: 0.6244339322369885, TIES: 0
 --
 area :: domain.name : organization.name (0.60535)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 21/33
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 8 ==
-Cands for 'organizations': 66
 Pruned candidates for organizations: 1
  - organization.name (0.9999999)
 TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8019999200000001, TIES: 0
 --
 organizations :: organization.name : organization.name (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 22/34
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 1)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 110 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for University of Michigan: 1
@@ -936,12 +824,8 @@ TOTAL SCORE: 0.7180594928528896, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 23/35
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 37 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -954,28 +838,28 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.738441051690396, TIES: 0
+TOTAL SCORE: 0.7384410470687962, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/36
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 49 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -984,10 +868,8 @@ TOTAL SCORE: 0.7081723296339025, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 papers :: publication : journal (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 24/37
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 38 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1000,7 +882,7 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -1008,26 +890,24 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.6992791902508616, TIES: 0
+TOTAL SCORE: 0.6992791859864222, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 25/38
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 111 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for University of Michigan: 1
@@ -1038,12 +918,9 @@ TOTAL SCORE: 0.726319991866117, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 26/39
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 173 ==
-Cands for 'journal': 66
 Pruned candidates for journal: 1
  - journal.name (1.0)
 Pruned candidates for papers: 6
@@ -1054,19 +931,15 @@ Pruned candidates for papers: 6
  - count(author.name) = max(count(author.name)) (0.58445)
  - count(conference.name) = max(count(conference.name)) (0.58445)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 6
-TOTAL SCORE: 0.7097479673133681, TIES: 0
+TOTAL SCORE: 0.7097479626055524, TIES: 0
 --
 journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 26/40
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 137 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1081,11 +954,11 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
 Pruned candidates for after 2005: 5
@@ -1095,43 +968,39 @@ Pruned candidates for after 2005: 5
  - publication.reference_num > 2005 (0.7074955406219887)
  - publication.citation_num > 2005 (0.7044858870126498)
 TOTAL INTERPS COUNT: 225
-TOTAL SCORE: 0.6659022454423107, TIES: 0
+TOTAL SCORE: 0.6659022427867017, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 after 2005 :: publication.year > 2005 : publication.year > 2005 (0.7856133113688948)
-== RESULT: WRONG == 
-
-SO FAR: 26/41
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 142 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
-Cands for 'cited': 16
 Pruned candidates for cited: 1
  - cite (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-Returning 0.0 because cite is a duplicate in the interpretation.
-TOTAL SCORE: 0.7552102007864742, TIES: 0
+TOTAL SCORE: 0.7552101971437565, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
 cited :: cite : cite (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 26/42
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 159 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -1145,15 +1014,11 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.7349802548368222)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 27/43
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 187 ==
-Cands for 'journals': 66
 Pruned candidates for journals: 1
  - journal.name (0.9999999)
-Cands for '> 60': 8
 Pruned candidates for 60 papers: 1
  - count(publication.title) > 60 (0.7349802548368222)
 Pruned candidates for keyword Relational Database: 1
@@ -1164,34 +1029,28 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 journals :: journal.name : journal.name (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 28/44
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 79 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7119944903346068, TIES: 0
+TOTAL SCORE: 0.7119944838813286, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 29/45
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 48 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -1202,12 +1061,11 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 30/46
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 3 ==
-Cands for 'abstract': 66
 Pruned candidates for abstract: 1
  - publication.abstract (1.0)
 Pruned candidates for Making database systems usable: 1
@@ -1217,10 +1075,8 @@ TOTAL SCORE: 0.802, TIES: 0
 --
 abstract :: publication.abstract : publication.abstract (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 31/47
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 169 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1235,11 +1091,11 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 Pruned candidates for citations: 6
@@ -1250,19 +1106,16 @@ Pruned candidates for citations: 6
  - organization.oid = max(organization.oid) (0.58405)
  - author.oid = max(author.oid) (0.58405)
 TOTAL INTERPS COUNT: 270
-TOTAL SCORE: 0.6707635198264695, TIES: 0
+TOTAL SCORE: 0.6707635171514155, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
-
-SO FAR: 31/48
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 149 ==
-Cands for 'author': 66
 Pruned candidates for author: 1
  - author.name (1.0)
 Pruned candidates for papers: 6
@@ -1280,21 +1133,19 @@ TOTAL SCORE: 0.7102850880637894, TIES: 0
 author :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 31/49
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
-==== FINAL RESULTS ====
-31/49 (63.26530612244898%)
-00:48  INFO: ===== FOLD 1 =====
+==== FOLD RESULTS ====
+31,32,31.250,49,134,135,134.250,155
+00:01  INFO: ===== FOLD 1 =====
 Original log size: 142
 Trimming log to 100.0%...
 Final log size: 142
-00:48  INFO: ===== Parsing Results =====
-00:48  INFO: Total Queries: 142
-00:48  INFO: Correctly Parsed: 142/142
+00:01  INFO: ===== Parsing Results =====
+00:01  INFO: Total Queries: 142
+00:01  INFO: Correctly Parsed: 142/142
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
@@ -1316,10 +1167,10 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 0/1
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 141 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1334,14 +1185,13 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
-Cands for '< 2000': 11
 Pruned candidates for before 2000: 5
  - domain.did < 2000 (0.791351609589568)
  - publication.year < 2000 (0.7693119068362324)
@@ -1349,31 +1199,28 @@ Pruned candidates for before 2000: 5
  - author.aid < 2000 (0.7368824159932167)
  - domain_keyword.rank < 2000 (0.710984841610565)
 TOTAL INTERPS COUNT: 225
-TOTAL SCORE: 0.6668692827558893, TIES: 0
+TOTAL SCORE: 0.6668692800964121, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 0/2
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 99 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for 'keyword Keyword search': 388
 Pruned candidates for keyword Keyword search: 1
  - keyword.keyword = 'Keyword Search' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -1382,10 +1229,8 @@ TOTAL SCORE: 0.7148316435309987, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 keyword Keyword search :: keyword.keyword = 'Keyword Search' : keyword.keyword = 'Keyword Search' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 1/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 179 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -1412,10 +1257,8 @@ TOTAL SCORE: 0.6623752619780894, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 2/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 68 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1428,10 +1271,9 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '> 200': 11
 Pruned candidates for 200 citations: 5
  - publication.citation_num > 200 (0.9026175934469702)
  - organization.oid > 200 (0.7641934277393387)
@@ -1439,18 +1281,14 @@ Pruned candidates for 200 citations: 5
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7359721427855792, TIES: 0
+TOTAL SCORE: 0.7359721392838614, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 3/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 182 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -1466,7 +1304,6 @@ Pruned candidates for after 2000: 5
  - publication.citation_num > 2000 (0.7044858870126498)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for 'citations': 50
 Pruned candidates for citations: 6
  - max(publication.citation_num) (0.8148)
  - max(cite.cited) (0.63845)
@@ -1475,23 +1312,17 @@ Pruned candidates for citations: 6
  - max(author.oid) (0.58405)
  - max(organization.oid) (0.58405)
 TOTAL INTERPS COUNT: 150
-Returning 0.0 because journal.name is a duplicate in the interpretation.
-Returning 0.0 because journal.name is a duplicate in the interpretation.
-Returning 0.0 because journal.name is a duplicate in the interpretation.
-Returning 0.0 because journal.name is a duplicate in the interpretation.
-Returning 0.0 because journal.name is a duplicate in the interpretation.
 TOTAL SCORE: 0.6635798931674455, TIES: 0
 --
 paper :: publication.title : journal.name (0.73065)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : max(publication.citation_num) (0.8148)
-== RESULT: WRONG == 
-
-SO FAR: 3/6
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 129 ==
-Cands for 'citations': 50
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
  - sum(cite.cited) (0.63845)
@@ -1501,13 +1332,12 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '= 2005': 11
 Pruned candidates for 2005: 4
  - publication.pid = 2005 (0.9999)
  - keyword.kid = 2005 (0.9999)
@@ -1530,10 +1360,8 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 2005 :: publication.year = 2005 : conference.cid = 2005 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 3/7
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 167 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -1541,10 +1369,10 @@ Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for citations: 3
  - sum(journal.name) = max(sum(journal.name)) (0.6021)
  - sum(keyword.keyword) = max(sum(keyword.keyword)) (0.5806)
@@ -1556,12 +1384,9 @@ author :: author.name : author.name (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 papers :: publication : journal (0.6878)
 citations :: sum(publication.citation_num) = max(sum(publication.citation_num)) : sum(journal.name) = max(sum(journal.name)) (0.6021)
-== RESULT: WRONG == 
-
-SO FAR: 3/8
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 185 ==
-Cands for 'authors': 66
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for 10 papers: 1
@@ -1574,10 +1399,8 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 authors :: author.name : author.name (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 4/9
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 183 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -1591,43 +1414,38 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 authors :: author.name : author.name (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 5/10
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 172 ==
 Pruned candidates for journals: 1
  - journal.name (0.9999999)
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.7239634248944092, TIES: 0
+TOTAL SCORE: 0.7239634200813196, TIES: 0
 --
 journals :: journal.name : journal.name (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 6/11
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 132 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for 'year': 66
 Pruned candidates for year: 1
  - publication.year (1.0)
 TOTAL INTERPS COUNT: 9
@@ -1636,38 +1454,33 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 6/12
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 91 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-TOTAL INTERPS COUNT: 6
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.77479747688408, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
-
-SO FAR: 7/13
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 22 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -1676,12 +1489,9 @@ TOTAL SCORE: 0.7081723296339025, TIES: 0
 authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 7/14
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 156 ==
-Cands for 'conferences': 50
 Pruned candidates for conferences: 1
  - count(conference.name) (0.9999999)
 Pruned candidates for 60 papers: 1
@@ -1694,12 +1504,8 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 conferences :: count(conference.name) : count(conference.name) (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 8/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 50 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1712,21 +1518,20 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for keyword User Study: 1
  - keyword.keyword = 'User Study' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7081723531729818, TIES: 0
+TOTAL SCORE: 0.7081723484651661, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 keyword User Study :: keyword.keyword = 'User Study' : keyword.keyword = 'User Study' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 8/16
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 28 ==
-Cands for 'conference': 66
 Pruned candidates for conference: 1
  - conference.name (1.0)
 Pruned candidates for Making database systems usable: 1
@@ -1736,24 +1541,20 @@ TOTAL SCORE: 0.802, TIES: 0
 --
 conference :: conference.name : conference.name (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 9/17
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 94 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8097560575609747, TIES: 0
+TOTAL SCORE: 0.809756049560975, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/18
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 58 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1772,10 +1573,8 @@ TOTAL SCORE: 0.6749574532975698, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 63 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1804,12 +1603,8 @@ papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 12/20
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 191 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -1823,12 +1618,11 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 authors :: author.name : author.name (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 13/21
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 4 ==
-Cands for 'year': 66
 Pruned candidates for year: 1
  - publication.year (1.0)
 Pruned candidates for Making database systems usable: 1
@@ -1838,10 +1632,8 @@ TOTAL SCORE: 0.802, TIES: 0
 --
 year :: publication.year : publication.year (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 35 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1867,22 +1659,19 @@ TOTAL SCORE: 0.676748337973701, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 15/23
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 15 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '= 2010': 11
 Pruned candidates for 2010: 4
  - organization.oid = 2010 (0.9999)
  - publication.year = 2010 (0.9999)
@@ -1910,31 +1699,24 @@ authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2010 :: publication.year = 2010 : publication.pid = 2010 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 15/24
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.25]
 == QUERY ID: 160 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.7239634248944092, TIES: 0
+TOTAL SCORE: 0.7239634200813196, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 16/25
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 66 ==
-Cands for 'paper': 66
 Pruned candidates for paper: 5
  - journal.name (0.73065)
  - publication.title (0.67795)
@@ -1955,10 +1737,10 @@ TOTAL SCORE: 0.6983502160147887, TIES: 0
 paper :: publication.title : journal.name (0.73065)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 16/26
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 40 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -1971,7 +1753,7 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -1981,28 +1763,25 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7106616765804014, TIES: 0
+TOTAL SCORE: 0.7106616731981381, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 17/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 16 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '> 2010': 11
 Pruned candidates for after 2010: 5
  - publication.year > 2010 (0.7856133113688948)
  - author.aid > 2010 (0.754084299001113)
@@ -2016,36 +1795,32 @@ authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2010 :: publication.year > 2010 : publication.year > 2010 (0.7856133113688948)
-== RESULT: WRONG == 
-
-SO FAR: 17/28
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 194 ==
 Pruned candidates for author: 1
  - author.name (1.0)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
-Cands for '> 5000': 19
+ - publication_keyword (0.61615)
 Pruned candidates for 5000 citations: 5
  - sum(publication.citation_num) > 5000 (0.9026175934469702)
  - sum(organization.oid) > 5000 (0.7641934277393387)
  - sum(publication.title) > 5000 (0.7505289234932921)
  - sum(conference.cid) > 5000 (0.731332010785799)
  - sum(publication.pid) > 5000 (0.7148418671286679)
-TOTAL INTERPS COUNT: 150
+TOTAL INTERPS COUNT: 125
 TOTAL SCORE: 0.7192548147548016, TIES: 0
 --
 author :: author.name : author.name (1.0)
@@ -2053,37 +1828,31 @@ University of Michigan :: organization.name = 'University of Michigan' : organiz
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 papers :: publication : journal (0.6878)
 5000 citations :: sum(publication.citation_num) > 5000 : sum(publication.citation_num) > 5000 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 17/29
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 86 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7238803283934533, TIES: 0
+TOTAL SCORE: 0.7238803237718535, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 18/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 14 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -2102,42 +1871,40 @@ TOTAL SCORE: 0.6873458938892759, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-SO FAR: 19/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 76 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for year: 1
  - publication.year (1.0)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.6766048075393761, TIES: 0
+TOTAL SCORE: 0.676604804174063, TIES: 0
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 19/32
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 186 ==
 Pruned candidates for conferences: 1
  - conference.name (0.9999999)
@@ -2151,62 +1918,51 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 conferences :: conference.name : conference.name (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 20/33
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 43 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-TOTAL INTERPS COUNT: 6
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.77479747688408, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
-
-SO FAR: 21/34
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 105 ==
-Cands for 'organizations': 50
 Pruned candidates for organizations: 1
  - count(organization.name) (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-TOTAL INTERPS COUNT: 6
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.8299403340269371, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 22/35
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 83 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -2221,42 +1977,40 @@ TOTAL SCORE: 0.7053991118203182, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 23/36
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 143 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7023708557686766, TIES: 0
+TOTAL SCORE: 0.7023708524496928, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/37
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 41 ==
 Pruned candidates for area: 5
  - organization.name (0.60535)
@@ -2271,20 +2025,17 @@ TOTAL SCORE: 0.6244339322369885, TIES: 0
 --
 area :: domain.name : organization.name (0.60535)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 24/38
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 118 ==
-Cands for 'authors': 50
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -2293,60 +2044,53 @@ TOTAL SCORE: 0.7574543809159537, TIES: 0
 authors :: count(author.name) : count(author.name) (0.9999999)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 24/39
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 140 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8333332933333324, TIES: 0
+TOTAL SCORE: 0.8333332853333327, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 25/40
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 23 ==
-Cands for 'organization': 66
 Pruned candidates for organization: 1
  - organization.name (1.0)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.802, TIES: 0
+TOTAL SCORE: 0.801999992, TIES: 0
 --
 organization :: organization.name : organization.name (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 26/41
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 144 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 Pruned candidates for before 2000: 5
@@ -2356,21 +2100,18 @@ Pruned candidates for before 2000: 5
  - author.aid < 2000 (0.7368824159932167)
  - domain_keyword.rank < 2000 (0.710984841610565)
 TOTAL INTERPS COUNT: 225
-TOTAL SCORE: 0.6668692827558893, TIES: 0
+TOTAL SCORE: 0.6668692800964121, TIES: 0
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 26/42
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 9 ==
 Pruned candidates for organizations: 1
  - organization.name (0.9999999)
-Cands for 'North America': 123
 Pruned candidates for North America: 2
  - keyword.keyword = 'North America' (1.0)
  - organization.continent = 'North America' (1.0)
@@ -2379,10 +2120,8 @@ TOTAL SCORE: 0.8666666266666657, TIES: 0
 --
 organizations :: organization.name : organization.name (0.9999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 27/43
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 69 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -2395,7 +2134,7 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for 200 citations: 5
@@ -2405,16 +2144,14 @@ Pruned candidates for 200 citations: 5
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7121195651436719, TIES: 0
+TOTAL SCORE: 0.7121195615930741, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 27/44
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 73 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -2443,12 +2180,8 @@ paper :: publication.title : journal.name (0.73065)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 27/45
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 178 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -2457,7 +2190,7 @@ Pruned candidates for paper: 5
  - publication.doi (0.6279)
  - author.name (0.61705)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for citations: 6
  - publication.citation_num = max(publication.citation_num) (0.8148)
  - cite.cited = max(cite.cited) (0.63845)
@@ -2466,15 +2199,15 @@ Pruned candidates for citations: 6
  - organization.oid = max(organization.oid) (0.58405)
  - author.oid = max(author.oid) (0.58405)
 TOTAL INTERPS COUNT: 30
-TOTAL SCORE: 0.6914777307211352, TIES: 0
+TOTAL SCORE: 0.6914777263450916, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 28/46
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 148 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -2489,11 +2222,11 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 Pruned candidates for 200 citations: 5
@@ -2503,17 +2236,15 @@ Pruned candidates for 200 citations: 5
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
 TOTAL INTERPS COUNT: 225
-TOTAL SCORE: 0.6845950423345577, TIES: 0
+TOTAL SCORE: 0.6845950396041774, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 28/47
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 131 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -2524,10 +2255,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for year: 1
@@ -2539,23 +2270,21 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 28/48
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 87 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -2563,33 +2292,31 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.6984161592449442, TIES: 0
+TOTAL SCORE: 0.6984161549805048, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 29/49
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
-==== FINAL RESULTS ====
-29/49 (59.183673469387756%)
-01:15  INFO: ===== FOLD 2 =====
+==== FOLD RESULTS ====
+29,29,29.000,49,130,131,130.250,156
+00:02  INFO: ===== FOLD 2 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-01:15  INFO: ===== Parsing Results =====
-01:15  INFO: Total Queries: 141
-01:15  INFO: Correctly Parsed: 141/141
+00:02  INFO: ===== Parsing Results =====
+00:02  INFO: Total Queries: 141
+00:02  INFO: Correctly Parsed: 141/141
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
 == QUERY ID: 29 ==
-Cands for 'references': 66
-Pruned candidates for references: 7
+Pruned candidates for references: 8
  - publication.reference_num (0.7492)
+ - keyword_variations.variation (0.66865)
  - keyword_variations.variation (0.6414)
  - conference.name (0.6407499999999999)
  - organization.name (0.6407499999999999)
@@ -2598,15 +2325,15 @@ Pruned candidates for references: 7
  - domain.name (0.6407499999999999)
 Pruned candidates for Making database systems usable: 1
  - publication.title = 'Making database systems usable' (1.0)
-TOTAL INTERPS COUNT: 7
+TOTAL INTERPS COUNT: 8
 TOTAL SCORE: 0.6944507202682368, TIES: 0
 --
 references :: publication.reference_num : publication.reference_num (0.7492)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 31 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -2619,16 +2346,14 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7303278236679401, TIES: 0
+TOTAL SCORE: 0.7303278172146619, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 2/2
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 153 ==
 Pruned candidates for conferences: 1
  - count(conference.name) (0.9999999)
@@ -2642,10 +2367,8 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 conferences :: count(conference.name) : count(conference.name) (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 3/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 122 ==
 Pruned candidates for citations: 6
  - publication.citation_num (0.8148)
@@ -2663,16 +2386,13 @@ Pruned candidates for paper: 5
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 30
-Returning 0.0 because journal.name is a duplicate in the interpretation.
 TOTAL SCORE: 0.674992343407495, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 paper :: publication.title : journal.name (0.73065)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 3/4
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 164 ==
 Pruned candidates for journal: 1
  - journal.name (1.0)
@@ -2691,12 +2411,8 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 journal :: journal.name : journal.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 3/5
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 147 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
@@ -2704,69 +2420,62 @@ Pruned candidates for cited: 1
  - cite (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-Returning 0.0 because cite is a duplicate in the interpretation.
-TOTAL SCORE: 0.7624418392045533, TIES: 0
+TOTAL SCORE: 0.7624418355618356, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (0.9999999)
 cited :: cite : cite (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 3/6
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 24 ==
-Cands for 'conferences': 66
 Pruned candidates for conferences: 1
  - conference.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-TOTAL SCORE: 0.7081723296339025, TIES: 0
+TOTAL SCORE: 0.708172324926087, TIES: 0
 --
 conferences :: conference.name : conference.name (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 3/7
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 55 ==
 Pruned candidates for organizations: 1
  - organization.name (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for North America: 2
  - keyword.keyword = 'North America' (1.0)
  - organization.continent = 'North America' (1.0)
-TOTAL INTERPS COUNT: 12
+TOTAL INTERPS COUNT: 10
 TOTAL SCORE: 0.8197210768923565, TIES: 0
 --
 organizations :: organization.name : organization.name (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 4/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 44 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -2778,7 +2487,6 @@ Pruned candidates for papers: 9
  - domain_conference.did (0.5982)
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
-Cands for 'keyword Natural Language': 173
 Pruned candidates for keyword Natural Language: 1
  - keyword.keyword = 'Natural Language' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -2786,10 +2494,8 @@ TOTAL SCORE: 0.6654696677316907, TIES: 0
 --
 papers :: publication.title : journal.name (0.6878)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 4/9
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 61 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -2811,12 +2517,8 @@ TOTAL SCORE: 0.7287442903635336, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 5/10
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 123 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -2827,10 +2529,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for 2005: 4
@@ -2860,10 +2562,10 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 2005 :: publication.year = 2005 : publication.year = 2005 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 5/11
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.25]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 124 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -2874,13 +2576,12 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '< 2005': 11
 Pruned candidates for before 2005: 5
  - domain.did < 2005 (0.791351609589568)
  - publication.year < 2005 (0.7693119068362324)
@@ -2894,10 +2595,8 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2005 :: publication.year < 2005 : domain.did < 2005 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 5/12
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 71 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -2911,11 +2610,10 @@ Pruned candidates for after 2000: 5
  - keyword.kid > 2000 (0.7350822811087205)
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for 200 citations: 5
@@ -2924,17 +2622,15 @@ Pruned candidates for 200 citations: 5
  - publication.reference_num > 200 (0.7396588977359767)
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
-TOTAL INTERPS COUNT: 750
+TOTAL INTERPS COUNT: 625
 TOTAL SCORE: 0.6690883499843793, TIES: 0
 --
 paper :: publication.title : journal.name (0.73065)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 5/13
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 56 ==
 Pruned candidates for researchers: 5
  - journal.name (0.6734)
@@ -2949,21 +2645,19 @@ TOTAL SCORE: 0.6584876236457167, TIES: 0
 --
 researchers :: author.name : journal.name (0.6734)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 5/14
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 112 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB: 2
  - journal.name = 'VLDB' (1.0)
  - conference.name = 'VLDB' (1.0)
@@ -2982,12 +2676,8 @@ papers :: count(publication.title) : count(publication.title) (0.650700000000000
 VLDB :: conference.name = 'VLDB'; journal.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 6/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 175 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -2995,11 +2685,10 @@ Pruned candidates for paper: 5
  - publication.abstract (0.64015)
  - publication.doi (0.6279)
  - author.name (0.61705)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for citations: 6
@@ -3009,16 +2698,16 @@ Pruned candidates for citations: 6
  - domain_keyword.rank = max(domain_keyword.rank) (0.5858)
  - organization.oid = max(organization.oid) (0.58405)
  - author.oid = max(author.oid) (0.58405)
-TOTAL INTERPS COUNT: 180
+TOTAL INTERPS COUNT: 150
 TOTAL SCORE: 0.6645339465821973, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 7/16
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 90 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -3026,10 +2715,8 @@ TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8019999200000001, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 8/17
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 1)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 104 ==
 Pruned candidates for organizations: 1
  - count(organization.name) (0.9999999)
@@ -3041,10 +2728,8 @@ TOTAL SCORE: 0.8666666266666657, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (0.9999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 9/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 30 ==
 Pruned candidates for citations: 6
  - publication.citation_num (0.8148)
@@ -3060,12 +2745,9 @@ TOTAL SCORE: 0.7241301821693925, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 157 ==
-Cands for 'journals': 50
 Pruned candidates for journals: 1
  - count(journal.name) (0.9999999)
 Pruned candidates for 60 papers: 1
@@ -3078,21 +2760,17 @@ TOTAL SCORE: 0.7284000207917801, TIES: 0
 journals :: count(journal.name) : count(journal.name) (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 11/20
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 117 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -3101,10 +2779,10 @@ TOTAL SCORE: 0.7334450569066298, TIES: 0
 authors :: count(author.name) : count(author.name) (0.9999999)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 11/21
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 121 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -3115,10 +2793,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 30
@@ -3127,10 +2805,8 @@ TOTAL SCORE: 0.6615702384935485, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 11/22
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 6 ==
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
@@ -3153,10 +2829,8 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 --
 homepage :: conference.homepage : journal.homepage (1.0)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 11/23
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.25]
 == QUERY ID: 33 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -3175,24 +2849,21 @@ TOTAL SCORE: 0.7068662852064017, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 12/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 100 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for 'keyword Information Retrieval': 456
 Pruned candidates for keyword Information Retrieval: 1
  - keyword.keyword = 'Information Retrieval' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -3201,12 +2872,8 @@ TOTAL SCORE: 0.7126041209947226, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 13/25
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 189 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -3220,10 +2887,10 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.7349802548368222)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 72 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3252,10 +2919,8 @@ paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-SO FAR: 15/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 7 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -3263,12 +2928,9 @@ TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8019999200000001, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 16/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 1)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 171 ==
-Cands for 'conference': 66
 Pruned candidates for conference: 1
  - conference.name (1.0)
 Pruned candidates for papers: 6
@@ -3279,28 +2941,26 @@ Pruned candidates for papers: 6
  - count(author.name) = max(count(author.name)) (0.58445)
  - count(conference.name) = max(count(conference.name)) (0.58445)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 6
-TOTAL SCORE: 0.7081723531729818, TIES: 0
+TOTAL SCORE: 0.7081723484651661, TIES: 0
 --
 conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 16/29
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 84 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -3315,12 +2975,8 @@ TOTAL SCORE: 0.6984404325377647, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 17/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 103 ==
 Pruned candidates for organizations: 1
  - count(organization.name) (0.9999999)
@@ -3328,10 +2984,10 @@ TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8019999200000001, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 18/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 1)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 176 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3354,74 +3010,62 @@ TOTAL SCORE: 0.6918495757881353, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 19/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 26 ==
-Cands for 'domain': 66
 Pruned candidates for domain: 1
  - domain.name (1.0)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.802, TIES: 0
+TOTAL SCORE: 0.801999992, TIES: 0
 --
 domain :: domain.name : domain.name (1.0)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 20/33
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 25 ==
-Cands for 'journals': 66
 Pruned candidates for journals: 1
  - journal.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-TOTAL SCORE: 0.7081723296339025, TIES: 0
+TOTAL SCORE: 0.708172324926087, TIES: 0
 --
 journals :: journal.name : journal.name (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 20/34
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 85 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 9
-TOTAL SCORE: 0.7488497586757018, TIES: 0
+TOTAL SCORE: 0.748849754054102, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 21/35
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 60 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -3443,10 +3087,10 @@ TOTAL SCORE: 0.7164508439665827, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 22/36
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 70 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3472,10 +3116,8 @@ TOTAL SCORE: 0.6728915759097726, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-SO FAR: 23/37
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 47 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -3486,21 +3128,19 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/38
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 109 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -3515,34 +3155,27 @@ TOTAL SCORE: 0.6881996107152755, TIES: 0
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 25/39
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 74 ==
-Cands for 'conferences': 50
 Pruned candidates for conferences: 1
  - count(conference.name) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-TOTAL SCORE: 0.7081723296339025, TIES: 0
+TOTAL SCORE: 0.708172324926087, TIES: 0
 --
 conferences :: count(conference.name) : count(conference.name) (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 25/40
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 64 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3550,11 +3183,10 @@ Pruned candidates for paper: 5
  - publication.abstract (0.64015)
  - publication.doi (0.6279)
  - author.name (0.61705)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for 200 citations: 5
@@ -3563,16 +3195,16 @@ Pruned candidates for 200 citations: 5
  - publication.reference_num > 200 (0.7396588977359767)
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
-TOTAL INTERPS COUNT: 150
+TOTAL INTERPS COUNT: 125
 TOTAL SCORE: 0.6824739980246611, TIES: 0
 --
 paper :: publication.title : journal.name (0.73065)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 25/41
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 177 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3595,10 +3227,8 @@ TOTAL SCORE: 0.6896774144025128, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 26/42
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 10 ==
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
@@ -3621,10 +3251,8 @@ University of Michigan :: organization.name = 'University of Michigan' : organiz
 --
 homepage :: organization.homepage : journal.homepage (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 26/43
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.25]
 == QUERY ID: 78 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -3643,21 +3271,19 @@ TOTAL SCORE: 0.7492059595989107, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 27/44
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 126 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for year: 1
@@ -3668,21 +3294,17 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 27/45
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 42 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -3691,19 +3313,19 @@ TOTAL SCORE: 0.7409549383295547, TIES: 0
 authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 27/46
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 101 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for keyword Relational Database: 1
  - keyword.keyword = 'Relational Database' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -3712,10 +3334,8 @@ TOTAL SCORE: 0.7221723296339025, TIES: 0
 authors :: count(author.name) : count(author.name) (0.9999999)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 27/47
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 127 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -3726,10 +3346,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 30
@@ -3738,21 +3358,19 @@ TOTAL SCORE: 0.6720702384935484, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 27/48
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
-==== FINAL RESULTS ====
-27/48 (56.25%)
-01:22  INFO: ===== FOLD 3 =====
+==== FOLD RESULTS ====
+27,29,27.500,48,110,113,110.750,133
+00:02  INFO: ===== FOLD 3 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-01:22  INFO: ===== Parsing Results =====
-01:22  INFO: Total Queries: 141
-01:22  INFO: Correctly Parsed: 141/141
+00:02  INFO: ===== Parsing Results =====
+00:02  INFO: Total Queries: 141
+00:02  INFO: Correctly Parsed: 141/141
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
@@ -3768,7 +3386,7 @@ Pruned candidates for papers: 9
  - domain_journal.did (0.5982)
  - domain_publication.did (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -3778,16 +3396,16 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7233190118550189, TIES: 0
+TOTAL SCORE: 0.7233190084727557, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 165 ==
 Pruned candidates for conference: 1
  - conference.name (1.0)
@@ -3806,10 +3424,8 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 1/2
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 13 ==
 Pruned candidates for year: 1
  - publication.year (1.0)
@@ -3820,10 +3436,8 @@ TOTAL SCORE: 0.802, TIES: 0
 --
 year :: publication.year : publication.year (1.0)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 2/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 125 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -3834,10 +3448,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for year: 1
@@ -3849,10 +3463,8 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 year :: publication.year : publication.year (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 2/4
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 95 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -3863,12 +3475,8 @@ TOTAL SCORE: 0.811764665882352, TIES: 0
 --
 keywords :: count(keyword.keyword) : count(keyword.keyword) (0.9999999)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 3/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 136 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -3883,47 +3491,44 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7095345621582096, TIES: 0
+TOTAL SCORE: 0.7095345588392258, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 4/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 106 ==
 Pruned candidates for organizations: 1
  - count(organization.name) (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
 Pruned candidates for North America: 2
  - keyword.keyword = 'North America' (1.0)
  - organization.continent = 'North America' (1.0)
-TOTAL INTERPS COUNT: 12
+TOTAL INTERPS COUNT: 10
 TOTAL SCORE: 0.8241542185809455, TIES: 0
 --
 organizations :: count(organization.name) : count(organization.name) (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
 North America :: organization.continent = 'North America' : organization.continent = 'North America' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 5/7
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 188 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -3937,40 +3542,35 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 100 papers :: count(publication.title) > 100 : count(publication.title) > 100 (0.7349802548368222)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 6/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 108 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-TOTAL INTERPS COUNT: 54
+TOTAL INTERPS COUNT: 45
 TOTAL SCORE: 0.7177469686973321, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
-
-SO FAR: 7/9
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 115 ==
 Pruned candidates for researchers: 5
  - count(journal.name) (0.6734)
@@ -3985,12 +3585,8 @@ TOTAL SCORE: 0.6584876236457167, TIES: 0
 --
 researchers :: count(author.name) : count(journal.name) (0.6734)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 7/10
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 114 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -4001,10 +3597,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 30
@@ -4013,10 +3609,10 @@ TOTAL SCORE: 0.6615702384935485, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 7/11
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 32 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4035,10 +3631,8 @@ TOTAL SCORE: 0.7007124390525555, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 8/12
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 102 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -4049,10 +3643,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for keyword Natural Language: 1
  - keyword.keyword = 'Natural Language' (1.0)
 TOTAL INTERPS COUNT: 30
@@ -4061,10 +3655,8 @@ TOTAL SCORE: 0.6615702384935485, TIES: 0
 citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.8148)
 papers :: publication : journal (0.6878)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 8/13
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 193 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -4072,10 +3664,10 @@ Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for 5000 citations: 5
  - sum(publication.citation_num) > 5000 (0.9026175934469702)
  - sum(organization.oid) > 5000 (0.7641934277393387)
@@ -4089,10 +3681,8 @@ author :: author.name : author.name (1.0)
 University of Michigan :: organization.name = 'University of Michigan' : organization.name = 'University of Michigan' (1.0)
 papers :: publication : journal (0.6878)
 5000 citations :: sum(publication.citation_num) > 5000 : sum(publication.citation_num) > 5000 (0.9026175934469702)
-== RESULT: WRONG == 
-
-SO FAR: 8/14
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 67 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -4101,7 +3691,7 @@ Pruned candidates for paper: 5
  - publication.doi (0.6279)
  - author.name (0.61705)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for 200 citations: 5
  - publication.citation_num > 200 (0.9026175934469702)
  - organization.oid > 200 (0.7641934277393387)
@@ -4109,17 +3699,13 @@ Pruned candidates for 200 citations: 5
  - publication.year > 200 (0.7389826689442723)
  - conference.cid > 200 (0.731332010785799)
 TOTAL INTERPS COUNT: 25
-TOTAL SCORE: 0.7304735163410744, TIES: 0
+TOTAL SCORE: 0.7304735118131495, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 9/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 52 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4141,10 +3727,10 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 papers :: publication.title : journal.name (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 keyword Information Retrieval :: keyword.keyword = 'Information Retrieval' : keyword.keyword = 'Information Retrieval' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 9/16
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 161 ==
 Pruned candidates for keyword: 1
  - keyword.keyword (1.0)
@@ -4163,10 +3749,8 @@ TOTAL SCORE: 0.709782684184938, TIES: 0
 keyword :: keyword.keyword : keyword.keyword (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 9/17
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 45 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -4177,10 +3761,8 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 keywords :: keyword.keyword : keyword.keyword (0.9999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 128 ==
 Pruned candidates for citations: 6
  - publication.citation_num (0.8148)
@@ -4198,27 +3780,24 @@ Pruned candidates for paper: 5
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 TOTAL INTERPS COUNT: 30
-Returning 0.0 because journal.name is a duplicate in the interpretation.
 TOTAL SCORE: 0.674992343407495, TIES: 0
 --
 citations :: publication.citation_num : publication.citation_num (0.8148)
 paper :: publication.title : journal.name (0.73065)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 10/19
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 92 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for keyword Natural Language: 1
  - keyword.keyword = 'Natural Language' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -4226,29 +3805,26 @@ TOTAL SCORE: 0.6654696677316907, TIES: 0
 --
 papers :: count(publication.title) : count(journal.name) (0.6878)
 keyword Natural Language :: keyword.keyword = 'Natural Language' : keyword.keyword = 'Natural Language' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 10/20
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 146 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8218181418181809, TIES: 0
+TOTAL SCORE: 0.8218181338181813, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/21
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 11 ==
-Pruned candidates for references: 7
+Pruned candidates for references: 8
  - publication.reference_num (0.7492)
+ - keyword_variations.variation (0.66865)
  - keyword_variations.variation (0.6414)
  - conference.name (0.6407499999999999)
  - organization.name (0.6407499999999999)
@@ -4257,15 +3833,13 @@ Pruned candidates for references: 7
  - domain.name (0.6407499999999999)
 Pruned candidates for Making database systems usable: 1
  - publication.title = 'Making database systems usable' (1.0)
-TOTAL INTERPS COUNT: 7
+TOTAL INTERPS COUNT: 8
 TOTAL SCORE: 0.6944507202682368, TIES: 0
 --
 references :: publication.reference_num : publication.reference_num (0.7492)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 12/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 1 ==
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
@@ -4288,23 +3862,21 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 --
 homepage :: journal.homepage : journal.homepage (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 12/23
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.25]
 == QUERY ID: 89 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for after 2000: 5
@@ -4314,16 +3886,14 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7213263444850678, TIES: 0
+TOTAL SCORE: 0.7213263411028046, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 13/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 192 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -4342,12 +3912,8 @@ TOTAL SCORE: 0.7116011884061716, TIES: 0
 author :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 13/25
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 27 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -4358,32 +3924,29 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 75 ==
-Cands for 'journals': 50
 Pruned candidates for journals: 1
  - count(journal.name) (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 TOTAL INTERPS COUNT: 5
-TOTAL SCORE: 0.7152632387248116, TIES: 0
+TOTAL SCORE: 0.715263234016996, TIES: 0
 --
 journals :: count(journal.name) : count(journal.name) (0.9999999)
 papers :: publication : journal (0.6878)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 14/27
-
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 5 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4406,10 +3969,8 @@ TOTAL SCORE: 0.6669004745821442, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 15/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 34 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4435,15 +3996,13 @@ TOTAL SCORE: 0.700716274821408, TIES: 0
 papers :: publication.title : publication.title (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-SO FAR: 16/29
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 135 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for after 2000: 5
  - publication.year > 2000 (0.7856133113688948)
  - author.aid > 2000 (0.754084299001113)
@@ -4451,45 +4010,41 @@ Pruned candidates for after 2000: 5
  - publication.reference_num > 2000 (0.7074955406219887)
  - publication.citation_num > 2000 (0.7044858870126498)
 TOTAL INTERPS COUNT: 5
-TOTAL SCORE: 0.7401754265522591, TIES: 0
+TOTAL SCORE: 0.7401754216310896, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688948)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 17/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 134 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8287435230960856, TIES: 0
+TOTAL SCORE: 0.8287435177627525, TIES: 0
 --
 authors :: author.name : author.name (0.9999999)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Divesh Srivastava :: author.name = 'Divesh Srivastava' : author.name = 'Divesh Srivastava' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 18/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 120 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for before 2000: 5
@@ -4504,10 +4059,8 @@ TOTAL SCORE: 0.6551814976111457, TIES: 0
 papers :: count(publication.title) : count(journal.name) (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 18/32
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 166 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -4526,10 +4079,8 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 author :: author.name : author.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 18/33
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 138 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4544,38 +4095,36 @@ Pruned candidates for papers: 9
 Pruned candidates for written: 5
  - writes (0.72845)
  - author (0.705)
+ - domain_author (0.6799999999999999)
  - publication (0.62755)
- - journal (0.62065)
- - cite (0.60485)
+ - domain_publication (0.62075)
 Pruned candidates for H. V. Jagadish: 1
- - author.name = 'H. V. Jagadish' (1.0)
+ - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 45
-TOTAL SCORE: 0.7182026313563744, TIES: 0
+TOTAL SCORE: 0.7182026286002039, TIES: 0
 --
 papers :: publication.title : publication.title (0.6507000000000001)
 written :: writes : writes (0.72845)
-H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (1.0)
+H. V. Jagadish :: author.name = 'H. V. Jagadish' : author.name = 'H. V. Jagadish' (0.99999998)
 Yunyao Li :: author.name = 'Yunyao Li' : author.name = 'Yunyao Li' (1.0)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 19/34
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 81 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 TOTAL INTERPS COUNT: 9
@@ -4583,31 +4132,26 @@ TOTAL SCORE: 0.6982690001385284, TIES: 0
 --
 papers :: count(publication.title) : count(publication.title) (0.6507000000000001)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 20/35
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 54 ==
 Pruned candidates for organizations: 1
  - organization.name (0.9999999)
-Pruned candidates for Databases area: 6
+Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
  - conference.full_name = 'Information Systems and Databases' (0.8924495)
- - conference.full_name = 'Ontologies-Based Databases and Information Systems' (0.892449)
  - conference.full_name = 'Applications of Databases' (0.8889495000000001)
  - conference.full_name = 'Databases and Applications' (0.8889495000000001)
-TOTAL INTERPS COUNT: 6
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.79779747688408, TIES: 0
 --
 organizations :: organization.name : organization.name (0.9999999)
 Databases area :: domain.name = 'Databases' : domain.name = 'Databases' (0.9331499999999999)
-== RESULT: CORRECT == 
-
-SO FAR: 21/36
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 77 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
@@ -4618,19 +4162,17 @@ TOTAL SCORE: 0.8019999599999991, TIES: 0
 --
 authors :: count(author.name) : count(author.name) (0.9999999)
 Making database systems usable :: publication.title = 'Making database systems usable' : publication.title = 'Making database systems usable' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 22/37
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 53 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for keyword Relational Database: 1
  - keyword.keyword = 'Relational Database' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -4639,10 +4181,8 @@ TOTAL SCORE: 0.7081723296339025, TIES: 0
 authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 22/38
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 154 ==
 Pruned candidates for journals: 1
  - count(journal.name) (0.9999999)
@@ -4656,10 +4196,8 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 journals :: count(journal.name) : count(journal.name) (0.9999999)
 60 papers :: count(publication.title) > 60 : count(publication.title) > 60 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 23/39
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 51 ==
 Pruned candidates for papers: 9
  - journal.name (0.6878)
@@ -4681,23 +4219,19 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 papers :: publication.title : journal.name (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 keyword Keyword search :: keyword.keyword = 'Keyword Search' : keyword.keyword = 'Keyword Search' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 23/40
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 119 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
  - count(publication.title) (0.6507000000000001)
  - count(publication.citation_num) (0.6027)
  - count(domain_publication.did) (0.5982)
- - count(domain_keyword.did) (0.5982)
- - count(domain_journal.did) (0.5982)
- - count(domain_author.did) (0.5982)
  - count(domain_conference.did) (0.5982)
+ - count(domain_keyword.did) (0.5982)
+ - count(domain_author.did) (0.5982)
  - count(domain.did) (0.5982)
+ - count(domain_journal.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
 Pruned candidates for before 2000: 5
@@ -4712,10 +4246,10 @@ TOTAL SCORE: 0.6551814976111457, TIES: 0
 papers :: count(publication.title) : count(journal.name) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 before 2000 :: publication.year < 2000 : domain.did < 2000 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 23/41
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 184 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -4734,10 +4268,8 @@ TOTAL SCORE: 0.7109872701617205, TIES: 0
 authors :: author.name : author.name (0.9999999)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 23/42
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 152 ==
 Pruned candidates for authors: 1
  - count(author.name) (0.9999999)
@@ -4751,19 +4283,17 @@ TOTAL SCORE: 0.7239634248944092, TIES: 0
 authors :: count(author.name) : count(author.name) (0.9999999)
 10 papers :: count(publication.title) > 10 : count(publication.title) > 10 (0.7349802548368222)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/43
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 18 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for before 2002: 5
@@ -4779,10 +4309,8 @@ authors :: author.name : author.name (0.9999999)
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2002 :: publication.year < 2002 : publication.year < 2002 (0.7693119068362324)
-== RESULT: WRONG == 
-
-SO FAR: 24/44
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 150 ==
 Pruned candidates for conference: 1
  - conference.name (1.0)
@@ -4801,12 +4329,8 @@ TOTAL SCORE: 0.7081723531729818, TIES: 0
 conference :: conference.name : conference.name (1.0)
 papers :: count(publication.title) = max(count(publication.title)) : count(journal.name) = max(count(journal.name)) (0.6878)
 keyword Relational Database :: keyword.keyword = 'Relational Database' : keyword.keyword = 'Relational Database' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/mas/mas.cands.cache>!
-SO FAR: 24/45
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 65 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -4828,10 +4352,10 @@ TOTAL SCORE: 0.723653971597601, TIES: 0
 paper :: publication.title : publication.title (0.67795)
 PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 200 citations :: publication.citation_num > 200 : publication.citation_num > 200 (0.9026175934469702)
-== RESULT: CORRECT == 
-
-SO FAR: 25/46
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 130 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -4842,10 +4366,10 @@ Pruned candidates for citations: 6
  - sum(organization.oid) (0.58405)
 Pruned candidates for papers: 5
  - journal (0.6878)
+ - domain_journal (0.68275)
+ - domain_publication (0.65225)
  - publication (0.6507000000000001)
- - domain (0.58485)
- - cite (0.57315)
- - author (0.56255)
+ - publication_keyword (0.61615)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
 Pruned candidates for before 2005: 5
@@ -4861,10 +4385,8 @@ citations :: sum(publication.citation_num) : sum(publication.citation_num) (0.81
 papers :: publication : journal (0.6878)
 VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 before 2005 :: publication.year < 2005 : domain.did < 2005 (0.791351609589568)
-== RESULT: WRONG == 
-
-SO FAR: 25/47
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 174 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -4884,11 +4406,15 @@ TOTAL SCORE: 0.6728463910841995, TIES: 0
 --
 paper :: publication.title : publication.title (0.67795)
 citations :: publication.citation_num = max(publication.citation_num) : publication.citation_num = max(publication.citation_num) (0.8148)
-== RESULT: CORRECT == 
-
-SO FAR: 26/48
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
+==== FOLD RESULTS ====
+26,27,26.250,48,113,114,113.250,138
 ==== FINAL RESULTS ====
-26/48 (54.166666666666664%)
+31,32,31.250,49,134,135,134.250,155
+29,29,29.000,49,130,131,130.250,156
+27,29,27.500,48,110,113,110.750,133
+26,27,26.250,48,113,114,113.250,138
+
