@@ -216,6 +216,7 @@ public class Database {
     private String lemmatizeForFullText(String token) {
         if (token.length() > Params.MIN_FULLTEXT_TOKEN_LENGTH) {
             String stemmed = this.lemmatizer.lemmatize(token);
+            if (stemmed.endsWith("i")) stemmed = stemmed.substring(0, stemmed.length() - 1);
             return StringUtils.getCommonPrefix(stemmed, token);
         } else {
             return token;
@@ -254,9 +255,16 @@ public class Database {
                         token = this.lemmatizeForFullText(token);
 
                         if (!Utils.isStopword(token) && token.length() >= Params.MIN_FULLTEXT_TOKEN_LENGTH) {
-                            // When the token matches the relation or the attribute name, make it an OR instead of AND
-                            if (token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getName()))
-                                    || token.equalsIgnoreCase(this.lemmatizeForFullText(attr.getRelation().getName()))) {
+                            // When the token matches any part of the relation or the attribute name, make it an OR instead of AND
+                            List<String> attrAndRelTokens = new ArrayList<>();
+                            for (String attrToken : attr.getCleanedName().toLowerCase().split(" ")) {
+                                attrAndRelTokens.add(this.lemmatizeForFullText(attrToken));
+                            }
+                            for (String relToken : attr.getRelation().getCleanedName().toLowerCase().split(" ")) {
+                                attrAndRelTokens.add(this.lemmatizeForFullText(relToken));
+                            }
+
+                            if (attrAndRelTokens.contains(token.toLowerCase())) {
                                 sj.add(token + "*");
                             } else {
                                 sj.add("+" + token + "*");

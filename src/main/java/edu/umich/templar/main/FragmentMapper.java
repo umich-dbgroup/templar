@@ -404,7 +404,7 @@ public class FragmentMapper {
         return pruned;
     }
 
-    private boolean executeQueryTask(QueryTask queryTask) {
+    private QueryTaskResults executeQueryTask(QueryTask queryTask) {
         System.out.println("== QUERY ID: " + queryTask.getQueryId() + " ==");
 
         QueryMappings queryMappings = new QueryMappings(this.scorer);
@@ -412,7 +412,7 @@ public class FragmentMapper {
             if (!this.typeOracle) fragmentTask.setType(null);
 
             List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
-            
+
             if (pruned == null) {
                 List<String> tokens = new ArrayList<>();
                 String numericToken = null;
@@ -455,17 +455,33 @@ public class FragmentMapper {
 
         List<Interpretation> interps = queryMappings.findOptimalInterpretations();
 
-        int totalFrags = queryTask.size();
-        int ties = interps.size() - 1;
+        boolean[] correctFragsTies0Accum = new boolean[queryTask.size()];
+        for (int i = 0; i < correctFragsTies0Accum.length; i++) {
+            correctFragsTies0Accum[i] = true;
+        }
 
-        int correctInterps = 0;
+        boolean[] correctFragsTies1Accum = new boolean[queryTask.size()];
+        for (int i = 0; i < correctFragsTies1Accum.length; i++) {
+            correctFragsTies1Accum[i] = false;
+        }
+
+        int[] correctFragsTiesFracAccum = new int[queryTask.size()];
+        for (int i = 0; i < correctFragsTiesFracAccum.length; i++) {
+            correctFragsTiesFracAccum[i] = 0;
+        }
+
+        int ties = interps.size() - 1;
+        boolean correctTies0 = true;
+        boolean correctTies1 = false;
+        int correctTiesFragAccum = 0;
 
         System.out.println("TOTAL SCORE: " + interps.get(0).getScore() + ", TIES: " + ties);
         for (Interpretation interp : interps) {
             System.out.println("--");
-            int correctFrags = 0;
 
-            for (int i = 0; i < queryMappings.getFragmentMappingsList().size(); i++) {
+            int curInterpCorrectFrags = 0;
+
+            for (int i = 0; i < queryTask.size(); i++) {
                 FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
 
                 List<String> answers = fragmentMappings.getTask().getAnswers();
@@ -474,44 +490,69 @@ public class FragmentMapper {
                 System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
                         + String.join("; ", answers) + " : " + bestResult);
                 if (answers.contains(bestResult.getEl().toString())) {
-                    correctFrags++;
+                    curInterpCorrectFrags++;
+                    correctFragsTies1Accum[i] = true;
+                    correctFragsTiesFracAccum[i] += 1;
+                } else {
+                    correctFragsTies0Accum[i] = false;
                 }
             }
-            if (correctFrags == totalFrags) correctInterps++;
+
+            if (curInterpCorrectFrags == queryTask.size()) {
+                correctTies1 = true;
+                correctTiesFragAccum++;
+            } else {
+                correctTies0 = false;
+            }
         }
 
-        boolean correct = (correctInterps == interps.size());
+        double correctTiesFrac = ((double) correctTiesFragAccum) / interps.size();
 
-        System.out.println("== RESULT: " + (correct? "CORRECT" : "WRONG") + " == ");
-        System.out.println();
+        int correctFragsTies0 = 0;
+        for (boolean c : correctFragsTies0Accum) {
+            if (c) correctFragsTies0++;
+        }
 
-        return correct;
+        int correctFragsTies1 = 0;
+        for (boolean c : correctFragsTies1Accum) {
+            if (c) correctFragsTies1++;
+        }
+
+        double correctFragsTiesFrac = 0;
+        for (int aCorrectFragsTiesFracAccum : correctFragsTiesFracAccum) {
+            correctFragsTiesFrac += ((double) aCorrectFragsTiesFracAccum) / interps.size();
+        }
+
+        return new QueryTaskResults(queryTask, correctTies0, correctTies1, correctTiesFrac,
+                correctFragsTies0, correctFragsTies1, correctFragsTiesFrac);
     }
 
     public void execute(Integer queryId) {
-        int totalTasks = 0;
-        int correctTasks = 0;
+        AllQueryTaskResults allResults = new AllQueryTaskResults();
+
+        int i = 0;
         for (QueryTask queryTask : this.queryTasks) {
             if (queryId != null & !queryTask.getQueryId().equals(queryId)) continue;
 
-            boolean correct = this.executeQueryTask(queryTask);
-            if (correct) correctTasks++;
-            totalTasks++;
+            QueryTaskResults results = this.executeQueryTask(queryTask);
+            System.out.println(results);
 
-            if ((totalTasks % Params.CACHE_SAVE_INTERVAL) == 0) {
+            allResults.addResult(results);
+
+            if ((i % Params.CACHE_SAVE_INTERVAL) == 0) {
                 this.saveCache();
             }
-
-            System.out.println("SO FAR: " + correctTasks + "/" + totalTasks);
-            System.out.println();
+            i++;
         }
 
         // Final save for cache
         this.saveCache();
 
-        double accuracyPercent = (double) correctTasks / (double) totalTasks * 100;
+        // Statistics
         System.out.println("==== FINAL RESULTS ====");
-        System.out.println(correctTasks + "/" + totalTasks + " (" + accuracyPercent + "%)");
+        // This is meant to go in our Google Doc format of results:
+        // https://docs.google.com/spreadsheets/d/1baAWwGnXmfbE9h6L3k7CE1naqSVM1k-bwDICTqAQmEI/edit#gid=2050195104
+        System.out.println(allResults.toCSVString());
     }
 
     public void execute() {
