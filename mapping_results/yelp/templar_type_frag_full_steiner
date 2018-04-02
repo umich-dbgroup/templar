@@ -1,4 +1,4 @@
-objc[30372]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10dfd14c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10f84e4e0). One of the two will be used. Which one is undefined.
+objc[24827]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x106d4f4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1085bb4e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/yelp>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -24,17 +24,17 @@ TOTAL SCORE: 0.8097589473961512, TIES: 0
 cities :: business.city : business.city (0.9999999)
 Taj Mahal :: business.name = 'Taj Mahal' : business.name = 'Taj Mahal' (1.0)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 40 ==
 Pruned candidates for Apple Stores: 5
  - tip.text = 'Apple store',tip.text (0.9529000000000001)
  - business.name = 'Apple Store',business.name (0.9529000000000001)
- - business.name = 'Apple Store Sainte-Catherine',business.name (0.9528995)
  - business.name = 'Apple Store Shadyside',business.name (0.9528995)
- - tip.text = 'Going to apple store!',tip.text (0.9151495000000001)
+ - tip.text = 'Going to apple store!',tip.text (0.91514949)
+ - business.name = 'Apple Store Sainte-Catherine',business.name (0.9122995)
 Pruned candidates for Los Angeles: 1
  - business.city = 'Los Angeles' (1.0)
 TOTAL INTERPS COUNT: 5
@@ -42,10 +42,8 @@ TOTAL SCORE: 0.8009327755959537, TIES: 0
 --
 Apple Stores :: business.name = 'Apple Store',business.name : business.name = 'Apple Store',business.name (0.9529000000000001)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 2/2
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 53 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -62,10 +60,8 @@ users :: user.name : user.name (0.9999999)
 reviewed :: review : review (0.9999999)
 businesses :: business : business (0.9999999)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 3/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 59 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',count(business.name) (1.0)
@@ -80,10 +76,8 @@ TOTAL SCORE: 0.8097389799799409, TIES: 0
 --
 restaurants :: category.category_name = 'Restaurants',count(business.name) : category.category_name = 'Restaurants',count(business.name) (1.0)
 rated 3.5 :: business.rating > 3.5 : business.rating > 3.5 (0.9999499487524364)
-== RESULT: CORRECT == 
-
-SO FAR: 4/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 72 ==
 Pruned candidates for likes: 1
  - sum(tip.likes) (1.0)
@@ -97,12 +91,8 @@ TOTAL SCORE: 0.8160127887138412, TIES: 0
 likes :: sum(tip.likes) : sum(tip.likes) (1.0)
 tips :: tip : tip (0.9999999)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 5/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 32 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',business.name (1.0)
@@ -121,10 +111,10 @@ TOTAL SCORE: 0.7750868990351651, TIES: 0
 bars :: category.category_name = 'Bars',business.name : category.category_name = 'Bars',business.name (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
 30 reviews :: business.review_count >= 30 : business.review_count >= 30 (0.8569869018835702)
-== RESULT: CORRECT == 
-
-SO FAR: 6/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 50 ==
 Pruned candidates for neighborhoods: 1
  - neighborhood.neighborhood_name (0.9999999)
@@ -145,10 +135,8 @@ neighborhoods :: neighborhood.neighborhood_name : neighborhood.neighborhood_name
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 reviewed :: review : review (0.9999999)
 business :: business : business (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 7/7
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 37 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -167,10 +155,8 @@ TOTAL SCORE: 0.8115336448286465, TIES: 0
 reviews :: review.text : review.text (0.9999999)
 Patrick :: user.name = 'Patrick' : user.name = 'Patrick' (1.0)
 rating 4 :: review.rating > 4 : review.rating > 4 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 8/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 104 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
@@ -181,10 +167,8 @@ TOTAL SCORE: 0.8127683301019402, TIES: 0
 --
 checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
 Brighton Heights neighborhood :: neighborhood.neighborhood_name = 'Brighton Heights' : neighborhood.neighborhood_name = 'Brighton Heights' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 9/9
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 33 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -202,16 +186,12 @@ restaurants :: category.category_name = 'Restaurants',business.name : category.c
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 reviewed :: review : review (0.9999999)
 user Patrick :: user.name = 'Patrick' : user.name = 'Patrick' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 10/10
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 69 ==
 Pruned candidates for pet groomers: 2
- - business.name = 'Pet Groomers',count(business.name) (1.0)
  - category.category_name = 'Pet Groomers',count(business.name) (1.0)
+ - business.name = 'Pet Groomers',count(business.name) (1.0)
 Pruned candidates for Edinburgh: 1
  - business.city = 'Edinburgh' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -219,10 +199,10 @@ TOTAL SCORE: 0.8200000000000001, TIES: 0
 --
 pet groomers :: category.category_name = 'Pet Groomers',count(business.name); business.name = 'Pet Groomers',count(business.name) : business.name = 'Pet Groomers',count(business.name) (1.0)
 Edinburgh :: business.city = 'Edinburgh' : business.city = 'Edinburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/11
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 94 ==
 Pruned candidates for users: 1
  - count(user.name) (0.9999999)
@@ -245,10 +225,8 @@ reviewed :: review : review (0.9999999)
 Irish :: category.category_name = 'Irish' : user.name = 'Irish' (1.0)
 pubs :: category.category_name = 'Pubs' : tip.text = 'Pub' (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 11/12
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 84 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -259,10 +237,8 @@ TOTAL SCORE: 0.8153529494715739, TIES: 0
 --
 reviews :: count(review.text) : count(review.text) (0.9999999)
 Acacia Cafe  :: business.name = 'Acacia Cafe' : business.name = 'Acacia Cafe' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 12/13
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 52 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -276,10 +252,8 @@ TOTAL SCORE: 0.8097589740628178, TIES: 0
 businesses :: business.name : business.name (0.9999999)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Pennsylvania :: business.state = 'Pennsylvania' : business.state = 'Pennsylvania' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 13/14
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 25 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -298,12 +272,8 @@ TOTAL SCORE: 0.7696443099254809, TIES: 0
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
 100 reviews :: business.review_count > 100 : business.review_count > 100 (0.8569869018835702)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 14/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 87 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',count(business.name) (1.0)
@@ -321,10 +291,10 @@ TOTAL SCORE: 0.8097456668405625, TIES: 0
 bars :: category.category_name = 'Bars',count(business.name) : category.category_name = 'Bars',count(business.name) (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 rating 3.5 :: business.rating > 3.5 : business.rating > 3.5 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 15/16
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 29 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -342,30 +312,25 @@ restaurants :: category.category_name = 'Restaurants',business.name : category.c
 reviewed :: review : review (0.9999999)
 Patrick :: user.name = 'Patrick' : user.name = 'Patrick' (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 16/17
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 98 ==
 Pruned candidates for escape games: 1
  - category.category_name = 'Escape Games',count(business.name) (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8097590007294854, TIES: 0
 --
 escape games :: category.category_name = 'Escape Games',count(business.name) : category.category_name = 'Escape Games',count(business.name) (1.0)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 17/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 117 ==
 Pruned candidates for Mexican: 4
  - tip.text = 'Mexican' (1.0)
- - tip.text = 'MexiCAN!' (1.0)
  - category.category_name = 'Mexican' (1.0)
+ - tip.text = 'MexiCAN!' (0.99999999)
  - tip.text = 'mexicans' (0.9999999)
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -378,21 +343,14 @@ Pruned candidates for rating 3.5: 5
  - business.bid > 3.5 (0.7622282433759588)
  - user.uid > 3.5 (0.7581507205035157)
 TOTAL INTERPS COUNT: 20
-TOTAL SCORE: 0.8104863398853263, TIES: 1
+TOTAL SCORE: 0.8104863398853263, TIES: 0
 --
 Mexican :: category.category_name = 'Mexican' : tip.text = 'Mexican' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 rating 3.5 :: business.rating > 3.5 : business.rating > 3.5 (0.9999499987499375)
---
-Mexican :: category.category_name = 'Mexican' : tip.text = 'MexiCAN!' (1.0)
-restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
-Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
-rating 3.5 :: business.rating > 3.5 : business.rating > 3.5 (0.9999499987499375)
-== RESULT: WRONG == 
-
-SO FAR: 17/19
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 71 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -404,12 +362,8 @@ TOTAL SCORE: 0.8199599590019492, TIES: 0
 --
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 2015 :: tip.year = 2015 : tip.year = 2015 (0.9999)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 18/20
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 109 ==
 Pruned candidates for Moroccan: 1
  - category.category_name = 'Moroccan' (1.0)
@@ -423,10 +377,10 @@ TOTAL SCORE: 0.8097590007294854, TIES: 0
 Moroccan :: category.category_name = 'Moroccan' : category.category_name = 'Moroccan' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 19/21
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 44 ==
 Pruned candidates for tips: 1
  - tip.text (0.9999999)
@@ -444,10 +398,8 @@ TOTAL SCORE: 0.8185730469905458, TIES: 0
 tips :: tip.text : tip.text (0.9999999)
 Vintner Grill :: business.name = 'Vintner Grill' : business.name = 'Vintner Grill' (1.0)
 9 likes :: tip.likes > 9 : tip.likes > 9 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 20/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 21 ==
 Pruned candidates for pet groomers: 2
  - business.name = 'Pet Groomers',business.name (1.0)
@@ -464,10 +416,8 @@ TOTAL SCORE: 0.7605886963797686, TIES: 0
 --
 pet groomers :: category.category_name = 'Pet Groomers',business.name; business.name = 'Pet Groomers',business.name : business.name = 'Pet Groomers',business.name (1.0)
 100 reviews :: business.review_count > 100 : business.review_count > 100 (0.8569869018835702)
-== RESULT: CORRECT == 
-
-SO FAR: 21/23
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 103 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -498,10 +448,8 @@ Michelle :: user.name = 'Michelle' : user.name = 'Michell' (0.9999999)
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michele' (0.9999999)
 2010 :: tip.year = 2010 : tip.year = 2010 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 21/24
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 41 ==
 Pruned candidates for Dallas: 1
  - business.city = 'Dallas' (1.0)
@@ -519,12 +467,8 @@ TOTAL SCORE: 0.8097456668405625, TIES: 0
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 rating 4.5 :: business.rating > 4.5 : business.rating > 4.5 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 22/25
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 79 ==
 Pruned candidates for dentists: 1
  - category.category_name = 'Dentists',count(business.name) (1.0)
@@ -542,16 +486,15 @@ TOTAL SCORE: 0.8097456668405625, TIES: 0
 dentists :: category.category_name = 'Dentists',count(business.name) : category.category_name = 'Dentists',count(business.name) (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
 rating 4 :: business.rating > 4 : business.rating > 4 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 23/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 115 ==
 Pruned candidates for neighborhood: 1
  - neighborhood.neighborhood_name (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
 Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
 Pruned candidates for restaurant: 1
@@ -562,7 +505,7 @@ Pruned candidates for stars: 5
  - review.rating = max(review.rating) (0.5783)
  - category.category_name = max(category.category_name) (0.571)
  - business.longitude = max(business.longitude) (0.56395)
-TOTAL INTERPS COUNT: 10
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.7539102990645389, TIES: 0
 --
 neighborhood :: neighborhood.neighborhood_name : neighborhood.neighborhood_name (1.0)
@@ -570,25 +513,21 @@ Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 stars :: business.rating = max(business.rating) : tip.likes = max(tip.likes) (0.62675)
-== RESULT: WRONG == 
-
-SO FAR: 23/27
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 101 ==
 Pruned candidates for cities: 1
  - count(business.city) (0.9999999)
 Pruned candidates for Panda Express: 2
  - business.name = 'Panda Express' (1.0)
- - tip.text = 'Panda express!' (1.0)
+ - tip.text = 'Panda express!' (0.99999999)
 TOTAL INTERPS COUNT: 2
 TOTAL SCORE: 0.8199999599999991, TIES: 0
 --
 cities :: count(business.city) : count(business.city) (0.9999999)
 Panda Express :: business.name = 'Panda Express' : business.name = 'Panda Express' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 102 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -603,10 +542,8 @@ TOTAL SCORE: 0.8160127753805078, TIES: 0
 --
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 25/29
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 51 ==
 Pruned candidates for tips: 1
  - tip.text (0.9999999)
@@ -620,12 +557,8 @@ TOTAL SCORE: 0.8185863808790242, TIES: 0
 tips :: tip.text : tip.text (0.9999999)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 26/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 122 ==
 Pruned candidates for Indian: 1
  - category.category_name = 'Indian' (1.0)
@@ -643,10 +576,10 @@ Indian :: category.category_name = 'Indian' : category.category_name = 'Indian' 
 restaurant :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 rating :: business.rating = max(business.rating) : review.rating = max(review.rating) (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 26/31
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 96 ==
 Pruned candidates for people: 5
  - count(business.city) (0.61805)
@@ -671,21 +604,19 @@ reviewed :: review : review (0.9999999)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 Vintner Grill :: business.name = 'Vintner Grill' : business.name = 'Vintner Grill' (1.0)
 2010 :: review.year = 2010 : review.year = 2010 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 27/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 Saving cache...
 Saved cache to <data/yelp/yelp.cands.cache>!
-==== FINAL RESULTS ====
-27/32 (84.375%)
-00:23  INFO: ===== FOLD 1 =====
+==== FOLD RESULTS ====
+27,27,27.000,32,92,92,92.000,98
+00:19  INFO: ===== FOLD 1 =====
 Original log size: 95
 Trimming log to 100.0%...
 Final log size: 95
-00:23  INFO: ===== Parsing Results =====
-00:23  INFO: Total Queries: 95
-00:23  INFO: Correctly Parsed: 95/95
+00:19  INFO: ===== Parsing Results =====
+00:19  INFO: Total Queries: 95
+00:19  INFO: Correctly Parsed: 95/95
 
 Loading cache from: <data/yelp/yelp.cands.cache>
 Cache loaded!
@@ -706,32 +637,30 @@ TOTAL SCORE: 0.7843964983448786, TIES: 0
 --
 pet hospices :: category.category_name = 'Pet Hospice',business.name : category.category_name = 'Pet Hospice',business.name (0.9389000000000001)
 Pittsburgh :: business.city = 'Pittsburgh' : business.city = 'Pittsburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 34 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
 Pruned candidates for tips: 1
  - tip (0.9999999)
 Pruned candidates for Barrio Café: 1
- - business.name = 'Barrio Café' (1.0)
+ - business.name = 'Barrio Café' (0.99999999)
 Pruned candidates for 2015: 2
  - tip.year = 2015 (0.9999)
  - review.year = 2015 (0.9999)
 TOTAL INTERPS COUNT: 2
 Returning 0.0 because Steiner tree doesn't contain tip
-TOTAL SCORE: 0.8124236860117533, TIES: 0
+TOTAL SCORE: 0.8124236840118034, TIES: 0
 --
 users :: user.name : user.name (0.9999999)
 tips :: tip : tip (0.9999999)
-Barrio Café :: business.name = 'Barrio Café' : business.name = 'Barrio Café' (1.0)
+Barrio Café :: business.name = 'Barrio Café' : business.name = 'Barrio Café' (0.99999999)
 2015 :: tip.year = 2015 : tip.year = 2015 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 2/2
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 112 ==
 Pruned candidates for business: 1
  - business.name (1.0)
@@ -742,10 +671,8 @@ TOTAL SCORE: 0.8182788452794362, TIES: 0
 --
 business :: business.name : business.name (1.0)
 checkins :: sum(checkin.count) = max(sum(checkin.count)) : sum(checkin.count) = max(sum(checkin.count)) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 3/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 126 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -761,10 +688,8 @@ TOTAL SCORE: 0.7972957814393059, TIES: 0
 --
 users :: user.name : user.name (0.9999999)
 review rating 3 :: avg(review.rating) < 3 : avg(review.rating) < 3 (0.9658968345532559)
-== RESULT: CORRECT == 
-
-SO FAR: 4/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 119 ==
 Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
@@ -772,22 +697,17 @@ Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
 Pruned candidates for Meadowood neighborhood: 1
  - neighborhood.neighborhood_name = 'Meadowood' (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8138419181742107, TIES: 0
 --
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Meadowood neighborhood :: neighborhood.neighborhood_name = 'Meadowood' : neighborhood.neighborhood_name = 'Meadowood' (1.0)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 5/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 11 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -798,28 +718,25 @@ TOTAL SCORE: 0.8110553759678504, TIES: 0
 --
 reviews :: review.text : review.text (0.9999999)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 6/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 86 ==
 Pruned candidates for businesses: 1
  - count(business.name) (0.9999999)
 Pruned candidates for Stone Meadows neighborhood: 1
  - neighborhood.neighborhood_name = 'Stone Meadows' (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8184977752216325, TIES: 0
 --
 businesses :: count(business.name) : count(business.name) (0.9999999)
 Stone Meadows neighborhood :: neighborhood.neighborhood_name = 'Stone Meadows' : neighborhood.neighborhood_name = 'Stone Meadows' (1.0)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 7/7
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 5 ==
 Pruned candidates for cities: 1
  - business.city (0.9999999)
@@ -833,10 +750,8 @@ TOTAL SCORE: 0.837444211798175, TIES: 0
 cities :: business.city : business.city (0.9999999)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 MGM Grand Buffet :: business.name = 'MGM Grand Buffet' : business.name = 'MGM Grand Buffet' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 8/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 78 ==
 Pruned candidates for dentists: 1
  - category.category_name = 'Dentists',count(business.name) (1.0)
@@ -847,10 +762,8 @@ TOTAL SCORE: 0.8092216793524141, TIES: 0
 --
 dentists :: category.category_name = 'Dentists',count(business.name) : category.category_name = 'Dentists',count(business.name) (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 9/9
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 124 ==
 Pruned candidates for Indian: 1
  - category.category_name = 'Indian' (1.0)
@@ -871,12 +784,8 @@ Indian :: category.category_name = 'Indian' : category.category_name = 'Indian' 
 restaurant :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 number of reviews :: business.review_count = max(business.review_count) : review.text = max(review.text) (0.7672995)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 9/10
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 48 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -891,10 +800,10 @@ TOTAL SCORE: 0.8124436734274638, TIES: 0
 users :: user.name : user.name (0.9999999)
 tips :: tip : tip (0.9999999)
 pet groomers :: category.category_name = 'Pet Groomers'; business.name = 'Pet Groomers' : business.name = 'Pet Groomers' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/11
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 82 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',count(business.name) (1.0)
@@ -908,10 +817,8 @@ TOTAL SCORE: 0.8103345058514854, TIES: 0
 restaurants :: category.category_name = 'Restaurants',count(business.name) : category.category_name = 'Restaurants',count(business.name) (1.0)
 Hazelwood :: neighborhood.neighborhood_name = 'Hazelwood' : neighborhood.neighborhood_name = 'Hazelwood' (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/12
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 8 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -924,10 +831,8 @@ TOTAL SCORE: 0.7031806488842897, TIES: 0
 --
 reviews :: review.text : review.text (0.9999999)
 rated 1 :: review.rating < 1 : tip.likes < 1 (0.7511614806418124)
-== RESULT: WRONG == 
-
-SO FAR: 11/13
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 77 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',count(business.name) (1.0)
@@ -938,10 +843,8 @@ TOTAL SCORE: 0.8092216793524141, TIES: 0
 --
 restaurants :: category.category_name = 'Restaurants',count(business.name) : category.category_name = 'Restaurants',count(business.name) (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 12/14
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 97 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -955,12 +858,8 @@ TOTAL SCORE: 0.8115484641313113, TIES: 0
 reviews :: count(review.text) : count(review.text) (0.9999999)
 businesses :: business : business (0.9999999)
 South Summerlin neighborhood :: neighborhood.neighborhood_name = 'South Summerlin' : neighborhood.neighborhood_name = 'South Summerlin' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 13/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 6 ==
 Pruned candidates for cities: 1
  - business.city (0.9999999)
@@ -978,10 +877,10 @@ TOTAL SCORE: 0.8199865994455212, TIES: 0
 cities :: business.city : business.city (0.9999999)
 businesses :: business : business (0.9999999)
 rated 1.5 :: business.rating < 1.5 : business.rating < 1.5 (0.9999499487524364)
-== RESULT: CORRECT == 
-
-SO FAR: 14/16
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 54 ==
 Pruned candidates for tips: 1
  - tip.text (0.9999999)
@@ -999,10 +898,8 @@ tips :: tip.text : tip.text (0.9999999)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
 Pennsylvania :: business.state = 'Pennsylvania' : business.state = 'Pennsylvania' (1.0)
 2010 :: tip.year = 2010 : tip.year = 2010 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 15/17
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 111 ==
 Pruned candidates for Thai: 3
  - category.category_name = 'Thai' (1.0)
@@ -1018,10 +915,8 @@ TOTAL SCORE: 0.8083117412668834, TIES: 0
 Thai :: category.category_name = 'Thai' : category.category_name = 'Thai' (1.0)
 restaurant :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (0.9999999)
 reviews :: count(review.text) = max(count(review.text)) : count(review.text) = max(count(review.text)) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 16/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 39 ==
 Pruned candidates for bakeries: 1
  - category.category_name = 'Bakeries',business.name (1.0)
@@ -1032,26 +927,25 @@ TOTAL SCORE: 0.8092216793524141, TIES: 0
 --
 bakeries :: category.category_name = 'Bakeries',business.name : category.category_name = 'Bakeries',business.name (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 17/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 42 ==
-Pruned candidates for breweries: 1
+Pruned candidates for breweries: 3
  - category.category_name = 'Breweries',business.name (1.0)
+ - tip.text = 'Brewerying',tip.text (0.9999999)
+ - tip.text = 'Brewery',tip.text (0.9999999)
 Pruned candidates for Los Angeles: 1
  - business.city = 'Los Angeles' (1.0)
-TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8092216793524141, TIES: 0
+TOTAL INTERPS COUNT: 3
+TOTAL SCORE: 0.8188561408316404, TIES: 1
 --
-breweries :: category.category_name = 'Breweries',business.name : category.category_name = 'Breweries',business.name (1.0)
+breweries :: category.category_name = 'Breweries',business.name : tip.text = 'Brewerying',tip.text (0.9999999)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 18/20
-
+--
+breweries :: category.category_name = 'Breweries',business.name : tip.text = 'Brewery',tip.text (0.9999999)
+Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 43 ==
 Pruned candidates for neighborhood: 1
  - neighborhood.neighborhood_name (1.0)
@@ -1065,10 +959,10 @@ TOTAL SCORE: 0.8154376745253888, TIES: 0
 neighborhood :: neighborhood.neighborhood_name : neighborhood.neighborhood_name (1.0)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 Flat Top Grill :: business.name = 'Flat Top Grill' : business.name = 'Flat Top Grill' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 19/21
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 93 ==
 Pruned candidates for Target: 1
  - business.name = 'Target',count(business.name) (1.0)
@@ -1079,10 +973,8 @@ TOTAL SCORE: 0.8200000000000001, TIES: 0
 --
 Target :: business.name = 'Target',count(business.name) : business.name = 'Target',count(business.name) (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 20/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 4 ==
 Pruned candidates for states: 1
  - business.state (0.9999999)
@@ -1093,10 +985,8 @@ TOTAL SCORE: 0.8199999599999991, TIES: 0
 --
 states :: business.state : business.state (0.9999999)
 Whataburger :: business.name = 'Whataburger' : business.name = 'Whataburger' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 21/23
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 7 ==
 Pruned candidates for cities: 1
  - business.city (0.9999999)
@@ -1107,19 +997,17 @@ TOTAL SCORE: 0.9632992761855442, TIES: 0
 --
 cities :: business.city : business.city (0.9999999)
 Taj Mahal :: business.name = 'Taj Mahal' : business.name = 'Taj Mahal' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 22/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 118 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
 Pruned candidates for valet service: 5
  - category.category_name = 'Valet Services' (0.9593499999999999)
- - tip.text = 'Great valet service.' (0.94855)
- - tip.text = 'Enjoy the valet service!' (0.9313)
+ - tip.text = 'Great valet service.' (0.94854999)
+ - tip.text = 'Enjoy the valet service!' (0.93129999)
  - review.text = 'valet service is excellent' (0.91515)
- - tip.text = 'Free valet service! Just tip' (0.8866)
+ - tip.text = 'Free valet service! Just tip' (0.88659999)
 Pruned candidates for Dallas: 1
  - business.city = 'Dallas' (1.0)
 Pruned candidates for Texas: 1
@@ -1131,12 +1019,8 @@ restaurants :: category.category_name = 'Restaurants',business.name : category.c
 valet service :: category.category_name = 'Valet Services' : category.category_name = 'Valet Services' (0.9593499999999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 23/25
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 23 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',business.name (1.0)
@@ -1147,10 +1031,10 @@ TOTAL SCORE: 0.8092216793524141, TIES: 0
 --
 bars :: category.category_name = 'Bars',business.name : category.category_name = 'Bars',business.name (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 24/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 125 ==
 Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
@@ -1168,10 +1052,8 @@ Italian :: category.category_name = 'Italian' : category.category_name = 'Italia
 restaurant :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 rating :: business.rating = max(business.rating) : business.rating = max(business.rating) (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 25/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 18 ==
 Pruned candidates for neighborhoods: 1
  - neighborhood.neighborhood_name (0.9999999)
@@ -1185,10 +1067,9 @@ Pruned candidates for rated 2.5: 5
  - tip.likes < 2.5 (0.7511614806418124)
  - business.is_open < 2.5 (0.7393546713181705)
  - checkin.count < 2.5 (0.7304769914240968)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 10
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.8268145102497662, TIES: 0
 --
 neighborhoods :: neighborhood.neighborhood_name : neighborhood.neighborhood_name (0.9999999)
@@ -1196,10 +1077,8 @@ Italian :: category.category_name = 'Italian' : category.category_name = 'Italia
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 rated 2.5 :: business.rating < 2.5 : business.rating < 2.5 (0.9999499487524364)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 26/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 90 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -1239,10 +1118,8 @@ reviews :: count(review.text) : count(review.text) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michele' (0.9999999)
 March :: review.month = 'March' : user.name = 'March' (1.0)
 2014 :: review.year = 2014 : review.year = 2014 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 26/29
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 1 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -1258,16 +1135,12 @@ TOTAL SCORE: 0.7306475096342279, TIES: 0
 --
 businesses :: business.name : business.name (0.9999999)
 4.5 stars :: business.rating > 4.5 : tip.likes > 4.5 (0.7916358537863226)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 26/30
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 68 ==
 Pruned candidates for pet groomers: 2
- - business.name = 'Pet Groomers',count(business.name) (1.0)
  - category.category_name = 'Pet Groomers',count(business.name) (1.0)
+ - business.name = 'Pet Groomers',count(business.name) (1.0)
 Pruned candidates for Edinburgh: 1
  - business.city = 'Edinburgh' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -1275,10 +1148,10 @@ TOTAL SCORE: 0.8200000000000001, TIES: 0
 --
 pet groomers :: category.category_name = 'Pet Groomers',count(business.name); business.name = 'Pet Groomers',count(business.name) : business.name = 'Pet Groomers',count(business.name) (1.0)
 Edinburgh :: business.city = 'Edinburgh' : business.city = 'Edinburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 27/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 24 ==
 Pruned candidates for dance schools: 1
  - category.category_name = 'Dance Schools',business.name (1.0)
@@ -1289,21 +1162,19 @@ TOTAL SCORE: 0.8092216793524141, TIES: 0
 --
 dance schools :: category.category_name = 'Dance Schools',business.name : category.category_name = 'Dance Schools',business.name (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 28/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 Saving cache...
 Saved cache to <data/yelp/yelp.cands.cache>!
-==== FINAL RESULTS ====
-28/32 (87.5%)
-00:42  INFO: ===== FOLD 2 =====
+==== FOLD RESULTS ====
+27,27,27.000,32,83,83,83.000,89
+00:31  INFO: ===== FOLD 2 =====
 Original log size: 96
 Trimming log to 100.0%...
 Final log size: 96
-00:42  INFO: ===== Parsing Results =====
-00:42  INFO: Total Queries: 96
-00:42  INFO: Correctly Parsed: 96/96
+00:31  INFO: ===== Parsing Results =====
+00:31  INFO: Total Queries: 96
+00:31  INFO: Correctly Parsed: 96/96
 
 Loading cache from: <data/yelp/yelp.cands.cache>
 Cache loaded!
@@ -1326,10 +1197,10 @@ TOTAL SCORE: 0.7783185403947421, TIES: 0
 hotels :: category.category_name = 'Hotels',business.name : tip.text = 'Hotel',tip.text (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 50 reviews :: business.review_count >= 50 : business.review_count >= 50 (0.8569869018835702)
-== RESULT: WRONG == 
-
-SO FAR: 0/1
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 128 ==
 Pruned candidates for business: 1
  - business.name (1.0)
@@ -1340,10 +1211,8 @@ TOTAL SCORE: 0.8092112837294358, TIES: 0
 --
 business :: business.name : business.name (1.0)
 categories :: count(category.category_name) = max(count(category.category_name)) : count(category.category_name) = max(count(category.category_name)) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 1/2
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 70 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',count(business.name) (1.0)
@@ -1357,10 +1226,8 @@ TOTAL SCORE: 0.8091979765074023, TIES: 0
 restaurants :: category.category_name = 'Restaurants',count(business.name) : category.category_name = 'Restaurants',count(business.name) (1.0)
 Pittsburgh :: business.city = 'Pittsburgh' : business.city = 'Pittsburgh' (1.0)
 rated 4.5 :: business.rating = 4.5 : business.rating = 4.5 (0.9999499487524364)
-== RESULT: CORRECT == 
-
-SO FAR: 2/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 107 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -1372,40 +1239,27 @@ TOTAL SCORE: 0.8199999599999991, TIES: 0
 --
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 month :: tip.month : tip.month (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 3/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 66 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
 Pruned candidates for Cafe Zinho: 1
  - business.name = 'Cafe Zinho' (1.0)
-Pruned candidates for Fridays: 12
- - business.name = 'Friday's' (1.0)
+Pruned candidates for Fridays: 5
  - tip.text = 'Fridays' (1.0)
+ - business.name = 'Friday's' (0.99999999)
  - checkin.day = 'Friday' (0.9999999)
- - tip.text = 'Friday:-)' (0.9999999)
- - tip.text = 'Friday!' (0.9999999)
  - tip.text = 'Friday' (0.9999999)
- - tip.text = 'Friday:)!!!' (0.9999999)
- - tip.text = 'Friday!!!' (0.9999999)
- - tip.text = 'friday!!!!!!!' (0.9999999)
- - tip.text = 'friday!!!!' (0.9999999)
- - tip.text = 'Friday!!' (0.9999999)
  - user.name = 'Friday' (0.9999999)
-TOTAL INTERPS COUNT: 12
-TOTAL SCORE: 0.818786702065887, TIES: 0
+TOTAL INTERPS COUNT: 5
+TOTAL SCORE: 0.8187866993992203, TIES: 0
 --
 checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
-Fridays :: checkin.day = 'Friday' : business.name = 'Friday's' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 3/5
-
+Fridays :: checkin.day = 'Friday' : business.name = 'Friday's' (0.99999999)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 88 ==
 Pruned candidates for businesses: 1
  - count(business.name) (0.9999999)
@@ -1427,10 +1281,10 @@ businesses :: count(business.name) : count(business.name) (0.9999999)
 user Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 reviews :: review : review (0.9999999)
 month :: review.month : review.month (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 4/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 13 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -1452,10 +1306,8 @@ rated 5 :: review.rating = 5 : business.rating = 5 (0.9999499487524364)
 businesses :: business.name : business.name (0.9999999)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
 rated 5 :: review.rating = 5 : review.rating = 5 (0.9999499487524364)
-== RESULT: WRONG == 
-
-SO FAR: 4/7
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.50]
 == QUERY ID: 9 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -1470,10 +1322,8 @@ TOTAL SCORE: 0.8091913029798924, TIES: 0
 --
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 rated 3.5 :: business.rating > 3.5 : business.rating > 3.5 (0.9999499487524364)
-== RESULT: CORRECT == 
-
-SO FAR: 5/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 80 ==
 Pruned candidates for people: 5
  - count(business.city) (0.61805)
@@ -1487,7 +1337,7 @@ Pruned candidates for restaurant: 1
  - category.category_name = 'Restaurants' (0.9999999)
 Pruned candidates for Texas de Brazil: 2
  - business.name = 'Texas de Brazil' (1.0)
- - tip.text = 'Texas de Brazil!' (1.0)
+ - tip.text = 'Texas de Brazil!' (0.99999999)
 Pruned candidates for Dallas: 1
  - business.city = 'Dallas' (1.0)
 Pruned candidates for Texas: 1
@@ -1497,18 +1347,16 @@ Returning 0.0 because Steiner tree doesn't contain review
 Returning 0.0 because Steiner tree doesn't contain review
 Returning 0.0 because Steiner tree doesn't contain review
 Returning 0.0 because Steiner tree doesn't contain review
-TOTAL SCORE: 0.7449171349411106, TIES: 0
+TOTAL SCORE: 0.7449171337105321, TIES: 0
 --
 people :: count(user.name) : count(business.city) (0.61805)
 reviewed :: review : review (0.9999999)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
-Texas de Brazil :: business.name = 'Texas de Brazil' : tip.text = 'Texas de Brazil!' (1.0)
+Texas de Brazil :: business.name = 'Texas de Brazil' : tip.text = 'Texas de Brazil!' (0.99999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 5/9
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 6)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 49 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -1530,12 +1378,8 @@ rating 1.5 :: review.rating < 1.5 : business.rating < 1.5 (0.9999499987499375)
 reviews :: review.text : review.text (0.9999999)
 bistros :: category.category_name = 'Bistros' : category.category_name = 'Bistros' (1.0)
 rating 1.5 :: review.rating < 1.5 : review.rating < 1.5 (0.9999499987499375)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 5/10
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.50]
 == QUERY ID: 31 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',business.name (1.0)
@@ -1558,27 +1402,28 @@ bars :: category.category_name = 'Bars',business.name : category.category_name =
 reviewed :: review : review (0.9999999)
 Patrick :: user.name = 'Patrick' : user.name = 'Patrick' (1.0)
 3 stars :: business.rating >= 3 : tip.likes >= 3 (0.7916358537863226)
-== RESULT: WRONG == 
-
-SO FAR: 5/11
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 63 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
 Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
-Pruned candidates for delis: 2
+Pruned candidates for delis: 3
  - category.category_name = 'Delis' (1.0)
  - user.name = 'Deli' (0.9999999)
+ - user.name = 'Delys' (0.9999999)
 Pruned candidates for states: 1
  - business.state (0.9999999)
 Pruned candidates for Sundays: 5
- - tip.text = 'Sundays?????' (1.0)
- - tip.text = 'Sunday's' (1.0)
+ - tip.text = 'Sunday's' (0.99999999)
+ - tip.text = 'Sundays?????' (0.99999995)
  - checkin.day = 'Sunday' (0.9999999)
  - user.name = 'Sunday' (0.9999999)
  - user.name = 'Sundai' (0.9999999)
-TOTAL INTERPS COUNT: 10
+TOTAL INTERPS COUNT: 15
 TOTAL SCORE: 0.8104616638737685, TIES: 0
 --
 checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
@@ -1586,10 +1431,8 @@ Italian :: category.category_name = 'Italian' : category.category_name = 'Italia
 delis :: category.category_name = 'Delis' : category.category_name = 'Delis' (1.0)
 states :: business.state : business.state (0.9999999)
 Sundays :: checkin.day = 'Sunday' : checkin.day = 'Sunday' (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 6/12
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 120 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',business.name (1.0)
@@ -1616,10 +1459,8 @@ bars :: category.category_name = 'Bars',business.name : category.category_name =
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
 30 reviews :: business.review_count >= 30 : business.review_count >= 30 (0.8569869018835702)
 rating 3 stars :: avg(review.rating) > 3 : avg(business.rating) > 3 (0.9585969434543383)
-== RESULT: WRONG == 
-
-SO FAR: 6/13
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 20 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -1639,10 +1480,8 @@ TOTAL SCORE: 0.7756538807808787, TIES: 0
 reviews :: review.text : review.text (0.9999999)
 pet groomers :: category.category_name = 'Pet Groomers'; business.name = 'Pet Groomers' : business.name = 'Pet Groomers' (1.0)
 100 reviews :: business.review_count > 100 : business.review_count > 100 (0.8569869018835702)
-== RESULT: CORRECT == 
-
-SO FAR: 7/14
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 28 ==
 Pruned candidates for addresses: 5
  - business.full_address (0.80845)
@@ -1661,12 +1500,8 @@ TOTAL SCORE: 0.7652597977501245, TIES: 0
 addresses :: business.full_address : business.full_address (0.80845)
 Walmarts :: business.name = 'Walmart' : business.name = 'Walmart' (0.9999999)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 8/15
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 89 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -1678,10 +1513,10 @@ TOTAL SCORE: 0.811161956413474, TIES: 0
 --
 reviews :: count(review.text) : count(review.text) (0.9999999)
 Adrienne :: user.name = 'Adrienne' : user.name = 'Adrienne' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 9/16
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 62 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
@@ -1701,10 +1536,8 @@ Moroccan :: category.category_name = 'Moroccan' : category.category_name = 'Moro
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
 day :: checkin.day : checkin.day (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/17
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 123 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -1718,16 +1551,14 @@ TOTAL SCORE: 0.8092113237294368, TIES: 0
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 seafood :: category.category_name = 'Seafood' : category.category_name = 'Seafood' (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 105 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
 Pruned candidates for Sundays: 5
- - tip.text = 'Sundays?????' (1.0)
- - tip.text = 'Sunday's' (1.0)
+ - tip.text = 'Sunday's' (0.99999999)
+ - tip.text = 'Sundays?????' (0.99999995)
  - checkin.day = 'Sunday' (0.9999999)
  - user.name = 'Sunday' (0.9999999)
  - user.name = 'Sundai' (0.9999999)
@@ -1736,10 +1567,8 @@ TOTAL SCORE: 0.8199999200000001, TIES: 0
 --
 checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
 Sundays :: checkin.day = 'Sunday' : checkin.day = 'Sunday' (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 12/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 108 ==
 Pruned candidates for neighborhoods: 1
  - count(neighborhood.neighborhood_name) (0.9999999)
@@ -1751,22 +1580,17 @@ Pruned candidates for rating 5: 5
  - business.review_count = 5 (0.7803134658584331)
  - checkin.count = 5 (0.7417175877650468)
  - tip.likes = 5 (0.7347081155125482)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 10
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.8215218649428699, TIES: 0
 --
 neighborhoods :: count(neighborhood.neighborhood_name) : count(neighborhood.neighborhood_name) (0.9999999)
 business :: business : business (1.0)
 rating 5 :: business.rating = 5 : review.rating = 5 (0.9999499987499375)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 12/20
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 12 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -1780,10 +1604,10 @@ TOTAL SCORE: 0.8096596681083121, TIES: 0
 businesses :: business.name : business.name (0.9999999)
 review :: review : review (1.0)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 13/21
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 110 ==
 Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
@@ -1797,10 +1621,8 @@ TOTAL SCORE: 0.8092113237294368, TIES: 0
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 3 ==
 Pruned candidates for user ids: 5
  - user.name (0.91265)
@@ -1819,10 +1641,8 @@ TOTAL SCORE: 0.7842617352713663, TIES: 0
 --
 user ids :: user.user_id : user.name (0.91265)
 name Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 14/23
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 2 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -1833,10 +1653,8 @@ TOTAL SCORE: 0.8199799592509553, TIES: 0
 --
 businesses :: business.name : business.name (0.9999999)
 rating 3.5 :: business.rating = 3.5 : business.rating = 3.5 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 15/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 76 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -1862,12 +1680,8 @@ April :: tip.month = 'April' : user.name = 'April' (1.0)
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 April :: tip.month = 'April' : tip.month = 'April' (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 15/25
-
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.50]
 == QUERY ID: 106 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -1881,10 +1695,10 @@ TOTAL SCORE: 0.8199999599999991, TIES: 0
 --
 reviews :: count(review.text) : count(review.text) (0.9999999)
 March :: review.month = 'March' : review.month = 'March' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 16/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 45 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -1899,10 +1713,8 @@ TOTAL SCORE: 0.8157552363592484, TIES: 0
 reviews :: review.text : review.text (0.9999999)
 Kabob Palace :: business.name = 'Kabob Palace' : business.name = 'Kabob Palace' (1.0)
 year 2014 :: review.year = 2014 : review.year = 2014 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 17/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 73 ==
 Pruned candidates for likes: 1
  - sum(tip.likes) (1.0)
@@ -1916,29 +1728,21 @@ TOTAL SCORE: 0.8184332298615903, TIES: 0
 likes :: sum(tip.likes) : sum(tip.likes) (1.0)
 tips :: tip : tip (0.9999999)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 18/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 22 ==
-Pruned candidates for gyms: 3
+Pruned candidates for gyms: 2
  - category.category_name = 'Gyms',business.name (1.0)
  - tip.text = 'Gym',tip.text (0.9999999)
- - tip.text = 'Gym!',tip.text (0.9999999)
 Pruned candidates for Los Angeles: 1
  - business.city = 'Los Angeles' (1.0)
-TOTAL INTERPS COUNT: 3
-TOTAL SCORE: 0.8184332165282568, TIES: 1
+TOTAL INTERPS COUNT: 2
+TOTAL SCORE: 0.8184332165282568, TIES: 0
 --
 gyms :: category.category_name = 'Gyms',business.name : tip.text = 'Gym',tip.text (0.9999999)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
---
-gyms :: category.category_name = 'Gyms',business.name : tip.text = 'Gym!',tip.text (0.9999999)
-Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 18/29
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 == QUERY ID: 55 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -1959,12 +1763,8 @@ reviewed :: review : review (0.9999999)
 businesses :: business : business (0.9999999)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 2010 :: review.year = 2010 : review.year = 2010 (0.9999)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 19/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 19 ==
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants',business.name (1.0)
@@ -1975,10 +1775,10 @@ TOTAL SCORE: 0.8092113237294368, TIES: 0
 --
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 20/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 17 ==
 Pruned candidates for neighborhoods: 1
  - neighborhood.neighborhood_name (0.9999999)
@@ -1986,31 +1786,28 @@ Pruned candidates for Italian: 1
  - category.category_name = 'Italian' (1.0)
 Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants' (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8524941893235669, TIES: 0
 --
 neighborhoods :: neighborhood.neighborhood_name : neighborhood.neighborhood_name (0.9999999)
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 21/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 Saving cache...
 Saved cache to <data/yelp/yelp.cands.cache>!
-==== FINAL RESULTS ====
-21/32 (65.625%)
-01:27  INFO: ===== FOLD 3 =====
+==== FOLD RESULTS ====
+21,24,22.500,32,88,91,89.500,100
+01:02  INFO: ===== FOLD 3 =====
 Original log size: 96
 Trimming log to 100.0%...
 Final log size: 96
-01:27  INFO: ===== Parsing Results =====
-01:27  INFO: Total Queries: 96
-01:27  INFO: Correctly Parsed: 96/96
+01:02  INFO: ===== Parsing Results =====
+01:02  INFO: Total Queries: 96
+01:02  INFO: Correctly Parsed: 96/96
 
 Loading cache from: <data/yelp/yelp.cands.cache>
 Cache loaded!
@@ -2032,10 +1829,10 @@ tips :: tip.text : tip.text (0.9999999)
 user :: user : user (1.0)
 review :: review : review (1.0)
 2012 :: review.year = 2012 : review.year = 2012 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 1/1
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 74 ==
 Pruned candidates for likes: 1
  - sum(tip.likes) (1.0)
@@ -2052,27 +1849,23 @@ likes :: sum(tip.likes) : sum(tip.likes) (1.0)
 tips :: tip : tip (0.9999999)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 2/2
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 85 ==
 Pruned candidates for checkins: 1
  - avg(checkin.count) (0.9999999)
 Pruned candidates for Barrio Café: 1
- - business.name = 'Barrio Café' (1.0)
+ - business.name = 'Barrio Café' (0.99999999)
 Pruned candidates for day: 1
  - checkin.day (1.0)
 TOTAL INTERPS COUNT: 1
-TOTAL SCORE: 0.8188154719582892, TIES: 0
+TOTAL SCORE: 0.8188154692916225, TIES: 0
 --
 checkins :: avg(checkin.count) : avg(checkin.count) (0.9999999)
-Barrio Café :: business.name = 'Barrio Café' : business.name = 'Barrio Café' (1.0)
+Barrio Café :: business.name = 'Barrio Café' : business.name = 'Barrio Café' (0.99999999)
 day :: checkin.day : checkin.day (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 3/3
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 65 ==
 Pruned candidates for rating: 2
  - avg(review.rating) (1.0)
@@ -2091,10 +1884,8 @@ TOTAL SCORE: 0.8119747896749343, TIES: 0
 rating :: avg(review.rating) : avg(review.rating) (1.0)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 reviews :: review : review (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 4/4
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 99 ==
 Pruned candidates for users: 1
  - count(user.name) (0.9999999)
@@ -2109,12 +1900,8 @@ TOTAL SCORE: 0.8199999599999991, TIES: 0
 --
 users :: count(user.name) : count(user.name) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 5/5
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 38 ==
 Pruned candidates for bistros: 1
  - category.category_name = 'Bistros',business.name (1.0)
@@ -2125,10 +1912,10 @@ TOTAL SCORE: 0.8087447463219521, TIES: 0
 --
 bistros :: category.category_name = 'Bistros',business.name : category.category_name = 'Bistros',business.name (1.0)
 Pittsburgh :: business.city = 'Pittsburgh' : business.city = 'Pittsburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 6/6
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 57 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -2142,10 +1929,8 @@ TOTAL SCORE: 0.8154785328303509, TIES: 0
 reviews :: review.text : review.text (0.9999999)
 businesses :: business : business (0.9999999)
 rated 2.5 :: business.rating = 2.5 : business.rating = 2.5 (0.9999499487524364)
-== RESULT: CORRECT == 
-
-SO FAR: 7/7
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 14 ==
 Pruned candidates for reviews: 1
  - review.text (0.9999999)
@@ -2166,10 +1951,8 @@ reviews :: review.text : review.text (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 8/8
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 61 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
@@ -2179,31 +1962,22 @@ Pruned candidates for restaurants: 1
  - category.category_name = 'Restaurants' (1.0)
 Pruned candidates for Los Angeles: 1
  - business.city = 'Los Angeles' (1.0)
-Pruned candidates for Fridays: 12
- - business.name = 'Friday's' (1.0)
+Pruned candidates for Fridays: 5
  - tip.text = 'Fridays' (1.0)
+ - business.name = 'Friday's' (0.99999999)
  - checkin.day = 'Friday' (0.9999999)
- - tip.text = 'Friday:-)' (0.9999999)
- - tip.text = 'Friday!' (0.9999999)
  - tip.text = 'Friday' (0.9999999)
- - tip.text = 'Friday:)!!!' (0.9999999)
- - tip.text = 'Friday!!!' (0.9999999)
- - tip.text = 'friday!!!!!!!' (0.9999999)
- - tip.text = 'friday!!!!' (0.9999999)
- - tip.text = 'Friday!!' (0.9999999)
  - user.name = 'Friday' (0.9999999)
-TOTAL INTERPS COUNT: 12
-TOTAL SCORE: 0.8103741535660544, TIES: 0
+TOTAL INTERPS COUNT: 5
+TOTAL SCORE: 0.8103741519660543, TIES: 0
 --
 checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
 Moroccan :: category.category_name = 'Moroccan' : category.category_name = 'Moroccan' (1.0)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-Fridays :: checkin.day = 'Friday' : business.name = 'Friday's' (1.0)
-== RESULT: WRONG == 
-
-SO FAR: 8/9
-
+Fridays :: checkin.day = 'Friday' : business.name = 'Friday's' (0.99999999)
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 100 ==
 Pruned candidates for businesses: 1
  - count(business.name) (0.9999999)
@@ -2214,12 +1988,8 @@ TOTAL SCORE: 0.8628917341326287, TIES: 0
 --
 businesses :: count(business.name) : count(business.name) (0.9999999)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 9/10
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 60 ==
 Pruned candidates for checkins: 1
  - sum(checkin.count) (0.9999999)
@@ -2236,10 +2006,10 @@ checkins :: sum(checkin.count) : sum(checkin.count) (0.9999999)
 Moroccan :: category.category_name = 'Moroccan' : category.category_name = 'Moroccan' (1.0)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Los Angeles :: business.city = 'Los Angeles' : business.city = 'Los Angeles' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 10/11
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 116 ==
 Pruned candidates for Chinese: 1
  - category.category_name = 'Chinese' (1.0)
@@ -2261,10 +2031,8 @@ Chinese :: category.category_name = 'Chinese' : category.category_name = 'Chines
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 4 stars :: business.rating >= 4 : tip.likes >= 4 (0.7916358537863226)
-== RESULT: WRONG == 
-
-SO FAR: 10/12
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 46 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -2281,10 +2049,8 @@ users :: user.name : user.name (0.9999999)
 tips :: tip : tip (0.9999999)
 businesses :: business : business (0.9999999)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 11/13
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 92 ==
 Pruned candidates for businesses: 1
  - count(business.name) (0.9999999)
@@ -2306,10 +2072,8 @@ San Diego :: business.city = 'San Diego' : business.city = 'San Diego' (1.0)
 Christine :: user.name = 'Christine' : user.name = 'Christine' (1.0)
 reviewed :: review : review (0.9999999)
 2010 :: review.year = 2010 : review.year = 2010 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 12/14
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 5] [Ties1: 5] [Ties1/t: 5.00]
 == QUERY ID: 16 ==
 Pruned candidates for 5 star: 5
  - tip.likes = 5 (0.7841482672301202)
@@ -2327,12 +2091,8 @@ TOTAL SCORE: 0.7480223437058199, TIES: 0
 5 star :: business.rating = 5 : tip.likes = 5 (0.7841482672301202)
 Italian :: category.category_name = 'Italian' : category.category_name = 'Italian' (1.0)
 restaurants :: category.category_name = 'Restaurants',business.name : category.category_name = 'Restaurants',business.name (1.0)
-== RESULT: WRONG == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 12/15
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 121 ==
 Pruned candidates for Egyptian: 1
  - category.category_name = 'Egyptian' (1.0)
@@ -2346,10 +2106,10 @@ TOTAL SCORE: 0.8087447463219521, TIES: 0
 Egyptian :: category.category_name = 'Egyptian' : category.category_name = 'Egyptian' (1.0)
 restaurants :: category.category_name = 'Restaurants',count(business.name) : category.category_name = 'Restaurants',count(business.name) (1.0)
 Edinburgh :: business.city = 'Edinburgh' : business.city = 'Edinburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 13/16
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 81 ==
 Pruned candidates for people: 5
  - count(business.city) (0.61805)
@@ -2371,10 +2131,8 @@ people :: count(user.name) : count(business.city) (0.61805)
 reviewed :: review : review (0.9999999)
 Bistro Di Napoli :: business.name = 'Bistro Di Napoli' : business.name = 'Bistro Di Napoli' (1.0)
 2015 :: review.year = 2015 : review.year = 2015 (0.9999)
-== RESULT: WRONG == 
-
-SO FAR: 13/17
-
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 27 ==
 Pruned candidates for users: 1
  - user.name (0.9999999)
@@ -2392,10 +2150,8 @@ users :: user.name : user.name (0.9999999)
 reviewed :: review : review (0.9999999)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 Mesa Grill :: business.name = 'Mesa Grill' : business.name = 'Mesa Grill' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 14/18
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 67 ==
 Pruned candidates for users: 1
  - count(user.name) (0.9999999)
@@ -2412,10 +2168,8 @@ users :: count(user.name) : count(user.name) (0.9999999)
 reviewed :: review : review (0.9999999)
 Sushi Too :: business.name = 'Sushi Too' : business.name = 'Sushi Too' (1.0)
 Pittsburgh :: business.city = 'Pittsburgh' : business.city = 'Pittsburgh' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 15/19
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 127 ==
 Pruned candidates for business: 1
  - business.name (1.0)
@@ -2433,12 +2187,8 @@ TOTAL SCORE: 0.8154919067181622, TIES: 0
 business :: business.name : business.name (1.0)
 reviews :: count(review.text) = max(count(review.text)) : count(review.text) = max(count(review.text)) (0.9999999)
 April :: review.month = 'April' : review.month = 'April' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 16/20
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 113 ==
 Pruned candidates for user: 1
  - user.name (1.0)
@@ -2449,10 +2199,10 @@ TOTAL SCORE: 0.8119747763416009, TIES: 0
 --
 user :: user.name : user.name (1.0)
 reviews :: count(review.text) = max(count(review.text)) : count(review.text) = max(count(review.text)) (0.9999999)
-== RESULT: CORRECT == 
-
-SO FAR: 17/21
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 30 ==
 Pruned candidates for bars: 1
  - category.category_name = 'Bars',business.name (1.0)
@@ -2467,10 +2217,8 @@ TOTAL SCORE: 0.8071481418217589, TIES: 0
 bars :: category.category_name = 'Bars',business.name : category.category_name = 'Bars',business.name (1.0)
 reviewed :: review : review (0.9999999)
 Patrick :: user.name = 'Patrick' : user.name = 'Patrick' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 18/22
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 95 ==
 Pruned candidates for rating: 2
  - avg(review.rating) (1.0)
@@ -2486,10 +2234,8 @@ TOTAL SCORE: 0.8199866394448541, TIES: 0
 rating :: avg(review.rating) : avg(review.rating) (1.0)
 reviews :: review : review (0.9999999)
 year 2014 :: review.year = 2014 : review.year = 2014 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 19/23
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 47 ==
 Pruned candidates for cities: 1
  - business.city (0.9999999)
@@ -2506,30 +2252,23 @@ cities :: business.city : business.city (0.9999999)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
 restaurant :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (0.9999999)
 MGM Grand Buffet :: business.name = 'MGM Grand Buffet' : business.name = 'MGM Grand Buffet' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 20/24
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 114 ==
 Pruned candidates for neighborhood: 1
  - neighborhood.neighborhood_name (1.0)
 Pruned candidates for businesses: 1
  - count(business.name) = max(count(business.name)) (0.9999999)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8334847008646575, TIES: 0
 --
 neighborhood :: neighborhood.neighborhood_name : neighborhood.neighborhood_name (1.0)
 businesses :: count(business.name) = max(count(business.name)) : count(business.name) = max(count(business.name)) (0.9999999)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 21/25
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 91 ==
 Pruned candidates for businesses: 1
  - count(business.name) (0.9999999)
@@ -2551,10 +2290,10 @@ businesses :: count(business.name) : count(business.name) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 reviewed :: review : review (0.9999999)
 2010 :: review.year = 2010 : review.year = 2010 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 22/26
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 15 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -2571,10 +2310,8 @@ reviews :: count(review.text) : count(review.text) (0.9999999)
 Cafe Zinho :: business.name = 'Cafe Zinho' : business.name = 'Cafe Zinho' (1.0)
 restaurants :: category.category_name = 'Restaurants' : category.category_name = 'Restaurants' (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 23/27
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
 == QUERY ID: 75 ==
 Pruned candidates for tips: 1
  - count(tip.text) (0.9999999)
@@ -2593,10 +2330,8 @@ TOTAL SCORE: 0.816303237397171, TIES: 0
 tips :: count(tip.text) : count(tip.text) (0.9999999)
 Michelle :: user.name = 'Michelle' : user.name = 'Michelle' (1.0)
 2014 :: tip.year = 2014 : tip.year = 2014 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 24/28
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 64 ==
 Pruned candidates for reviews: 1
  - count(review.text) (0.9999999)
@@ -2611,27 +2346,20 @@ TOTAL SCORE: 0.8197024021374051, TIES: 0
 reviews :: count(review.text) : count(review.text) (0.9999999)
 Niloofar :: user.name = 'Niloofar' : user.name = 'Niloofar' (1.0)
 2015 :: review.year = 2015 : review.year = 2015 (0.9999)
-== RESULT: CORRECT == 
-
-SO FAR: 25/29
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 58 ==
 Pruned candidates for preschools: 1
  - category.category_name = 'Preschools',count(business.name) (1.0)
-Pruned candidates for Madison: 2
+Pruned candidates for Madison: 1
  - business.city = 'Madison' (1.0)
- - business.name = 'Madison's' (0.9999999)
-TOTAL INTERPS COUNT: 2
+TOTAL INTERPS COUNT: 1
 TOTAL SCORE: 0.8087447463219521, TIES: 0
 --
 preschools :: category.category_name = 'Preschools',count(business.name) : category.category_name = 'Preschools',count(business.name) (1.0)
 Madison :: business.city = 'Madison' : business.city = 'Madison' (1.0)
-== RESULT: CORRECT == 
-
-Saving cache...
-Saved cache to <data/yelp/yelp.cands.cache>!
-SO FAR: 26/30
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 == QUERY ID: 35 ==
 Pruned candidates for businesses: 1
  - business.name (0.9999999)
@@ -2649,35 +2377,36 @@ TOTAL SCORE: 0.8325850837203499, TIES: 0
 businesses :: business.name : business.name (0.9999999)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
 rating 2 :: business.rating < 2 : business.rating < 2 (0.9999499987499375)
-== RESULT: CORRECT == 
-
-SO FAR: 27/31
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+Saving cache...
+Saved cache to <data/yelp/yelp.cands.cache>!
 == QUERY ID: 83 ==
-Pruned candidates for Starbucks: 8
- - user.name = 'Starbucks',count(user.name) (1.0)
- - tip.text = 'Starbucks!',count(tip.text) (1.0)
- - tip.text = 'Starbucks !',count(tip.text) (1.0)
- - tip.text = 'Starbucks',count(tip.text) (1.0)
- - tip.text = 'Starbucks!!!!!!',count(tip.text) (1.0)
+Pruned candidates for Starbucks: 5
  - business.name = 'Starbucks',count(business.name) (1.0)
- - tip.text = 'Starbucks !!',count(tip.text) (1.0)
- - tip.text = 'Starbucks!!!',count(tip.text) (1.0)
+ - tip.text = 'Starbucks',count(tip.text) (1.0)
+ - user.name = 'Starbucks',count(user.name) (1.0)
+ - tip.text = 'Starbucks !',count(tip.text) (0.99999999)
+ - tip.text = 'Starbucks!',count(tip.text) (0.99999999)
 Pruned candidates for Dallas: 1
  - business.city = 'Dallas' (1.0)
 Pruned candidates for Texas: 1
  - business.state = 'Texas' (1.0)
-TOTAL INTERPS COUNT: 8
+TOTAL INTERPS COUNT: 5
 TOTAL SCORE: 0.8332338810202295, TIES: 0
 --
 Starbucks :: business.name = 'Starbucks',count(business.name) : business.name = 'Starbucks',count(business.name) (1.0)
 Dallas :: business.city = 'Dallas' : business.city = 'Dallas' (1.0)
 Texas :: business.state = 'Texas' : business.state = 'Texas' (1.0)
-== RESULT: CORRECT == 
-
-SO FAR: 28/32
-
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 Saving cache...
 Saved cache to <data/yelp/yelp.cands.cache>!
+==== FOLD RESULTS ====
+28,28,28.000,32,103,103,103.000,107
 ==== FINAL RESULTS ====
-28/32 (87.5%)
+27,27,27.000,32,92,92,92.000,98
+27,27,27.000,32,83,83,83.000,89
+21,24,22.500,32,88,91,89.500,100
+28,28,28.000,32,103,103,103.000,107
+
