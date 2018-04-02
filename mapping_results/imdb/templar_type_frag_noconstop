@@ -1,4 +1,4 @@
-objc[14114]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x106c3d4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x107ca74e0). One of the two will be used. Which one is undefined.
+objc[20309]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10744e4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1084b84e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/imdb>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -284,66 +284,6 @@ Pruned candidates for after 2010: 5
  - tv_series.release_year > 2010 (0.7693768907369131)
  - movie.release_year > 2010 (0.7693768907369131)
 TOTAL INTERPS COUNT: 600
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because actor.birth_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because tv_series.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
-Returning 0.0 because movie.release_year ? 0 is a duplicate in the interpretation.
 TOTAL SCORE: 0.6756843819191097, TIES: 0
 --
 movies :: count(movie.title) : count(movie.title) (0.9999999)
@@ -406,38 +346,6 @@ Pruned candidates for Christoph Waltz: 4
  - producer.name = 'Christoph Waltz' (1.0)
  - actor.name = 'Christoph Waltz' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.7983450627921611, TIES: 1
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -737,24 +645,6 @@ Pruned candidates for after 1980: 6
  - director.birth_year > 1980 (0.7726838227891146)
  - producer.birth_year > 1980 (0.7726838227891146)
 TOTAL INTERPS COUNT: 294
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.8248518877263584, TIES: 0
 --
 female :: actor.gender = 'female' : actor.gender = 'female' (1.0)
@@ -819,11 +709,6 @@ Pruned candidates for James Bond movies: 5
  - movie.title = '007: 40 Years of Humour in the James Bond Films' (0.9351479899999999)
  - movie.title = '30 Years of James Bond' (0.923699)
 TOTAL INTERPS COUNT: 50
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.826468319534978, TIES: 0
 --
 actors :: actor.name : actor.name (0.9999999)
@@ -919,9 +804,9 @@ Saved cache to <data/imdb/imdb.cands.cache>!
 Original log size: 97
 Trimming log to 100.0%...
 Final log size: 97
-00:02  INFO: ===== Parsing Results =====
-00:02  INFO: Total Queries: 97
-00:02  INFO: Correctly Parsed: 97/97
+00:01  INFO: ===== Parsing Results =====
+00:01  INFO: Total Queries: 97
+00:01  INFO: Correctly Parsed: 97/97
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -1058,7 +943,6 @@ Pruned candidates for Austin: 9
  - writer.name = 'Austin' (1.0)
  - director.name = 'Austin' (1.0)
 TOTAL INTERPS COUNT: 63
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.8666944409484537, TIES: 0
 --
 female :: actor.gender = 'female' : cast.role = 'Female' (1.0)
@@ -1604,9 +1488,9 @@ Saved cache to <data/imdb/imdb.cands.cache>!
 Original log size: 98
 Trimming log to 100.0%...
 Final log size: 98
-00:03  INFO: ===== Parsing Results =====
-00:03  INFO: Total Queries: 98
-00:03  INFO: Correctly Parsed: 98/98
+00:02  INFO: ===== Parsing Results =====
+00:02  INFO: Total Queries: 98
+00:02  INFO: Correctly Parsed: 98/98
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -1692,26 +1576,6 @@ Pruned candidates for Ben Affleck: 4
  - director.name = 'Ben Affleck' (1.0)
  - actor.name = 'Ben Affleck' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.781827038062695, TIES: 1
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -1796,26 +1660,6 @@ Pruned candidates for Quentin Tarantino: 4
  - producer.name = 'Quentin Tarantino' (1.0)
  - writer.name = 'Quentin Tarantino' (1.0)
 TOTAL INTERPS COUNT: 100
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 TOTAL SCORE: 0.6897608100033339, TIES: 0
 --
 actors :: actor.name : actor.name (0.9999999)
@@ -2008,16 +1852,6 @@ Pruned candidates for Brad Pitt: 3
  - actor.name = 'Brad Pitt' (1.0)
  - cast.role = 'Brad Pitt'' (0.99999999)
 TOTAL INTERPS COUNT: 60
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.8002269796457506, TIES: 0
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -2116,24 +1950,6 @@ Pruned candidates for after 1980: 6
  - director.birth_year > 1980 (0.7726838227891146)
  - producer.birth_year > 1980 (0.7726838227891146)
 TOTAL INTERPS COUNT: 294
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
-Returning 0.0 because keyword.keyword = '' is a duplicate in the interpretation.
-Returning 0.0 because cast.role = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.8195480588687383, TIES: 0
 --
 female :: actor.gender = 'female' : actor.gender = 'female' (1.0)
@@ -2338,11 +2154,6 @@ Pruned candidates for played: 5
  - made_by (0.57695)
  - movie (0.5751)
 TOTAL INTERPS COUNT: 25
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.7901673831607965, TIES: 0
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -2386,7 +2197,6 @@ Pruned candidates for actors: 1
 Pruned candidates for movie Saving Private Ryan: 1
  - movie.title = 'Saving Private Ryan' (1.0)
 TOTAL INTERPS COUNT: 7
-Returning 0.0 because movie.title = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.8550895389924701, TIES: 0
 --
 female :: actor.gender = 'female' : cast.role = 'Female' (1.0)
@@ -2507,9 +2317,9 @@ Saved cache to <data/imdb/imdb.cands.cache>!
 Original log size: 96
 Trimming log to 100.0%...
 Final log size: 96
-00:04  INFO: ===== Parsing Results =====
-00:04  INFO: Total Queries: 96
-00:04  INFO: Correctly Parsed: 96/96
+00:03  INFO: ===== Parsing Results =====
+00:03  INFO: Total Queries: 96
+00:03  INFO: Correctly Parsed: 96/96
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -2565,39 +2375,14 @@ Pruned candidates for Jason Robards: 1
 Pruned candidates for Woody Strode: 1
  - actor.name = 'Woody Strode' (1.0)
 TOTAL INTERPS COUNT: 5
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-TOTAL SCORE: 0.0, TIES: 4
+TOTAL SCORE: 0.7229309593917248, TIES: 0
 --
 movies :: movie.title : movie.title (0.9999999)
 featuring :: actor; cast : tv_series (0.6595)
 Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
 Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
---
-movies :: movie.title : movie.title (0.9999999)
-featuring :: actor; cast : directed_by (0.59885)
-Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
-Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
---
-movies :: movie.title : movie.title (0.9999999)
-featuring :: actor; cast : made_by (0.57665)
-Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
-Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
---
-movies :: movie.title : movie.title (0.9999999)
-featuring :: actor; cast : written_by (0.5763)
-Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
-Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
---
-movies :: movie.title : movie.title (0.9999999)
-featuring :: actor; cast : cast (0.57585)
-Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
-Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
-QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.20]
-FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 4] [Ties1/t: 3.20]
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 == QUERY ID: 39 ==
 Pruned candidates for movies: 1
  - movie.title (0.9999999)
@@ -2691,38 +2476,6 @@ Pruned candidates for Matt Damon: 4
  - director.name = 'Matt Damon' (1.0)
  - producer.name = 'Matt Damon' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.789864009079058, TIES: 1
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -2947,17 +2700,12 @@ Pruned candidates for Keira Knightley: 2
  - producer.name = 'Keira Knightley' (1.0)
  - actor.name = 'Keira Knightley' (1.0)
 TOTAL INTERPS COUNT: 20
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-TOTAL SCORE: 0.7229309593917248, TIES: 1
+TOTAL SCORE: 0.7229309593917248, TIES: 3
+--
+movies :: movie.title : movie.title (0.9999999)
+featuring :: actor; cast : tv_series (0.6595)
+Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch' : producer.name = 'Benedict Cumberbatch' (1.0)
+Keira Knightley :: actor.name = 'Keira Knightley' : producer.name = 'Keira Knightley' (1.0)
 --
 movies :: movie.title : movie.title (0.9999999)
 featuring :: actor; cast : tv_series (0.6595)
@@ -2967,6 +2715,11 @@ Keira Knightley :: actor.name = 'Keira Knightley' : producer.name = 'Keira Knigh
 movies :: movie.title : movie.title (0.9999999)
 featuring :: actor; cast : tv_series (0.6595)
 Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch' : producer.name = 'Benedict Cumberbatch' (1.0)
+Keira Knightley :: actor.name = 'Keira Knightley' : actor.name = 'Keira Knightley' (1.0)
+--
+movies :: movie.title : movie.title (0.9999999)
+featuring :: actor; cast : tv_series (0.6595)
+Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch' : actor.name = 'Benedict Cumberbatch' (1.0)
 Keira Knightley :: actor.name = 'Keira Knightley' : actor.name = 'Keira Knightley' (1.0)
 QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 3] [Ties1/t: 2.00]
@@ -3292,34 +3045,6 @@ Pruned candidates for Jim Jarmusch: 4
 Pruned candidates for movies: 1
  - movie (0.9999999)
 TOTAL INTERPS COUNT: 120
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 TOTAL SCORE: 0.7438818726833619, TIES: 0
 --
 actors :: count(actor.name) : count(actor.name) (0.9999999)
@@ -3351,38 +3076,6 @@ Pruned candidates for Scarlett Johansson: 4
  - actor.name = 'Scarlett Johansson' (1.0)
  - producer.name = 'Scarlett Johansson' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because writer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because director.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because actor.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
-Returning 0.0 because producer.name = '' is a duplicate in the interpretation.
 TOTAL SCORE: 0.789864009079058, TIES: 1
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -3444,10 +3137,10 @@ FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
-14,17,14.867,32,70,79,73.867,97
+14,16,14.667,32,70,78,73.667,97
 ==== FINAL RESULTS ====
 20,20,20.000,33,77,80,78.333,96
 16,17,16.500,33,69,71,70.000,88
 15,18,15.525,32,73,81,75.650,99
-14,17,14.867,32,70,79,73.867,97
+14,16,14.667,32,70,78,73.667,97
 

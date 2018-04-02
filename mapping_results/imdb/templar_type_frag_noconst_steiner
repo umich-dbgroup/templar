@@ -1,4 +1,4 @@
-objc[17492]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10a9214c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10b98b4e0). One of the two will be used. Which one is undefined.
+objc[20800]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10e9d94c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10eaa14e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/imdb>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -645,10 +645,6 @@ TOTAL INTERPS COUNT: 80
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
@@ -659,10 +655,9 @@ Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -677,10 +672,9 @@ Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -694,10 +688,9 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -1217,13 +1210,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 21,21,21.000,33,81,83,82.000,96
-00:34  INFO: ===== FOLD 1 =====
+00:36  INFO: ===== FOLD 1 =====
 Original log size: 97
 Trimming log to 100.0%...
 Final log size: 97
-00:34  INFO: ===== Parsing Results =====
-00:34  INFO: Total Queries: 97
-00:34  INFO: Correctly Parsed: 97/97
+00:37  INFO: ===== Parsing Results =====
+00:37  INFO: Total Queries: 97
+00:37  INFO: Correctly Parsed: 97/97
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -1963,13 +1956,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 22,22,22.000,33,77,77,77.000,88
-00:43  INFO: ===== FOLD 2 =====
+00:47  INFO: ===== FOLD 2 =====
 Original log size: 98
 Trimming log to 100.0%...
 Final log size: 98
-00:43  INFO: ===== Parsing Results =====
-00:43  INFO: Total Queries: 98
-00:43  INFO: Correctly Parsed: 98/98
+00:47  INFO: ===== Parsing Results =====
+00:47  INFO: Total Queries: 98
+00:47  INFO: Correctly Parsed: 98/98
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -2145,55 +2138,38 @@ Pruned candidates for Quentin Tarantino: 4
  - writer.name = 'Quentin Tarantino' (1.0)
 TOTAL INTERPS COUNT: 100
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain made_by
 TOTAL SCORE: 0.7018640223284065, TIES: 0
 --
 actors :: actor.name : actor.name (0.9999999)
@@ -3100,13 +3076,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 17,17,17.000,32,79,81,80.000,99
-02:12  INFO: ===== FOLD 3 =====
+01:10  INFO: ===== FOLD 3 =====
 Original log size: 96
 Trimming log to 100.0%...
 Final log size: 96
-02:12  INFO: ===== Parsing Results =====
-02:12  INFO: Total Queries: 96
-02:12  INFO: Correctly Parsed: 96/96
+01:10  INFO: ===== Parsing Results =====
+01:10  INFO: Total Queries: 96
+01:10  INFO: Correctly Parsed: 96/96
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -3280,10 +3256,9 @@ TOTAL INTERPS COUNT: 80
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -3298,10 +3273,9 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -3316,10 +3290,6 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain written_by
@@ -3332,10 +3302,9 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -4033,21 +4002,9 @@ Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain movie
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain cast
 Returning 0.0 because Steiner tree doesn't contain cast
 Returning 0.0 because Steiner tree doesn't contain movie
@@ -4060,23 +4017,13 @@ Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 TOTAL SCORE: 0.7493538526480314, TIES: 0
 --
 actors :: count(actor.name) : count(actor.name) (0.9999999)
@@ -4112,10 +4059,9 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain made_by
@@ -4130,10 +4076,6 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain tv_series
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain made_by
 Returning 0.0 because Steiner tree doesn't contain written_by
@@ -4145,10 +4087,9 @@ Returning 0.0 because Steiner tree doesn't contain cast
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
@@ -4163,10 +4104,9 @@ Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain tv_series
 Returning 0.0 because Steiner tree doesn't contain directed_by
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by
 Returning 0.0 because Steiner tree doesn't contain directed_by

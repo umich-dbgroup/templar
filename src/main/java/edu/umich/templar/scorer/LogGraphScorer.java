@@ -31,7 +31,7 @@ public class LogGraphScorer implements InterpretationScorer {
         for (MatchedDBElement mel : interp) {
             sims.add(mel.getScore());
             DBElement newEl = this.logGraph.modifyElementForLevel(mel.getEl());
-            
+
             els.add(newEl);
         }
 

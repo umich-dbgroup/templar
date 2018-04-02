@@ -1,4 +1,4 @@
-objc[15018]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10081c4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1008e44e0). One of the two will be used. Which one is undefined.
+objc[22700]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x1057d34c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10683d4e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/imdb>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -456,22 +456,6 @@ Pruned candidates for Christoph Waltz: 4
  - producer.name = 'Christoph Waltz' (1.0)
  - actor.name = 'Christoph Waltz' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 TOTAL SCORE: 0.7399921149411072, TIES: 2
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -1082,13 +1066,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 9,19,12.526,33,63,80,68.860,96
-00:01  INFO: ===== FOLD 1 =====
+00:02  INFO: ===== FOLD 1 =====
 Original log size: 97
 Trimming log to 100.0%...
 Final log size: 97
-00:01  INFO: ===== Parsing Results =====
-00:01  INFO: Total Queries: 97
-00:01  INFO: Correctly Parsed: 97/97
+00:02  INFO: ===== Parsing Results =====
+00:02  INFO: Total Queries: 97
+00:02  INFO: Correctly Parsed: 97/97
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -2125,13 +2109,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 12,22,14.651,33,58,76,64.362,88
-00:02  INFO: ===== FOLD 2 =====
+00:03  INFO: ===== FOLD 2 =====
 Original log size: 98
 Trimming log to 100.0%...
 Final log size: 98
-00:02  INFO: ===== Parsing Results =====
-00:02  INFO: Total Queries: 98
-00:02  INFO: Correctly Parsed: 98/98
+00:03  INFO: ===== Parsing Results =====
+00:03  INFO: Total Queries: 98
+00:03  INFO: Correctly Parsed: 98/98
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -2331,26 +2315,6 @@ Pruned candidates for Quentin Tarantino: 4
  - producer.name = 'Quentin Tarantino' (1.0)
  - writer.name = 'Quentin Tarantino' (1.0)
 TOTAL INTERPS COUNT: 100
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 TOTAL SCORE: 0.6757194938897502, TIES: 2
 --
 actors :: actor.name : actor.name (0.9999999)
@@ -3242,13 +3206,13 @@ Saving cache...
 Saved cache to <data/imdb/imdb.cands.cache>!
 ==== FOLD RESULTS ====
 12,18,13.083,32,64,84,71.167,99
-00:02  INFO: ===== FOLD 3 =====
+00:04  INFO: ===== FOLD 3 =====
 Original log size: 96
 Trimming log to 100.0%...
 Final log size: 96
-00:02  INFO: ===== Parsing Results =====
-00:02  INFO: Total Queries: 96
-00:02  INFO: Correctly Parsed: 96/96
+00:04  INFO: ===== Parsing Results =====
+00:04  INFO: Total Queries: 96
+00:04  INFO: Correctly Parsed: 96/96
 
 Loading cache from: <data/imdb/imdb.cands.cache>
 Cache loaded!
@@ -3493,22 +3457,6 @@ Pruned candidates for Matt Damon: 4
  - director.name = 'Matt Damon' (1.0)
  - producer.name = 'Matt Damon' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 TOTAL SCORE: 0.7403327839552833, TIES: 5
 --
 movies :: movie.title : movie.title (0.9999999)
@@ -4334,30 +4282,6 @@ Pruned candidates for Jim Jarmusch: 4
 Pruned candidates for movies: 1
  - movie (0.9999999)
 TOTAL INTERPS COUNT: 120
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
-Returning 0.0 because movie is a duplicate in the interpretation.
 TOTAL SCORE: 0.7312712899043996, TIES: 23
 --
 actors :: count(actor.name) : count(actor.name) (0.9999999)
@@ -4527,22 +4451,6 @@ Pruned candidates for Scarlett Johansson: 4
  - actor.name = 'Scarlett Johansson' (1.0)
  - producer.name = 'Scarlett Johansson' (1.0)
 TOTAL INTERPS COUNT: 80
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
-Returning 0.0 because directed_by is a duplicate in the interpretation.
 TOTAL SCORE: 0.73809342462349, TIES: 15
 --
 movies :: movie.title : movie.title (0.9999999)
