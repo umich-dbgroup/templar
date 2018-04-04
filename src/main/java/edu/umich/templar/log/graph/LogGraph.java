@@ -427,6 +427,9 @@ public class LogGraph {
 
             if (!pointNodes.contains(leaf) || prunableRelation) {
                 LogGraphNode parent = finalMST.getParent(leaf);
+                if (parent == null) {
+                    return null;
+                }
                 // Traverse up the leaf and remove from final MST
                 finalMST.removeNode(leaf);
                 if (finalMST.isLeaf(parent)) {

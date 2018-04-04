@@ -43,6 +43,12 @@ public class SQLizerScorer implements InterpretationScorer {
         // Calculate Steiner tree
         LogGraphTree steinerTree = schemaGraph.steiner(els);
 
+        // In the case of an invalid Steiner tree (e.g. only one node which is a relation)
+        if (steinerTree == null) {
+            interp.setJoinPath(new JoinPath());
+            return 0.0;
+        }
+
         // Set join path on interpretation
         interp.setJoinPath(steinerTree.getJoinPath());
 

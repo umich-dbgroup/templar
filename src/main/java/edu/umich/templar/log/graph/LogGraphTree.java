@@ -39,6 +39,7 @@ public class LogGraphTree {
     public LogGraphNode getParent(LogGraphNode child) {
         if (this.root.equals(child)) {
             Set<LogGraphNode> parents = this.children.get(this.root);
+            if (parents == null) return null;
             if (parents.size() != 1) {
                 throw new RuntimeException("Node is root and has more than one child, so no parent.");
             }
@@ -80,8 +81,7 @@ public class LogGraphTree {
 
     public boolean isLeaf(LogGraphNode node) {
         Set<LogGraphNode> children = this.children.get(node);
-        return (node.equals(this.root) && this.children.get(this.root).size() <= 1)
-                || children == null || children.isEmpty();
+        return children == null || children.isEmpty() || (node.equals(this.root) && children.size() <= 1);
     }
 
     public void removeNode(LogGraphNode node) {
