@@ -1,4 +1,4 @@
-objc[79027]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10dd3c4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10eda64e0). One of the two will be used. Which one is undefined.
+objc[85224]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x104d314c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1065bb4e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/mas>
 Database connected!
 Loading cache from: <data/mas/mas.cands.cache>
@@ -142,7 +142,6 @@ JOIN PATH > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 7 ==
-Cands for 'keywords': 420
 Pruned candidates for keywords: 2
  - keyword (0.9999999)
  - keyword.keyword (0.9999999)
@@ -155,7 +154,6 @@ QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 1)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 8 ==
-Cands for 'organizations': 3628
 Pruned candidates for organizations: 3
  - publication.title = 'Organizers' (0.9999999)
  - publication.title = 'Organization' (0.9999999)
@@ -176,7 +174,6 @@ Pruned candidates for organizations: 3
  - publication.title = 'Organizers' (0.9999999)
  - publication.title = 'Organization' (0.9999999)
  - organization (0.9999999)
-Cands for 'North America': 123
 Pruned candidates for North America: 2
  - keyword.keyword = 'North America' (1.0)
  - organization.continent = 'North America' (1.0)
@@ -209,7 +206,6 @@ Pruned candidates for homepage: 4
  - organization.homepage (1.0)
  - author.homepage (1.0)
  - journal.homepage (1.0)
-Cands for 'University of Michigan': 773
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
 TOTAL INTERPS COUNT: 4
@@ -234,7 +230,6 @@ QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
 FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.25]
 JOIN PATH > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
 == QUERY ID: 11 ==
-Cands for 'references': 2095
 Pruned candidates for references: 1
  - publication.abstract = 'References' (1.0)
 Pruned candidates for Making database systems usable: 1
@@ -251,7 +246,6 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 12 ==
-Cands for 'citations': 357
 Pruned candidates for citations: 2
  - publication.title = 'Citations' (1.0)
  - publication.title = 'Citation' (0.9999999)
@@ -281,11 +275,9 @@ QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 14 ==
-Cands for 'paper': 2654
 Pruned candidates for paper: 2
  - publication.title = 'PAPER' (1.0)
  - publication.title = 'Papers' (0.9999999)
-Cands for '> 200': 11
 Pruned candidates for 200 citations: 5
  - publication.citation_num > 200 (0.9026175934469702)
  - organization.oid > 200 (0.7641934277393387)
@@ -302,7 +294,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 15 ==
-Cands for 'authors': 4343
 Pruned candidates for authors: 3
  - publication.title = 'AUTHOR(S)' (0.99999998)
  - author (0.9999999)
@@ -312,7 +303,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '= 2010': 11
 Pruned candidates for 2010: 4
  - organization.oid = 2010 (0.9999)
  - publication.year = 2010 (0.9999)
@@ -359,7 +349,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '> 2010': 11
 Pruned candidates for after 2010: 5
  - publication.year > 2010 (0.7856133113688948)
  - author.aid > 2010 (0.754084299001113)
@@ -396,7 +385,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '= 2002': 11
 Pruned candidates for in 2002: 4
  - publication.year = 2002 (0.7807938460310763)
  - conference.cid = 2002 (0.7040954622776658)
@@ -430,7 +418,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '< 2002': 11
 Pruned candidates for before 2002: 5
  - domain.did < 2002 (0.791351609589568)
  - publication.year < 2002 (0.7693119068362324)
@@ -467,7 +454,6 @@ Pruned candidates for before 2002: 5
  - keyword.kid < 2002 (0.74353527824845)
  - author.aid < 2002 (0.7368824159932167)
  - domain_keyword.rank < 2002 (0.710984841610565)
-Cands for '> 1995': 11
 Pruned candidates for after 1995: 5
  - publication.year > 1995 (0.7856133113688948)
  - author.aid > 1995 (0.754084299001113)
@@ -511,14 +497,12 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for '> 2002': 11
 Pruned candidates for after 2002: 5
  - publication.year > 2002 (0.7856133113688948)
  - author.aid > 2002 (0.754084299001113)
  - keyword.kid > 2002 (0.7350822811087205)
  - publication.reference_num > 2002 (0.7074955406219887)
  - publication.citation_num > 2002 (0.7044858870126498)
-Cands for '< 1995': 11
 Pruned candidates for before 1995: 5
  - domain.did < 1995 (0.791351609589568)
  - publication.year < 1995 (0.7693119068362324)
@@ -553,7 +537,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 5)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 21 ==
-Cands for 'area': 1726
 Pruned candidates for area: 1
  - journal.name = 'Area' (1.0)
 Pruned candidates for PVLDB: 1
@@ -591,7 +574,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 23 ==
-Cands for 'organization': 66
 Pruned candidates for organization: 1
  - organization (1.0)
 Pruned candidates for H. V. Jagadish: 1
@@ -607,7 +589,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 24 ==
-Cands for 'conferences': 1763
 Pruned candidates for conferences: 3
  - publication.title = 'Conferences' (1.0)
  - conference (0.9999999)
@@ -629,7 +610,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 25 ==
-Cands for 'journals': 5942
 Pruned candidates for journals: 2
  - publication.title = 'Journals' (1.0)
  - journal (0.9999999)
@@ -650,7 +630,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 26 ==
-Cands for 'domain': 66
 Pruned candidates for domain: 1
  - domain (1.0)
 Pruned candidates for H. V. Jagadish: 1
@@ -685,7 +664,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 28 ==
-Cands for 'conference': 66
 Pruned candidates for conference: 1
  - conference (1.0)
 Pruned candidates for Making database systems usable: 1
@@ -971,7 +949,6 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Pruned candidates for keywords: 2
  - keyword (0.9999999)
  - keyword.keyword (0.9999999)
-Cands for 'Databases area': 144
 Pruned candidates for Databases area: 5
  - domain.name = 'Databases' (0.9331499999999999)
  - publication.title = 'A Database Machine for Local Area Networks' (0.8938495)
@@ -996,7 +973,6 @@ JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
-Cands for 'keyword Natural Language': 209
 Pruned candidates for keyword Natural Language: 1
  - keyword.keyword = 'Natural Language' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -1100,7 +1076,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
-Cands for 'keyword User Study': 110
 Pruned candidates for keyword User Study: 1
  - keyword.keyword = 'User Study' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -1119,7 +1094,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for 'keyword Keyword search': 659
 Pruned candidates for keyword Keyword search: 1
  - keyword.keyword = 'Keyword Search' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -1140,7 +1114,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for VLDB conference: 1
  - conference.name = 'VLDB' (1.0)
-Cands for 'keyword Information Retrieval': 487
 Pruned candidates for keyword Information Retrieval: 1
  - keyword.keyword = 'Information Retrieval' (1.0)
 TOTAL INTERPS COUNT: 2
@@ -1161,7 +1134,6 @@ Pruned candidates for authors: 3
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
-Cands for 'keyword Relational Database': 172
 Pruned candidates for keyword Relational Database: 1
  - keyword.keyword = 'Relational Database' (1.0)
 TOTAL INTERPS COUNT: 6
@@ -1254,7 +1226,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 2] [Ties1/t: 1.60]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 56 ==
-Cands for 'researchers': 8691
 Pruned candidates for researchers: 5
  - keyword_variations.variation = 'IS researchers' (0.9347)
  - keyword_variations.variation = 'scientific researchers' (0.9293)
@@ -1378,7 +1349,6 @@ Saved cache to <data/mas/mas.cands.cache>!
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
-Cands for 'VLDB': 150
 Pruned candidates for VLDB: 2
  - journal.name = 'VLDB' (1.0)
  - conference.name = 'VLDB' (1.0)
@@ -1696,7 +1666,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 74 ==
-Cands for 'conferences': 50
 Pruned candidates for conferences: 1
  - conference.name = count(conference.name) (0.9999999)
 Pruned candidates for papers: 2
@@ -1714,7 +1683,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 75 ==
-Cands for 'journals': 50
 Pruned candidates for journals: 1
  - journal.name = count(journal.name) (0.9999999)
 Pruned candidates for papers: 2
@@ -1732,7 +1700,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 76 ==
-Cands for 'papers': 50
 Pruned candidates for papers: 9
  - journal.name = count(journal.name) (0.6878)
  - publication.title = count(publication.title) (0.6507000000000001)
@@ -1743,7 +1710,6 @@ Pruned candidates for papers: 9
  - domain_journal.did = count(domain_journal.did) (0.5982)
  - domain.did = count(domain.did) (0.5982)
  - domain_conference.did = count(domain_conference.did) (0.5982)
-Cands for 'written': 165
 Pruned candidates for written: 5
  - author.name = 'Written. Miyagawa Shigeru' (0.99999899)
  - author.name = 'Written. Rosemann Uwe' (0.99999899)
@@ -1752,7 +1718,6 @@ Pruned candidates for written: 5
  - author.name = 'Written. Krym Naomi' (0.90199949)
 Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
-Cands for 'year': 66
 Pruned candidates for year: 1
  - publication.year (1.0)
 TOTAL INTERPS COUNT: 45
@@ -1773,7 +1738,6 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 77 ==
-Cands for 'authors': 50
 Pruned candidates for authors: 1
  - author.name = count(author.name) (0.9999999)
 Pruned candidates for Making database systems usable: 1
@@ -1788,7 +1752,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 78 ==
-Cands for 'citations': 50
 Pruned candidates for citations: 6
  - publication.citation_num = sum(publication.citation_num) (0.8148)
  - cite.cited = sum(cite.cited) (0.63845)
@@ -2108,7 +2071,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 90 ==
-Cands for 'keywords': 50
 Pruned candidates for keywords: 1
  - keyword.keyword = count(keyword.keyword) (0.9999999)
 TOTAL INTERPS COUNT: 1
@@ -2353,7 +2315,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 103 ==
-Cands for 'organizations': 50
 Pruned candidates for organizations: 1
  - organization.name = count(organization.name) (0.9999999)
 TOTAL INTERPS COUNT: 1
@@ -2656,7 +2617,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 115 ==
-Cands for 'researchers': 50
 Pruned candidates for researchers: 5
  - journal.name = count(journal.name) (0.6734)
  - author.name = count(author.name) (0.6078)
@@ -2748,7 +2708,6 @@ Pruned candidates for papers: 9
  - domain_conference.did = count(domain_conference.did) (0.5982)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '< 2000': 11
 Pruned candidates for before 2000: 5
  - domain.did < 2000 (0.791351609589568)
  - publication.year < 2000 (0.7693119068362324)
@@ -2822,7 +2781,6 @@ Saved cache to <data/mas/mas.cands.cache>!
 Pruned candidates for citations: 2
  - publication.title = 'Citations' (1.0)
  - publication.title = 'Citation' (0.9999999)
-Cands for 'paper': 2654
 Pruned candidates for paper: 2
  - publication.title = 'PAPER' (1.0)
  - publication.title = 'Papers' (0.9999999)
@@ -2851,7 +2809,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '= 2005': 11
 Pruned candidates for 2005: 4
  - publication.pid = 2005 (0.9999)
  - keyword.kid = 2005 (0.9999)
@@ -2895,7 +2852,6 @@ Pruned candidates for papers: 2
  - publication.title = 'PAPER' (0.9999999)
 Pruned candidates for PVLDB: 1
  - journal.name = 'PVLDB' (1.0)
-Cands for '< 2005': 11
 Pruned candidates for before 2005: 5
  - domain.did < 2005 (0.791351609589568)
  - publication.year < 2005 (0.7693119068362324)
@@ -3136,7 +3092,6 @@ Pruned candidates for authors: 3
  - publication.title = 'Author' (0.9999999)
 Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
-Cands for 'Divesh Srivastava': 67
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
 TOTAL INTERPS COUNT: 3
@@ -3234,10 +3189,8 @@ Pruned candidates for written: 5
  - author.name = 'Written. Krym Naomi' (0.90199949)
 Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
-Cands for 'Yunyao Li': 893
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
-Cands for '> 2005': 11
 Pruned candidates for after 2005: 5
  - publication.year > 2005 (0.7856133113688948)
  - author.aid > 2005 (0.754084299001113)
@@ -3396,7 +3349,6 @@ Pruned candidates for authors: 3
  - publication.title = 'AUTHOR(S)' (0.99999998)
  - author (0.9999999)
  - publication.title = 'Author' (0.9999999)
-Cands for 'cited': 66
 Pruned candidates for cited: 3
  - cite.cited (1.0)
  - cite (0.9999999)
@@ -3516,7 +3468,6 @@ Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Yunyao Li: 1
  - author.name = 'Yunyao Li' (1.0)
-Cands for 'Cong Yu': 1793
 Pruned candidates for Cong Yu: 2
  - author.name = 'Cong Yu' (1.0)
  - author.name = 'Yu Cong' (1.0)
@@ -3624,10 +3575,8 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 149 ==
-Cands for 'author': 66
 Pruned candidates for author: 1
  - author (1.0)
-Cands for 'papers': 8
 Pruned candidates for papers: 6
  - count(journal.name) = max(count(journal.name)) (0.6878)
  - count(publication.title) = max(count(publication.title)) (0.6507000000000001)
@@ -3657,7 +3606,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 150 ==
-Cands for 'conference': 66
 Pruned candidates for conference: 1
  - conference (1.0)
 Pruned candidates for papers: 6
@@ -3684,7 +3632,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 151 ==
-Cands for 'journal': 66
 Pruned candidates for journal: 1
  - journal (1.0)
 Pruned candidates for papers: 6
@@ -3713,10 +3660,8 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 152 ==
-Cands for 'authors': 50
 Pruned candidates for authors: 1
  - author.name = count(author.name) (0.9999999)
-Cands for '> 10': 8
 Pruned candidates for 10 papers: 1
  - count(publication.title) > 10 (0.7349802548368222)
 Pruned candidates for keyword Relational Database: 1
@@ -3732,10 +3677,8 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 153 ==
-Cands for 'conferences': 50
 Pruned candidates for conferences: 1
  - conference.name = count(conference.name) (0.9999999)
-Cands for '> 60': 8
 Pruned candidates for 60 papers: 1
  - count(publication.title) > 60 (0.7349802548368222)
 Pruned candidates for keyword Relational Database: 1
@@ -3751,7 +3694,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 154 ==
-Cands for 'journals': 50
 Pruned candidates for journals: 1
  - journal.name = count(journal.name) (0.9999999)
 Pruned candidates for 60 papers: 1
@@ -3822,10 +3764,8 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 158 ==
-Cands for 'keywords': 50
 Pruned candidates for keywords: 1
  - keyword.keyword = count(keyword.keyword) (0.9999999)
-Cands for '> 100': 8
 Pruned candidates for 100 papers: 1
  - count(publication.title) > 100 (0.7349802548368222)
 Pruned candidates for VLDB conference: 1
@@ -3858,7 +3798,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 160 ==
-Cands for 'keywords': 420
 Pruned candidates for keywords: 2
  - keyword (0.9999999)
  - keyword.keyword (0.9999999)
@@ -3878,7 +3817,6 @@ QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 161 ==
-Cands for 'keyword': 66
 Pruned candidates for keyword: 2
  - keyword (1.0)
  - keyword.keyword (1.0)
@@ -4061,7 +3999,6 @@ Pruned candidates for University of Michigan: 1
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
-Cands for 'citations': 8
 Pruned candidates for citations: 3
  - sum(journal.name) = max(sum(journal.name)) (0.6021)
  - sum(keyword.keyword) = max(sum(keyword.keyword)) (0.5806)
@@ -4077,12 +4014,10 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 168 ==
-Cands for 'author': 66
 Pruned candidates for author: 1
  - author (1.0)
 Pruned candidates for University of Michigan: 1
  - organization.name = 'University of Michigan' (1.0)
-Cands for 'papers': 2654
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
@@ -4121,7 +4056,6 @@ Pruned candidates for H. V. Jagadish: 1
  - author.name = 'H. V. Jagadish' (0.99999998)
 Pruned candidates for Divesh Srivastava: 1
  - author.name = 'Divesh Srivastava' (1.0)
-Cands for 'citations': 50
 Pruned candidates for citations: 6
  - publication.citation_num = max(publication.citation_num) (0.8148)
  - cite.cited = max(cite.cited) (0.63845)
@@ -4147,7 +4081,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 170 ==
-Cands for 'conferences': 1763
 Pruned candidates for conferences: 3
  - publication.title = 'Conferences' (1.0)
  - conference (0.9999999)
@@ -4196,7 +4129,6 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 172 ==
-Cands for 'journals': 5942
 Pruned candidates for journals: 2
  - publication.title = 'Journals' (1.0)
  - journal (0.9999999)
@@ -4483,7 +4415,6 @@ QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
 JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 == QUERY ID: 183 ==
-Cands for 'authors': 4343
 Pruned candidates for authors: 3
  - publication.title = 'AUTHOR(S)' (0.99999998)
  - author (0.9999999)
@@ -4701,7 +4632,6 @@ Pruned candidates for University of Michigan: 1
 Pruned candidates for papers: 2
  - publication.title = 'Papers' (1.0)
  - publication.title = 'PAPER' (0.9999999)
-Cands for '> 5000': 19
 Pruned candidates for 5000 citations: 5
  - sum(publication.citation_num) > 5000 (0.9026175934469702)
  - sum(organization.oid) > 5000 (0.7641934277393387)

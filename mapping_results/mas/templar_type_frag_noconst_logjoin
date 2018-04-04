@@ -1,4 +1,4 @@
-objc[73288]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x104c1f4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x104ce74e0). One of the two will be used. Which one is undefined.
+objc[86770]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x1043164c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1043de4e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/mas>
 Database connected!
 00:00  INFO: ===== FOLD 0 =====
@@ -349,7 +349,7 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 181 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -382,7 +382,7 @@ citations :: publication.citation_num = max(publication.citation_num) : publicat
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 19 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -1471,14 +1471,14 @@ JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 ==== FOLD RESULTS ====
-49,36,36,36.000,34,34,34.000,143,130,130,130.000
-00:23  INFO: ===== FOLD 1 =====
+49,36,36,36.000,36,36,36.000,143,130,130,130.000
+00:21  INFO: ===== FOLD 1 =====
 Original log size: 142
 Trimming log to 100.0%...
 Final log size: 142
-00:23  INFO: ===== Parsing Results =====
-00:23  INFO: Total Queries: 142
-00:23  INFO: Correctly Parsed: 142/142
+00:21  INFO: ===== Parsing Results =====
+00:21  INFO: Total Queries: 142
+00:21  INFO: Correctly Parsed: 142/142
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
@@ -1792,7 +1792,7 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 167 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -2004,7 +2004,7 @@ Making database systems usable :: publication.title = 'Making database systems u
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 94 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -2134,7 +2134,7 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 15 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -2580,7 +2580,7 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 143 ==
@@ -2977,7 +2977,7 @@ year :: publication.year : publication.year (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 87 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
@@ -3010,14 +3010,14 @@ JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 ==== FOLD RESULTS ====
-49,34,34,34.000,28,28,28.000,143,125,125,125.000
-00:44  INFO: ===== FOLD 2 =====
+49,34,34,34.000,33,33,33.000,143,125,125,125.000
+00:36  INFO: ===== FOLD 2 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-00:44  INFO: ===== Parsing Results =====
-00:44  INFO: Total Queries: 141
-00:44  INFO: Correctly Parsed: 141/141
+00:36  INFO: ===== Parsing Results =====
+00:36  INFO: Total Queries: 141
+00:36  INFO: Correctly Parsed: 141/141
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
@@ -3336,7 +3336,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 124 ==
@@ -3409,7 +3409,7 @@ before 2005 :: publication.year < 2005 : publication.year < 2005 (0.769311906836
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 71 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -3653,7 +3653,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 6 ==
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
@@ -3692,7 +3692,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 100 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
@@ -3768,7 +3768,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 4] [Ties1: 4] [Ties1/t: 4.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 7 ==
 Pruned candidates for keywords: 1
  - keyword.keyword (0.9999999)
@@ -3830,7 +3830,7 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 103 ==
 Pruned candidates for organizations: 1
  - count(organization.name) (0.9999999)
@@ -3869,7 +3869,7 @@ citations :: publication.citation_num = max(publication.citation_num) : publicat
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 26 ==
 Pruned candidates for domain: 1
  - domain.name (1.0)
@@ -4111,7 +4111,7 @@ citations :: publication.citation_num = max(publication.citation_num) : publicat
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 10 ==
 Pruned candidates for homepage: 4
  - conference.homepage (1.0)
@@ -4175,7 +4175,7 @@ year :: publication.year : publication.year (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 42 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -4269,18 +4269,18 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 ==== FOLD RESULTS ====
-48,41,41,41.000,31,31,31.000,121,112,112,112.000
-01:00  INFO: ===== FOLD 3 =====
+48,41,41,41.000,41,41,41.000,121,112,112,112.000
+00:46  INFO: ===== FOLD 3 =====
 Original log size: 141
 Trimming log to 100.0%...
 Final log size: 141
-01:00  INFO: ===== Parsing Results =====
-01:00  INFO: Total Queries: 141
-01:00  INFO: Correctly Parsed: 141/141
+00:47  INFO: ===== Parsing Results =====
+00:47  INFO: Total Queries: 141
+00:47  INFO: Correctly Parsed: 141/141
 
 Loading cache from: <data/mas/mas.cands.cache>
 Cache loaded!
@@ -4395,7 +4395,7 @@ year :: publication.year : publication.year (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 95 ==
 Pruned candidates for keywords: 1
  - count(keyword.keyword) (0.9999999)
@@ -4606,7 +4606,7 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 102 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -5036,7 +5036,7 @@ after 2000 :: publication.year > 2000 : publication.year > 2000 (0.7856133113688
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 135 ==
 Pruned candidates for authors: 1
  - author.name (0.9999999)
@@ -5105,7 +5105,7 @@ before 2000 :: publication.year < 2000 : publication.year < 2000 (0.769311906836
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 166 ==
 Pruned candidates for author: 1
  - author.name (1.0)
@@ -5190,7 +5190,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 54 ==
 Pruned candidates for organizations: 1
  - organization.name (0.9999999)
@@ -5318,7 +5318,7 @@ before 2000 :: publication.year < 2000 : publication.year < 2000 (0.769311906836
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 184 ==
@@ -5445,7 +5445,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 130 ==
@@ -5540,7 +5540,7 @@ before 2005 :: publication.year < 2005 : publication.year < 2005 (0.769311906836
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 174 ==
 Pruned candidates for paper: 5
  - journal.name (0.73065)
@@ -5567,10 +5567,10 @@ JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 ==== FOLD RESULTS ====
-48,40,40,40.000,30,30,30.000,128,120,120,120.000
+48,40,40,40.000,38,38,38.000,128,120,120,120.000
 ==== FINAL RESULTS ====
-49,36,36,36.000,34,34,34.000,143,130,130,130.000
-49,34,34,34.000,28,28,28.000,143,125,125,125.000
-48,41,41,41.000,31,31,31.000,121,112,112,112.000
-48,40,40,40.000,30,30,30.000,128,120,120,120.000
+49,36,36,36.000,36,36,36.000,143,130,130,130.000
+49,34,34,34.000,33,33,33.000,143,125,125,125.000
+48,41,41,41.000,41,41,41.000,121,112,112,112.000
+48,40,40,40.000,38,38,38.000,128,120,120,120.000
 

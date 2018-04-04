@@ -1,4 +1,4 @@
-objc[75200]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x104e2d4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x104ef54e0). One of the two will be used. Which one is undefined.
+objc[85637]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10fcea4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10fdb24e0). One of the two will be used. Which one is undefined.
 Connecting to database: <jdbc:mysql://localhost:3306/mas>
 Database connected!
 Loading cache from: <data/mas/mas.cands.cache>
@@ -772,7 +772,7 @@ Making database systems usable :: publication.title = 'Making database systems u
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 29 ==
 Pruned candidates for references: 8
  - publication.reference_num (0.7492)
@@ -3113,7 +3113,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 122 ==
@@ -3225,7 +3225,7 @@ PVLDB :: journal.name = 'PVLDB' : journal.name = 'PVLDB' (1.0)
 journal(publication)
 QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
 FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 3] [Ties1/t: 2.25]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: N] [Ties1: Y] [Ties1/t: 0.25]
 == QUERY ID: 124 ==
 Pruned candidates for citations: 6
  - sum(publication.citation_num) (0.8148)
@@ -3325,7 +3325,7 @@ year :: publication.year : publication.year (1.0)
 journal(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 126 ==
 Pruned candidates for papers: 9
  - count(journal.name) (0.6878)
@@ -3396,7 +3396,7 @@ VLDB conference :: conference.name = 'VLDB' : conference.name = 'VLDB' (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 == QUERY ID: 128 ==
 Pruned candidates for citations: 6
  - publication.citation_num (0.8148)
@@ -3653,7 +3653,7 @@ year :: publication.year : publication.year (1.0)
 conference(publication)
 QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
-JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 == QUERY ID: 132 ==
@@ -5582,4 +5582,4 @@ JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
 Saving cache...
 Saved cache to <data/mas/mas.cands.cache>!
 ==== FOLD RESULTS ====
-194,77,87,80.500,57,66,60.250,535,413,423,416.500
+194,77,87,80.500,62,72,65.500,535,413,423,416.500
