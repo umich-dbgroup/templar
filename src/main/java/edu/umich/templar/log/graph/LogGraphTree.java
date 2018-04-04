@@ -119,12 +119,31 @@ public class LogGraphTree {
         this.nodes.remove(node);
     }
 
+    public void changeParent(LogGraphNode child, LogGraphNode newParent) {
+        LogGraphNode oldParent = this.parents.get(child);
+        this.children.get(oldParent).remove(child);
+        this.parents.put(child, newParent);
+        Set<LogGraphNode> newChildren = this.children.get(newParent);
+        if (newChildren == null) {
+            newChildren = new HashSet<>();
+            this.children.put(newParent, newChildren);
+        }
+        newChildren.add(child);
+    }
+
     public Set<LogGraphNode> getLeaves() {
         return leaves;
     }
 
     public JoinPath getJoinPath() {
         JoinPath jp = new JoinPath();
+
+        // Special case: only one node in tree
+        if (this.nodes.size() == 1) {
+            Relation rel = (Relation) this.root.getElement().getRelation();
+            jp.addNode(new JoinPathNode(rel, 0));
+            return jp;
+        }
 
         Map<LogGraphNode, JoinPathNode> jpNodeMap = new HashMap<>();
         Stack<LogGraphNode> stack = new Stack<>();
@@ -208,7 +227,7 @@ public class LogGraphTree {
             }
         }
 
-        // Return perfect score
+        // Return perfect score for single table example
         if (weights.isEmpty()) return 1.0;
 
         // TODO: Can't figure out best way to calculate this, nor how it should play out in the scorer.

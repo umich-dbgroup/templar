@@ -26,7 +26,7 @@ public class LogGraph {
         this.init(logCountGraph);
     }
 
-    public LogGraph deepClone() {
+    private LogGraph deepClone(boolean schemaGraphOnly) {
         LogGraph cloned = new LogGraph(this.db, this.logCountGraph);
 
         cloned.nodes = new HashSet<>();
@@ -36,7 +36,7 @@ public class LogGraph {
             if (clonedNode == null) {
                 clonedNode = new LogGraphNode(e.getKey());
             }
-             
+
             for (Map.Entry<LogGraphNode, Double> nodeEntry : e.getValue().getConnected().entrySet()) {
                 LogGraphNode existingClonedNode = cloned.elementMap.get(nodeEntry.getKey().getElement());
                 if (existingClonedNode == null) {
@@ -44,7 +44,11 @@ public class LogGraph {
                     cloned.nodes.add(existingClonedNode);
                     cloned.elementMap.put(nodeEntry.getKey().getElement(), existingClonedNode);
                 }
-                clonedNode.addEdge(existingClonedNode, nodeEntry.getValue());
+                if (schemaGraphOnly) {
+                    clonedNode.addEdge(existingClonedNode, 1.0);
+                } else {
+                    clonedNode.addEdge(existingClonedNode, nodeEntry.getValue());
+                }
             }
 
             cloned.nodes.add(clonedNode);
@@ -53,6 +57,14 @@ public class LogGraph {
 
         cloned.shortestPaths = new HashMap<>(this.shortestPaths);
         return cloned;
+    }
+
+    public LogGraph deepClone() {
+        return deepClone(false);
+    }
+
+    public LogGraph schemaGraphOnly() {
+        return deepClone(true);
     }
 
     // Initialize from LogCountGraph
@@ -121,10 +133,8 @@ public class LogGraph {
                 // If origNext is already traversed, skip!
                 if (origVisited.contains(origNext)) continue;
 
-                // Duplicate node for fork, unless it is a terminal FK-PK edge to relation
-                boolean origNextIsRel = origNext.getElement() instanceof Relation;
-
                 // If connected node is not relation, why bother?
+                boolean origNextIsRel = origNext.getElement() instanceof Relation;
                 if (!origNextIsRel) continue;
 
                 boolean isTerminalFKPKEdge = false;
@@ -138,7 +148,7 @@ public class LogGraph {
                     duplCurNode.addEdge(e.getKey(), e.getValue());
                 } else {
                     // Duplicate next node and edge, add to stack to traverse
-                    DuplicateDBElement duplEl = new DuplicateDBElement(dupl.getIndex(), origNext.getElement());
+                    DuplicateDBElement duplEl = this.duplicate(origNext.getElement());
                     LogGraphNode duplNext = this.getOrAddNode(duplEl);
                     duplCurNode.addEdge(duplNext, e.getValue());
 
@@ -147,6 +157,15 @@ public class LogGraph {
                 }
             }
         }
+    }
+
+    private DuplicateDBElement duplicate(DBElement el) {
+        int index = 1;
+        DuplicateDBElement dupl;
+        do {
+            dupl = new DuplicateDBElement(index++, el);
+        } while (this.elementMap.containsKey(dupl));
+        return dupl;
     }
 
     // Forks schema graph for points given as needed.
@@ -184,7 +203,7 @@ public class LogGraph {
                 for (int i = 1; i < e.getValue().size(); i++) {
                     // First, convert to DuplicateDBElement and replace in points
                     DBElement point = e.getValue().get(i);
-                    DuplicateDBElement dupl = new DuplicateDBElement(i, point);
+                    DuplicateDBElement dupl = this.duplicate(point);
                     points.remove(point);
                     points.add(dupl);
 
@@ -367,6 +386,20 @@ public class LogGraph {
 
                 if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
                     prunableRelation = false;
+
+                    // A HACK to support self-joins for "cite". In theory this will work with a diff. implementation.
+                    // Assuming a max of 2 FK-PK links from a leaf table to parent
+                    DuplicateDBElement duplParent = this.duplicate(parentRel);
+                    LogGraphNode duplParentNode = this.getOrAddNode(duplParent);
+                    finalMST.addNode(leaf, duplParentNode);
+
+                    Set<LogGraphNode> children = new HashSet<>(finalMST.getChildren(parent));
+                    for (LogGraphNode sibling : children) {
+                        duplParentNode.addEdge(sibling, parent.getWeight(sibling));
+                        if (!sibling.equals(leaf) && sibling.getElement() instanceof DuplicateDBElement) {
+                            finalMST.changeParent(sibling, duplParentNode);
+                        }
+                    }
                 }
             }
 

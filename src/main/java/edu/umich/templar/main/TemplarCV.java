@@ -30,6 +30,7 @@ public class TemplarCV {
         String dbName = args[0];
         String prefix = "data/" + dbName + "/" + dbName;
         String fragsFile = prefix + "_keywords.csv";
+        String joinsFile = prefix + "_joins.csv";
         String sqlFile = prefix + "_all.sqls";
         String fkpkFile = prefix + ".fkpk.json";
         String mainAttrsFile = prefix + ".main_attrs.json";
@@ -60,7 +61,7 @@ public class TemplarCV {
         Double logPercent = Double.valueOf(args[3]) / 100;
 
         Boolean typeOracle = Boolean.valueOf(args[4]);
-        Boolean includeSteiner = Boolean.valueOf(args[5]);
+        Boolean includeJoin = Boolean.valueOf(args[5]);
 
         // Read config for database info
         Database db = new Database(TemplarConfig.getProperty("dbhost"),
@@ -79,7 +80,7 @@ public class TemplarCV {
             e.printStackTrace();
         }
 
-        List<QueryTask> queryTasks = QueryTaskReader.readQueryTasks(fragsFile);
+        List<QueryTask> queryTasks = QueryTaskReader.readQueryTasks(fragsFile, joinsFile);
 
         List<Integer> shuffleIndexes = new ArrayList<>();
         for (int i = 0; i < queryTasks.size(); i++) {
@@ -132,9 +133,9 @@ public class TemplarCV {
                 LogGraph logGraph = new LogGraph(db, logCountGraph);
 
                 Templar templar = new Templar(db, candCacheFilename, curFoldTasks,
-                        typeOracle, logGraph, includeSteiner);
+                        typeOracle, logGraph, includeJoin);
 
-                String resultStr = templar.execute(142);
+                String resultStr = templar.execute();
                 resultBuffer.append(resultStr);
                 resultBuffer.append("\n");
             } else {

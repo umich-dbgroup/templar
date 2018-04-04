@@ -8,6 +8,7 @@ import edu.umich.templar.log.graph.DBElementPair;
 import edu.umich.templar.log.graph.LogGraph;
 import edu.umich.templar.log.graph.LogGraphTree;
 import edu.umich.templar.main.settings.Params;
+import edu.umich.templar.task.Interpretation;
 import edu.umich.templar.util.Utils;
 
 import java.util.ArrayList;
@@ -15,20 +16,20 @@ import java.util.List;
 
 public class LogGraphScorer implements InterpretationScorer {
     private LogGraph logGraph;
-    private boolean includeSteiner;
+    private boolean includeJoin;
 
-    public LogGraphScorer(LogGraph logGraph, boolean includeSteiner) {
+    public LogGraphScorer(LogGraph logGraph, boolean includeJoin) {
         this.logGraph = logGraph;
-        this.includeSteiner = includeSteiner;
+        this.includeJoin = includeJoin;
     }
 
     @Override
-    public double score(List<MatchedDBElement> interp) {
+    public double score(Interpretation interp) {
         List<Double> sims = new ArrayList<>();
         List<Double> diceScores = new ArrayList<>();
         List<DBElement> els = new ArrayList<>();
 
-        for (MatchedDBElement mel : interp) {
+        for (MatchedDBElement mel : interp.getElements()) {
             sims.add(mel.getScore());
             DBElement newEl = this.logGraph.modifyElementForLevel(mel.getEl());
 
@@ -70,15 +71,17 @@ public class LogGraphScorer implements InterpretationScorer {
         }
         double terminalFragsScore = Math.max(Utils.geometricMean(diceScores), Params.EPSILON);
 
-        if (this.includeSteiner) {
+        if (this.includeJoin) {
             LogGraph logGraphClone = this.logGraph.deepClone();
             logGraphClone.forkSchemaGraph(els);
 
             // Calculate Steiner tree
             LogGraphTree steinerTree = logGraphClone.steiner(els);
 
-            System.out.println(steinerTree.debug());
-            System.out.println(steinerTree.getJoinPath());
+            // Set join path on interpretation
+            interp.setJoinPath(steinerTree.getJoinPath());
+
+            // System.out.println(steinerTree.debug());
 
             // If Steiner tree pruned away an element from the interpretation, return 0.0.
             for (DBElement el : els) {
@@ -90,6 +93,24 @@ public class LogGraphScorer implements InterpretationScorer {
 
             double joinsScore = steinerTree.joinScore();
             interpScore.add(joinsScore);
+        } else {
+            LogGraph schemaGraph = this.logGraph.schemaGraphOnly();
+            schemaGraph.forkSchemaGraph(els);
+
+            // Calculate Steiner tree
+            LogGraphTree steinerTree = schemaGraph.steiner(els);
+
+            // Set join path on interpretation
+            interp.setJoinPath(steinerTree.getJoinPath());
+
+            for (DBElement el : els) {
+                if (!steinerTree.contains(el)) {
+                    System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
+                    return 0.0;
+                }
+            }
+
+            // Don't add joins score if log graph not activated
         }
 
         interpScore.add(terminalFragsScore);

@@ -14,7 +14,7 @@ import java.io.*;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class FragmentMapper {
+public class CoreArchitecture {
     protected Database db;
     protected Similarity sim;
 
@@ -30,7 +30,7 @@ public class FragmentMapper {
     private Map<String, List<MatchedDBElement>> candidateCache;
     private String candCacheFilename;
 
-    public FragmentMapper(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
+    public CoreArchitecture(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         this.db = database;
         this.typeOracle = typeOracle;
         this.queryTasks = queryTasks;
@@ -476,6 +476,10 @@ public class FragmentMapper {
         boolean correctTies1 = false;
         int correctTiesFragAccum = 0;
 
+        boolean correctJoinTies0 = true;
+        boolean correctJoinTies1 = false;
+        int correctJoinTiesFragAccum = 0;
+
         System.out.println("TOTAL SCORE: " + interps.get(0).getScore() + ", TIES: " + ties);
         for (Interpretation interp : interps) {
             System.out.println("--");
@@ -484,11 +488,19 @@ public class FragmentMapper {
 
             for (int i = 0; i < queryTask.size(); i++) {
                 FragmentMappings fragmentMappings = queryMappings.getFragmentMappingsList().get(i);
+                FragmentTask fragTask = fragmentMappings.getTask();
 
-                List<String> answers = fragmentMappings.getTask().getAnswers();
+                // Skip if is a relation! (this is handled in join path evaluation)
+                if (fragTask.getType().equalsIgnoreCase("rel")) {
+                    correctFragsTies1Accum[i] = false;
+                    correctFragsTies0Accum[i] = false;
+                    continue;
+                }
+
+                List<String> answers = fragTask.getAnswers();
                 MatchedDBElement bestResult = interp.get(i);
 
-                System.out.println(fragmentMappings.getTask().getPhrase() + " :: "
+                System.out.println(fragTask.getPhrase() + " :: "
                         + String.join("; ", answers) + " : " + bestResult);
                 if (answers.contains(bestResult.getEl().toString())) {
                     curInterpCorrectFrags++;
@@ -499,15 +511,26 @@ public class FragmentMapper {
                 }
             }
 
-            if (curInterpCorrectFrags == queryTask.size()) {
+            System.out.println(interp.getJoinPath().toString());
+
+            if (curInterpCorrectFrags == queryTask.sizeWithoutRels()) {
                 correctTies1 = true;
                 correctTiesFragAccum++;
+
+                if (queryTask.getJoinAnswers().contains(interp.getJoinPath().toString())) {
+                    correctJoinTies1 = true;
+                    correctJoinTiesFragAccum++;
+                } else {
+                    correctJoinTies0 = false;
+                }
             } else {
                 correctTies0 = false;
+                correctJoinTies0 = false;
             }
         }
 
         double correctTiesFrac = ((double) correctTiesFragAccum) / interps.size();
+        double correctJoinTiesFrac = ((double) correctJoinTiesFragAccum) / interps.size();
 
         int correctFragsTies0 = 0;
         for (boolean c : correctFragsTies0Accum) {
@@ -525,7 +548,8 @@ public class FragmentMapper {
         }
 
         return new QueryTaskResults(queryTask, correctTies0, correctTies1, correctTiesFrac,
-                correctFragsTies0, correctFragsTies1, correctFragsTiesFrac);
+                correctFragsTies0, correctFragsTies1, correctFragsTiesFrac,
+                correctJoinTies0, correctJoinTies1, correctJoinTiesFrac);
     }
 
     public String execute(Integer queryId) {

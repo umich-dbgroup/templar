@@ -2,6 +2,7 @@ package edu.umich.templar.scorer;
 
 import edu.umich.templar.db.*;
 import edu.umich.templar.db.el.Relation;
+import edu.umich.templar.task.Interpretation;
 import edu.umich.templar.util.Utils;
 
 import java.util.ArrayList;
@@ -19,11 +20,11 @@ public class SQLizerScorer implements InterpretationScorer {
     }
 
     @Override
-    public double score(List<MatchedDBElement> interp) {
+    public double score(Interpretation interp) {
         List<Double> sims = new ArrayList<>();
 
         Set<Relation> rels = new HashSet<>();
-        for (MatchedDBElement mel : interp) {
+        for (MatchedDBElement mel : interp.getElements()) {
             sims.add(mel.getScore());
 
             // Add relation to set

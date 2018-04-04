@@ -1,5 +1,6 @@
 package edu.umich.templar.task;
 
+import edu.umich.templar.db.JoinPath;
 import edu.umich.templar.db.MatchedDBElement;
 import edu.umich.templar.log.graph.LogGraphTree;
 
@@ -9,11 +10,14 @@ import java.util.List;
 public class Interpretation {
     private List<MatchedDBElement> mels;
     private double score;
-    private LogGraphTree joinPath;
+    private JoinPath joinPath;
 
-    public Interpretation(List<MatchedDBElement> mels, double score) {
+    public Interpretation(List<MatchedDBElement> mels) {
         this.mels = mels;
-        this.score = score;
+    }
+
+    public List<MatchedDBElement> getElements() {
+        return mels;
     }
 
     public void add(MatchedDBElement mel) {
@@ -28,11 +32,15 @@ public class Interpretation {
         return score;
     }
 
-    public LogGraphTree getJoinPath() {
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    public JoinPath getJoinPath() {
         return joinPath;
     }
 
-    public void setJoinPath(LogGraphTree joinPath) {
+    public void setJoinPath(JoinPath joinPath) {
         this.joinPath = joinPath;
     }
 }

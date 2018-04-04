@@ -16,6 +16,7 @@ public class AllQueryTaskResults {
     }
 
     public String toCSVString() {
+        int totalQueries = this.results.size();
         long allCorrectTies0 = this.results.stream()
                 .map(QueryTaskResults::isCorrectTies0)
                 .filter((a) -> a).count();
@@ -25,8 +26,18 @@ public class AllQueryTaskResults {
         double allCorrectTiesFrac = this.results.stream()
                 .map(QueryTaskResults::getCorrectTiesFrac)
                 .mapToDouble(Double::doubleValue).sum();
-        int totalQueries = this.results.size();
+        long allCorrectJoinTies0 = this.results.stream()
+                .map(QueryTaskResults::isCorrectJoinTies0)
+                .filter((a) -> a).count();
+        long allCorrectJoinTies1 = this.results.stream()
+                .map(QueryTaskResults::isCorrectJoinTies1)
+                .filter((a) -> a).count();
+        double allCorrectJoinTiesFrac = this.results.stream()
+                .map(QueryTaskResults::getCorrectJoinTiesFrac)
+                .mapToDouble(Double::doubleValue).sum();
 
+        int totalFrags = this.results.stream().map(QueryTaskResults::getTask).map(QueryTask::sizeWithoutRels)
+                .mapToInt(Long::intValue).sum();
         int allCorrectFragsTies0 = this.results.stream()
                 .map(QueryTaskResults::getCorrectFragsTies0)
                 .mapToInt(Integer::intValue).sum();
@@ -36,18 +47,21 @@ public class AllQueryTaskResults {
         double allCorrectFragsTiesFrac = this.results.stream()
                 .map(QueryTaskResults::getCorrectFragsTiesFrac)
                 .mapToDouble(Double::doubleValue).sum();
-        int totalFrags = this.results.stream().map(QueryTaskResults::getTask).map(QueryTask::size)
-                .mapToInt(Integer::intValue).sum();
 
         StringJoiner sj = new StringJoiner(",");
+        sj.add(String.valueOf(totalQueries));
         sj.add(String.valueOf(allCorrectTies0));
         sj.add(String.valueOf(allCorrectTies1));
         sj.add(String.format("%.3f", allCorrectTiesFrac));
-        sj.add(String.valueOf(totalQueries));
+
+        sj.add(String.valueOf(allCorrectJoinTies0));
+        sj.add(String.valueOf(allCorrectJoinTies1));
+        sj.add(String.format("%.3f", allCorrectJoinTiesFrac));
+
+        sj.add(String.valueOf(totalFrags));
         sj.add(String.valueOf(allCorrectFragsTies0));
         sj.add(String.valueOf(allCorrectFragsTies1));
         sj.add(String.format("%.3f", allCorrectFragsTiesFrac));
-        sj.add(String.valueOf(totalFrags));
 
         return sj.toString();
     }

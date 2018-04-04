@@ -29,6 +29,11 @@ public class LogGraphNode {
         node.connected.put(this, weight);
     }
 
+    public void removeEdge(LogGraphNode node) {
+        this.connected.remove(node);
+        node.connected.remove(this);
+    }
+
     public Map<LogGraphNode, Double> getConnected() {
         return connected;
     }

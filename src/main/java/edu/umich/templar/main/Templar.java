@@ -7,12 +7,12 @@ import edu.umich.templar.task.QueryTask;
 
 import java.util.List;
 
-public class Templar extends FragmentMapper {
+public class Templar extends CoreArchitecture {
     public Templar(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle,
-                   LogGraph logGraph, boolean includeSteiner) {
+                   LogGraph logGraph, boolean includeJoin) {
         super(database, candCacheFilename, queryTasks, typeOracle);
 
         // this.setScorer(new LogCountGraphScorer(logGraph));
-        this.setScorer(new LogGraphScorer(logGraph, includeSteiner));
+        this.setScorer(new LogGraphScorer(logGraph, includeJoin));
     }
 }

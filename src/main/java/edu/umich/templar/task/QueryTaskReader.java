@@ -8,11 +8,11 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class QueryTaskReader {
-    public static List<QueryTask> readQueryTasks(String filename) {
+    public static List<QueryTask> readQueryTasks(String keywordFile, String joinFile) {
         Map<Integer, QueryTask> queryTasks = new HashMap<>();
 
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
+            CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(keywordFile), "UTF-8"));
 
             // Skip first header line
             reader.readNext();
@@ -46,6 +46,19 @@ public class QueryTaskReader {
                 task.addMapping(new FragmentTask(phrase, op, type, functions, groupBy, answers));
             }
             reader.close();
+
+            CSVReader joinReader = new CSVReader(new InputStreamReader(new FileInputStream(joinFile), "UTF-8"));
+            // Skip first header line
+            joinReader.readNext();
+
+            // Read all join path answers in from CSV file
+            String [] line;
+            while ((line = joinReader.readNext()) != null) {
+                int queryId = Integer.valueOf(line[0]);
+                List<String> joinAnswers = Arrays.asList(line[1].split(";"));
+                queryTasks.get(queryId).setJoinAnswers(joinAnswers);
+            }
+            joinReader.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

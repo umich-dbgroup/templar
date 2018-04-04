@@ -43,13 +43,17 @@ public class QueryMappings {
                 FragmentMappings fragMappings = this.fragmentMappingsList.get(j);
                 candInterp.add(fragMappings.get(counters[j]));
             }
-            double score = this.scorer.score(candInterp);
+
+            Interpretation interpObj = new Interpretation(candInterp);
+            double score = this.scorer.score(interpObj);
+            interpObj.setScore(score);
+
             if (score > maxScore) {
                 maxInterps = new ArrayList<>();
-                maxInterps.add(new Interpretation(candInterp, score));
+                maxInterps.add(interpObj);
                 maxScore = score;
             } else if (score == maxScore) {
-                maxInterps.add(new Interpretation(candInterp, score));
+                maxInterps.add(interpObj);
             }
             candInterp = new ArrayList<>();
 

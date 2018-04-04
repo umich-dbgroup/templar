@@ -2,15 +2,14 @@ package edu.umich.templar.baseline;
 
 import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.*;
-import edu.umich.templar.log.LogLevel;
-import edu.umich.templar.main.FragmentMapper;
+import edu.umich.templar.main.CoreArchitecture;
 import edu.umich.templar.scorer.SQLizerScorer;
 import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
 
 import java.util.List;
 
-public class SQLizer extends FragmentMapper {
+public class SQLizer extends CoreArchitecture {
     // Activate the SQLizer join penalty indiscriminately
     // private boolean joinScore;
 
@@ -33,6 +32,7 @@ public class SQLizer extends FragmentMapper {
         String prefix = "data/" + dbName + "/" + dbName;
         String fkpkFile = prefix + ".fkpk.json";
         String fragsFile = prefix + "_keywords.csv";
+        String joinsFile = prefix + "_joins.csv";
         String mainAttrsFile = prefix + ".main_attrs.json";
         String projAttrsFile = prefix + ".proj_attrs.json";
         String candCacheFilename = prefix + ".cands.cache";
@@ -48,7 +48,7 @@ public class SQLizer extends FragmentMapper {
                 dbName, fkpkFile, mainAttrsFile, projAttrsFile);
 
         SQLizer sqlizer = new SQLizer(db, candCacheFilename,
-                QueryTaskReader.readQueryTasks(fragsFile), typeOracle);
+                QueryTaskReader.readQueryTasks(fragsFile, joinsFile), typeOracle);
 
         if (args.length >= 4) {
             sqlizer.execute(Integer.valueOf(args[3]));
