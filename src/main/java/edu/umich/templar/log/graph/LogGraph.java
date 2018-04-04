@@ -26,8 +26,23 @@ public class LogGraph {
         this.init(logCountGraph);
     }
 
+    public LogGraph(Database db) {
+        this.db = db;
+        this.elementMap = new HashMap<>();
+        this.nodes = new HashSet<>();
+        this.logCountGraph = null;
+
+        this.shortestPaths = new HashMap<>();
+        this.initFromSchemaGraph();
+    }
+
     private LogGraph deepClone(boolean schemaGraphOnly) {
-        LogGraph cloned = new LogGraph(this.db, this.logCountGraph);
+        LogGraph cloned;
+        if (this.logCountGraph != null) {
+            cloned = new LogGraph(this.db, this.logCountGraph);
+        } else {
+            cloned = new LogGraph(this.db);
+        }
 
         cloned.nodes = new HashSet<>();
         cloned.elementMap = new HashMap<>();
@@ -65,6 +80,13 @@ public class LogGraph {
 
     public LogGraph schemaGraphOnly() {
         return deepClone(true);
+    }
+
+    private void initFromSchemaGraph() {
+        // Add all relations into graph at least
+        for (Relation rel : this.db.getAllRelations()) {
+            this.getOrAddNode(rel);
+        }
     }
 
     // Initialize from LogCountGraph

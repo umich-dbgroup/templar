@@ -410,6 +410,8 @@ public class CoreArchitecture {
 
         QueryMappings queryMappings = new QueryMappings(this.scorer);
         for (FragmentTask fragmentTask : queryTask.getFragmentTasks()) {
+            // Obscure type of task until after candidates are generated
+            String fragTaskType = fragmentTask.getType();
             if (!this.typeOracle) fragmentTask.setType(null);
 
             List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
@@ -452,6 +454,9 @@ public class CoreArchitecture {
 
             FragmentMappings fragMappings = new FragmentMappings(fragmentTask, pruned);
             queryMappings.addFragmentMappings(fragMappings);
+
+            // Reset fragment task type
+            fragmentTask.setType(fragTaskType);
         }
 
         List<Interpretation> interps = queryMappings.findOptimalInterpretations();

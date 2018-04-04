@@ -1,7 +1,11 @@
 package edu.umich.templar.scorer;
 
 import edu.umich.templar.db.*;
+import edu.umich.templar.db.el.AttributeAndPredicate;
+import edu.umich.templar.db.el.DBElement;
 import edu.umich.templar.db.el.Relation;
+import edu.umich.templar.log.graph.LogGraph;
+import edu.umich.templar.log.graph.LogGraphTree;
 import edu.umich.templar.task.Interpretation;
 import edu.umich.templar.util.Utils;
 
@@ -11,57 +15,45 @@ import java.util.List;
 import java.util.Set;
 
 public class SQLizerScorer implements InterpretationScorer {
-    private Database db;
-    // private boolean joinScore;
+    private LogGraph schemaGraph;
 
     public SQLizerScorer(Database db) {
-        this.db = db;
-        // this.joinScore = joinScore;
+        this.schemaGraph = new LogGraph(db);
     }
 
     @Override
     public double score(Interpretation interp) {
         List<Double> sims = new ArrayList<>();
+        List<DBElement> els = new ArrayList<>();
 
-        Set<Relation> rels = new HashSet<>();
         for (MatchedDBElement mel : interp.getElements()) {
             sims.add(mel.getScore());
 
-            // Add relation to set
-            /*
-            if (mel.getEl() instanceof Relation) {
-                rels.add((Relation) mel.getEl());
-            } else if (mel.getEl() instanceof Attribute) {
-                rels.add(((Attribute) mel.getEl()).getRelation());
-            } else if (mel.getEl() instanceof TextPredicate) {
-                rels.add(((TextPredicate) mel.getEl()).getAttribute().getRelation());
-            } else if (mel.getEl() instanceof NumericPredicate) {
-                rels.add(((NumericPredicate) mel.getEl()).getAttr().getRelation());
-            } else if (mel.getEl() instanceof AggregatedPredicate) {
-                rels.add(((AggregatedPredicate) mel.getEl()).getAttr().getRelation());
-            } else if (mel.getEl() instanceof AggregatedAttribute) {
-                rels.add(((AggregatedAttribute) mel.getEl()).getAttr().getRelation());
-            } else if (mel.getEl() instanceof GroupedAttribute) {
-                rels.add(((GroupedAttribute) mel.getEl()).getAttr().getRelation());
+            if (mel.getEl() instanceof AttributeAndPredicate) {
+                els.add(((AttributeAndPredicate) mel.getEl()).getPredicate());
+                els.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
             } else {
-                throw new RuntimeException("Unknown DBElement type.");
-            }*/
+                els.add(mel.getEl());
+            }
         }
 
-        // add join scores according to SQLizer
-        /*if (this.joinScore) {
-            if (rels.size() > 1) {
-                int joins = this.db.longestJoinPathLength(rels) - 1;
-                for (int i = 0; i < joins; i++) {
-                    sims.add(1 - Params.SQLIZER_EPSILON);
-                }
+        LogGraph schemaGraph = this.schemaGraph.schemaGraphOnly();
+        schemaGraph.forkSchemaGraph(els);
 
-                int failedJoins = rels.size() - joins - 1;
-                for (int i = 0; i < failedJoins; i++) {
-                    sims.add(Params.SQLIZER_EPSILON);
-                }
+        // Calculate Steiner tree
+        LogGraphTree steinerTree = schemaGraph.steiner(els);
+
+        // Set join path on interpretation
+        interp.setJoinPath(steinerTree.getJoinPath());
+
+        for (DBElement el : els) {
+            if (!steinerTree.contains(el)) {
+                System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
+                return 0.0;
             }
-        }*/
+        }
+
+        // Don't add joins score if log graph not activated
 
         return Utils.geometricMean(sims);
     }
