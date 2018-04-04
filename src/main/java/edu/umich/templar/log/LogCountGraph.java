@@ -1,9 +1,8 @@
 package edu.umich.templar.log;
 
 import edu.umich.templar.db.*;
+import edu.umich.templar.db.el.*;
 import edu.umich.templar.log.graph.DBElementPair;
-import edu.umich.templar.log.graph.LogGraph;
-import edu.umich.templar.log.graph.LogGraphNode;
 import edu.umich.templar.log.parse.ParserUtils;
 import edu.umich.templar.log.parse.PredicateParser;
 import edu.umich.templar.log.parse.AttributeParser;
@@ -13,7 +12,6 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.select.*;
 
-import java.security.acl.Group;
 import java.util.*;
 
 public class LogCountGraph {

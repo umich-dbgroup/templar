@@ -1,6 +1,10 @@
 package edu.umich.templar.log.parse;
 
 import edu.umich.templar.db.*;
+import edu.umich.templar.db.el.AggregatedAttribute;
+import edu.umich.templar.db.el.Attribute;
+import edu.umich.templar.db.el.DBElement;
+import edu.umich.templar.db.el.Relation;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.ExpressionVisitorAdapter;
 import net.sf.jsqlparser.expression.Function;

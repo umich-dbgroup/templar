@@ -32,7 +32,7 @@ public class SQLizer extends FragmentMapper {
         String dbName = args[0];
         String prefix = "data/" + dbName + "/" + dbName;
         String fkpkFile = prefix + ".fkpk.json";
-        String fragsFile = prefix + "_all_fragments.csv";
+        String fragsFile = prefix + "_keywords.csv";
         String mainAttrsFile = prefix + ".main_attrs.json";
         String projAttrsFile = prefix + ".proj_attrs.json";
         String candCacheFilename = prefix + ".cands.cache";

@@ -1,11 +1,11 @@
 package edu.umich.templar.scorer;
 
-import edu.umich.templar.db.DBElement;
+import edu.umich.templar.db.el.AttributeAndPredicate;
+import edu.umich.templar.db.el.DBElement;
 import edu.umich.templar.db.MatchedDBElement;
-import edu.umich.templar.db.Relation;
+import edu.umich.templar.db.el.Relation;
 import edu.umich.templar.log.graph.DBElementPair;
 import edu.umich.templar.log.graph.LogGraph;
-import edu.umich.templar.log.graph.LogGraphNode;
 import edu.umich.templar.log.graph.LogGraphTree;
 import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.util.Utils;
@@ -32,7 +32,12 @@ public class LogGraphScorer implements InterpretationScorer {
             sims.add(mel.getScore());
             DBElement newEl = this.logGraph.modifyElementForLevel(mel.getEl());
 
-            els.add(newEl);
+            if (newEl instanceof AttributeAndPredicate) {
+                els.add(((AttributeAndPredicate) newEl).getPredicate());
+                els.add(((AttributeAndPredicate) newEl).getAttribute());
+            } else {
+                els.add(newEl);
+            }
         }
 
         double simScore = Utils.geometricMean(sims);
@@ -66,8 +71,14 @@ public class LogGraphScorer implements InterpretationScorer {
         double terminalFragsScore = Math.max(Utils.geometricMean(diceScores), Params.EPSILON);
 
         if (this.includeSteiner) {
+            LogGraph logGraphClone = this.logGraph.deepClone();
+            logGraphClone.forkSchemaGraph(els);
+
             // Calculate Steiner tree
-            LogGraphTree steinerTree = this.logGraph.steiner(els);
+            LogGraphTree steinerTree = logGraphClone.steiner(els);
+
+            System.out.println(steinerTree.debug());
+            System.out.println(steinerTree.getJoinPath());
 
             // If Steiner tree pruned away an element from the interpretation, return 0.0.
             for (DBElement el : els) {

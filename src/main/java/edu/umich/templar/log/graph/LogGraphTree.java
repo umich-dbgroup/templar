@@ -1,8 +1,11 @@
 package edu.umich.templar.log.graph;
 
-import edu.umich.templar.db.AttributeAndPredicate;
-import edu.umich.templar.db.DBElement;
-import edu.umich.templar.db.Relation;
+import edu.umich.templar.db.JoinPath;
+import edu.umich.templar.db.JoinPathNode;
+import edu.umich.templar.db.el.AttributeAndPredicate;
+import edu.umich.templar.db.el.DBElement;
+import edu.umich.templar.db.el.DuplicateDBElement;
+import edu.umich.templar.db.el.Relation;
 import edu.umich.templar.util.Utils;
 
 import java.util.*;
@@ -118,6 +121,73 @@ public class LogGraphTree {
 
     public Set<LogGraphNode> getLeaves() {
         return leaves;
+    }
+
+    public JoinPath getJoinPath() {
+        JoinPath jp = new JoinPath();
+
+        Map<LogGraphNode, JoinPathNode> jpNodeMap = new HashMap<>();
+        Stack<LogGraphNode> stack = new Stack<>();
+        stack.push(this.root);
+
+        while (!stack.isEmpty()) {
+            LogGraphNode node = stack.pop();
+
+            Relation rel = null;
+            int index = 0;
+            if (node.getElement() instanceof Relation) {
+                rel = (Relation) node.getElement();
+            } else if (node.getElement() instanceof DuplicateDBElement) {
+                DuplicateDBElement dupl = ((DuplicateDBElement) node.getElement());
+                if (dupl.getEl() instanceof Relation) {
+                    rel = (Relation) ((DuplicateDBElement) node.getElement()).getEl();
+                    index = dupl.getIndex();
+                }
+            }
+
+            if (rel != null) {
+                JoinPathNode nodeJPNode = jpNodeMap.get(node);
+                if (nodeJPNode == null) {
+                    nodeJPNode = new JoinPathNode(rel, index);
+                    jpNodeMap.put(node, nodeJPNode);
+                }
+                jp.addNode(nodeJPNode);
+            }
+
+
+            if (this.hasChildren(node)) {
+                for (LogGraphNode child : this.children.get(node)) {
+                    // Only if both nodes are relations
+                    Relation childRel = null;
+                    int childIndex = 0;
+                    if (child.getElement() instanceof Relation) {
+                        childRel = (Relation) child.getElement();
+                    } else if (child.getElement() instanceof DuplicateDBElement) {
+                        DuplicateDBElement dupl = ((DuplicateDBElement) child.getElement());
+                        if (dupl.getEl() instanceof Relation) {
+                            childRel = (Relation) ((DuplicateDBElement) child.getElement()).getEl();
+                            childIndex = dupl.getIndex();
+                        }
+                    }
+
+                    if (childRel != null && rel != null) {
+                        JoinPathNode childJPNode = jpNodeMap.get(child);
+                        if (childJPNode == null) {
+                            childJPNode = new JoinPathNode(childRel, childIndex);
+                            jpNodeMap.put(child, childJPNode);
+                        }
+
+                        jp.addNode(childJPNode);
+
+                        JoinPathNode nodeJPNode = jpNodeMap.get(node);
+                        nodeJPNode.addEdge(childJPNode);
+                    }
+                    stack.push(child);
+                }
+            }
+        }
+
+        return jp;
     }
 
     public double joinScore() {

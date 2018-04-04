@@ -29,7 +29,7 @@ public class TemplarCV {
         }
         String dbName = args[0];
         String prefix = "data/" + dbName + "/" + dbName;
-        String fragsFile = prefix + "_all_fragments.csv";
+        String fragsFile = prefix + "_keywords.csv";
         String sqlFile = prefix + "_all.sqls";
         String fkpkFile = prefix + ".fkpk.json";
         String mainAttrsFile = prefix + ".main_attrs.json";
@@ -134,7 +134,7 @@ public class TemplarCV {
                 Templar templar = new Templar(db, candCacheFilename, curFoldTasks,
                         typeOracle, logGraph, includeSteiner);
 
-                String resultStr = templar.execute();
+                String resultStr = templar.execute(142);
                 resultBuffer.append(resultStr);
                 resultBuffer.append("\n");
             } else {

@@ -1,6 +1,7 @@
 package edu.umich.templar.main;
 
 import edu.umich.templar.db.*;
+import edu.umich.templar.db.el.*;
 import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.scorer.InterpretationScorer;
 import edu.umich.templar.scorer.SimpleScorer;

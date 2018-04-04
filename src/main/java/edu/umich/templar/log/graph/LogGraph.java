@@ -1,9 +1,7 @@
 package edu.umich.templar.log.graph;
 
-import edu.umich.templar.db.AttributeAndPredicate;
-import edu.umich.templar.db.DBElement;
+import edu.umich.templar.db.el.*;
 import edu.umich.templar.db.Database;
-import edu.umich.templar.db.Relation;
 import edu.umich.templar.log.LogCountGraph;
 
 import java.util.*;
@@ -26,6 +24,35 @@ public class LogGraph {
         this.shortestPaths = new HashMap<>();
 
         this.init(logCountGraph);
+    }
+
+    public LogGraph deepClone() {
+        LogGraph cloned = new LogGraph(this.db, this.logCountGraph);
+
+        cloned.nodes = new HashSet<>();
+        cloned.elementMap = new HashMap<>();
+        for (Map.Entry<DBElement, LogGraphNode> e : this.elementMap.entrySet()) {
+            LogGraphNode clonedNode = cloned.elementMap.get(e.getKey());
+            if (clonedNode == null) {
+                clonedNode = new LogGraphNode(e.getKey());
+            }
+             
+            for (Map.Entry<LogGraphNode, Double> nodeEntry : e.getValue().getConnected().entrySet()) {
+                LogGraphNode existingClonedNode = cloned.elementMap.get(nodeEntry.getKey().getElement());
+                if (existingClonedNode == null) {
+                    existingClonedNode = new LogGraphNode(nodeEntry.getKey().getElement());
+                    cloned.nodes.add(existingClonedNode);
+                    cloned.elementMap.put(nodeEntry.getKey().getElement(), existingClonedNode);
+                }
+                clonedNode.addEdge(existingClonedNode, nodeEntry.getValue());
+            }
+
+            cloned.nodes.add(clonedNode);
+            cloned.elementMap.put(e.getKey(), clonedNode);
+        }
+
+        cloned.shortestPaths = new HashMap<>(this.shortestPaths);
+        return cloned;
     }
 
     // Initialize from LogCountGraph
@@ -70,9 +97,101 @@ public class LogGraph {
         return this.logCountGraph.cooccur(pair);
     }
 
-    private void addNode(LogGraphNode node) {
-        this.elementMap.put(node.getElement(), node);
-        this.nodes.add(node);
+    private void propagateFork(DuplicateDBElement dupl) {
+        LogGraphNode duplNode = this.getOrAddNode(dupl);
+        LogGraphNode origNode = this.getOrAddNode(dupl.getEl());
+
+        Set<LogGraphNode> origVisited = new HashSet<>();
+        Stack<LogGraphNode> origStack = new Stack<>();
+        origStack.push(origNode);
+        Stack<LogGraphNode> duplStack = new Stack<>();
+        duplStack.push(duplNode);
+
+        while (!origStack.isEmpty()) {
+            LogGraphNode origCurNode = origStack.pop();
+            LogGraphNode duplCurNode = duplStack.pop();
+
+            origVisited.add(origCurNode);
+
+            boolean origCurIsRel = origCurNode.getElement() instanceof Relation;
+
+            for (Map.Entry<LogGraphNode, Double> e : origCurNode.getConnected().entrySet()) {
+                LogGraphNode origNext = e.getKey();
+
+                // If origNext is already traversed, skip!
+                if (origVisited.contains(origNext)) continue;
+
+                // Duplicate node for fork, unless it is a terminal FK-PK edge to relation
+                boolean origNextIsRel = origNext.getElement() instanceof Relation;
+
+                // If connected node is not relation, why bother?
+                if (!origNextIsRel) continue;
+
+                boolean isTerminalFKPKEdge = false;
+                if (origCurIsRel) {
+                    isTerminalFKPKEdge = this.db.isFP((Relation) origCurNode.getElement(),
+                            (Relation) origNext.getElement());
+                }
+
+                if (isTerminalFKPKEdge) {
+                    // Don't duplicate relation, just link duplicate to it, and terminate
+                    duplCurNode.addEdge(e.getKey(), e.getValue());
+                } else {
+                    // Duplicate next node and edge, add to stack to traverse
+                    DuplicateDBElement duplEl = new DuplicateDBElement(dupl.getIndex(), origNext.getElement());
+                    LogGraphNode duplNext = this.getOrAddNode(duplEl);
+                    duplCurNode.addEdge(duplNext, e.getValue());
+
+                    origStack.push(origNext);
+                    duplStack.push(duplNext);
+                }
+            }
+        }
+    }
+
+    // Forks schema graph for points given as needed.
+    // WARNING: irreversibly changes this LogGraph! recommend use on a "deepClone()"d LogGraph.
+    public void forkSchemaGraph(List<DBElement> points) {
+        // Check for duplicates
+        Map<Attribute, List<DBElement>> duplicatesCheck = new HashMap<>();
+        for (DBElement point : points) {
+            Attribute attr = null;
+            if (point instanceof AggregatedAttribute) {
+                attr = ((AggregatedAttribute) point).getAttr();
+            } else if (point instanceof AggregatedPredicate) {
+                attr = ((AggregatedPredicate) point).getAttr();
+            } else if (point instanceof Attribute) {
+                attr = (Attribute) point;
+            } else if (point instanceof GroupedAttribute) {
+                attr = ((GroupedAttribute) point).getAttr();
+            } else if (point instanceof NumericPredicate) {
+                attr = ((NumericPredicate) point).getAttr();
+            } else if (point instanceof TextPredicate) {
+                attr = ((TextPredicate) point).getAttribute();
+            } else if (point instanceof Relation) {
+                // No-op
+            } else {
+                throw new RuntimeException("Unexpected DBElement type for: " + point);
+            }
+            if (attr != null) {
+                List<DBElement> attrList = duplicatesCheck.computeIfAbsent(attr, k -> new ArrayList<>());
+                attrList.add(point);
+            }
+        }
+        for (Map.Entry<Attribute, List<DBElement>> e : duplicatesCheck.entrySet()) {
+            // If there are any duplicates, we propagate the fork
+            if (e.getValue().size() > 1) {
+                for (int i = 1; i < e.getValue().size(); i++) {
+                    // First, convert to DuplicateDBElement and replace in points
+                    DBElement point = e.getValue().get(i);
+                    DuplicateDBElement dupl = new DuplicateDBElement(i, point);
+                    points.remove(point);
+                    points.add(dupl);
+
+                    this.propagateFork(dupl);
+                }
+            }
+        }
     }
 
     private LogGraphNode getOrAddNode(DBElement el) {
@@ -84,6 +203,9 @@ public class LogGraph {
             this.elementMap.put(el, node);
             this.nodes.add(node);
         }
+
+        // Ignore schema graph implications for DuplicateDBElements
+        if (el instanceof DuplicateDBElement) return node;
 
         // Add links from schema graph if it's not a relation
         // Attributes/proj/sel, etc. -> Relations
@@ -170,26 +292,10 @@ public class LogGraph {
         // Step 1: Make sure shortest paths are calculated for all points
         List<LogGraphNode> pointNodes = new ArrayList<>();
         for (DBElement point : points) {
-            if (point instanceof AttributeAndPredicate) {
-                AttributeAndPredicate attrPred = (AttributeAndPredicate) point;
-                LogGraphNode attrPoint = this.getOrAddNode(attrPred.getAttribute());
-                if (!pointNodes.contains(attrPoint)) {
-                    pointNodes.add(attrPoint);
-                }
-
-                LogGraphNode predPoint = this.getOrAddNode(attrPred.getPredicate());
-                if (!pointNodes.contains(predPoint)) {
-                    pointNodes.add(predPoint);
-                }
-
-                this.findShortestPathToAllOtherNodes(attrPoint);
-                this.findShortestPathToAllOtherNodes(predPoint);
-            } else {
-                LogGraphNode pointNode = this.getOrAddNode(point);
-                this.findShortestPathToAllOtherNodes(pointNode);
-                if (!pointNodes.contains(pointNode)) {
-                    pointNodes.add(pointNode);
-                }
+            LogGraphNode pointNode = this.getOrAddNode(point);
+            this.findShortestPathToAllOtherNodes(pointNode);
+            if (!pointNodes.contains(pointNode)) {
+                pointNodes.add(pointNode);
             }
         }
 
@@ -226,8 +332,45 @@ public class LogGraph {
 
         while (!leaves.isEmpty()) {
             LogGraphNode leaf = leaves.pop();
-            // Leaves can also NOT be relations!
-            if (!pointNodes.contains(leaf) || leaf.getElement() instanceof Relation) {
+
+            // Leaves can also NOT be relations, unless there are at least 2 FK-PK rels from it
+            boolean prunableRelation = false;
+
+            Relation rel = null;
+            if (leaf.getElement() instanceof Relation) {
+                rel = (Relation) leaf.getElement();
+            } else if (leaf.getElement() instanceof DuplicateDBElement) {
+                DuplicateDBElement dupl = (DuplicateDBElement) leaf.getElement();
+                if (dupl.getEl() instanceof Relation) {
+                    rel = (Relation) dupl.getEl();
+                }
+            }
+
+            if (rel != null) {
+                prunableRelation = true;
+
+                // By definition, a leaf can only have one connected node (its "parent")
+                LogGraphNode parent = null;
+                for (Map.Entry<LogGraphNode, Double> e : leaf.getConnected().entrySet()) {
+                    parent = e.getKey();
+                }
+
+                Relation parentRel = null;
+                if (parent.getElement() instanceof Relation) {
+                    parentRel = (Relation) parent.getElement();
+                } else if (parent.getElement() instanceof DuplicateDBElement) {
+                    DuplicateDBElement dupl = (DuplicateDBElement) parent.getElement();
+                    if (dupl.getEl() instanceof Relation) {
+                        parentRel = (Relation) dupl.getEl();
+                    }
+                }
+
+                if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
+                    prunableRelation = false;
+                }
+            }
+
+            if (!pointNodes.contains(leaf) || prunableRelation) {
                 LogGraphNode parent = finalMST.getParent(leaf);
                 // Traverse up the leaf and remove from final MST
                 finalMST.removeNode(leaf);

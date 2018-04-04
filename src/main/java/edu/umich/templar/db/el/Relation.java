@@ -1,4 +1,4 @@
-package edu.umich.templar.db;
+package edu.umich.templar.db.el;
 
 import net.sf.jsqlparser.schema.Table;
 

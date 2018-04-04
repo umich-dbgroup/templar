@@ -1,5 +1,7 @@
 package edu.umich.templar.db;
 
+import edu.umich.templar.db.el.DBElement;
+
 import java.io.Serializable;
 import java.util.Objects;
 

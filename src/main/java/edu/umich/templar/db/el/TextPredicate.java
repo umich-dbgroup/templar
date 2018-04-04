@@ -1,4 +1,4 @@
-package edu.umich.templar.db;
+package edu.umich.templar.db.el;
 
 import java.io.Serializable;
 

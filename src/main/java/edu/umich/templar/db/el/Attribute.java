@@ -1,5 +1,6 @@
-package edu.umich.templar.db;
+package edu.umich.templar.db.el;
 
+import edu.umich.templar.db.AttributeType;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 

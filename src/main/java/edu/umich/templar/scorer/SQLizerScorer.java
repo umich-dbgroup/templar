@@ -1,7 +1,7 @@
 package edu.umich.templar.scorer;
 
 import edu.umich.templar.db.*;
-import edu.umich.templar.main.settings.Params;
+import edu.umich.templar.db.el.Relation;
 import edu.umich.templar.util.Utils;
 
 import java.util.ArrayList;

@@ -1,6 +1,9 @@
 package edu.umich.templar.db;
 
 import edu.northwestern.at.morphadorner.corpuslinguistics.lemmatizer.PorterStemmerLemmatizer;
+import edu.umich.templar.db.el.Attribute;
+import edu.umich.templar.db.el.Relation;
+import edu.umich.templar.db.el.TextPredicate;
 import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.util.Utils;
 import net.sf.jsqlparser.expression.StringValue;
@@ -316,6 +319,23 @@ public class Database {
             }
         }
         return false;
+    }
+
+    public boolean isFP(Relation f, Relation p) {
+        for (Attribute a1 : f.getAttributes()) {
+            Attribute a2 = this.fkpk.get(a1);
+            if (a2 != null && a2.getRelation().equals(p)) return true;
+        }
+        return false;
+    }
+
+    public int fpCount(Relation f, Relation p) {
+        int fpCount = 0;
+        for (Attribute a1 : f.getAttributes()) {
+            Attribute a2 = this.fkpk.get(a1);
+            if (a2 != null && a2.getRelation().equals(p)) fpCount++;
+        }
+        return fpCount;
     }
 
     public List<Relation> longestJoinPathRecursive(List<Relation> path, List<Relation> rels) {

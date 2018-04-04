@@ -1,6 +1,7 @@
 package edu.umich.templar.log.parse;
 
 import edu.umich.templar.db.*;
+import edu.umich.templar.db.el.*;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;

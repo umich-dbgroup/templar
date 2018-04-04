@@ -1,6 +1,6 @@
 package edu.umich.templar.log.graph;
 
-import edu.umich.templar.db.DBElement;
+import edu.umich.templar.db.el.DBElement;
 
 import java.util.ArrayList;
 import java.util.Comparator;
