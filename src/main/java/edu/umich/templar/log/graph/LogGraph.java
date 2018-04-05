@@ -192,10 +192,12 @@ public class LogGraph {
 
     // Forks schema graph for points given as needed.
     // WARNING: irreversibly changes this LogGraph! recommend use on a "deepClone()"d LogGraph.
-    public void forkSchemaGraph(List<DBElement> points) {
+    public void forkSchemaGraph(List<DBElement> points, List<DBElement> ignoreDuplicates) {
         // Check for duplicates
         Map<Attribute, List<DBElement>> duplicatesCheck = new HashMap<>();
         for (DBElement point : points) {
+            if (ignoreDuplicates.contains(point)) continue;
+
             Attribute attr = null;
             if (point instanceof AggregatedAttribute) {
                 attr = ((AggregatedAttribute) point).getAttr();

@@ -26,19 +26,24 @@ public class SQLizerScorer implements InterpretationScorer {
         List<Double> sims = new ArrayList<>();
         List<DBElement> els = new ArrayList<>();
 
+        // AttrAndPreds that we can ignore when generating our Steiner tree later
+        List<DBElement> ignoreDuplicates = new ArrayList<>();
+
         for (MatchedDBElement mel : interp.getElements()) {
             sims.add(mel.getScore());
 
             if (mel.getEl() instanceof AttributeAndPredicate) {
                 els.add(((AttributeAndPredicate) mel.getEl()).getPredicate());
                 els.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
+
+                ignoreDuplicates.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
             } else {
                 els.add(mel.getEl());
             }
         }
 
         LogGraph schemaGraph = this.schemaGraph.schemaGraphOnly();
-        schemaGraph.forkSchemaGraph(els);
+        schemaGraph.forkSchemaGraph(els, ignoreDuplicates);
 
         // Calculate Steiner tree
         LogGraphTree steinerTree = schemaGraph.steiner(els);

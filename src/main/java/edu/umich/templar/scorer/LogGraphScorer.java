@@ -29,13 +29,19 @@ public class LogGraphScorer implements InterpretationScorer {
         List<Double> diceScores = new ArrayList<>();
         List<DBElement> els = new ArrayList<>();
 
+        // AttrAndPreds that we can ignore when generating our Steiner tree later
+        List<DBElement> ignoreDuplicates = new ArrayList<>();
+
         for (MatchedDBElement mel : interp.getElements()) {
             sims.add(mel.getScore());
+
             DBElement newEl = this.logGraph.modifyElementForLevel(mel.getEl());
 
             if (newEl instanceof AttributeAndPredicate) {
                 els.add(((AttributeAndPredicate) newEl).getPredicate());
                 els.add(((AttributeAndPredicate) newEl).getAttribute());
+
+                ignoreDuplicates.add(((AttributeAndPredicate) newEl).getAttribute());
             } else {
                 els.add(newEl);
             }
@@ -73,7 +79,7 @@ public class LogGraphScorer implements InterpretationScorer {
 
         if (this.includeJoin) {
             LogGraph logGraphClone = this.logGraph.deepClone();
-            logGraphClone.forkSchemaGraph(els);
+            logGraphClone.forkSchemaGraph(els, ignoreDuplicates);
 
             // Calculate Steiner tree
             LogGraphTree steinerTree = logGraphClone.steiner(els);
@@ -95,7 +101,7 @@ public class LogGraphScorer implements InterpretationScorer {
             interpScore.add(joinsScore);
         } else {
             LogGraph schemaGraph = this.logGraph.schemaGraphOnly();
-            schemaGraph.forkSchemaGraph(els);
+            schemaGraph.forkSchemaGraph(els, ignoreDuplicates);
 
             // Calculate Steiner tree
             LogGraphTree steinerTree = schemaGraph.steiner(els);
