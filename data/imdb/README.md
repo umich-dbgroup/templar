@@ -22,3 +22,5 @@ Removed two queries:
 * *Which producer has worked with the most number of directors?*
 
 because it's not very clear whether the pathway is through `tv_series` or `movie` and we don't support investigating both disjunctively.
+
+We also removed: *Find all movies written and produced by Woody Allen* because it requires two join paths which we don't support.
