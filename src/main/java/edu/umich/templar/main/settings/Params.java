@@ -1,7 +1,7 @@
 package edu.umich.templar.main.settings;
 
 public class Params {
-    public static int KAPPA = 10;
+    public static int KAPPA = 5;
     public static int MAX_CHAR_LENGTH = 50;
     public static int MIN_FULLTEXT_TOKEN_LENGTH = 3;
 
@@ -17,7 +17,7 @@ public class Params {
     public static double SPECIAL_CHARS_EPSILON = 0.00000001;
 
     /* Minimum similarity for pruning */
-    public static double MIN_SIM = 0.5;
+    public static double MIN_SIM = 0.01;
 
     /* "Exact score" threshold for pruning */
     public static double EXACT_SCORE = 1 - LEMMATIZER_EPSILON;
