@@ -1,7 +1,7 @@
 package edu.umich.templar.main.settings;
 
 public class Params {
-    public static int KAPPA = 5;
+    public static int KAPPA = 1;
     public static int MAX_CHAR_LENGTH = 50;
     public static int MIN_FULLTEXT_TOKEN_LENGTH = 3;
 
@@ -17,7 +17,7 @@ public class Params {
     public static double SPECIAL_CHARS_EPSILON = 0.00000001;
 
     /* Minimum similarity for pruning */
-    public static double MIN_SIM = 0.01;
+    public static double MIN_SIM = 0.001;
 
     /* "Exact score" threshold for pruning */
     public static double EXACT_SCORE = 1 - LEMMATIZER_EPSILON;
@@ -30,6 +30,9 @@ public class Params {
 
     /* Cache save interval (how many tasks we should wait) */
     public static int CACHE_SAVE_INTERVAL = 5;
+
+    /* How many candidates to save in the cache */
+    public static int CACHE_SAVE_LIMIT = 20;
 
     /* Enable or disable cache */
     public static boolean ENABLE_CACHE = true;

@@ -379,16 +379,13 @@ public class CoreArchitecture {
         return matchedEls;
     }
 
-    private List<MatchedDBElement> pruneTopMatches(List<MatchedDBElement> matches) {
+    private List<MatchedDBElement> pruneTopMatches(List<MatchedDBElement> matches, int limit) {
         List<MatchedDBElement> pruned = new ArrayList<>();
 
         double lastScore = 0.0;
         for (int i = 0; i < matches.size(); i++) {
             // If we ever get to a score below MIN_SIM, just stop and skip
-            // if (matches.get(i).getScore() < Params.MIN_SIM) {
-
-            // If we start hitting 0 scores
-            if (matches.get(i).getScore() == 0.0) {
+            if (matches.get(i).getScore() < Params.MIN_SIM) {
                 break;
             }
 
@@ -397,13 +394,13 @@ public class CoreArchitecture {
                 break;
             }
 
-            if (i < Params.KAPPA) {
+            if (i < limit) {
                 pruned.add(matches.get(i));
                 lastScore = matches.get(i).getScore();
                 continue;
             }
 
-            // If we went beyond the KAPPA, only keep going so long as we have a tie
+            // If we went beyond the limit, only keep going so long as we have a tie
             if (matches.get(i).getScore() == lastScore) {
                 pruned.add(matches.get(i));
             } else {
@@ -453,12 +450,12 @@ public class CoreArchitecture {
                 List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);
                 sorted.sort(Comparator.comparing(MatchedDBElement::getScore).reversed());
 
-                pruned = this.pruneTopMatches(sorted);
+                pruned = this.pruneTopMatches(sorted, Params.CACHE_SAVE_LIMIT);
                 this.candidateCache.put(fragmentTask.getKeyString(), pruned);
             }
 
             // Prune again after loading from cache to handle new Kappa values
-            pruned = this.pruneTopMatches(pruned);
+            pruned = this.pruneTopMatches(pruned, Params.KAPPA);
 
             System.out.println("Pruned candidates for " + fragmentTask.getPhrase() + ": " + pruned.size());
 
