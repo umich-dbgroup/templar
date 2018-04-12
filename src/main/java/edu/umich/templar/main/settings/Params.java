@@ -1,7 +1,7 @@
 package edu.umich.templar.main.settings;
 
 public class Params {
-    public static int KAPPA = 1;
+    public static int KAPPA = 5;
     public static int MAX_CHAR_LENGTH = 50;
     public static int MIN_FULLTEXT_TOKEN_LENGTH = 3;
 
