@@ -9,6 +9,7 @@ import java.util.List;
 public class QueryMappings {
     private InterpretationScorer scorer;
     private List<FragmentMappings> fragmentMappingsList;
+    private Integer totalInterpsCount;
 
     public QueryMappings(InterpretationScorer scorer) {
         this.scorer = scorer;
@@ -21,6 +22,10 @@ public class QueryMappings {
 
     public void addFragmentMappings(FragmentMappings fragmentMappings) {
         this.fragmentMappingsList.add(fragmentMappings);
+    }
+
+    public Integer getTotalInterpsCount() {
+        return totalInterpsCount;
     }
 
     public List<Interpretation> findOptimalInterpretations() {
@@ -38,6 +43,8 @@ public class QueryMappings {
         }
 
         System.out.println("TOTAL INTERPS COUNT: " + totalInterpsCount);
+        this.totalInterpsCount = totalInterpsCount;
+
         for (int i = 0; i < totalInterpsCount; i++) {
             for (int j = 0; j < this.fragmentMappingsList.size(); j++) {
                 FragmentMappings fragMappings = this.fragmentMappingsList.get(j);

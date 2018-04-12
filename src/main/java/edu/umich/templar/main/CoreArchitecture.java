@@ -30,6 +30,11 @@ public class CoreArchitecture {
     private Map<String, List<MatchedDBElement>> candidateCache;
     private String candCacheFilename;
 
+    // Storage for stats
+    private long cumulativeKWTime;
+    private long cumulativeITime;
+    private long cumulativeInterpCount;
+
     public CoreArchitecture(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         this.db = database;
         this.typeOracle = typeOracle;
@@ -384,18 +389,19 @@ public class CoreArchitecture {
                 break;
             }
 
+            /*
             // If we came to the end of a list of exact scores
             if (lastScore >= Params.EXACT_SCORE && matches.get(i).getScore() < Params.EXACT_SCORE) {
                 break;
-            }
+            }*/
 
-            if (i < Params.MAX_TOP_CANDIDATES) {
+            if (i < Params.KAPPA) {
                 pruned.add(matches.get(i));
                 lastScore = matches.get(i).getScore();
                 continue;
             }
 
-            // If we went beyond the MAX_TOP_CANDIDATES, only keep going so long as we have a tie
+            // If we went beyond the KAPPA, only keep going so long as we have a tie
             if (matches.get(i).getScore() == lastScore) {
                 pruned.add(matches.get(i));
             } else {
@@ -409,6 +415,8 @@ public class CoreArchitecture {
         System.out.println("== QUERY ID: " + queryTask.getQueryId() + " ==");
 
         QueryMappings queryMappings = new QueryMappings(this.scorer);
+
+        long startKW = System.currentTimeMillis();
         for (FragmentTask fragmentTask : queryTask.getFragmentTasks()) {
             // Obscure type of task until after candidates are generated
             String fragTaskType = fragmentTask.getType();
@@ -416,7 +424,7 @@ public class CoreArchitecture {
 
             List<MatchedDBElement> pruned = this.candidateCache.get(fragmentTask.getKeyString());
 
-            if (pruned == null) {
+            if (!Params.ENABLE_CACHE || pruned == null) {
                 List<String> tokens = new ArrayList<>();
                 String numericToken = null;
 
@@ -430,6 +438,7 @@ public class CoreArchitecture {
 
                 Set<DBElement> cands;
                 Set<MatchedDBElement> matchedEls;
+
                 if (numericToken == null) {
                     cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
                             fragmentTask.getOp(), fragmentTask.getFunctions());
@@ -446,6 +455,9 @@ public class CoreArchitecture {
                 this.candidateCache.put(fragmentTask.getKeyString(), pruned);
             }
 
+            // Prune again after loading from cache to handle new Kappa values
+            pruned = this.pruneTopMatches(pruned);
+
             System.out.println("Pruned candidates for " + fragmentTask.getPhrase() + ": " + pruned.size());
 
             for (MatchedDBElement mel : pruned) {
@@ -459,7 +471,17 @@ public class CoreArchitecture {
             fragmentTask.setType(fragTaskType);
         }
 
+        long KWtime = System.currentTimeMillis() - startKW;
+        System.out.println("KW TIME: " + KWtime + " ms");
+        this.cumulativeKWTime += KWtime;
+
+        long startI = System.currentTimeMillis();
         List<Interpretation> interps = queryMappings.findOptimalInterpretations();
+        this.cumulativeInterpCount += queryMappings.getTotalInterpsCount();
+
+        long Itime = System.currentTimeMillis() - startI;
+        System.out.println("INTERP TIME: " + Itime + " ms");
+        this.cumulativeITime += Itime;
 
         boolean[] correctFragsTies0Accum = new boolean[queryTask.size()];
         for (int i = 0; i < correctFragsTies0Accum.length; i++) {
@@ -560,11 +582,20 @@ public class CoreArchitecture {
     public String execute(Integer queryId) {
         AllQueryTaskResults allResults = new AllQueryTaskResults();
 
+        long cumulativeTime = 0;
+        this.cumulativeITime = 0;
+        this.cumulativeKWTime = 0;
+        this.cumulativeInterpCount = 0;
+
         int i = 0;
         for (QueryTask queryTask : this.queryTasks) {
             if (queryId != null & !queryTask.getQueryId().equals(queryId)) continue;
 
+            long start = System.currentTimeMillis();
             QueryTaskResults results = this.executeQueryTask(queryTask);
+            long time = System.currentTimeMillis() - start;
+            System.out.println("QUERY TIME: " + time + " ms");
+            cumulativeTime += time;
             System.out.println(results);
 
             allResults.addResult(results);
@@ -584,6 +615,11 @@ public class CoreArchitecture {
         // https://docs.google.com/spreadsheets/d/1baAWwGnXmfbE9h6L3k7CE1naqSVM1k-bwDICTqAQmEI/edit#gid=2050195104
         String retStr = allResults.toCSVString();
         System.out.println(retStr);
+
+        System.out.println("CUMULATIVE TOTAL TIME: " + cumulativeTime + " ms");
+        System.out.println("CUMULATIVE KW TIME: " + this.cumulativeKWTime + " ms");
+        System.out.println("CUMULATIVE I TIME: " + this.cumulativeITime + " ms");
+        System.out.println("CUMULATIVE INTERP COUNT: " + this.cumulativeInterpCount);
 
         return retStr;
     }
