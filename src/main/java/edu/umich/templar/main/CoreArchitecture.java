@@ -385,15 +385,17 @@ public class CoreArchitecture {
         double lastScore = 0.0;
         for (int i = 0; i < matches.size(); i++) {
             // If we ever get to a score below MIN_SIM, just stop and skip
-            if (matches.get(i).getScore() < Params.MIN_SIM) {
+            // if (matches.get(i).getScore() < Params.MIN_SIM) {
+
+            // If we start hitting 0 scores
+            if (matches.get(i).getScore() == 0.0) {
                 break;
             }
 
-            /*
             // If we came to the end of a list of exact scores
             if (lastScore >= Params.EXACT_SCORE && matches.get(i).getScore() < Params.EXACT_SCORE) {
                 break;
-            }*/
+            }
 
             if (i < Params.KAPPA) {
                 pruned.add(matches.get(i));
