@@ -121,7 +121,7 @@ public class LogGraphScorer implements InterpretationScorer {
 
         interpScore.add(terminalFragsScore);
 
-        double result = Params.CONF_FW * simScore + (1 - Params.CONF_FW) * Utils.geometricMean(interpScore);
+        double result = Params.LAMBDA * simScore + (1 - Params.LAMBDA) * Utils.geometricMean(interpScore);
 
         /*
         System.out.println();

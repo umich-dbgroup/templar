@@ -14,7 +14,7 @@ import java.io.*;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class CoreArchitecture {
+public class PipelineCore {
     protected Database db;
     protected Similarity sim;
 
@@ -35,7 +35,7 @@ public class CoreArchitecture {
     private long cumulativeITime;
     private long cumulativeInterpCount;
 
-    public CoreArchitecture(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
+    public PipelineCore(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         this.db = database;
         this.typeOracle = typeOracle;
         this.queryTasks = queryTasks;

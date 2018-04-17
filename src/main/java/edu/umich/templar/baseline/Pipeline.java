@@ -2,18 +2,18 @@ package edu.umich.templar.baseline;
 
 import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.*;
-import edu.umich.templar.main.CoreArchitecture;
+import edu.umich.templar.main.PipelineCore;
 import edu.umich.templar.scorer.SQLizerScorer;
 import edu.umich.templar.task.*;
 import edu.umich.templar.util.Similarity;
 
 import java.util.List;
 
-public class SQLizer extends CoreArchitecture {
-    // Activate the SQLizer join penalty indiscriminately
+public class Pipeline extends PipelineCore {
+    // Activate the Pipeline join penalty indiscriminately
     // private boolean joinScore;
 
-    public SQLizer(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
+    public Pipeline(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle) {
         super(database, candCacheFilename, queryTasks, typeOracle);
 
         this.db = database;
@@ -47,7 +47,7 @@ public class SQLizer extends CoreArchitecture {
                 TemplarConfig.getProperty("dbpassword"),
                 dbName, fkpkFile, mainAttrsFile, projAttrsFile);
 
-        SQLizer sqlizer = new SQLizer(db, candCacheFilename,
+        Pipeline sqlizer = new Pipeline(db, candCacheFilename,
                 QueryTaskReader.readQueryTasks(fragsFile, joinsFile), typeOracle);
 
         if (args.length >= 4) {

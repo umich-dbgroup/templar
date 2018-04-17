@@ -5,7 +5,7 @@ public class Params {
     public static int MAX_CHAR_LENGTH = 50;
     public static int MIN_FULLTEXT_TOKEN_LENGTH = 3;
 
-    /* Parameters for SQLizer */
+    /* Parameters for Pipeline */
     public static double SQLIZER_EPSILON = 0.0001;
 
     /** For our epsilons: word2vec_oov > lemmatizer > special_chars **/
@@ -26,7 +26,7 @@ public class Params {
     public static double EPSILON = 0.01;
 
     /* Confidence for FW analysis (BW analysis is 1 - FW) */
-    public static double CONF_FW = 0.8;
+    public static double LAMBDA = 0.8;
 
     /* Cache save interval (how many tasks we should wait) */
     public static int CACHE_SAVE_INTERVAL = 5;

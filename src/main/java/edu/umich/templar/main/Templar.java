@@ -7,7 +7,7 @@ import edu.umich.templar.task.QueryTask;
 
 import java.util.List;
 
-public class Templar extends CoreArchitecture {
+public class Templar extends PipelineCore {
     public Templar(Database database, String candCacheFilename, List<QueryTask> queryTasks, boolean typeOracle,
                    LogGraph logGraph, boolean includeJoin) {
         super(database, candCacheFilename, queryTasks, typeOracle);
