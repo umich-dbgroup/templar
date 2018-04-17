@@ -1,0 +1,3699 @@
+objc[2088]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x10953b4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10adbb4e0). One of the two will be used. Which one is undefined.
+Connecting to database: <jdbc:mysql://localhost:3306/imdb>
+Database connected!
+00:00  INFO: ===== FOLD 0 =====
+Original log size: 94
+Trimming log to 100.0%...
+Final log size: 94
+00:00  INFO: ===== Parsing Results =====
+00:00  INFO: Total Queries: 94
+00:00  INFO: Correctly Parsed: 94/94
+
+Loading cache from: <data/imdb/imdb.cands.cache>
+Cache loaded!
+== QUERY ID: 10 ==
+Pruned candidates for born: 4
+ - actor.birth_year (0.745)
+ - producer.birth_year (0.745)
+ - director.birth_year (0.745)
+ - writer.birth_year (0.745)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 5 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 381 ms
+TOTAL SCORE: 0.7705070600652827, TIES: 0
+--
+born :: actor.birth_year; producer.birth_year; director.birth_year; writer.birth_year : actor.birth_year (0.745)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor
+QUERY TIME: 397 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 40 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Autism: 2
+ - movie.title = 'Autism' (1.0)
+ - keyword.keyword = 'autism' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 65 ms
+TOTAL SCORE: 0.8447213195499949, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Autism :: keyword.keyword = 'autism' : keyword.keyword = 'autism' (1.0)
+keyword(tags(movie))
+QUERY TIME: 67 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 53 ==
+Pruned candidates for tv series: 1
+ - tv_series.title (1.0)
+Pruned candidates for Netflix: 2
+ - company.name = 'Netflix' (1.0)
+ - keyword.keyword = 'netflix' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 28 ms
+TOTAL SCORE: 0.81, TIES: 0
+--
+tv series :: tv_series.title : tv_series.title (1.0)
+Netflix :: company.name = 'Netflix' : keyword.keyword = 'netflix' (1.0)
+keyword(tags(tv_series))
+QUERY TIME: 29 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 59 ==
+Pruned candidates for female: 7
+ - producer.gender = 'female' (1.0)
+ - keyword.keyword = 'female' (1.0)
+ - writer.gender = 'female' (1.0)
+ - actor.gender = 'female' (1.0)
+ - director.gender = 'female' (1.0)
+ - movie.title = 'Female' (1.0)
+ - cast.role = 'Female' (1.0)
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Austin: 9
+ - director.birth_city = 'Austin' (1.0)
+ - producer.name = 'Austin' (1.0)
+ - actor.name = 'Austin' (1.0)
+ - producer.birth_city = 'Austin' (1.0)
+ - writer.birth_city = 'Austin' (1.0)
+ - actor.birth_city = 'Austin' (1.0)
+ - movie.title = 'Austin' (1.0)
+ - writer.name = 'Austin' (1.0)
+ - director.name = 'Austin' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 63
+INTERP TIME: 1508 ms
+TOTAL SCORE: 0.9101921227782879, TIES: 0
+--
+female :: actor.gender = 'female' : actor.gender = 'female' (1.0)
+actors :: actor.name : actor.name (0.9999999)
+Austin :: actor.birth_city = 'Austin' : actor.birth_city = 'Austin' (1.0)
+actor
+QUERY TIME: 1509 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 72 ==
+Pruned candidates for Sci-Fi: 4
+ - company.name = 'Sci Fi' (1.0)
+ - cast.role = 'Sci-Fi' (1.0)
+ - genre.genre = 'Sci-Fi' (1.0)
+ - cast.role = 'Sci Fi' (1.0)
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for released 2010: 4
+ - movie.release_year = 2010 (0.8921717295453829)
+ - tv_series.release_year = 2010 (0.8921717295453829)
+ - actor.birth_year = 2010 (0.7670991787246288)
+ - producer.birth_year = 2010 (0.7670991787246288)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 143 ms
+TOTAL SCORE: 0.8069115332047632, TIES: 0
+--
+Sci-Fi :: genre.genre = 'Sci-Fi' : genre.genre = 'Sci-Fi' (1.0)
+movies :: movie.title : movie.title (0.9999999)
+released 2010 :: movie.release_year = 2010 : movie.release_year = 2010 (0.8921717295453829)
+classification(genre,movie)
+QUERY TIME: 143 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 32 ==
+Pruned candidates for company: 1
+ - company.name (1.0)
+Pruned candidates for movie Juno: 1
+ - movie.title = 'Juno' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 6 ms
+TOTAL SCORE: 0.8276385399196283, TIES: 0
+--
+company :: company.name : company.name (1.0)
+movie Juno :: movie.title = 'Juno' : movie.title = 'Juno' (1.0)
+company(copyright(movie))
+QUERY TIME: 7 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 50 ==
+Pruned candidates for producers: 1
+ - producer.name (0.9999999)
+Pruned candidates for movies: 1
+ - movie (0.9999999)
+Pruned candidates for Kate Winslet: 1
+ - actor.name = 'Kate Winslet' (1.0)
+Pruned candidates for actor: 1
+ - actor (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 7 ms
+TOTAL SCORE: 0.8074470916703096, TIES: 0
+--
+producers :: producer.name : producer.name (0.9999999)
+Kate Winslet :: actor.name = 'Kate Winslet' : actor.name = 'Kate Winslet' (1.0)
+actor(cast(movie(made_by(producer))))
+QUERY TIME: 8 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 37 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Walt Disney: 5
+ - company.name = 'Walt Disney' (1.0)
+ - director.name = 'Walt Disney' (1.0)
+ - writer.name = 'Walt Disney' (1.0)
+ - actor.name = 'Walt Disney' (1.0)
+ - producer.name = 'Walt Disney' (1.0)
+Pruned candidates for after 2010: 3
+ - movie.mid > 2010 (0.7953217839340251)
+ - director.did > 2010 (0.7732012739254895)
+ - actor.birth_year > 2010 (0.7726838227891146)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 15
+INTERP TIME: 184 ms
+TOTAL SCORE: 0.7625100738225852, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Walt Disney :: company.name = 'Walt Disney' : actor.name = 'Walt Disney' (1.0)
+after 2010 :: movie.release_year > 2010 : movie.mid > 2010 (0.7953217839340251)
+actor(cast(movie))
+QUERY TIME: 188 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 104 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Brad Pitt: 3
+ - producer.name = 'Brad Pitt' (1.0)
+ - actor.name = 'Brad Pitt' (1.0)
+ - cast.role = 'Brad Pitt'' (0.99999999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 15 ms
+TOTAL SCORE: 0.8793852319532497, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Brad Pitt :: actor.name = 'Brad Pitt' : actor.name = 'Brad Pitt' (1.0)
+actor(cast(movie))
+QUERY TIME: 15 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 33 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Netflix: 2
+ - company.name = 'Netflix' (1.0)
+ - keyword.keyword = 'netflix' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.8447213195499949, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Netflix :: company.name = 'Netflix' : keyword.keyword = 'netflix' (1.0)
+keyword(tags(movie))
+QUERY TIME: 13 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 69 ==
+Pruned candidates for directors: 1
+ - director.name (0.9999999)
+Pruned candidates for Afghanistan: 7
+ - actor.birth_city = 'Afghanistan' (1.0)
+ - writer.nationality = 'Afghanistan' (1.0)
+ - movie.title = 'Afghanistan' (1.0)
+ - actor.nationality = 'Afghanistan' (1.0)
+ - producer.nationality = 'Afghanistan' (1.0)
+ - keyword.keyword = 'afghanistan' (1.0)
+ - director.nationality = 'Afghanistan' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 7
+INTERP TIME: 63 ms
+TOTAL SCORE: 0.8522179589630289, TIES: 0
+--
+directors :: director.name : director.name (0.9999999)
+Afghanistan :: director.nationality = 'Afghanistan' : movie.title = 'Afghanistan' (1.0)
+directed_by(director,movie)
+QUERY TIME: 65 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 94 ==
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for Los Angeles: 5
+ - writer.birth_city = 'Los Angeles' (1.0)
+ - movie.title = 'Los Angeles' (1.0)
+ - director.birth_city = 'Los Angeles' (1.0)
+ - actor.birth_city = 'Los Angeles' (1.0)
+ - producer.birth_city = 'Los Angeles' (1.0)
+Pruned candidates for after 2000: 6
+ - movie.mid > 2000 (0.7953217839340251)
+ - director.did > 2000 (0.7732012739254895)
+ - writer.birth_year > 2000 (0.7726838227891146)
+ - director.birth_year > 2000 (0.7726838227891146)
+ - producer.birth_year > 2000 (0.7726838227891146)
+ - actor.birth_year > 2000 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 30
+INTERP TIME: 358 ms
+TOTAL SCORE: 0.8777326247221856, TIES: 0
+--
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+Los Angeles :: actor.birth_city = 'Los Angeles' : actor.birth_city = 'Los Angeles' (1.0)
+after 2000 :: actor.birth_year > 2000 : actor.birth_year > 2000 (0.7726838227891146)
+actor
+QUERY TIME: 358 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 84 ==
+Pruned candidates for male: 10
+ - producer.gender = 'male' (1.0)
+ - actor.gender = 'male' (1.0)
+ - writer.gender = 'male' (1.0)
+ - writer.name = 'Male' (1.0)
+ - actor.name = 'Male' (1.0)
+ - director.birth_city = 'Male' (1.0)
+ - director.gender = 'male' (1.0)
+ - producer.birth_city = 'Male' (1.0)
+ - movie.title = 'Male' (1.0)
+ - writer.birth_city = 'Male' (1.0)
+Pruned candidates for directors: 1
+ - director.name (0.9999999)
+Pruned candidates for NBCUniversal company: 1
+ - company.name = 'NBCUniversal' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 10
+INTERP TIME: 113 ms
+TOTAL SCORE: 0.8112173808894318, TIES: 0
+--
+male :: director.gender = 'male' : director.gender = 'male' (1.0)
+directors :: director.name : director.name (0.9999999)
+NBCUniversal company :: company.name = 'NBCUniversal' : company.name = 'NBCUniversal' (1.0)
+company(copyright(tv_series(directed_by(director))))
+QUERY TIME: 114 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 52 ==
+Pruned candidates for company: 1
+ - company.name (1.0)
+Pruned candidates for series Scandal: 3
+ - tv_series.title = 'Scandal' (0.93405)
+ - tv_series.title = 'Scandal!' (0.93404999)
+ - tv_series.title = 'Sungkyunkwan Scandal' (0.9340495)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 20 ms
+TOTAL SCORE: 0.8192267163617812, TIES: 0
+--
+company :: company.name : company.name (1.0)
+series Scandal :: tv_series.title = 'Scandal' : tv_series.title = 'Scandal' (0.93405)
+company(copyright(tv_series))
+QUERY TIME: 21 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 25 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for written by: 1
+ - written_by (1.0)
+Pruned candidates for Matt Damon: 4
+ - actor.name = 'Matt Damon' (1.0)
+ - writer.name = 'Matt Damon' (1.0)
+ - director.name = 'Matt Damon' (1.0)
+ - producer.name = 'Matt Damon' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 32 ms
+TOTAL SCORE: 0.8099999733333325, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Matt Damon :: writer.name = 'Matt Damon' : writer.name = 'Matt Damon' (1.0)
+movie(written_by(writer))
+QUERY TIME: 32 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 87 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Jennifer Aniston: 3
+ - producer.name = 'Jennifer Aniston' (1.0)
+ - director.name = 'Jennifer Aniston' (1.0)
+ - actor.name = 'Jennifer Aniston' (1.0)
+Pruned candidates for acted: 3
+ - written_by (0.652)
+ - directed_by (0.65105)
+ - made_by (0.6064)
+Pruned candidates for after 2010: 3
+ - movie.mid > 2010 (0.7953217839340251)
+ - director.did > 2010 (0.7732012739254895)
+ - actor.birth_year > 2010 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 27
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+INTERP TIME: 466 ms
+TOTAL SCORE: 0.6975707666217842, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Jennifer Aniston :: actor.name = 'Jennifer Aniston' : director.name = 'Jennifer Aniston' (1.0)
+after 2010 :: movie.release_year > 2010 : movie.mid > 2010 (0.7953217839340251)
+directed_by(director,movie)
+QUERY TIME: 466 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 29 ==
+Pruned candidates for actor: 1
+ - actor.name (1.0)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+Pruned candidates for Vinny Gambini: 1
+ - cast.role = 'Vinny Gambini' (1.0)
+Pruned candidates for movie My Cousin Vinny: 1
+ - movie.title = 'My Cousin Vinny' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 48 ms
+TOTAL SCORE: 0.7682732629748, TIES: 0
+--
+actor :: actor.name : actor.name (1.0)
+Vinny Gambini :: cast.role = 'Vinny Gambini' : cast.role = 'Vinny Gambini' (1.0)
+movie My Cousin Vinny :: movie.title = 'My Cousin Vinny' : movie.title = 'My Cousin Vinny' (1.0)
+actor(cast(movie))
+QUERY TIME: 49 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 98 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Iraq war: 1
+ - keyword.keyword = 'iraq-war' (1.0)
+Pruned candidates for 2015: 5
+ - tags.id = 2015 (0.9999)
+ - movie.release_year = 2015 (0.9999)
+ - keyword.id = 2015 (0.9999)
+ - company.id = 2015 (0.9999)
+ - tv_series.release_year = 2015 (0.9999)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 5
+INTERP TIME: 114 ms
+TOTAL SCORE: 0.8456577016093947, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Iraq war :: keyword.keyword = 'iraq-war' : keyword.keyword = 'iraq-war' (1.0)
+2015 :: movie.release_year = 2015 : movie.release_year = 2015 (0.9999)
+keyword(tags(movie))
+QUERY TIME: 115 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 117 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Matt Damon: 4
+ - actor.name = 'Matt Damon' (1.0)
+ - writer.name = 'Matt Damon' (1.0)
+ - director.name = 'Matt Damon' (1.0)
+ - producer.name = 'Matt Damon' (1.0)
+Pruned candidates for Ben Affleck: 4
+ - writer.name = 'Ben Affleck' (1.0)
+ - producer.name = 'Ben Affleck' (1.0)
+ - director.name = 'Ben Affleck' (1.0)
+ - actor.name = 'Ben Affleck' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 318 ms
+TOTAL SCORE: 0.8395504387194272, TIES: 1
+--
+movies :: movie.title : movie.title (0.9999999)
+Matt Damon :: actor.name = 'Matt Damon' : actor.name = 'Matt Damon' (1.0)
+Ben Affleck :: actor.name = 'Ben Affleck' : director.name = 'Ben Affleck' (1.0)
+actor(cast(movie(directed_by(director))))
+--
+movies :: movie.title : movie.title (0.9999999)
+Matt Damon :: actor.name = 'Matt Damon' : director.name = 'Matt Damon' (1.0)
+Ben Affleck :: actor.name = 'Ben Affleck' : actor.name = 'Ben Affleck' (1.0)
+actor(cast(movie(directed_by(director))))
+QUERY TIME: 331 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 3] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 71 ==
+Pruned candidates for writer: 1
+ - writer.name (1.0)
+Pruned candidates for The Truman Show: 1
+ - movie.title = 'The Truman Show' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.8294883912309795, TIES: 0
+--
+writer :: writer.name : writer.name (1.0)
+The Truman Show :: movie.title = 'The Truman Show' : movie.title = 'The Truman Show' (1.0)
+movie(written_by(writer))
+QUERY TIME: 13 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 109 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Shahab Hosseini: 2
+ - writer.name = 'Shahab Hosseini' (1.0)
+ - actor.name = 'Shahab Hosseini' (1.0)
+Pruned candidates for act: 3
+ - directed_by (0.61295)
+ - written_by (0.6098)
+ - cast (0.59865)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+INTERP TIME: 60 ms
+TOTAL SCORE: 0.7536249421009689, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Shahab Hosseini :: actor.name = 'Shahab Hosseini' : actor.name = 'Shahab Hosseini' (1.0)
+actor(cast(movie))
+QUERY TIME: 60 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 44 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+Pruned candidates for Christoph Waltz: 4
+ - director.name = 'Christoph Waltz' (1.0)
+ - writer.name = 'Christoph Waltz' (1.0)
+ - producer.name = 'Christoph Waltz' (1.0)
+ - actor.name = 'Christoph Waltz' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 231 ms
+TOTAL SCORE: 0.8366258099269358, TIES: 1
+--
+movies :: movie.title : movie.title (0.9999999)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : actor.name = 'Quentin Tarantino' (1.0)
+Christoph Waltz :: actor.name = 'Christoph Waltz' : director.name = 'Christoph Waltz' (1.0)
+actor(cast(movie,tv_series(directed_by(director))))
+--
+movies :: movie.title : movie.title (0.9999999)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : director.name = 'Quentin Tarantino' (1.0)
+Christoph Waltz :: actor.name = 'Christoph Waltz' : actor.name = 'Christoph Waltz' (1.0)
+actor(cast(movie,tv_series(directed_by(director))))
+QUERY TIME: 242 ms
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 3] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 21 ==
+Pruned candidates for actor: 1
+ - actor.name (1.0)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+Pruned candidates for Captain Miller: 1
+ - cast.role = 'Captain Miller' (1.0)
+Pruned candidates for movie Saving Private Ryan: 1
+ - movie.title = 'Saving Private Ryan' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 27 ms
+TOTAL SCORE: 0.7682732629748, TIES: 0
+--
+actor :: actor.name : actor.name (1.0)
+Captain Miller :: cast.role = 'Captain Miller' : cast.role = 'Captain Miller' (1.0)
+movie Saving Private Ryan :: movie.title = 'Saving Private Ryan' : movie.title = 'Saving Private Ryan' (1.0)
+actor(cast(movie))
+QUERY TIME: 28 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 103 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+Pruned candidates for before 2002: 4
+ - producer.birth_year < 2002 (0.7510283549906754)
+ - writer.birth_year < 2002 (0.7510283549906754)
+ - director.birth_year < 2002 (0.7510283549906754)
+ - actor.birth_year < 2002 (0.7510283549906754)
+Pruned candidates for after 2010: 3
+ - movie.mid > 2010 (0.7953217839340251)
+ - director.did > 2010 (0.7732012739254895)
+ - actor.birth_year > 2010 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 144
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 1926 ms
+TOTAL SCORE: 0.6796655174429101, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : director.name = 'Quentin Tarantino' (1.0)
+before 2002 :: movie.release_year < 2002 : director.birth_year < 2002 (0.7510283549906754)
+after 2010 :: movie.release_year > 2010 : movie.mid > 2010 (0.7953217839340251)
+directed_by(director,movie)
+QUERY TIME: 1926 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 41 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Woody Allen: 4
+ - producer.name = 'Woody Allen' (1.0)
+ - writer.name = 'Woody Allen' (1.0)
+ - director.name = 'Woody Allen' (1.0)
+ - actor.name = 'Woody Allen' (1.0)
+Pruned candidates for Scarlett Johansson: 4
+ - writer.name = 'Scarlett Johansson' (1.0)
+ - director.name = 'Scarlett Johansson' (1.0)
+ - actor.name = 'Scarlett Johansson' (1.0)
+ - producer.name = 'Scarlett Johansson' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 182 ms
+TOTAL SCORE: 0.8366258099269358, TIES: 1
+--
+movies :: movie.title : movie.title (0.9999999)
+Woody Allen :: director.name = 'Woody Allen' : actor.name = 'Woody Allen' (1.0)
+Scarlett Johansson :: actor.name = 'Scarlett Johansson' : director.name = 'Scarlett Johansson' (1.0)
+actor(cast(movie,tv_series(directed_by(director))))
+--
+movies :: movie.title : movie.title (0.9999999)
+Woody Allen :: director.name = 'Woody Allen' : director.name = 'Woody Allen' (1.0)
+Scarlett Johansson :: actor.name = 'Scarlett Johansson' : actor.name = 'Scarlett Johansson' (1.0)
+actor(cast(movie,tv_series(directed_by(director))))
+QUERY TIME: 183 ms
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 3] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 79 ==
+Pruned candidates for acted: 3
+ - directed_by.did (0.63595)
+ - director.did (0.63595)
+ - cast.role (0.61725)
+Pruned candidates for role Mr. Bean: 1
+ - cast.role = 'Mr. Bean' (0.99999999)
+KW TIME: 2 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 18 ms
+TOTAL SCORE: 0.6512887149728482, TIES: 0
+--
+acted :: actor.name : directed_by.did (0.63595)
+role Mr. Bean :: cast.role = 'Mr. Bean' : cast.role = 'Mr. Bean' (0.99999999)
+cast(tv_series(directed_by))
+QUERY TIME: 20 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 115 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for director: 1
+ - director (1.0)
+Pruned candidates for movie Revolutionary Road: 1
+ - movie.title = 'Revolutionary Road' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 14 ms
+TOTAL SCORE: 0.8102790967083334, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+movie Revolutionary Road :: movie.title = 'Revolutionary Road' : movie.title = 'Revolutionary Road' (1.0)
+directed_by(director(directed_by#1(movie#1)),movie)
+QUERY TIME: 14 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 101 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+Pruned candidates for after 2010: 3
+ - movie.mid > 2010 (0.7953217839340251)
+ - director.did > 2010 (0.7732012739254895)
+ - actor.birth_year > 2010 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 36
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 363 ms
+TOTAL SCORE: 0.7019452588398709, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : director.name = 'Quentin Tarantino' (1.0)
+after 2010 :: movie.release_year > 2010 : movie.mid > 2010 (0.7953217839340251)
+directed_by(director,movie)
+QUERY TIME: 363 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 102 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+Pruned candidates for before 2010: 4
+ - writer.birth_year < 2010 (0.7510283549906754)
+ - director.birth_year < 2010 (0.7510283549906754)
+ - actor.birth_year < 2010 (0.7510283549906754)
+ - producer.birth_year < 2010 (0.7510283549906754)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 48
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 459 ms
+TOTAL SCORE: 0.6922304783191676, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : director.name = 'Quentin Tarantino' (1.0)
+before 2010 :: movie.release_year < 2010 : director.birth_year < 2010 (0.7510283549906754)
+directed_by(director,movie)
+QUERY TIME: 459 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 51 ==
+Pruned candidates for series: 4
+ - tv_series.title (0.8351)
+ - tv_series.num_of_episodes (0.6271995)
+ - tv_series.title (0.60395)
+ - movie.title (0.60395)
+Pruned candidates for Scott Foley: 4
+ - producer.name = 'Scott Foley' (1.0)
+ - director.name = 'Scott Foley' (1.0)
+ - writer.name = 'Scott Foley' (1.0)
+ - actor.name = 'Scott Foley' (1.0)
+Pruned candidates for actor: 1
+ - actor (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+INTERP TIME: 184 ms
+TOTAL SCORE: 0.7833047927332125, TIES: 0
+--
+series :: tv_series.title : tv_series.title (0.8351)
+Scott Foley :: actor.name = 'Scott Foley' : actor.name = 'Scott Foley' (1.0)
+actor(cast(tv_series))
+QUERY TIME: 184 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 122 ==
+Pruned candidates for movie: 1
+ - movie.title (1.0)
+Pruned candidates for actors: 1
+ - count(actor.name) = max(count(actor.name)) (0.9999999)
+Pruned candidates for China: 10
+ - writer.name = 'China' (1.0)
+ - producer.nationality = 'China' (1.0)
+ - movie.title = 'China' (1.0)
+ - director.name = 'China' (1.0)
+ - company.name = 'China' (1.0)
+ - director.nationality = 'China' (1.0)
+ - producer.name = 'China' (1.0)
+ - writer.nationality = 'China' (1.0)
+ - actor.nationality = 'China' (1.0)
+ - actor.name = 'China' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 10
+INTERP TIME: 122 ms
+TOTAL SCORE: 0.8187403016864585, TIES: 0
+--
+movie :: movie.title : movie.title (1.0)
+actors :: count(actor.name) = max(count(actor.name)) : count(actor.name) = max(count(actor.name)) (0.9999999)
+China :: actor.nationality = 'China' : actor.name = 'China' (1.0)
+actor(cast(movie,tv_series(cast#1(actor#1))))
+QUERY TIME: 122 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 96 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Brad Pitt: 3
+ - producer.name = 'Brad Pitt' (1.0)
+ - actor.name = 'Brad Pitt' (1.0)
+ - cast.role = 'Brad Pitt'' (0.99999999)
+Pruned candidates for acts: 3
+ - genre (0.5885)
+ - directed_by (0.57645)
+ - cast (0.57145)
+Pruned candidates for year: 6
+ - tv_series.release_year (0.83155)
+ - movie.release_year (0.83155)
+ - actor.birth_year (0.79285)
+ - director.birth_year (0.79285)
+ - writer.birth_year (0.79285)
+ - producer.birth_year (0.79285)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 54
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain genre
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 397 ms
+TOTAL SCORE: 0.7080601310292232, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Brad Pitt :: actor.name = 'Brad Pitt' : actor.name = 'Brad Pitt' (1.0)
+year :: movie.release_year : movie.release_year (0.83155)
+actor(cast(movie))
+QUERY TIME: 398 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+==== FOLD RESULTS ====
+32,19,21,20.000,19,19,19.000,82,63,69,66.000
+CUMULATIVE TOTAL TIME: 7939 ms
+CUMULATIVE KW TIME: 13 ms
+CUMULATIVE I TIME: 7878 ms
+CUMULATIVE INTERP COUNT: 580
+00:08  INFO: ===== FOLD 1 =====
+Original log size: 94
+Trimming log to 100.0%...
+Final log size: 94
+00:09  INFO: ===== Parsing Results =====
+00:09  INFO: Total Queries: 94
+00:09  INFO: Correctly Parsed: 94/94
+
+Loading cache from: <data/imdb/imdb.cands.cache>
+Cache loaded!
+== QUERY ID: 36 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for New York City: 7
+ - actor.birth_city = 'New York City' (1.0)
+ - writer.birth_city = 'New York City' (1.0)
+ - producer.birth_city = 'New York City' (1.0)
+ - movie.title = 'New York City' (1.0)
+ - director.birth_city = 'New York City' (1.0)
+ - keyword.keyword = 'new-york-city' (1.0)
+ - cast.role = 'New York City' (1.0)
+Pruned candidates for after 1990: 6
+ - movie.mid > 1990 (0.7953217839340251)
+ - director.did > 1990 (0.7732012739254895)
+ - producer.birth_year > 1990 (0.7726838227891146)
+ - actor.birth_year > 1990 (0.7726838227891146)
+ - director.birth_year > 1990 (0.7726838227891146)
+ - writer.birth_year > 1990 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 42
+INTERP TIME: 403 ms
+TOTAL SCORE: 0.8765020126546643, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+New York City :: actor.birth_city = 'New York City' : actor.birth_city = 'New York City' (1.0)
+after 1990 :: actor.birth_year > 1990 : actor.birth_year > 1990 (0.7726838227891146)
+actor
+QUERY TIME: 405 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 34 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for New York City: 7
+ - actor.birth_city = 'New York City' (1.0)
+ - writer.birth_city = 'New York City' (1.0)
+ - producer.birth_city = 'New York City' (1.0)
+ - movie.title = 'New York City' (1.0)
+ - director.birth_city = 'New York City' (1.0)
+ - keyword.keyword = 'new-york-city' (1.0)
+ - cast.role = 'New York City' (1.0)
+Pruned candidates for 1984: 9
+ - writer.birth_year = 1984 (0.9999)
+ - company.id = 1984 (0.9999)
+ - director.birth_year = 1984 (0.9999)
+ - producer.birth_year = 1984 (0.9999)
+ - keyword.id = 1984 (0.9999)
+ - tv_series.release_year = 1984 (0.9999)
+ - actor.birth_year = 1984 (0.9999)
+ - tags.id = 1984 (0.9999)
+ - movie.release_year = 1984 (0.9999)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 63
+INTERP TIME: 605 ms
+TOTAL SCORE: 0.9423719010824503, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+New York City :: actor.birth_city = 'New York City' : actor.birth_city = 'New York City' (1.0)
+1984 :: actor.birth_year = 1984 : actor.birth_year = 1984 (0.9999)
+actor
+QUERY TIME: 607 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 112 ==
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for China: 10
+ - writer.name = 'China' (1.0)
+ - producer.nationality = 'China' (1.0)
+ - movie.title = 'China' (1.0)
+ - director.name = 'China' (1.0)
+ - company.name = 'China' (1.0)
+ - director.nationality = 'China' (1.0)
+ - producer.name = 'China' (1.0)
+ - writer.nationality = 'China' (1.0)
+ - actor.nationality = 'China' (1.0)
+ - actor.name = 'China' (1.0)
+Pruned candidates for acted: 3
+ - written_by (0.652)
+ - directed_by (0.65105)
+ - made_by (0.6064)
+Pruned candidates for Rush Hour 3: 3
+ - tags.id = 3 (0.7393884804350146)
+ - company.id = 3 (0.7393884804350146)
+ - genre.gid = 3 (0.7208314886296241)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 90
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+INTERP TIME: 984 ms
+TOTAL SCORE: 0.6764338080947484, TIES: 0
+--
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+China :: actor.nationality = 'China' : director.name = 'China' (1.0)
+Rush Hour 3 :: movie.title = 'Rush Hour 3' : tags.id = 3 (0.7393884804350146)
+actor(cast(tv_series(directed_by(director),tags)))
+QUERY TIME: 984 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 126 ==
+Pruned candidates for directed: 3
+ - director.name (0.6349)
+ - movie.title (0.62815)
+ - cast.role (0.6082)
+Pruned candidates for latest: 3
+ - movie.release_year = max(movie.release_year) (0.6627000000000001)
+ - tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+ - movie.mid = max(movie.mid) (0.5938)
+Pruned candidates for movie: 1
+ - movie (1.0)
+Pruned candidates for NBCUniversal: 1
+ - company.name = 'NBCUniversal' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 9
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+INTERP TIME: 70 ms
+TOTAL SCORE: 0.6540420029867087, TIES: 0
+--
+directed :: director.name : movie.title (0.62815)
+latest :: movie.release_year = max(movie.release_year) : tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+NBCUniversal :: company.name = 'NBCUniversal' : company.name = 'NBCUniversal' (1.0)
+company(copyright(movie,tv_series))
+QUERY TIME: 70 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 119 ==
+Pruned candidates for actor: 1
+ - actor.name (1.0)
+Pruned candidates for films: 3
+ - count(movie.title) = max(count(movie.title)) (0.86815)
+ - count(actor.name) = max(count(actor.name)) (0.7181500000000001)
+ - count(genre.genre) = max(count(genre.genre)) (0.7158)
+KW TIME: 2 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 31 ms
+TOTAL SCORE: 0.7752563510801259, TIES: 0
+--
+actor :: actor.name : actor.name (1.0)
+films :: count(movie.title) = max(count(movie.title)) : count(movie.title) = max(count(movie.title)) (0.86815)
+actor(cast(movie))
+QUERY TIME: 34 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 11 ==
+Pruned candidates for year born: 4
+ - director.birth_year (0.84765)
+ - writer.birth_year (0.84765)
+ - actor.birth_year (0.84765)
+ - producer.birth_year (0.84765)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 134 ms
+TOTAL SCORE: 0.7920132973733962, TIES: 0
+--
+year born :: actor.birth_year; producer.birth_year; director.birth_year; writer.birth_year : actor.birth_year (0.84765)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor
+QUERY TIME: 134 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 86 ==
+Pruned candidates for directors: 1
+ - director.name (0.9999999)
+Pruned candidates for movies: 1
+ - movie (0.9999999)
+Pruned candidates for nuclear weapons: 1
+ - keyword.keyword = 'nuclear-weapons' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8072007696648968, TIES: 0
+--
+directors :: director.name : director.name (0.9999999)
+nuclear weapons :: keyword.keyword = 'nuclear-weapons' : keyword.keyword = 'nuclear-weapons' (1.0)
+directed_by(director,movie(tags(keyword)))
+QUERY TIME: 6 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 5 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Los Angeles: 5
+ - writer.birth_city = 'Los Angeles' (1.0)
+ - movie.title = 'Los Angeles' (1.0)
+ - director.birth_city = 'Los Angeles' (1.0)
+ - actor.birth_city = 'Los Angeles' (1.0)
+ - producer.birth_city = 'Los Angeles' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 5
+INTERP TIME: 25 ms
+TOTAL SCORE: 0.9322875255532286, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Los Angeles :: actor.birth_city = 'Los Angeles' : actor.birth_city = 'Los Angeles' (1.0)
+actor
+QUERY TIME: 25 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 78 ==
+Pruned candidates for where from: 3
+ - movie.mid (0.61765)
+ - director.did (0.6073500000000001)
+ - directed_by.did (0.6073500000000001)
+Pruned candidates for director: 1
+ - director (1.0)
+Pruned candidates for The Past: 3
+ - cast.role = 'The Past' (1.0)
+ - movie.title = 'The Past' (1.0)
+ - keyword.keyword = 'the-past' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 9
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+INTERP TIME: 66 ms
+TOTAL SCORE: 0.687853925609415, TIES: 0
+--
+where from :: director.birth_city; director.nationality : director.did (0.6073500000000001)
+The Past :: movie.title = 'The Past' : movie.title = 'The Past' (1.0)
+directed_by(director,movie)
+QUERY TIME: 66 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 124 ==
+Pruned candidates for name: 5
+ - writer.name (1.0)
+ - company.name (1.0)
+ - director.name (1.0)
+ - producer.name (1.0)
+ - actor.name (1.0)
+Pruned candidates for budget: 2
+ - movie.budget (1.0)
+ - tv_series.budget (1.0)
+Pruned candidates for latest: 3
+ - movie.release_year = max(movie.release_year) (0.6627000000000001)
+ - tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+ - movie.mid = max(movie.mid) (0.5938)
+Pruned candidates for movie: 1
+ - movie (1.0)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 120
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+INTERP TIME: 1341 ms
+TOTAL SCORE: 0.7506367565839048, TIES: 0
+--
+name :: movie.title : actor.name (1.0)
+budget :: movie.budget : tv_series.budget (1.0)
+latest :: movie.release_year = max(movie.release_year) : movie.release_year = max(movie.release_year) (0.6627000000000001)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : actor.name = 'Quentin Tarantino' (1.0)
+actor(cast(tv_series(cast#1(actor#1),copyright(movie))))
+QUERY TIME: 1341 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 48 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Kerry Washington: 2
+ - actor.name = 'Kerry Washington' (1.0)
+ - producer.name = 'Kerry Washington' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 8 ms
+TOTAL SCORE: 0.874965516829411, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Kerry Washington :: actor.name = 'Kerry Washington' : actor.name = 'Kerry Washington' (1.0)
+actor(cast(movie))
+QUERY TIME: 8 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 82 ==
+Pruned candidates for company: 1
+ - company.name (1.0)
+Pruned candidates for Mickey Mouse series: 3
+ - tv_series.title = 'Mickey Mouse' (0.9581)
+ - tv_series.title = 'Mickey Mouse Works' (0.9238)
+ - tv_series.title = 'The Mickey Mouse Club' (0.91045)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 11 ms
+TOTAL SCORE: 0.829470209851774, TIES: 0
+--
+company :: company.name : company.name (1.0)
+Mickey Mouse series :: tv_series.title = 'Mickey Mouse' : tv_series.title = 'Mickey Mouse' (0.9581)
+company(copyright(tv_series))
+QUERY TIME: 11 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 8 ==
+Pruned candidates for year born: 4
+ - director.birth_year (0.84765)
+ - writer.birth_year (0.84765)
+ - actor.birth_year (0.84765)
+ - producer.birth_year (0.84765)
+Pruned candidates for Benedict Cumberbatch: 2
+ - producer.name = 'Benedict Cumberbatch' (1.0)
+ - actor.name = 'Benedict Cumberbatch' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 8
+INTERP TIME: 36 ms
+TOTAL SCORE: 0.7920132973733962, TIES: 0
+--
+year born :: actor.birth_year; producer.birth_year : actor.birth_year (0.84765)
+Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch'; producer.name = 'Benedict Cumberbatch' : actor.name = 'Benedict Cumberbatch' (1.0)
+actor
+QUERY TIME: 36 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 77 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Asghar Farhadi: 5
+ - director.name = 'Asghar Farhadi' (1.0)
+ - actor.name = 'Asghar Farhadi' (1.0)
+ - producer.name = 'Asghar Farhadi' (1.0)
+ - company.name = 'Asghar Farhadi' (1.0)
+ - writer.name = 'Asghar Farhadi' (1.0)
+Pruned candidates for Taraneh Alidoosti: 1
+ - actor.name = 'Taraneh Alidoosti' (1.0)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 15
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 135 ms
+TOTAL SCORE: 0.7674232789339116, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Asghar Farhadi :: director.name = 'Asghar Farhadi' : director.name = 'Asghar Farhadi' (1.0)
+Taraneh Alidoosti :: actor.name = 'Taraneh Alidoosti' : actor.name = 'Taraneh Alidoosti' (1.0)
+actor(cast(movie,tv_series(directed_by(director))))
+QUERY TIME: 136 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 5)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 97 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Tom Cruise: 4
+ - producer.name = 'Tom Cruise' (1.0)
+ - director.name = 'Tom Cruise' (1.0)
+ - actor.name = 'Tom Cruise' (1.0)
+ - writer.name = 'Tom Cruise' (1.0)
+Pruned candidates for acted: 3
+ - written_by (0.652)
+ - directed_by (0.65105)
+ - made_by (0.6064)
+KW TIME: 2 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+INTERP TIME: 85 ms
+TOTAL SCORE: 0.7594634900292725, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Tom Cruise :: actor.name = 'Tom Cruise' : director.name = 'Tom Cruise' (1.0)
+directed_by(director,movie)
+QUERY TIME: 88 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 6 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Canada: 10
+ - actor.name = 'Canada' (1.0)
+ - producer.nationality = 'Canada' (1.0)
+ - director.name = 'CANADA' (1.0)
+ - actor.nationality = 'Canada' (1.0)
+ - producer.name = 'CANADA' (1.0)
+ - writer.nationality = 'Canada' (1.0)
+ - director.nationality = 'Canada' (1.0)
+ - company.name = 'Canada' (1.0)
+ - movie.title = 'Canada' (1.0)
+ - writer.name = 'CANADA' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 10
+INTERP TIME: 60 ms
+TOTAL SCORE: 0.913592326849412, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Canada :: actor.nationality = 'Canada' : actor.nationality = 'Canada' (1.0)
+actor
+QUERY TIME: 61 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 54 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Netflix: 2
+ - company.name = 'Netflix' (1.0)
+ - keyword.keyword = 'netflix' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 7 ms
+TOTAL SCORE: 0.8466252004120147, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Netflix :: company.name = 'Netflix' : keyword.keyword = 'netflix' (1.0)
+keyword(tags(movie))
+QUERY TIME: 8 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 111 ==
+Pruned candidates for companies: 1
+ - count(company.name) (0.9999999)
+Pruned candidates for Camp X-Ray: 2
+ - movie.title = 'Camp X-Ray' (1.0)
+ - keyword.keyword = 'camp-x-ray' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 11 ms
+TOTAL SCORE: 0.8279144863119532, TIES: 0
+--
+companies :: count(company.name) : count(company.name) (0.9999999)
+Camp X-Ray :: movie.title = 'Camp X-Ray' : movie.title = 'Camp X-Ray' (1.0)
+company(copyright(movie))
+QUERY TIME: 11 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 39 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Alfred Hitchcock: 4
+ - producer.name = 'Alfred Hitchcock' (1.0)
+ - director.name = 'Alfred Hitchcock' (1.0)
+ - actor.name = 'Alfred Hitchcock' (1.0)
+ - writer.name = 'Alfred Hitchcock' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 86 ms
+TOTAL SCORE: 0.7654292282594678, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Alfred Hitchcock :: director.name = 'Alfred Hitchcock' : director.name = 'Alfred Hitchcock' (1.0)
+directed_by(director,movie)
+QUERY TIME: 86 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 42 ==
+Pruned candidates for tv series: 1
+ - tv_series.title (1.0)
+Pruned candidates for created by: 3
+ - made_by (0.77155)
+ - written_by (0.76945)
+ - directed_by (0.76755)
+Pruned candidates for Shonda Rhimes: 4
+ - producer.name = 'Shonda Rhimes' (1.0)
+ - director.name = 'Shonda Rhimes' (1.0)
+ - writer.name = 'Shonda Rhimes' (1.0)
+ - actor.name = 'Shonda Rhimes' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 72 ms
+TOTAL SCORE: 0.7437441958432517, TIES: 0
+--
+tv series :: tv_series.title : tv_series.title (1.0)
+Shonda Rhimes :: producer.name = 'Shonda Rhimes' : producer.name = 'Shonda Rhimes' (1.0)
+made_by(producer,tv_series)
+QUERY TIME: 72 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 43 ==
+Pruned candidates for acts: 3
+ - genre.genre (0.5885)
+ - cast.role (0.5871999999999999)
+ - tv_series.num_of_episodes (0.5842495)
+Pruned candidates for Olivia Pope: 2
+ - cast.role = 'Olivia Pope' (1.0)
+ - actor.name = 'Olivia Pope' (1.0)
+Pruned candidates for series Scandal: 3
+ - tv_series.title = 'Scandal' (0.93405)
+ - tv_series.title = 'Scandal!' (0.93404999)
+ - tv_series.title = 'Sungkyunkwan Scandal' (0.9340495)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 18
+INTERP TIME: 112 ms
+TOTAL SCORE: 0.6728209224471873, TIES: 0
+--
+acts :: actor.name : tv_series.num_of_episodes (0.5842495)
+Olivia Pope :: cast.role = 'Olivia Pope' : cast.role = 'Olivia Pope' (1.0)
+series Scandal :: tv_series.title = 'Scandal' : tv_series.title = 'Scandal' (0.93405)
+cast(tv_series)
+QUERY TIME: 112 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 93 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Ronald Reagan: 2
+ - producer.name = 'Ronald Reagan' (1.0)
+ - actor.name = 'Ronald Reagan' (1.0)
+Pruned candidates for act: 3
+ - directed_by (0.61295)
+ - written_by (0.6098)
+ - cast (0.59865)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+INTERP TIME: 51 ms
+TOTAL SCORE: 0.7492052269771302, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Ronald Reagan :: actor.name = 'Ronald Reagan' : actor.name = 'Ronald Reagan' (1.0)
+actor(cast(movie))
+QUERY TIME: 51 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 4 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for 2015: 5
+ - tags.id = 2015 (0.9999)
+ - movie.release_year = 2015 (0.9999)
+ - keyword.id = 2015 (0.9999)
+ - company.id = 2015 (0.9999)
+ - tv_series.release_year = 2015 (0.9999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 5
+INTERP TIME: 19 ms
+TOTAL SCORE: 0.9332932923352825, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+2015 :: movie.release_year = 2015 : movie.release_year = 2015 (0.9999)
+movie
+QUERY TIME: 20 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 7 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for born 1984: 4
+ - director.birth_year = 1984 (0.8630906673113782)
+ - actor.birth_year = 1984 (0.8630906673113782)
+ - producer.birth_year = 1984 (0.8630906673113782)
+ - writer.birth_year = 1984 (0.8630906673113782)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+INTERP TIME: 20 ms
+TOTAL SCORE: 0.8676555511783012, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+born 1984 :: actor.birth_year = 1984 : actor.birth_year = 1984 (0.8630906673113782)
+actor
+QUERY TIME: 21 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 118 ==
+Pruned candidates for movies: 1
+ - max(count(movie.title)) (0.9999999)
+Pruned candidates for Brad Pitt: 3
+ - producer.name = 'Brad Pitt' (1.0)
+ - actor.name = 'Brad Pitt' (1.0)
+ - cast.role = 'Brad Pitt'' (0.99999999)
+Pruned candidates for act: 3
+ - directed_by (0.61295)
+ - written_by (0.6098)
+ - cast (0.59865)
+Pruned candidates for year: 6
+ - tv_series.release_year (0.83155)
+ - movie.release_year (0.83155)
+ - actor.birth_year (0.79285)
+ - director.birth_year (0.79285)
+ - writer.birth_year (0.79285)
+ - producer.birth_year (0.79285)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 54
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain cast
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+INTERP TIME: 567 ms
+TOTAL SCORE: 0.7131950788004259, TIES: 0
+--
+movies :: max(count(movie.title)) : max(count(movie.title)) (0.9999999)
+Brad Pitt :: actor.name = 'Brad Pitt' : actor.name = 'Brad Pitt' (1.0)
+year :: movie.release_year : movie.release_year (0.83155)
+actor(cast(movie))
+QUERY TIME: 568 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 23 ==
+Pruned candidates for director: 1
+ - director.name (1.0)
+Pruned candidates for movie Joy: 3
+ - movie.title = 'Joy' (1.0)
+ - movie.title = 'Joyô' (0.99999999)
+ - movie.title = 'Joys' (0.9999999)
+Pruned candidates for 2015: 5
+ - tags.id = 2015 (0.9999)
+ - movie.release_year = 2015 (0.9999)
+ - keyword.id = 2015 (0.9999)
+ - company.id = 2015 (0.9999)
+ - tv_series.release_year = 2015 (0.9999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 15
+INTERP TIME: 211 ms
+TOTAL SCORE: 0.8158812408269468, TIES: 0
+--
+director :: director.name : director.name (1.0)
+movie Joy :: movie.title = 'Joy' : movie.title = 'Joy' (1.0)
+2015 :: movie.release_year = 2015 : tags.id = 2015 (0.9999)
+directed_by(director,movie(tags))
+QUERY TIME: 215 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 125 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Jason Robards: 1
+ - actor.name = 'Jason Robards' (1.0)
+Pruned candidates for Woody Strode: 1
+ - actor.name = 'Woody Strode' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 15 ms
+TOTAL SCORE: 0.8095874230421546, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Jason Robards :: actor.name = 'Jason Robards' : actor.name = 'Jason Robards' (1.0)
+Woody Strode :: actor.name = 'Woody Strode' : actor.name = 'Woody Strode' (1.0)
+actor(cast(movie,tv_series(cast#1(actor#1))))
+QUERY TIME: 16 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 18 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Tehran: 7
+ - director.birth_city = 'Tehran' (1.0)
+ - keyword.keyword = 'tehran' (1.0)
+ - producer.birth_city = 'Tehran' (1.0)
+ - writer.birth_city = 'Tehran' (1.0)
+ - cast.role = 'Tehran' (1.0)
+ - actor.birth_city = 'Tehran' (1.0)
+ - movie.title = 'Tehran' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 7
+INTERP TIME: 70 ms
+TOTAL SCORE: 0.9322875255532286, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Tehran :: actor.birth_city = 'Tehran' : actor.birth_city = 'Tehran' (1.0)
+actor
+QUERY TIME: 71 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 90 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for year 2012: 3
+ - movie.release_year = 2012 (0.9118480383265624)
+ - tv_series.release_year = 2012 (0.9118480383265624)
+ - actor.birth_year = 2012 (0.8903767264478559)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.8972591714686365, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+year 2012 :: movie.release_year = 2012 : movie.release_year = 2012 (0.9118480383265624)
+movie
+QUERY TIME: 14 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 1 ==
+Pruned candidates for year: 6
+ - movie.release_year (0.83155)
+ - tv_series.release_year (0.83155)
+ - writer.birth_year (0.79285)
+ - producer.birth_year (0.79285)
+ - actor.birth_year (0.79285)
+ - director.birth_year (0.79285)
+Pruned candidates for movie Dead Poets Society: 1
+ - movie.title = 'Dead Poets Society' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+INTERP TIME: 28 ms
+TOTAL SCORE: 0.7872499342375177, TIES: 0
+--
+year :: movie.release_year : movie.release_year (0.83155)
+movie Dead Poets Society :: movie.title = 'Dead Poets Society' : movie.title = 'Dead Poets Society' (1.0)
+movie
+QUERY TIME: 28 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 68 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Iraq war: 1
+ - keyword.keyword = 'iraq-war' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8466252004120147, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Iraq war :: keyword.keyword = 'iraq-war' : keyword.keyword = 'iraq-war' (1.0)
+keyword(tags(movie))
+QUERY TIME: 5 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 24 ==
+Pruned candidates for acted: 3
+ - directed_by.did (0.63595)
+ - director.did (0.63595)
+ - cast.role (0.61725)
+Pruned candidates for John Nash: 4
+ - actor.name = 'John Nash' (1.0)
+ - director.name = 'John Nash' (1.0)
+ - writer.name = 'John Nash' (1.0)
+ - cast.role = 'John Nash' (1.0)
+Pruned candidates for movie A Beautiful Mind: 1
+ - movie.title = 'A Beautiful Mind' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+INTERP TIME: 87 ms
+TOTAL SCORE: 0.7126887161018541, TIES: 0
+--
+acted :: actor.name : directed_by.did (0.63595)
+John Nash :: cast.role = 'John Nash' : cast.role = 'John Nash' (1.0)
+movie A Beautiful Mind :: movie.title = 'A Beautiful Mind' : movie.title = 'A Beautiful Mind' (1.0)
+cast(movie(directed_by))
+QUERY TIME: 88 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+==== FOLD RESULTS ====
+32,23,23,23.000,21,21,21.000,76,63,63,63.000
+CUMULATIVE TOTAL TIME: 5398 ms
+CUMULATIVE KW TIME: 7 ms
+CUMULATIVE I TIME: 5373 ms
+CUMULATIVE INTERP COUNT: 568
+00:14  INFO: ===== FOLD 2 =====
+Original log size: 95
+Trimming log to 100.0%...
+Final log size: 95
+00:14  INFO: ===== Parsing Results =====
+00:14  INFO: Total Queries: 95
+00:14  INFO: Correctly Parsed: 95/95
+
+Loading cache from: <data/imdb/imdb.cands.cache>
+Cache loaded!
+== QUERY ID: 26 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Kate Winslet: 1
+ - actor.name = 'Kate Winslet' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 6 ms
+TOTAL SCORE: 0.8798220290635786, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Kate Winslet :: actor.name = 'Kate Winslet' : actor.name = 'Kate Winslet' (1.0)
+actor(cast(movie))
+QUERY TIME: 7 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 128 ==
+Pruned candidates for latest: 3
+ - movie.release_year = max(movie.release_year) (0.6627000000000001)
+ - tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+ - movie.mid = max(movie.mid) (0.5938)
+Pruned candidates for movie: 1
+ - movie.title (1.0)
+Pruned candidates for Gabriele Ferzetti: 1
+ - actor.name = 'Gabriele Ferzetti' (1.0)
+Pruned candidates for acted: 3
+ - written_by (0.652)
+ - directed_by (0.65105)
+ - made_by (0.6064)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 9
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 85 ms
+TOTAL SCORE: 0.653323615740445, TIES: 0
+--
+latest :: movie.release_year = max(movie.release_year) : tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+movie :: movie.title : movie.title (1.0)
+Gabriele Ferzetti :: actor.name = 'Gabriele Ferzetti' : actor.name = 'Gabriele Ferzetti' (1.0)
+actor(cast(tv_series(made_by(movie))))
+QUERY TIME: 86 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 70 ==
+Pruned candidates for name: 5
+ - writer.name (1.0)
+ - company.name (1.0)
+ - director.name (1.0)
+ - producer.name (1.0)
+ - actor.name (1.0)
+Pruned candidates for actors: 1
+ - actor (0.9999999)
+Pruned candidates for Afghanistan: 7
+ - actor.birth_city = 'Afghanistan' (1.0)
+ - writer.nationality = 'Afghanistan' (1.0)
+ - movie.title = 'Afghanistan' (1.0)
+ - actor.nationality = 'Afghanistan' (1.0)
+ - producer.nationality = 'Afghanistan' (1.0)
+ - keyword.keyword = 'afghanistan' (1.0)
+ - director.nationality = 'Afghanistan' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 35
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+INTERP TIME: 300 ms
+TOTAL SCORE: 0.952400125733561, TIES: 0
+--
+name :: actor.name : actor.name (1.0)
+Afghanistan :: actor.nationality = 'Afghanistan' : actor.birth_city = 'Afghanistan' (1.0)
+actor
+QUERY TIME: 300 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 107 ==
+Pruned candidates for female: 7
+ - producer.gender = 'female' (1.0)
+ - keyword.keyword = 'female' (1.0)
+ - writer.gender = 'female' (1.0)
+ - actor.gender = 'female' (1.0)
+ - director.gender = 'female' (1.0)
+ - movie.title = 'Female' (1.0)
+ - cast.role = 'Female' (1.0)
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for New York City: 7
+ - actor.birth_city = 'New York City' (1.0)
+ - writer.birth_city = 'New York City' (1.0)
+ - producer.birth_city = 'New York City' (1.0)
+ - movie.title = 'New York City' (1.0)
+ - director.birth_city = 'New York City' (1.0)
+ - keyword.keyword = 'new-york-city' (1.0)
+ - cast.role = 'New York City' (1.0)
+Pruned candidates for after 1980: 6
+ - movie.mid > 1980 (0.7953217839340251)
+ - director.did > 1980 (0.7732012739254895)
+ - actor.birth_year > 1980 (0.7726838227891146)
+ - writer.birth_year > 1980 (0.7726838227891146)
+ - director.birth_year > 1980 (0.7726838227891146)
+ - producer.birth_year > 1980 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 294
+INTERP TIME: 2228 ms
+TOTAL SCORE: 0.7810030710991324, TIES: 1
+--
+female :: actor.gender = 'female' : cast.role = 'Female' (1.0)
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+New York City :: actor.birth_city = 'New York City' : movie.title = 'New York City' (1.0)
+after 1980 :: actor.birth_year > 1980 : movie.mid > 1980 (0.7953217839340251)
+actor(cast(movie))
+--
+female :: actor.gender = 'female' : movie.title = 'Female' (1.0)
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+New York City :: actor.birth_city = 'New York City' : cast.role = 'New York City' (1.0)
+after 1980 :: actor.birth_year > 1980 : movie.mid > 1980 (0.7953217839340251)
+actor(cast(movie))
+QUERY TIME: 2228 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 66 ==
+Pruned candidates for actor: 1
+ - actor.name (1.0)
+Pruned candidates for Alan Turing: 1
+ - cast.role = 'Alan Turing' (1.0)
+Pruned candidates for The Imitation Game: 1
+ - movie.title = 'The Imitation Game' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 4 ms
+TOTAL SCORE: 0.8596821182733879, TIES: 0
+--
+actor :: actor.name : actor.name (1.0)
+Alan Turing :: cast.role = 'Alan Turing' : cast.role = 'Alan Turing' (1.0)
+The Imitation Game :: movie.title = 'The Imitation Game' : movie.title = 'The Imitation Game' (1.0)
+actor(cast(movie))
+QUERY TIME: 4 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 88 ==
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for movie Grumpier Old Men: 1
+ - movie.title = 'Grumpier Old Men' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 3 ms
+TOTAL SCORE: 0.8597613904667187, TIES: 0
+--
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+movie Grumpier Old Men :: movie.title = 'Grumpier Old Men' : movie.title = 'Grumpier Old Men' (1.0)
+actor(cast(movie))
+QUERY TIME: 3 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 13 ==
+Pruned candidates for city born: 4
+ - actor.birth_city (0.8615999999999999)
+ - producer.birth_city (0.8615999999999999)
+ - director.birth_city (0.8615999999999999)
+ - writer.birth_city (0.8615999999999999)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 62 ms
+TOTAL SCORE: 0.7625792886958268, TIES: 3
+--
+city born :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : producer.birth_city (0.8615999999999999)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : producer.name = 'Kevin Spacey' (1.0)
+producer
+--
+city born :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : writer.birth_city (0.8615999999999999)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : writer.name = 'Kevin Spacey' (1.0)
+writer
+--
+city born :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : director.birth_city (0.8615999999999999)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : director.name = 'Kevin Spacey' (1.0)
+director
+--
+city born :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : actor.birth_city (0.8615999999999999)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor
+QUERY TIME: 63 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 9 ==
+Pruned candidates for nationality: 4
+ - writer.nationality (1.0)
+ - producer.nationality (1.0)
+ - actor.nationality (1.0)
+ - director.nationality (1.0)
+Pruned candidates for actor Christoph Waltz: 1
+ - actor.name = 'Christoph Waltz' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+INTERP TIME: 16 ms
+TOTAL SCORE: 0.8200000000000001, TIES: 0
+--
+nationality :: actor.nationality : actor.nationality (1.0)
+actor Christoph Waltz :: actor.name = 'Christoph Waltz' : actor.name = 'Christoph Waltz' (1.0)
+actor
+QUERY TIME: 16 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 80 ==
+Pruned candidates for genres: 1
+ - genre.genre (0.9999999)
+Pruned candidates for movies: 1
+ - movie (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Asghar Farhadi: 5
+ - director.name = 'Asghar Farhadi' (1.0)
+ - actor.name = 'Asghar Farhadi' (1.0)
+ - producer.name = 'Asghar Farhadi' (1.0)
+ - company.name = 'Asghar Farhadi' (1.0)
+ - writer.name = 'Asghar Farhadi' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 5
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 28 ms
+TOTAL SCORE: 0.8070503353238944, TIES: 0
+--
+genres :: genre.genre : genre.genre (0.9999999)
+Asghar Farhadi :: director.name = 'Asghar Farhadi' : director.name = 'Asghar Farhadi' (1.0)
+classification(genre,movie(directed_by(director)))
+QUERY TIME: 28 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 49 ==
+Pruned candidates for directors: 1
+ - director.name (0.9999999)
+Pruned candidates for movies: 1
+ - movie (0.9999999)
+Pruned candidates for Kate Winslet: 1
+ - actor.name = 'Kate Winslet' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8074764611218294, TIES: 0
+--
+directors :: director.name : director.name (0.9999999)
+Kate Winslet :: actor.name = 'Kate Winslet' : actor.name = 'Kate Winslet' (1.0)
+actor(cast(movie(directed_by(director))))
+QUERY TIME: 5 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 31 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directors: 1
+ - director (0.9999999)
+Pruned candidates for Los Angeles: 5
+ - writer.birth_city = 'Los Angeles' (1.0)
+ - movie.title = 'Los Angeles' (1.0)
+ - director.birth_city = 'Los Angeles' (1.0)
+ - actor.birth_city = 'Los Angeles' (1.0)
+ - producer.birth_city = 'Los Angeles' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 5
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+Returning 0.0 because Steiner tree doesn't contain director
+INTERP TIME: 25 ms
+TOTAL SCORE: 0.8182178041666666, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Los Angeles :: director.birth_city = 'Los Angeles' : movie.title = 'Los Angeles' (1.0)
+directed_by(director(directed_by#1(movie#1)),movie)
+QUERY TIME: 25 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 63 ==
+Pruned candidates for female: 7
+ - producer.gender = 'female' (1.0)
+ - keyword.keyword = 'female' (1.0)
+ - writer.gender = 'female' (1.0)
+ - actor.gender = 'female' (1.0)
+ - director.gender = 'female' (1.0)
+ - movie.title = 'Female' (1.0)
+ - cast.role = 'Female' (1.0)
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for New York City: 7
+ - actor.birth_city = 'New York City' (1.0)
+ - writer.birth_city = 'New York City' (1.0)
+ - producer.birth_city = 'New York City' (1.0)
+ - movie.title = 'New York City' (1.0)
+ - director.birth_city = 'New York City' (1.0)
+ - keyword.keyword = 'new-york-city' (1.0)
+ - cast.role = 'New York City' (1.0)
+Pruned candidates for after 1980: 6
+ - movie.mid > 1980 (0.7953217839340251)
+ - director.did > 1980 (0.7732012739254895)
+ - actor.birth_year > 1980 (0.7726838227891146)
+ - writer.birth_year > 1980 (0.7726838227891146)
+ - director.birth_year > 1980 (0.7726838227891146)
+ - producer.birth_year > 1980 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 294
+INTERP TIME: 2119 ms
+TOTAL SCORE: 0.7810030710991324, TIES: 1
+--
+female :: actor.gender = 'female' : cast.role = 'Female' (1.0)
+actors :: actor.name : actor.name (0.9999999)
+New York City :: actor.birth_city = 'New York City' : movie.title = 'New York City' (1.0)
+after 1980 :: actor.birth_year > 1980 : movie.mid > 1980 (0.7953217839340251)
+actor(cast(movie))
+--
+female :: actor.gender = 'female' : movie.title = 'Female' (1.0)
+actors :: actor.name : actor.name (0.9999999)
+New York City :: actor.birth_city = 'New York City' : cast.role = 'New York City' (1.0)
+after 1980 :: actor.birth_year > 1980 : movie.mid > 1980 (0.7953217839340251)
+actor(cast(movie))
+QUERY TIME: 2119 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 120 ==
+Pruned candidates for acted: 3
+ - directed_by.did (0.63595)
+ - director.did (0.63595)
+ - cast.role (0.61725)
+Pruned candidates for movies: 1
+ - count(movie.title) = max(count(movie.title)) (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Jim Jarmusch: 4
+ - writer.name = 'Jim Jarmusch' (1.0)
+ - producer.name = 'Jim Jarmusch' (1.0)
+ - actor.name = 'Jim Jarmusch' (1.0)
+ - director.name = 'Jim Jarmusch' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 68 ms
+TOTAL SCORE: 0.7246317764180421, TIES: 1
+--
+acted :: actor.name : directed_by.did (0.63595)
+movies :: count(movie.title) = max(count(movie.title)) : count(movie.title) = max(count(movie.title)) (0.9999999)
+Jim Jarmusch :: director.name = 'Jim Jarmusch' : director.name = 'Jim Jarmusch' (1.0)
+directed_by(director,movie)
+--
+acted :: actor.name : director.did (0.63595)
+movies :: count(movie.title) = max(count(movie.title)) : count(movie.title) = max(count(movie.title)) (0.9999999)
+Jim Jarmusch :: director.name = 'Jim Jarmusch' : director.name = 'Jim Jarmusch' (1.0)
+directed_by(director,movie)
+QUERY TIME: 68 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 20 ==
+Pruned candidates for director: 1
+ - director.name (1.0)
+Pruned candidates for movie Catch Me If You Can: 1
+ - movie.title = 'Catch Me If You Can' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 4 ms
+TOTAL SCORE: 0.840104757927104, TIES: 0
+--
+director :: director.name : director.name (1.0)
+movie Catch Me If You Can :: movie.title = 'Catch Me If You Can' : movie.title = 'Catch Me If You Can' (1.0)
+directed_by(director,movie)
+QUERY TIME: 4 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 28 ==
+Pruned candidates for comedies: 4
+ - cast.role = 'Comedy',cast.role (0.9999999)
+ - movie.title = 'Comedy',movie.title (0.9999999)
+ - genre.genre = 'Comedy',movie.title (0.9999999)
+ - cast.role = 'Comediant',cast.role (0.9999999)
+Pruned candidates for year 2015: 5
+ - tv_series.release_year = 2015 (0.9118480383265624)
+ - movie.release_year = 2015 (0.9118480383265624)
+ - tags.id = 2015 (0.6706750442651046)
+ - company.id = 2015 (0.6706750442651046)
+ - keyword.id = 2015 (0.6706750442651046)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 20
+INTERP TIME: 84 ms
+TOTAL SCORE: 0.8324257128558813, TIES: 0
+--
+comedies :: genre.genre = 'Comedy',movie.title : movie.title = 'Comedy',movie.title (0.9999999)
+year 2015 :: movie.release_year = 2015 : movie.release_year = 2015 (0.9118480383265624)
+movie
+QUERY TIME: 84 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 89 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Alfred Hitchcock: 4
+ - producer.name = 'Alfred Hitchcock' (1.0)
+ - director.name = 'Alfred Hitchcock' (1.0)
+ - actor.name = 'Alfred Hitchcock' (1.0)
+ - writer.name = 'Alfred Hitchcock' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 47 ms
+TOTAL SCORE: 0.765102425390927, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Alfred Hitchcock :: director.name = 'Alfred Hitchcock' : director.name = 'Alfred Hitchcock' (1.0)
+directed_by(director,movie)
+QUERY TIME: 47 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 62 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Italy: 4
+ - director.nationality = 'Italy' (1.0)
+ - actor.nationality = 'Italy' (1.0)
+ - producer.nationality = 'Italy' (1.0)
+ - writer.nationality = 'Italy' (1.0)
+Pruned candidates for born after 1980: 4
+ - writer.birth_year > 1980 (0.8680003744238824)
+ - director.birth_year > 1980 (0.8680003744238824)
+ - producer.birth_year > 1980 (0.8680003744238824)
+ - actor.birth_year > 1980 (0.8680003744238824)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 114 ms
+TOTAL SCORE: 0.7831266319320701, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Italy :: actor.nationality = 'Italy' : actor.nationality = 'Italy' (1.0)
+born after 1980 :: actor.birth_year > 1980 : actor.birth_year > 1980 (0.8680003744238824)
+actor
+QUERY TIME: 115 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 123 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+Pruned candidates for latest: 3
+ - movie.release_year = max(movie.release_year) (0.6627000000000001)
+ - tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+ - movie.mid = max(movie.mid) (0.5938)
+Pruned candidates for movie: 1
+ - movie (1.0)
+Pruned candidates for Quentin Tarantino: 4
+ - director.name = 'Quentin Tarantino' (1.0)
+ - actor.name = 'Quentin Tarantino' (1.0)
+ - producer.name = 'Quentin Tarantino' (1.0)
+ - writer.name = 'Quentin Tarantino' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 36
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+INTERP TIME: 299 ms
+TOTAL SCORE: 0.6812194762457676, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+latest :: movie.release_year = max(movie.release_year) : movie.release_year = max(movie.release_year) (0.6627000000000001)
+Quentin Tarantino :: director.name = 'Quentin Tarantino' : actor.name = 'Quentin Tarantino' (1.0)
+actor(cast(movie,tv_series(cast#1(actor#1))))
+QUERY TIME: 300 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 105 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Steven Spielberg: 4
+ - writer.name = 'Steven Spielberg' (1.0)
+ - director.name = 'Steven Spielberg' (1.0)
+ - actor.name = 'Steven Spielberg' (1.0)
+ - producer.name = 'Steven Spielberg' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 58 ms
+TOTAL SCORE: 0.765102425390927, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Steven Spielberg :: director.name = 'Steven Spielberg' : director.name = 'Steven Spielberg' (1.0)
+directed_by(director,movie)
+QUERY TIME: 59 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 108 ==
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for movie Saving Private Ryan: 1
+ - movie.title = 'Saving Private Ryan' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8597613904667187, TIES: 0
+--
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+movie Saving Private Ryan :: movie.title = 'Saving Private Ryan' : movie.title = 'Saving Private Ryan' (1.0)
+actor(cast(movie))
+QUERY TIME: 5 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 12 ==
+Pruned candidates for birthplace: 4
+ - actor.birth_city (0.7039)
+ - writer.birth_city (0.7039)
+ - producer.birth_city (0.7039)
+ - director.birth_city (0.7039)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 71 ms
+TOTAL SCORE: 0.6911899880063767, TIES: 3
+--
+birthplace :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : producer.birth_city (0.7039)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : producer.name = 'Kevin Spacey' (1.0)
+producer
+--
+birthplace :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : writer.birth_city (0.7039)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : writer.name = 'Kevin Spacey' (1.0)
+writer
+--
+birthplace :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : director.birth_city (0.7039)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : director.name = 'Kevin Spacey' (1.0)
+director
+--
+birthplace :: actor.birth_city; producer.birth_city; director.birth_city; writer.birth_city : actor.birth_city (0.7039)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor
+QUERY TIME: 72 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 110 ==
+Pruned candidates for actors: 1
+ - count(actor.name) (0.9999999)
+Pruned candidates for Iran: 6
+ - writer.nationality = 'Iran' (1.0)
+ - actor.name = 'Iran' (1.0)
+ - actor.nationality = 'Iran' (1.0)
+ - director.nationality = 'Iran' (1.0)
+ - producer.nationality = 'Iran' (1.0)
+ - movie.title = 'Iran' (1.0)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+Pruned candidates for Jim Jarmusch: 4
+ - writer.name = 'Jim Jarmusch' (1.0)
+ - producer.name = 'Jim Jarmusch' (1.0)
+ - actor.name = 'Jim Jarmusch' (1.0)
+ - director.name = 'Jim Jarmusch' (1.0)
+Pruned candidates for movies: 1
+ - movie (0.9999999)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 72
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+Returning 0.0 because Steiner tree doesn't contain movie
+INTERP TIME: 737 ms
+TOTAL SCORE: 0.7388260735907993, TIES: 0
+--
+actors :: count(actor.name) : count(actor.name) (0.9999999)
+Iran :: actor.nationality = 'Iran' : movie.title = 'Iran' (1.0)
+Jim Jarmusch :: director.name = 'Jim Jarmusch'; writer.name = 'Jim Jarmusch'; producer.name = 'Jim Jarmusch' : actor.name = 'Jim Jarmusch' (1.0)
+actor(cast(movie,tv_series(cast#1(actor#1))))
+QUERY TIME: 738 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 5)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 3 ==
+Pruned candidates for nationality: 4
+ - writer.nationality (1.0)
+ - producer.nationality (1.0)
+ - actor.nationality (1.0)
+ - director.nationality (1.0)
+Pruned candidates for actress Ellen Page: 3
+ - tv_series.num_of_episodes (0.6619495)
+ - genre.gid (0.6591)
+ - classification.gid (0.6591)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+INTERP TIME: 55 ms
+TOTAL SCORE: 0.6611492304154742, TIES: 0
+--
+nationality :: actor.nationality : actor.nationality (1.0)
+actress Ellen Page :: actor.name = 'Ellen Page' : tv_series.num_of_episodes (0.6619495)
+actor(cast(tv_series))
+QUERY TIME: 55 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 2 ==
+Pruned candidates for year born: 4
+ - director.birth_year (0.84765)
+ - writer.birth_year (0.84765)
+ - actor.birth_year (0.84765)
+ - producer.birth_year (0.84765)
+Pruned candidates for Ellen Page: 2
+ - actor.name = 'Ellen Page' (1.0)
+ - producer.name = 'Ellen Page' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 8
+INTERP TIME: 33 ms
+TOTAL SCORE: 0.8275150429803416, TIES: 0
+--
+year born :: actor.birth_year : actor.birth_year (0.84765)
+Ellen Page :: actor.name = 'Ellen Page' : actor.name = 'Ellen Page' (1.0)
+actor
+QUERY TIME: 33 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 76 ==
+Pruned candidates for films: 3
+ - movie.title (0.86815)
+ - actor.name (0.7181500000000001)
+ - genre.genre (0.7158)
+Pruned candidates for Rowan Atkinson: 4
+ - writer.name = 'Rowan Atkinson' (1.0)
+ - director.name = 'Rowan Atkinson' (1.0)
+ - actor.name = 'Rowan Atkinson' (1.0)
+ - producer.name = 'Rowan Atkinson' (1.0)
+Pruned candidates for Mr. Bean: 3
+ - keyword.keyword = 'mr-bean' (1.0)
+ - tv_series.title = 'Mr. Bean' (0.99999999)
+ - cast.role = 'Mr. Bean' (0.99999999)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 36
+INTERP TIME: 254 ms
+TOTAL SCORE: 0.7740813959796823, TIES: 0
+--
+films :: movie.title : movie.title (0.86815)
+Rowan Atkinson :: actor.name = 'Rowan Atkinson' : actor.name = 'Rowan Atkinson' (1.0)
+Mr. Bean :: cast.role = 'Mr. Bean' : cast.role = 'Mr. Bean' (0.99999999)
+actor(cast(movie))
+QUERY TIME: 256 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 106 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Netflix: 2
+ - company.name = 'Netflix' (1.0)
+ - keyword.keyword = 'netflix' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 7 ms
+TOTAL SCORE: 0.8480384061415251, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Netflix :: company.name = 'Netflix' : keyword.keyword = 'netflix' (1.0)
+keyword(tags(movie))
+QUERY TIME: 7 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 45 ==
+Pruned candidates for directed: 3
+ - director.name (0.6349)
+ - movie.title (0.62815)
+ - cast.role (0.6082)
+Pruned candidates for movie Inglourious Basterds: 1
+ - movie.title = 'Inglourious Basterds' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.6887859959193527, TIES: 0
+--
+directed :: director.name : cast.role (0.6082)
+movie Inglourious Basterds :: movie.title = 'Inglourious Basterds' : movie.title = 'Inglourious Basterds' (1.0)
+cast(movie)
+QUERY TIME: 13 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 73 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for played: 3
+ - cast (0.6295)
+ - actor (0.5995)
+ - tv_series (0.59235)
+Pruned candidates for movie Camp X-Ray: 1
+ - movie.title = 'Camp X-Ray' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 14 ms
+TOTAL SCORE: 0.7453894390912501, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+movie Camp X-Ray :: movie.title = 'Camp X-Ray' : movie.title = 'Camp X-Ray' (1.0)
+actor(cast(movie))
+QUERY TIME: 14 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 22 ==
+Pruned candidates for genre: 1
+ - genre.genre (1.0)
+Pruned candidates for movie Jurassic Park: 1
+ - movie.title = 'Jurassic Park' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 4 ms
+TOTAL SCORE: 0.8097100831245523, TIES: 0
+--
+genre :: genre.genre : genre.genre (1.0)
+movie Jurassic Park :: movie.title = 'Jurassic Park' : movie.title = 'Jurassic Park' (1.0)
+classification(genre,movie)
+QUERY TIME: 4 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 55 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+INTERP TIME: 14 ms
+TOTAL SCORE: 0.8798220290635786, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Kevin Spacey :: actor.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor(cast(movie))
+QUERY TIME: 14 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 19 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Steven Spielberg: 4
+ - writer.name = 'Steven Spielberg' (1.0)
+ - director.name = 'Steven Spielberg' (1.0)
+ - actor.name = 'Steven Spielberg' (1.0)
+ - producer.name = 'Steven Spielberg' (1.0)
+Pruned candidates for after 2006: 4
+ - movie.mid > 2006 (0.7953217839340251)
+ - director.did > 2006 (0.7732012739254895)
+ - producer.birth_year > 2006 (0.7726838227891146)
+ - actor.birth_year > 2006 (0.7726838227891146)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 100 ms
+TOTAL SCORE: 0.7745006195964245, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Steven Spielberg :: director.name = 'Steven Spielberg' : director.name = 'Steven Spielberg' (1.0)
+after 2006 :: movie.release_year > 2006 : movie.mid > 2006 (0.7953217839340251)
+directed_by(director,movie)
+QUERY TIME: 100 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 17 ==
+Pruned candidates for budget: 2
+ - movie.budget (1.0)
+ - tv_series.budget (1.0)
+Pruned candidates for Finding Nemo: 1
+ - movie.title = 'Finding Nemo' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8632455532033676, TIES: 0
+--
+budget :: movie.budget : movie.budget (1.0)
+Finding Nemo :: movie.title = 'Finding Nemo' : movie.title = 'Finding Nemo' (1.0)
+movie
+QUERY TIME: 5 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+==== FOLD RESULTS ====
+32,19,19,19.000,19,19,19.000,76,58,58,58.000
+CUMULATIVE TOTAL TIME: 6877 ms
+CUMULATIVE KW TIME: 5 ms
+CUMULATIVE I TIME: 6867 ms
+CUMULATIVE INTERP COUNT: 951
+00:21  INFO: ===== FOLD 3 =====
+Original log size: 95
+Trimming log to 100.0%...
+Final log size: 95
+00:21  INFO: ===== Parsing Results =====
+00:21  INFO: Total Queries: 95
+00:21  INFO: Correctly Parsed: 95/95
+
+Loading cache from: <data/imdb/imdb.cands.cache>
+Cache loaded!
+== QUERY ID: 56 ==
+Pruned candidates for director: 1
+ - director.name (1.0)
+Pruned candidates for series House of Cards: 3
+ - tv_series.title = 'House of Cards' (0.940149)
+ - tv_series.title = 'House of Card' (0.901049)
+ - company.country_code (0.6250495)
+Pruned candidates for Netflix: 2
+ - company.name = 'Netflix' (1.0)
+ - keyword.keyword = 'netflix' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+INTERP TIME: 42 ms
+TOTAL SCORE: 0.790880723352647, TIES: 0
+--
+director :: director.name : director.name (1.0)
+series House of Cards :: tv_series.title = 'House of Cards' : tv_series.title = 'House of Cards' (0.940149)
+Netflix :: company.name = 'Netflix' : keyword.keyword = 'netflix' (1.0)
+directed_by(director,tv_series(tags(keyword)))
+QUERY TIME: 42 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 74 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Canada: 10
+ - actor.name = 'Canada' (1.0)
+ - producer.nationality = 'Canada' (1.0)
+ - director.name = 'CANADA' (1.0)
+ - actor.nationality = 'Canada' (1.0)
+ - producer.name = 'CANADA' (1.0)
+ - writer.nationality = 'Canada' (1.0)
+ - director.nationality = 'Canada' (1.0)
+ - company.name = 'Canada' (1.0)
+ - movie.title = 'Canada' (1.0)
+ - writer.name = 'CANADA' (1.0)
+Pruned candidates for James Bond movies: 3
+ - movie.title = 'James Bond' (0.94335)
+ - movie.title = 'James Bond 777' (0.9433495000000001)
+ - movie.title = 'Jatt James Bond' (0.9433495000000001)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 30
+INTERP TIME: 214 ms
+TOTAL SCORE: 0.8340667622538125, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Canada :: actor.nationality = 'Canada' : actor.nationality = 'Canada' (1.0)
+James Bond movies :: movie.title = 'James Bond' : movie.title = 'James Bond' (0.94335)
+actor(cast(movie))
+QUERY TIME: 214 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 85 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for nuclear weapons: 1
+ - keyword.keyword = 'nuclear-weapons' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 4 ms
+TOTAL SCORE: 0.8373543283818805, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+nuclear weapons :: keyword.keyword = 'nuclear-weapons' : keyword.keyword = 'nuclear-weapons' (1.0)
+keyword(tags(movie))
+QUERY TIME: 4 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 65 ==
+Pruned candidates for acts: 3
+ - genre.genre (0.5885)
+ - cast.role (0.5871999999999999)
+ - tv_series.num_of_episodes (0.5842495)
+Pruned candidates for Alan Turing: 1
+ - cast.role = 'Alan Turing' (1.0)
+Pruned candidates for movie The Imitation Game: 1
+ - movie.title = 'The Imitation Game' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 18 ms
+TOTAL SCORE: 0.6923598775425415, TIES: 0
+--
+acts :: actor.name : tv_series.num_of_episodes (0.5842495)
+Alan Turing :: cast.role = 'Alan Turing' : cast.role = 'Alan Turing' (1.0)
+movie The Imitation Game :: movie.title = 'The Imitation Game' : movie.title = 'The Imitation Game' (1.0)
+cast(movie,tv_series)
+QUERY TIME: 19 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 99 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Persians: 2
+ - cast.role = 'Persian' (0.9999999)
+ - keyword.keyword = 'persian' (0.9999999)
+Pruned candidates for released after 1990: 3
+ - movie.release_year > 1990 (0.882537310826007)
+ - tv_series.release_year > 1990 (0.882537310826007)
+ - movie.mid > 1990 (0.7895490200107907)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+INTERP TIME: 27 ms
+TOTAL SCORE: 0.8116296278159708, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Persians :: keyword.keyword = 'persian' : keyword.keyword = 'persian' (0.9999999)
+released after 1990 :: movie.release_year > 1990 : movie.release_year > 1990 (0.882537310826007)
+keyword(tags(movie))
+QUERY TIME: 27 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 38 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Benedict Cumberbatch: 2
+ - producer.name = 'Benedict Cumberbatch' (1.0)
+ - actor.name = 'Benedict Cumberbatch' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 6 ms
+TOTAL SCORE: 0.877158811547265, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch' : actor.name = 'Benedict Cumberbatch' (1.0)
+actor(cast(movie))
+QUERY TIME: 7 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 57 ==
+Pruned candidates for director: 1
+ - director.name (1.0)
+Pruned candidates for series House of Cards: 3
+ - tv_series.title = 'House of Cards' (0.940149)
+ - tv_series.title = 'House of Card' (0.901049)
+ - company.country_code (0.6250495)
+Pruned candidates for 2013: 6
+ - actor.birth_year = 2013 (0.9999)
+ - movie.release_year = 2013 (0.9999)
+ - tv_series.release_year = 2013 (0.9999)
+ - tags.id = 2013 (0.9999)
+ - keyword.id = 2013 (0.9999)
+ - company.id = 2013 (0.9999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 18
+INTERP TIME: 90 ms
+TOTAL SCORE: 0.7939632902311247, TIES: 0
+--
+director :: director.name : director.name (1.0)
+series House of Cards :: tv_series.title = 'House of Cards' : tv_series.title = 'House of Cards' (0.940149)
+2013 :: tv_series.release_year = 2013 : tv_series.release_year = 2013 (0.9999)
+directed_by(director,tv_series)
+QUERY TIME: 90 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 14 ==
+Pruned candidates for nationality: 4
+ - writer.nationality (1.0)
+ - producer.nationality (1.0)
+ - actor.nationality (1.0)
+ - director.nationality (1.0)
+Pruned candidates for Kevin Spacey: 4
+ - producer.name = 'Kevin Spacey' (1.0)
+ - writer.name = 'Kevin Spacey' (1.0)
+ - director.name = 'Kevin Spacey' (1.0)
+ - actor.name = 'Kevin Spacey' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+INTERP TIME: 64 ms
+TOTAL SCORE: 0.8755928946018454, TIES: 0
+--
+nationality :: actor.nationality; producer.nationality; director.nationality; writer.nationality : actor.nationality (1.0)
+Kevin Spacey :: actor.name = 'Kevin Spacey'; producer.name = 'Kevin Spacey'; director.name = 'Kevin Spacey'; writer.name = 'Kevin Spacey' : actor.name = 'Kevin Spacey' (1.0)
+actor
+QUERY TIME: 64 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 61 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Steven Spielberg: 4
+ - writer.name = 'Steven Spielberg' (1.0)
+ - director.name = 'Steven Spielberg' (1.0)
+ - actor.name = 'Steven Spielberg' (1.0)
+ - producer.name = 'Steven Spielberg' (1.0)
+Pruned candidates for Matt Damon: 4
+ - actor.name = 'Matt Damon' (1.0)
+ - writer.name = 'Matt Damon' (1.0)
+ - director.name = 'Matt Damon' (1.0)
+ - producer.name = 'Matt Damon' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 16
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 129 ms
+TOTAL SCORE: 0.8392502005655231, TIES: 1
+--
+movies :: movie.title : movie.title (0.9999999)
+Steven Spielberg :: director.name = 'Steven Spielberg' : director.name = 'Steven Spielberg' (1.0)
+Matt Damon :: actor.name = 'Matt Damon' : actor.name = 'Matt Damon' (1.0)
+actor(cast(tv_series(directed_by(director,movie))))
+--
+movies :: movie.title : movie.title (0.9999999)
+Steven Spielberg :: director.name = 'Steven Spielberg' : actor.name = 'Steven Spielberg' (1.0)
+Matt Damon :: actor.name = 'Matt Damon' : director.name = 'Matt Damon' (1.0)
+actor(cast(tv_series(directed_by(director,movie))))
+QUERY TIME: 130 ms
+QUERY > [Ties0: N] [Ties1: Y] [Ties1/t: 0.50]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 3] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 100 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Matt Damon: 4
+ - actor.name = 'Matt Damon' (1.0)
+ - writer.name = 'Matt Damon' (1.0)
+ - director.name = 'Matt Damon' (1.0)
+ - producer.name = 'Matt Damon' (1.0)
+Pruned candidates for direct: 3
+ - directed_by (0.668)
+ - written_by (0.59855)
+ - movie (0.58215)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 49 ms
+TOTAL SCORE: 0.7643408322272633, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Matt Damon :: director.name = 'Matt Damon' : director.name = 'Matt Damon' (1.0)
+directed_by(director,movie)
+QUERY TIME: 49 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 60 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Austin: 9
+ - director.birth_city = 'Austin' (1.0)
+ - producer.name = 'Austin' (1.0)
+ - actor.name = 'Austin' (1.0)
+ - producer.birth_city = 'Austin' (1.0)
+ - writer.birth_city = 'Austin' (1.0)
+ - actor.birth_city = 'Austin' (1.0)
+ - movie.title = 'Austin' (1.0)
+ - writer.name = 'Austin' (1.0)
+ - director.name = 'Austin' (1.0)
+Pruned candidates for born after 1980: 4
+ - writer.birth_year > 1980 (0.8680003744238824)
+ - director.birth_year > 1980 (0.8680003744238824)
+ - producer.birth_year > 1980 (0.8680003744238824)
+ - actor.birth_year > 1980 (0.8680003744238824)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 36
+INTERP TIME: 229 ms
+TOTAL SCORE: 0.906034885772852, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Austin :: actor.birth_city = 'Austin' : actor.birth_city = 'Austin' (1.0)
+born after 1980 :: actor.birth_year > 1980 : actor.birth_year > 1980 (0.8680003744238824)
+actor
+QUERY TIME: 229 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 116 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Benedict Cumberbatch: 2
+ - producer.name = 'Benedict Cumberbatch' (1.0)
+ - actor.name = 'Benedict Cumberbatch' (1.0)
+Pruned candidates for Keira Knightley: 2
+ - producer.name = 'Keira Knightley' (1.0)
+ - actor.name = 'Keira Knightley' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+INTERP TIME: 26 ms
+TOTAL SCORE: 0.8096822649022659, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Benedict Cumberbatch :: actor.name = 'Benedict Cumberbatch' : actor.name = 'Benedict Cumberbatch' (1.0)
+Keira Knightley :: actor.name = 'Keira Knightley' : actor.name = 'Keira Knightley' (1.0)
+actor(cast(movie,tv_series(cast#1(actor#1))))
+QUERY TIME: 27 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 46 ==
+Pruned candidates for writer: 1
+ - writer.name (1.0)
+Pruned candidates for movie Django Unchained: 1
+ - movie.title = 'Django Unchained' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 4 ms
+TOTAL SCORE: 0.8324442842261526, TIES: 0
+--
+writer :: writer.name : writer.name (1.0)
+movie Django Unchained :: movie.title = 'Django Unchained' : movie.title = 'Django Unchained' (1.0)
+movie(written_by(writer))
+QUERY TIME: 4 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 92 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for 2013: 6
+ - actor.birth_year = 2013 (0.9999)
+ - movie.release_year = 2013 (0.9999)
+ - tv_series.release_year = 2013 (0.9999)
+ - tags.id = 2013 (0.9999)
+ - keyword.id = 2013 (0.9999)
+ - company.id = 2013 (0.9999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+INTERP TIME: 19 ms
+TOTAL SCORE: 0.9313178744877861, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+2013 :: movie.release_year = 2013 : movie.release_year = 2013 (0.9999)
+movie
+QUERY TIME: 19 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 16 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Milan: 7
+ - actor.birth_city = 'Milan' (1.0)
+ - producer.birth_city = 'Milan' (1.0)
+ - tv_series.title = 'Milan' (1.0)
+ - movie.title = 'Milan' (1.0)
+ - director.birth_city = 'Milan' (1.0)
+ - writer.birth_city = 'Milan' (1.0)
+ - actor.name = 'Milan' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 7
+INTERP TIME: 28 ms
+TOTAL SCORE: 0.9371988281140061, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Milan :: actor.birth_city = 'Milan' : actor.birth_city = 'Milan' (1.0)
+actor
+QUERY TIME: 28 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 121 ==
+Pruned candidates for movie: 1
+ - movie.title (1.0)
+Pruned candidates for classified: 3
+ - classification (0.7148)
+ - keyword (0.56395)
+ - written_by (0.55745)
+Pruned candidates for genres: 1
+ - count(genre.genre) = max(count(genre.genre)) (0.9999999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 3
+Returning 0.0 because Steiner tree doesn't contain keyword
+Returning 0.0 because Steiner tree doesn't contain written_by
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.7247141799225797, TIES: 0
+--
+movie :: movie.title : movie.title (1.0)
+genres :: count(genre.genre) = max(count(genre.genre)) : count(genre.genre) = max(count(genre.genre)) (0.9999999)
+classification(genre,movie)
+QUERY TIME: 13 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 81 ==
+Pruned candidates for movie: 1
+ - movie.title (1.0)
+Pruned candidates for Daffy Duck: 1
+ - cast.role = 'Daffy Duck' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 1
+INTERP TIME: 3 ms
+TOTAL SCORE: 0.8421637021355785, TIES: 0
+--
+movie :: movie.title : movie.title (1.0)
+Daffy Duck :: cast.role = 'Daffy Duck' : cast.role = 'Daffy Duck' (1.0)
+cast(movie)
+QUERY TIME: 3 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 27 ==
+Pruned candidates for budget: 2
+ - movie.budget (1.0)
+ - tv_series.budget (1.0)
+Pruned candidates for movie Juno: 1
+ - movie.title = 'Juno' (1.0)
+Pruned candidates for 2007: 7
+ - tv_series.release_year = 2007 (0.9999)
+ - keyword.id = 2007 (0.9999)
+ - producer.birth_year = 2007 (0.9999)
+ - tags.id = 2007 (0.9999)
+ - actor.birth_year = 2007 (0.9999)
+ - movie.release_year = 2007 (0.9999)
+ - company.id = 2007 (0.9999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 14
+INTERP TIME: 68 ms
+TOTAL SCORE: 0.8293293177968366, TIES: 0
+--
+budget :: movie.budget : movie.budget (1.0)
+movie Juno :: movie.title = 'Juno' : movie.title = 'Juno' (1.0)
+2007 :: movie.release_year = 2007 : tags.id = 2007 (0.9999)
+movie(tags)
+QUERY TIME: 68 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 67 ==
+Pruned candidates for year: 6
+ - movie.release_year (0.83155)
+ - tv_series.release_year (0.83155)
+ - writer.birth_year (0.79285)
+ - producer.birth_year (0.79285)
+ - actor.birth_year (0.79285)
+ - director.birth_year (0.79285)
+Pruned candidates for movie The Imitation Game: 1
+ - movie.title = 'The Imitation Game' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 6
+INTERP TIME: 20 ms
+TOTAL SCORE: 0.7912362473033918, TIES: 0
+--
+year :: movie.release_year : movie.release_year (0.83155)
+movie The Imitation Game :: movie.title = 'The Imitation Game' : movie.title = 'The Imitation Game' (1.0)
+movie
+QUERY TIME: 20 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 127 ==
+Pruned candidates for latest: 3
+ - movie.release_year = max(movie.release_year) (0.6627000000000001)
+ - tv_series.release_year = max(tv_series.release_year) (0.6627000000000001)
+ - movie.mid = max(movie.mid) (0.5938)
+Pruned candidates for movie: 1
+ - movie.title (1.0)
+Pruned candidates for Jim Jarmusch: 4
+ - writer.name = 'Jim Jarmusch' (1.0)
+ - producer.name = 'Jim Jarmusch' (1.0)
+ - actor.name = 'Jim Jarmusch' (1.0)
+ - director.name = 'Jim Jarmusch' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+INTERP TIME: 71 ms
+TOTAL SCORE: 0.7379391463636021, TIES: 0
+--
+latest :: movie.release_year = max(movie.release_year) : movie.release_year = max(movie.release_year) (0.6627000000000001)
+movie :: movie.title : movie.title (1.0)
+Jim Jarmusch :: director.name = 'Jim Jarmusch'; writer.name = 'Jim Jarmusch'; producer.name = 'Jim Jarmusch' : director.name = 'Jim Jarmusch' (1.0)
+directed_by(director,movie)
+QUERY TIME: 71 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 113 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for star: 3
+ - actor (0.7294499999999999)
+ - movie (0.6321)
+ - tv_series (0.62445)
+Pruned candidates for Angelina Jolie: 4
+ - actor.name = 'Angelina Jolie' (1.0)
+ - producer.name = 'Angelina Jolie' (1.0)
+ - director.name = 'Angelina Jolie' (1.0)
+ - writer.name = 'Angelina Jolie' (1.0)
+Pruned candidates for Brad Pitt: 3
+ - producer.name = 'Brad Pitt' (1.0)
+ - actor.name = 'Brad Pitt' (1.0)
+ - cast.role = 'Brad Pitt'' (0.99999999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 36
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+Returning 0.0 because Steiner tree doesn't contain actor
+INTERP TIME: 311 ms
+TOTAL SCORE: 0.7808381598854428, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Angelina Jolie :: actor.name = 'Angelina Jolie' : director.name = 'Angelina Jolie' (1.0)
+Brad Pitt :: actor.name = 'Brad Pitt' : actor.name = 'Brad Pitt' (1.0)
+actor(cast(movie(directed_by(director))))
+QUERY TIME: 311 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 30 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Los Angeles: 5
+ - writer.birth_city = 'Los Angeles' (1.0)
+ - movie.title = 'Los Angeles' (1.0)
+ - director.birth_city = 'Los Angeles' (1.0)
+ - actor.birth_city = 'Los Angeles' (1.0)
+ - producer.birth_city = 'Los Angeles' (1.0)
+Pruned candidates for after 1980: 6
+ - movie.mid > 1980 (0.7953217839340251)
+ - director.did > 1980 (0.7732012739254895)
+ - actor.birth_year > 1980 (0.7726838227891146)
+ - writer.birth_year > 1980 (0.7726838227891146)
+ - director.birth_year > 1980 (0.7726838227891146)
+ - producer.birth_year > 1980 (0.7726838227891146)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 30
+INTERP TIME: 174 ms
+TOTAL SCORE: 0.8770116711916124, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Los Angeles :: actor.birth_city = 'Los Angeles' : actor.birth_city = 'Los Angeles' (1.0)
+after 1980 :: actor.birth_year > 1980 : actor.birth_year > 1980 (0.7726838227891146)
+actor
+QUERY TIME: 176 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 3)> [Ties0: 3] [Ties1: 3] [Ties1/t: 3.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 95 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for Humphrey Bogart: 2
+ - actor.name = 'Humphrey Bogart' (1.0)
+ - producer.name = 'Humphrey Bogart' (1.0)
+Pruned candidates for act: 3
+ - directed_by (0.61295)
+ - written_by (0.6098)
+ - cast (0.59865)
+Pruned candidates for before 1942: 4
+ - writer.birth_year < 1942 (0.7510283549906754)
+ - actor.birth_year < 1942 (0.7510283549906754)
+ - producer.birth_year < 1942 (0.7510283549906754)
+ - director.birth_year < 1942 (0.7510283549906754)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 24
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain cast
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain cast
+INTERP TIME: 173 ms
+TOTAL SCORE: 0.673370811170741, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Humphrey Bogart :: actor.name = 'Humphrey Bogart' : actor.name = 'Humphrey Bogart' (1.0)
+before 1942 :: movie.release_year < 1942 : director.birth_year < 1942 (0.7510283549906754)
+actor(cast(movie(directed_by(director))))
+QUERY TIME: 173 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 47 ==
+Pruned candidates for series: 4
+ - tv_series.title (0.8351)
+ - tv_series.num_of_episodes (0.6271995)
+ - tv_series.title (0.60395)
+ - movie.title (0.60395)
+Pruned candidates for Kerry Washington: 2
+ - actor.name = 'Kerry Washington' (1.0)
+ - producer.name = 'Kerry Washington' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 8
+INTERP TIME: 27 ms
+TOTAL SCORE: 0.7923076916113534, TIES: 0
+--
+series :: tv_series.title : tv_series.title (0.8351)
+Kerry Washington :: actor.name = 'Kerry Washington' : producer.name = 'Kerry Washington' (1.0)
+made_by(producer,tv_series)
+QUERY TIME: 27 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 114 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for acted: 3
+ - written_by (0.652)
+ - directed_by (0.65105)
+ - made_by (0.6064)
+Pruned candidates for movie: 1
+ - movie (1.0)
+Pruned candidates for Tom Hanks: 4
+ - producer.name = 'Tom Hanks' (1.0)
+ - actor.name = 'Tom Hanks' (1.0)
+ - writer.name = 'Tom Hanks' (1.0)
+ - director.name = 'Tom Hanks' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 12
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+Returning 0.0 because Steiner tree doesn't contain written_by
+Returning 0.0 because Steiner tree doesn't contain made_by
+INTERP TIME: 93 ms
+TOTAL SCORE: 0.7418376760553036, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Tom Hanks :: actor.name = 'Tom Hanks' : director.name = 'Tom Hanks' (1.0)
+actor(cast(movie(directed_by(director))))
+QUERY TIME: 93 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 91 ==
+Pruned candidates for movies: 1
+ - count(movie.title) (0.9999999)
+Pruned candidates for directed by: 1
+ - directed_by (1.0)
+Pruned candidates for Woody Allen: 4
+ - producer.name = 'Woody Allen' (1.0)
+ - writer.name = 'Woody Allen' (1.0)
+ - director.name = 'Woody Allen' (1.0)
+ - actor.name = 'Woody Allen' (1.0)
+Pruned candidates for year: 6
+ - tv_series.release_year (0.83155)
+ - movie.release_year (0.83155)
+ - actor.birth_year (0.79285)
+ - director.birth_year (0.79285)
+ - writer.birth_year (0.79285)
+ - producer.birth_year (0.79285)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 24
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+Returning 0.0 because Steiner tree doesn't contain directed_by
+INTERP TIME: 153 ms
+TOTAL SCORE: 0.7816254366693357, TIES: 0
+--
+movies :: count(movie.title) : count(movie.title) (0.9999999)
+Woody Allen :: director.name = 'Woody Allen' : director.name = 'Woody Allen' (1.0)
+year :: movie.release_year : tv_series.release_year (0.83155)
+directed_by(director,movie,tv_series)
+QUERY TIME: 153 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 4)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 15 ==
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for Italy: 4
+ - director.nationality = 'Italy' (1.0)
+ - actor.nationality = 'Italy' (1.0)
+ - producer.nationality = 'Italy' (1.0)
+ - writer.nationality = 'Italy' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 4
+INTERP TIME: 19 ms
+TOTAL SCORE: 0.9118033588749885, TIES: 0
+--
+actors :: actor.name : actor.name (0.9999999)
+Italy :: actor.nationality = 'Italy' : actor.nationality = 'Italy' (1.0)
+actor
+QUERY TIME: 19 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 75 ==
+Pruned candidates for James Bond: 3
+ - actor.name = 'James Bond' (1.0)
+ - movie.title = 'James Bond' (1.0)
+ - cast.role = 'Bond James' (1.0)
+Pruned candidates for directors: 1
+ - director.name (0.9999999)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 13 ms
+TOTAL SCORE: 0.8493792714632076, TIES: 0
+--
+James Bond :: movie.title = 'James Bond' : movie.title = 'James Bond' (1.0)
+directors :: director.name : director.name (0.9999999)
+directed_by(director,movie)
+QUERY TIME: 15 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 64 ==
+Pruned candidates for female: 7
+ - producer.gender = 'female' (1.0)
+ - keyword.keyword = 'female' (1.0)
+ - writer.gender = 'female' (1.0)
+ - actor.gender = 'female' (1.0)
+ - director.gender = 'female' (1.0)
+ - movie.title = 'Female' (1.0)
+ - cast.role = 'Female' (1.0)
+Pruned candidates for actors: 1
+ - actor.name (0.9999999)
+Pruned candidates for movie Saving Private Ryan: 1
+ - movie.title = 'Saving Private Ryan' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 7
+INTERP TIME: 44 ms
+TOTAL SCORE: 0.8594079838758298, TIES: 0
+--
+female :: actor.gender = 'female' : cast.role = 'Female' (1.0)
+actors :: actor.name : actor.name (0.9999999)
+movie Saving Private Ryan :: movie.title = 'Saving Private Ryan' : movie.title = 'Saving Private Ryan' (1.0)
+actor(cast(movie))
+QUERY TIME: 44 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 3)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+== QUERY ID: 58 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Robin Wright: 3
+ - director.name = 'Robin Wright' (1.0)
+ - actor.name = 'Robin Wright' (1.0)
+ - producer.name = 'Robin Wright' (1.0)
+KW TIME: 1 ms
+TOTAL INTERPS COUNT: 3
+INTERP TIME: 10 ms
+TOTAL SCORE: 0.877158811547265, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Robin Wright :: actor.name = 'Robin Wright' : actor.name = 'Robin Wright' (1.0)
+actor(cast(movie))
+QUERY TIME: 11 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+== QUERY ID: 35 ==
+Pruned candidates for movies: 1
+ - movie.title (0.9999999)
+Pruned candidates for Persians: 2
+ - cast.role = 'Persian' (0.9999999)
+ - keyword.keyword = 'persian' (0.9999999)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 7 ms
+TOTAL SCORE: 0.8421636221355785, TIES: 0
+--
+movies :: movie.title : movie.title (0.9999999)
+Persians :: keyword.keyword = 'persian' : cast.role = 'Persian' (0.9999999)
+cast(movie)
+QUERY TIME: 7 ms
+QUERY > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+FRAGMENT (Total: 2)> [Ties0: 1] [Ties1: 1] [Ties1/t: 1.00]
+JOIN PATH > [Ties0: N] [Ties1: N] [Ties1/t: 0.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+== QUERY ID: 83 ==
+Pruned candidates for roles: 1
+ - cast.role (0.9999999)
+Pruned candidates for movie Daddy Long Legs: 2
+ - movie.title = 'Daddy Long Legs' (1.0)
+ - movie.title = 'Daddy-Long-Legs' (1.0)
+KW TIME: 0 ms
+TOTAL INTERPS COUNT: 2
+INTERP TIME: 5 ms
+TOTAL SCORE: 0.8199999599999991, TIES: 1
+--
+roles :: cast.role : cast.role (0.9999999)
+movie Daddy Long Legs :: movie.title = 'Daddy Long Legs'; movie.title = 'Daddy-Long-Legs' : movie.title = 'Daddy Long Legs' (1.0)
+cast(movie)
+--
+roles :: cast.role : cast.role (0.9999999)
+movie Daddy Long Legs :: movie.title = 'Daddy Long Legs'; movie.title = 'Daddy-Long-Legs' : movie.title = 'Daddy-Long-Legs' (1.0)
+cast(movie)
+QUERY TIME: 5 ms
+QUERY > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+FRAGMENT (Total: 2)> [Ties0: 2] [Ties1: 2] [Ties1/t: 2.00]
+JOIN PATH > [Ties0: Y] [Ties1: Y] [Ties1/t: 1.00]
+Saving cache...
+Saved cache to <data/imdb/imdb.cands.cache>!
+==== FOLD RESULTS ====
+32,21,22,21.500,20,20,20.000,79,67,69,68.000
+CUMULATIVE TOTAL TIME: 2162 ms
+CUMULATIVE KW TIME: 4 ms
+CUMULATIVE I TIME: 2153 ms
+CUMULATIVE INTERP COUNT: 355
+==== FINAL RESULTS ====
+32,19,21,20.000,19,19,19.000,82,63,69,66.000
+32,23,23,23.000,21,21,21.000,76,63,63,63.000
+32,19,19,19.000,19,19,19.000,76,58,58,58.000
+32,21,22,21.500,20,20,20.000,79,67,69,68.000
+
