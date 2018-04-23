@@ -36,4 +36,10 @@ public class Params {
 
     /* Enable or disable cache */
     public static boolean ENABLE_CACHE = true;
+
+    /* Random seed used for stuff */
+    public static int RANDOM_SEED = 1234;
+
+    /* Number of folds for CV */
+    public static int NUM_FOLDS_CV = 4;
 }

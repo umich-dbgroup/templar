@@ -232,7 +232,7 @@ public class PipelineCore {
         return this.sim.sim(phraseValue, predValue) - penalty;
     }
 
-    private Set<MatchedDBElement> matchTextCandidates(List<String> tokens, Set<DBElement> textCands,
+    private Set<MatchedDBElement> matchTextCandidates(String keyword, List<String> tokens, Set<DBElement> textCands,
                                                       String fragType, Boolean groupBy) {
         Set<MatchedDBElement> matchedEls = new HashSet<>();
 
@@ -245,23 +245,23 @@ public class PipelineCore {
                 if (this.typeOracle && fragType.equalsIgnoreCase("attr")) {
                     if (rel.getMainAttribute() != null) {
                         if (groupBy) {
-                            matchedEls.add(new MatchedDBElement(new GroupedAttribute(rel.getMainAttribute()), sim));
+                            matchedEls.add(new MatchedDBElement(keyword, new GroupedAttribute(rel.getMainAttribute()), sim));
                         } else {
-                            matchedEls.add(new MatchedDBElement(rel.getMainAttribute(), sim));
+                            matchedEls.add(new MatchedDBElement(keyword, rel.getMainAttribute(), sim));
                         }
                     }
                 } else if (this.typeOracle && !fragType.equalsIgnoreCase("rel")) {
                     continue;
                 } else {
-                    matchedEls.add(new MatchedDBElement(rel, sim));
+                    matchedEls.add(new MatchedDBElement(keyword, rel, sim));
                 }
             } else if (cand instanceof Attribute) {
                 Attribute attr = (Attribute) cand;
                 double sim = this.sim.sim(attr.getCleanedName(), String.join(" ", tokens));
                 if (groupBy) {
-                    matchedEls.add(new MatchedDBElement(new GroupedAttribute(attr), sim));
+                    matchedEls.add(new MatchedDBElement(keyword, new GroupedAttribute(attr), sim));
                 } else {
-                    matchedEls.add(new MatchedDBElement(attr, sim));
+                    matchedEls.add(new MatchedDBElement(keyword, attr, sim));
                 }
             } else if (cand instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) cand;
@@ -276,10 +276,10 @@ public class PipelineCore {
                     sim = attrSim;
                 }
 
-                matchedEls.add(new MatchedDBElement(aggr, sim));
+                matchedEls.add(new MatchedDBElement(keyword, aggr, sim));
             } else if (cand instanceof TextPredicate) {
                 TextPredicate val = (TextPredicate) cand;
-                matchedEls.add(new MatchedDBElement(cand, this.matchTextPredicate(val, tokens)));
+                matchedEls.add(new MatchedDBElement(keyword, cand, this.matchTextPredicate(val, tokens)));
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
@@ -293,10 +293,10 @@ public class PipelineCore {
                     sim = attrSim;
                 }
 
-                matchedEls.add(new MatchedDBElement(pred, sim));
+                matchedEls.add(new MatchedDBElement(keyword, pred, sim));
             } else if (cand instanceof AttributeAndPredicate) {
                 AttributeAndPredicate attrPred = (AttributeAndPredicate) cand;
-                matchedEls.add(new MatchedDBElement(cand,
+                matchedEls.add(new MatchedDBElement(keyword, cand,
                         this.matchTextPredicate((TextPredicate) attrPred.getPredicate(), tokens)));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
@@ -340,7 +340,8 @@ public class PipelineCore {
         return cands;
     }
 
-    private Set<MatchedDBElement> matchNumericCandidates(List<String> tokens, Set<DBElement> numericCands, String fragType) {
+    private Set<MatchedDBElement> matchNumericCandidates(String keyword, List<String> tokens,
+                                                         Set<DBElement> numericCands, String fragType) {
         Set<MatchedDBElement> matchedEls = new HashSet<>();
 
         for (DBElement cand : numericCands) {
@@ -371,7 +372,7 @@ public class PipelineCore {
 
                 double predSim = Utils.geometricMean(sims);
 
-                matchedEls.add(new MatchedDBElement(pred, predSim));
+                matchedEls.add(new MatchedDBElement(keyword, pred, predSim));
             } else {
                 throw new RuntimeException("Invalid DBElement type.");
             }
@@ -441,10 +442,13 @@ public class PipelineCore {
                 if (numericToken == null) {
                     cands = this.getTextCandidateMatches(tokens, fragmentTask.getType(),
                             fragmentTask.getOp(), fragmentTask.getFunctions());
-                    matchedEls = this.matchTextCandidates(tokens, cands, fragmentTask.getType(), fragmentTask.getGroupBy());
+                    matchedEls = this.matchTextCandidates(fragmentTask.getPhrase(), tokens, cands,
+                            fragmentTask.getType(), fragmentTask.getGroupBy());
                 } else {
-                    cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(), fragmentTask.getFunctions());
-                    matchedEls = this.matchNumericCandidates(tokens, cands, fragmentTask.getType());
+                    cands = this.getNumericCandidateMatches(numericToken, fragmentTask.getOp(),
+                            fragmentTask.getFunctions());
+                    matchedEls = this.matchNumericCandidates(fragmentTask.getPhrase(), tokens, cands,
+                            fragmentTask.getType());
                 }
 
                 List<MatchedDBElement> sorted = new ArrayList<>(matchedEls);

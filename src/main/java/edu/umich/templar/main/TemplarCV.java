@@ -1,11 +1,14 @@
 package edu.umich.templar.main;
 
 import com.esotericsoftware.minlog.Log;
+import edu.umich.templar.baseline.NLSQL;
 import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.Database;
 import edu.umich.templar.log.LogCountGraph;
 import edu.umich.templar.log.LogLevel;
+import edu.umich.templar.log.NLSQLLog;
 import edu.umich.templar.log.graph.LogGraph;
+import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.task.QueryTask;
 import edu.umich.templar.task.QueryTaskReader;
 import org.apache.commons.io.FileUtils;
@@ -17,14 +20,9 @@ import java.util.*;
  * Created by cjbaik on 10/23/17.
  */
 public class TemplarCV {
-    // Trial 1: seed 1234
-    public static int RANDOM_SEED = 1234;
-
-    public static int NUM_FOLDS = 4;
-
     public static void main(String[] args) {
         if (args.length < 5) {
-            System.out.println("Usage: TemplarCV <testset> <set/frag> <full/no_const/no_const_op> <log %> <type-oracle>");
+            System.out.println("Usage: TemplarCV <testset> <frag/nlsql> <full/no_const/no_const_op> <log %> <type-oracle>");
             System.exit(1);
         }
         String dbName = args[0];
@@ -38,7 +36,7 @@ public class TemplarCV {
         String candCacheFilename = prefix + ".cands.cache";
 
         boolean runLogGraph;
-        if (args[1].equalsIgnoreCase("set")) {
+        if (args[1].equalsIgnoreCase("nlsql")) {
             runLogGraph = false;
         } else if (args[1].equalsIgnoreCase("frag")) {
             runLogGraph = true;
@@ -86,13 +84,13 @@ public class TemplarCV {
         for (int i = 0; i < queryTasks.size(); i++) {
             shuffleIndexes.add(i);
         }
-        Collections.shuffle(shuffleIndexes, new Random(RANDOM_SEED));
+        Collections.shuffle(shuffleIndexes, new Random(Params.RANDOM_SEED));
 
         // Initialize based on number of folds
         List<List<QueryTask>> queryTaskFolds = new ArrayList<>();
         List<List<String>> sqlFolds = new ArrayList<>();
         List<List<Integer>> shuffleIndexFolds = new ArrayList<>();
-        for (int i = 0; i < NUM_FOLDS; i++) {
+        for (int i = 0; i < Params.NUM_FOLDS_CV; i++) {
             queryTaskFolds.add(new ArrayList<>());
             sqlFolds.add(new ArrayList<>());
             shuffleIndexFolds.add(new ArrayList<>());
@@ -100,7 +98,7 @@ public class TemplarCV {
 
         // pass in task/sql pairs to each fold
         for (int i = 0; i < shuffleIndexes.size(); i++) {
-            int foldIndex = i % NUM_FOLDS;
+            int foldIndex = i % Params.NUM_FOLDS_CV;
             queryTaskFolds.get(foldIndex).add(queryTasks.get(shuffleIndexes.get(i)));
             sqlFolds.get(foldIndex).add(sqls.get(shuffleIndexes.get(i)));
             shuffleIndexFolds.get(foldIndex).add(shuffleIndexes.get(i));
@@ -108,7 +106,7 @@ public class TemplarCV {
 
         // MAIN LOOP
         StringBuilder resultBuffer = new StringBuilder();
-        for (int i = 0; i < NUM_FOLDS; i++) {
+        for (int i = 0; i < Params.NUM_FOLDS_CV; i++) {
             Log.info("===== FOLD " + i + " =====");
             List<QueryTask> curFoldTasks = queryTaskFolds.get(i);
             List<String> curFoldSQLs = sqlFolds.get(i);
@@ -139,8 +137,17 @@ public class TemplarCV {
                 resultBuffer.append(resultStr);
                 resultBuffer.append("\n");
             } else {
-                // TODO: LogFullTemplates
-                continue;
+                // Analyze everything in QueryTasks excluding current
+                List<QueryTask> qTasks = new ArrayList<>(queryTasks);
+                queryTasks.removeAll(curFoldTasks);
+
+                NLSQLLog nlsqlLog = new NLSQLLog();
+                nlsqlLog.analyzeQueryTasks(qTasks);
+
+                NLSQL nlsql = new NLSQL(db, candCacheFilename, curFoldTasks, typeOracle, nlsqlLog);
+                String resultStr = nlsql.execute();
+                resultBuffer.append(resultStr);
+                resultBuffer.append("\n");
             }
         }
 

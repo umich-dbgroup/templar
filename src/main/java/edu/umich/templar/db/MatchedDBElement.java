@@ -6,10 +6,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class MatchedDBElement implements Serializable {
+    String keyword;
     DBElement el;
     double score;
 
-    public MatchedDBElement(DBElement el, double score) {
+    public MatchedDBElement(String keyword, DBElement el, double score) {
+        this.keyword = keyword;
         this.el = el;
         this.score = score;
     }
@@ -20,6 +22,10 @@ public class MatchedDBElement implements Serializable {
 
     public double getScore() {
         return score;
+    }
+
+    public String getKeyword() {
+        return keyword;
     }
 
     @Override
