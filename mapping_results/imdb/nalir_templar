@@ -1,0 +1,4103 @@
+objc[24203]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/bin/java (0x1059054c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x1059cd4e0). One of the two will be used. Which one is undefined.
+Loading parser from serialized file edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz ... done [3.7 sec].
+Connecting to database: <jdbc:mysql://localhost:3306/imdb>
+Database connected!
+00:00  INFO: ===== FOLD 0 =====
+00:00  INFO: ===== Parsing Results =====
+00:00  INFO: Total Queries: 94
+00:00  INFO: Correctly Parsed: 94/94
+
+QUERY 10: Find when "Kevin Spacey" was born.
+TOTAL INTERPS COUNT: 5
+writer
+SELECT DISTINCT writer.name
+FROM writer
+#inputWord 1 Find
+#inputWord 2 when
+#inputWord 3 Kevin Spacey
+#inputWord 4 was
+#inputWord 5 born
+#deleted 2 when
+#deleted 4 was
+#deleted 5 born
+#map ; Kevin Spacey; 3; 3; actor.name (0.54265); director.name (0.5263); producer.name (0.5263); writer.name (0.591); cast.role (0.5534)
+Kevin Spacey :: writer.name (0.591)
+#general 0
+#general Find the "Kevin Spacey". 
+#explicit Find 
+#explicit the "Kevin Spacey". 
+#result ###writer.name
+
+QUERY 40: Find all movies about Autism
+TOTAL INTERPS COUNT: 2
+keyword(tags(movie))
+SELECT DISTINCT movie.title
+FROM movie, keyword, tags
+WHERE keyword.keyword = "autism" AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 about
+#inputWord 5 Autism
+#deleted 4 about
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Autism; 5; 0; keyword.keyword (1.0)#0#autism#treatment-for-autism#autism-spectrum-disorder#national-autism-convention#childhood-autism-rating-scale; movie.title (1.0); movie.title (0.53935); cast.role (0.7453559924999299); tv_series.title (0.7453559924999299)
+Autism :: keyword.keyword = autism (1.0)
+#general 0
+#general Find the movies of Autism. 
+#explicit Find 
+#explicit the movies 
+#explicit of Autism. 
+#result ###movie.title
+
+QUERY 53: Find all tv series produced by Netflix
+TOTAL INTERPS COUNT: 50
+keyword(tags(tv_series))
+SELECT DISTINCT tv_series.title
+FROM tv_series, keyword, tags
+WHERE keyword.keyword = "netflix" AND tv_series.sid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 tv
+#inputWord 4 series
+#inputWord 5 produced
+#inputWord 6 by
+#inputWord 7 Netflix
+#deleted 5 produced
+#deleted 6 by
+#map ; series; 4; 1; keyword.keyword (0.50445); tv_series.title (0.8351); movie.title (0.60395); company.name (0.53045); genre.genre (0.5964)
+series :: tv_series.title (0.8351)
+#map ; tv; 3; 0; tv_series.title (0.9249); genre.genre (0.5698); cast.role (0.5589999999999999); movie.title (0.67045); movie.release_year (0.50445)
+tv :: tv_series.title (0.9249)
+#map ; Netflix; 7; 1; company.name (1.0); keyword.keyword (1.0)#0#netflix#netflix-series#netflix-production#reference-to-netflix; cast.role (0.9274); movie.title (0.7745966692414834); tv_series.title (0.6928203230275509)
+Netflix :: keyword.keyword = netflix (1.0)
+#general 0
+#general Find the series of tv by Netflix. 
+#explicit Find 
+#explicit the series 
+#explicit of tv 
+#explicit by Netflix. 
+#result ###tv_series.title
+
+QUERY 59: Find all the female actors from Austin
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.gender = "female" AND actor.birth_city = "Austin"
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 female
+#inputWord 5 actors
+#inputWord 6 from
+#inputWord 7 Austin
+#deleted 3 the
+#deleted 6 from
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; female; 4; 0; actor.gender (1.0)#0#female#female#female#female#female; cast.role (1.0); director.gender (1.0); keyword.keyword (1.0); movie.title (1.0)
+female :: actor.gender = female (1.0)
+#map ; Austin; 7; 1; actor.name (1.0); actor.birth_city (1.0)#0#Austin#Austin#Austin#Austin#Austin; director.name (1.0); director.birth_city (1.0); movie.title (1.0)
+Austin :: actor.birth_city = Austin (1.0)
+#general 0
+#general Find the actors female of Austin. 
+#explicit Find 
+#explicit the actors 
+#explicit female 
+#explicit of Austin. 
+#result ###actor.name
+
+QUERY 72: List all the Sci-Fi movies which released in 2010
+TOTAL INTERPS COUNT: 8
+classification(genre,movie)
+SELECT DISTINCT movie.title
+FROM movie, genre, classification
+WHERE genre.genre = "Sci-Fi" AND movie.release_year = 2010 AND movie.mid = classification.msid AND classification.gid = genre.gid
+#inputWord 1 List
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 Sci-Fi
+#inputWord 5 movies
+#inputWord 6 which
+#inputWord 7 released
+#inputWord 8 in
+#inputWord 9 2010
+#deleted 3 the
+#deleted 6 which
+#deleted 7 released
+#deleted 8 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Sci-Fi; 4; 1; cast.role (1.0); genre.genre (1.0)#0#Sci-Fi#Film-Noir#Commercial#Short#Thriller; movie.title (0.0); actor.name (0.8451542547285166); company.name (0.8451542547285166)
+Sci-Fi :: genre.genre = Sci-Fi (1.0)
+#mapNum ; 2010; 9; 1; actor.birth_year (0.99995); movie.release_year (0.99995); producer.birth_year (0.99995); tv_series.release_year (0.99995)
+2010 :: movie.release_year = 2010 (0.99995)
+#general 0
+#general List the movies of Sci-Fi in 2010. 
+#explicit List 
+#explicit the movies 
+#explicit of Sci-Fi 
+#explicit in 2010. 
+#result ###movie.title
+
+QUERY 32: Find the company that produced the movie Juno
+TOTAL INTERPS COUNT: 9
+company(copyright(movie))
+SELECT DISTINCT company.name
+FROM company, movie, copyright
+WHERE movie.title = "Juno" AND company.id = copyright.cid AND copyright.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 company
+#inputWord 4 that
+#inputWord 5 produced
+#inputWord 6 the
+#inputWord 7 movie
+#inputWord 8 Juno
+#deleted 2 the
+#deleted 4 that
+#deleted 5 produced
+#deleted 6 the
+#map ; company; 3; 0; company.name (1.0); cast.role (0.52055); keyword.keyword (1.0); movie.title (1.0); actor.name (0.9454545454545454)
+company :: company.name (1.0)
+#map ; movie; 7; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Juno; 8; 2; actor.name (1.0); company.name (1.0); movie.title (1.0)#0#Juno#Juno#Jeni, Juno#Storming Juno#Juno Awards 2010; cast.role (0.7777499999999999); director.name (0.7745966692414834)
+Juno :: movie.title = Juno (1.0)
+#general 0
+#general Find the company of movie of Juno. 
+#general Find the company of movie of Juno. 
+#explicit Find 
+#explicit the company 
+#explicit of movie 
+#explicit of Juno. 
+#result ###company.name
+
+QUERY 50: Find the producers of all movies in which "Kate Winslet" is an actor
+TOTAL INTERPS COUNT: 6
+actor(cast#1(movie#1(made_by#1(producer(made_by(movie))))))
+SELECT DISTINCT producer.name
+FROM producer, movie, actor, made_by, cast
+WHERE movie.title = "Actor" AND actor.name = "Kate Winslet" AND producer.pid = made_by.pid AND made_by.msid = movie.mid AND producer.pid = made_by.pid AND made_by.msid = movie.mid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 producers
+#inputWord 4 of
+#inputWord 5 all
+#inputWord 6 movies
+#inputWord 7 in
+#inputWord 8 which
+#inputWord 9 Kate Winslet
+#inputWord 10 is
+#inputWord 11 an
+#inputWord 12 actor
+#deleted 2 the
+#deleted 4 of
+#deleted 7 in
+#deleted 8 which
+#deleted 10 is
+#deleted 11 an
+#map ; producers; 3; 0; producer.name (0.9999999); director.name (0.5794); actor.name (0.9624060150375939); company.name (0.9433106575963719); movie.title (0.8944271909999159)
+producers :: producer.name (0.9999999)
+#map ; movies; 6; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; actor; 12; 1; actor.name (1.0); movie.title (1.0)#0#Actor#Actor#Actor#Actor#Actor; tv_series.title (1.0); producer.name (0.66905); writer.name (0.968421052631579)
+actor :: movie.title = Actor (1.0)
+#map ; Kate Winslet; 9; 0; actor.name (1.0)#0#Kate Winslet#Kate Wing#Ainslee Kate#Kate Elizabeth Winslet#Kate Wilkinson; cast.role (0.9999990000000001); producer.name (0.816496580927726); writer.name (0.816496580927726); director.name (0.7745966692414834)
+Kate Winslet :: actor.name = Kate Winslet (1.0)
+#general 0
+#general Find the producers of movies of "Kate Winslet" of actor. 
+#general Find the producers of movies of actor of "Kate Winslet". 
+#general Find the producers of movies of actor of "Kate Winslet". 
+#general Find the producers of movies of actor of "Kate Winslet". 
+#explicit Find 
+#explicit the producers 
+#explicit of movies 
+#explicit of "Kate Winslet" 
+#explicit of actor. 
+#result ###producer.name
+
+QUERY 37: Find all movies produced by "Walt Disney" after 2010
+TOTAL INTERPS COUNT: 15
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Walt Disney" AND movie.release_year > 2010 AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 produced
+#inputWord 5 by
+#inputWord 6 Walt Disney
+#inputWord 7 after
+#inputWord 8 2010
+#deleted 4 produced
+#deleted 5 by
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Walt Disney; 6; 0; actor.name (1.0)#0#Walt Disney#Walter Disney#Walter Elias Disney#Walter Elias Disney#Tom Disney; company.name (1.0); director.name (1.0); producer.name (1.0); writer.name (1.0)
+Walt Disney :: actor.name = Walt Disney (1.0)
+#mapNum ; 2010; 8; 2; actor.birth_year (0.9992048435171386); tv_series.release_year (0.9990560786650775); movie.release_year (0.9989569513406157)
+2010 :: movie.release_year = 2012 (0.9989569513406157)
+#general 0
+#general Find the movies by "Walt Disney" after 2010. 
+#explicit Find 
+#explicit the movies 
+#explicit by "Walt Disney" 
+#explicit after 2010. 
+#result ###movie.title
+
+QUERY 104: Find the number of movies featuring "Brad Pitt"
+TOTAL INTERPS COUNT: 2
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Brad Pitt" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 featuring
+#inputWord 7 Brad Pitt
+#deleted 2 the
+#deleted 4 of
+#deleted 6 featuring
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Brad Pitt; 7; 0; actor.name (1.0)#0#Brad Pitt#bRad sPitt#Brad Pittance#Brad Pike#Brad Pile; producer.name (1.0); cast.role (0.9461995000000001); director.name (0.8819171036881969); writer.name (0.8819171036881969)
+Brad Pitt :: actor.name = Brad Pitt (1.0)
+#general 0
+#general Find the number of movies of "Brad Pitt". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Brad Pitt". 
+#result ###count(movie.title)
+
+QUERY 33: Find all movies that were produced by Netflix
+TOTAL INTERPS COUNT: 2
+keyword(tags(movie))
+SELECT DISTINCT movie.title
+FROM movie, keyword, tags
+WHERE keyword.keyword = "netflix" AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 that
+#inputWord 5 were
+#inputWord 6 produced
+#inputWord 7 by
+#inputWord 8 Netflix
+#deleted 4 that
+#deleted 5 were
+#deleted 6 produced
+#deleted 7 by
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Netflix; 8; 1; company.name (1.0); keyword.keyword (1.0)#0#netflix#netflix-series#netflix-production#reference-to-netflix; cast.role (0.9274); movie.title (0.7745966692414834); tv_series.title (0.6928203230275509)
+Netflix :: keyword.keyword = netflix (1.0)
+#general 0
+#general Find the movies by Netflix. 
+#explicit Find 
+#explicit the movies 
+#explicit by Netflix. 
+#result ###movie.title
+
+QUERY 69: Find all the directors who are from Afghanistan
+TOTAL INTERPS COUNT: 5
+directed_by(director,movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "Afghanistan" AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 directors
+#inputWord 5 who
+#inputWord 6 are
+#inputWord 7 from
+#inputWord 8 Afghanistan
+#deleted 3 the
+#deleted 5 who
+#deleted 6 are
+#deleted 7 from
+#map ; directors; 4; 0; director.name (0.9999999); company.name (0.6337); actor.name (0.949056873050605); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: director.name (0.9999999)
+#map ; Afghanistan; 8; 4; actor.nationality (1.0); actor.birth_city (1.0); director.nationality (1.0); keyword.keyword (1.0); movie.title (1.0)#0#Afghanistan#Afghanistan#Afghanistan 1979#Exit Afghanistan#Afghanistan Rising
+Afghanistan :: movie.title = Afghanistan (1.0)
+#general 0
+#general Find the directors of Afghanistan. 
+#explicit Find 
+#explicit the directors 
+#explicit of Afghanistan. 
+#result ###director.name
+
+QUERY 94: Find the number of actors that were born in "Los Angeles" after 2000
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT count(actor.name)
+FROM actor
+WHERE actor.birth_city = "Los Angeles" AND actor.birth_year > 2000
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 actors
+#inputWord 6 that
+#inputWord 7 were
+#inputWord 8 born
+#inputWord 9 in
+#inputWord 10 Los Angeles
+#inputWord 11 after
+#inputWord 12 2000
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 7 were
+#deleted 8 born
+#deleted 9 in
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Los Angeles; 10; 0; actor.birth_city (1.0)#0#Los Angeles#Los Angeles#Los Angeles#Los Angeles#Los Angeles; director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0); writer.birth_city (1.0)
+Los Angeles :: actor.birth_city = Los Angeles (1.0)
+#mapNum ; 2000; 12; 3; writer.birth_year (0.9996501798920647); director.birth_year (0.9995004046358278); producer.birth_year (0.9994006043352313); actor.birth_year (0.9993507191370355); tv_series.release_year (0.9974129390110437)
+2000 :: actor.birth_year = 2003 (0.9993507191370355)
+#general 0
+#general Find the number of actors in "Los Angeles" after 2000. 
+#explicit Find 
+#explicit the number of 
+#explicit actors 
+#explicit in "Los Angeles" 
+#explicit after 2000. 
+#result ###count(actor.name)
+
+QUERY 84: List all male directors who worked with the "NBCUniversal" company
+TOTAL INTERPS COUNT: 20
+Warning: TIE!
+company(copyright(movie(directed_by(director))))
+SELECT DISTINCT director.name
+FROM director, movie, company, directed_by, copyright
+WHERE director.gender = "male" AND movie.title = "Company" AND company.name = "NBCUniversal" AND director.did = directed_by.did AND directed_by.msid = movie.mid AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = copyright.msid AND copyright.cid = company.id
+#inputWord 1 List
+#inputWord 2 all
+#inputWord 3 male
+#inputWord 4 directors
+#inputWord 5 who
+#inputWord 6 worked
+#inputWord 7 with
+#inputWord 8 the
+#inputWord 9 NBCUniversal
+#inputWord 10 company
+#deleted 5 who
+#deleted 6 worked
+#deleted 7 with
+#deleted 8 the
+#map ; directors; 4; 0; director.name (0.9999999); company.name (0.6337); actor.name (0.949056873050605); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: director.name (0.9999999)
+#map ; male; 3; 2; actor.name (1.0); actor.gender (1.0); director.gender (1.0)#0#male#male#male#male#male; director.birth_city (1.0); movie.title (1.0)
+male :: director.gender = male (1.0)
+#map ; company; 10; 3; company.name (1.0); cast.role (1.0); keyword.keyword (1.0); movie.title (1.0)#0#Company#Company#Company#Company#Company; actor.name (0.578)
+company :: movie.title = Company (1.0)
+#map ; NBCUniversal; 9; 0; company.name (1.0)#0#NBCUniversal#NBCUniversal Media#NBCUniversal Skycastle#NBCUniversal News Group#NBCUniversal Entertainment; genre.genre (0.0)
+NBCUniversal :: company.name = NBCUniversal (1.0)
+#general 0
+#general List the directors of male of company of NBCUniversal. 
+#explicit List 
+#explicit the directors 
+#explicit of male 
+#explicit of company 
+#explicit of NBCUniversal. 
+#result ###director.name
+
+QUERY 52: Find the company that produced the series Scandal
+TOTAL INTERPS COUNT: 3
+company(copyright(movie(tags(keyword))))
+SELECT DISTINCT company.name
+FROM company, movie, keyword, copyright, tags
+WHERE movie.title = "Scandal" AND keyword.keyword = "series" AND company.id = copyright.cid AND copyright.msid = movie.mid AND company.id = copyright.cid AND copyright.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 company
+#inputWord 4 that
+#inputWord 5 produced
+#inputWord 6 the
+#inputWord 7 series
+#inputWord 8 Scandal
+#deleted 2 the
+#deleted 4 that
+#deleted 5 produced
+#deleted 6 the
+#map ; company; 3; 0; company.name (1.0); cast.role (0.52055); keyword.keyword (1.0); movie.title (1.0); actor.name (0.9454545454545454)
+company :: company.name (1.0)
+#map ; Scandal; 8; 1; actor.name (1.0); movie.title (1.0)#0#Scandal#Scandal#Scandal#Scandal#Scandal; tv_series.title (1.0); cast.role (0.55575); company.name (0.8944271909999159)
+Scandal :: movie.title = Scandal (1.0)
+#map ; series; 7; 0; keyword.keyword (1.0)#0#series#tv-series#web-series#dvd-series#fan-series; tv_series.title (0.8351); movie.title (0.9666316223196156); company.name (0.9534625892455924); genre.genre (0.9375)
+series :: keyword.keyword = series (1.0)
+#general 0
+#general Find the company of Scandal of series. 
+#explicit Find 
+#explicit the company 
+#explicit of Scandal 
+#explicit of series. 
+#result ###company.name
+
+QUERY 25: Find all movies written by "Matt Damon"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Matt Damon" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 written
+#inputWord 5 by
+#inputWord 6 Matt Damon
+#deleted 4 written
+#deleted 5 by
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Matt Damon; 6; 0; actor.name (1.0)#0#Matt Damon#Matt Diamond#Matt Damun#Matt Day#Matt Day; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9709995)
+Matt Damon :: actor.name = Matt Damon (1.0)
+#general 0
+#general Find the movies by "Matt Damon". 
+#explicit Find 
+#explicit the movies 
+#explicit by "Matt Damon". 
+#result ###movie.title
+
+QUERY 87: Find the number of movies in which "Jennifer Aniston" acted after 2010
+TOTAL INTERPS COUNT: 9
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Jennifer Aniston" AND movie.release_year > 2010 AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 in
+#inputWord 7 which
+#inputWord 8 Jennifer Aniston
+#inputWord 9 acted
+#inputWord 10 after
+#inputWord 11 2010
+#deleted 2 the
+#deleted 4 of
+#deleted 6 in
+#deleted 7 which
+#deleted 9 acted
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Jennifer Aniston; 8; 0; actor.name (1.0)#0#Jennifer Aniston#Jennifer Aniston Pitt#Jennifer Antony#Jennifer Joanna Aniston#Jennifer Joanna Aniston; director.name (1.0); producer.name (1.0); cast.role (0.9816495000000001); writer.name (0.909717652294684)
+Jennifer Aniston :: actor.name = Jennifer Aniston (1.0)
+#mapNum ; 2010; 11; 2; actor.birth_year (0.9992048435171386); tv_series.release_year (0.9990560786650775); movie.release_year (0.9989569513406157)
+2010 :: movie.release_year = 2012 (0.9989569513406157)
+#general 0
+#general Find the number of movies of "Jennifer Aniston" after 2010. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Jennifer Aniston" 
+#explicit after 2010. 
+#result ###count(movie.title)
+
+QUERY 29: Find the actor that played "Vinny Gambini" in the movie "My Cousin Vinny"
+TOTAL INTERPS COUNT: 3
+Warning: TIE!
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE cast.role = "Vinny Gambini" AND movie.title = "My Cousin Vinny" AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actor
+#inputWord 4 that
+#inputWord 5 played
+#inputWord 6 Vinny Gambini
+#inputWord 7 in
+#inputWord 8 the
+#inputWord 9 movie
+#inputWord 10 My Cousin Vinny
+#deleted 2 the
+#deleted 4 that
+#deleted 5 played
+#deleted 7 in
+#deleted 8 the
+#map ; actor; 3; 0; actor.name (1.0); movie.title (0.76225); tv_series.title (1.0); producer.name (0.968421052631579); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; Vinny Gambini; 6; 0; cast.role (1.0)#0#Vinny Gambini#Vinny Gambini#Vinny Gambini#Vinny Gambini#Tony Gambini; director.name (0.607199); actor.name (0.8); producer.name (0.7801894976054939); writer.name (0.7801894976054939)
+Vinny Gambini :: cast.role = Vinny Gambini (1.0)
+#map ; My Cousin Vinny; 10; 0; movie.title (1.0)#0#My Cousin Vinny#My Cousin Ginny#My Cousin Danny#My Cousin#My Cousin Rachel; cast.role (0.91185); actor.name (0.848528137423857); tv_series.title (0.7878385971583354); company.name (0.7559289460184544)
+My Cousin Vinny :: movie.title = My Cousin Vinny (1.0)
+#map ; movie; 9; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the actor of "Vinny Gambini" of movie in "My Cousin Vinny". 
+#general Find the actor of "Vinny Gambini" in "My Cousin Vinny" of movie. 
+#explicit Find 
+#explicit the actor 
+#explicit of "Vinny Gambini" 
+#explicit of movie 
+#explicit in "My Cousin Vinny". 
+#result ###actor.name
+
+QUERY 98: Find the number of movies about Iraq war that were produced in 2015
+TOTAL INTERPS COUNT: 50
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT count(movie.release_year)
+FROM movie, actor, director, cast, directed_by
+WHERE actor.name = "War" AND director.nationality = "Iraq" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = directed_by.msid AND directed_by.did = director.did
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 about
+#inputWord 7 Iraq
+#inputWord 8 war
+#inputWord 9 that
+#inputWord 10 were
+#inputWord 11 produced
+#inputWord 12 in
+#inputWord 13 2015
+#deleted 2 the
+#deleted 4 of
+#deleted 6 about
+#deleted 9 that
+#deleted 10 were
+#deleted 11 produced
+#deleted 12 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; war; 8; 0; actor.name (1.0)#0#War#War#War#War#Roy War; company.name (1.0); genre.genre (1.0); producer.name (1.0); tv_series.title (1.0)
+war :: actor.name = War (1.0)
+#map ; Iraq; 7; 1; actor.nationality (1.0); director.nationality (1.0)#0#Iraq#Iraq#Iraq#Iraq#Iraq; movie.title (1.0); producer.nationality (1.0); writer.nationality (1.0)
+Iraq :: director.nationality = Iraq (1.0)
+#map ; 2015; 13; 0; movie.release_year (0.0); tv_series.release_year (0.0)
+2015 :: movie.release_year (0.0)
+#general 0
+#general Find the number of in 2015 of movies of war of Iraq. 
+#general Find the number of in 2015 of movies of war of Iraq. 
+#general Find the number of movies of war of Iraq in 2015. 
+#general Find the number of movies of war in 2015 of Iraq. 
+#explicit Find 
+#explicit the number of 
+#explicit in 2015 
+#explicit of movies 
+#explicit of war 
+#explicit of Iraq. 
+#result ###count(movie.release_year)
+
+QUERY 117: Find all movies featuring both "Matt Damon" and "Ben Affleck"
+TOTAL INTERPS COUNT: 16
+actor(cast(movie(directed_by(director))))
+Warning: TIE!
+SELECT DISTINCT movie.title
+FROM movie, director, actor, directed_by, cast
+WHERE director.name = "Matt Damon" AND actor.name = "Ben Affleck" AND movie.mid = directed_by.msid AND directed_by.did = director.did AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 both
+#inputWord 6 Matt Damon
+#inputWord 7 and
+#inputWord 8 Ben Affleck
+#deleted 4 featuring
+#deleted 5 both
+#deleted 7 and
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Matt Damon; 6; 1; actor.name (1.0); director.name (1.0)#0#Matt Damon#Matt Diamond#Matt Diamond#Matt Diamond#Matt Day; producer.name (1.0); writer.name (1.0); cast.role (0.9709995)
+Matt Damon :: director.name = Matt Damon (1.0)
+#map ; Ben Affleck; 8; 0; actor.name (1.0)#0#Ben Affleck#Sean Affleck#Affleck#Rab Affleck#Tim Affleck; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9999990000000001)
+Ben Affleck :: actor.name = Ben Affleck (1.0)
+#general 0
+#general Find the movies of "Matt Damon" of "Ben Affleck". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Matt Damon" 
+#explicit of "Ben Affleck". 
+#result ###movie.title
+
+QUERY 71: Find the writer of "The Truman Show"
+TOTAL INTERPS COUNT: 1
+movie(written_by(writer))
+SELECT DISTINCT writer.name
+FROM writer, movie, written_by
+WHERE movie.title = "The Truman Show" AND writer.wid = written_by.wid AND written_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 writer
+#inputWord 4 of
+#inputWord 5 The Truman Show
+#deleted 2 the
+#deleted 4 of
+#map ; writer; 3; 0; writer.name (1.0); movie.title (0.63195); producer.name (1.0); actor.name (0.9624060150375939); producer.name (0.9621011497729491)
+writer :: writer.name (1.0)
+#map ; The Truman Show; 5; 0; movie.title (1.0)#0#The Truman Show#The Dan Show#Acts the 3-Man Show#The Asian Show#The Eichmann Show; cast.role (0.8745495); tv_series.title (0.86991767240168); actor.name (0.816496580927726); producer.name (0.816496580927726)
+The Truman Show :: movie.title = The Truman Show (1.0)
+#general 0
+#general Find the writer of "The Truman Show". 
+#explicit Find 
+#explicit the writer 
+#explicit of "The Truman Show". 
+#result ###writer.name
+
+QUERY 109: Find the number of movies "Shahab Hosseini" acted in
+TOTAL INTERPS COUNT: 2
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Shahab Hosseini" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Shahab Hosseini
+#inputWord 7 acted
+#inputWord 8 in
+#deleted 2 the
+#deleted 4 of
+#deleted 7 acted
+#deleted 8 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Shahab Hosseini; 6; 0; actor.name (1.0)#0#Shahab Hosseini#Khaled Hosseini#Ray Hosseini#Nick Hosseini#Zack Hosseini; writer.name (1.0); director.name (0.0); producer.name (0.8606629658238704); cast.role (0.8)
+Shahab Hosseini :: actor.name = Shahab Hosseini (1.0)
+#general 0
+#general Find the number of movies of "Shahab Hosseini". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Shahab Hosseini". 
+#result ###count(movie.title)
+
+QUERY 44: Find all the movies directed by "Quentin Tarantino" featuring "Christoph Waltz"
+TOTAL INTERPS COUNT: 48
+Warning: TIE!
+actor(cast(movie(written_by(writer))))
+SELECT DISTINCT movie.title
+FROM movie, writer, actor, cast, written_by
+WHERE writer.name = "Christoph Waltz" AND actor.name = "Quentin Tarantino" AND cast.role = "Featuring" AND movie.mid = written_by.msid AND written_by.wid = writer.wid AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 movies
+#inputWord 5 directed
+#inputWord 6 by
+#inputWord 7 Quentin Tarantino
+#inputWord 8 featuring
+#inputWord 9 Christoph Waltz
+#deleted 3 the
+#deleted 5 directed
+#deleted 6 by
+#map ; movies; 4; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Christoph Waltz; 9; 3; actor.name (1.0); director.name (1.0); producer.name (1.0); writer.name (1.0)#0#Christoph Waltz#Christoph Walz#Christoph Walther#Christopher Waltz#Christoph Baal; cast.role (0.0)
+Christoph Waltz :: writer.name = Christoph Waltz (1.0)
+#map ; Quentin Tarantino; 7; 0; actor.name (1.0)#0#Quentin Tarantino#Quentin Tarrantino#Quentin Jerome Tarantino#Loren Tarantino#Quentin Martin; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.0)
+Quentin Tarantino :: actor.name = Quentin Tarantino (1.0)
+#map ; featuring; 8; 2; tv_series.num_of_seasons (0.5214995); tv_series.num_of_episodes (0.5612995); cast.role (1.0)#0#Featuring#Featuring#Featuring#Featuring#Featuring; genre.genre (0.53465); movie.title (0.9841269841269842)
+featuring :: cast.role = Featuring (1.0)
+#general 0
+#general Find the movies by "Christoph Waltz" of "Quentin Tarantino" of featuring. 
+#explicit Find 
+#explicit the movies 
+#explicit by "Christoph Waltz" 
+#explicit of "Quentin Tarantino" 
+#explicit of featuring. 
+#result ###movie.title
+
+QUERY 21: Find the actor who played "Captain Miller" in the movie "Saving Private Ryan"
+TOTAL INTERPS COUNT: 6
+Warning: TIE!
+actor(cast(movie),cast#1)
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE cast.role = "Captain Miller" AND cast.role = "Saving Private Ryan" AND actor.aid = cast.aid AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actor
+#inputWord 4 who
+#inputWord 5 played
+#inputWord 6 Captain Miller
+#inputWord 7 in
+#inputWord 8 the
+#inputWord 9 movie
+#inputWord 10 Saving Private Ryan
+#deleted 2 the
+#deleted 4 who
+#deleted 5 played
+#deleted 7 in
+#deleted 8 the
+#map ; actor; 3; 0; actor.name (1.0); movie.title (0.76225); tv_series.title (1.0); producer.name (0.968421052631579); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; Captain Miller; 6; 0; cast.role (1.0)#0#Captain Miller#Captain Miller#Captain Miller#Captain Miller#Captain Miller; director.name (0.8707495000000001); producer.name (0.8846517369293828); writer.name (0.8846517369293828); actor.name (0.8770580193070292)
+Captain Miller :: cast.role = Captain Miller (1.0)
+#map ; Saving Private Ryan; 10; 0; cast.role (1.0)#0#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan; movie.title (1.0); tv_series.title (0.8535995000000001); company.name (0.762000762001143); actor.name (0.7427813527082074)
+Saving Private Ryan :: cast.role = Saving Private Ryan (1.0)
+#map ; movie; 9; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the actor of "Captain Miller" in "Saving Private Ryan" of movie. 
+#general Find the actor of "Captain Miller" of movie in "Saving Private Ryan". 
+#explicit Find 
+#explicit the actor 
+#explicit of "Captain Miller" 
+#explicit in "Saving Private Ryan" 
+#explicit of movie. 
+#result ###actor.name
+
+QUERY 103: Find the number of movies "Quentin Tarantino" directed before 2002 and after 2010
+TOTAL INTERPS COUNT: 150
+made_by(movie,producer)
+SELECT DISTINCT count(producer.name)
+FROM producer, movie, made_by
+WHERE producer.birth_year < 2002 AND movie.release_year > 2010 AND producer.pid = made_by.pid AND made_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Quentin Tarantino
+#inputWord 7 directed
+#inputWord 8 before
+#inputWord 9 2002
+#inputWord 10 and
+#inputWord 11 after
+#inputWord 12 2010
+#deleted 2 the
+#deleted 4 of
+#deleted 7 directed
+#deleted 10 and
+#map ; Quentin Tarantino; 6; 2; actor.name (0.0); director.name (0.0); producer.name (0.0); writer.name (0.0); movie.title (0.0)
+Quentin Tarantino :: producer.name (0.0)
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#mapNum ; 2002; 9; 1; tv_series.release_year (0.994954995004995); producer.birth_year (0.9917581918081918); writer.birth_year (0.9903096403596403); actor.birth_year (0.987012937062937); director.birth_year (0.9852646853146854)
+2002 :: producer.birth_year = 1926 (0.9917581918081918)
+#mapNum ; 2010; 12; 2; actor.birth_year (0.9992048435171386); tv_series.release_year (0.9990560786650775); movie.release_year (0.9989569513406157)
+2010 :: movie.release_year = 2012 (0.9989569513406157)
+#general 0
+#general Find the number of "Quentin Tarantino" of movies after 2010 before 2002. 
+#general Find the number of "Quentin Tarantino" of movies before 2002 after 2010. 
+#explicit Find 
+#explicit the number of 
+#explicit "Quentin Tarantino" 
+#explicit of movies 
+#explicit after 2010 
+#explicit before 2002. 
+#result ###count(producer.name)
+
+QUERY 41: Find all movies directed by "Woody Allen" and featuring "Scarlett Johansson"
+TOTAL INTERPS COUNT: 16
+Warning: TIE!
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT movie.title
+FROM movie, director, actor, directed_by, cast
+WHERE director.name = "Woody Allen" AND actor.name = "Scarlett Johansson" AND movie.mid = directed_by.msid AND directed_by.did = director.did AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 directed
+#inputWord 5 by
+#inputWord 6 Woody Allen
+#inputWord 7 and
+#inputWord 8 featuring
+#inputWord 9 Scarlett Johansson
+#deleted 4 directed
+#deleted 5 by
+#deleted 7 and
+#deleted 8 featuring
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Woody Allen; 6; 1; actor.name (1.0); director.name (1.0)#0#Woody Allen#Moody Allen#Cody Allen#Z vody Allen#Woodie Allen; producer.name (1.0); writer.name (1.0); cast.role (0.9036500000000001)
+Woody Allen :: director.name = Woody Allen (1.0)
+#map ; Scarlett Johansson; 9; 0; actor.name (1.0)#0#Scarlett Johansson#Scarlett Johanssen#Scarlett Johnson#Scarlett Ingrid Johansson#Scarlett Johansing; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9999990000000001)
+Scarlett Johansson :: actor.name = Scarlett Johansson (1.0)
+#general 0
+#general Find the movies by "Woody Allen" of "Scarlett Johansson". 
+#explicit Find 
+#explicit the movies 
+#explicit by "Woody Allen" 
+#explicit of "Scarlett Johansson". 
+#result ###movie.title
+
+QUERY 79: Find who acted the role of "Mr. Bean"
+TOTAL INTERPS COUNT: 2
+cast(tv_series)
+SELECT DISTINCT cast.role
+FROM cast, tv_series
+WHERE tv_series.title = "Mr. Bean" AND cast.msid = tv_series.sid
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 acted
+#inputWord 4 the
+#inputWord 5 role
+#inputWord 6 of
+#inputWord 7 Mr. Bean
+#deleted 2 who
+#deleted 3 acted
+#deleted 4 the
+#deleted 6 of
+#map ; role; 5; 0; cast.role (1.0); movie.release_year (0.55085); tv_series.release_year (0.9127964473009227); movie.title (0.8844840827941616); producer.name (0.8401107660422206)
+role :: cast.role (1.0)
+#map ; Mr. Bean; 7; 1; cast.role (1.0); tv_series.title (1.0)#0#Mr. Bean#Judge Roy Bean#Judge Roy Bean#Mr. Bean: The Animated Series#Freckle and Bean; actor.name (0.8168995); producer.name (0.816496580927726); writer.name (0.816496580927726)
+Mr. Bean :: tv_series.title = Mr. Bean (1.0)
+#general 0
+#general Find the role of "Mr. Bean". 
+#explicit Find 
+#explicit the role 
+#explicit of "Mr. Bean". 
+#result ###cast.role
+
+QUERY 115: Find the movies that have the same director as the movie "Revolutionary Road"
+TOTAL INTERPS COUNT: 15
+actor(cast(movie),cast#1(movie#1),cast#2(movie#2))
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movies
+#inputWord 4 that
+#inputWord 5 have
+#inputWord 6 the
+#inputWord 7 same
+#inputWord 8 director
+#inputWord 9 as
+#inputWord 10 the
+#inputWord 11 movie
+#inputWord 12 Revolutionary Road
+#deleted 2 the
+#deleted 4 that
+#deleted 5 have
+#deleted 6 the
+#deleted 9 as
+#deleted 10 the
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; director; 8; 2; director.name (1.0); company.name (1.0); movie.title (1.0)#0#Director#Director#Director#A Director#Mr. Director; producer.name (1.0); writer.name (1.0)
+director :: movie.title = Director (1.0)
+#map ; Revolutionary Road; 12; 0; movie.title (1.0)#0#Revolutionary Road#Revolutionary Roads#Revolutionary Man#The Revolutionary#The Revolutionary; cast.role (0.7816000000000001); keyword.keyword (0.909717652294684); tv_series.title (0.86991767240168); company.name (0.8618916073713346)
+Revolutionary Road :: movie.title = Revolutionary Road (1.0)
+#map ; movie; 11; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+
+QUERY 101: Find the number of movies "Quentin Tarantino" directed after 2010
+TOTAL INTERPS COUNT: 30
+made_by(movie,producer)
+SELECT DISTINCT count(producer.name)
+FROM producer, movie, made_by
+WHERE movie.release_year > 2010 AND producer.pid = made_by.pid AND made_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Quentin Tarantino
+#inputWord 7 directed
+#inputWord 8 after
+#inputWord 9 2010
+#deleted 2 the
+#deleted 4 of
+#deleted 7 directed
+#map ; Quentin Tarantino; 6; 2; actor.name (0.0); director.name (0.0); producer.name (0.0); writer.name (0.0); movie.title (0.0)
+Quentin Tarantino :: producer.name (0.0)
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#mapNum ; 2010; 9; 2; actor.birth_year (0.9992048435171386); tv_series.release_year (0.9990560786650775); movie.release_year (0.9989569513406157)
+2010 :: movie.release_year = 2012 (0.9989569513406157)
+#general 0
+#general Find the number of "Quentin Tarantino" of movies after 2010. 
+#general Find the number of "Quentin Tarantino" of movies after 2010. 
+#explicit Find 
+#explicit the number of 
+#explicit "Quentin Tarantino" 
+#explicit of movies 
+#explicit after 2010. 
+#result ###count(producer.name)
+
+QUERY 102: Find the number of movies "Quentin Tarantino" directed before 2010
+TOTAL INTERPS COUNT: 50
+made_by(movie,producer)
+SELECT DISTINCT count(producer.name)
+FROM producer, movie, made_by
+WHERE movie.release_year < 2010 AND producer.pid = made_by.pid AND made_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Quentin Tarantino
+#inputWord 7 directed
+#inputWord 8 before
+#inputWord 9 2010
+#deleted 2 the
+#deleted 4 of
+#deleted 7 directed
+#map ; Quentin Tarantino; 6; 2; actor.name (0.0); director.name (0.0); producer.name (0.0); writer.name (0.0); movie.title (0.0)
+Quentin Tarantino :: producer.name (0.0)
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#mapNum ; 2010; 9; 0; movie.release_year (0.9990047263681592); tv_series.release_year (0.9954723880597015); producer.birth_year (0.9898007462686567); writer.birth_year (0.9883579601990049); actor.birth_year (0.9850743781094528)
+2010 :: movie.release_year = 2005 (0.9990047263681592)
+#general 0
+#general Find the number of "Quentin Tarantino" of movies before 2010. 
+#general Find the number of "Quentin Tarantino" of movies before 2010. 
+#explicit Find 
+#explicit the number of 
+#explicit "Quentin Tarantino" 
+#explicit of movies 
+#explicit before 2010. 
+#result ###count(producer.name)
+
+QUERY 51: Find the series in which "Scott Foley" is an actor
+TOTAL INTERPS COUNT: 60
+Warning: TIE!
+actor(cast(tv_series(cast#1(actor#1))))
+SELECT DISTINCT tv_series.title
+FROM tv_series, actor, cast
+WHERE actor.name = "Scott Foley" AND tv_series.sid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 series
+#inputWord 4 in
+#inputWord 5 which
+#inputWord 6 Scott Foley
+#inputWord 7 is
+#inputWord 8 an
+#inputWord 9 actor
+#deleted 2 the
+#deleted 4 in
+#deleted 5 which
+#deleted 7 is
+#deleted 8 an
+#map ; series; 3; 1; keyword.keyword (0.50445); tv_series.title (0.8351); movie.title (0.60395); company.name (0.53045); genre.genre (0.5964)
+series :: tv_series.title (0.8351)
+#map ; actor; 9; 0; actor.name (1.0); movie.title (1.0); tv_series.title (1.0); producer.name (0.66905); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; Scott Foley; 6; 0; actor.name (1.0)#0#Scott Foley#Scott Foley#Scott Folan#Scott Fox#Scott Fox; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.8594995000000001)
+Scott Foley :: actor.name = Scott Foley (1.0)
+#general 0
+#general Find the series of actor "Scott Foley". 
+#general Find the series of actor of "Scott Foley". 
+#explicit Find 
+#explicit the series 
+#explicit of actor 
+#explicit "Scott Foley". 
+#result ###tv_series.title
+
+QUERY 122: Find the movie that has the most number of actors from China
+TOTAL INTERPS COUNT: 5
+actor(cast(movie))
+SELECT DISTINCT movie.title, block_1.count, max()
+FROM movie, (SELECT count(actor.name) as count, movie.title, max() FROM actor, movie, cast WHERE actor.nationality = "China" AND actor.aid = cast.aid AND cast.msid = movie.mid GROUP BY movie.title) block_1
+WHERE block_1.count = most AND movie.title = block_1.title
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movie
+#inputWord 4 that
+#inputWord 5 has
+#inputWord 6 the
+#inputWord 7 most
+#inputWord 8 number
+#inputWord 9 of
+#inputWord 10 actors
+#inputWord 11 from
+#inputWord 12 China
+#deleted 2 the
+#deleted 4 that
+#deleted 5 has
+#deleted 6 the
+#deleted 9 of
+#deleted 11 from
+#map ; movie; 3; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; actors; 10; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; China; 12; 1; actor.name (1.0); actor.nationality (1.0)#0#China#China#China#China#China; company.name (1.0); director.name (1.0); director.nationality (1.0)
+China :: actor.nationality = China (1.0)
+#general 0
+#general Find the movie where the number of actors of China of the movie is the most. 
+#general Find the number of actors of China where the movie of the actor is the most. 
+#general Find the number of movie where most of the movie is actors of China. 
+#general Find the actors of China where the number of movie of the actor is the most. 
+#explicit Find 
+#explicit the movie 
+#explicit where 
+#explicit the number of 
+#explicit actors 
+#explicit of China 
+#explicit of the movie 
+#explicit is 
+#explicit the most. 
+#result ###movie.title###block_1.count###max()
+
+QUERY 96: Find the number of movies that "Brad Pitt" acts in each year
+TOTAL INTERPS COUNT: 10
+actor(cast(movie))
+SELECT DISTINCT count(movie.title), movie.release_year
+FROM movie, actor, cast
+WHERE actor.name = "Brad Pitt" AND movie.mid = cast.msid AND cast.aid = actor.aid
+GROUP BY movie.release_year
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 that
+#inputWord 7 Brad Pitt
+#inputWord 8 acts
+#inputWord 9 in
+#inputWord 10 each
+#inputWord 11 year
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 8 acts
+#deleted 9 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Brad Pitt; 7; 0; actor.name (1.0)#0#Brad Pitt#bRad sPitt#Brad Pittance#Brad Pike#Brad Pile; producer.name (1.0); cast.role (0.9461995000000001); director.name (0.8819171036881969); writer.name (0.8819171036881969)
+Brad Pitt :: actor.name = Brad Pitt (1.0)
+#map ; year; 11; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#general 0
+#general Find the number of movies of "Brad Pitt" in each year. 
+#general Find the number of movies in each year "Brad Pitt". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Brad Pitt" 
+#explicit in each year. 
+#result ###count(movie.title)###movie.release_year
+
+00:55  INFO: ===== FOLD 1 =====
+00:55  INFO: ===== Parsing Results =====
+00:55  INFO: Total Queries: 94
+00:55  INFO: Correctly Parsed: 94/94
+
+QUERY 36: Find the actors born in "New York City" after 1990
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "New York City" AND actor.birth_year > 1990
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actors
+#inputWord 4 born
+#inputWord 5 in
+#inputWord 6 New York City
+#inputWord 7 after
+#inputWord 8 1990
+#deleted 2 the
+#deleted 4 born
+#deleted 5 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; New York City; 6; 0; actor.birth_city (1.0)#0#New York City#New York City#New York City#New York City#New York City; cast.role (1.0); director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0)
+New York City :: actor.birth_city = New York City (1.0)
+#mapNum ; 1990; 8; 3; writer.birth_year (0.9987968865938033); producer.birth_year (0.9985968878420367); director.birth_year (0.9984969485920433); actor.birth_year (0.998446993987976); tv_series.release_year (0.995813649955148)
+1990 :: actor.birth_year = 1999 (0.998446993987976)
+#general 0
+#general Find the actors in "New York City" after 1990. 
+#explicit Find 
+#explicit the actors 
+#explicit in "New York City" 
+#explicit after 1990. 
+#result ###actor.name
+
+QUERY 34: Find all actors who were born in "New York City" in 1984
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "New York City" AND actor.birth_year = 1984
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 were
+#inputWord 6 born
+#inputWord 7 in
+#inputWord 8 New York City
+#inputWord 9 in
+#inputWord 10 1984
+#deleted 4 who
+#deleted 5 were
+#deleted 6 born
+#deleted 7 in
+#deleted 9 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; New York City; 8; 0; actor.birth_city (1.0)#0#New York City#New York City#New York City#New York City#New York City; cast.role (1.0); director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0)
+New York City :: actor.birth_city = New York City (1.0)
+#mapNum ; 1984; 10; 0; actor.birth_year (0.99995); director.birth_year (0.99995); movie.release_year (0.99995); producer.birth_year (0.99995); tv_series.release_year (0.99995)
+1984 :: actor.birth_year = 1984 (0.99995)
+#general 0
+#general Find the actors in "New York City" in 1984. 
+#explicit Find 
+#explicit the actors 
+#explicit in "New York City" 
+#explicit in 1984. 
+#result ###actor.name
+
+QUERY 112: Find the number of actors from China who have acted in "Rush Hour 3"
+TOTAL INTERPS COUNT: 25
+Warning: TIE!
+actor(cast(tv_series))
+SELECT DISTINCT count(tv_series.title)
+FROM tv_series, actor, cast
+WHERE actor.name = "China" AND tv_series.sid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 actors
+#inputWord 6 from
+#inputWord 7 China
+#inputWord 8 who
+#inputWord 9 have
+#inputWord 10 acted
+#inputWord 11 in
+#inputWord 12 Rush Hour 3
+#deleted 2 the
+#deleted 4 of
+#deleted 6 from
+#deleted 8 who
+#deleted 9 have
+#deleted 10 acted
+#deleted 11 in
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; China; 7; 0; actor.name (1.0)#0#China#China#China#China#China; actor.nationality (1.0); company.name (1.0); director.name (1.0); director.nationality (1.0)
+China :: actor.name = China (1.0)
+#map ; Rush Hour 3; 12; 1; movie.title (0.57455); tv_series.title (0.5882499999999999); cast.role (0.5384); actor.name (0.5291); keyword.keyword (0.52625)
+Rush Hour 3 :: tv_series.title (0.5882499999999999)
+#general 0
+#general Find the number of in "Rush Hour 3" of actors China. 
+#general Find the number of actors China in "Rush Hour 3". 
+#explicit Find 
+#explicit the number of 
+#explicit in "Rush Hour 3" 
+#explicit of actors 
+#explicit China. 
+#result ###count(tv_series.title)
+
+QUERY 126: Find who directed the latest movie by "NBCUniversal"
+TOTAL INTERPS COUNT: 1
+company(copyright(movie))
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 directed
+#inputWord 4 the
+#inputWord 5 latest
+#inputWord 6 movie
+#inputWord 7 by
+#inputWord 8 NBCUniversal
+#deleted 2 who
+#deleted 3 directed
+#deleted 4 the
+#deleted 7 by
+#map ; movie; 6; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; NBCUniversal; 8; 0; company.name (1.0)#0#NBCUniversal#NBCUniversal Media#NBCUniversal Skycastle#NBCUniversal News Group#NBCUniversal Entertainment; genre.genre (0.0)
+NBCUniversal :: company.name = NBCUniversal (1.0)
+
+QUERY 119: Find the actor with the most number of films
+TOTAL INTERPS COUNT: 5
+actor(cast(movie))
+SELECT DISTINCT count(movie.title), block_1.count, max()
+FROM movie, (SELECT count(actor.name) as count, max() FROM actor, movie, cast WHERE actor.aid = cast.aid AND cast.msid = movie.mid GROUP BY movie.title) block_1
+WHERE block_1.count = most
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actor
+#inputWord 4 with
+#inputWord 5 the
+#inputWord 6 most
+#inputWord 7 number
+#inputWord 8 of
+#inputWord 9 films
+#deleted 2 the
+#deleted 4 with
+#deleted 5 the
+#deleted 8 of
+#map ; actor; 3; 0; actor.name (1.0); movie.title (0.76225); tv_series.title (1.0); producer.name (0.968421052631579); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; films; 9; 0; movie.title (0.86815); cast.role (0.61015); genre.genre (0.7158); movie.release_year (0.57705); tv_series.release_year (0.57705)
+films :: movie.title (0.86815)
+#general 0
+#general Find the number of films where the actor of the film is the most. 
+#general Find the actor where the number of films of the actor is the most. 
+#general Find the number of actor where most of the actor is films. 
+#general Find the films where the number of actor of the film is the most. 
+#explicit Find 
+#explicit the number of 
+#explicit films 
+#explicit where 
+#explicit the 
+#implicit number of 
+#explicit actor 
+#explicit of the film 
+#explicit is 
+#explicit the most. 
+#result ###count(movie.title)###block_1.count###max()
+
+QUERY 11: Find the year "Kevin Spacey" was born.
+TOTAL INTERPS COUNT: 20
+actor
+SELECT DISTINCT actor.birth_year
+FROM actor
+WHERE actor.name = "Kevin Spacey"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 year
+#inputWord 4 Kevin Spacey
+#inputWord 5 was
+#inputWord 6 born
+#deleted 2 the
+#deleted 5 was
+#deleted 6 born
+#map ; year; 3; 0; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: actor.birth_year (0.79285)
+#map ; Kevin Spacey; 4; 0; actor.name (1.0)#0#Kevin Spacey#Kevin Spacey Fowler#John Spacey#Kevin Grace#Kevin Ackley; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9484)
+Kevin Spacey :: actor.name = Kevin Spacey (1.0)
+#general 0
+#general Find the year "Kevin Spacey". 
+#explicit Find 
+#explicit the year 
+#explicit "Kevin Spacey". 
+#result ###actor.birth_year
+
+QUERY 86: List all the directors of movies about nuclear weapons
+TOTAL INTERPS COUNT: 12
+directed_by(director(directed_by#1(movie#1)),movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "Weapons" AND movie.title = "Nuclear" AND director.did = directed_by.did AND directed_by.msid = movie.mid AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 List
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 directors
+#inputWord 5 of
+#inputWord 6 movies
+#inputWord 7 about
+#inputWord 8 nuclear
+#inputWord 9 weapons
+#deleted 3 the
+#deleted 5 of
+#deleted 7 about
+#map ; directors; 4; 0; director.name (0.9999999); company.name (0.6337); actor.name (0.949056873050605); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: director.name (0.9999999)
+#map ; movies; 6; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; weapons; 9; 1; cast.role (1.0); movie.title (1.0)#0#Weapons#Weapons#Weapons#Weapons Down#Weapons Free; cast.role (0.54145); movie.release_year (0.8764049801863965); tv_series.release_year (0.8764049801863965)
+weapons :: movie.title = Weapons (1.0)
+#map ; nuclear; 8; 2; company.name (1.0); keyword.keyword (1.0); movie.title (1.0)#0#Nuclear#Nuclear Age#Nuclear Day#Nuclear UK?#Nuclear Days; cast.role (0.9302); tv_series.title (0.8660254037844386)
+nuclear :: movie.title = Nuclear (1.0)
+#general 0
+#general List the directors of movies of nuclear of weapons. 
+#general List the directors of movies of weapons of nuclear. 
+#general List the directors of movies of weapons of nuclear. 
+#general List the directors of movies of weapons of nuclear. 
+#explicit List 
+#explicit the directors 
+#explicit of movies 
+#explicit of nuclear 
+#explicit of weapons. 
+#result ###director.name
+
+QUERY 5: Find all actors born in "Los Angeles"
+TOTAL INTERPS COUNT: 5
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "Los Angeles"
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 born
+#inputWord 5 in
+#inputWord 6 Los Angeles
+#deleted 4 born
+#deleted 5 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Los Angeles; 6; 0; actor.birth_city (1.0)#0#Los Angeles#Los Angeles#Los Angeles#Los Angeles#Los Angeles; director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0); writer.birth_city (1.0)
+Los Angeles :: actor.birth_city = Los Angeles (1.0)
+#general 0
+#general Find the actors in "Los Angeles". 
+#explicit Find 
+#explicit the actors 
+#explicit in "Los Angeles". 
+#result ###actor.name
+
+QUERY 78: Find where the director of "The Past" is from
+TOTAL INTERPS COUNT: 2
+directed_by(director,movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "The Past" AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 where
+#inputWord 3 the
+#inputWord 4 director
+#inputWord 5 of
+#inputWord 6 The Past
+#inputWord 7 is
+#inputWord 8 from
+#deleted 2 where
+#deleted 3 the
+#deleted 5 of
+#deleted 7 is
+#deleted 8 from
+#map ; director; 4; 0; director.name (1.0); company.name (0.55285); movie.title (1.0); producer.name (1.0); writer.name (1.0)
+director :: director.name (1.0)
+#map ; The Past; 6; 1; cast.role (1.0); movie.title (1.0)#0#The Past#The Past#Fix the Past#The Dark Past#The Year Past; keyword.keyword (0.0); tv_series.title (0.816496580927726); company.name (0.7483314773547883)
+The Past :: movie.title = The Past (1.0)
+#general 0
+#general Find the director of "The Past". 
+#explicit Find 
+#explicit the director 
+#explicit of "The Past". 
+#result ###director.name
+
+QUERY 124: Find the name and budget of the latest movie by "Quentin Tarantino"
+TOTAL INTERPS COUNT: 100
+Warning: TIE!
+actor(cast(movie,tv_series(cast#1(actor#1))))
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 name
+#inputWord 4 and
+#inputWord 5 budget
+#inputWord 6 of
+#inputWord 7 the
+#inputWord 8 latest
+#inputWord 9 movie
+#inputWord 10 by
+#inputWord 11 Quentin Tarantino
+#deleted 2 the
+#deleted 4 and
+#deleted 6 of
+#deleted 7 the
+#deleted 10 by
+#map ; name; 3; 4; director.name (1.0); company.name (1.0); producer.name (1.0); writer.name (1.0); actor.name (1.0)
+name :: actor.name (1.0)
+#map ; budget; 5; 0; movie.budget (1.0); tv_series.budget (1.0); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+budget :: movie.budget (1.0)
+#map ; movie; 9; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Quentin Tarantino; 11; 0; actor.name (1.0)#0#Quentin Tarantino#Quentin Tarrantino#Quentin Jerome Tarantino#Loren Tarantino#Quentin Martin; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.0)
+Quentin Tarantino :: actor.name = Quentin Tarantino (1.0)
+
+QUERY 48: Find the movies featuring "Kerry Washington"
+TOTAL INTERPS COUNT: 2
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Kerry Washington" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Kerry Washington
+#deleted 2 the
+#deleted 4 featuring
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Kerry Washington; 5; 0; actor.name (1.0)#0#Kerry Washington#Gerry Washington#Jerry Washington#Larry Washington#Kory Washington; producer.name (1.0); director.name (0.9115500000000001); writer.name (0.9660917830792959); cast.role (0.9503819266229829)
+Kerry Washington :: actor.name = Kerry Washington (1.0)
+#general 0
+#general Find the movies of "Kerry Washington". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Kerry Washington". 
+#result ###movie.title
+
+QUERY 82: Find the company that funded the "Mickey Mouse" series
+TOTAL INTERPS COUNT: 5
+company(copyright(tv_series(tags(keyword))),copyright#1(tv_series#1))
+SELECT DISTINCT company.name
+FROM company, tv_series, keyword, copyright, movie, tags
+WHERE tv_series.title = "Funded" AND keyword.keyword = "series" AND tv_series.title = "Mickey Mouse" AND company.id = copyright.cid AND copyright.msid = tv_series.sid AND company.id = copyright.cid AND copyright.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id AND company.id = copyright.cid AND copyright.msid = tv_series.sid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 company
+#inputWord 4 that
+#inputWord 5 funded
+#inputWord 6 the
+#inputWord 7 Mickey Mouse
+#inputWord 8 series
+#deleted 2 the
+#deleted 4 that
+#deleted 6 the
+#map ; company; 3; 0; company.name (1.0); cast.role (0.52055); keyword.keyword (1.0); movie.title (1.0); actor.name (0.9454545454545454)
+company :: company.name (1.0)
+#map ; funded; 5; 0; tv_series.title (1.0)#0#Funded; movie.budget (0.62935); tv_series.budget (0.9473684210526315); company.name (0.8888888888888888); cast.role (0.7426470588235294)
+funded :: tv_series.title = Funded (1.0)
+#map ; series; 8; 0; keyword.keyword (1.0)#0#series#tv-series#web-series#dvd-series#fan-series; tv_series.title (0.8351); movie.title (0.9666316223196156); company.name (0.9534625892455924); genre.genre (0.9375)
+series :: keyword.keyword = series (1.0)
+#map ; Mickey Mouse; 7; 3; actor.name (1.0); director.name (1.0); producer.name (1.0); tv_series.title (1.0)#0#Mickey Mouse#Mickey Mouse#Mickey Mouse Works#The Mickey Mouse Club#Mickey Mouse Clubhouse; writer.name (1.0)
+Mickey Mouse :: tv_series.title = Mickey Mouse (1.0)
+#general 0
+#general Find the company of funded of series of "Mickey Mouse". 
+#explicit Find 
+#explicit the company 
+#explicit of funded 
+#explicit of series 
+#explicit of "Mickey Mouse". 
+#result ###company.name
+
+QUERY 8: In what year was "Benedict Cumberbatch" born
+TOTAL INTERPS COUNT: 10
+actor
+#inputWord 1 In
+#inputWord 2 what
+#inputWord 3 year
+#inputWord 4 was
+#inputWord 5 Benedict Cumberbatch
+#inputWord 6 born
+#deleted 1 In
+#deleted 2 what
+#deleted 4 was
+#deleted 6 born
+#map ; year; 3; 0; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: actor.birth_year (0.79285)
+#map ; Benedict Cumberbatch; 5; 0; actor.name (1.0)#0#Benedict Cumberbatch#Benedict Timothy Carlton Cumberbatch#Scott Cumberbatch#Scott Owen Cumberbatch#Michael Cumberbatch; producer.name (1.0); cast.role (0.643349); director.name (0.8043996665398437); writer.name (0.7928249671720918)
+Benedict Cumberbatch :: actor.name = Benedict Cumberbatch (1.0)
+
+QUERY 77: List all the movies directed by "Asghar Farhadi" in which "Taraneh Alidoosti" played
+TOTAL INTERPS COUNT: 5
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT movie.title
+FROM movie, director, actor, directed_by, cast
+WHERE director.name = "Asghar Farhadi" AND actor.name = "Taraneh Alidoosti" AND movie.mid = directed_by.msid AND directed_by.did = director.did AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 List
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 movies
+#inputWord 5 directed
+#inputWord 6 by
+#inputWord 7 Asghar Farhadi
+#inputWord 8 in
+#inputWord 9 which
+#inputWord 10 Taraneh Alidoosti
+#inputWord 11 played
+#deleted 3 the
+#deleted 5 directed
+#deleted 6 by
+#deleted 8 in
+#deleted 9 which
+#deleted 11 played
+#map ; movies; 4; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Asghar Farhadi; 7; 2; actor.name (1.0); company.name (1.0); director.name (1.0)#0#Asghar Farhadi#Asghar Tharani#Asghar Bichareh#Adam Farhadi#Asghar Zhazeh; producer.name (1.0); writer.name (1.0)
+Asghar Farhadi :: director.name = Asghar Farhadi (1.0)
+#map ; Taraneh Alidoosti; 10; 0; actor.name (1.0)#0#Taraneh Alidoosti#Eileen Alidoosti#Taraneh Koohestani#Taraneh Hafizi#Mojgan Taraneh; director.name (0.0); producer.name (0.7559289460184544); cast.role (0.7385489458759964); writer.name (0.6831300510639732)
+Taraneh Alidoosti :: actor.name = Taraneh Alidoosti (1.0)
+#general 0
+#general List the movies by "Asghar Farhadi" of "Taraneh Alidoosti". 
+#explicit List 
+#explicit the movies 
+#explicit by "Asghar Farhadi" 
+#explicit of "Taraneh Alidoosti". 
+#result ###movie.title
+
+QUERY 97: Find the number of movies in which "Tom Cruise" acted
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Tom Cruise" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 in
+#inputWord 7 which
+#inputWord 8 Tom Cruise
+#inputWord 9 acted
+#deleted 2 the
+#deleted 4 of
+#deleted 6 in
+#deleted 7 which
+#deleted 9 acted
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Tom Cruise; 8; 0; actor.name (1.0)#0#Tom Cruise#Tom Cruiso#Tommy Cruise#Pam Cruise#Tom Cruz; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.0)
+Tom Cruise :: actor.name = Tom Cruise (1.0)
+#general 0
+#general Find the number of movies of "Tom Cruise". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Tom Cruise". 
+#result ###count(movie.title)
+
+QUERY 6: Find all actors who are from Canada
+TOTAL INTERPS COUNT: 5
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.nationality = "Canada"
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 are
+#inputWord 6 from
+#inputWord 7 Canada
+#deleted 4 who
+#deleted 5 are
+#deleted 6 from
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Canada; 7; 1; actor.name (1.0); actor.nationality (1.0)#0#Canada#Canada#Canada#Canada#Canada; company.name (1.0); director.name (1.0); director.nationality (1.0)
+Canada :: actor.nationality = Canada (1.0)
+#general 0
+#general Find the actors of Canada. 
+#explicit Find 
+#explicit the actors 
+#explicit of Canada. 
+#result ###actor.name
+
+QUERY 54: Find all movies produced by Netflix
+TOTAL INTERPS COUNT: 2
+keyword(tags(movie))
+SELECT DISTINCT movie.title
+FROM movie, keyword, tags
+WHERE keyword.keyword = "netflix" AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 produced
+#inputWord 5 by
+#inputWord 6 Netflix
+#deleted 4 produced
+#deleted 5 by
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Netflix; 6; 1; company.name (1.0); keyword.keyword (1.0)#0#netflix#netflix-series#netflix-production#reference-to-netflix; cast.role (0.9274); movie.title (0.7745966692414834); tv_series.title (0.6928203230275509)
+Netflix :: keyword.keyword = netflix (1.0)
+#general 0
+#general Find the movies by Netflix. 
+#explicit Find 
+#explicit the movies 
+#explicit by Netflix. 
+#result ###movie.title
+
+QUERY 111: Find the number of companies that participated in producing "Camp X-Ray"
+TOTAL INTERPS COUNT: 1
+company(copyright(movie))
+SELECT DISTINCT count(company.name)
+FROM company, movie, copyright
+WHERE movie.title = "Camp X-Ray" AND company.id = copyright.cid AND copyright.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 companies
+#inputWord 6 that
+#inputWord 7 participated
+#inputWord 8 in
+#inputWord 9 producing
+#inputWord 10 Camp X-Ray
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 7 participated
+#deleted 8 in
+#deleted 9 producing
+#map ; companies; 5; 0; company.name (0.9999999); actor.name (0.5427); director.name (0.9169960474308301); cast.role (0.9066666666666667); writer.name (0.8909090909090909)
+companies :: company.name (0.9999999)
+#map ; Camp X-Ray; 10; 0; movie.title (1.0)#0#Camp X-Ray#Camp X#Camp X#The X-Ray#Camp 30; keyword.keyword (0.0); cast.role (0.816496580927726); actor.name (0.7905694150420949); company.name (0.7844645405527362)
+Camp X-Ray :: movie.title = Camp X-Ray (1.0)
+#general 0
+#general Find the number of companies of "Camp X-Ray". 
+#explicit Find 
+#explicit the number of 
+#explicit companies 
+#explicit of "Camp X-Ray". 
+#result ###count(company.name)
+
+QUERY 39: Find the movies that "Alfred Hitchcock" directed
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Alfred Hitchcock" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movies
+#inputWord 4 that
+#inputWord 5 Alfred Hitchcock
+#inputWord 6 directed
+#deleted 2 the
+#deleted 4 that
+#deleted 6 directed
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Alfred Hitchcock; 5; 0; actor.name (1.0)#0#Alfred Hitchcock#Alfred Hitchcock#Mr. Alfred Hitchcock#Sir Alfred Hitchcock#Alfred Joseph Hitchcock; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.7544489999999999)
+Alfred Hitchcock :: actor.name = Alfred Hitchcock (1.0)
+#general 0
+#general Find the movies of "Alfred Hitchcock". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Alfred Hitchcock". 
+#result ###movie.title
+
+QUERY 42: Find all the tv series created by "Shonda Rhimes"
+TOTAL INTERPS COUNT: 100
+actor(cast(tv_series))
+SELECT DISTINCT tv_series.title
+FROM tv_series, actor, cast
+WHERE actor.name = "Shonda Rhimes" AND tv_series.sid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 tv
+#inputWord 5 series
+#inputWord 6 created
+#inputWord 7 by
+#inputWord 8 Shonda Rhimes
+#deleted 3 the
+#deleted 6 created
+#deleted 7 by
+#map ; series; 5; 1; keyword.keyword (0.50445); tv_series.title (0.8351); movie.title (0.60395); company.name (0.53045); genre.genre (0.5964)
+series :: tv_series.title (0.8351)
+#map ; tv; 4; 0; tv_series.title (0.9249); genre.genre (0.5698); cast.role (0.5589999999999999); movie.title (0.67045); movie.release_year (0.50445)
+tv :: tv_series.title (0.9249)
+#map ; Shonda Rhimes; 8; 0; actor.name (1.0)#0#Shonda Rhimes#Shonda Tamez#Shonda Royall#Shonda Stokes#Shonda Whipple; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.0)
+Shonda Rhimes :: actor.name = Shonda Rhimes (1.0)
+#general 0
+#general Find the series of tv by "Shonda Rhimes". 
+#explicit Find 
+#explicit the series 
+#explicit of tv 
+#explicit by "Shonda Rhimes". 
+#result ###tv_series.title
+
+QUERY 43: Find who acts "Olivia Pope" in the series Scandal
+TOTAL INTERPS COUNT: 15
+actor(cast(movie(tags(keyword))))
+SELECT DISTINCT actor.name
+FROM actor, movie, keyword, cast, tags
+WHERE movie.title = "Scandal" AND keyword.keyword = "series" AND actor.aid = cast.aid AND cast.msid = movie.mid AND actor.aid = cast.aid AND cast.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 acts
+#inputWord 4 Olivia Pope
+#inputWord 5 in
+#inputWord 6 the
+#inputWord 7 series
+#inputWord 8 Scandal
+#deleted 2 who
+#deleted 3 acts
+#deleted 5 in
+#deleted 6 the
+#map ; Olivia Pope; 4; 0; actor.name (0.6135); cast.role (0.5681); director.name (0.5438); producer.name (0.5438); writer.name (0.56165)
+Olivia Pope :: actor.name (0.6135)
+#map ; Scandal; 8; 1; actor.name (1.0); movie.title (1.0)#0#Scandal#Scandal#Scandal#Scandal#Scandal; tv_series.title (1.0); cast.role (0.55575); company.name (0.8944271909999159)
+Scandal :: movie.title = Scandal (1.0)
+#map ; series; 7; 0; keyword.keyword (1.0)#0#series#tv-series#web-series#dvd-series#fan-series; tv_series.title (0.8351); movie.title (0.9666316223196156); company.name (0.9534625892455924); genre.genre (0.9375)
+series :: keyword.keyword = series (1.0)
+#general 0
+#general Find the "Olivia Pope" in Scandal of series. 
+#explicit Find 
+#explicit the "Olivia Pope" 
+#explicit in Scandal 
+#explicit of series. 
+#result ###actor.name
+
+QUERY 93: Find the number of movies "Ronald Reagan" acted in
+TOTAL INTERPS COUNT: 2
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Ronald Reagan" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Ronald Reagan
+#inputWord 7 acted
+#inputWord 8 in
+#deleted 2 the
+#deleted 4 of
+#deleted 7 acted
+#deleted 8 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Ronald Reagan; 6; 0; actor.name (1.0)#0#Ronald Reagan#Ronald Reagan Jr.#Lt. Ronald Reagan#Gov. Ronald Reagan#Sgt. Ronald Reagan; producer.name (1.0); cast.role (0.9336); movie.title (0.8798826901281197); director.name (0.8528028654224418)
+Ronald Reagan :: actor.name = Ronald Reagan (1.0)
+#general 0
+#general Find the number of movies of "Ronald Reagan". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Ronald Reagan". 
+#result ###count(movie.title)
+
+QUERY 4: Find all movies produced in 2015
+TOTAL INTERPS COUNT: 2
+movie
+SELECT DISTINCT movie.title
+FROM movie
+WHERE movie.release_year = 2015
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 produced
+#inputWord 5 in
+#inputWord 6 2015
+#deleted 4 produced
+#deleted 5 in
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#mapNum ; 2015; 6; 0; movie.release_year (0.99995); tv_series.release_year (0.99995)
+2015 :: movie.release_year = 2015 (0.99995)
+#general 0
+#general Find the movies in 2015. 
+#explicit Find 
+#explicit the movies 
+#explicit in 2015. 
+#result ###movie.title
+
+QUERY 7: Find all actors who were born in 1984
+TOTAL INTERPS COUNT: 5
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_year = 1984
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 were
+#inputWord 6 born
+#inputWord 7 in
+#inputWord 8 1984
+#deleted 4 who
+#deleted 5 were
+#deleted 6 born
+#deleted 7 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#mapNum ; 1984; 8; 0; actor.birth_year (0.99995); director.birth_year (0.99995); movie.release_year (0.99995); producer.birth_year (0.99995); tv_series.release_year (0.99995)
+1984 :: actor.birth_year = 1984 (0.99995)
+#general 0
+#general Find the actors in 1984. 
+#explicit Find 
+#explicit the actors 
+#explicit in 1984. 
+#result ###actor.name
+
+QUERY 118: Find the maximum number of movies in which "Brad Pitt" acts each year
+TOTAL INTERPS COUNT: 10
+actor(cast(movie))
+SELECT DISTINCT count(movie.title), block_1.count
+FROM movie, actor, cast, (SELECT count(movie.release_year) as count, count(movie.release_year) FROM movie GROUP BY movie.release_year) block_1
+WHERE block_1.count = number of AND actor.name = "Brad Pitt" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 maximum
+#inputWord 4 number
+#inputWord 5 of
+#inputWord 6 movies
+#inputWord 7 in
+#inputWord 8 which
+#inputWord 9 Brad Pitt
+#inputWord 10 acts
+#inputWord 11 each
+#inputWord 12 year
+#deleted 2 the
+#deleted 5 of
+#deleted 7 in
+#deleted 8 which
+#deleted 10 acts
+#map ; movies; 6; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Brad Pitt; 9; 0; actor.name (1.0)#0#Brad Pitt#bRad sPitt#Brad Pittance#Brad Pike#Brad Pile; producer.name (1.0); cast.role (0.9461995000000001); director.name (0.8819171036881969); writer.name (0.8819171036881969)
+Brad Pitt :: actor.name = Brad Pitt (1.0)
+#map ; year; 12; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#general 0
+#general Find the number of movies of "Brad Pitt" where maximum of the movie is each year. 
+#general Find the each year where the number of movies of "Brad Pitt" of the year is the most. 
+#general Find the number of each year where maximum of the year is movies of "Brad Pitt". 
+#general Find the movies of "Brad Pitt" where the number of each year of the movie is the most. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Brad Pitt" 
+#explicit where 
+#explicit maximum 
+#explicit of the movie 
+#explicit is 
+#implicit the number of 
+#explicit each year. 
+#result ###count(movie.title)###block_1.count
+
+QUERY 23: Find the director of the movie Joy from 2015
+TOTAL INTERPS COUNT: 30
+directed_by(director,movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "Joy" AND movie.release_year = 2015 AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 director
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Joy
+#inputWord 8 from
+#inputWord 9 2015
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#deleted 8 from
+#map ; director; 3; 0; director.name (1.0); company.name (0.55285); movie.title (1.0); producer.name (1.0); writer.name (1.0)
+director :: director.name (1.0)
+#map ; movie; 6; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Joy; 7; 3; actor.name (1.0); company.name (1.0); director.name (1.0); movie.title (1.0)#0#Joy#Joy#Joy#Joy#Joy; producer.name (1.0)
+Joy :: movie.title = Joy (1.0)
+#mapNum ; 2015; 9; 0; movie.release_year (0.99995); tv_series.release_year (0.99995)
+2015 :: movie.release_year = 2015 (0.99995)
+#general 0
+#general Find the director of movie of Joy 2015. 
+#general Find the director of movie 2015 of Joy. 
+#general Find the director of movie of Joy of 2015. 
+#general Find the director of movie of Joy of 2015. 
+#explicit Find 
+#explicit the director 
+#explicit of movie 
+#explicit of Joy 
+#explicit 2015. 
+#result ###director.name
+
+QUERY 125: Find all movies featuring "Jason Robards" and "Woody Strode"
+TOTAL INTERPS COUNT: 1
+actor(cast(movie,tv_series(cast#1(actor#1))))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Jason Robards" AND actor.name = "Woody Strode" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Jason Robards
+#inputWord 6 and
+#inputWord 7 Woody Strode
+#deleted 4 featuring
+#deleted 6 and
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Jason Robards; 5; 0; actor.name (1.0)#0#Jason Robards#Jason Robards#Jason Robards III#Jason Robards Sr.#Jason Robards Jr.; producer.name (0.912999); director.name (0.8944271909999159); writer.name (0.8944271909999159); cast.role (0.848528137423857)
+Jason Robards :: actor.name = Jason Robards (1.0)
+#map ; Woody Strode; 7; 0; actor.name (1.0)#0#Woody Strode#Woody Stroode#Woody K. Strode#Woodrow Strode#Clay Strode; writer.name (0.9999994999999999); cast.role (0.816496580927726); producer.name (0.7801894976054939); movie.title (0.7637626158259734)
+Woody Strode :: actor.name = Woody Strode (1.0)
+#general 0
+#general Find the movies of "Jason Robards" of "Woody Strode". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Jason Robards" 
+#explicit of "Woody Strode". 
+#result ###movie.title
+
+QUERY 18: Find the actors that were born in Tehran
+TOTAL INTERPS COUNT: 5
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "Tehran"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actors
+#inputWord 4 that
+#inputWord 5 were
+#inputWord 6 born
+#inputWord 7 in
+#inputWord 8 Tehran
+#deleted 2 the
+#deleted 4 that
+#deleted 5 were
+#deleted 6 born
+#deleted 7 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Tehran; 8; 0; actor.birth_city (1.0)#0#Tehran#Tehran#Tehran#Tehran#Tehran; cast.role (1.0); director.birth_city (1.0); keyword.keyword (1.0); movie.title (1.0)
+Tehran :: actor.birth_city = Tehran (1.0)
+#general 0
+#general Find the actors in Tehran. 
+#explicit Find 
+#explicit the actors 
+#explicit in Tehran. 
+#result ###actor.name
+
+QUERY 90: Find the number of movies that were produced in the year 2012
+TOTAL INTERPS COUNT: 15
+copyright(movie,tv_series)
+SELECT DISTINCT count(movie.title)
+FROM movie, tv_series, classification
+WHERE tv_series.release_year = 2012 AND movie.mid = classification.msid AND classification.msid = tv_series.sid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 that
+#inputWord 7 were
+#inputWord 8 produced
+#inputWord 9 in
+#inputWord 10 the
+#inputWord 11 year
+#inputWord 12 2012
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 7 were
+#deleted 8 produced
+#deleted 9 in
+#deleted 10 the
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; year; 11; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#mapNum ; 2012; 12; 2; actor.birth_year (0.99995); movie.release_year (0.99995); tv_series.release_year (0.99995)
+2012 :: tv_series.release_year = 2012 (0.99995)
+#general 0
+#general Find the number of movies in year of 2012. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit in year 
+#explicit of 2012. 
+#result ###count(movie.title)
+
+QUERY 1: Find the year of the movie "Dead Poets Society"
+TOTAL INTERPS COUNT: 15
+movie
+SELECT DISTINCT movie.release_year
+FROM movie
+WHERE movie.title = "Dead Poets Society"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 year
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Dead Poets Society
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; year; 3; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#map ; Dead Poets Society; 7; 0; movie.title (1.0)#0#Dead Poets Society#Dead Worst Poets Society#Dead Society#Dead Votes Society#Dead Students Society; keyword.keyword (0.0); actor.name (0.7905694150420949); cast.role (0.7745966692414834); company.name (0.7669649888473704)
+Dead Poets Society :: movie.title = Dead Poets Society (1.0)
+#map ; movie; 6; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the year of "Dead Poets Society" of movie. 
+#explicit Find 
+#explicit the year 
+#explicit of "Dead Poets Society" 
+#explicit of movie. 
+#result ###movie.release_year
+
+QUERY 68: Find all movies about Iraq war
+TOTAL INTERPS COUNT: 25
+actor(cast(movie(written_by(writer))))
+SELECT DISTINCT movie.title
+FROM movie, actor, writer, cast, written_by
+WHERE actor.name = "War" AND writer.nationality = "Iraq" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = written_by.msid AND written_by.wid = writer.wid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 about
+#inputWord 5 Iraq
+#inputWord 6 war
+#deleted 4 about
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; war; 6; 0; actor.name (1.0)#0#War#War#War#War#Roy War; company.name (1.0); genre.genre (1.0); producer.name (1.0); tv_series.title (1.0)
+war :: actor.name = War (1.0)
+#map ; Iraq; 5; 4; actor.nationality (1.0); director.nationality (1.0); movie.title (1.0); producer.nationality (1.0); writer.nationality (1.0)#0#Iraq#Iraq#Iraq#Iraq#Iraq
+Iraq :: writer.nationality = Iraq (1.0)
+#general 0
+#general Find the movies of war of Iraq. 
+#explicit Find 
+#explicit the movies 
+#explicit of war 
+#explicit of Iraq. 
+#result ###movie.title
+
+QUERY 24: Find the actor who acted "John Nash" in the movie "A Beautiful Mind"
+TOTAL INTERPS COUNT: 12
+Warning: TIE!
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE cast.role = "John Nash" AND movie.title = "A Beautiful Mind" AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actor
+#inputWord 4 who
+#inputWord 5 acted
+#inputWord 6 John Nash
+#inputWord 7 in
+#inputWord 8 the
+#inputWord 9 movie
+#inputWord 10 A Beautiful Mind
+#deleted 2 the
+#deleted 4 who
+#deleted 5 acted
+#deleted 7 in
+#deleted 8 the
+#map ; actor; 3; 0; actor.name (1.0); movie.title (0.76225); tv_series.title (1.0); producer.name (0.968421052631579); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; John Nash; 6; 1; actor.name (1.0); cast.role (1.0)#0#John Nash#Johan Nash#Johan Nash#Joan Nash#Joan Nash; director.name (1.0); writer.name (1.0); producer.name (0.9114)
+John Nash :: cast.role = John Nash (1.0)
+#map ; A Beautiful Mind; 10; 0; movie.title (1.0)#0#A Beautiful Mind#Beautiful Mind#A Beautiful Sexy Mind#A Beautiful Behind#A Beautiful Mess; tv_series.title (0.9241495); cast.role (0.8944271909999159); producer.name (0.8498365855987975); actor.name (0.8451542547285166)
+A Beautiful Mind :: movie.title = A Beautiful Mind (1.0)
+#map ; movie; 9; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the actor of "John Nash" of movie in "A Beautiful Mind". 
+#general Find the actor of "John Nash" in "A Beautiful Mind" of movie. 
+#explicit Find 
+#explicit the actor 
+#explicit of "John Nash" 
+#explicit of movie 
+#explicit in "A Beautiful Mind". 
+#result ###actor.name
+
+01:27  INFO: ===== FOLD 2 =====
+01:27  INFO: ===== Parsing Results =====
+01:27  INFO: Total Queries: 95
+01:27  INFO: Correctly Parsed: 95/95
+
+QUERY 26: Find all movies featuring "Kate Winslet"
+TOTAL INTERPS COUNT: 1
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Kate Winslet" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Kate Winslet
+#deleted 4 featuring
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Kate Winslet; 5; 0; actor.name (1.0)#0#Kate Winslet#Kate Wing#Ainslee Kate#Kate Elizabeth Winslet#Kate Wilkinson; cast.role (0.9999990000000001); producer.name (0.816496580927726); writer.name (0.816496580927726); director.name (0.7745966692414834)
+Kate Winslet :: actor.name = Kate Winslet (1.0)
+#general 0
+#general Find the movies of "Kate Winslet". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Kate Winslet". 
+#result ###movie.title
+
+QUERY 128: Find the latest movie which "Gabriele Ferzetti" acted in
+TOTAL INTERPS COUNT: 1
+actor(cast(movie))
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 latest
+#inputWord 4 movie
+#inputWord 5 which
+#inputWord 6 Gabriele Ferzetti
+#inputWord 7 acted
+#inputWord 8 in
+#deleted 2 the
+#deleted 5 which
+#deleted 7 acted
+#deleted 8 in
+#map ; movie; 4; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Gabriele Ferzetti; 6; 0; actor.name (1.0)#0#Gabriele Ferzetti#Gabriel Ferzetti#Gabriele Fest#Gabriele Ferraro#Gabriele Ferluga; cast.role (0.0); director.name (0.842423539174232); writer.name (0.842423539174232); producer.name (0.82915619758885)
+Gabriele Ferzetti :: actor.name = Gabriele Ferzetti (1.0)
+
+QUERY 70: Give me the name of all the actors from Afghanistan
+TOTAL INTERPS COUNT: 125
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE cast.role = "Actors" AND movie.title = "Afghanistan" AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Give
+#inputWord 2 me
+#inputWord 3 the
+#inputWord 4 name
+#inputWord 5 of
+#inputWord 6 all
+#inputWord 7 the
+#inputWord 8 actors
+#inputWord 9 from
+#inputWord 10 Afghanistan
+#deleted 2 me
+#deleted 3 the
+#deleted 5 of
+#deleted 7 the
+#deleted 9 from
+#map ; name; 4; 4; director.name (1.0); company.name (1.0); producer.name (1.0); writer.name (1.0); actor.name (1.0)
+name :: actor.name (1.0)
+#map ; actors; 8; 1; actor.name (0.9999999); cast.role (1.0)#0#Actors#Actors#Actors#Actors#Actors; keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: cast.role = Actors (1.0)
+#map ; Afghanistan; 10; 4; actor.nationality (1.0); actor.birth_city (1.0); director.nationality (1.0); keyword.keyword (1.0); movie.title (1.0)#0#Afghanistan#Afghanistan#Afghanistan 1979#Exit Afghanistan#Afghanistan Rising
+Afghanistan :: movie.title = Afghanistan (1.0)
+#general 0
+#general Give the name of actors of Afghanistan. 
+#explicit Give 
+#explicit the name 
+#explicit of actors 
+#explicit of Afghanistan. 
+#result ###actor.name
+
+QUERY 107: Find the number of female actors that were born in "New York City" after 1980
+TOTAL INTERPS COUNT: 125
+actor
+SELECT DISTINCT count(actor.birth_city), block_1.count, block_2.count
+FROM actor, (SELECT count(actor.name) as count FROM actor WHERE actor.gender = "female" GROUP BY actor.birth_city) block_1, 
+(SELECT count(actor.birth_year) as count FROM actor) block_2
+WHERE block_1.count > block_2.count
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 female
+#inputWord 6 actors
+#inputWord 7 that
+#inputWord 8 were
+#inputWord 9 born
+#inputWord 10 in
+#inputWord 11 New York City
+#inputWord 12 after
+#inputWord 13 1980
+#deleted 2 the
+#deleted 4 of
+#deleted 7 that
+#deleted 8 were
+#deleted 9 born
+#deleted 10 in
+#map ; actors; 6; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; female; 5; 0; actor.gender (1.0)#0#female#female#female#female#female; cast.role (1.0); director.gender (1.0); keyword.keyword (1.0); movie.title (1.0)
+female :: actor.gender = female (1.0)
+#map ; New York City; 11; 0; actor.birth_city (0.71295); cast.role (0.53025); director.birth_city (0.71295); movie.title (0.54925); producer.birth_city (0.71295)
+New York City :: actor.birth_city (0.71295)
+#map ; 1980; 13; 3; director.birth_year (0.0); writer.birth_year (0.0); producer.birth_year (0.0); actor.birth_year (0.0); tv_series.release_year (0.0)
+1980 :: actor.birth_year (0.0)
+#general 0
+#general Find the number of in "New York City" where the actors female of the New York City is after 1980. 
+#general Find the number of actors female where the in "New York City" of the actor is after 1980. 
+#general Find the number of in "New York City" of actors where of the New York City is after 1980. 
+#general Find the number of in "New York City" where of the New York City is after 1980 of actors. 
+#general Find the actors female where the number of in "New York City" of the actor is after 1980. 
+#explicit Find 
+#explicit the number of 
+#explicit in "New York City" 
+#explicit where 
+#explicit the 
+#implicit number of 
+#explicit actors 
+#explicit female 
+#explicit of the New York City 
+#explicit is after 
+#implicit the number of 
+#explicit 1980. 
+#result ###count(actor.birth_city)###block_1.count###block_2.count
+
+QUERY 66: Find the actor playing "Alan Turing" in "The Imitation Game"
+TOTAL INTERPS COUNT: 1
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE cast.role = "Alan Turing" AND movie.title = "The Imitation Game" AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actor
+#inputWord 4 playing
+#inputWord 5 Alan Turing
+#inputWord 6 in
+#inputWord 7 The Imitation Game
+#deleted 2 the
+#deleted 4 playing
+#deleted 6 in
+#map ; actor; 3; 0; actor.name (1.0); movie.title (0.76225); tv_series.title (1.0); producer.name (0.968421052631579); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#map ; Alan Turing; 5; 0; cast.role (1.0)#0#Alan Turing#Alana Turing#Alana Turing#Alana Turing#Alana Turing; actor.name (0.89625); director.name (0.8728715609439694); writer.name (0.8728715609439694); movie.title (0.8304547985373997)
+Alan Turing :: cast.role = Alan Turing (1.0)
+#map ; The Imitation Game; 7; 0; movie.title (1.0)#0#The Imitation Game#The Imitation Game#The Immigration Game#The Intimidation Game#The Intimidation Game; cast.role (0.9482495); tv_series.title (0.8618916073713346); company.name (0.816496580927726); keyword.keyword (0.8032193289024988)
+The Imitation Game :: movie.title = The Imitation Game (1.0)
+#general 0
+#general Find the actor of "Alan Turing" in "The Imitation Game". 
+#explicit Find 
+#explicit the actor 
+#explicit of "Alan Turing" 
+#explicit in "The Imitation Game". 
+#result ###actor.name
+
+QUERY 88: What is the number of actors in the movie "Grumpier Old Men"?
+TOTAL INTERPS COUNT: 3
+actor(cast(movie))
+#inputWord 1 What
+#inputWord 2 is
+#inputWord 3 the
+#inputWord 4 number
+#inputWord 5 of
+#inputWord 6 actors
+#inputWord 7 in
+#inputWord 8 the
+#inputWord 9 movie
+#inputWord 10 Grumpier Old Men
+#deleted 1 What
+#deleted 2 is
+#deleted 3 the
+#deleted 5 of
+#deleted 7 in
+#deleted 8 the
+#map ; actors; 6; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Grumpier Old Men; 10; 0; movie.title (1.0)#0#Grumpier Old Men#Grumpy Old Men#Two Old Men#Soldier Old Man#Grumpy Old Men at Christmas; tv_series.title (0.9359500000000001); actor.name (0.816496580927726); writer.name (0.816496580927726); cast.role (0.7559289460184544)
+Grumpier Old Men :: movie.title = Grumpier Old Men (1.0)
+#map ; movie; 9; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+
+QUERY 13: Find the city "Kevin Spacey" was born
+TOTAL INTERPS COUNT: 20
+Warning: TIE!
+actor
+SELECT DISTINCT actor.birth_city
+FROM actor
+WHERE actor.name = "Kevin Spacey"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 city
+#inputWord 4 Kevin Spacey
+#inputWord 5 was
+#inputWord 6 born
+#deleted 2 the
+#deleted 5 was
+#deleted 6 born
+#map ; city; 3; 0; actor.birth_city (0.81235); director.birth_city (0.81235); producer.birth_city (0.81235); writer.birth_city (0.81235); company.country_code (0.6315500000000001)
+city :: actor.birth_city (0.81235)
+#map ; Kevin Spacey; 4; 0; actor.name (1.0)#0#Kevin Spacey#Kevin Spacey Fowler#John Spacey#Kevin Grace#Kevin Ackley; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9484)
+Kevin Spacey :: actor.name = Kevin Spacey (1.0)
+#general 0
+#general Find the city "Kevin Spacey". 
+#explicit Find 
+#explicit the city 
+#explicit "Kevin Spacey". 
+#result ###actor.birth_city
+
+QUERY 9: Find the nationality of the actor "Christoph Waltz"
+TOTAL INTERPS COUNT: 48
+actor
+SELECT DISTINCT actor.nationality
+FROM actor
+WHERE actor.name = "Christoph Waltz"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 nationality
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 actor
+#inputWord 7 Christoph Waltz
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; nationality; 3; 0; actor.nationality (1.0); director.nationality (1.0); producer.nationality (1.0); writer.nationality (1.0); keyword.keyword (0.5462)
+nationality :: actor.nationality (1.0)
+#map ; Christoph Waltz; 7; 0; actor.name (1.0)#0#Christoph Waltz#Christoph Walz#Christopher Waltz#Christoph Walder#Christoph Pfaltz; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.0)
+Christoph Waltz :: actor.name = Christoph Waltz (1.0)
+#map ; actor; 6; 0; actor.name (1.0); movie.title (1.0); tv_series.title (1.0); producer.name (0.66905); writer.name (0.968421052631579)
+actor :: actor.name (1.0)
+#general 0
+#general Find the nationality of "Christoph Waltz" of actor. 
+#explicit Find 
+#explicit the nationality 
+#explicit of "Christoph Waltz" 
+#explicit of actor. 
+#result ###actor.nationality
+
+QUERY 80: Find the genres of movies directed by "Asghar Farhadi"
+TOTAL INTERPS COUNT: 30
+actor(cast(movie(classification(genre))))
+SELECT DISTINCT genre.genre
+FROM genre, movie, actor, classification, cast
+WHERE actor.name = "Asghar Farhadi" AND genre.gid = classification.gid AND classification.msid = movie.mid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 genres
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 directed
+#inputWord 7 by
+#inputWord 8 Asghar Farhadi
+#deleted 2 the
+#deleted 4 of
+#deleted 6 directed
+#deleted 7 by
+#map ; genres; 3; 2; tv_series.num_of_episodes (0.6043495); movie.title (0.6419); genre.genre (0.9999999); tv_series.title (0.57675); cast.role (0.8947368421052632)
+genres :: genre.genre (0.9999999)
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Asghar Farhadi; 8; 0; actor.name (1.0)#0#Asghar Farhadi#Farhad Asghar#Sarina Farhadi#Asghar Khan#Asghar Shah; company.name (1.0); director.name (1.0); producer.name (1.0); writer.name (1.0)
+Asghar Farhadi :: actor.name = Asghar Farhadi (1.0)
+#general 0
+#general Find the genres of movies by "Asghar Farhadi". 
+#explicit Find 
+#explicit the genres 
+#explicit of movies 
+#explicit by "Asghar Farhadi". 
+#result ###genre.genre
+
+QUERY 49: Find the directors of all movies featuring "Kate Winslet"
+TOTAL INTERPS COUNT: 2
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT director.name
+FROM director, movie, actor, directed_by, cast
+WHERE actor.name = "Kate Winslet" AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 directors
+#inputWord 4 of
+#inputWord 5 all
+#inputWord 6 movies
+#inputWord 7 featuring
+#inputWord 8 Kate Winslet
+#deleted 2 the
+#deleted 4 of
+#deleted 7 featuring
+#map ; directors; 3; 0; director.name (0.9999999); company.name (0.6337); actor.name (0.949056873050605); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: director.name (0.9999999)
+#map ; movies; 6; 0; movie.title (0.9999999); company.name (1.0); genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Kate Winslet; 8; 0; actor.name (1.0)#0#Kate Winslet#Kate Wing#Ainslee Kate#Kate Elizabeth Winslet#Kate Wilkinson; cast.role (0.9999990000000001); producer.name (0.816496580927726); writer.name (0.816496580927726); director.name (0.7745966692414834)
+Kate Winslet :: actor.name = Kate Winslet (1.0)
+#general 0
+#general Find the directors of movies of "Kate Winslet". 
+#explicit Find 
+#explicit the directors 
+#explicit of movies 
+#explicit of "Kate Winslet". 
+#result ###director.name
+
+QUERY 31: Find all movies by directors born in "Los Angeles"
+TOTAL INTERPS COUNT: 10
+company(copyright(movie(directed_by(director))))
+SELECT DISTINCT movie.title
+FROM movie, company, director, copyright, directed_by
+WHERE company.name = "Directors" AND director.birth_city = "Los Angeles" AND movie.mid = copyright.msid AND copyright.cid = company.id AND movie.mid = directed_by.msid AND directed_by.did = director.did
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 by
+#inputWord 5 directors
+#inputWord 6 born
+#inputWord 7 in
+#inputWord 8 Los Angeles
+#deleted 4 by
+#deleted 6 born
+#deleted 7 in
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; directors; 5; 1; director.name (0.9999999); company.name (1.0)#0#Directors#Directors#Directors UK#Directors Ltd.#Directors Chair; actor.name (0.55705); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: company.name = Directors (1.0)
+#map ; Los Angeles; 8; 1; actor.birth_city (1.0); director.birth_city (1.0)#0#Los Angeles#Los Angeles#Los Angeles#Los Angeles#Los Angeles; movie.title (1.0); producer.birth_city (1.0); writer.birth_city (1.0)
+Los Angeles :: director.birth_city = Los Angeles (1.0)
+#general 0
+#general Find the movies by directors in "Los Angeles". 
+#explicit Find 
+#explicit the movies 
+#explicit by directors 
+#explicit in "Los Angeles". 
+#result ###movie.title
+
+QUERY 63: Find all the female actors born in "New York City" after 1980
+TOTAL INTERPS COUNT: 125
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.gender = "female" AND actor.birth_city = "New York City" AND actor.birth_year > 1980
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 female
+#inputWord 5 actors
+#inputWord 6 born
+#inputWord 7 in
+#inputWord 8 New York City
+#inputWord 9 after
+#inputWord 10 1980
+#deleted 3 the
+#deleted 6 born
+#deleted 7 in
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; female; 4; 0; actor.gender (1.0)#0#female#female#female#female#female; cast.role (1.0); director.gender (1.0); keyword.keyword (1.0); movie.title (1.0)
+female :: actor.gender = female (1.0)
+#map ; New York City; 8; 0; actor.birth_city (1.0)#0#New York City#New York City#New York City#New York City#New York City; cast.role (1.0); director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0)
+New York City :: actor.birth_city = New York City (1.0)
+#mapNum ; 1980; 10; 3; director.birth_year (0.9980882711079803); writer.birth_year (0.9980882711079803); producer.birth_year (0.9975874786367749); actor.birth_year (0.9966387417218543); tv_series.release_year (0.9943073354638969)
+1980 :: actor.birth_year = 1999 (0.9966387417218543)
+#general 0
+#general Find the actors female in "New York City" after 1980. 
+#explicit Find 
+#explicit the actors 
+#explicit female 
+#explicit in "New York City" 
+#explicit after 1980. 
+#result ###actor.name
+
+QUERY 120: Find who acted in the most number of movies directed by "Jim Jarmusch"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 acted
+#inputWord 4 in
+#inputWord 5 the
+#inputWord 6 most
+#inputWord 7 number
+#inputWord 8 of
+#inputWord 9 movies
+#inputWord 10 directed
+#inputWord 11 by
+#inputWord 12 Jim Jarmusch
+#deleted 2 who
+#deleted 3 acted
+#deleted 4 in
+#deleted 5 the
+#deleted 8 of
+#deleted 10 directed
+#deleted 11 by
+#map ; movies; 9; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Jim Jarmusch; 12; 0; actor.name (1.0)#0#Jim Jarmusch#Tom Jarmusch#James R. Jarmusch#Jim Jag#Jim Jarlman; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.924849)
+Jim Jarmusch :: actor.name = Jim Jarmusch (1.0)
+
+QUERY 20: Find the director of the movie "Catch Me If You Can"
+TOTAL INTERPS COUNT: 3
+directed_by(director,movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "Catch Me If You Can" AND director.did = directed_by.did AND directed_by.msid = movie.mid AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 director
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Catch Me If You Can
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; director; 3; 0; director.name (1.0); company.name (0.55285); movie.title (1.0); producer.name (1.0); writer.name (1.0)
+director :: director.name (1.0)
+#map ; Catch Me If You Can; 7; 0; movie.title (1.0)#0#Catch Me If You Can#Catch Me If You Can#Catch Me If You Can#Catch Me If You Can#Catch Me If You Can; tv_series.title (0.93155); company.name (0.8498365855987975); keyword.keyword (0.7453559924999299); cast.role (0.6948083337796512)
+Catch Me If You Can :: movie.title = Catch Me If You Can (1.0)
+#map ; movie; 6; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the director of "Catch Me If You Can" of movie. 
+#general Find the director of movie of "Catch Me If You Can". 
+#explicit Find 
+#explicit the director 
+#explicit of "Catch Me If You Can" 
+#explicit of movie. 
+#result ###director.name
+
+QUERY 28: Find all movies that are comedies that are produced in year 2015
+TOTAL INTERPS COUNT: 50
+copyright(movie,tv_series(copyright#1(movie#1)))
+SELECT DISTINCT movie.title
+FROM movie, tv_series, classification
+WHERE movie.title = "Mack's Comedies" AND tv_series.release_year = 2015 AND movie.mid = classification.msid AND classification.msid = tv_series.sid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 that
+#inputWord 5 are
+#inputWord 6 comedies
+#inputWord 7 that
+#inputWord 8 are
+#inputWord 9 produced
+#inputWord 10 in
+#inputWord 11 year
+#inputWord 12 2015
+#deleted 4 that
+#deleted 5 are
+#deleted 7 that
+#deleted 8 are
+#deleted 9 produced
+#deleted 10 in
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; comedies; 6; 3; genre.genre (0.73195); company.name (0.85795); company.name (0.50175); movie.title (0.9999994999999999)#0#Mack's Comedies#Triangle Comedies#Parkstone Comedies#H.G. Wells Comedies#How Comedies Are Born; tv_series.title (0.90345)
+comedies :: movie.title = Mack's Comedies (0.9999994999999999)
+#map ; year; 11; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#mapNum ; 2015; 12; 1; movie.release_year (0.99995); tv_series.release_year (0.99995)
+2015 :: tv_series.release_year = 2015 (0.99995)
+#general 0
+#general Find the movies in year of comedies of 2015. 
+#general Find the movies of comedies in year of 2015. 
+#explicit Find 
+#explicit the movies 
+#explicit in year 
+#explicit of comedies 
+#explicit of 2015. 
+#result ###movie.title
+
+QUERY 89: Find the number of movies "Alfred Hitchcock" directed
+TOTAL INTERPS COUNT: 20
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE movie.title = "Directed By" AND actor.name = "Alfred Hitchcock" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Alfred Hitchcock
+#inputWord 7 directed
+#deleted 2 the
+#deleted 4 of
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; directed; 7; 4; director.name (0.6349); writer.name (0.60425); producer.name (0.59415); company.name (0.93235); movie.title (0.93235)#0#Directed By#Miss Directed#Miss Directed#Directed by...#Directed by God
+directed :: movie.title = Directed By (0.93235)
+#map ; Alfred Hitchcock; 6; 0; actor.name (1.0)#0#Alfred Hitchcock#Alfred Hitchcock#Mr. Alfred Hitchcock#Sir Alfred Hitchcock#Alfred Joseph Hitchcock; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.7544489999999999)
+Alfred Hitchcock :: actor.name = Alfred Hitchcock (1.0)
+#general 0
+#general Find the number of movies of directed of "Alfred Hitchcock". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of directed 
+#explicit of "Alfred Hitchcock". 
+#result ###count(movie.title)
+
+QUERY 62: Find all actors from Italy born after 1980
+TOTAL INTERPS COUNT: 20
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.nationality = "Italy" AND actor.birth_year > 1980
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 from
+#inputWord 5 Italy
+#inputWord 6 born
+#inputWord 7 after
+#inputWord 8 1980
+#deleted 4 from
+#deleted 6 born
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Italy; 5; 0; actor.nationality (1.0)#0#Italy#Italy#Italy#Italy#Italy; director.nationality (1.0); producer.nationality (1.0); writer.nationality (1.0); company.name (0.0)
+Italy :: actor.nationality = Italy (1.0)
+#mapNum ; 1980; 8; 3; director.birth_year (0.9980882711079803); writer.birth_year (0.9980882711079803); producer.birth_year (0.9975874786367749); actor.birth_year (0.9966387417218543); tv_series.release_year (0.9943073354638969)
+1980 :: actor.birth_year = 1999 (0.9966387417218543)
+#general 0
+#general Find the actors Italy after 1980. 
+#explicit Find 
+#explicit the actors 
+#explicit Italy 
+#explicit after 1980. 
+#result ###actor.name
+
+QUERY 123: Find the actors who played in the latest movie by "Quentin Tarantino"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie,tv_series(cast#1(actor#1))))
+SELECT DISTINCT actor.name, block_1.count, max()
+FROM actor, (SELECT count(movie.title) as count, actor.name, max() FROM movie, actor, cast WHERE movie.mid = cast.msid AND cast.aid = actor.aid GROUP BY actor.name) block_1
+WHERE block_1.count = latest AND actor.name = "Quentin Tarantino" AND actor.name = block_1.name
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 played
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 latest
+#inputWord 9 movie
+#inputWord 10 by
+#inputWord 11 Quentin Tarantino
+#deleted 2 the
+#deleted 4 who
+#deleted 5 played
+#deleted 6 in
+#deleted 7 the
+#deleted 10 by
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; movie; 9; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Quentin Tarantino; 11; 0; actor.name (1.0)#0#Quentin Tarantino#Quentin Tarrantino#Quentin Jerome Tarantino#Loren Tarantino#Quentin Martin; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.0)
+Quentin Tarantino :: actor.name = Quentin Tarantino (1.0)
+#general 0
+#general Find the actors by "Quentin Tarantino" where the in movie of the actor is the most. 
+#general Find the actors where the in movie by "Quentin Tarantino" is the most. 
+#general Find the in movie where the actors by "Quentin Tarantino" of the movie is the most. 
+#general Find the in movie by "Quentin Tarantino" where the actors of the movie is the most. 
+#explicit Find 
+#explicit the actors 
+#explicit by "Quentin Tarantino" 
+#explicit where 
+#explicit the 
+#implicit number of 
+#explicit in movie 
+#explicit of the actor 
+#explicit is 
+#explicit the most. 
+#result ###actor.name###block_1.count###max()
+
+QUERY 105: Find the number of movies "Steven Spielberg" directed
+TOTAL INTERPS COUNT: 20
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE movie.title = "Directed By" AND actor.name = "Steven Spielberg" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Steven Spielberg
+#inputWord 7 directed
+#deleted 2 the
+#deleted 4 of
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; directed; 7; 4; director.name (0.6349); writer.name (0.60425); producer.name (0.59415); company.name (0.93235); movie.title (0.93235)#0#Directed By#Miss Directed#Miss Directed#Directed by...#Directed by God
+directed :: movie.title = Directed By (0.93235)
+#map ; Steven Spielberg; 6; 0; actor.name (1.0)#0#Steven Spielberg#Steve Spielberg#Stephen Spielberg#Steven Allan Spielberg#Steven Elbert; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.873299)
+Steven Spielberg :: actor.name = Steven Spielberg (1.0)
+#general 0
+#general Find the number of movies of directed of "Steven Spielberg". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of directed 
+#explicit of "Steven Spielberg". 
+#result ###count(movie.title)
+
+QUERY 108: Find the number of actors in the movie "Saving Private Ryan"
+TOTAL INTERPS COUNT: 6
+actor(cast(movie))
+SELECT DISTINCT count(actor.name)
+FROM actor, movie, cast
+WHERE movie.title = "Saving Private Ryan" AND cast.role = "Movie" AND actor.aid = cast.aid AND cast.msid = movie.mid AND actor.aid = cast.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 actors
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 movie
+#inputWord 9 Saving Private Ryan
+#deleted 2 the
+#deleted 4 of
+#deleted 6 in
+#deleted 7 the
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Saving Private Ryan; 9; 1; cast.role (1.0); movie.title (1.0)#0#Saving Private Ryan#Saving Ryan's Privates#Saving Ryan's Privates#Saving Private Brian#Making 'Saving Private Ryan'; tv_series.title (0.8535995000000001); company.name (0.762000762001143); actor.name (0.7427813527082074)
+Saving Private Ryan :: movie.title = Saving Private Ryan (1.0)
+#map ; movie; 8; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#general 0
+#general Find the number of actors in "Saving Private Ryan" movie. 
+#explicit Find 
+#explicit the number of 
+#explicit actors 
+#explicit in "Saving Private Ryan" 
+#explicit movie. 
+#result ###count(actor.name)
+
+QUERY 12: Find the birthplace of "Kevin Spacey"
+TOTAL INTERPS COUNT: 20
+actor
+Warning: TIE!
+SELECT DISTINCT actor.birth_city
+FROM actor
+WHERE actor.name = "Kevin Spacey"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 birthplace
+#inputWord 4 of
+#inputWord 5 Kevin Spacey
+#deleted 2 the
+#deleted 4 of
+#map ; birthplace; 3; 2; keyword.keyword (0.5046); movie.title (0.576); actor.birth_city (0.7039); director.birth_city (0.7039); producer.birth_city (0.7039)
+birthplace :: actor.birth_city (0.7039)
+#map ; Kevin Spacey; 5; 0; actor.name (1.0)#0#Kevin Spacey#Kevin Spacey Fowler#John Spacey#Kevin Grace#Kevin Ackley; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9484)
+Kevin Spacey :: actor.name = Kevin Spacey (1.0)
+#general 0
+#general Find the birthplace of "Kevin Spacey". 
+#explicit Find 
+#explicit the birthplace 
+#explicit of "Kevin Spacey". 
+#result ###actor.birth_city
+
+QUERY 110: find the number of actors from Iran who played in "Jim Jarmusch" movies
+TOTAL INTERPS COUNT: 20
+Warning: TIE!
+actor(cast(movie,tv_series(cast#1(actor#1))))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Jim Jarmusch" AND actor.name = "Iran" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 actors
+#inputWord 6 from
+#inputWord 7 Iran
+#inputWord 8 who
+#inputWord 9 played
+#inputWord 10 in
+#inputWord 11 Jim Jarmusch
+#inputWord 12 movies
+#deleted 2 the
+#deleted 4 of
+#deleted 6 from
+#deleted 8 who
+#deleted 9 played
+#deleted 10 in
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Iran; 7; 0; actor.name (1.0)#0#Iran#Iran Lima#Iran Eori#Iran Eory#Iran Mello; actor.nationality (1.0); director.nationality (1.0); movie.title (1.0); producer.nationality (1.0)
+Iran :: actor.name = Iran (1.0)
+#map ; movies; 12; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Jim Jarmusch; 11; 0; actor.name (1.0)#0#Jim Jarmusch#Tom Jarmusch#James R. Jarmusch#Jim Jag#Jim Jarlman; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.924849)
+Jim Jarmusch :: actor.name = Jim Jarmusch (1.0)
+#general 0
+#general find the number of in movies of actors Iran of "Jim Jarmusch". 
+#general find the number of actors Iran in movies of "Jim Jarmusch". 
+#explicit find 
+#explicit the number of 
+#explicit in movies 
+#explicit of actors 
+#explicit Iran 
+#explicit of "Jim Jarmusch". 
+#result ###count(movie.title)
+
+QUERY 3: Find the nationality of the actress "Ellen Page"
+TOTAL INTERPS COUNT: 24
+actor(cast(movie))
+SELECT DISTINCT actor.nationality
+FROM actor, movie, cast
+WHERE actor.name = "Ellen Page" AND movie.title = "Actress" AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 nationality
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 actress
+#inputWord 7 Ellen Page
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; nationality; 3; 0; actor.nationality (1.0); director.nationality (1.0); producer.nationality (1.0); writer.nationality (1.0); keyword.keyword (0.5462)
+nationality :: actor.nationality (1.0)
+#map ; Ellen Page; 7; 0; actor.name (1.0)#0#Ellen Page#Allen Page#Glen Page#Glenn Page#Ellen Cuppage; producer.name (1.0); director.name (0.9077); cast.role (0.8944271909999159); writer.name (0.8660254037844386)
+Ellen Page :: actor.name = Ellen Page (1.0)
+#map ; actress; 6; 1; actor.name (0.8965000000000001); movie.title (1.0)#0#Actress#Actress#Actress#Actress#Actress; tv_series.title (1.0); cast.role (0.9289499999999999); producer.name (0.9169960474308301)
+actress :: movie.title = Actress (1.0)
+#general 0
+#general Find the nationality of "Ellen Page" of actress. 
+#explicit Find 
+#explicit the nationality 
+#explicit of "Ellen Page" 
+#explicit of actress. 
+#result ###actor.nationality
+
+QUERY 2: Find the year that "Ellen Page" was born
+TOTAL INTERPS COUNT: 10
+actor
+SELECT DISTINCT actor.birth_year
+FROM actor
+WHERE actor.name = "Ellen Page"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 year
+#inputWord 4 that
+#inputWord 5 Ellen Page
+#inputWord 6 was
+#inputWord 7 born
+#deleted 2 the
+#deleted 4 that
+#deleted 6 was
+#deleted 7 born
+#map ; year; 3; 0; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: actor.birth_year (0.79285)
+#map ; Ellen Page; 5; 0; actor.name (1.0)#0#Ellen Page#Allen Page#Glen Page#Glenn Page#Ellen Cuppage; producer.name (1.0); director.name (0.9077); cast.role (0.8944271909999159); writer.name (0.8660254037844386)
+Ellen Page :: actor.name = Ellen Page (1.0)
+#general 0
+#general Find the year "Ellen Page". 
+#explicit Find 
+#explicit the year 
+#explicit "Ellen Page". 
+#result ###actor.birth_year
+
+QUERY 76: find all films in which "Rowan Atkinson" acted as "Mr. Bean"
+TOTAL INTERPS COUNT: 40
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Rowan Atkinson" AND cast.role = "Mr. Bean" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = cast.msid
+#inputWord 1 find
+#inputWord 2 all
+#inputWord 3 films
+#inputWord 4 in
+#inputWord 5 which
+#inputWord 6 Rowan Atkinson
+#inputWord 7 acted
+#inputWord 8 as
+#inputWord 9 Mr. Bean
+#deleted 4 in
+#deleted 5 which
+#deleted 7 acted
+#deleted 8 as
+#map ; films; 3; 0; movie.title (0.86815); cast.role (0.61015); genre.genre (0.7158); movie.release_year (0.57705); tv_series.release_year (0.57705)
+films :: movie.title (0.86815)
+#map ; Rowan Atkinson; 6; 0; actor.name (1.0)#0#Rowan Atkinson#Mr. Rowan Atkinson#Dan Atkinson#Ian Atkinson#Ron Atkinson; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.94175)
+Rowan Atkinson :: actor.name = Rowan Atkinson (1.0)
+#map ; Mr. Bean; 9; 0; cast.role (1.0)#0#Mr. Bean#Mr. Bean#Mr. Bean#Mr. Bean#Mr. Bean; tv_series.title (1.0); actor.name (0.8168995); producer.name (0.816496580927726); writer.name (0.816496580927726)
+Mr. Bean :: cast.role = Mr. Bean (1.0)
+#general 0
+#general find the films of "Rowan Atkinson" of "Mr. Bean". 
+#explicit find 
+#explicit the films 
+#explicit of "Rowan Atkinson" 
+#explicit of "Mr. Bean". 
+#result ###movie.title
+
+QUERY 106: Find the number of movies Netflix produced
+TOTAL INTERPS COUNT: 2
+keyword(tags(movie(made_by(producer))))
+SELECT DISTINCT count(movie.title)
+FROM movie, producer, keyword, made_by, tags
+WHERE keyword.keyword = "netflix" AND movie.mid = made_by.msid AND made_by.pid = producer.pid AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Netflix
+#inputWord 7 produced
+#deleted 2 the
+#deleted 4 of
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; produced; 7; 0; producer.name (0.9999999); director.name (0.92465); writer.name (0.9074852129730301); tv_series.num_of_episodes (0.8880035271352755); company.name (0.8819171036881969)
+produced :: producer.name (0.9999999)
+#map ; Netflix; 6; 1; company.name (1.0); keyword.keyword (1.0)#0#netflix#netflix-series#netflix-production#reference-to-netflix; cast.role (0.9274); movie.title (0.7745966692414834); tv_series.title (0.6928203230275509)
+Netflix :: keyword.keyword = netflix (1.0)
+#general 0
+#general Find the number of movies of produced of Netflix. 
+#general Find the number of movies of produced of Netflix. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of produced 
+#explicit of Netflix. 
+#result ###count(movie.title)
+
+QUERY 45: Find who directed the movie "Inglourious Basterds"
+TOTAL INTERPS COUNT: 12
+cast(movie)
+SELECT DISTINCT movie.title
+FROM movie, cast
+WHERE cast.role = "Movie" AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 directed
+#inputWord 4 the
+#inputWord 5 movie
+#inputWord 6 Inglourious Basterds
+#deleted 2 who
+#deleted 3 directed
+#deleted 4 the
+#map ; Inglourious Basterds; 6; 0; movie.title (0.6834995); cast.role (0.6038495); writer.name (0.5836495); genre.genre (0.6211495)
+Inglourious Basterds :: movie.title (0.6834995)
+#map ; movie; 5; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#general 0
+#general Find the "Inglourious Basterds" movie. 
+#explicit Find 
+#explicit the "Inglourious Basterds" 
+#explicit movie. 
+#result ###movie.title
+
+QUERY 73: Find the actors who played in the movie "Camp X-Ray"
+TOTAL INTERPS COUNT: 3
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, movie, cast
+WHERE movie.title = "Camp X-Ray" AND cast.role = "Movie" AND actor.aid = cast.aid AND cast.msid = movie.mid AND actor.aid = cast.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 played
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 movie
+#inputWord 9 Camp X-Ray
+#deleted 2 the
+#deleted 4 who
+#deleted 5 played
+#deleted 6 in
+#deleted 7 the
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Camp X-Ray; 9; 0; movie.title (1.0)#0#Camp X-Ray#Camp X#Camp X#The X-Ray#Camp 30; keyword.keyword (0.0); cast.role (0.816496580927726); actor.name (0.7905694150420949); company.name (0.7844645405527362)
+Camp X-Ray :: movie.title = Camp X-Ray (1.0)
+#map ; movie; 8; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#general 0
+#general Find the actors in "Camp X-Ray" movie. 
+#explicit Find 
+#explicit the actors 
+#explicit in "Camp X-Ray" 
+#explicit movie. 
+#result ###actor.name
+
+QUERY 22: Find the genre of the movie "Jurassic Park"
+TOTAL INTERPS COUNT: 12
+cast(movie(classification(genre)))
+SELECT DISTINCT genre.genre
+FROM genre, movie, cast, classification
+WHERE movie.title = "Jurassic Park" AND cast.role = "Movie" AND genre.gid = classification.gid AND classification.msid = movie.mid AND genre.gid = classification.gid AND classification.msid = movie.mid AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 genre
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Jurassic Park
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; genre; 3; 4; tv_series.num_of_episodes (0.6168495); keyword.keyword (0.6037); movie.title (0.72865); movie.title (0.72865); genre.genre (1.0)
+genre :: genre.genre (1.0)
+#map ; Jurassic Park; 7; 0; movie.title (1.0)#0#Jurassic Park#Jurassic Park#Jurassic Park 4&5#Jurassic Park III#Jurassic Bark; company.name (0.7323); cast.role (0.9258200997725514); keyword.keyword (0.9128709291752769); actor.name (0.909717652294684)
+Jurassic Park :: movie.title = Jurassic Park (1.0)
+#map ; movie; 6; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#general 0
+#general Find the genre of "Jurassic Park" of movie. 
+#explicit Find 
+#explicit the genre 
+#explicit of "Jurassic Park" 
+#explicit of movie. 
+#result ###genre.genre
+
+QUERY 55: Find all movies featuring "Kevin Spacey"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Kevin Spacey" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Kevin Spacey
+#deleted 4 featuring
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Kevin Spacey; 5; 0; actor.name (1.0)#0#Kevin Spacey#Kevin Spacey Fowler#John Spacey#Kevin Grace#Kevin Ackley; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9484)
+Kevin Spacey :: actor.name = Kevin Spacey (1.0)
+#general 0
+#general Find the movies of "Kevin Spacey". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Kevin Spacey". 
+#result ###movie.title
+
+QUERY 19: Find all movies directed by "Steven Spielberg" after 2006
+TOTAL INTERPS COUNT: 16
+directed_by(director,movie)
+SELECT DISTINCT movie.title
+FROM movie, director, directed_by
+WHERE director.name = "Steven Spielberg" AND movie.release_year > 2006 AND movie.mid = directed_by.msid AND directed_by.did = director.did
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 directed
+#inputWord 5 by
+#inputWord 6 Steven Spielberg
+#inputWord 7 after
+#inputWord 8 2006
+#deleted 4 directed
+#deleted 5 by
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Steven Spielberg; 6; 1; actor.name (1.0); director.name (1.0)#0#Steven Spielberg#Steve Spielberg#Steven Spiel#Stephen Spielberg#Steven Allan Spielberg; producer.name (1.0); writer.name (1.0); movie.title (0.873299)
+Steven Spielberg :: director.name = Steven Spielberg (1.0)
+#mapNum ; 2006; 8; 3; producer.birth_year (0.999327645008713); tv_series.release_year (0.9989053278280768); actor.birth_year (0.9988556904098687); movie.release_year (0.9984589463220677)
+2006 :: movie.release_year = 2012 (0.9984589463220677)
+#general 0
+#general Find the movies by "Steven Spielberg" after 2006. 
+#explicit Find 
+#explicit the movies 
+#explicit by "Steven Spielberg" 
+#explicit after 2006. 
+#result ###movie.title
+
+QUERY 17: Find the budget of "Finding Nemo"
+TOTAL INTERPS COUNT: 2
+movie
+SELECT DISTINCT movie.budget
+FROM movie
+WHERE movie.title = "Finding Nemo"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 budget
+#inputWord 4 of
+#inputWord 5 Finding Nemo
+#deleted 2 the
+#deleted 4 of
+#map ; budget; 3; 0; movie.budget (1.0); tv_series.budget (1.0); keyword.keyword (0.52875); movie.title (1.0); tv_series.title (1.0)
+budget :: movie.budget (1.0)
+#map ; Finding Nemo; 5; 0; movie.title (1.0)#0#Finding Nemo#Finding Emo#Finding Neo#Finding Nell#Finding No; company.name (0.76955); tv_series.title (0.8528028654224418); cast.role (0.8401680504168059); keyword.keyword (0.8340576562282991)
+Finding Nemo :: movie.title = Finding Nemo (1.0)
+#general 0
+#general Find the budget of "Finding Nemo". 
+#explicit Find 
+#explicit the budget 
+#explicit of "Finding Nemo". 
+#result ###movie.budget
+
+01:57  INFO: ===== FOLD 3 =====
+01:57  INFO: ===== Parsing Results =====
+01:57  INFO: Total Queries: 95
+01:57  INFO: Correctly Parsed: 95/95
+
+QUERY 56: Find the director of the series "House of Cards" produced by Netflix
+TOTAL INTERPS COUNT: 6
+Warning: TIE!
+company(copyright#1(tv_series(directed_by(director),tags(keyword),tags#1(keyword#1))))
+SELECT DISTINCT director.name
+FROM director, company, keyword, directed_by, movie, copyright, tags
+WHERE company.name = "House of Cards" AND keyword.keyword = "series" AND keyword.keyword = "netflix" AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = copyright.msid AND copyright.cid = company.id AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 director
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 series
+#inputWord 7 House of Cards
+#inputWord 8 produced
+#inputWord 9 by
+#inputWord 10 Netflix
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#deleted 8 produced
+#deleted 9 by
+#map ; director; 3; 0; director.name (1.0); company.name (0.55285); movie.title (1.0); producer.name (1.0); writer.name (1.0)
+director :: director.name (1.0)
+#map ; House of Cards; 7; 0; company.name (1.0)#0#House of Cards#House of C#House of Fear#House of Gary#House of Dare; movie.title (1.0); tv_series.title (1.0); cast.role (0.906049); keyword.keyword (0.8320502943378437)
+House of Cards :: company.name = House of Cards (1.0)
+#map ; series; 6; 0; keyword.keyword (1.0)#0#series#tv-series#web-series#dvd-series#fan-series; tv_series.title (0.8351); movie.title (0.9666316223196156); company.name (0.9534625892455924); genre.genre (0.9375)
+series :: keyword.keyword = series (1.0)
+#map ; Netflix; 10; 1; company.name (1.0); keyword.keyword (1.0)#0#netflix#netflix-series#netflix-production#reference-to-netflix; cast.role (0.9274); movie.title (0.7745966692414834); tv_series.title (0.6928203230275509)
+Netflix :: keyword.keyword = netflix (1.0)
+#general 0
+#general Find the director of "House of Cards" of series by Netflix. 
+#explicit Find 
+#explicit the director 
+#explicit of "House of Cards" 
+#explicit of series 
+#explicit by Netflix. 
+#result ###director.name
+
+QUERY 74: Find all actors from Canada who acted in "James Bond" movies
+TOTAL INTERPS COUNT: 20
+actor(cast#1(tv_series(cast#2(actor#1),copyright#1(company#1),copyright#2(company))))
+SELECT DISTINCT actor.name
+FROM actor, company, cast, movie, copyright
+WHERE company.name = "Canada" AND company.name = "Movies" AND actor.name = "James Bond" AND actor.aid = cast.aid AND cast.msid = movie.mid AND movie.mid = copyright.msid AND copyright.cid = company.id AND actor.aid = cast.aid AND cast.msid = movie.mid AND movie.mid = copyright.msid AND copyright.cid = company.id
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 from
+#inputWord 5 Canada
+#inputWord 6 who
+#inputWord 7 acted
+#inputWord 8 in
+#inputWord 9 James Bond
+#inputWord 10 movies
+#deleted 4 from
+#deleted 6 who
+#deleted 7 acted
+#deleted 8 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Canada; 5; 2; actor.name (1.0); actor.nationality (1.0); company.name (1.0)#0#Canada#Canada#EA Canada#Canada TV#FX Canada; director.name (1.0); director.nationality (1.0)
+Canada :: company.name = Canada (1.0)
+#map ; movies; 10; 1; movie.title (0.9999999); company.name (1.0)#0#Movies#V-Movies#W Movies#B Movies#Q Movies; genre.genre (0.7335); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: company.name = Movies (1.0)
+#map ; James Bond; 9; 0; actor.name (1.0)#0#James Bond#James Bone#James Bonn#James Blond#James Bos; movie.title (1.0); cast.role (0.97055); producer.name (0.9258200997725514); director.name (0.9074852129730301)
+James Bond :: actor.name = James Bond (1.0)
+#general 0
+#general Find the actors of Canada in movies "James Bond". 
+#explicit Find 
+#explicit the actors 
+#explicit of Canada 
+#explicit in movies 
+#explicit "James Bond". 
+#result ###actor.name
+
+QUERY 85: Find the movies related to nuclear weapons
+TOTAL INTERPS COUNT: 6
+actor(cast(movie),cast#1(movie#1))
+SELECT DISTINCT movie.title
+FROM movie, cast
+WHERE cast.role = "Weapons" AND movie.title = "Nuclear" AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movies
+#inputWord 4 related
+#inputWord 5 to
+#inputWord 6 nuclear
+#inputWord 7 weapons
+#deleted 2 the
+#deleted 4 related
+#deleted 5 to
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; weapons; 7; 0; cast.role (1.0)#0#Weapons#Weapons#Weapons#Weapons Man#Weapons Man; movie.title (1.0); cast.role (0.54145); movie.release_year (0.8764049801863965); tv_series.release_year (0.8764049801863965)
+weapons :: cast.role = Weapons (1.0)
+#map ; nuclear; 6; 2; company.name (1.0); keyword.keyword (1.0); movie.title (1.0)#0#Nuclear#Nuclear Age#Nuclear Day#Nuclear UK?#Nuclear Days; cast.role (0.9302); tv_series.title (0.8660254037844386)
+nuclear :: movie.title = Nuclear (1.0)
+#general 0
+#general Find the movies of weapons of nuclear. 
+#explicit Find 
+#explicit the movies 
+#explicit of weapons 
+#explicit of nuclear. 
+#result ###movie.title
+
+QUERY 65: Find who acts as "Alan Turing" in the movie "The Imitation Game"
+TOTAL INTERPS COUNT: 15
+cast(movie)
+SELECT DISTINCT movie.title
+FROM movie, cast
+WHERE cast.role = "Movie" AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 who
+#inputWord 3 acts
+#inputWord 4 as
+#inputWord 5 Alan Turing
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 movie
+#inputWord 9 The Imitation Game
+#deleted 2 who
+#deleted 3 acts
+#deleted 4 as
+#deleted 5 Alan Turing
+#deleted 6 in
+#deleted 7 the
+#map ; The Imitation Game; 9; 0; movie.title (0.6456500000000001); cast.role (0.5730999999999999); tv_series.title (0.62695); company.name (0.5792); keyword.keyword (0.54905)
+The Imitation Game :: movie.title (0.6456500000000001)
+#map ; movie; 8; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#general 0
+#general Find the in "The Imitation Game" movie. 
+#explicit Find 
+#explicit the in "The Imitation Game" 
+#explicit movie. 
+#result ###movie.title
+
+QUERY 99: Find the number of movies about Persians that were released after 1990
+TOTAL INTERPS COUNT: 25
+actor(cast(movie))
+SELECT DISTINCT count(movie.title), block_1.count, block_2.count
+FROM movie, (SELECT count(actor.name) as count FROM actor, movie, cast WHERE actor.aid = cast.aid AND cast.msid = movie.mid GROUP BY movie.title) block_1, 
+(SELECT count(actor.birth_year) as count FROM actor) block_2
+WHERE block_1.count > block_2.count
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 about
+#inputWord 7 Persians
+#inputWord 8 that
+#inputWord 9 were
+#inputWord 10 released
+#inputWord 11 after
+#inputWord 12 1990
+#deleted 2 the
+#deleted 4 of
+#deleted 6 about
+#deleted 8 that
+#deleted 9 were
+#deleted 10 released
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Persians; 7; 0; actor.name (0.0); company.name (0.0); director.name (0.0); genre.genre (0.0); writer.name (0.0)
+Persians :: actor.name (0.0)
+#map ; 1990; 12; 3; writer.birth_year (0.0); producer.birth_year (0.0); director.birth_year (0.0); actor.birth_year (0.0); tv_series.release_year (0.0)
+1990 :: actor.birth_year (0.0)
+#general 0
+#general Find the number of movies where the Persians of the movie is after 1990. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit where 
+#explicit the 
+#implicit number of 
+#explicit Persians 
+#explicit of the movie 
+#explicit is after 
+#implicit the number of 
+#explicit 1990. 
+#result ###count(movie.title)###block_1.count###block_2.count
+
+QUERY 38: Find all movies featuring "Benedict Cumberbatch"
+TOTAL INTERPS COUNT: 2
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Benedict Cumberbatch" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Benedict Cumberbatch
+#deleted 4 featuring
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Benedict Cumberbatch; 5; 0; actor.name (1.0)#0#Benedict Cumberbatch#Benedict Timothy Carlton Cumberbatch#Scott Cumberbatch#Scott Owen Cumberbatch#Michael Cumberbatch; producer.name (1.0); cast.role (0.643349); director.name (0.8043996665398437); writer.name (0.7928249671720918)
+Benedict Cumberbatch :: actor.name = Benedict Cumberbatch (1.0)
+#general 0
+#general Find the movies of "Benedict Cumberbatch". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Benedict Cumberbatch". 
+#result ###movie.title
+
+QUERY 57: Find the director of the tv series "House of Cards" from 2013
+TOTAL INTERPS COUNT: 45
+directed_by(director,tv_series(tags(keyword)))
+SELECT DISTINCT director.name
+FROM director, keyword, tv_series, directed_by, movie, tags
+WHERE keyword.keyword = "series" AND tv_series.title = "House of Cards" AND tv_series.release_year = 2013 AND director.did = directed_by.did AND directed_by.msid = movie.mid AND movie.mid = tags.msid AND tags.kid = keyword.id AND director.did = directed_by.did AND directed_by.msid = tv_series.sid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 director
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 tv
+#inputWord 7 series
+#inputWord 8 House of Cards
+#inputWord 9 from
+#inputWord 10 2013
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#deleted 9 from
+#map ; director; 3; 0; director.name (1.0); company.name (0.55285); movie.title (1.0); producer.name (1.0); writer.name (1.0)
+director :: director.name (1.0)
+#map ; series; 7; 0; keyword.keyword (1.0)#0#series#tv-series#web-series#dvd-series#fan-series; tv_series.title (0.8351); movie.title (0.9666316223196156); company.name (0.9534625892455924); genre.genre (0.9375)
+series :: keyword.keyword = series (1.0)
+#map ; tv; 6; 0; tv_series.title (0.9249); genre.genre (0.5698); cast.role (0.5589999999999999); movie.title (0.67045); movie.release_year (0.50445)
+tv :: tv_series.title (0.9249)
+#map ; House of Cards; 8; 2; company.name (1.0); movie.title (1.0); tv_series.title (1.0)#0#House of Cards#House of Cards#House of Card#House of Cars#House of Caradus; cast.role (0.906049); keyword.keyword (0.8320502943378437)
+House of Cards :: tv_series.title = House of Cards (1.0)
+#mapNum ; 2013; 10; 2; actor.birth_year (0.99995); movie.release_year (0.99995); tv_series.release_year (0.99995)
+2013 :: tv_series.release_year = 2013 (0.99995)
+#general 0
+#general Find the director of series of tv of "House of Cards" of 2013. 
+#general Find the director of series of tv of 2013 of "House of Cards". 
+#general Find the director of series of tv of "House of Cards" of 2013. 
+#general Find the director of series of tv of "House of Cards" of 2013. 
+#explicit Find 
+#explicit the director 
+#explicit of series 
+#explicit of tv 
+#explicit of "House of Cards" 
+#explicit of 2013. 
+#result ###director.name
+
+QUERY 14: Find the nationality of "Kevin Spacey"
+TOTAL INTERPS COUNT: 16
+actor
+SELECT DISTINCT actor.nationality
+FROM actor
+WHERE actor.name = "Kevin Spacey"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 nationality
+#inputWord 4 of
+#inputWord 5 Kevin Spacey
+#deleted 2 the
+#deleted 4 of
+#map ; nationality; 3; 0; actor.nationality (1.0); director.nationality (1.0); producer.nationality (1.0); writer.nationality (1.0); keyword.keyword (0.5462)
+nationality :: actor.nationality (1.0)
+#map ; Kevin Spacey; 5; 0; actor.name (1.0)#0#Kevin Spacey#Kevin Spacey Fowler#John Spacey#Kevin Grace#Kevin Ackley; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9484)
+Kevin Spacey :: actor.name = Kevin Spacey (1.0)
+#general 0
+#general Find the nationality of "Kevin Spacey". 
+#explicit Find 
+#explicit the nationality 
+#explicit of "Kevin Spacey". 
+#result ###actor.nationality
+
+QUERY 61: Find the number of movies that are directed by "Steven Spielberg" and featuring "Matt Damon"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Matt Damon" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 that
+#inputWord 7 are
+#inputWord 8 directed
+#inputWord 9 by
+#inputWord 10 Steven Spielberg
+#inputWord 11 and
+#inputWord 12 featuring
+#inputWord 13 Matt Damon
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 7 are
+#deleted 8 directed
+#deleted 9 by
+#deleted 10 Steven Spielberg
+#deleted 11 and
+#deleted 12 featuring
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Matt Damon; 13; 0; actor.name (1.0)#0#Matt Damon#Matt Diamond#Matt Damun#Matt Day#Matt Day; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9709995)
+Matt Damon :: actor.name = Matt Damon (1.0)
+#general 0
+#general Find the number of movies of "Matt Damon". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Matt Damon". 
+#result ###count(movie.title)
+
+QUERY 100: Find the number of movies that "Matt Damon" directed
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Matt Damon" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 that
+#inputWord 7 Matt Damon
+#inputWord 8 directed
+#deleted 2 the
+#deleted 4 of
+#deleted 6 that
+#deleted 8 directed
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Matt Damon; 7; 0; actor.name (1.0)#0#Matt Damon#Matt Diamond#Matt Damun#Matt Day#Matt Day; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9709995)
+Matt Damon :: actor.name = Matt Damon (1.0)
+#general 0
+#general Find the number of movies of "Matt Damon". 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Matt Damon". 
+#result ###count(movie.title)
+
+QUERY 60: Find all actors from Austin born after 1980
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "Austin" AND actor.birth_year > 1980
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 from
+#inputWord 5 Austin
+#inputWord 6 born
+#inputWord 7 after
+#inputWord 8 1980
+#deleted 4 from
+#deleted 6 born
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Austin; 5; 1; actor.name (1.0); actor.birth_city (1.0)#0#Austin#Austin#Austin#Austin#Austin; director.name (1.0); director.birth_city (1.0); movie.title (1.0)
+Austin :: actor.birth_city = Austin (1.0)
+#mapNum ; 1980; 8; 3; director.birth_year (0.9980882711079803); writer.birth_year (0.9980882711079803); producer.birth_year (0.9975874786367749); actor.birth_year (0.9966387417218543); tv_series.release_year (0.9943073354638969)
+1980 :: actor.birth_year = 1999 (0.9966387417218543)
+#general 0
+#general Find the actors of Austin after 1980. 
+#explicit Find 
+#explicit the actors 
+#explicit of Austin 
+#explicit after 1980. 
+#result ###actor.name
+
+QUERY 116: Find all movies featuring "Benedict Cumberbatch" and "Keira Knightley"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie,tv_series(cast#1(actor#1))))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Benedict Cumberbatch" AND actor.name = "Keira Knightley" AND movie.mid = cast.msid AND cast.aid = actor.aid AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 featuring
+#inputWord 5 Benedict Cumberbatch
+#inputWord 6 and
+#inputWord 7 Keira Knightley
+#deleted 4 featuring
+#deleted 6 and
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Benedict Cumberbatch; 5; 0; actor.name (1.0)#0#Benedict Cumberbatch#Benedict Timothy Carlton Cumberbatch#Scott Cumberbatch#Scott Owen Cumberbatch#Michael Cumberbatch; producer.name (1.0); cast.role (0.643349); director.name (0.8043996665398437); writer.name (0.7928249671720918)
+Benedict Cumberbatch :: actor.name = Benedict Cumberbatch (1.0)
+#map ; Keira Knightley; 7; 0; actor.name (1.0)#0#Keira Knightley#Keira Knightly#Kiera Knightley#Keira Nightly#Keira Night; producer.name (1.0); writer.name (0.0); cast.role (0.90267093384844); actor.birth_city (0.8528028654224418)
+Keira Knightley :: actor.name = Keira Knightley (1.0)
+#general 0
+#general Find the movies of "Benedict Cumberbatch" of "Keira Knightley". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Benedict Cumberbatch" 
+#explicit of "Keira Knightley". 
+#result ###movie.title
+
+QUERY 46: Find the writer of the movie "Django Unchained"
+TOTAL INTERPS COUNT: 6
+movie(written_by(writer))
+SELECT DISTINCT writer.name
+FROM writer, movie, written_by
+WHERE movie.title = "Django Unchained" AND writer.wid = written_by.wid AND written_by.msid = movie.mid AND writer.wid = written_by.wid AND written_by.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 writer
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Django Unchained
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#map ; writer; 3; 0; writer.name (1.0); movie.title (0.63195); producer.name (1.0); actor.name (0.9624060150375939); producer.name (0.9621011497729491)
+writer :: writer.name (1.0)
+#map ; Django Unchained; 7; 1; cast.role (1.0); movie.title (1.0)#0#Django Unchained#Tango Unchained#Mandingo Unchained#Angel Unchained#Unchained; producer.name (0.9999990000000001); tv_series.title (0.7878385971583354); company.name (0.7745966692414834)
+Django Unchained :: movie.title = Django Unchained (1.0)
+#map ; movie; 6; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the writer of "Django Unchained" of movie. 
+#general Find the writer of movie of "Django Unchained". 
+#explicit Find 
+#explicit the writer 
+#explicit of "Django Unchained" 
+#explicit of movie. 
+#result ###writer.name
+
+QUERY 92: Find the number of movies produced in 2013
+TOTAL INTERPS COUNT: 3
+movie
+SELECT DISTINCT count(movie.title)
+FROM movie
+WHERE movie.release_year = 2013
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 produced
+#inputWord 7 in
+#inputWord 8 2013
+#deleted 2 the
+#deleted 4 of
+#deleted 6 produced
+#deleted 7 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#mapNum ; 2013; 8; 1; actor.birth_year (0.99995); movie.release_year (0.99995); tv_series.release_year (0.99995)
+2013 :: movie.release_year = 2013 (0.99995)
+#general 0
+#general Find the number of movies in 2013. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit in 2013. 
+#result ###count(movie.title)
+
+QUERY 16: Find all actors born in Milan
+TOTAL INTERPS COUNT: 5
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "Milan"
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 born
+#inputWord 5 in
+#inputWord 6 Milan
+#deleted 4 born
+#deleted 5 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Milan; 6; 1; actor.name (1.0); actor.birth_city (1.0)#0#Milan#Milan#Milan#Milan#Milan; director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0)
+Milan :: actor.birth_city = Milan (1.0)
+#general 0
+#general Find the actors in Milan. 
+#explicit Find 
+#explicit the actors 
+#explicit in Milan. 
+#result ###actor.name
+
+QUERY 121: Find the movie which is classified in the most number of genres
+TOTAL INTERPS COUNT: 3
+classification(genre,movie)
+SELECT DISTINCT movie.title, block_1.count, max()
+FROM movie, (SELECT count(genre.genre) as count, movie.title, max() FROM genre, movie, classification WHERE genre.gid = classification.gid AND classification.msid = movie.mid GROUP BY movie.title) block_1
+WHERE block_1.count = most AND movie.title = block_1.title
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movie
+#inputWord 4 which
+#inputWord 5 is
+#inputWord 6 classified
+#inputWord 7 in
+#inputWord 8 the
+#inputWord 9 most
+#inputWord 10 number
+#inputWord 11 of
+#inputWord 12 genres
+#deleted 2 the
+#deleted 4 which
+#deleted 5 is
+#deleted 6 classified
+#deleted 7 in
+#deleted 8 the
+#deleted 11 of
+#map ; movie; 3; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; genres; 12; 2; tv_series.num_of_episodes (0.6043495); movie.title (0.6419); genre.genre (0.9999999); tv_series.title (0.57675); cast.role (0.8947368421052632)
+genres :: genre.genre (0.9999999)
+#general 0
+#general Find the movie where the number of genres of the movie is the most. 
+#general Find the number of genres where the movie of the genre is the most. 
+#general Find the number of movie where most of the movie is genres. 
+#general Find the genres where the number of movie of the genre is the most. 
+#explicit Find 
+#explicit the movie 
+#explicit where 
+#explicit the number of 
+#explicit genres 
+#explicit of the movie 
+#explicit is 
+#explicit the most. 
+#result ###movie.title###block_1.count###max()
+
+QUERY 81: Find the movie that had the character "Daffy Duck"
+TOTAL INTERPS COUNT: 3
+actor(cast(movie),cast#1(movie#1))
+SELECT DISTINCT movie.title
+FROM movie, cast
+WHERE cast.role = "Daffy Duck" AND movie.title = "Character" AND movie.mid = cast.msid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 movie
+#inputWord 4 that
+#inputWord 5 had
+#inputWord 6 the
+#inputWord 7 character
+#inputWord 8 Daffy Duck
+#deleted 2 the
+#deleted 4 that
+#deleted 5 had
+#deleted 6 the
+#map ; movie; 3; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Daffy Duck; 8; 0; cast.role (1.0)#0#Daffy Duck#Daffy Duck#Daffy Duck#Daffy Duck#Daffy Duck; movie.title (0.9366); director.name (0.8819171036881969); producer.name (0.8819171036881969); writer.name (0.8819171036881969)
+Daffy Duck :: cast.role = Daffy Duck (1.0)
+#map ; character; 7; 1; cast.role (0.6970000000000001); movie.title (1.0)#0#Character#Character#Character#Character#Character; tv_series.title (1.0); actor.name (0.73725); writer.name (0.9855470019622523)
+character :: movie.title = Character (1.0)
+#general 0
+#general Find the movie of "Daffy Duck" of character. 
+#explicit Find 
+#explicit the movie 
+#explicit of "Daffy Duck" 
+#explicit of character. 
+#result ###movie.title
+
+QUERY 27: Find the budget of the movie Juno from 2007
+TOTAL INTERPS COUNT: 72
+copyright(movie,tv_series)
+SELECT DISTINCT tv_series.budget
+FROM tv_series, movie, classification
+WHERE movie.title = "Juno" AND movie.release_year = 2007 AND tv_series.sid = classification.msid AND classification.msid = movie.mid AND tv_series.sid = classification.msid AND classification.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 budget
+#inputWord 4 of
+#inputWord 5 the
+#inputWord 6 movie
+#inputWord 7 Juno
+#inputWord 8 from
+#inputWord 9 2007
+#deleted 2 the
+#deleted 4 of
+#deleted 5 the
+#deleted 8 from
+#map ; budget; 3; 1; movie.budget (1.0); tv_series.budget (1.0); keyword.keyword (0.52875); movie.title (1.0); tv_series.title (1.0)
+budget :: tv_series.budget (1.0)
+#map ; movie; 6; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Juno; 7; 2; actor.name (1.0); company.name (1.0); movie.title (1.0)#0#Juno#Juno#Jeni, Juno#Storming Juno#Juno Awards 2010; cast.role (0.7777499999999999); director.name (0.7745966692414834)
+Juno :: movie.title = Juno (1.0)
+#mapNum ; 2007; 9; 1; actor.birth_year (0.99995); movie.release_year (0.99995); producer.birth_year (0.99995); tv_series.release_year (0.99995)
+2007 :: movie.release_year = 2007 (0.99995)
+#general 0
+#general Find the budget of movie of 2007 of Juno. 
+#general Find the budget of movie of Juno of 2007. 
+#general Find the budget of movie of Juno of 2007. 
+#general Find the budget of movie of Juno of 2007. 
+#explicit Find 
+#explicit the budget 
+#explicit of movie 
+#explicit of 2007 
+#explicit of Juno. 
+#result ###tv_series.budget
+
+QUERY 67: Find the year the movie "The Imitation Game" was produced
+TOTAL INTERPS COUNT: 15
+movie
+SELECT DISTINCT movie.release_year
+FROM movie
+WHERE movie.title = "The Imitation Game"
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 year
+#inputWord 4 the
+#inputWord 5 movie
+#inputWord 6 The Imitation Game
+#inputWord 7 was
+#inputWord 8 produced
+#deleted 2 the
+#deleted 4 the
+#deleted 7 was
+#deleted 8 produced
+#map ; year; 3; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#map ; The Imitation Game; 6; 0; movie.title (1.0)#0#The Imitation Game#The Imitation Game#The Immigration Game#The Intimidation Game#The Intimidation Game; cast.role (0.9482495); tv_series.title (0.8618916073713346); company.name (0.816496580927726); keyword.keyword (0.8032193289024988)
+The Imitation Game :: movie.title = The Imitation Game (1.0)
+#map ; movie; 5; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the year of "The Imitation Game" of movie. 
+#explicit Find 
+#explicit the year 
+#explicit of "The Imitation Game" 
+#explicit of movie. 
+#result ###movie.release_year
+
+QUERY 127: Find the latest movie by "Jim Jarmusch"
+TOTAL INTERPS COUNT: 4
+actor(cast(movie))
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 latest
+#inputWord 4 movie
+#inputWord 5 by
+#inputWord 6 Jim Jarmusch
+#deleted 2 the
+#deleted 5 by
+#map ; movie; 4; 0; movie.title (1.0); cast.role (0.63705); company.name (1.0); genre.genre (0.984375); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#map ; Jim Jarmusch; 6; 0; actor.name (1.0)#0#Jim Jarmusch#Tom Jarmusch#James R. Jarmusch#Jim Jag#Jim Jarlman; director.name (1.0); producer.name (1.0); writer.name (1.0); movie.title (0.924849)
+Jim Jarmusch :: actor.name = Jim Jarmusch (1.0)
+
+QUERY 113: Find all movies that star both "Angelina Jolie" and "Brad Pitt"
+TOTAL INTERPS COUNT: 8
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT movie.title
+FROM movie, director, actor, directed_by, cast
+WHERE director.name = "Angelina Jolie" AND actor.name = "Brad Pitt" AND movie.mid = directed_by.msid AND directed_by.did = director.did AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 that
+#inputWord 5 star
+#inputWord 6 both
+#inputWord 7 Angelina Jolie
+#inputWord 8 and
+#inputWord 9 Brad Pitt
+#deleted 4 that
+#deleted 5 star
+#deleted 6 both
+#deleted 8 and
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Angelina Jolie; 7; 1; actor.name (1.0); director.name (1.0)#0#Angelina Jolie#Angelina Jolie Pitt#Angelina Jolie Voight#Angelina Jolie Voight#Angelina; producer.name (1.0); writer.name (1.0); cast.role (0.9075500000000001)
+Angelina Jolie :: director.name = Angelina Jolie (1.0)
+#map ; Brad Pitt; 9; 0; actor.name (1.0)#0#Brad Pitt#bRad sPitt#Brad Pittance#Brad Pike#Brad Pile; producer.name (1.0); cast.role (0.9461995000000001); director.name (0.8819171036881969); writer.name (0.8819171036881969)
+Brad Pitt :: actor.name = Brad Pitt (1.0)
+#general 0
+#general Find the movies of "Angelina Jolie" of "Brad Pitt". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Angelina Jolie" 
+#explicit of "Brad Pitt". 
+#result ###movie.title
+
+QUERY 30: Find all actors born in "Los Angeles" after 1980
+TOTAL INTERPS COUNT: 25
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.birth_city = "Los Angeles" AND actor.birth_year > 1980
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 born
+#inputWord 5 in
+#inputWord 6 Los Angeles
+#inputWord 7 after
+#inputWord 8 1980
+#deleted 4 born
+#deleted 5 in
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Los Angeles; 6; 0; actor.birth_city (1.0)#0#Los Angeles#Los Angeles#Los Angeles#Los Angeles#Los Angeles; director.birth_city (1.0); movie.title (1.0); producer.birth_city (1.0); writer.birth_city (1.0)
+Los Angeles :: actor.birth_city = Los Angeles (1.0)
+#mapNum ; 1980; 8; 3; director.birth_year (0.9980882711079803); writer.birth_year (0.9980882711079803); producer.birth_year (0.9975874786367749); actor.birth_year (0.9966387417218543); tv_series.release_year (0.9943073354638969)
+1980 :: actor.birth_year = 1999 (0.9966387417218543)
+#general 0
+#general Find the actors in "Los Angeles" after 1980. 
+#explicit Find 
+#explicit the actors 
+#explicit in "Los Angeles" 
+#explicit after 1980. 
+#result ###actor.name
+
+QUERY 95: Find the number of movies "Humphrey Bogart" acted in before 1942
+TOTAL INTERPS COUNT: 10
+actor(cast(movie))
+SELECT DISTINCT count(movie.title)
+FROM movie, actor, cast
+WHERE actor.name = "Humphrey Bogart" AND movie.release_year < 1942 AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 Humphrey Bogart
+#inputWord 7 acted
+#inputWord 8 in
+#inputWord 9 before
+#inputWord 10 1942
+#deleted 2 the
+#deleted 4 of
+#deleted 7 acted
+#deleted 8 in
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Humphrey Bogart; 6; 0; actor.name (1.0)#0#Humphrey Bogart#Stephen Humphrey Bogart#Humphrey DeForest Bogart#Humphrey Bower#Humphrey Logan; producer.name (1.0); tv_series.title (0.856699); cast.role (0.8944271909999159); movie.title (0.8819171036881969)
+Humphrey Bogart :: actor.name = Humphrey Bogart (1.0)
+#mapNum ; 1942; 10; 2; tv_series.release_year (0.9984052008238928); actor.birth_year (0.9955215756951596); movie.release_year (0.9946461894953655); writer.birth_year (0.9924319773429454); producer.birth_year (0.9921745108135942)
+1942 :: movie.release_year = 1913 (0.9946461894953655)
+#general 0
+#general Find the number of movies of "Humphrey Bogart" before 1942. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit of "Humphrey Bogart" 
+#explicit before 1942. 
+#result ###count(movie.title)
+
+QUERY 47: Find the series featuring "Kerry Washington"
+TOTAL INTERPS COUNT: 10
+made_by(producer,tv_series)
+SELECT DISTINCT tv_series.title
+FROM tv_series, producer, made_by
+WHERE producer.name = "Kerry Washington" AND tv_series.sid = made_by.msid AND made_by.pid = producer.pid
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 series
+#inputWord 4 featuring
+#inputWord 5 Kerry Washington
+#deleted 2 the
+#deleted 4 featuring
+#map ; series; 3; 1; keyword.keyword (0.50445); tv_series.title (0.8351); movie.title (0.60395); company.name (0.53045); genre.genre (0.5964)
+series :: tv_series.title (0.8351)
+#map ; Kerry Washington; 5; 1; actor.name (1.0); producer.name (1.0)#0#Kerry Washington#Jerry Washington#Terry Washington#Cherry Washington#Kerry Marisa Washington; director.name (0.9115500000000001); writer.name (0.9660917830792959); cast.role (0.9503819266229829)
+Kerry Washington :: producer.name = Kerry Washington (1.0)
+#general 0
+#general Find the series of "Kerry Washington". 
+#explicit Find 
+#explicit the series 
+#explicit of "Kerry Washington". 
+#result ###tv_series.title
+
+QUERY 114: Find all actors who acted in the same movie as "Tom Hanks"
+TOTAL INTERPS COUNT: 12
+actor(cast(tv_series(cast#1(actor#1))))
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 who
+#inputWord 5 acted
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 same
+#inputWord 9 movie
+#inputWord 10 as
+#inputWord 11 Tom Hanks
+#deleted 4 who
+#deleted 5 acted
+#deleted 6 in
+#deleted 7 the
+#deleted 10 as
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; movie; 9; 1; movie.title (1.0); cast.role (1.0)#0#Movie#Movie F#Movie AD#Movie PA#Movie Fan; company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: cast.role = Movie (1.0)
+#map ; Tom Hanks; 11; 0; actor.name (1.0)#0#Tom Hanks#Jim Hanks#Tom Banks#Tom Banks#Tom Banks; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.86985)
+Tom Hanks :: actor.name = Tom Hanks (1.0)
+
+QUERY 91: Find the number of movies directed by "Woody Allen" each year
+TOTAL INTERPS COUNT: 20
+actor(cast(movie))
+SELECT DISTINCT count(movie.title), movie.release_year
+FROM movie, actor, cast
+WHERE actor.name = "Woody Allen" AND movie.mid = cast.msid AND cast.aid = actor.aid
+GROUP BY movie.release_year
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 number
+#inputWord 4 of
+#inputWord 5 movies
+#inputWord 6 directed
+#inputWord 7 by
+#inputWord 8 Woody Allen
+#inputWord 9 each
+#inputWord 10 year
+#deleted 2 the
+#deleted 4 of
+#deleted 6 directed
+#deleted 7 by
+#map ; movies; 5; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Woody Allen; 8; 0; actor.name (1.0)#0#Woody Allen#Cody Allen#Jody Allen#Kody Allen#Brody Allen; director.name (1.0); producer.name (1.0); writer.name (1.0); cast.role (0.9036500000000001)
+Woody Allen :: actor.name = Woody Allen (1.0)
+#map ; year; 10; 4; actor.birth_year (0.79285); director.birth_year (0.79285); producer.birth_year (0.79285); writer.birth_year (0.79285); movie.release_year (0.83155)
+year :: movie.release_year (0.83155)
+#general 0
+#general Find the number of movies by "Woody Allen" of each year. 
+#explicit Find 
+#explicit the number of 
+#explicit movies 
+#explicit by "Woody Allen" 
+#explicit of each year. 
+#result ###count(movie.title)###movie.release_year
+
+QUERY 15: Find all actors from Italy
+TOTAL INTERPS COUNT: 4
+actor
+SELECT DISTINCT actor.name
+FROM actor
+WHERE actor.nationality = "Italy"
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 actors
+#inputWord 4 from
+#inputWord 5 Italy
+#deleted 4 from
+#map ; actors; 3; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; Italy; 5; 0; actor.nationality (1.0)#0#Italy#Italy#Italy#Italy#Italy; director.nationality (1.0); producer.nationality (1.0); writer.nationality (1.0); company.name (0.0)
+Italy :: actor.nationality = Italy (1.0)
+#general 0
+#general Find the actors Italy. 
+#explicit Find 
+#explicit the actors 
+#explicit Italy. 
+#result ###actor.name
+
+QUERY 75: List "James Bond" directors
+TOTAL INTERPS COUNT: 2
+directed_by(director,movie)
+SELECT DISTINCT director.name
+FROM director, movie, directed_by
+WHERE movie.title = "James Bond" AND director.did = directed_by.did AND directed_by.msid = movie.mid
+#inputWord 1 List
+#inputWord 2 James Bond
+#inputWord 3 directors
+#map ; directors; 3; 0; director.name (0.9999999); company.name (0.6337); actor.name (0.949056873050605); company.name (0.9073724007561437); keyword.keyword (0.8944271909999159)
+directors :: director.name (0.9999999)
+#map ; James Bond; 2; 1; actor.name (1.0); movie.title (1.0)#0#James Bond#James Bond#James Bondat#James Bond 777#Lady James Bond; cast.role (0.97055); producer.name (0.9258200997725514); director.name (0.9074852129730301)
+James Bond :: movie.title = James Bond (1.0)
+#general 0
+#general List the directors of "James Bond". 
+#explicit List 
+#explicit the directors 
+#explicit of "James Bond". 
+#result ###director.name
+
+QUERY 64: Find all the female actors in the movie "Saving Private Ryan"
+TOTAL INTERPS COUNT: 30
+Warning: TIE!
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, cast, movie
+WHERE actor.gender = "female" AND cast.role = "Saving Private Ryan" AND actor.aid = cast.aid AND actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 the
+#inputWord 4 female
+#inputWord 5 actors
+#inputWord 6 in
+#inputWord 7 the
+#inputWord 8 movie
+#inputWord 9 Saving Private Ryan
+#deleted 3 the
+#deleted 6 in
+#deleted 7 the
+#map ; actors; 5; 0; actor.name (0.9999999); cast.role (0.7502); keyword.keyword (1.0); movie.title (1.0); tv_series.title (1.0)
+actors :: actor.name (0.9999999)
+#map ; female; 4; 0; actor.gender (1.0)#0#female#female#female#female#female; cast.role (1.0); director.gender (1.0); keyword.keyword (1.0); movie.title (1.0)
+female :: actor.gender = female (1.0)
+#map ; Saving Private Ryan; 9; 0; cast.role (1.0)#0#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan#Saving Private Ryan; movie.title (1.0); tv_series.title (0.8535995000000001); company.name (0.762000762001143); actor.name (0.7427813527082074)
+Saving Private Ryan :: cast.role = Saving Private Ryan (1.0)
+#map ; movie; 8; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the actors female in "Saving Private Ryan" of movie. 
+#general Find the actors female of movie in "Saving Private Ryan". 
+#general Find the movie of actors female in "Saving Private Ryan". 
+#general Find the movie of actors female in "Saving Private Ryan". 
+#explicit Find 
+#explicit the actors 
+#explicit female 
+#explicit in "Saving Private Ryan" 
+#explicit of movie. 
+#result ###actor.name
+
+QUERY 58: Find all movies in which "Robin Wright" appears
+TOTAL INTERPS COUNT: 3
+actor(cast(movie))
+SELECT DISTINCT movie.title
+FROM movie, actor, cast
+WHERE actor.name = "Robin Wright" AND movie.mid = cast.msid AND cast.aid = actor.aid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 in
+#inputWord 5 which
+#inputWord 6 Robin Wright
+#inputWord 7 appears
+#deleted 4 in
+#deleted 5 which
+#deleted 7 appears
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Robin Wright; 6; 0; actor.name (1.0)#0#Robin Wright#Robin Wright#Robin Wright#Robin Wight#Robin Wright-Penn; director.name (1.0); producer.name (1.0); writer.name (0.75885); cast.role (0.8728715609439694)
+Robin Wright :: actor.name = Robin Wright (1.0)
+#general 0
+#general Find the movies of "Robin Wright". 
+#explicit Find 
+#explicit the movies 
+#explicit of "Robin Wright". 
+#result ###movie.title
+
+QUERY 35: Find all movies about Persians
+TOTAL INTERPS COUNT: 5
+actor(cast(movie))
+SELECT DISTINCT actor.name
+FROM actor, movie, cast
+WHERE actor.aid = cast.aid AND cast.msid = movie.mid
+#inputWord 1 Find
+#inputWord 2 all
+#inputWord 3 movies
+#inputWord 4 about
+#inputWord 5 Persians
+#deleted 4 about
+#map ; movies; 3; 0; movie.title (0.9999999); company.name (0.54315); genre.genre (0.984375); cast.role (0.9411764705882353); tv_series.num_of_episodes (0.9074442842261525)
+movies :: movie.title (0.9999999)
+#map ; Persians; 5; 0; actor.name (0.0); company.name (0.0); director.name (0.0); genre.genre (0.0); writer.name (0.0)
+Persians :: actor.name (0.0)
+#general 0
+#general Find the Persians of movies. 
+#general Find the movies of Persians. 
+#explicit Find 
+#explicit the Persians 
+#explicit of movies. 
+#result ###actor.name
+
+QUERY 83: Find the major roles in the movie "Daddy Long Legs"
+TOTAL INTERPS COUNT: 45
+Warning: TIE!
+actor(cast(movie(directed_by(director))))
+SELECT DISTINCT cast.role
+FROM cast, actor, movie, director, directed_by
+WHERE actor.name = "Daddy Long Legs" AND director.name = "Major" AND cast.aid = actor.aid AND cast.msid = movie.mid AND movie.mid = directed_by.msid AND directed_by.did = director.did
+#inputWord 1 Find
+#inputWord 2 the
+#inputWord 3 major
+#inputWord 4 roles
+#inputWord 5 in
+#inputWord 6 the
+#inputWord 7 movie
+#inputWord 8 Daddy Long Legs
+#deleted 2 the
+#deleted 5 in
+#deleted 6 the
+#map ; roles; 4; 0; cast.role (0.9999999); movie.title (0.58455); tv_series.title (1.0); movie.release_year (0.9115148371670111); tv_series.release_year (0.9115148371670111)
+roles :: cast.role (0.9999999)
+#map ; major; 3; 2; actor.name (1.0); company.name (1.0); director.name (1.0)#0#Major#Major#Major#JL Major#D. Major; movie.title (1.0); producer.name (1.0)
+major :: director.name = Major (1.0)
+#map ; Daddy Long Legs; 8; 0; actor.name (1.0)#0#Daddy Long Legs#Daddy Longlegs#Daddy Longlegs#Long Legs#Daddy Long Legs of Wolfapc; director.name (1.0); movie.title (1.0); cast.role (0.8846); producer.name (0.8528028654224418)
+Daddy Long Legs :: actor.name = Daddy Long Legs (1.0)
+#map ; movie; 7; 0; movie.title (1.0); cast.role (1.0); company.name (1.0); genre.genre (0.72865); cast.role (0.9411764705882353)
+movie :: movie.title (1.0)
+#general 0
+#general Find the roles in "Daddy Long Legs" of movie of major. 
+#general Find the roles of major in "Daddy Long Legs" of movie. 
+#explicit Find 
+#explicit the roles 
+#explicit in "Daddy Long Legs" 
+#explicit of movie 
+#explicit of major. 
+#result ###cast.role
+
