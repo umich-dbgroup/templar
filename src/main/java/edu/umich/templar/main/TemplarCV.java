@@ -1,12 +1,10 @@
 package edu.umich.templar.main;
 
 import com.esotericsoftware.minlog.Log;
-import edu.umich.templar.baseline.NLSQL;
 import edu.umich.templar.config.TemplarConfig;
 import edu.umich.templar.db.Database;
 import edu.umich.templar.log.LogCountGraph;
 import edu.umich.templar.log.LogLevel;
-import edu.umich.templar.log.NLSQLLog;
 import edu.umich.templar.log.graph.LogGraph;
 import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.task.QueryTask;
@@ -14,15 +12,18 @@ import edu.umich.templar.task.QueryTaskReader;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by cjbaik on 10/23/17.
  */
 public class TemplarCV {
     public static void main(String[] args) {
-        if (args.length < 5) {
-            System.out.println("Usage: TemplarCV <testset> <frag/nlsql> <full/no_const/no_const_op> <log %> <type-oracle> <include-join>");
+        if (args.length < 3) {
+            System.out.println("Usage: TemplarCV <testset> <full/no_const/no_const_op> <logjoin>");
             System.exit(1);
         }
         String dbName = args[0];
@@ -35,31 +36,31 @@ public class TemplarCV {
         String projAttrsFile = prefix + ".proj_attrs.json";
         String candCacheFilename = prefix + ".cands.cache";
 
-        boolean runLogGraph;
+        /*boolean runLogGraph;
         if (args[1].equalsIgnoreCase("nlsql")) {
             runLogGraph = false;
         } else if (args[1].equalsIgnoreCase("frag")) {
             runLogGraph = true;
         } else {
             throw new RuntimeException("Unknown log evaluation type. Use 'set' or 'frag'.");
-        }
+        }*/
 
         LogLevel logLevel = null;
-        if (args[2].equalsIgnoreCase("full")) {
+        if (args[1].equalsIgnoreCase("full")) {
             logLevel = LogLevel.FULL;
-        } else if (args[2].equalsIgnoreCase("no_const")) {
+        } else if (args[1].equalsIgnoreCase("no_const")) {
             logLevel = LogLevel.NO_CONST;
-        } else if (args[2].equalsIgnoreCase("no_const_op")) {
+        } else if (args[1].equalsIgnoreCase("no_const_op")) {
             logLevel = LogLevel.NO_CONST_OP;
         } else {
             throw new RuntimeException("Unknown LogLevel type.");
         }
 
         // Log percent (10 means use 10% of training set, 25 => 25%, etc.)
-        Double logPercent = Double.valueOf(args[3]) / 100;
+        // Double logPercent = Double.valueOf(args[3]) / 100;
 
-        Boolean typeOracle = Boolean.valueOf(args[4]);
-        Boolean includeJoin = Boolean.valueOf(args[5]);
+        // Boolean typeOracle = Boolean.valueOf(args[2]);
+        Boolean includeJoin = Boolean.valueOf(args[2]);
 
         // Read config for database info
         Database db = new Database(TemplarConfig.getProperty("dbhost"),
@@ -112,30 +113,33 @@ public class TemplarCV {
             List<String> curFoldSQLs = sqlFolds.get(i);
             // List<Integer> curFoldShuffleIndexes = shuffleIndexFolds.get(i);
 
-            if (runLogGraph) {
-                LogCountGraph logCountGraph = new LogCountGraph(db, logLevel);
+            // if (runLogGraph) {
 
-                // Analyze everything in SQLs excluding current
-                List<String> sqlLog = new ArrayList<>(sqls);
-                sqlLog.removeAll(curFoldSQLs);
+            LogCountGraph logCountGraph = new LogCountGraph(db, logLevel);
 
-                System.out.println("Original log size: " + sqlLog.size());
-                System.out.println("Trimming log to " + (logPercent * 100) + "%...");
-                // Collections.shuffle(sqlLog, new Random(RANDOM_SEED));
-                int logSize = ((Double) (logPercent * sqlLog.size())).intValue();
-                sqlLog = sqlLog.subList(0, logSize);
-                System.out.println("Final log size: " + sqlLog.size());
+            // Analyze everything in SQLs excluding current
+            List<String> sqlLog = new ArrayList<>(sqls);
+            sqlLog.removeAll(curFoldSQLs);
 
-                logCountGraph.analyzeSQLs(sqlLog);
+            /*
+            System.out.println("Original log size: " + sqlLog.size());
+            System.out.println("Trimming log to " + (logPercent * 100) + "%...");
+            // Collections.shuffle(sqlLog, new Random(RANDOM_SEED));
+            int logSize = ((Double) (logPercent * sqlLog.size())).intValue();
+            sqlLog = sqlLog.subList(0, logSize);
+            System.out.println("Final log size: " + sqlLog.size());*/
 
-                LogGraph logGraph = new LogGraph(db, logCountGraph);
+            logCountGraph.analyzeSQLs(sqlLog);
 
-                Templar templar = new Templar(db, candCacheFilename, curFoldTasks,
-                        typeOracle, logGraph, includeJoin);
+            LogGraph logGraph = new LogGraph(db, logCountGraph);
 
-                String resultStr = templar.execute();
-                resultBuffer.append(resultStr);
-                resultBuffer.append("\n");
+            Templar templar = new Templar(db, candCacheFilename, curFoldTasks, true, logGraph, includeJoin);
+
+            String resultStr = templar.execute();
+            resultBuffer.append(resultStr);
+            resultBuffer.append("\n");
+
+                /*
             } else {
                 // Analyze everything in QueryTasks excluding current
                 List<QueryTask> qTasks = new ArrayList<>(queryTasks);
@@ -148,7 +152,7 @@ public class TemplarCV {
                 String resultStr = nlsql.execute();
                 resultBuffer.append(resultStr);
                 resultBuffer.append("\n");
-            }
+            }*/
         }
 
         System.out.println("==== FINAL RESULTS ====");
