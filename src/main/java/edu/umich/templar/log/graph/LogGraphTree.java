@@ -1,23 +1,24 @@
 package edu.umich.templar.log.graph;
 
+import edu.umich.templar.db.Database;
+import edu.umich.templar.db.JoinOn;
 import edu.umich.templar.db.JoinPath;
 import edu.umich.templar.db.JoinPathNode;
-import edu.umich.templar.db.el.AttributeAndPredicate;
-import edu.umich.templar.db.el.DBElement;
-import edu.umich.templar.db.el.DuplicateDBElement;
-import edu.umich.templar.db.el.Relation;
+import edu.umich.templar.db.el.*;
 import edu.umich.templar.util.Utils;
 
 import java.util.*;
 
 public class LogGraphTree {
+    private Database db;
     private LogGraphNode root;
     private Set<LogGraphNode> nodes;
     private Map<LogGraphNode, LogGraphNode> parents;
     private Map<LogGraphNode, Set<LogGraphNode>> children;
     private Set<LogGraphNode> leaves;
 
-    public LogGraphTree(LogGraphNode root) {
+    public LogGraphTree(Database db, LogGraphNode root) {
+        this.db = db;
         this.root = root;
         this.nodes = new HashSet<>();
         this.leaves = new HashSet<>();
@@ -199,7 +200,29 @@ public class LogGraphTree {
                         jp.addNode(childJPNode);
 
                         JoinPathNode nodeJPNode = jpNodeMap.get(node);
-                        nodeJPNode.addEdge(childJPNode);
+
+                        JoinOn joinOn = null;
+
+                        find_join_on:
+                        for (Attribute attr : nodeJPNode.getRel().getAttributes()) {
+                            if (this.db.getFkpk().get(attr) != null) {
+                                for (Attribute pk : this.db.getFkpk().get(attr)) {
+                                    if (pk.getRelation().equals(childJPNode.getRel())) {
+                                        joinOn = new JoinOn(attr, pk);
+                                        break find_join_on;
+                                    }
+                                }
+                            } else if (this.db.getPkfk().get(attr) != null) {
+                                for (Attribute fk : this.db.getPkfk().get(attr)) {
+                                    if (fk.getRelation().equals(childJPNode.getRel())) {
+                                        joinOn = new JoinOn(fk, attr);
+                                        break find_join_on;
+                                    }
+                                }
+                            }
+                        }
+
+                        nodeJPNode.addEdge(childJPNode, joinOn);
                     }
                     stack.push(child);
                 }

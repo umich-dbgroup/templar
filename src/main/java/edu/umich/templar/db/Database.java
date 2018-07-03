@@ -30,7 +30,7 @@ public class Database {
     Set<Attribute> textAttributes;
     Set<Attribute> numericAttributes;
 
-    Map<Attribute, Attribute> fkpk;
+    Map<Attribute, List<Attribute>> fkpk;
     Map<Attribute, List<Attribute>> pkfk;
 
     public Database(String host, int port, String user, String pw, String dbName,
@@ -94,7 +94,8 @@ public class Database {
                 Relation primaryRel = this.getRelationByName(primaryRelName);
                 Attribute primaryAttr = primaryRel.getAttribute((String) jsonObj.get("primaryAttribute"));
 
-                this.fkpk.put(foreignAttr, primaryAttr);
+                List<Attribute> pks = this.fkpk.computeIfAbsent(foreignAttr, k -> new ArrayList<>());
+                pks.add(primaryAttr);
 
                 // Delete foreign keys from numeric attributes
                 this.numericAttributes.remove(foreignAttr);
@@ -103,10 +104,8 @@ public class Database {
                 this.textAttributes.remove(foreignAttr);
                 this.textAttributes.remove(primaryAttr);
 
-                List<Attribute> attrs = this.pkfk.get(primaryAttr);
-                if (attrs == null) attrs = new ArrayList<>();
+                List<Attribute> attrs = this.pkfk.computeIfAbsent(primaryAttr, k -> new ArrayList<>());
                 attrs.add(foreignAttr);
-                this.pkfk.put(primaryAttr, attrs);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -308,12 +307,16 @@ public class Database {
 
     public boolean hasJoin(Relation r1, Relation r2) {
         for (Attribute a1 : r1.getAttributes()) {
-            Attribute a2 = this.fkpk.get(a1);
-            if (a2 != null && a2.getRelation().equals(r2)) return true;
+            List<Attribute> a2List1 = this.fkpk.get(a1);
+            if (a2List1 != null) {
+                for (Attribute a2pk : a2List1) {
+                    if (a2pk != null && a2pk.getRelation().equals(r2)) return true;
+                }
+            }
 
-            List<Attribute> a2List = this.pkfk.get(a1);
-            if (a2List != null) {
-                for (Attribute a2fk : a2List) {
+            List<Attribute> a2List2 = this.pkfk.get(a1);
+            if (a2List2 != null) {
+                for (Attribute a2fk : a2List2) {
                     if (a2fk.getRelation().equals(r2)) return true;
                 }
             }
@@ -323,8 +326,12 @@ public class Database {
 
     public boolean isFP(Relation f, Relation p) {
         for (Attribute a1 : f.getAttributes()) {
-            Attribute a2 = this.fkpk.get(a1);
-            if (a2 != null && a2.getRelation().equals(p)) return true;
+            List<Attribute> a2List = this.fkpk.get(a1);
+            if (a2List != null) {
+                for (Attribute a2 : a2List) {
+                    if (a2.getRelation().equals(p)) return true;
+                }
+            }
         }
         return false;
     }
@@ -332,8 +339,12 @@ public class Database {
     public int fpCount(Relation f, Relation p) {
         int fpCount = 0;
         for (Attribute a1 : f.getAttributes()) {
-            Attribute a2 = this.fkpk.get(a1);
-            if (a2 != null && a2.getRelation().equals(p)) fpCount++;
+            List<Attribute> a2List = this.fkpk.get(a1);
+            if (a2List != null) {
+                for (Attribute a2 : a2List) {
+                    if (a2.getRelation().equals(p)) fpCount++;
+                }
+            }
         }
         return fpCount;
     }
@@ -379,6 +390,14 @@ public class Database {
     public int longestJoinPathLength(Set<Relation> rels) {
         List<Relation> relsList = new ArrayList<>(rels);
         return this.longestJoinPathRecursive(null, relsList).size();
+    }
+
+    public Map<Attribute, List<Attribute>> getFkpk() {
+        return fkpk;
+    }
+
+    public Map<Attribute, List<Attribute>> getPkfk() {
+        return pkfk;
     }
 
     public void close() {

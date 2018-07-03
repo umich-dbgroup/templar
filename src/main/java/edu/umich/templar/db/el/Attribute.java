@@ -5,10 +5,7 @@ import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by cjbaik on 1/31/18.
@@ -68,6 +65,18 @@ public class Attribute extends DBElement implements Serializable {
         List<String> result = new ArrayList<>();
         Collections.addAll(result, this.name.toLowerCase().split("_"));
         return result;
+    }
+
+    public Column toColumn(Map<Relation, List<Table>> tablesMap, int alias) {
+        Column col = new Column(this.name);
+
+        List<Table> tableList = tablesMap.get(this.relation);
+        if (alias >= tableList.size()) {
+            throw new RuntimeException("Table with alias " + alias + " does not exist!");
+        }
+        Table table = tableList.get(alias);
+        col.setTable(table);
+        return col;
     }
 
     public Column toColumn() {

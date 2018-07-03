@@ -2,24 +2,26 @@ package edu.umich.templar.db;
 
 import edu.umich.templar.db.el.Relation;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class JoinPathNode {
     private Relation rel;
     private int index;
     private Set<JoinPathNode> connected;
+    private Map<JoinPathNode, JoinOn> joinOns;
 
     public JoinPathNode(Relation rel, int index) {
         this.rel = rel;
         this.index = index;
         this.connected = new HashSet<>();
+        this.joinOns = new HashMap<>();
     }
 
-    public void addEdge(JoinPathNode node) {
+    public void addEdge(JoinPathNode node, JoinOn joinOn) {
         this.connected.add(node);
         node.connected.add(this);
+        this.joinOns.put(node, joinOn);
+        node.joinOns.put(this, joinOn);
     }
 
     public Relation getRel() {
@@ -28,6 +30,10 @@ public class JoinPathNode {
 
     public Set<JoinPathNode> getConnected() {
         return connected;
+    }
+
+    public JoinOn getJoinOn(JoinPathNode connected) {
+        return this.joinOns.get(connected);
     }
 
     @Override

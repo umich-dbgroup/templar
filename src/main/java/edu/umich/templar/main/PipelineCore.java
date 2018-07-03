@@ -543,6 +543,8 @@ public class PipelineCore {
 
             System.out.println(interp.getJoinPath().toString());
 
+            System.out.println(interp.getSQL().toString());
+
             if (curInterpCorrectFrags == queryTask.sizeWithoutRels()) {
                 correctTies1 = true;
                 correctTiesFragAccum++;

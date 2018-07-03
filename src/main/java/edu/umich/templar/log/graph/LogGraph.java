@@ -273,7 +273,7 @@ public class LogGraph {
     private LogGraphTree prims(List<LogGraphNode> nodes) {
         LogGraphNode curVertex = nodes.remove(0);
 
-        LogGraphTree mst = new LogGraphTree(curVertex);
+        LogGraphTree mst = new LogGraphTree(this.db, curVertex);
 
         while (!nodes.isEmpty()) {
             LogGraphNode minPointParent = null;
@@ -300,7 +300,7 @@ public class LogGraph {
     private LogGraphTree shortestPathPrims(List<LogGraphNode> nodes) {
         LogGraphNode curVertex = nodes.remove(0);
 
-        LogGraphTree mst = new LogGraphTree(curVertex);
+        LogGraphTree mst = new LogGraphTree(this.db, curVertex);
 
         while (!nodes.isEmpty()) {
             LogGraphNode minPointParent = null;

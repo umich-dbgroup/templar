@@ -15,7 +15,7 @@ public class JoinPath {
         this.nodes.add(node);
     }
 
-    private JoinPathNode getFirstAlphabeticalNode() {
+    public JoinPathNode getFirstAlphabeticalNode() {
         if (this.nodes.isEmpty()) return null;
 
         List<JoinPathNode> nodes = new ArrayList<>(this.nodes);
