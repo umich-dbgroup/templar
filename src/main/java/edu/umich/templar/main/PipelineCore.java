@@ -543,7 +543,24 @@ public class PipelineCore {
 
             System.out.println(interp.getJoinPath().toString());
 
-            System.out.println(interp.getSQL().toString());
+
+            // TODO: print SQL
+            String sql = interp.getSQL().toString();
+            System.out.println(sql);
+
+            // LIMIT max 5
+            sql += " LIMIT 5";
+
+            try {
+                ResultSet rs = this.db.executeSQL(sql);
+                System.out.print("results: ");
+                while (rs.next()) {
+                    System.out.print(rs.getString(1) + ", ");
+                }
+                System.out.println();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
             if (curInterpCorrectFrags == queryTask.sizeWithoutRels()) {
                 correctTies1 = true;
