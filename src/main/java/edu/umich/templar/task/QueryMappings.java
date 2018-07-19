@@ -28,6 +28,49 @@ public class QueryMappings {
         return totalInterpsCount;
     }
 
+    public List<Interpretation> getAllInterpretations() {
+        List<MatchedDBElement> candInterp = new ArrayList<>();
+        List<Interpretation> interps = new ArrayList<>();
+
+        int totalInterpsCount = 1;
+        int[] counters = new int[this.fragmentMappingsList.size()];
+        int[] listSizes = new int[this.fragmentMappingsList.size()];
+        for (int i = 0; i < counters.length; i++) {
+            counters[i] = 0;
+            listSizes[i] = this.fragmentMappingsList.get(i).size();
+            totalInterpsCount *= listSizes[i];
+        }
+
+        System.out.println("TOTAL INTERPS COUNT: " + totalInterpsCount);
+        this.totalInterpsCount = totalInterpsCount;
+
+        for (int i = 0; i < totalInterpsCount; i++) {
+            for (int j = 0; j < this.fragmentMappingsList.size(); j++) {
+                FragmentMappings fragMappings = this.fragmentMappingsList.get(j);
+                candInterp.add(fragMappings.get(counters[j]));
+            }
+
+            Interpretation interpObj = new Interpretation(candInterp);
+            double score = this.scorer.score(interpObj);
+            interpObj.setScore(score);
+            candInterp = new ArrayList<>();
+            interps.add(interpObj);
+
+            int counterIndex = 0;
+            counters[counterIndex]++;
+            while (counters[counterIndex] >= listSizes[counterIndex]) {
+                counters[counterIndex] = 0;
+
+                counterIndex++;
+                if (counterIndex >= counters.length) break;
+
+                counters[counterIndex] += 1;
+            }
+        }
+
+        return interps;
+    }
+
     public List<Interpretation> findOptimalInterpretations() {
         List<MatchedDBElement> candInterp = new ArrayList<>();
         List<Interpretation> maxInterps = new ArrayList<>();

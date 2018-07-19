@@ -12,6 +12,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import java.io.*;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 public class PipelineCore {
@@ -266,11 +267,11 @@ public class PipelineCore {
             } else if (cand instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) cand;
 
-                double attrSim = this.sim.sim(aggr.getAttr().getCleanedName(), String.join(" ", tokens));
+                double attrSim = this.sim.sim(aggr.getAttribute().getCleanedName(), String.join(" ", tokens));
 
                 double sim;
-                if (aggr.getAttr().isMainAttr()) {
-                    double relSim = this.sim.sim(aggr.getAttr().getRelation().getCleanedName(), String.join(" ", tokens));
+                if (aggr.getAttribute().isMainAttr()) {
+                    double relSim = this.sim.sim(aggr.getAttribute().getRelation().getCleanedName(), String.join(" ", tokens));
                     sim = Math.max(relSim, attrSim);
                 } else {
                     sim = attrSim;
@@ -283,11 +284,11 @@ public class PipelineCore {
             } else if (cand instanceof AggregatedPredicate) {
                 AggregatedPredicate pred = (AggregatedPredicate) cand;
 
-                double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                double attrSim = this.sim.sim(pred.getAttribute().getCleanedName(), String.join(" ", tokens));
 
                 double sim;
-                if (pred.getAttr().isMainAttr()) {
-                    double relSim = this.sim.sim(pred.getAttr().getRelation().getName(), String.join(" ", tokens));
+                if (pred.getAttribute().isMainAttr()) {
+                    double relSim = this.sim.sim(pred.getAttribute().getRelation().getName(), String.join(" ", tokens));
                     sim = Math.max(relSim, attrSim);
                 } else {
                     sim = attrSim;
@@ -351,14 +352,14 @@ public class PipelineCore {
                 List<Double> sims = new ArrayList<>();
 
                 if (!tokens.isEmpty()) {
-                    double attrSim = this.sim.sim(pred.getAttr().getCleanedName(), String.join(" ", tokens));
+                    double attrSim = this.sim.sim(pred.getAttribute().getCleanedName(), String.join(" ", tokens));
                     sims.add(attrSim);
                 }
 
                 // Check predicate
                 try {
-                    ResultSet rs = this.db.executeSQL("SELECT IF(EXISTS(SELECT * FROM " + pred.getAttr().getRelation().getName()
-                            + " WHERE " + pred.getAttr().getName() + " " + pred.getOp() + " " + pred.getValue()
+                    ResultSet rs = this.db.executeSQL("SELECT IF(EXISTS(SELECT * FROM " + pred.getAttribute().getRelation().getName()
+                            + " WHERE " + pred.getAttribute().getName() + " " + pred.getOp() + " " + pred.getValue()
                             + "), 1, 0) AS result");
                     rs.next();
                     if (rs.getInt(1) > 0) {
@@ -479,7 +480,8 @@ public class PipelineCore {
         this.cumulativeKWTime += KWtime;
 
         long startI = System.currentTimeMillis();
-        List<Interpretation> interps = queryMappings.findOptimalInterpretations();
+//        List<Interpretation> interps = queryMappings.findOptimalInterpretations();
+        List<Interpretation> interps = queryMappings.getAllInterpretations();
         this.cumulativeInterpCount += queryMappings.getTotalInterpsCount();
 
         long Itime = System.currentTimeMillis() - startI;
@@ -543,25 +545,6 @@ public class PipelineCore {
 
             System.out.println(interp.getJoinPath().toString());
 
-
-            // TODO: print SQL
-            String sql = interp.getSQL().toString();
-            System.out.println(sql);
-
-            // LIMIT max 5
-            sql += " LIMIT 5";
-
-            try {
-                ResultSet rs = this.db.executeSQL(sql);
-                System.out.print("results: ");
-                while (rs.next()) {
-                    System.out.print(rs.getString(1) + ", ");
-                }
-                System.out.println();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
             if (curInterpCorrectFrags == queryTask.sizeWithoutRels()) {
                 correctTies1 = true;
                 correctTiesFragAccum++;
@@ -575,6 +558,59 @@ public class PipelineCore {
             } else {
                 correctTies0 = false;
                 correctJoinTies0 = false;
+            }
+        }
+
+        System.out.println("\n--- SQL ---");
+        for (Interpretation interp : interps) {
+            // TODO: print SQL
+            net.sf.jsqlparser.statement.Statement sql = interp.getSQL();
+            String sqlStr = sql.toString();
+            System.out.println(sqlStr);
+
+            // LIMIT max 5
+            sqlStr += " LIMIT 5";
+
+            try {
+                Statement stmt = this.db.getConnection().createStatement();
+                ResultSet rs = stmt.executeQuery(sqlStr);
+                for (MatchedDBElement mel : interp.getElements()) {
+                    if (mel.getEl() instanceof Relation) continue;
+                    System.out.print(mel.getKeyword() + "\t");
+                }
+                System.out.println();
+                while (rs.next()) {
+                    int colIndex = 1;
+                    for (int i = 0; i < interp.getElements().size(); i++) {
+                        MatchedDBElement mel = interp.getElements().get(i);
+
+                        if (mel.getEl() instanceof Relation) continue;
+
+                        boolean isNumber = false;
+                        if (mel.getEl() instanceof AttributeAndPredicate) {
+                            // TODO: sigh. don't want to deal with this
+                        } else if (mel.getEl() instanceof DuplicateDBElement) {
+                            DuplicateDBElement dup = (DuplicateDBElement) mel.getEl();
+                            isNumber = dup.getEl().getAttribute().getType().equals(AttributeType.INT) ||
+                                    dup.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
+                        } else {
+                            isNumber = mel.getEl().getAttribute().getType().equals(AttributeType.INT) ||
+                                    mel.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
+                        }
+
+                        if (isNumber) {
+                            System.out.print(rs.getDouble(colIndex++) + "\t");
+                        } else {
+                            System.out.print(rs.getString(colIndex++) + "\t");
+                        }
+                    }
+                    System.out.println();
+                }
+                System.out.println();
+                rs.close();
+                stmt.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 

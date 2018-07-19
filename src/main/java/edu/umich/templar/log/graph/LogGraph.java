@@ -200,15 +200,15 @@ public class LogGraph {
 
             Attribute attr = null;
             if (point instanceof AggregatedAttribute) {
-                attr = ((AggregatedAttribute) point).getAttr();
+                attr = ((AggregatedAttribute) point).getAttribute();
             } else if (point instanceof AggregatedPredicate) {
-                attr = ((AggregatedPredicate) point).getAttr();
+                attr = ((AggregatedPredicate) point).getAttribute();
             } else if (point instanceof Attribute) {
                 attr = (Attribute) point;
             } else if (point instanceof GroupedAttribute) {
-                attr = ((GroupedAttribute) point).getAttr();
+                attr = ((GroupedAttribute) point).getAttribute();
             } else if (point instanceof NumericPredicate) {
-                attr = ((NumericPredicate) point).getAttr();
+                attr = ((NumericPredicate) point).getAttribute();
             } else if (point instanceof TextPredicate) {
                 attr = ((TextPredicate) point).getAttribute();
             } else if (point instanceof Relation) {

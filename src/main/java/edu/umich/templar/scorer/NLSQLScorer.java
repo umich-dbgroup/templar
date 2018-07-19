@@ -39,9 +39,9 @@ public class NLSQLScorer implements InterpretationScorer {
 
             if (mel.getEl() instanceof AttributeAndPredicate) {
                 els.add(((AttributeAndPredicate) mel.getEl()).getPredicate());
-                els.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
+                els.add(((AttributeAndPredicate) mel.getEl()).getAttributePart());
 
-                ignoreDuplicates.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
+                ignoreDuplicates.add(((AttributeAndPredicate) mel.getEl()).getAttributePart());
             } else {
                 els.add(mel.getEl());
             }

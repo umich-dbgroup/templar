@@ -10,7 +10,8 @@ public class GroupedAttribute extends DBElement implements Serializable {
         this.attr = attr;
     }
 
-    public Attribute getAttr() {
+    @Override
+    public Attribute getAttribute() {
         return attr;
     }
 

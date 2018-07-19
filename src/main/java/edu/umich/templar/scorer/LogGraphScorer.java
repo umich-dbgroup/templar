@@ -39,9 +39,9 @@ public class LogGraphScorer implements InterpretationScorer {
 
             if (newEl instanceof AttributeAndPredicate) {
                 els.add(((AttributeAndPredicate) newEl).getPredicate());
-                els.add(((AttributeAndPredicate) newEl).getAttribute());
+                els.add(((AttributeAndPredicate) newEl).getAttributePart());
 
-                ignoreDuplicates.add(((AttributeAndPredicate) newEl).getAttribute());
+                ignoreDuplicates.add(((AttributeAndPredicate) newEl).getAttributePart());
             } else {
                 els.add(newEl);
             }

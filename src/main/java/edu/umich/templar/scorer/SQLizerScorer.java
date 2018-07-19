@@ -3,16 +3,13 @@ package edu.umich.templar.scorer;
 import edu.umich.templar.db.*;
 import edu.umich.templar.db.el.AttributeAndPredicate;
 import edu.umich.templar.db.el.DBElement;
-import edu.umich.templar.db.el.Relation;
 import edu.umich.templar.log.graph.LogGraph;
 import edu.umich.templar.log.graph.LogGraphTree;
 import edu.umich.templar.task.Interpretation;
 import edu.umich.templar.util.Utils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SQLizerScorer implements InterpretationScorer {
     private LogGraph schemaGraph;
@@ -34,9 +31,9 @@ public class SQLizerScorer implements InterpretationScorer {
 
             if (mel.getEl() instanceof AttributeAndPredicate) {
                 els.add(((AttributeAndPredicate) mel.getEl()).getPredicate());
-                els.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
+                els.add(((AttributeAndPredicate) mel.getEl()).getAttributePart());
 
-                ignoreDuplicates.add(((AttributeAndPredicate) mel.getEl()).getAttribute());
+                ignoreDuplicates.add(((AttributeAndPredicate) mel.getEl()).getAttributePart());
             } else {
                 els.add(mel.getEl());
             }

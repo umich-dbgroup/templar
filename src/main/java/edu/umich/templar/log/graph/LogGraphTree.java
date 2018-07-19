@@ -263,7 +263,7 @@ public class LogGraphTree {
     public boolean contains(DBElement el) {
         List<DBElement> toFind = new ArrayList<>();
         if (el instanceof AttributeAndPredicate) {
-            toFind.add(((AttributeAndPredicate) el).getAttribute());
+            toFind.add(((AttributeAndPredicate) el).getAttributePart());
             toFind.add(((AttributeAndPredicate) el).getPredicate());
         } else {
             toFind.add(el);

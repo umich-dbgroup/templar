@@ -35,7 +35,6 @@ public class DuplicateDBElement extends DBElement {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(index, el);
     }
 }

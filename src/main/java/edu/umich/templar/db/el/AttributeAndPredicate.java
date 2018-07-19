@@ -11,7 +11,7 @@ public class AttributeAndPredicate extends DBElement implements Serializable {
         this.predicate = predicate;
     }
 
-    public DBElement getAttribute() {
+    public DBElement getAttributePart() {
         return attribute;
     }
 

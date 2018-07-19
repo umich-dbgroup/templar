@@ -2,20 +2,16 @@ package edu.umich.templar.task;
 
 import edu.umich.templar.db.*;
 import edu.umich.templar.db.el.*;
-import edu.umich.templar.log.graph.LogGraphTree;
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.StatementVisitor;
+import net.sf.jsqlparser.statement.select.Distinct;
 import net.sf.jsqlparser.statement.select.PlainSelect;
 import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.SelectItem;
 import net.sf.jsqlparser.util.SelectUtils;
-import org.apache.commons.collections4.Bag;
-import org.apache.commons.collections4.bag.HashBag;
 
 import java.util.*;
 
@@ -35,7 +31,7 @@ public class Interpretation {
         if (el instanceof AggregatedAttribute) {
             AggregatedAttribute aggrAttr = (AggregatedAttribute) el;
 
-            Column col = aggrAttr.getAttr().toColumn(tablesMap, aliasLevel);
+            Column col = aggrAttr.getAttribute().toColumn(tablesMap, aliasLevel);
             Function aggrFunc = new Function();
             aggrFunc.setName(aggrAttr.getAggrFunction());
             List<Expression> exprList = new ArrayList<>();
@@ -60,18 +56,22 @@ public class Interpretation {
             SelectUtils.addExpression(select, col);
         } else if (el instanceof AttributeAndPredicate) {
             AttributeAndPredicate attrAndPred = (AttributeAndPredicate) el;
-            DBElement attrEl = attrAndPred.getAttribute();
+            DBElement attrEl = attrAndPred.getAttributePart();
             this.addDBElementToSelect(select, tablesMap, attrEl, aliasLevel);
         } else if (el instanceof DuplicateDBElement) {
             DuplicateDBElement dbEl = (DuplicateDBElement) el;
             this.addDBElementToSelect(select, tablesMap, dbEl.getEl(), aliasLevel + 1);
         } else if (el instanceof GroupedAttribute) {
             GroupedAttribute attr = (GroupedAttribute) el;
-            Column col = attr.getAttr().toColumn(tablesMap, aliasLevel);
+            Column col = attr.getAttribute().toColumn(tablesMap, aliasLevel);
             SelectUtils.addExpression(select, col);
             SelectUtils.addGroupBy(select, col);
         } else if (el instanceof NumericPredicate) {
             NumericPredicate pred = (NumericPredicate) el;
+
+            // Add attribute to projection
+            Column col = pred.getAttribute().toColumn(tablesMap, aliasLevel);
+            SelectUtils.addExpression(select, col);
 
             BinaryExpression binaryExpression;
             switch (pred.getOp()) {
@@ -93,7 +93,7 @@ public class Interpretation {
                 default:
                     throw new RuntimeException("Unexpected operator: " + pred.getOp());
             }
-            binaryExpression.setLeftExpression(pred.getAttr().toColumn(tablesMap, aliasLevel));
+            binaryExpression.setLeftExpression(pred.getAttribute().toColumn(tablesMap, aliasLevel));
             binaryExpression.setRightExpression(new DoubleValue(pred.getValue().toString()));
 
             Expression where = ps.getWhere();
@@ -105,6 +105,10 @@ public class Interpretation {
             }
         } else if (el instanceof TextPredicate) {
             TextPredicate pred = (TextPredicate) el;
+
+            // Add attribute to projection
+            Column col = pred.getAttribute().toColumn(tablesMap, aliasLevel);
+            SelectUtils.addExpression(select, col);
 
             Expression where = ps.getWhere();
 
@@ -138,7 +142,10 @@ public class Interpretation {
         aliasMap.put(root, 0);
 
         Select select = SelectUtils.buildSelectFromTable(rootTable);
-        ((PlainSelect) select.getSelectBody()).setSelectItems(new ArrayList<>());
+
+        PlainSelect ps = (PlainSelect) select.getSelectBody();
+        ps.setDistinct(new Distinct());
+        ps.setSelectItems(new ArrayList<>());
 
         visited.add(root);
         queue.add(root);

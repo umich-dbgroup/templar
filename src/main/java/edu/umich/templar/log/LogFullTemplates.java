@@ -52,7 +52,7 @@ public class LogFullTemplates {
                 AggregatedPredicate pred = (AggregatedPredicate) el;
 
                 if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
+                    newEls.add(new AggregatedPredicate(pred.getAggFunction(), pred.getAttributePart(),
                             "?", pred.getValueFunction()));
                 } else {
                     // No modifications involved for NO_CONST
@@ -62,18 +62,18 @@ public class LogFullTemplates {
                 NumericPredicate pred = (NumericPredicate) el;
 
                 if (this.mode.equals(LogLevel.NO_CONST)) {
-                    newEls.add(new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction()));
+                    newEls.add(new NumericPredicate(pred.getAttributePart(), pred.getOp(), 0.0, pred.getFunction()));
                 } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction()));
+                    newEls.add(new NumericPredicate(pred.getAttributePart(), "?", 0.0, pred.getFunction()));
                 }
 
             } else if (el instanceof TextPredicate) {
                 TextPredicate pred = (TextPredicate) el;
 
                 if (this.mode.equals(LogLevel.NO_CONST)) {
-                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
+                    newEls.add(new TextPredicate(pred.getAttributePart(), ""));
                 } else if (this.mode.equals(LogLevel.NO_CONST_OP)) {
-                    newEls.add(new TextPredicate(pred.getAttribute(), ""));
+                    newEls.add(new TextPredicate(pred.getAttributePart(), ""));
                 }
 
             } else {
@@ -154,7 +154,7 @@ public class LogFullTemplates {
         for (DBElement el : elementsInSelect) {
             if (el instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) el;
-                if (aggr.getAttr().getName().equals("*")) {
+                if (aggr.getAttributePart().getName().equals("*")) {
                     aggregatedAllColumns = aggr;
                 }
             } else if (el instanceof Attribute) {
@@ -167,7 +167,7 @@ public class LogFullTemplates {
         }
         if (aggregatedAllColumns != null && otherProjection != null) {
             if (otherProjection instanceof GroupedAttribute) {
-                Attribute attr = ((GroupedAttribute) otherProjection).getAttr();
+                Attribute attr = ((GroupedAttribute) otherProjection).getAttributePart();
                 elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(), attr));
             } else {
                 elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getFunction(),
@@ -213,7 +213,7 @@ public class LogFullTemplates {
                 for (DBElement el : orderParser.getAttributes()) {
                     if (el instanceof AggregatedAttribute) {
                         AggregatedAttribute attr = (AggregatedAttribute) el;
-                        elementsInSelect.add(new AggregatedPredicate(attr.getFunction(), attr.getAttr(),
+                        elementsInSelect.add(new AggregatedPredicate(attr.getFunction(), attr.getAttributePart(),
                                 "=", valueFunction));
                     } else if (el instanceof Attribute) {
                         Attribute attr = (Attribute) el;

@@ -16,7 +16,8 @@ public class NumericPredicate extends DBElement implements Serializable {
         this.function = function;
     }
 
-    public Attribute getAttr() {
+    @Override
+    public Attribute getAttribute() {
         return attr;
     }
 

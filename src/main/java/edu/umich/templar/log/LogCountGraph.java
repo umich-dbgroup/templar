@@ -73,12 +73,12 @@ public class LogCountGraph {
     public DBElement modifyElementForLevel(DBElement el) {
         if (el instanceof AggregatedAttribute) {
             // Un-aggregate all attributes
-            return ((AggregatedAttribute) el).getAttr();
+            return ((AggregatedAttribute) el).getAttribute();
         } else if (el instanceof AggregatedPredicate) {
             AggregatedPredicate pred = (AggregatedPredicate) el;
 
             if (level.equals(LogLevel.NO_CONST_OP)) {
-                return new AggregatedPredicate(pred.getAggFunction(), pred.getAttr(),
+                return new AggregatedPredicate(pred.getAggFunction(), pred.getAttribute(),
                         "?", pred.getValueFunction());
             } else {
                 // No modifications involved for FULL or NO_CONST
@@ -87,16 +87,16 @@ public class LogCountGraph {
         } else if (el instanceof Attribute) {
             return el;
         } else if (el instanceof GroupedAttribute) {
-            return ((GroupedAttribute) el).getAttr();
+            return ((GroupedAttribute) el).getAttribute();
         } else if (el instanceof NumericPredicate) {
             NumericPredicate pred = (NumericPredicate) el;
 
             if (level.equals(LogLevel.FULL)) {
                 return el;
             } else if (level.equals(LogLevel.NO_CONST)) {
-                return new NumericPredicate(pred.getAttr(), pred.getOp(), 0.0, pred.getFunction());
+                return new NumericPredicate(pred.getAttribute(), pred.getOp(), 0.0, pred.getFunction());
             } else {
-                return new NumericPredicate(pred.getAttr(), "?", 0.0, pred.getFunction());
+                return new NumericPredicate(pred.getAttribute(), "?", 0.0, pred.getFunction());
             }
         } else if (el instanceof Relation) {
             return el;
@@ -117,7 +117,7 @@ public class LogCountGraph {
                 return el;
             } else {
                 return new AttributeAndPredicate(
-                        this.modifyElementForLevel(attrPred.getAttribute()),
+                        this.modifyElementForLevel(attrPred.getAttributePart()),
                         this.modifyElementForLevel(attrPred.getPredicate()));
             }
         } else {
@@ -207,7 +207,7 @@ public class LogCountGraph {
         for (DBElement el : elementsInSelect) {
             if (el instanceof AggregatedAttribute) {
                 AggregatedAttribute aggr = (AggregatedAttribute) el;
-                if (aggr.getAttr().getName().equals("*")) {
+                if (aggr.getAttribute().getName().equals("*")) {
                     aggregatedAllColumns = aggr;
                 } else {
                     otherProjections.add(el);
@@ -235,7 +235,7 @@ public class LogCountGraph {
             }
 
             if (otherProjection instanceof GroupedAttribute) {
-                Attribute attr = ((GroupedAttribute) otherProjection).getAttr();
+                Attribute attr = ((GroupedAttribute) otherProjection).getAttribute();
                 elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
                         aggregatedAllColumns.getAggrFunction(),
                         attr));
@@ -243,7 +243,7 @@ public class LogCountGraph {
                 AggregatedAttribute aggr = (AggregatedAttribute) otherProjection;
                 elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
                         aggr.getAggrFunction(),
-                        aggr.getAttr()));
+                        aggr.getAttribute()));
             } else {
                 elementsInSelect.add(new AggregatedAttribute(aggregatedAllColumns.getValueFunction(),
                         aggregatedAllColumns.getAggrFunction(),
@@ -290,7 +290,7 @@ public class LogCountGraph {
                 for (DBElement el : orderParser.getAttributes()) {
                     if (el instanceof AggregatedAttribute) {
                         AggregatedAttribute attr = (AggregatedAttribute) el;
-                        elementsInSelect.add(new AggregatedPredicate(attr.getAggrFunction(), attr.getAttr(),
+                        elementsInSelect.add(new AggregatedPredicate(attr.getAggrFunction(), attr.getAttribute(),
                                 "=", valueFunction));
                     } else if (el instanceof Attribute) {
                         Attribute attr = (Attribute) el;

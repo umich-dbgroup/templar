@@ -59,19 +59,19 @@ public class InstantiatedTemplate {
             boolean secondVertexHasProjPred = false;
 
             for (Projection proj : translation.getProjections()) {
-                if (selfJoin.getFirst().hasSameRelationAs(proj.getAttribute())) {
+                if (selfJoin.getFirst().hasSameRelationAs(proj.getAttributePart())) {
                     firstVertexHasProjPred = true;
                 }
-                if (selfJoin.getSecond().hasSameRelationAs(proj.getAttribute())) {
+                if (selfJoin.getSecond().hasSameRelationAs(proj.getAttributePart())) {
                     secondVertexHasProjPred = true;
                 }
             }
 
             for (NumericPredicate pred : translation.getPredicates()) {
-                if (selfJoin.getFirst().hasSameRelationAs(pred.getAttribute())) {
+                if (selfJoin.getFirst().hasSameRelationAs(pred.getAttributePart())) {
                     firstVertexHasProjPred = true;
                 }
-                if (selfJoin.getSecond().hasSameRelationAs(pred.getAttribute())) {
+                if (selfJoin.getSecond().hasSameRelationAs(pred.getAttributePart())) {
                     secondVertexHasProjPred = true;
                 }
             }
@@ -136,25 +136,25 @@ public class InstantiatedTemplate {
             if (isPseudoSelfJoin) {
                 for (Attribute consecVertex : consecutive.getInteriorVertices()) {
                     for (Projection proj : translation.getProjections()) {
-                        if (proj.getAttribute().hasSameRelationAs(consecVertex)) {
+                        if (proj.getAttributePart().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }
                     }
 
                     for (NumericPredicate pred : translation.getPredicates()) {
-                        if (pred.getAttribute().hasSameRelationAs(consecVertex)) {
+                        if (pred.getAttributePart().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }
                     }
 
                     for (Having having : translation.getHavings()) {
-                        if (having.getAttribute().hasSameRelationAs(consecVertex)) {
+                        if (having.getAttributePart().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }
                     }
 
                     if (translation.getSuperlative() != null) {
-                        if (translation.getSuperlative().getAttribute().hasSameRelationAs(consecVertex)) {
+                        if (translation.getSuperlative().getAttributePart().hasSameRelationAs(consecVertex)) {
                             continue consec_check;
                         }
                     }

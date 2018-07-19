@@ -61,6 +61,10 @@ public class Database {
         this.loadProjAttrs(projAttrsFile);
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     public ResultSet executeSQL(String sql) throws SQLException {
         Statement stmt = this.connection.createStatement();
         return stmt.executeQuery(sql);

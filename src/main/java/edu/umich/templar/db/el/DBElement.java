@@ -9,4 +9,5 @@ public class DBElement implements Serializable {
     public Relation getRelation() {
         return null;
     }
+    public Attribute getAttribute() { return null; }
 }

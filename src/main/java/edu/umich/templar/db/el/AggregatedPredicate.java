@@ -24,7 +24,8 @@ public class AggregatedPredicate extends DBElement implements Serializable {
         return aggFunction;
     }
 
-    public Attribute getAttr() {
+    @Override
+    public Attribute getAttribute() {
         return attr;
     }
 

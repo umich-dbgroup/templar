@@ -22,7 +22,8 @@ public class AggregatedAttribute extends DBElement implements Serializable {
         return aggrFunction;
     }
 
-    public Attribute getAttr() {
+    @Override
+    public Attribute getAttribute() {
         return attr;
     }
 

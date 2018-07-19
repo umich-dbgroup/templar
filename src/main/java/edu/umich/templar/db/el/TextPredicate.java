@@ -14,6 +14,7 @@ public class TextPredicate extends DBElement implements Serializable {
         this.value = value;
     }
 
+    @Override
     public Attribute getAttribute() {
         return attribute;
     }

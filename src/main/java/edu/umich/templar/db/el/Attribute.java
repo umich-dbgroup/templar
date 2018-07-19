@@ -45,6 +45,9 @@ public class Attribute extends DBElement implements Serializable {
         return relation;
     }
 
+    @Override
+    public Attribute getAttribute() { return this; }
+
     public static Attribute allColumnsAttr() {
         return new Attribute(null, "*", "*");
     }
