@@ -60,3 +60,17 @@ ALTER TABLE writer ADD FULLTEXT(birth_year);
 ALTER TABLE writer ADD FULLTEXT(nationality);
 ALTER TABLE writer ADD FULLTEXT(gender);
 ALTER TABLE writer ADD FULLTEXT(name);
+
+-- add join table indexes
+ALTER TABLE cast ADD INDEX aid(aid);
+ALTER TABLE cast ADD INDEX msid(msid);
+ALTER TABLE classification ADD INDEX gid(gid);
+ALTER TABLE classification ADD INDEX msid(msid);
+ALTER TABLE copyright ADD INDEX cid(cid);
+ALTER TABLE copyright ADD INDEX msid(msid);
+ALTER TABLE directed_by ADD INDEX did(did);
+ALTER TABLE directed_by ADD INDEX msid(msid);
+ALTER TABLE made_by ADD INDEX msid(msid);
+ALTER TABLE made_by ADD INDEX pid(pid);
+ALTER TABLE written_by ADD INDEX msid(msid);
+ALTER TABLE written_by ADD INDEX wid(wid);
