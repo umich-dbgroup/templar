@@ -2,12 +2,17 @@ package edu.umich.templar.log.graph;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LogGraphPath {
     private List<LogGraphNode> nodes;
 
     public LogGraphPath() {
         this.nodes = new ArrayList<>();
+    }
+
+    public LogGraphPath(LogGraphPath other) {
+        this.nodes = new ArrayList<>(other.nodes);
     }
 
     public int length() {
@@ -39,5 +44,18 @@ public class LogGraphPath {
         }
 
         return distance;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LogGraphPath that = (LogGraphPath) o;
+        return Objects.equals(nodes, that.nodes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nodes);
     }
 }

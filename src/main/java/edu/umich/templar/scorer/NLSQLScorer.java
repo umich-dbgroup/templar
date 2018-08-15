@@ -51,6 +51,7 @@ public class NLSQLScorer implements InterpretationScorer {
         schemaGraph.forkSchemaGraph(els, ignoreDuplicates);
 
         // Calculate Steiner tree
+        /*
         LogGraphTree steinerTree = schemaGraph.steiner(els);
 
         // In the case of an invalid Steiner tree (e.g. only one node which is a relation)
@@ -67,7 +68,7 @@ public class NLSQLScorer implements InterpretationScorer {
                 System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
                 return 0.0;
             }
-        }
+        }*/
 
         return Utils.geometricMean(sims);
     }

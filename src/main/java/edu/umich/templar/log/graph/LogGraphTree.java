@@ -29,6 +29,15 @@ public class LogGraphTree {
         this.children = new HashMap<>();
     }
 
+    public LogGraphTree(LogGraphTree other) {
+        this.db = other.db;
+        this.root = other.root;
+        this.nodes = new HashSet<>(other.nodes);
+        this.leaves = new HashSet<>(other.leaves);
+        this.parents = new HashMap<>(other.parents);
+        this.children = new HashMap<>(other.children);
+    }
+
     public Set<LogGraphNode> getNodes() {
         return nodes;
     }
@@ -317,5 +326,24 @@ public class LogGraphTree {
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LogGraphTree that = (LogGraphTree) o;
+        return Objects.equals(db, that.db) &&
+                Objects.equals(root, that.root) &&
+                Objects.equals(nodes, that.nodes) &&
+                Objects.equals(parents, that.parents) &&
+                Objects.equals(children, that.children) &&
+                Objects.equals(leaves, that.leaves);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(db, root, nodes, parents, children, leaves);
     }
 }

@@ -2,6 +2,9 @@ package edu.umich.templar.main;
 
 import edu.umich.templar.db.*;
 import edu.umich.templar.db.el.*;
+import edu.umich.templar.distinguish.DistTuple;
+import edu.umich.templar.distinguish.DistTupleSet;
+import edu.umich.templar.log.graph.LogGraph;
 import edu.umich.templar.main.settings.Params;
 import edu.umich.templar.scorer.InterpretationScorer;
 import edu.umich.templar.scorer.SimpleScorer;
@@ -481,8 +484,9 @@ public class PipelineCore {
 
         long startI = System.currentTimeMillis();
 //        List<Interpretation> interps = queryMappings.findOptimalInterpretations();
-        List<Interpretation> interps = queryMappings.getAllInterpretations();
-        this.cumulativeInterpCount += queryMappings.getTotalInterpsCount();
+        Set<Interpretation> interpSet = queryMappings.getAllInterpretations(this.db);
+        List<Interpretation> interps = new ArrayList<>(interpSet);
+        // this.cumulativeInterpCount += queryMappings.getTotalInterpsCount();
 
         long Itime = System.currentTimeMillis() - startI;
         System.out.println("INTERP TIME: " + Itime + " ms");
@@ -562,57 +566,86 @@ public class PipelineCore {
         }
 
         System.out.println("\n--- SQL ---");
+
+        List<String> kws = new ArrayList<>();
+        // DistTupleSet distTupleSet = new DistTupleSet(kws);
+
+        for (MatchedDBElement mel : interps.get(0).getElements()) {
+            if (mel.getEl() instanceof Relation) continue;
+            // System.out.print(mel.getKeyword() + "\t");
+            kws.add(mel.getKeyword());
+        }
+
+        List<String> finalSql = new ArrayList<>();
         for (Interpretation interp : interps) {
-            // TODO: print SQL
-            net.sf.jsqlparser.statement.Statement sql = interp.getSQL();
-            String sqlStr = sql.toString();
-            System.out.println(sqlStr);
+            net.sf.jsqlparser.statement.Statement sql = interp.getDistTupleSQL();
+            if (!finalSql.contains(sql.toString())) {
+                finalSql.add(sql.toString());
+            }
+        }
+
+        finalSql.sort(Comparator.naturalOrder());
+        for (String sql : finalSql) {
+            System.out.println(sql);
+        }
+
+        System.out.println("-----------\n");
 
             // LIMIT max 5
+
+            /*
             sqlStr += " LIMIT 5";
 
             try {
                 Statement stmt = this.db.getConnection().createStatement();
                 ResultSet rs = stmt.executeQuery(sqlStr);
-                for (MatchedDBElement mel : interp.getElements()) {
-                    if (mel.getEl() instanceof Relation) continue;
-                    System.out.print(mel.getKeyword() + "\t");
-                }
-                System.out.println();
+
                 while (rs.next()) {
                     int colIndex = 1;
+
+                    DistTuple distTuple = new DistTuple(interp);
+
                     for (int i = 0; i < interp.getElements().size(); i++) {
                         MatchedDBElement mel = interp.getElements().get(i);
 
                         if (mel.getEl() instanceof Relation) continue;
 
-                        boolean isNumber = false;
-                        if (mel.getEl() instanceof AttributeAndPredicate) {
-                            // TODO: sigh. don't want to deal with this
-                        } else if (mel.getEl() instanceof DuplicateDBElement) {
-                            DuplicateDBElement dup = (DuplicateDBElement) mel.getEl();
-                            isNumber = dup.getEl().getAttribute().getType().equals(AttributeType.INT) ||
-                                    dup.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
-                        } else {
-                            isNumber = mel.getEl().getAttribute().getType().equals(AttributeType.INT) ||
-                                    mel.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
-                        }
+                        distTuple.setTupleValue(mel.getKeyword(), rs.getString(colIndex++));
 
-                        if (isNumber) {
-                            System.out.print(rs.getDouble(colIndex++) + "\t");
-                        } else {
-                            System.out.print(rs.getString(colIndex++) + "\t");
-                        }
+                        // boolean isNumber = false;
+                        // if (mel.getEl() instanceof AttributeAndPredicate) {
+                            // TODO: sigh. don't want to deal with this
+                        // } else if (mel.getEl() instanceof DuplicateDBElement) {
+                        //    DuplicateDBElement dup = (DuplicateDBElement) mel.getEl();
+                        //    isNumber = dup.getEl().getAttribute().getType().equals(AttributeType.INT) ||
+                        //            dup.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
+                        // } else {
+                        //    isNumber = mel.getEl().getAttribute().getType().equals(AttributeType.INT) ||
+                        //            mel.getEl().getAttribute().getType().equals(AttributeType.DOUBLE);
+                        //}
+
+                        // if (isNumber) {
+                        //    System.out.print(rs.getDouble(colIndex++) + "\t");
+                        // } else {
+                        //    System.out.print(rs.getString(colIndex++) + "\t");
+                        //}
                     }
-                    System.out.println();
+
+                    distTupleSet.add(distTuple);
+                    // System.out.println();
                 }
-                System.out.println();
+                // System.out.println();
                 rs.close();
                 stmt.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+
+        System.out.println();
+        System.out.println(distTupleSet.toString());
+        */
 
         double correctTiesFrac = ((double) correctTiesFragAccum) / interps.size();
         double correctJoinTiesFrac = ((double) correctJoinTiesFragAccum) / interps.size();
@@ -643,7 +676,7 @@ public class PipelineCore {
         long cumulativeTime = 0;
         this.cumulativeITime = 0;
         this.cumulativeKWTime = 0;
-        this.cumulativeInterpCount = 0;
+        // this.cumulativeInterpCount = 0;
 
         int i = 0;
         for (QueryTask queryTask : this.queryTasks) {
@@ -677,7 +710,7 @@ public class PipelineCore {
         System.out.println("CUMULATIVE TOTAL TIME: " + cumulativeTime + " ms");
         System.out.println("CUMULATIVE KW TIME: " + this.cumulativeKWTime + " ms");
         System.out.println("CUMULATIVE I TIME: " + this.cumulativeITime + " ms");
-        System.out.println("CUMULATIVE INTERP COUNT: " + this.cumulativeInterpCount);
+        // System.out.println("CUMULATIVE INTERP COUNT: " + this.cumulativeInterpCount);
 
         return retStr;
     }

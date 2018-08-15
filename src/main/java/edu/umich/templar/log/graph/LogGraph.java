@@ -3,6 +3,10 @@ package edu.umich.templar.log.graph;
 import edu.umich.templar.db.el.*;
 import edu.umich.templar.db.Database;
 import edu.umich.templar.log.LogCountGraph;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.ImmutableTriple;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 
 import java.util.*;
 
@@ -13,7 +17,7 @@ public class LogGraph {
     private Map<DBElement, LogGraphNode> elementMap;
     private Set<LogGraphNode> nodes;
 
-    private Map<LogGraphNodePair, LogGraphPath> shortestPaths;
+    private Map<LogGraphNodePair, List<LogGraphPath>> shortestPaths;
 
     public LogGraph(Database db, LogCountGraph logCountGraph) {
         this.db = db;
@@ -297,12 +301,65 @@ public class LogGraph {
         return mst;
     }
 
-    private LogGraphTree shortestPathPrims(List<LogGraphNode> nodes) {
+    private Set<LogGraphTree> shortestPathPrimsHelper(LogGraphTree curTree, List<LogGraphNode> nodes) {
+        Set<LogGraphTree> results = new HashSet<>();
+
+        while (!nodes.isEmpty()) {
+            // LogGraphNode minPointParent = null;
+            // LogGraphNode minPointNode = null;
+            // double minDist = 99999999999.0;
+            List<Triple<LogGraphNode, LogGraphNode, Double>> trackDist = new ArrayList<>();
+            for (LogGraphNode treeVertex : curTree.getNodes()) {
+                for (LogGraphNode point : nodes) {
+                    LogGraphNodePair pair = new LogGraphNodePair(treeVertex, point);
+
+                    List<LogGraphPath> shortestPaths = this.shortestPaths.get(pair);
+
+                    for (LogGraphPath shortestPath : shortestPaths) {
+                        if (shortestPath == null) {
+                            throw new RuntimeException("Could not find shortest path for " + pair);
+                        }
+                        double pathDist = shortestPath.distance();
+                        trackDist.add(new ImmutableTriple<>(treeVertex, point, pathDist));
+                    }
+                    /*
+                    if (pathDist < minDist) {
+                        minPointParent = treeVertex;
+                        minPointNode = point;
+                        minDist = pathDist;
+                    }*/
+                }
+            }
+            trackDist.sort(Comparator.comparing(Triple::getRight));
+
+            double minDist = trackDist.get(0).getRight();
+
+            for (int i = 1; i < trackDist.size(); i++) {
+                if (trackDist.get(i).getRight().equals(minDist)) {
+                    // If we have a tie, fork it!
+                    LogGraphTree newTree = new LogGraphTree(curTree);
+                    newTree.addNode(trackDist.get(i).getLeft(), trackDist.get(i).getMiddle());
+                    List<LogGraphNode> newNodes = new ArrayList<>(nodes);
+                    newNodes.remove(trackDist.get(i).getMiddle());
+                    results.addAll(this.shortestPathPrimsHelper(newTree, newNodes));
+                }
+            }
+
+            curTree.addNode(trackDist.get(0).getLeft(), trackDist.get(0).getMiddle());
+            nodes.remove(trackDist.get(0).getMiddle());
+        }
+
+        results.add(curTree);
+        return results;
+    }
+
+    private Set<LogGraphTree> shortestPathPrims(List<LogGraphNode> nodes) {
         LogGraphNode curVertex = nodes.remove(0);
 
         LogGraphTree mst = new LogGraphTree(this.db, curVertex);
+        return this.shortestPathPrimsHelper(mst, nodes);
 
-        while (!nodes.isEmpty()) {
+        /*while (!nodes.isEmpty()) {
             LogGraphNode minPointParent = null;
             LogGraphNode minPointNode = null;
             double minDist = 99999999999.0;
@@ -327,11 +384,147 @@ public class LogGraph {
             nodes.remove(minPointNode);
         }
 
-        return mst;
+        return mst;*/
+    }
+
+    public Set<Set<LogGraphNode>> constructFullSubgraphsHelper(LogGraphTree mst,
+                                                              Set<LogGraphNode> fullSubgraph,
+                                                              Stack<LogGraphNode> visitStack) {
+        Set<Set<LogGraphNode>> results = new HashSet<>();
+        if (visitStack.isEmpty()) {
+            results.add(fullSubgraph);
+            return results;
+        }
+
+        LogGraphNode curMSTNode = visitStack.pop();
+        fullSubgraph.add(curMSTNode);
+
+        Set<Pair<Set<LogGraphNode>, Stack<LogGraphNode>>> states = new HashSet<>();
+        states.add(new ImmutablePair<>(fullSubgraph, visitStack));
+
+        if (mst.hasChildren(curMSTNode)) {
+            for (LogGraphNode child : mst.getChildren(curMSTNode)) {
+                LogGraphNodePair pair = new LogGraphNodePair(curMSTNode, child);
+                List<LogGraphPath> paths = this.shortestPaths.get(pair);
+                Set<Pair<Set<LogGraphNode>, Stack<LogGraphNode>>> newStates = new HashSet<>();
+                for (Pair<Set<LogGraphNode>, Stack<LogGraphNode>> state : states){
+                    for (LogGraphPath path : paths) {
+                        Set<LogGraphNode> newSubgraph = new HashSet<>(state.getLeft());
+                        newSubgraph.addAll(path.getNodes());
+                        Stack<LogGraphNode> newVisitStack = (Stack<LogGraphNode>) state.getRight().clone();
+                        newVisitStack.push(child);
+                        newStates.add(new ImmutablePair<>(newSubgraph, newVisitStack));
+                    }
+                }
+                states = newStates;
+            }
+        }
+        for (Pair<Set<LogGraphNode>, Stack<LogGraphNode>> state : states) {
+            results.addAll(this.constructFullSubgraphsHelper(mst, state.getLeft(), state.getRight()));
+        }
+
+        return results;
+    }
+
+    public Set<LogGraphTree> constructFinalSteinerTrees(LogGraphTree mst, List<LogGraphNode> pointNodes) {
+        Set<LogGraphTree> results = new HashSet<>();
+        Stack<LogGraphNode> visitStack = new Stack<>();
+        visitStack.push(mst.getRoot());
+
+        Set<Set<LogGraphNode>> fullSubgraphs = this.constructFullSubgraphsHelper(mst, new HashSet<>(), visitStack);
+
+        // Step 4: Find the MST of each fullSubgraph, again using Prim's.
+        Set<LogGraphNode> shortestPathsFound = new HashSet<>();
+
+        for (Set<LogGraphNode> fullSubgraph : fullSubgraphs) {
+            for (LogGraphNode node : fullSubgraph) {
+                if (!shortestPathsFound.contains(node)) {
+                    this.findShortestPathToAllOtherNodes(node);
+                    shortestPathsFound.add(node);
+                }
+            }
+            LogGraphTree finalMST = this.prims(new ArrayList<>(fullSubgraph));
+
+            // Step 5: Construct a Steiner tree by deleting edges so that all the leaves are Steiner points
+            Stack<LogGraphNode> leaves = new Stack<>();
+            leaves.addAll(finalMST.getLeaves());
+
+            while (!leaves.isEmpty()) {
+                LogGraphNode leaf = leaves.pop();
+
+                // Leaves can also NOT be relations, unless there are at least 2 FK-PK rels from it
+                boolean prunableRelation = false;
+
+                Relation rel = null;
+                if (leaf.getElement() instanceof Relation) {
+                    rel = (Relation) leaf.getElement();
+                } else if (leaf.getElement() instanceof DuplicateDBElement) {
+                    DuplicateDBElement dupl = (DuplicateDBElement) leaf.getElement();
+                    if (dupl.getEl() instanceof Relation) {
+                        rel = (Relation) dupl.getEl();
+                    }
+                }
+
+                if (rel != null) {
+                    prunableRelation = true;
+
+                    // By definition, a leaf can only have one connected node (its "parent")
+                    LogGraphNode parent = null;
+                    for (Map.Entry<LogGraphNode, Double> e : leaf.getConnected().entrySet()) {
+                        parent = e.getKey();
+                    }
+
+                    Relation parentRel = null;
+                    if (parent.getElement() instanceof Relation) {
+                        parentRel = (Relation) parent.getElement();
+                    } else if (parent.getElement() instanceof DuplicateDBElement) {
+                        DuplicateDBElement dupl = (DuplicateDBElement) parent.getElement();
+                        if (dupl.getEl() instanceof Relation) {
+                            parentRel = (Relation) dupl.getEl();
+                        }
+                    }
+
+                    if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
+                        prunableRelation = false;
+
+                        // A HACK to support self-joins for "cite". In theory this will work with a diff. implementation.
+                        // Assuming a max of 2 FK-PK links from a leaf table to parent
+                        DuplicateDBElement duplParent = this.duplicate(parentRel);
+                        LogGraphNode duplParentNode = this.getOrAddNode(duplParent);
+                        finalMST.addNode(leaf, duplParentNode);
+
+                        Set<LogGraphNode> children = new HashSet<>(finalMST.getChildren(parent));
+                        for (LogGraphNode sibling : children) {
+                            duplParentNode.addEdge(sibling, parent.getWeight(sibling));
+                            if (!sibling.equals(leaf) && sibling.getElement() instanceof DuplicateDBElement) {
+                                finalMST.changeParent(sibling, duplParentNode);
+                            }
+                        }
+                    }
+                }
+
+                if (!pointNodes.contains(leaf) || prunableRelation) {
+                    LogGraphNode parent = finalMST.getParent(leaf);
+                    if (parent == null) {
+                        return null;
+                    }
+                    // Traverse up the leaf and remove from final MST
+                    finalMST.removeNode(leaf);
+                    if (finalMST.isLeaf(parent)) {
+                        leaves.push(parent);
+                    }
+                }
+            }
+            results.add(finalMST);
+        }
+        return results;
     }
 
     // Find the minimum Steiner tree that connects all the points.
-    public LogGraphTree steiner(List<DBElement> points) {
+    public Set<LogGraphTree> steiner(List<DBElement> points) {
+        // There can be multiple results!
+        Set<LogGraphTree> results = new HashSet<>();
+
         // Step 1: Make sure shortest paths are calculated for all points
         List<LogGraphNode> pointNodes = new ArrayList<>();
         for (DBElement point : points) {
@@ -343,111 +536,76 @@ public class LogGraph {
         }
 
         // Step 2: Find MST of shortest paths graph: run Prim's algorithm
-        LogGraphTree mst = this.shortestPathPrims(new ArrayList<>(pointNodes));
+        Set<LogGraphTree> mstList = this.shortestPathPrims(new ArrayList<>(pointNodes));
 
         // Step 3: Replace each edge in the MST with the full nodes from the shortest paths
-        Set<LogGraphNode> fullSubgraph = new HashSet<>();
-        Stack<LogGraphNode> visitStack = new Stack<>();
-        visitStack.push(mst.getRoot());
-
-        while (!visitStack.isEmpty()) {
-            LogGraphNode curMSTNode = visitStack.pop();
-            fullSubgraph.add(curMSTNode);
-            if (mst.hasChildren(curMSTNode)) {
-                for (LogGraphNode child : mst.getChildren(curMSTNode)) {
-                    LogGraphNodePair pair = new LogGraphNodePair(curMSTNode, child);
-                    LogGraphPath path = this.shortestPaths.get(pair);
-                    fullSubgraph.addAll(path.getNodes());
-                    visitStack.push(child);
-                }
-            }
+        for (LogGraphTree mst : mstList) {
+            results.addAll(this.constructFinalSteinerTrees(mst, pointNodes));
         }
+        return results;
+    }
 
-        // Step 4: Find the MST of fullSubgraph, again using Prim's.
-        for (LogGraphNode node : fullSubgraph) {
-            this.findShortestPathToAllOtherNodes(node);
-        }
-        LogGraphTree finalMST = this.prims(new ArrayList<>(fullSubgraph));
-
-        // Step 5: Construct a Steiner tree by deleting edges so that all the leaves are Steiner points
-        Stack<LogGraphNode> leaves = new Stack<>();
-        leaves.addAll(finalMST.getLeaves());
-
-        while (!leaves.isEmpty()) {
-            LogGraphNode leaf = leaves.pop();
-
-            // Leaves can also NOT be relations, unless there are at least 2 FK-PK rels from it
-            boolean prunableRelation = false;
-
-            Relation rel = null;
-            if (leaf.getElement() instanceof Relation) {
-                rel = (Relation) leaf.getElement();
-            } else if (leaf.getElement() instanceof DuplicateDBElement) {
-                DuplicateDBElement dupl = (DuplicateDBElement) leaf.getElement();
-                if (dupl.getEl() instanceof Relation) {
-                    rel = (Relation) dupl.getEl();
-                }
+    private Map<LogGraphNode, List<LogGraphNode>> findShortestPathHelper(List<LogGraphNode> unvisited,
+                                        Map<LogGraphNode, Double> dist,
+                                        Map<LogGraphNode, List<LogGraphNode>> prev) {
+        while (!unvisited.isEmpty()) {
+            // Find nodes with minimum distance
+            List<Pair<LogGraphNode, Double>> nodeDists = new ArrayList<>();
+            for (Map.Entry<LogGraphNode, Double> e : dist.entrySet()) {
+                if (!unvisited.contains(e.getKey())) continue;
+                nodeDists.add(new ImmutablePair<>(e.getKey(), e.getValue()));
             }
+            nodeDists.sort(Comparator.comparing(Pair::getRight));
 
-            if (rel != null) {
-                prunableRelation = true;
+            double minDist = nodeDists.get(0).getRight();
 
-                // By definition, a leaf can only have one connected node (its "parent")
-                LogGraphNode parent = null;
-                for (Map.Entry<LogGraphNode, Double> e : leaf.getConnected().entrySet()) {
-                    parent = e.getKey();
-                }
+            for (Pair<LogGraphNode, Double> nodeDist : nodeDists) {
+                if (nodeDist.getRight() > minDist) break;
 
-                Relation parentRel = null;
-                if (parent.getElement() instanceof Relation) {
-                    parentRel = (Relation) parent.getElement();
-                } else if (parent.getElement() instanceof DuplicateDBElement) {
-                    DuplicateDBElement dupl = (DuplicateDBElement) parent.getElement();
-                    if (dupl.getEl() instanceof Relation) {
-                        parentRel = (Relation) dupl.getEl();
-                    }
-                }
+                LogGraphNode minNode = nodeDist.getLeft();
 
-                if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
-                    prunableRelation = false;
+                unvisited.remove(minNode);
 
-                    // A HACK to support self-joins for "cite". In theory this will work with a diff. implementation.
-                    // Assuming a max of 2 FK-PK links from a leaf table to parent
-                    DuplicateDBElement duplParent = this.duplicate(parentRel);
-                    LogGraphNode duplParentNode = this.getOrAddNode(duplParent);
-                    finalMST.addNode(leaf, duplParentNode);
+                for (Map.Entry<LogGraphNode, Double> e : minNode.getConnected().entrySet()) {
+                    double alt = minDist + e.getValue();
 
-                    Set<LogGraphNode> children = new HashSet<>(finalMST.getChildren(parent));
-                    for (LogGraphNode sibling : children) {
-                        duplParentNode.addEdge(sibling, parent.getWeight(sibling));
-                        if (!sibling.equals(leaf) && sibling.getElement() instanceof DuplicateDBElement) {
-                            finalMST.changeParent(sibling, duplParentNode);
-                        }
+                    if (alt < dist.get(e.getKey())) {
+                        dist.put(e.getKey(), alt);
+
+                        List<LogGraphNode> prevList = new ArrayList<>();
+                        prevList.add(minNode);
+                        prev.put(e.getKey(), prevList);
+                    } else if (alt == dist.get(e.getKey())) {
+                        List<LogGraphNode> prevList = prev.computeIfAbsent(e.getKey(), k -> new ArrayList<>());
+                        prevList.add(minNode);
                     }
                 }
             }
+        }
+        return prev;
+    }
 
-            if (!pointNodes.contains(leaf) || prunableRelation) {
-                LogGraphNode parent = finalMST.getParent(leaf);
-                if (parent == null) {
-                    return null;
-                }
-                // Traverse up the leaf and remove from final MST
-                finalMST.removeNode(leaf);
-                if (finalMST.isLeaf(parent)) {
-                    leaves.push(parent);
-                }
-            }
+    private Set<LogGraphPath> shortestPathFinalHelper(LogGraphPath path,
+                                                       Map<LogGraphNode, List<LogGraphNode>> prev,
+                                                       LogGraphNode curNode) {
+        Set<LogGraphPath> results = new HashSet<>();
+        if (prev.get(curNode) == null) {
+            results.add(path);
+            return results;
         }
 
-        return finalMST;
+        for (LogGraphNode prevNode : prev.get(curNode)) {
+            LogGraphPath newPath = new LogGraphPath(path);
+            newPath.addNode(prevNode);
+            results.addAll(this.shortestPathFinalHelper(newPath, prev, prevNode));
+        }
+        return results;
     }
 
     // Using Dijkstra's algorithm from: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Algorithm
     private void findShortestPathToAllOtherNodes(LogGraphNode node) {
         List<LogGraphNode> unvisited = new ArrayList<>();
         Map<LogGraphNode, Double> dist = new HashMap<>();
-        Map<LogGraphNode, LogGraphNode> prev = new HashMap<>();
 
         double infinity = 99999999.0;
 
@@ -460,45 +618,15 @@ public class LogGraph {
             }
         }
 
-        while (!unvisited.isEmpty()) {
-            // Find node with minimum distance
-            LogGraphNode minNode = null;
-            Double minDist = infinity;
-            for (Map.Entry<LogGraphNode, Double> e : dist.entrySet()) {
-                if (!unvisited.contains(e.getKey())) continue;
-                if (minNode == null || e.getValue() < minDist) {
-                    minNode = e.getKey();
-                    minDist = e.getValue();
-                }
-            }
-
-            unvisited.remove(minNode);
-
-            for (Map.Entry<LogGraphNode, Double> e : minNode.getConnected().entrySet()) {
-                double alt = minDist + e.getValue();
-
-                if (alt < dist.get(e.getKey())) {
-                    dist.put(e.getKey(), alt);
-                    prev.put(e.getKey(), minNode);
-                }
-            }
-        }
+        Map<LogGraphNode, List<LogGraphNode>> prev = this.findShortestPathHelper(unvisited, dist, new HashMap<>());
 
         // Reverse traversal to add all shortest distance paths from target -> source
-        for (Map.Entry<LogGraphNode, LogGraphNode> e : prev.entrySet()) {
-            LogGraphPath path = new LogGraphPath();
-
+        for (Map.Entry<LogGraphNode, List<LogGraphNode>> e : prev.entrySet()) {
             LogGraphNode target = e.getKey();
-            LogGraphNode curNode = target;
-
-            while (prev.get(curNode) != null) {
-                path.addNode(curNode);
-                curNode = prev.get(curNode);
-            }
-            path.addNode(curNode);
+            Set<LogGraphPath> paths = this.shortestPathFinalHelper(new LogGraphPath(), prev, target);
 
             LogGraphNodePair shortestPathPair = new LogGraphNodePair(node, target);
-            this.shortestPaths.put(shortestPathPair, path);
+            this.shortestPaths.put(shortestPathPair, new ArrayList<>(paths));
         }
     }
 }

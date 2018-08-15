@@ -82,6 +82,7 @@ public class LogGraphScorer implements InterpretationScorer {
             logGraphClone.forkSchemaGraph(els, ignoreDuplicates);
 
             // Calculate Steiner tree
+            /*
             LogGraphTree steinerTree = logGraphClone.steiner(els);
 
             // Set join path on interpretation
@@ -98,12 +99,13 @@ public class LogGraphScorer implements InterpretationScorer {
             }
 
             double joinsScore = steinerTree.joinScore();
-            interpScore.add(joinsScore);
+            interpScore.add(joinsScore);*/
         } else {
             LogGraph schemaGraph = this.logGraph.schemaGraphOnly();
             schemaGraph.forkSchemaGraph(els, ignoreDuplicates);
 
             // Calculate Steiner tree
+            /*
             LogGraphTree steinerTree = schemaGraph.steiner(els);
 
             // Set join path on interpretation
@@ -114,7 +116,7 @@ public class LogGraphScorer implements InterpretationScorer {
                     System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
                     return 0.0;
                 }
-            }
+            }*/
 
             // Don't add joins score if log graph not activated
         }

@@ -125,7 +125,7 @@ public class Interpretation {
         }
     }
 
-    public Statement getSQL() {
+    public Statement getDistTupleSQL() {
         JoinPathNode root = this.joinPath.getFirstAlphabeticalNode();
         Set<JoinPathNode> visited = new HashSet<>();
         Queue<JoinPathNode> queue = new LinkedList<>();
@@ -216,5 +216,20 @@ public class Interpretation {
 
     public void setJoinPath(JoinPath joinPath) {
         this.joinPath = joinPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Interpretation that = (Interpretation) o;
+        return Objects.equals(mels, that.mels) &&
+                Objects.equals(joinPath, that.joinPath);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(mels, joinPath);
     }
 }

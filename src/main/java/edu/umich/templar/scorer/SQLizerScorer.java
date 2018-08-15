@@ -42,7 +42,8 @@ public class SQLizerScorer implements InterpretationScorer {
         LogGraph schemaGraph = this.schemaGraph.schemaGraphOnly();
         schemaGraph.forkSchemaGraph(els, ignoreDuplicates);
 
-        // Calculate Steiner tree
+        // Calculate Steiner tree -- MOVED
+        /*
         LogGraphTree steinerTree = schemaGraph.steiner(els);
 
         // In the case of an invalid Steiner tree (e.g. only one node which is a relation)
@@ -59,7 +60,7 @@ public class SQLizerScorer implements InterpretationScorer {
                 System.out.println("Returning 0.0 because Steiner tree doesn't contain " + el);
                 return 0.0;
             }
-        }
+        } */
 
         // Don't add joins score if log graph not activated
 
