@@ -426,6 +426,87 @@ public class LogGraph {
         return results;
     }
 
+    public LogGraphTree constructFinalSteinerTreesHelper(Set<LogGraphNode> fullSubgraph,
+                                                         List<LogGraphNode> pointNodes) {
+        LogGraphTree finalMST = this.prims(new ArrayList<>(fullSubgraph));
+
+        // Step 5: Construct a Steiner tree by deleting edges so that all the leaves are Steiner points
+        Stack<LogGraphNode> leaves = new Stack<>();
+        leaves.addAll(finalMST.getLeaves());
+
+        while (!leaves.isEmpty()) {
+            LogGraphNode leaf = leaves.pop();
+
+            // Leaves can also NOT be relations, unless there are at least 2 FK-PK rels from it
+            boolean prunableRelation = false;
+
+            Relation rel = null;
+            if (leaf.getElement() instanceof Relation) {
+                rel = (Relation) leaf.getElement();
+            } else if (leaf.getElement() instanceof DuplicateDBElement) {
+                DuplicateDBElement dupl = (DuplicateDBElement) leaf.getElement();
+                if (dupl.getEl() instanceof Relation) {
+                    rel = (Relation) dupl.getEl();
+                }
+            }
+
+            if (rel != null) {
+                prunableRelation = true;
+
+                // By definition, a leaf can only have one connected node (its "parent")
+
+                LogGraphNode parent = finalMST.getParent(leaf);
+
+                    /*
+                    LogGraphNode parent = null;
+                    for (Map.Entry<LogGraphNode, Double> e : leaf.getConnected().entrySet()) {
+                        parent = e.getKey();
+                    }*/
+
+                Relation parentRel = null;
+                if (parent.getElement() instanceof Relation) {
+                    parentRel = (Relation) parent.getElement();
+                } else if (parent.getElement() instanceof DuplicateDBElement) {
+                    DuplicateDBElement dupl = (DuplicateDBElement) parent.getElement();
+                    if (dupl.getEl() instanceof Relation) {
+                        parentRel = (Relation) dupl.getEl();
+                    }
+                }
+
+                if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
+                    prunableRelation = false;
+
+                    // A HACK to support self-joins for "cite". In theory this will work with a diff. implementation.
+                    // Assuming a max of 2 FK-PK links from a leaf table to parent
+                    DuplicateDBElement duplParent = this.duplicate(parentRel);
+                    LogGraphNode duplParentNode = this.getOrAddNode(duplParent);
+                    finalMST.addNode(leaf, duplParentNode);
+
+                    Set<LogGraphNode> children = new HashSet<>(finalMST.getChildren(parent));
+                    for (LogGraphNode sibling : children) {
+                        duplParentNode.addEdge(sibling, parent.getWeight(sibling));
+                        if (!sibling.equals(leaf) && sibling.getElement() instanceof DuplicateDBElement) {
+                            finalMST.changeParent(sibling, duplParentNode);
+                        }
+                    }
+                }
+            }
+
+            if (!pointNodes.contains(leaf) || prunableRelation) {
+                LogGraphNode parent = finalMST.getParent(leaf);
+                if (parent == null) {
+                    return null;
+                }
+                // Traverse up the leaf and remove from final MST
+                finalMST.removeNode(leaf);
+                if (finalMST.isLeaf(parent)) {
+                    leaves.push(parent);
+                }
+            }
+        }
+        return finalMST;
+    }
+
     public Set<LogGraphTree> constructFinalSteinerTrees(LogGraphTree mst, List<LogGraphNode> pointNodes) {
         Set<LogGraphTree> results = new HashSet<>();
         Stack<LogGraphNode> visitStack = new Stack<>();
@@ -434,88 +515,21 @@ public class LogGraph {
         Set<Set<LogGraphNode>> fullSubgraphs = this.constructFullSubgraphsHelper(mst, new HashSet<>(), visitStack);
 
         // Step 4: Find the MST of each fullSubgraph, again using Prim's.
-        Set<LogGraphNode> shortestPathsFound = new HashSet<>();
-
         for (Set<LogGraphNode> fullSubgraph : fullSubgraphs) {
+            LogGraph newSchemaGraph = this.deepClone();
+
+            Set<LogGraphNode> clonedFullSubgraph = new HashSet<>();
             for (LogGraphNode node : fullSubgraph) {
-                if (!shortestPathsFound.contains(node)) {
-                    this.findShortestPathToAllOtherNodes(node);
-                    shortestPathsFound.add(node);
-                }
+                clonedFullSubgraph.add(newSchemaGraph.elementMap.get(node.getElement()));
+                newSchemaGraph.findShortestPathToAllOtherNodes(node);
             }
-            LogGraphTree finalMST = this.prims(new ArrayList<>(fullSubgraph));
 
-            // Step 5: Construct a Steiner tree by deleting edges so that all the leaves are Steiner points
-            Stack<LogGraphNode> leaves = new Stack<>();
-            leaves.addAll(finalMST.getLeaves());
-
-            while (!leaves.isEmpty()) {
-                LogGraphNode leaf = leaves.pop();
-
-                // Leaves can also NOT be relations, unless there are at least 2 FK-PK rels from it
-                boolean prunableRelation = false;
-
-                Relation rel = null;
-                if (leaf.getElement() instanceof Relation) {
-                    rel = (Relation) leaf.getElement();
-                } else if (leaf.getElement() instanceof DuplicateDBElement) {
-                    DuplicateDBElement dupl = (DuplicateDBElement) leaf.getElement();
-                    if (dupl.getEl() instanceof Relation) {
-                        rel = (Relation) dupl.getEl();
-                    }
-                }
-
-                if (rel != null) {
-                    prunableRelation = true;
-
-                    // By definition, a leaf can only have one connected node (its "parent")
-                    LogGraphNode parent = null;
-                    for (Map.Entry<LogGraphNode, Double> e : leaf.getConnected().entrySet()) {
-                        parent = e.getKey();
-                    }
-
-                    Relation parentRel = null;
-                    if (parent.getElement() instanceof Relation) {
-                        parentRel = (Relation) parent.getElement();
-                    } else if (parent.getElement() instanceof DuplicateDBElement) {
-                        DuplicateDBElement dupl = (DuplicateDBElement) parent.getElement();
-                        if (dupl.getEl() instanceof Relation) {
-                            parentRel = (Relation) dupl.getEl();
-                        }
-                    }
-
-                    if (parentRel != null && this.db.fpCount(rel, parentRel) >= 2) {
-                        prunableRelation = false;
-
-                        // A HACK to support self-joins for "cite". In theory this will work with a diff. implementation.
-                        // Assuming a max of 2 FK-PK links from a leaf table to parent
-                        DuplicateDBElement duplParent = this.duplicate(parentRel);
-                        LogGraphNode duplParentNode = this.getOrAddNode(duplParent);
-                        finalMST.addNode(leaf, duplParentNode);
-
-                        Set<LogGraphNode> children = new HashSet<>(finalMST.getChildren(parent));
-                        for (LogGraphNode sibling : children) {
-                            duplParentNode.addEdge(sibling, parent.getWeight(sibling));
-                            if (!sibling.equals(leaf) && sibling.getElement() instanceof DuplicateDBElement) {
-                                finalMST.changeParent(sibling, duplParentNode);
-                            }
-                        }
-                    }
-                }
-
-                if (!pointNodes.contains(leaf) || prunableRelation) {
-                    LogGraphNode parent = finalMST.getParent(leaf);
-                    if (parent == null) {
-                        return null;
-                    }
-                    // Traverse up the leaf and remove from final MST
-                    finalMST.removeNode(leaf);
-                    if (finalMST.isLeaf(parent)) {
-                        leaves.push(parent);
-                    }
-                }
+            List<LogGraphNode> clonedPointNodes = new ArrayList<>();
+            for (LogGraphNode node : pointNodes) {
+                clonedPointNodes.add(newSchemaGraph.elementMap.get(node.getElement()));
             }
-            results.add(finalMST);
+
+            results.add(newSchemaGraph.constructFinalSteinerTreesHelper(clonedFullSubgraph, clonedPointNodes));
         }
         return results;
     }
