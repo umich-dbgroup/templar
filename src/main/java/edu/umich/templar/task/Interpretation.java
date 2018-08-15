@@ -183,8 +183,23 @@ public class Interpretation {
             }
         }
 
+        Map<Attribute, Integer> aliasLevels = new HashMap<>();
         for (MatchedDBElement mel : mels) {
-            this.addDBElementToSelect(select, tablesMap, mel.getEl(), 0);
+            // If projection or equality predicate, need to raise the alias level
+            Integer aliasLevel = 0;
+            if (mel.getEl() instanceof Attribute ||
+                    mel.getEl() instanceof TextPredicate ||
+                    (mel.getEl() instanceof NumericPredicate && ((NumericPredicate) mel.getEl()).getOp().equals("="))) {
+                Attribute attr = mel.getEl().getAttribute();
+                aliasLevel = aliasLevels.get(attr);
+                if (aliasLevel == null) {
+                    aliasLevel = 0;
+                } else {
+                    aliasLevel = aliasLevel + 1;
+                }
+                aliasLevels.put(attr, aliasLevel);
+            }
+            this.addDBElementToSelect(select, tablesMap, mel.getEl(), aliasLevel);
         }
 
         return select;
